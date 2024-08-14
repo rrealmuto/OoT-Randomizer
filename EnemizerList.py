@@ -1,4 +1,21 @@
+from enum import Enum
 from ProcessActors import Actor
+
+#Enemy restriction constants
+class ENEMY_RESTRICTION(Enum):
+    UNDERWATER = 1 # Underwater enemy that requires hookshot
+    FLOATING = 2 # Locations that require an enemy that can float. Like because it's over a pit or something.
+
+# To apply restrictions to a location, define the value in the dict as a tuple in the form
+# (enemy_id, restrictions: list[ENEMY_RESTRICTION], disallowed: list[int])
+# where restrictions is a list contain the type restrictions for this location
+# and disallowed is a list of explicit enemy types that are disallowed.
+
+class EnemyLocation:
+    def __init__(self, vanilla_id, restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = []):
+        self.id = vanilla_id
+        self.restrictions = restrictions
+        self.disallowed_enemies = disallowed_enemies
 
 base_enemy_list = {
     (10, 0, 0, 1): 37, # Lizalfos/Dinalfos
@@ -427,14 +444,14 @@ vanilla_dungeon_enemies = {
         (5, 0, 0, 5): 236, # Spike
         (5, 0, 0, 12): 27, # Tektite
         (5, 0, 0, 13): 27, # Tektite
-        (5, 2, 0, 0): 197, # Shell Blade
-        (5, 2, 0, 1): 197, # Shell Blade
-        (5, 2, 0, 2): 236, # Spike
-        (5, 2, 0, 3): 236, # Spike
-        (5, 2, 0, 4): 236, # Spike
-        (5, 2, 0, 5): 236, # Spike
-        (5, 2, 0, 6): 236, # Spike
-        (5, 3, 0, 0): 197, # Shell Blade
+        (5, 2, 0, 0): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (5, 2, 0, 1): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (5, 2, 0, 2): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 3): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 4): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 5): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 6): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 3, 0, 0): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
         (5, 3, 0, 2): 27, # Tektite
         (5, 3, 0, 3): 27, # Tektite
         (5, 4, 0, 1): 396, # Stinger
@@ -484,13 +501,13 @@ vanilla_dungeon_enemies = {
         (6, 1, 0, 2): 19, # Keese
         (6, 1, 0, 3): 19, # Keese
         (6, 1, 0, 4): 19, # Keese
-        (6, 2, 0, 0): 19, # Keese
-        (6, 2, 0, 1): 19, # Keese
-        (6, 2, 0, 2): 19, # Keese
-        (6, 2, 0, 3): 19, # Keese
+        (6, 2, 0, 0): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 1): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 2): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 3): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
         (6, 2, 0, 5): 19, # Keese
         (6, 2, 0, 6): 17, # Wallmaster
-        (6, 3, 0, 0): 105, # Bubble
+        (6, 3, 0, 0): EnemyLocation(105, [ENEMY_RESTRICTION.FLOATING], []), # Bubble
         (6, 3, 0, 3): 2, # Stalfos
         (6, 4, 0, 0): 149, # Skullwaltula
         (6, 4, 0, 1): 149, # Skullwaltula
@@ -516,7 +533,7 @@ vanilla_dungeon_enemies = {
         (6, 18, 0, 0): 84, # Armos
         (6, 18, 0, 1): 84, # Armos
         (6, 18, 0, 2): 84, # Armos
-        (6, 18, 0, 3): 84, # Armos
+        #(6, 18, 0, 3): 84, # Armos # Leave one armos so we can press the switch
         (6, 20, 0, 0): 275, # Iron Knuckle
         (6, 22, 0, 10): 56, # Torch Slug
         (6, 22, 0, 11): 56, # Torch Slug
@@ -1162,6 +1179,11 @@ named_rooms: dict[str, tuple[int,int]] = {
     'FOREST TEMPLE LOWER STALFOS': (3,6),
     'FOREST TEMPLE BEFORE LEDGE': (3, 21),
     'FIRE TEMPLE LOWER LOCKED DOOR': (4,15),
+    'WATER TEMPLE MAP CHEST': (5, 19),
+    'WATER TEMPLE TORCHES CHEST': (5,18),
+    'WATER TEMPLE CENTRAL PILLAR': (5,2),
+    'SPIRIT TEMPLE CHILD START': (6,1),
+    'SPIRIT TEMPLE ADULT ANUBIS ROOM': (6,17),
     'SHADOW TEMPLE MAP CHEST': (7,1),
     'SHADOW TEMPLE COMPASS CHEST': (7,7),
     'SHADOW TEMPLE INVISIBLE BLADES': (7,16),
@@ -1175,11 +1197,12 @@ named_rooms: dict[str, tuple[int,int]] = {
 }
 
 class Enemy:
-    def __init__(self, name: str, var: int = 0, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None):
+    def __init__(self, name: str, var: int = 0, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None, categories: list[int] = []):
         self.name = name
         self.var = var
         self.filter_func = filter_func
         self.kill_logic = kill_logic
+        self.categories = categories
         if soul_name:
             self.soul_name = soul_name
         else:
@@ -1189,6 +1212,7 @@ class EnemyWithOpts(Enemy):
     def __init__(self, enemyOpts: list[Enemy], filter_func=None):
         self.enemyOpts: list[Enemy] = enemyOpts
         self.filter_func = filter_func
+        self.categories = []
 
 # Filter functions, return false to filter out enemy from being shuffled
 
@@ -1211,42 +1235,42 @@ enemy_actor_types = {
     0x000E: Enemy("Octorok", kill_logic='can_kill_octorok'),
     0x0011: Enemy("Wallmaster", kill_logic='can_kill_wallmaster'),
     0x0012: Enemy("Dodongo", kill_logic='can_kill_dodongo'),
-    0x0013: Enemy("Keese", kill_logic='can_kill_keese'),
+    0x0013: Enemy("Keese", kill_logic='can_kill_keese', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
     0x001B: Enemy("Tektite", kill_logic='can_kill_tektite'),
     0x001D: EnemyWithOpts([
         Enemy("Peahat", var=0xFFFF, kill_logic='can_kill_peahat'),
         Enemy("Flying Peahat", var=0x0000, kill_logic='can_kill_flying_peahat', soul_name="Peahat")
     ]),
     0x0025: Enemy("Lizalfos/Dinalfos", var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos'),
-    0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva'),
-    0x002D: Enemy("Shabom", kill_logic='can_kill_shabom'),
+    0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x002D: Enemy("Shabom", kill_logic='can_kill_shabom', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
     0x002F: Enemy("Baby Dodongo", kill_logic='can_kill_baby_dodongo'),
-    0x0034: Enemy("Biri", soul_name="Biri and Bari", kill_logic='can_kill_biri'),
-    0x0063: Enemy("Bari", soul_name="Biri and Bari", kill_logic='can_kill_biri'),
-    0x0035: Enemy("Tailpasaran", var=0xFFFF, kill_logic='can_kill_tailsparan'),
-    0x0037: Enemy("Skulltula", kill_logic='can_kill_skulltula'),
+    0x0034: Enemy("Biri", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
+    0x0063: Enemy("Bari", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x0035: Enemy("Tailpasaran", var=0xFFFF, kill_logic='can_kill_tailsparan', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x0037: Enemy("Skulltula", kill_logic='can_kill_skulltula', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
     0x0038: Enemy("Torch Slug"),
     0x004B: Enemy("Moblin"),
     0x0054: Enemy("Armos", var = 0xFFFF, filter_func=filter_armos, kill_logic='can_kill_armos'),
     0x0055: Enemy("Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba'),
     0x00C7: Enemy("Whithered Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba'),
-    0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub'),
+    0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub', categories=[ENEMY_RESTRICTION.UNDERWATER]),
     0x0069: Enemy("Bubble", var=0xFFFF, kill_logic='can_kill_bubble'),
-    0x008A: Enemy("Beamos", kill_logic='can_kill_beamos'),
+    0x008A: Enemy("Beamos", kill_logic='can_kill_beamos', categories=[ENEMY_RESTRICTION.FLOATING]),
     0x008E: Enemy("Floormaster", kill_logic='can_kill_floormaster'),
     0x0090: Enemy("Redead/Gibdo", soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
-    0x0095: Enemy("Skullwalltula", filter_func=filter_skullwalltula, kill_logic='can_kill_skullwalltula'),
+    0x0095: Enemy("Skullwalltula", filter_func=filter_skullwalltula, kill_logic='can_kill_skullwalltula', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
     0x0099: Enemy("Flare Dancer", kill_logic='can_kill_flare_dancer'),
     # 0x00A4: Enemy("Dead Hand"),
-    0x00C5: Enemy("Shell Blade", kill_logic='can_kill_shell_blade'),
+    0x00C5: Enemy("Shell Blade", kill_logic='can_kill_shell_blade', categories=[ENEMY_RESTRICTION.UNDERWATER]),
     0x00DD: Enemy("Like like", soul_name="Like-like", kill_logic='can_kill_likelike'),
     0x00EC: Enemy("Spike Enemy", kill_logic='can_kill_spike_enemy'),
-    0x00F6: Enemy("Anubis Spawner", soul_name="Anubis"),
+    0x00F6: Enemy("Anubis Spawner", soul_name="Anubis", categories=[ENEMY_RESTRICTION.FLOATING]),
     0x0113: Enemy("Iron Knuckle", var=0xFF02),
     0x0115: Enemy("Skull Kid", var=0xFFFF, filter_func=filter_skullkids),
     0x0121: Enemy("Freezard"),
-    0x018C: Enemy("Stinger", kill_logic='can_kill_stinger'),
-    0x003A: Enemy("Stingray", var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger'),
+    0x018C: Enemy("Stinger", kill_logic='can_kill_stinger', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x003A: Enemy("Stingray", var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', categories=[ENEMY_RESTRICTION.UNDERWATER]),
     0x01AF: Enemy("Wolfos", var=0xFF00, kill_logic='can_kill_wolfos'),
-    0x01C0: Enemy("Guay", kill_logic='can_kill_basic'),
+    0x01C0: Enemy("Guay", kill_logic='can_kill_basic', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
 }

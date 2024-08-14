@@ -139,7 +139,7 @@
     "can_kill_peahat": "has_soul(Peahat) and ((at_night and Bombs) or (at_day and is_adult or (Kokiri_Sword or Sticks or Slingshot)))",
     "can_kill_flying_peahat": "has_soul(Peahat) and (at_day and can_use(Slingshot) or can_use(Bow)) or (at_night and Bombs)",
     "can_kill_iron_knuckle": "has_soul(Iron_Knuckle) and ((is_adult) or (is_child and (Bombs or Kokiri_Sword or Sticks)))",
-    "can_kill_shell_blade": "has_soul(Shell_Blade) and (is_adult and (Bow or Hookshot))",
+    "can_kill_shell_blade": "has_soul(Shell_Blade) and ( (is_adult and (Bow or Hookshot)) or (is_child and Kokiri_Sword and Magic_Meter))",
     "can_kill_freezard": "has_soul(Freezard) and (is_adult or has_explosives or can_use(Dins_Fire))",
     "can_kill_flare_dancer": "has_soul(Flare_Dancer) and ((is_adult and Megaton_Hammer) or (is_child and Bomb_Bag and Kokiri_Sword))",
     "can_kill_spike_enemy": "has_soul(Spike_Enemy) and (is_adult or (Bomb_Bag or can_use(Dins_Fire) or Sticks))",
