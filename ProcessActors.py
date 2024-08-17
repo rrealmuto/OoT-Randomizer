@@ -25,6 +25,35 @@ class Actor:
         bytes.extend(self.var.to_bytes(2, 'big'))
         return bytes
 
+class TransitionActor:
+    def __init__(self, address: int, actor_bytes: bytearray):
+        self.addr = address
+        self.next_room = int.from_bytes(actor_bytes[0:1], 'big')
+        self.next_camera = int.from_bytes(actor_bytes[1:2], 'big')
+        self.prev_room = int.from_bytes(actor_bytes[2:3], 'big')
+        self.prev_camera = int.from_bytes(actor_bytes[3:4], 'big')
+        self.id = int.from_bytes(actor_bytes[4:6], 'big')
+        self.x = int.from_bytes(actor_bytes[6:8], 'big')
+        self.y = int.from_bytes(actor_bytes[8:10], 'big')
+        self.z = int.from_bytes(actor_bytes[10:12], 'big')
+        self.rot_y = int.from_bytes(actor_bytes[12:14], 'big')
+        self.var = int.from_bytes(actor_bytes[14:16], 'big')
+    
+    def get_bytes(self) -> bytearray:
+        bytes: bytearray = bytearray()
+        bytes.extend(self.next_room.to_bytes(1, 'big'))
+        bytes.extend(self.next_camera.to_bytes(1, 'big'))
+        bytes.extend(self.prev_room.to_bytes(1, 'big'))
+        bytes.extend(self.prev_camera.to_bytes(1, 'big'))
+        bytes.extend(self.id.to_bytes(2, 'big'))
+        bytes.extend(self.x.to_bytes(2, 'big'))
+        bytes.extend(self.y.to_bytes(2, 'big'))
+        bytes.extend(self.z.to_bytes(2, 'big'))
+        bytes.extend(self.rot_y.to_bytes(2, 'big'))
+        bytes.extend(self.var.to_bytes(2, 'big'))
+        return bytes
+        
+
 class RoomSetup:
     def __init__(self, rom: Rom, room_addr: int, header_addr: int):
         # Process the room
@@ -86,10 +115,11 @@ class Scene:
         self.rooms: list[Room] = []
         self.keep_id = 0
         self.id = id
+        self.transition_actors: list[TransitionActor] = []
         self.process_scene(rom, scene_addr)
         self.rom_addr = scene_addr
 
-    def process_scene(self, rom, scene_data):
+    def process_scene(self, rom: Rom, scene_data):
         command = 0
         offset = scene_data
         while command != 0x14: #0x14 = end header
@@ -112,6 +142,12 @@ class Scene:
                     room = Room(rom, i, room_start)
                     self.rooms.append(room)
                     # Read the room list
+            if command == 0x0E: # Transition actor list
+                transition_count = rom.read_byte(offset + 1)
+                transition_table_offset = scene_data + (rom.read_int32(offset + 4) & 0x00FFFFFF)
+                for i in range(0, transition_count):
+                    transition_actor_bytes = rom.read_bytes(transition_table_offset + (16 * i), 16)
+                    self.transition_actors.append(TransitionActor(transition_table_offset + (16 * i), transition_actor_bytes))
             offset += 8
 
 def get_actor_list(rom, actor_func):

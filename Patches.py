@@ -2294,7 +2294,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         #for enemy in rom_enemies:
         #    print(f"{enemy}: {rom_enemies[enemy].id}, # {enemy_actor_typesrom_enemies[enemy].id].name}")
         
-        patch_enemies(rom_enemies, world.shuffled_enemies, rom)
+        patch_enemies(world,rom_enemies, world.shuffled_enemies, rom, scene_data)
         rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 1)
 
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the

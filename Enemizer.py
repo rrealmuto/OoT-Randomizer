@@ -105,7 +105,7 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
             restricted_enemy_actor_types[enemy_id] = enemy
     return restricted_enemy_actor_types
 
-def patch_enemies(enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,bool]], rom):
+def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,Enemy, bool]], rom: Rom, scene_data: list[Scene]):
     for enemy_key in shuffled_enemies:
         keys = [enemy_key]
         if enemy_key in base_enemy_alts.keys():
@@ -124,5 +124,7 @@ def patch_enemies(enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemi
                     enemy_actor.id = enemy_id
                     enemy_actor.var = enemy.var
                     rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
+                    if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation and world.enemy_list[key].patch_func:
+                        world.enemy_list[key].patch_func(rom, scene_data)
             else:
                 print(f"Missing enemy actor {key}")

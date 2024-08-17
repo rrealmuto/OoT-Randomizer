@@ -1,5 +1,6 @@
 from enum import Enum
-from ProcessActors import Actor
+from ProcessActors import Actor, Scene
+import Rom
 
 #Enemy restriction constants
 class ENEMY_RESTRICTION(Enum):
@@ -12,10 +13,18 @@ class ENEMY_RESTRICTION(Enum):
 # and disallowed is a list of explicit enemy types that are disallowed.
 
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = []):
+    def __init__(self, vanilla_id, restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None):
         self.id = vanilla_id
         self.restrictions = restrictions
         self.disallowed_enemies = disallowed_enemies
+        self.patch_func = patch_func
+
+# Nabooru knuckle enemizer patch function
+# Patch the door to work on room clear instead of switch flag
+def patch_func_nabooru_knuckle(rom: Rom, scene_data: list[Scene]):
+    nabooru_transition = scene_data[23].transition_actors[1]
+    nabooru_transition.var = 0x40
+    rom.write_bytes(nabooru_transition.addr, nabooru_transition.get_bytes())
 
 base_enemy_list = {
     (10, 0, 0, 1): 37, # Lizalfos/Dinalfos
@@ -32,7 +41,7 @@ base_enemy_list = {
     (10, 7, 0, 6): 19, # Keese
     (10, 7, 0, 7): 19, # Keese
     (15, 0, 0, 4): 144, # Redead/Gibdo
-    (23, 1, 0, 0): 275, # Iron Knuckle
+    (23, 1, 0, 0): EnemyLocation(275, patch_func=patch_func_nabooru_knuckle), # Iron Knuckle
     (34, 0, 0, 0): 144, # Redead/Gibdo
     (34, 0, 0, 1): 144, # Redead/Gibdo
     (34, 0, 0, 2): 144, # Redead/Gibdo
