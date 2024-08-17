@@ -1280,3 +1280,14 @@ enemy_actor_types = {
     0x01AF: Enemy("Wolfos", var=0xFF00, kill_logic='can_kill_wolfos'),
     0x01C0: Enemy("Guay", kill_logic='can_kill_basic', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
 }
+
+enemies_by_name = {}
+def build_enemies_by_name():
+    for id, enemy in enemy_actor_types.items():
+        if type(enemy) is Enemy:
+            enemies_by_name[enemy.name] = id
+        elif type(enemy) is EnemyWithOpts:
+            for opt in enemy.enemyOpts:
+                enemies_by_name[opt.name] = id
+
+build_enemies_by_name()

@@ -38,7 +38,7 @@ def build_enemylist(world: World):
 
 def shuffle_enemies(worlds: list[World]):
     for world in worlds:
-        world.shuffled_enemies = _shuffle_enemies(world.enemy_list)
+        world.shuffled_enemies = _shuffle_enemies(world,world.enemy_list)
         # Enemies by scene/room
         scene_enemies = {}
         for key in world.shuffled_enemies:
@@ -52,17 +52,32 @@ def shuffle_enemies(worlds: list[World]):
             scene_enemies[scene][room][setup][key] = world.shuffled_enemies[key]
         world.enemies_by_scene = scene_enemies
 
-def _shuffle_enemies(enemy_list: dict[tuple[int,int,int,int],int | EnemyLocation]) -> dict[tuple[int,int,int,int], tuple[int,bool]]: 
+def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int | EnemyLocation]) -> dict[tuple[int,int,int,int], tuple[int,bool]]:
+    to_shuffle = enemy_list.copy()
+
     shuffled: dict[tuple[int,int,int,int], tuple[int,bool]] = {}
+    # Handle plandoed enemies
+    for plando_enemy_key, enemy_name in world.distribution.enemies.items():
+        enemy_id = enemies_by_name[enemy_name]
+        enemy = enemy_actor_types[enemy_id]
+        if type(enemy) is EnemyWithOpts:
+            for opt in enemy.enemyOpts:
+                if opt.name == enemy_name:
+                    enemy = opt
+                    break
+
+        shuffled[plando_enemy_key] = (enemy_id, enemy, True)
+        del to_shuffle[plando_enemy_key]
+    
     enemy_choices = list(enemy_actor_types.keys())
-    for enemy_key in enemy_list:
-        enemy_type = enemy_list[enemy_key]
+    for enemy_key in to_shuffle:
+        enemy_type = to_shuffle[enemy_key]
         if type(enemy_type) is EnemyLocation: # EnemyLocation with type restrictions
             restriction = enemy_type.restrictions
             disallowed_enemies = enemy_type.disallowed_enemies
             enemy_type = enemy_type.id
         else: # Just an enemy ID
-            enemy_type = enemy_list[enemy_key]
+            enemy_type = to_shuffle[enemy_key]
             restriction = None
         if restriction:
             enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, disallowed_enemies))
