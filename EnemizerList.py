@@ -2,20 +2,24 @@ from enum import Enum
 from ProcessActors import Actor, Scene
 import Rom
 
-#Enemy restriction constants
-class ENEMY_RESTRICTION(Enum):
+#Location specific restriction constants
+class LOCATION_RESTRICTION(Enum):
     UNDERWATER = 1 # Underwater enemy that requires hookshot
     FLOATING = 2 # Locations that require an enemy that can float. Like because it's over a pit or something.
 
-# To apply restrictions to a location, define the value in the dict as a tuple in the form
-# (enemy_id, restrictions: list[ENEMY_RESTRICTION], disallowed: list[int])
-# where restrictions is a list contain the type restrictions for this location
-# and disallowed is a list of explicit enemy types that are disallowed.
+class ENEMY_RESTRICTION(Enum):
+    ABOVE_WATER = 1
 
+# Define an enemy location supporting restrictions
+# restrictions - list of restrictions for this location. Enemy must have these restrictions tagged on them in order to spawn here. Ex. UNDERWATER
+# meets_enemy_restrictions - list of enemy restrictions that this location meets. Ex. certain enemies can only spawn above water
+# disallowed enemies - list of enemy types to explicitly disallow
+# patch_func - function that will apply a ROM patch applicable to this location
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None):
+    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None):
         self.id = vanilla_id
         self.restrictions = restrictions
+        self.meets_enemy_restrictions = meets_enemy_restrictions
         self.disallowed_enemies = disallowed_enemies
         self.patch_func = patch_func
 
@@ -27,197 +31,197 @@ def patch_func_nabooru_knuckle(rom: Rom, scene_data: list[Scene]):
     rom.write_bytes(nabooru_transition.addr, nabooru_transition.get_bytes())
 
 base_enemy_list = {
-    (10, 0, 0, 1): 37, # Lizalfos/Dinalfos
-    (10, 0, 0, 2): 37, # Lizalfos/Dinalfos
-    (10, 2, 0, 5): 2, # Stalfos
-    (10, 2, 0, 6): 2, # Stalfos
-    (10, 4, 0, 1): 275, # Iron Knuckle
-    (10, 4, 0, 2): 275, # Iron Knuckle
-    (10, 7, 0, 1): 19, # Keese
-    (10, 7, 0, 2): 19, # Keese
-    (10, 7, 0, 3): 19, # Keese
-    (10, 7, 0, 4): 19, # Keese
-    (10, 7, 0, 5): 19, # Keese
-    (10, 7, 0, 6): 19, # Keese
-    (10, 7, 0, 7): 19, # Keese
-    (15, 0, 0, 4): 144, # Redead/Gibdo
-    (23, 1, 0, 0): EnemyLocation(275, patch_func=patch_func_nabooru_knuckle), # Iron Knuckle
-    (34, 0, 0, 0): 144, # Redead/Gibdo
-    (34, 0, 0, 1): 144, # Redead/Gibdo
-    (34, 0, 0, 2): 144, # Redead/Gibdo
-    (34, 0, 0, 3): 144, # Redead/Gibdo
-    (34, 0, 0, 4): 144, # Redead/Gibdo
-    (34, 0, 0, 5): 144, # Redead/Gibdo
-    (34, 0, 0, 6): 144, # Redead/Gibdo
-    (34, 0, 0, 7): 144, # Redead/Gibdo
-    (62, 2, 0, 0): 144, # Redead/Gibdo
-    (62, 2, 0, 1): 144, # Redead/Gibdo
-    (62, 4, 0, 0): 55, # Skulltula
-    (62, 5, 0, 0): 14, # Octorok
-    (62, 7, 0, 0): 431, # Wolfos
-    (62, 7, 0, 1): 431, # Wolfos
-    (62, 8, 0, 0): 149, # Skullwaltula
-    (62, 8, 0, 1): 149, # Skullwaltula
-    (62, 10, 0, 2): 27, # Tektite
-    (62, 13, 0, 0): 55, # Skulltula
-    (63, 0, 0, 1): 144, # Redead/Gibdo
-    (65, 0, 0, 0): 19, # Keese
-    (65, 0, 0, 1): 19, # Keese
-    (65, 0, 0, 3): 19, # Keese
-    (65, 0, 0, 4): 19, # Keese
-    (65, 1, 0, 0): 144, # Redead/Gibdo
-    (65, 1, 0, 1): 144, # Redead/Gibdo
-    (65, 1, 0, 2): 144, # Redead/Gibdo
-    (72, 2, 0, 3): 144, # Redead/Gibdo
-    (72, 2, 0, 4): 144, # Redead/Gibdo
-    (72, 3, 0, 2): 144, # Redead/Gibdo
-    (72, 3, 0, 3): 144, # Redead/Gibdo
-    (81, 0, 0, 8): 29, # Peahat
-    (81, 0, 0, 9): 29, # Peahat
-    (81, 0, 0, 10): 29, # Peahat
-    (81, 0, 0, 11): 29, # Peahat
-    (81, 0, 0, 12): 29, # Peahat
-    (81, 0, 0, 13): 29, # Peahat
-    (81, 0, 0, 14): 29, # Peahat
-    (83, 1, 2, 2): 19, # Keese
-    (83, 1, 2, 3): 19, # Keese
-    (83, 1, 2, 4): 19, # Keese
-    (83, 1, 2, 5): 19, # Keese
-    (83, 1, 2, 6): 19, # Keese
-    (83, 1, 2, 7): 149, # Skullwaltula
-    (83, 1, 2, 8): 149, # Skullwaltula
-    (83, 1, 3, 2): 19, # Keese
-    (83, 1, 3, 3): 19, # Keese
-    (83, 1, 3, 4): 19, # Keese
-    (83, 1, 3, 5): 19, # Keese
-    (83, 1, 3, 6): 19, # Keese
-    (83, 1, 3, 7): 149, # Skullwaltula
-    (83, 1, 3, 8): 149, # Skullwaltula
-    (84, 0, 2, 2): 14, # Octorok
-    (84, 0, 2, 3): 14, # Octorok
-    (84, 0, 2, 4): 14, # Octorok
-    (84, 0, 2, 5): 14, # Octorok
-    (84, 0, 2, 6): 14, # Octorok
-    (84, 0, 2, 7): 14, # Octorok
-    (84, 0, 2, 8): 14, # Octorok
-    (84, 0, 2, 9): 14, # Octorok
-    (84, 0, 0, 4): 14, # Octorok
-    (84, 0, 0, 5): 14, # Octorok
-    (84, 0, 0, 42): 27, # Tektite
-    (84, 0, 0, 43): 27, # Tektite
-    (85, 0, 2, 1): 14, # Octorok
-    (85, 0, 2, 2): 14, # Octorok
-    (85, 0, 2, 3): 55, # Skulltula
-    (85, 0, 2, 4): 96, # Deku Scrub
-    (85, 0, 2, 5): 96, # Deku Scrub
-    (85, 0, 2, 6): 96, # Deku Scrub
-    (85, 0, 2, 7): 85, # Deku Baba
-    (85, 0, 2, 8): 85, # Deku Baba
-    (85, 0, 2, 9): 85, # Deku Baba
-    (85, 0, 2, 10): 85, # Deku Baba
-    (85, 1, 2, 2): 85, # Deku Baba
-    (85, 1, 2, 3): 85, # Deku Baba
-    (85, 1, 2, 4): 85, # Deku Baba
-    (85, 1, 2, 5): 85, # Deku Baba
-    (85, 1, 2, 6): 85, # Deku Baba
-    (85, 1, 2, 7): 85, # Deku Baba
-    (85, 1, 0, 1): 199, # Whithered Deku Baba
-    (85, 1, 0, 2): 199, # Whithered Deku Baba
-    (85, 1, 0, 3): 199, # Whithered Deku Baba
-    (85, 1, 0, 4): 199, # Whithered Deku Baba
-    (85, 1, 0, 5): 199, # Whithered Deku Baba
-    (86, 0, 2, 5): 75, # Moblin
-    (86, 0, 2, 6): 75, # Moblin
-    (86, 0, 2, 7): 75, # Moblin
-    (86, 0, 2, 8): 75, # Moblin
-    (86, 0, 2, 9): 75, # Moblin
-    (86, 0, 2, 10): 75, # Moblin
-    (86, 0, 0, 1): 431, # Wolfos
-    (86, 0, 0, 5): 96, # Deku Scrub
-    (86, 0, 0, 6): 96, # Deku Scrub
-    (86, 0, 0, 7): 96, # Deku Scrub
-    (86, 0, 0, 8): 96, # Deku Scrub
-    (86, 0, 0, 9): 96, # Deku Scrub
-    (86, 0, 0, 10): 96, # Deku Scrub
-    (87, 0, 2, 15): 448, # Guay
-    (87, 0, 2, 16): 448, # Guay
-    (87, 0, 2, 17): 448, # Guay
-    (87, 0, 2, 18): 448, # Guay
-    (87, 0, 2, 22): 27, # Tektite
-    (87, 0, 2, 23): 27, # Tektite
-    (87, 0, 2, 24): 27, # Tektite
-    (87, 0, 2, 25): 27, # Tektite
-    (87, 0, 2, 26): 27, # Tektite
-    (87, 0, 2, 27): 27, # Tektite
-    (87, 0, 2, 28): 27, # Tektite
-    (87, 0, 2, 29): 27, # Tektite
-    (87, 0, 0, 3): 14, # Octorok
-    (87, 0, 0, 4): 14, # Octorok
-    (87, 0, 0, 5): 14, # Octorok
-    (87, 0, 0, 19): 27, # Tektite
-    (87, 0, 0, 20): 27, # Tektite
-    (87, 0, 0, 21): 27, # Tektite
-    (89, 0, 2, 18): 14, # Octorok
-    (89, 0, 2, 19): 14, # Octorok
-    (89, 0, 2, 20): 14, # Octorok
-    (89, 0, 2, 21): 14, # Octorok
-    (89, 0, 2, 24): 55, # Skulltula
-    (89, 0, 2, 25): 55, # Skulltula
-    (89, 0, 2, 26): 55, # Skulltula
-    (89, 0, 2, 27): 55, # Skulltula
-    (89, 0, 2, 28): 55, # Skulltula
-    (89, 0, 2, 50): 27, # Tektite
-    (90, 0, 2, 3): 14, # Octorok
-    (90, 0, 2, 4): 14, # Octorok
-    (90, 0, 2, 5): 14, # Octorok
-    (90, 0, 2, 6): 14, # Octorok
-    (90, 0, 2, 7): 14, # Octorok
-    (91, 1, 2, 1): 277, # Skull Kid
-    (91, 1, 2, 2): 277, # Skull Kid
-    (91, 3, 2, 2): 14, # Octorok
-    (91, 3, 0, 2): 14, # Octorok
-    (91, 9, 2, 1): 277, # Skull Kid
-    (92, 0, 2, 7): 448, # Guay
-    (92, 0, 2, 8): 448, # Guay
-    (92, 0, 2, 9): 448, # Guay
-    (92, 0, 2, 10): 448, # Guay
-    (92, 0, 2, 11): 448, # Guay
-    (92, 0, 0, 7): 448, # Guay
-    (92, 0, 0, 8): 448, # Guay
-    (92, 0, 0, 9): 448, # Guay
-    (96, 0, 2, 2): 149, # Skullwaltula
-    (96, 0, 2, 3): 149, # Skullwaltula
-    (96, 0, 2, 4): 149, # Skullwaltula
-    (96, 0, 2, 6): 27, # Tektite
-    (96, 0, 2, 7): 27, # Tektite
-    (96, 0, 2, 8): 27, # Tektite
-    (96, 0, 0, 6): 149, # Skullwaltula
-    (96, 0, 0, 7): 149, # Skullwaltula
-    (96, 0, 0, 8): 149, # Skullwaltula
-    (96, 0, 0, 9): 27, # Tektite
-    (96, 0, 0, 10): 27, # Tektite
-    (96, 0, 0, 11): 27, # Tektite
-    (96, 0, 0, 12): 27, # Tektite
-    (97, 1, 2, 8): 105, # Bubble
-    (97, 1, 2, 9): 105, # Bubble
-    (97, 1, 2, 10): 105, # Bubble
-    (97, 1, 2, 11): 105, # Bubble
-    (97, 1, 2, 12): 105, # Bubble
-    (99, 0, 1, 10): 448, # Guay
-    (99, 0, 1, 11): 448, # Guay
-    (99, 0, 1, 12): 448, # Guay
-    (99, 0, 1, 13): 448, # Guay
-    (99, 0, 1, 14): 448, # Guay
-    (99, 0, 1, 15): 448, # Guay
-    (99, 0, 1, 16): 448, # Guay
-    (99, 0, 1, 17): 448, # Guay
-    (99, 0, 1, 18): 448, # Guay
-    (99, 0, 1, 19): 448, # Guay
-    (99, 0, 1, 20): 448, # Guay
-    (99, 0, 1, 21): 448, # Guay
-    (99, 0, 1, 22): 448, # Guay
-    (99, 0, 1, 23): 448, # Guay
-    (99, 0, 1, 24): 448, # Guay
+    (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
+    (10, 0, 0, 2):      EnemyLocation(37), # Lizalfos/Dinalfos
+    (10, 2, 0, 5):      EnemyLocation(2), # Stalfos
+    (10, 2, 0, 6):      EnemyLocation(2), # Stalfos
+    (10, 4, 0, 1):      EnemyLocation(275), # Iron Knuckle
+    (10, 4, 0, 2):      EnemyLocation(275), # Iron Knuckle
+    (10, 7, 0, 1):      EnemyLocation(19), # Keese
+    (10, 7, 0, 2):      EnemyLocation(19), # Keese
+    (10, 7, 0, 3):      EnemyLocation(19), # Keese
+    (10, 7, 0, 4):      EnemyLocation(19), # Keese
+    (10, 7, 0, 5):      EnemyLocation(19), # Keese
+    (10, 7, 0, 6):      EnemyLocation(19), # Keese
+    (10, 7, 0, 7):      EnemyLocation(19), # Keese
+    (15, 0, 0, 4):      EnemyLocation(144), # Redead/Gibdo
+    (23, 1, 0, 0):      EnemyLocation(275, patch_func=patch_func_nabooru_knuckle), # Iron Knuckle
+    (34, 0, 0, 0):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 1):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 2):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 3):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 4):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 5):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 6):      EnemyLocation(144), # Redead/Gibdo
+    (34, 0, 0, 7):      EnemyLocation(144), # Redead/Gibdo
+    (62, 2, 0, 0):      EnemyLocation(144), # Redead/Gibdo
+    (62, 2, 0, 1):      EnemyLocation(144), # Redead/Gibdo
+    (62, 4, 0, 0):      EnemyLocation(55), # Skulltula
+    (62, 5, 0, 0):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (62, 7, 0, 0):      EnemyLocation(431), # Wolfos
+    (62, 7, 0, 1):      EnemyLocation(431), # Wolfos
+    (62, 8, 0, 0):      EnemyLocation(149), # Skullwaltula
+    (62, 8, 0, 1):      EnemyLocation(149), # Skullwaltula
+    (62, 10, 0, 2):     EnemyLocation(27), # Tektite
+    (62, 13, 0, 0):     EnemyLocation(55), # Skulltula
+    (63, 0, 0, 1):      EnemyLocation(144), # Redead/Gibdo
+    (65, 0, 0, 0):      EnemyLocation(19), # Keese
+    (65, 0, 0, 1):      EnemyLocation(19), # Keese
+    (65, 0, 0, 3):      EnemyLocation(19), # Keese
+    (65, 0, 0, 4):      EnemyLocation(19), # Keese
+    (65, 1, 0, 0):      EnemyLocation(144), # Redead/Gibdo
+    (65, 1, 0, 1):      EnemyLocation(144), # Redead/Gibdo
+    (65, 1, 0, 2):      EnemyLocation(144), # Redead/Gibdo
+    (72, 2, 0, 3):      EnemyLocation(144), # Redead/Gibdo
+    (72, 2, 0, 4):      EnemyLocation(144), # Redead/Gibdo
+    (72, 3, 0, 2):      EnemyLocation(144), # Redead/Gibdo
+    (72, 3, 0, 3):      EnemyLocation(144), # Redead/Gibdo
+    (81, 0, 0, 8):      EnemyLocation(29), # Peahat
+    (81, 0, 0, 9):      EnemyLocation(29), # Peahat
+    (81, 0, 0, 10):     EnemyLocation(29), # Peahat
+    (81, 0, 0, 11):     EnemyLocation(29), # Peahat
+    (81, 0, 0, 12):     EnemyLocation(29), # Peahat
+    (81, 0, 0, 13):     EnemyLocation(29), # Peahat
+    (81, 0, 0, 14):     EnemyLocation(29), # Peahat
+    (83, 1, 2, 2):      EnemyLocation(19), # Keese
+    (83, 1, 2, 3):      EnemyLocation(19), # Keese
+    (83, 1, 2, 4):      EnemyLocation(19), # Keese
+    (83, 1, 2, 5):      EnemyLocation(19), # Keese
+    (83, 1, 2, 6):      EnemyLocation(19), # Keese
+    (83, 1, 2, 7):      EnemyLocation(149), # Skullwaltula
+    (83, 1, 2, 8):      EnemyLocation(149), # Skullwaltula
+    (83, 1, 3, 2):      EnemyLocation(19), # Keese
+    (83, 1, 3, 3):      EnemyLocation(19), # Keese
+    (83, 1, 3, 4):      EnemyLocation(19), # Keese
+    (83, 1, 3, 5):      EnemyLocation(19), # Keese
+    (83, 1, 3, 6):      EnemyLocation(19), # Keese
+    (83, 1, 3, 7):      EnemyLocation(149), # Skullwaltula
+    (83, 1, 3, 8):      EnemyLocation(149), # Skullwaltula
+    (84, 0, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 6):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 7):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 8):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 2, 9):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (84, 0, 0, 42):     EnemyLocation(27), # Tektite
+    (84, 0, 0, 43):     EnemyLocation(27), # Tektite
+    (85, 0, 2, 1):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (85, 0, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (85, 0, 2, 3):      EnemyLocation(55), # Skulltula
+    (85, 0, 2, 4):      EnemyLocation(96), # Deku Scrub
+    (85, 0, 2, 5):      EnemyLocation(96), # Deku Scrub
+    (85, 0, 2, 6):      EnemyLocation(96), # Deku Scrub
+    (85, 0, 2, 7):      EnemyLocation(85), # Deku Baba
+    (85, 0, 2, 8):      EnemyLocation(85), # Deku Baba
+    (85, 0, 2, 9):      EnemyLocation(85), # Deku Baba
+    (85, 0, 2, 10):     EnemyLocation(85), # Deku Baba
+    (85, 1, 2, 2):      EnemyLocation(85), # Deku Baba
+    (85, 1, 2, 3):      EnemyLocation(85), # Deku Baba
+    (85, 1, 2, 4):      EnemyLocation(85), # Deku Baba
+    (85, 1, 2, 5):      EnemyLocation(85), # Deku Baba
+    (85, 1, 2, 6):      EnemyLocation(85), # Deku Baba
+    (85, 1, 2, 7):      EnemyLocation(85), # Deku Baba
+    (85, 1, 0, 1):      EnemyLocation(199), # Whithered Deku Baba
+    (85, 1, 0, 2):      EnemyLocation(199), # Whithered Deku Baba
+    (85, 1, 0, 3):      EnemyLocation(199), # Whithered Deku Baba
+    (85, 1, 0, 4):      EnemyLocation(199), # Whithered Deku Baba
+    (85, 1, 0, 5):      EnemyLocation(199), # Whithered Deku Baba
+    (86, 0, 2, 5):      EnemyLocation(75), # Moblin
+    (86, 0, 2, 6):      EnemyLocation(75), # Moblin
+    (86, 0, 2, 7):      EnemyLocation(75), # Moblin
+    (86, 0, 2, 8):      EnemyLocation(75), # Moblin
+    (86, 0, 2, 9):      EnemyLocation(75), # Moblin
+    (86, 0, 2, 10):     EnemyLocation(75), # Moblin
+    (86, 0, 0, 1):      EnemyLocation(431), # Wolfos
+    (86, 0, 0, 5):      EnemyLocation(96), # Deku Scrub
+    (86, 0, 0, 6):      EnemyLocation(96), # Deku Scrub
+    (86, 0, 0, 7):      EnemyLocation(96), # Deku Scrub
+    (86, 0, 0, 8):      EnemyLocation(96), # Deku Scrub
+    (86, 0, 0, 9):      EnemyLocation(96), # Deku Scrub
+    (86, 0, 0, 10):     EnemyLocation(96), # Deku Scrub
+    (87, 0, 2, 15):     EnemyLocation(448), # Guay
+    (87, 0, 2, 16):     EnemyLocation(448), # Guay
+    (87, 0, 2, 17):     EnemyLocation(448), # Guay
+    (87, 0, 2, 18):     EnemyLocation(448), # Guay
+    (87, 0, 2, 22):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 23):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 24):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 25):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 26):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 27):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 28):     EnemyLocation(27), # Tektite
+    (87, 0, 2, 29):     EnemyLocation(27), # Tektite
+    (87, 0, 0, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (87, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (87, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (87, 0, 0, 19):     EnemyLocation(27), # Tektite
+    (87, 0, 0, 20):     EnemyLocation(27), # Tektite
+    (87, 0, 0, 21):     EnemyLocation(27), # Tektite
+    (89, 0, 2, 18):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (89, 0, 2, 19):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (89, 0, 2, 20):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (89, 0, 2, 21):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (89, 0, 2, 24):     EnemyLocation(55), # Skulltula
+    (89, 0, 2, 25):     EnemyLocation(55), # Skulltula
+    (89, 0, 2, 26):     EnemyLocation(55), # Skulltula
+    (89, 0, 2, 27):     EnemyLocation(55), # Skulltula
+    (89, 0, 2, 28):     EnemyLocation(55), # Skulltula
+    (89, 0, 2, 50):     EnemyLocation(27), # Tektite
+    (90, 0, 2, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (90, 0, 2, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (90, 0, 2, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (90, 0, 2, 6):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (90, 0, 2, 7):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (91, 1, 2, 1):      EnemyLocation(277), # Skull Kid
+    (91, 1, 2, 2):      EnemyLocation(277), # Skull Kid
+    (91, 3, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (91, 3, 0, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (91, 9, 2, 1):      EnemyLocation(277), # Skull Kid
+    (92, 0, 2, 7):      EnemyLocation(448), # Guay
+    (92, 0, 2, 8):      EnemyLocation(448), # Guay
+    (92, 0, 2, 9):      EnemyLocation(448), # Guay
+    (92, 0, 2, 10):     EnemyLocation(448), # Guay
+    (92, 0, 2, 11):     EnemyLocation(448), # Guay
+    (92, 0, 0, 7):      EnemyLocation(448), # Guay
+    (92, 0, 0, 8):      EnemyLocation(448), # Guay
+    (92, 0, 0, 9):      EnemyLocation(448), # Guay
+    (96, 0, 2, 2):      EnemyLocation(149), # Skullwaltula
+    (96, 0, 2, 3):      EnemyLocation(149), # Skullwaltula
+    (96, 0, 2, 4):      EnemyLocation(149), # Skullwaltula
+    (96, 0, 2, 6):      EnemyLocation(27), # Tektite
+    (96, 0, 2, 7):      EnemyLocation(27), # Tektite
+    (96, 0, 2, 8):      EnemyLocation(27), # Tektite
+    (96, 0, 0, 6):      EnemyLocation(149), # Skullwaltula
+    (96, 0, 0, 7):      EnemyLocation(149), # Skullwaltula
+    (96, 0, 0, 8):      EnemyLocation(149), # Skullwaltula
+    (96, 0, 0, 9):      EnemyLocation(27), # Tektite
+    (96, 0, 0, 10):     EnemyLocation(27), # Tektite
+    (96, 0, 0, 11):     EnemyLocation(27), # Tektite
+    (96, 0, 0, 12):     EnemyLocation(27), # Tektite
+    (97, 1, 2, 8):      EnemyLocation(105), # Bubble
+    (97, 1, 2, 9):      EnemyLocation(105), # Bubble
+    (97, 1, 2, 10):     EnemyLocation(105), # Bubble
+    (97, 1, 2, 11):     EnemyLocation(105), # Bubble
+    (97, 1, 2, 12):     EnemyLocation(105), # Bubble
+    (99, 0, 1, 10):     EnemyLocation(448), # Guay
+    (99, 0, 1, 11):     EnemyLocation(448), # Guay
+    (99, 0, 1, 12):     EnemyLocation(448), # Guay
+    (99, 0, 1, 13):     EnemyLocation(448), # Guay
+    (99, 0, 1, 14):     EnemyLocation(448), # Guay
+    (99, 0, 1, 15):     EnemyLocation(448), # Guay
+    (99, 0, 1, 16):     EnemyLocation(448), # Guay
+    (99, 0, 1, 17):     EnemyLocation(448), # Guay
+    (99, 0, 1, 18):     EnemyLocation(448), # Guay
+    (99, 0, 1, 19):     EnemyLocation(448), # Guay
+    (99, 0, 1, 20):     EnemyLocation(448), # Guay
+    (99, 0, 1, 21):     EnemyLocation(448), # Guay
+    (99, 0, 1, 22):     EnemyLocation(448), # Guay
+    (99, 0, 1, 23):     EnemyLocation(448), # Guay
+    (99, 0, 1, 24):     EnemyLocation(448), # Guay
 }
 
 base_enemy_alts = {
@@ -301,11 +305,11 @@ vanilla_dungeon_enemies = {
         (1, 15, 0, 0): 84, # Armos
     },
     'Jabu Jabus Belly': {
-        (2, 0, 0, 0): 14, # Octorok
-        (2, 0, 0, 1): 14, # Octorok
+        (2, 0, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+        (2, 0, 0, 1): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 0, 0, 3): 45, # Shabom
         (2, 0, 0, 4): 45, # Shabom
-        (2, 1, 0, 0): 14, # Octorok
+        (2, 1, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 1, 0, 1): 52, # Biri
         (2, 2, 0, 1): 99, # Bari
         (2, 2, 0, 2): 99, # Bari
@@ -316,7 +320,7 @@ vanilla_dungeon_enemies = {
         (2, 3, 0, 2): 52, # Biri
         (2, 3, 0, 3): 52, # Biri
         (2, 3, 0, 4): 52, # Biri
-        (2, 4, 0, 0): 14, # Octorok
+        (2, 4, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 5, 0, 1): 52, # Biri
         (2, 5, 0, 2): 52, # Biri
         (2, 5, 0, 3): 52, # Biri
@@ -346,8 +350,8 @@ vanilla_dungeon_enemies = {
         (2, 12, 0, 8): 45, # Shabom
         (2, 12, 0, 9): 45, # Shabom
         (2, 12, 0, 10): 45, # Shabom
-        (2, 13, 0, 0): 14, # Octorok
-        (2, 13, 0, 1): 14, # Octorok
+        (2, 13, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+        (2, 13, 0, 1): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 14, 0, 0): 58, # Singray
         (2, 14, 0, 1): 58, # Singray
         (2, 14, 0, 2): 58, # Singray
@@ -368,11 +372,11 @@ vanilla_dungeon_enemies = {
         (3, 5, 0, 4): 55, # Skulltula
         (3, 6, 0, 0): 2, # Stalfos
         (3, 6, 0, 1): 2, # Stalfos
-        (3, 7, 0, 2): 14, # Octorok
+        (3, 7, 0, 2): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (3, 7, 0, 3): 149, # Skullwaltula
         (3, 7, 0, 4): 85, # Deku Baba
         (3, 7, 0, 5): 85, # Deku Baba
-        (3, 8, 0, 0): 14, # Octorok
+        (3, 8, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (3, 8, 0, 1): 149, # Skullwaltula
         (3, 8, 0, 2): 149, # Skullwaltula
         (3, 8, 0, 3): 149, # Skullwaltula
@@ -453,14 +457,14 @@ vanilla_dungeon_enemies = {
         (5, 0, 0, 5): 236, # Spike
         (5, 0, 0, 12): 27, # Tektite
         (5, 0, 0, 13): 27, # Tektite
-        (5, 2, 0, 0): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
-        (5, 2, 0, 1): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
-        (5, 2, 0, 2): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
-        (5, 2, 0, 3): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
-        (5, 2, 0, 4): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
-        (5, 2, 0, 5): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
-        (5, 2, 0, 6): EnemyLocation(236, [ENEMY_RESTRICTION.UNDERWATER], []), # Spike
-        (5, 3, 0, 0): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (5, 2, 0, 0): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (5, 2, 0, 1): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (5, 2, 0, 2): EnemyLocation(236, [LOCATION_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 3): EnemyLocation(236, [LOCATION_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 4): EnemyLocation(236, [LOCATION_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 5): EnemyLocation(236, [LOCATION_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 2, 0, 6): EnemyLocation(236, [LOCATION_RESTRICTION.UNDERWATER], []), # Spike
+        (5, 3, 0, 0): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
         (5, 3, 0, 2): 27, # Tektite
         (5, 3, 0, 3): 27, # Tektite
         (5, 4, 0, 1): 396, # Stinger
@@ -510,13 +514,13 @@ vanilla_dungeon_enemies = {
         (6, 1, 0, 2): 19, # Keese
         (6, 1, 0, 3): 19, # Keese
         (6, 1, 0, 4): 19, # Keese
-        (6, 2, 0, 0): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
-        (6, 2, 0, 1): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
-        (6, 2, 0, 2): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
-        (6, 2, 0, 3): EnemyLocation(19, [ENEMY_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 0): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 1): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 2): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 3): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
         (6, 2, 0, 5): 19, # Keese
         (6, 2, 0, 6): 17, # Wallmaster
-        (6, 3, 0, 0): EnemyLocation(105, [ENEMY_RESTRICTION.FLOATING], []), # Bubble
+        (6, 3, 0, 0): EnemyLocation(105, [LOCATION_RESTRICTION.FLOATING], []), # Bubble
         (6, 3, 0, 3): 2, # Stalfos
         (6, 4, 0, 0): 149, # Skullwaltula
         (6, 4, 0, 1): 149, # Skullwaltula
@@ -684,15 +688,15 @@ vanilla_dungeon_enemies = {
         (11, 5, 0, 2): 56, # Torch Slug
         (11, 5, 0, 3): 19, # Keese
         (11, 5, 0, 4): 19, # Keese
-        (11, 6, 0, 2): EnemyLocation(105, [ENEMY_RESTRICTION.FLOATING], []), # Bubble
-        (11, 6, 0, 3): EnemyLocation(105, [ENEMY_RESTRICTION.FLOATING], []), # Bubble
+        (11, 6, 0, 2): EnemyLocation(105, [LOCATION_RESTRICTION.FLOATING], []), # Bubble
+        (11, 6, 0, 3): EnemyLocation(105, [LOCATION_RESTRICTION.FLOATING], []), # Bubble
         (11, 7, 0, 0): 37, # Lizalfos/Dinalfos
         (11, 7, 0, 1): 37, # Lizalfos/Dinalfos
         (11, 7, 0, 13): 138, # Beamos
-        (11, 9, 0, 4): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
-        (11, 9, 0, 5): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
-        (11, 9, 0, 6): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
-        (11, 9, 0, 7): EnemyLocation(197, [ENEMY_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 4): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 5): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 6): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
+        (11, 9, 0, 7): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
         (11, 10, 0, 0): 221, # Like like
         (11, 10, 0, 1): 221, # Like like
         (11, 10, 0, 2): 221, # Like like
@@ -1212,12 +1216,13 @@ named_rooms: dict[str, tuple[int,int]] = {
 }
 
 class Enemy:
-    def __init__(self, name: str, var: int = 0, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None, categories: list[int] = []):
+    def __init__(self, name: str, var: int = 0, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None, categories: list[int] = [], required_categories: list[int] = []):
         self.name = name
         self.var = var
         self.filter_func = filter_func
         self.kill_logic = kill_logic
         self.categories = categories
+        self.required_categories = required_categories
         if soul_name:
             self.soul_name = soul_name
         else:
@@ -1228,6 +1233,7 @@ class EnemyWithOpts(Enemy):
         self.enemyOpts: list[Enemy] = enemyOpts
         self.filter_func = filter_func
         self.categories = []
+        self.required_categories = []
 
 # Filter functions, return false to filter out enemy from being shuffled
 
@@ -1247,47 +1253,47 @@ def filter_skullkids(actor: Actor):
 
 enemy_actor_types = {
     0x0002: Enemy("Stalfos", var=0x0003, kill_logic='can_kill_stalfos'),
-    0x000E: Enemy("Octorok", kill_logic='can_kill_octorok'),
+    0x000E: Enemy("Octorok", kill_logic='can_kill_octorok', required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
     0x0011: Enemy("Wallmaster", kill_logic='can_kill_wallmaster'),
     0x0012: Enemy("Dodongo", kill_logic='can_kill_dodongo'),
-    0x0013: Enemy("Keese", kill_logic='can_kill_keese', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
+    0x0013: Enemy("Keese", kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
     0x001B: Enemy("Tektite", kill_logic='can_kill_tektite'),
     0x001D: EnemyWithOpts([
         Enemy("Peahat", var=0xFFFF, kill_logic='can_kill_peahat'),
         Enemy("Flying Peahat", var=0x0000, kill_logic='can_kill_flying_peahat', soul_name="Peahat")
     ]),
     0x0025: Enemy("Lizalfos/Dinalfos", var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos'),
-    0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', categories=[ENEMY_RESTRICTION.UNDERWATER]),
-    0x002D: Enemy("Shabom", kill_logic='can_kill_shabom', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
+    0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    0x002D: Enemy("Shabom", kill_logic='can_kill_shabom', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
     0x002F: Enemy("Baby Dodongo", kill_logic='can_kill_baby_dodongo'),
-    0x0034: Enemy("Biri", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
-    0x0063: Enemy("Bari", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[ENEMY_RESTRICTION.UNDERWATER]),
-    0x0035: Enemy("Tailpasaran", var=0xFFFF, kill_logic='can_kill_tailsparan', categories=[ENEMY_RESTRICTION.UNDERWATER]),
-    0x0037: Enemy("Skulltula", kill_logic='can_kill_skulltula', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
+    0x0034: Enemy("Biri", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
+    0x0063: Enemy("Bari", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    0x0035: Enemy("Tailpasaran", var=0xFFFF, kill_logic='can_kill_tailsparan', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    0x0037: Enemy("Skulltula", kill_logic='can_kill_skulltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
     0x0038: Enemy("Torch Slug"),
     0x004B: Enemy("Moblin"),
     0x0054: Enemy("Armos", var = 0xFFFF, filter_func=filter_armos, kill_logic='can_kill_armos'),
     0x0055: Enemy("Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba'),
     0x00C7: Enemy("Whithered Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba'),
-    0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     0x0069: Enemy("Bubble", var=0xFFFF, kill_logic='can_kill_bubble'),
-    0x008A: Enemy("Beamos", kill_logic='can_kill_beamos', categories=[ENEMY_RESTRICTION.FLOATING]),
+    0x008A: Enemy("Beamos", kill_logic='can_kill_beamos', categories=[LOCATION_RESTRICTION.FLOATING]),
     0x008E: Enemy("Floormaster", kill_logic='can_kill_floormaster'),
     0x0090: Enemy("Redead/Gibdo", soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
-    0x0095: Enemy("Skullwalltula", filter_func=filter_skullwalltula, kill_logic='can_kill_skullwalltula', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
+    0x0095: Enemy("Skullwalltula", filter_func=filter_skullwalltula, kill_logic='can_kill_skullwalltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
     0x0099: Enemy("Flare Dancer", kill_logic='can_kill_flare_dancer'),
     # 0x00A4: Enemy("Dead Hand"),
-    0x00C5: Enemy("Shell Blade", kill_logic='can_kill_shell_blade', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x00C5: Enemy("Shell Blade", kill_logic='can_kill_shell_blade', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     0x00DD: Enemy("Like like", soul_name="Like-like", kill_logic='can_kill_likelike'),
     0x00EC: Enemy("Spike Enemy", kill_logic='can_kill_spike_enemy'),
-    0x00F6: Enemy("Anubis Spawner", soul_name="Anubis", categories=[ENEMY_RESTRICTION.FLOATING]),
+    0x00F6: Enemy("Anubis Spawner", soul_name="Anubis", categories=[LOCATION_RESTRICTION.FLOATING]),
     0x0113: Enemy("Iron Knuckle", var=0xFF02),
     0x0115: Enemy("Skull Kid", var=0xFFFF, filter_func=filter_skullkids),
     0x0121: Enemy("Freezard"),
-    0x018C: Enemy("Stinger", kill_logic='can_kill_stinger', categories=[ENEMY_RESTRICTION.UNDERWATER]),
-    0x003A: Enemy("Stingray", var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', categories=[ENEMY_RESTRICTION.UNDERWATER]),
+    0x018C: Enemy("Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    0x003A: Enemy("Stingray", var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     0x01AF: Enemy("Wolfos", var=0xFF00, kill_logic='can_kill_wolfos'),
-    0x01C0: Enemy("Guay", kill_logic='can_kill_basic', categories=[ENEMY_RESTRICTION.UNDERWATER, ENEMY_RESTRICTION.FLOATING]),
+    0x01C0: Enemy("Guay", kill_logic='can_kill_basic', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
 }
 
 enemies_by_name = {}

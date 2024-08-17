@@ -74,13 +74,15 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
         enemy_type = to_shuffle[enemy_key]
         if type(enemy_type) is EnemyLocation: # EnemyLocation with type restrictions
             restriction = enemy_type.restrictions
+            meets_enemy_restrictions = enemy_type.meets_enemy_restrictions
             disallowed_enemies = enemy_type.disallowed_enemies
-            enemy_type = enemy_type.id
+            #enemy_type = enemy_type.id
         else: # Just an enemy ID
-            enemy_type = to_shuffle[enemy_key]
-            restriction = None
-        if restriction:
-            enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, disallowed_enemies))
+            #enemy_type = to_shuffle[enemy_key]
+            restriction = []
+            meets_enemy_restrictions = []
+            disallowed_enemies = []
+        enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies))
         choice = random.choice(enemy_choices)
         enemy = enemy_actor_types[choice]
         if type(enemy) is EnemyWithOpts:
@@ -88,7 +90,7 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
         shuffled[enemy_key] = (choice, enemy, True)
     return shuffled
 
-def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions: list[ENEMY_RESTRICTION], disallowed_enemies: list[int]):
+def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions: list[LOCATION_RESTRICTION], meets_enemy_restrictions: list[ENEMY_RESTRICTION], disallowed_enemies: list[int]):
     restricted_enemy_actor_types: dict[int,Enemy] = {}
     for enemy_id in enemy_actor_types:
         enemy = enemy_actor_types[enemy_id]
@@ -99,6 +101,10 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
                 break
         for disallowed in disallowed_enemies:
             if enemy_id == disallowed:
+                meets_restrictions = False
+                break
+        for required_category in enemy.required_categories:
+            if required_category not in meets_enemy_restrictions:
                 meets_restrictions = False
                 break
         if meets_restrictions:
