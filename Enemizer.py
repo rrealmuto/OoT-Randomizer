@@ -112,6 +112,8 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
     return restricted_enemy_actor_types
 
 def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,Enemy, bool]], rom: Rom, scene_data: list[Scene]):
+    
+    switch_flags_table = []
     for enemy_key in shuffled_enemies:
         keys = [enemy_key]
         if enemy_key in base_enemy_alts.keys():
@@ -130,7 +132,27 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                     enemy_actor.id = enemy_id
                     enemy_actor.var = enemy.var
                     rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
-                    if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation and world.enemy_list[key].patch_func:
-                        world.enemy_list[key].patch_func(rom, scene_data)
+                    if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
+                        if world.enemy_list[key].patch_func:
+                            world.enemy_list[key].patch_func(rom, scene_data)
+                        if world.enemy_list[key].switch_flag >= 0:
+                            switch_flags_table.append((key,world.enemy_list[key].switch_flag))
             else:
                 print(f"Missing enemy actor {key}")
+    
+    # Write the switch flags table
+    switch_flags_table_bytes = bytearray()
+    for flag, switch_flag in switch_flags_table:
+        scene, room, setup, id = flag
+        id += 1
+        subflag = 0
+        if scene == 0x3E: # handle grottos separately...
+            default = ((setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((id & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
+        else:
+            default = (setup << 22) + (room << 16) + (id << 8) + (subflag)
+        switch_flags_table_bytes.extend(scene.to_bytes(1,'big'))
+        switch_flags_table_bytes.extend(bytearray([0,0,0]))
+        switch_flags_table_bytes.extend(default.to_bytes(4,'big'))
+        switch_flags_table_bytes.extend(switch_flag.to_bytes(1, 'big'))
+        switch_flags_table_bytes.extend(bytearray([0,0,0]))
+    rom.write_bytes(rom.sym('KILL_SWITCH_TABLE'), switch_flags_table_bytes)

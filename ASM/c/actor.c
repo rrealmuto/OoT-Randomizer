@@ -472,3 +472,32 @@ void Actor_Update_Hook(z64_actor_t* actor, z64_game_t* globalCtx, ActorFunc upda
     updateFunc(actor, globalCtx);
     curr_updating_actor = NULL;
 }
+
+#define NUM_KILL_SWITCH_FLAGS 10
+
+typedef struct {
+    xflag_t flag;
+    uint8_t switch_flag;
+} kill_switch_entry;
+
+kill_switch_entry KILL_SWITCH_TABLE[NUM_KILL_SWITCH_FLAGS];
+
+// New Actor_Kill function to extend functionality
+void Actor_Kill_New(z64_actor_t* actor) {
+    // Set our kill switch flags
+    
+    // Build an xflag for this actor
+    xflag_t flag = { 0 };
+    Actor_BuildFlag(actor, &flag, Actor_GetAdditionalData(actor)->actor_id, 0);
+    for(int i = 0; i < NUM_KILL_SWITCH_FLAGS; i++) {
+        if(KILL_SWITCH_TABLE[i].flag.scene == flag.scene && KILL_SWITCH_TABLE[i].flag.all && (flag.all == KILL_SWITCH_TABLE[i].flag.all)) {
+            z64_Flags_SetSwitch(&z64_game, KILL_SWITCH_TABLE[i].switch_flag);
+            break;
+        }
+    }
+
+    // Do what the original function does
+    actor->draw = NULL;
+    actor->update = NULL;
+    actor->flags &= 1;
+}

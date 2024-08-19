@@ -6,6 +6,8 @@ import Rom
 class LOCATION_RESTRICTION(Enum):
     UNDERWATER = 1 # Underwater enemy that requires hookshot
     FLOATING = 2 # Locations that require an enemy that can float. Like because it's over a pit or something.
+    ABOVE_GROUND = 3 # Locations that the enemy will spawn above the ground, only place enemies that will automatically move to the ground or won't break if they're in the air
+    INDOORS = 4 # Indoor locations
 
 class ENEMY_RESTRICTION(Enum):
     ABOVE_WATER = 1
@@ -16,12 +18,13 @@ class ENEMY_RESTRICTION(Enum):
 # disallowed enemies - list of enemy types to explicitly disallow
 # patch_func - function that will apply a ROM patch applicable to this location
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None):
+    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None, switch_flag = -1):
         self.id = vanilla_id
         self.restrictions = restrictions
         self.meets_enemy_restrictions = meets_enemy_restrictions
         self.disallowed_enemies = disallowed_enemies
         self.patch_func = patch_func
+        self.switch_flag = switch_flag
 
 # Nabooru knuckle enemizer patch function
 # Patch the door to work on room clear instead of switch flag
@@ -136,7 +139,7 @@ base_enemy_list = {
     (86, 0, 2, 8):      EnemyLocation(75), # Moblin
     (86, 0, 2, 9):      EnemyLocation(75), # Moblin
     (86, 0, 2, 10):     EnemyLocation(75), # Moblin
-    (86, 0, 0, 1):      EnemyLocation(431), # Wolfos
+    (86, 0, 0, 1):      EnemyLocation(431, switch_flag=0x1F), # Wolfos
     (86, 0, 0, 5):      EnemyLocation(96), # Deku Scrub
     (86, 0, 0, 6):      EnemyLocation(96), # Deku Scrub
     (86, 0, 0, 7):      EnemyLocation(96), # Deku Scrub
@@ -158,9 +161,9 @@ base_enemy_list = {
     (87, 0, 0, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
     (87, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
     (87, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (87, 0, 0, 19):     EnemyLocation(27), # Tektite
-    (87, 0, 0, 20):     EnemyLocation(27), # Tektite
-    (87, 0, 0, 21):     EnemyLocation(27), # Tektite
+    (87, 0, 0, 19):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
+    (87, 0, 0, 20):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
+    (87, 0, 0, 21):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
     (89, 0, 2, 18):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
     (89, 0, 2, 19):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
     (89, 0, 2, 20):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
@@ -1256,7 +1259,11 @@ enemy_actor_types = {
     0x000E: Enemy("Octorok", kill_logic='can_kill_octorok', required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
     0x0011: Enemy("Wallmaster", kill_logic='can_kill_wallmaster'),
     0x0012: Enemy("Dodongo", kill_logic='can_kill_dodongo'),
-    0x0013: Enemy("Keese", kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
+    0x0013: EnemyWithOpts([
+        Enemy("Keese", var=0x0002, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
+        Enemy("Fire Keese", var=0x0000, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING], soul_name="Keese"),
+        Enemy("Ice Keese", var=0x0004, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING], soul_name="Keese"),
+    ]),
     0x001B: Enemy("Tektite", kill_logic='can_kill_tektite'),
     0x001D: EnemyWithOpts([
         Enemy("Peahat", var=0xFFFF, kill_logic='can_kill_peahat'),
@@ -1287,7 +1294,10 @@ enemy_actor_types = {
     0x00DD: Enemy("Like like", soul_name="Like-like", kill_logic='can_kill_likelike'),
     0x00EC: Enemy("Spike Enemy", kill_logic='can_kill_spike_enemy'),
     0x00F6: Enemy("Anubis Spawner", soul_name="Anubis", categories=[LOCATION_RESTRICTION.FLOATING]),
-    0x0113: Enemy("Iron Knuckle", var=0xFF02),
+    0x0113: EnemyWithOpts([
+        Enemy("Iron Knuckle (Black)", var=0xFF02),
+        Enemy("Iron Knuckle (White)", var=0xFF03),
+    ]),
     0x0115: Enemy("Skull Kid", var=0xFFFF, filter_func=filter_skullkids),
     0x0121: Enemy("Freezard"),
     0x018C: Enemy("Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
