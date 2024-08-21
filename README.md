@@ -146,6 +146,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix some inconsistent tags for wonderitem locations in the `Exclude Locations` list.
 * Fix swapped `Hideout Kitchen Wonderitem` and `Hideout Kitchen Stove Wonderitem` locations.
 * Fix a bug where a foolish hint could be generated for an area despite not having any shuffled item locations.
+* Fix a bug where spoiler logs' `randomized_settings` fields could be incomplete.
 
 #### New Speedups
 * Meg will now take less time before respawning after getting hurt.
