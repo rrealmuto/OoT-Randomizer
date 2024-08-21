@@ -161,6 +161,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Pause menu has been modified so that equip swap will work again.
 * Major items from pots, crates, etc now display above Link's head while the text box is open.
 * Gameplay is no longer interrupted if you receive a junk item from another player in multiworld.
+* Removed the potentially confusing Master Sword icon from the Rainbow Bridge page of the adult Temple of Time altar text.
 
 ### 8.1
 

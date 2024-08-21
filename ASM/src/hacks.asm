@@ -4137,6 +4137,16 @@ DemoEffect_DrawJewel_AfterHook:
     jal     volvagia_flying_hitbox
     nop
 
+;================================================================================
+; Reset choiceNum when decoding a new message
+; prevents weird text alignment when going from message box with icon to no icon
+;================================================================================
+; Replaces sh   $zero, 0x4c0(at)
+;          lhu  a3, 0x4c0(a3)
+.org 0x800DA34C
+    j       Message_Decode_reset_msgCtx.textPosX
+    nop
+
 .include "hacks/en_item00.asm"
 .include "hacks/ovl_bg_gate_shutter.asm"
 .include "hacks/ovl_bg_haka_tubo.asm"
