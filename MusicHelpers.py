@@ -49,7 +49,7 @@ def process_sequence_mmrs(filepath: str, file_name: str, seq_type: str, include_
             #if f.endswith(".meta"):
             #    meta_file = f
             #    continue
-            if f.endswith(".zseq"):
+            if f.endswith(".zseq") or f.endswith(".seq"):
                 seq_file = f
                 continue
             if f.endswith(".zbank"):
