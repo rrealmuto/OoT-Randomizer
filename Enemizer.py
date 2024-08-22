@@ -131,10 +131,11 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                     enemy_actor.rot_z = 0
                     enemy_actor.id = enemy_id
                     enemy_actor.var = enemy.var
-                    rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
                     if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                         if world.enemy_list[key].patch_func:
-                            world.enemy_list[key].patch_func(rom, scene_data)
+                            world.enemy_list[key].patch_func(enemy_actor)
+                    rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
+                    if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                         if world.enemy_list[key].switch_flag >= 0:
                             switch_flags_table.append((key,world.enemy_list[key].switch_flag))
             else:
@@ -156,3 +157,15 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
         switch_flags_table_bytes.extend(switch_flag.to_bytes(1, 'big'))
         switch_flags_table_bytes.extend(bytearray([0,0,0]))
     rom.write_bytes(rom.sym('KILL_SWITCH_TABLE'), switch_flags_table_bytes)
+
+# Nabooru knuckle enemizer patch function
+# Patch the door to work on room clear instead of switch flag
+def patch_nabooru_knuckle(rom: Rom, scene_data: list[Scene]):
+    nabooru_transition = scene_data[23].transition_actors[1]
+    nabooru_transition.var = 0x40
+    rom.write_bytes(nabooru_transition.addr, nabooru_transition.get_bytes())
+
+# Add patch funcs here, we'll call them in a loop in patches.py
+enemizer_patches = [
+    patch_nabooru_knuckle
+]

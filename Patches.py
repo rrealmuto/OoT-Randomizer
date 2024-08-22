@@ -10,7 +10,7 @@ from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
 from Cutscenes import patch_cutscenes
-from Enemizer import shuffle_enemies, get_rom_enemies, patch_enemies, enemy_actor_types, build_enemylist
+from Enemizer import shuffle_enemies, get_rom_enemies, patch_enemies, enemy_actor_types, build_enemylist, enemizer_patches
 from Entrance import Entrance
 from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
@@ -2295,6 +2295,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         #    print(f"{enemy}: {rom_enemies[enemy].id}, # {enemy_actor_typesrom_enemies[enemy].id].name}")
         
         patch_enemies(world,rom_enemies, world.shuffled_enemies, rom, scene_data)
+        for patch_func in enemizer_patches:
+            patch_func(rom, scene_data)
         rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 1)
 
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the

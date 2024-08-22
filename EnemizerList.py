@@ -11,6 +11,7 @@ class LOCATION_RESTRICTION(Enum):
 
 class ENEMY_RESTRICTION(Enum):
     ABOVE_WATER = 1
+    BABA = 2
 
 # Define an enemy location supporting restrictions
 # restrictions - list of restrictions for this location. Enemy must have these restrictions tagged on them in order to spawn here. Ex. UNDERWATER
@@ -26,12 +27,11 @@ class EnemyLocation:
         self.patch_func = patch_func
         self.switch_flag = switch_flag
 
-# Nabooru knuckle enemizer patch function
-# Patch the door to work on room clear instead of switch flag
-def patch_func_nabooru_knuckle(rom: Rom, scene_data: list[Scene]):
-    nabooru_transition = scene_data[23].transition_actors[1]
-    nabooru_transition.var = 0x40
-    rom.write_bytes(nabooru_transition.addr, nabooru_transition.get_bytes())
+# Move the SFM wolfos more towards the center, some enemies like flare dancer might jump over the fence
+def patch_func_sfm_wolfos(actor: Actor):
+    actor.x = -195
+    actor.y = 0
+    actor.z = 1900
 
 base_enemy_list = {
     (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
@@ -48,7 +48,7 @@ base_enemy_list = {
     (10, 7, 0, 6):      EnemyLocation(19), # Keese
     (10, 7, 0, 7):      EnemyLocation(19), # Keese
     (15, 0, 0, 4):      EnemyLocation(144), # Redead/Gibdo
-    (23, 1, 0, 0):      EnemyLocation(275, patch_func=patch_func_nabooru_knuckle), # Iron Knuckle
+    (23, 1, 0, 0):      EnemyLocation(275), # Iron Knuckle
     (34, 0, 0, 0):      EnemyLocation(144), # Redead/Gibdo
     (34, 0, 0, 1):      EnemyLocation(144), # Redead/Gibdo
     (34, 0, 0, 2):      EnemyLocation(144), # Redead/Gibdo
@@ -139,7 +139,7 @@ base_enemy_list = {
     (86, 0, 2, 8):      EnemyLocation(75), # Moblin
     (86, 0, 2, 9):      EnemyLocation(75), # Moblin
     (86, 0, 2, 10):     EnemyLocation(75), # Moblin
-    (86, 0, 0, 1):      EnemyLocation(431, switch_flag=0x1F), # Wolfos
+    (86, 0, 0, 1):      EnemyLocation(431, switch_flag=0x1F, patch_func=patch_func_sfm_wolfos), # Wolfos
     (86, 0, 0, 5):      EnemyLocation(96), # Deku Scrub
     (86, 0, 0, 6):      EnemyLocation(96), # Deku Scrub
     (86, 0, 0, 7):      EnemyLocation(96), # Deku Scrub
@@ -1280,8 +1280,8 @@ enemy_actor_types = {
     0x0038: Enemy("Torch Slug"),
     0x004B: Enemy("Moblin"),
     0x0054: Enemy("Armos", var = 0xFFFF, filter_func=filter_armos, kill_logic='can_kill_armos'),
-    0x0055: Enemy("Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba'),
-    0x00C7: Enemy("Whithered Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba'),
+    0x0055: Enemy("Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba', required_categories=[ENEMY_RESTRICTION.BABA]),
+    0x00C7: Enemy("Whithered Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba', required_categories=[ENEMY_RESTRICTION.BABA]),
     0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     0x0069: Enemy("Bubble", var=0xFFFF, kill_logic='can_kill_bubble'),
     0x008A: Enemy("Beamos", kill_logic='can_kill_beamos', categories=[LOCATION_RESTRICTION.FLOATING]),
