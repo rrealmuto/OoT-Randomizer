@@ -392,13 +392,13 @@
             "Claim Check"
         ]
     },
-    "Standard Weekly (2024-07-05)": {
+    "Standard Weekly (2024-08-23)": {
         "aliases": [
             "Standard Weekly (Latest)",
             "weekly"
         ],
         "show_seed_info": true,
-        "user_message": "Standard Weekly (2024-07-05)",
+        "user_message": "Standard Weekly (2024-08-23)",
         "world_count": 1,
         "create_spoiler": true,
         "password_lock": false,
@@ -440,7 +440,7 @@
         "silver_rupee_pouches_choice": "off",
         "silver_rupee_pouches": [],
         "shuffle_mapcompass": "startwith",
-        "enhance_map_compass": true,
+        "enhance_map_compass": false,
         "open_forest": "closed_deku",
         "open_kakariko": "open",
         "open_door_of_time": true,
@@ -452,12 +452,10 @@
         "mq_dungeons_mode": "vanilla",
         "mq_dungeons_specific": [],
         "mq_dungeons_count": 0,
-        "empty_dungeons_mode": "rewards",
+        "empty_dungeons_mode": "none",
         "empty_dungeons_specific": [],
-        "empty_dungeons_rewards": [
-            "Kokiri Emerald"
-        ],
-        "empty_dungeons_count": 1,
+        "empty_dungeons_rewards": [],
+        "empty_dungeons_count": 2,
         "shuffle_interior_entrances": "off",
         "shuffle_hideout_entrances": false,
         "shuffle_grotto_entrances": false,
@@ -544,7 +542,7 @@
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
         "fae_torch_count": 3,
-        "ruto_already_f1_jabu": true,
+        "ruto_already_f1_jabu": false,
         "ocarina_songs": "off",
         "correct_chest_appearances": "both",
         "chest_textures_specific": [
