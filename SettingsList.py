@@ -2642,7 +2642,7 @@ class SettingInfos:
     )
 
     shuffle_child_trade = MultipleSelect(
-        gui_text       = 'Shuffled Child Trade Sequence Items',
+        gui_text       = 'Shuffle Child Trade Sequence Items',
         default        = [],
         choices        = {
             'Weird Egg':     'Weird Egg',
@@ -3908,18 +3908,20 @@ class SettingInfos:
     )
 
     adult_trade_shuffle = Checkbutton(
-        gui_text       = 'Shuffle All Adult Trade Items',
+        gui_text       = 'Shuffle All Selected Adult Trade Items',
         gui_tooltip    = '''\
-            Shuffle all adult trade sequence items. If disabled,
-            a random item will be selected, and Anju will always
-            give an item even if Pocket Egg is not shuffled.
+            Enable to shuffle every selected Adult Trade Item.
+
+            If disabled and at least one of "Shuffle Adult Trade
+            Sequence Items" is selected, Anju will always give
+            a shuffled item even if Pocket Egg has not been shuffled.
         ''',
         shared         = True,
         default        = False,
     )
 
     adult_trade_start = MultipleSelect(
-        gui_text       = 'Adult Trade Sequence Items',
+        gui_text       = 'Shuffle Adult Trade Sequence Items',
         default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Odd Potion', 'Poachers Saw',
                           'Broken Sword', 'Prescription', 'Eyeball Frog', 'Eyedrops', 'Claim Check'],
         choices        = {
@@ -3936,7 +3938,17 @@ class SettingInfos:
             'Claim Check':  'Claim Check',
         },
         gui_tooltip    = '''\
-            Select the items to shuffle in the adult trade sequence.
+            Select the Adult Trade Sequence items to shuffle.
+
+            If "Shuffle All Selected Adult Trade Items" is
+            enabled, every selected item will be shuffled.
+
+            If "Shuffle All Selected Adult Trade Items" is
+            disabled, only one of the selected items will be
+            shuffled. If the Odd Mushroom, Eyeball Frog, or
+            Eyedrops is removed from the player's inventory due
+            to an expired timer or game reset, that item can
+            be reacquired from its <i>non-shuffled</i> location.
         ''',
         shared         = True,
     )
