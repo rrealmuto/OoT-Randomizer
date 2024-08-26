@@ -219,7 +219,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
         int bg_left = (Z64_SCREEN_WIDTH - bg_width) / 2;
         int bg_top = (Z64_SCREEN_HEIGHT - bg_height) / 2;
 
-        int left = bg_left + padding;
+        uint16_t left = bg_left + padding;
         int start_top = bg_top + padding;
 
         // Draw background
@@ -300,22 +300,21 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
         for (int i = 0; i < rows; i++) {
             gDPPipeSync(db->p++);
             dungeon_entry_t* d = &(dungeons[i]);
-            int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
+            bool empty = CFG_DUNGEON_PRECOMPLETED[d->index];
             int top = start_top + ((icon_size + padding) * i) + 1;
-            if (empty == 1) {
+            if (empty) {
                 gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x7F);
-                int sizeRectangle = text_print_size(db, d->name, left, top, font_width, font_height) - left;
+                uint16_t sizeRectangle = text_print_size(db, d->name, left, top, font_width, font_height) - left;
                 gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xBF);
                 gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
                 gSPTextureRectangle(db->p++,
-                        left<<2, (top + 5) <<2,
-                        (left + sizeRectangle)<<2, ((top + 5) + 1)<<2,
+                        left * 4, (top + 5) * 4,
+                        (left + sizeRectangle) * 4, ((top + 5) + 1) * 4,
                         0,
                         0, 0,
-                        1<<10, 1<<10);
+                        1024, 1024);
                 gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
-            }
-            else {
+            } else {
                 gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
                 text_print_size(db, d->name, left, top, font_width, font_height);
             }
@@ -855,22 +854,21 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
 
         for (int i = 0; i < 12; i++) {
             dungeon_entry_t* d = &(dungeons[i + (i > 9 ? 1 : 0)]); // skip Hideout
-            int empty = CFG_DUNGEON_PRECOMPLETED[d->index];
+            bool empty = CFG_DUNGEON_PRECOMPLETED[d->index];
             int top = start_top + ((icon_size + padding) * i) + 1;
-            if (empty == 1) {
+            if (empty) {
                 gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0x7F);
-                int sizeRectangle = text_print(db, d->name, left, top) - left;
+                uint16_t sizeRectangle = text_print(db, d->name, left, top) - left;
                 gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xBF);
                 gDPSetCombineMode(db->p++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
                 gSPTextureRectangle(db->p++,
-                        left<<2, (top + 6) <<2,
-                        (left + sizeRectangle)<<2, (top + 6 + 2)<<2,
+                        left * 4, (top + 6) * 4,
+                        (left + sizeRectangle) * 4, (top + 6 + 2) * 4,
                         0,
                         0, 0,
-                        1<<10, 1<<10);
+                        1024, 1024);
                 gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
-            }
-            else {
+            } else {
                 text_print(db, d->name, left, top);
             }
         }
