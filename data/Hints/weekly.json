@@ -1,7 +1,7 @@
 {
     "name":                  "weekly",
     "gui_name":              "Weekly",
-    "description":           "Hint distribution for the weekly races: 5 Always, 6 Goal, 3 Barren (ToT), 1 Light Arrow (ToT), 2 Dual, 5 Sometimes; House of Skulltula (30/40/50).",
+    "description":           "Hint distribution for the weekly races: 5 Always, 5 Goal, 3 Barren (ToT), 1 Song (ToT), 1 Named-Item (light arrows), 2 Dual, 5 Sometimes; House of Skulltula (30/40/50).",
     "add_locations":         [
         { "location": "Sheik in Kakariko", "types": ["always"] },
         { "location": "Deku Theater Skull Mask", "types": ["always"] }
@@ -22,9 +22,9 @@
         { "location": "Gerudo Training Ground Maze Path Final Chest", "types": ["sometimes"] },
         { "location": "Spirit Temple Silver Gauntlets Chest", "types": ["sometimes"] },
         { "location": "Spirit Temple Mirror Shield Chest", "types": ["sometimes"] },
-        { "location": "Ice Cavern Iron Boots Chest", "types": ["sometimes"] },
         { "location": "Graveyard Dampe Race Rewards", "types": ["dual"] },
-        { "location": "Graveyard Royal Family Tomb Contents", "types": ["dual"] }
+        { "location": "Graveyard Royal Family Tomb Contents", "types": ["dual"] },
+        { "location": "Ice Cavern Final Room", "types": ["dual"] }
     ],
     "add_items": [
         { "item": "Light Arrows", "types": ["named-item"] }
@@ -43,13 +43,13 @@
             "ToT (Right-Center)",
             "ToT (Right)"
         ]},
-        "always":          {"order": 2, "weight": 0.0, "fixed": 0, "copies": 2, "remove_stones": [
+        "always":          {"order": 2, "weight": 0.0, "fixed": 5, "copies": 2, "remove_stones": [
             "ToT (Left)",
             "ToT (Left-Center)",
             "ToT (Right-Center)",
             "ToT (Right)"
         ]},
-        "goal":            {"order": 3, "weight": 0.0, "fixed": 6, "copies": 2, "remove_stones": [
+        "goal":            {"order": 3, "weight": 0.0, "fixed": 5, "copies": 2, "remove_stones": [
             "ToT (Left)",
             "ToT (Left-Center)",
             "ToT (Right-Center)",
@@ -60,18 +60,18 @@
             "ToT (Left-Center)",
             "ToT (Right-Center)"
         ]},
-        "named-item":      {"order": 5, "weight": 0.0, "fixed": 1, "copies": 1, "priority_stones": [
+        "song":            {"order": 5, "weight": 0.0, "fixed": 1, "copies": 1, "priority_stones": [
             "ToT (Right)"
         ]},
-        "dual":            {"order": 6, "weight": 0.0, "fixed": 2, "copies": 2},
-        "sometimes":       {"order": 7, "weight": 0.0, "fixed": 5, "copies": 2},
-        "junk":            {"order": 8, "weight": 1.0, "fixed": 0, "copies": 1},
+        "named-item":      {"order": 6, "weight": 0.0, "fixed": 1, "copies": 2},
+        "dual":            {"order": 7, "weight": 0.0, "fixed": 2, "copies": 2},
+        "sometimes":       {"order": 8, "weight": 0.0, "fixed": 5, "copies": 2},
+        "junk":            {"order": 9, "weight": 1.0, "fixed": 0, "copies": 1},
         "entrance_always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "woth":            {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "entrance":        {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "random":          {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "item":            {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
-        "song":            {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "overworld":       {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "dungeon":         {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
         "dual_always":     {"order": 0, "weight": 0.0, "fixed": 0, "copies": 0},
