@@ -392,13 +392,13 @@
             "Claim Check"
         ]
     },
-    "Standard Weekly (2024-08-23)": {
+    "Standard Weekly (2024-08-30)": {
         "aliases": [
             "Standard Weekly (Latest)",
             "weekly"
         ],
         "show_seed_info": true,
-        "user_message": "Standard Weekly (2024-08-23)",
+        "user_message": "Standard Weekly (2024-08-30)",
         "world_count": 1,
         "create_spoiler": true,
         "password_lock": false,
