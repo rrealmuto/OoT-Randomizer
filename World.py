@@ -343,7 +343,7 @@ class World:
                 if goal_list1 != [goal.name for goal in category.goals] and category.name not in minor_goal_categories:
                     self.one_hint_per_goal = False
 
-        if self.hint_dist_user['one_hint_per_goal']:
+        if 'one_hint_per_goal' in self.hint_dist_user:
             self.one_hint_per_goal = self.hint_dist_user['one_hint_per_goal']
 
         # initialize category check for first rounds of goal hints
