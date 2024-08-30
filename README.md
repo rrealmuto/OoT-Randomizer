@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v113](#v113)
   * [v111](#v111)
   * [v110](#v110)
   * [v109](#v109)
@@ -137,6 +138,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v113
+  * Scrubs misc hint setting broken when disabled
+
 ### v111
   * Fix Custom Song Name display breaking when using the enemy drop minimap tracker
   * Update to main Dev 8.1.81
