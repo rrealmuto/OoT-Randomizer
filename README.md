@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v112](#v112)
   * [v111](#v111)
   * [v110](#v110)
   * [v109](#v109)
@@ -137,6 +138,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v112
+  * Add Deku Scrub Salesman Misc. Hint
+
 ### v111
   * Fix Custom Song Name display breaking when using the enemy drop minimap tracker
   * Update to main Dev 8.1.81

@@ -32,4 +32,5 @@ void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr);
 override_t get_newflag_override(xflag_t* flag);
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
 extern ActorOverlay gActorOverlayTable[];
+extern void Actor_SetScale(z64_actor_t* actor, float scale);
 #endif

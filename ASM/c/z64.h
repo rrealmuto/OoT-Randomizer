@@ -2665,5 +2665,6 @@ extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64
 extern uintptr_t z64_segments[16];
 extern void Fault_AddHungupAndCrashImpl(const char* msg1, const char* msg2);
 extern int32_t sprintf(char* dst, char* fmt, ...);
+extern void Actor_SetScale(z64_actor_t* actor, float scale);
 
 #endif
