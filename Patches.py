@@ -16,7 +16,7 @@ from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hi
         build_ganon_text, build_misc_item_hints, build_misc_location_hints, get_simple_hint_no_prefix, get_item_generic_name
 from Item import Item
 from ItemList import REWARD_COLORS
-from ItemPool import song_list, trade_items, child_trade_items
+from ItemPool import reward_list, song_list, trade_items, child_trade_items
 from Location import Location, DisableType
 from LocationList import business_scrubs
 from Messages import read_messages, find_message_index, update_message_by_id, read_shop_items, update_warp_song_text, \
@@ -476,22 +476,27 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_bytes(0xCD5E76, [0x0E, 0xDC])
     rom.write_bytes(0xCD5E12, [0x0E, 0xDC])
 
-    # songs as items flag
+    # Some types of locations (boss rewards, songs, and the fairy ocarina) have special behavior,
+    # but need to use the normal Get Item mechanism if shuffled into the main item pool.
+    rewards_as_items = (
+        world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')
+        or world.distribution.rewards_as_items
+        or any(name in reward_list and record.count for name, record in world.settings.starting_items.items())
+    )
+    if rewards_as_items:
+        rom.write_byte(rom.sym('REWARDS_AS_ITEMS'), 1)
     songs_as_items = (
         world.settings.shuffle_song_items != 'song'
-        or world.distribution.song_as_items
+        or world.distribution.songs_as_items
         or any(name in song_list and record.count for name, record in world.settings.starting_items.items())
         or world.settings.shuffle_individual_ocarina_notes
     )
-
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
+    if world.settings.shuffle_ocarinas:
+        rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 0x01)
 
     patch_cutscenes(rom, songs_as_items)
-
-    if world.settings.shuffle_ocarinas:
-        symbol = rom.sym('OCARINAS_SHUFFLED')
-        rom.write_byte(symbol, 0x01)
 
     # Speed Pushing of All Pushable Objects (other than armos statues, which are handled in ASM)
     rom.write_bytes(0xDD2B86, [0x40, 0x80])  # block speed
@@ -2488,7 +2493,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     else:
         looks_like_item_id = 0
 
-    if location.type in ('NPC', 'Scrub', 'BossHeart', 'Boss'):
+    if location.type in ('NPC', 'Scrub', 'BossHeart'):
         type = 0
     elif location.type == 'Chest':
         type = 1
@@ -2520,7 +2525,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         type = 0
     elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
-    elif location.type in ('Song', 'Cutscene'):
+    elif location.type in ('Song', 'Cutscene', 'Boss'):
         type = 5
     else:
         return None

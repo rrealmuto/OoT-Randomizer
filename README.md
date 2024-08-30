@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v111](#v111)
   * [v110](#v110)
   * [v109](#v109)
   * [v108](#v108)
@@ -136,6 +137,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v111
+  * Fix Custom Song Name display breaking when using the enemy drop minimap tracker
+  * Update to main Dev 8.1.81
+
 ### v110
   * Various logic fixes
 
@@ -614,6 +619,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * A boss key icon will now be displayed near the small key icon in dungeons where it has been obtained.
 * Fairy pots are now included in `Shuffle Pots`.
 * A message is shown the first time a seed with No Logic is generated, to warn the user that the seed may be unbeatable.
+* New hint distribution field `excluded_goal_categories` to disable specific goal categories.
 
 #### Bug Fixes
 * Goal hints can now hint items required to defeat Ganon even if they're not required for the rainbow bridge, Ganon's boss key, or the trials. These items will be hinted as being on the "path of the hero".
@@ -629,6 +635,9 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix inverted cursor in the pause menu when pausing while in first person with the `Uninvert Y-Axis in First Person Camera` cosmetic setting enabled.
 * Fix some inconsistent tags for wonderitem locations in the `Exclude Locations` list.
 * Fix swapped `Hideout Kitchen Wonderitem` and `Hideout Kitchen Stove Wonderitem` locations.
+* Fix a bug where a foolish hint could be generated for an area despite not having any shuffled item locations.
+* Fix a bug where spoiler logs' `randomized_settings` fields could be incomplete.
+* Prevent setting names from overlapping with scrollbars in the GUI.
 
 #### New Speedups
 * Meg will now take less time before respawning after getting hurt.
@@ -644,6 +653,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Pause menu has been modified so that equip swap will work again.
 * Major items from pots, crates, etc now display above Link's head while the text box is open.
 * Gameplay is no longer interrupted if you receive a junk item from another player in multiworld.
+* Removed the potentially confusing Master Sword icon from the Rainbow Bridge page of the adult Temple of Time altar text.
 
 ### 8.1
 

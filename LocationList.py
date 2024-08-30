@@ -57,20 +57,22 @@ def shop_address(shop_id: int, shelf_id: int) -> int:
 #   Actor ID - The position of the actor in the actor table.
 # The default variable can also be a list of such tuples in the case that multiple scene setups contain the same locations to be shuffled together.
 
+# For cutscene/song/boss locations, the Scene is set to 0xFF. This matches the behavior of the push_delayed_item C function.
+
 # Note: for ActorOverride locations, the "Addresses" variable is in the form ([addresses], [bytes]) where addresses is a list of memory locations in ROM to be updated, and bytes is the data that will be written to that location
 
 #   Location:                                                        Type             Scene  Default Addresses                      Vanilla Item                             Categories
 location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAddresses, Optional[str], LocationFilterTags]] = OrderedDict([
     ## Dungeon Rewards
-    ("ToT Reward from Rauru",                                        ("Cutscene",     0xFF,  0x04, None,                            'Light Medallion',                       ("Temple of Time", "NPCs", "Dungeon Rewards",))),
-    ("Queen Gohma",                                                  ("Boss",         0x11,  0x65, None,                            'Kokiri Emerald',                        ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("King Dodongo",                                                 ("Boss",         0x12,  0x65, None,                            'Goron Ruby',                            ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("Barinade",                                                     ("Boss",         0x13,  0x65, None,                            'Zora Sapphire',                         ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("Phantom Ganon",                                                ("Boss",         0x14,  0x65, None,                            'Forest Medallion',                      ("Forest Temple", "Forest Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("Volvagia",                                                     ("Boss",         0x15,  0x65, None,                            'Fire Medallion',                        ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("Morpha",                                                       ("Boss",         0x16,  0x65, None,                            'Water Medallion',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("Bongo Bongo",                                                  ("Boss",         0x18,  0x65, None,                            'Shadow Medallion',                      ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
-    ("Twinrova",                                                     ("Boss",         0x17,  0x65, None,                            'Spirit Medallion',                      ("Spirit Temple", "Spirit Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("ToT Reward from Rauru",                                        ("Boss",         0xFF,  0x04, None,                            'Light Medallion',                       ("Temple of Time", "NPCs", "Dungeon Rewards",))),
+    ("Queen Gohma",                                                  ("Boss",         0xFF,  0x05, None,                            'Kokiri Emerald',                        ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("King Dodongo",                                                 ("Boss",         0xFF,  0x06, None,                            'Goron Ruby',                            ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Barinade",                                                     ("Boss",         0xFF,  0x07, None,                            'Zora Sapphire',                         ("Jabu Jabu's Belly", "Jabu Jabu's Belly MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Phantom Ganon",                                                ("Boss",         0xFF,  0x08, None,                            'Forest Medallion',                      ("Forest Temple", "Forest Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Volvagia",                                                     ("Boss",         0xFF,  0x09, None,                            'Fire Medallion',                        ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Morpha",                                                       ("Boss",         0xFF,  0x0A, None,                            'Water Medallion',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Bongo Bongo",                                                  ("Boss",         0xFF,  0x0C, None,                            'Shadow Medallion',                      ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
+    ("Twinrova",                                                     ("Boss",         0xFF,  0x0B, None,                            'Spirit Medallion',                      ("Spirit Temple", "Spirit Temple MQ", "Vanilla Dungeons", "Master Quest", "Dungeon Rewards",))),
     ("Ganon",                                                        ("Event",        None,  None, None,                            'Triforce',                              None)),
     ("Gift from Sages",                                              ("Cutscene",     0xFF,  0x03, None,                             None,                                   None)),
 
@@ -4276,7 +4278,7 @@ location_groups: dict[str, list[str]] = {
     'Song': [name for (name, data) in location_table.items() if data[0] == 'Song'],
     'Chest': [name for (name, data) in location_table.items() if data[0] == 'Chest'],
     'Collectable': [name for (name, data) in location_table.items() if data[0] == 'Collectable'],
-    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss' or name == 'ToT Reward from Rauru'],
+    'Boss': [name for (name, data) in location_table.items() if data[0] == 'Boss'],
     'ActorOverride': [name for (name, data) in location_table.items() if data[0] == 'ActorOverride'],
     'BossHeart': [name for (name, data) in location_table.items() if data[0] == 'BossHeart'],
     'CollectableLike': [name for (name, data) in location_table.items() if data[0] in ('Collectable', 'BossHeart', 'GS Token', 'SilverRupee')],

@@ -281,7 +281,8 @@ class WorldDistribution:
         self.id: int = id
         self.base_pool: list[str] = []
         self.major_group: list[str] = []
-        self.song_as_items: bool = False
+        self.rewards_as_items: bool = False
+        self.songs_as_items: bool = False
         self.skipped_locations: list[Location] = []
         self.effective_starting_items: dict[str, StarterRecord] = {}
 
@@ -612,8 +613,10 @@ class WorldDistribution:
                     self.pool_remove_item([pool], item_name, record.count)
                 except KeyError:
                     pass
+                if item_name in item_groups["DungeonReward"]:
+                    self.rewards_as_items = True
                 if item_name in item_groups["Song"]:
-                    self.song_as_items = True
+                    self.songs_as_items = True
 
         junk_to_add = pool_size - len(pool)
         if junk_to_add > 0:
@@ -925,8 +928,10 @@ class WorldDistribution:
 
             item = self.get_item(ignore_pools, item_pools, location, player_id, record, worlds)
 
+            if location.type == 'Boss' and location.name != 'ToT Reward from Rauru' and item.type != 'DungeonReward':
+                self.rewards_as_items = True
             if location.type == 'Song' and item.type != 'Song':
-                self.song_as_items = True
+                self.songs_as_items = True
             location.world.push_item(location, item, True)
 
             if item.advancement:
@@ -1102,7 +1107,7 @@ class WorldDistribution:
             if iter_world.settings.empty_dungeons_mode != 'none':
                 skipped_locations_from_dungeons: list[Location] = []
                 if iter_world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
-                    skipped_locations_from_dungeons += [world.get_location(loc_name) for loc_name in location_groups['Boss']]
+                    skipped_locations_from_dungeons += [world.get_location(loc_name) for loc_name in location_groups['Boss'] if loc_name != 'ToT Reward from Rauru']
                 elif world.settings.shuffle_dungeon_rewards == 'dungeon':
                     skipped_locations_from_dungeons += [location for location in iter_world.get_filled_locations() if location.item.type == 'DungeonReward']
                 if world.settings.shuffle_song_items == 'song':
