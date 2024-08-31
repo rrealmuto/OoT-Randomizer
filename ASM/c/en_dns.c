@@ -23,7 +23,7 @@ void EnDns_SetTextId(z64_actor_t* thisx, float scale) {
     else {
         // Otherwise just use the original message ID
         // Resolve sStartingTextIds array from overlay
-        uint16_t* sStartingTextIds = resolve_overlay_addr(OVL_EN_DNS_sStartingTextIds, thisx->actor_id);
+        uint16_t* sStartingTextIds = resolve_overlay_addr((void*)&OVL_EN_DNS_sStartingTextIds, thisx->actor_id);
         this->actor.text_id = sStartingTextIds[DNS_GET_TYPE(thisx)];
     }
 
