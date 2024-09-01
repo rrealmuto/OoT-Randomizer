@@ -24,6 +24,7 @@ typedef enum GetItemID {
     /* 0x000C */ GI_OCARINA_OF_TIME, // Ocarina of Time
     /* 0x000D */ GI_HAMMER, // Megaton Hammer
     /* 0x000E */ GI_COJIRO, // Cojiro
+
     /* 0x000F */ GI_BOTTLE_EMPTY, // Empty Bottle
     /* 0x0010 */ GI_BOTTLE_POTION_RED, // Red Potion
     /* 0x0011 */ GI_BOTTLE_POTION_GREEN, // Green Potion
@@ -31,6 +32,7 @@ typedef enum GetItemID {
     /* 0x0013 */ GI_BOTTLE_FAIRY, // Bottled Fairy
     /* 0x0014 */ GI_BOTTLE_MILK_FULL, // Bottled Lon Lon Milk
     /* 0x0015 */ GI_BOTTLE_RUTOS_LETTER, // Bottled Ruto's Letter
+
     /* 0x0016 */ GI_MAGIC_BEAN, // Magic Bean
     /* 0x0017 */ GI_MASK_SKULL, // Skull Mask
     /* 0x0018 */ GI_MASK_SPOOKY, // Spooky Mask
@@ -68,6 +70,7 @@ typedef enum GetItemID {
     /* 0x0038 */ GI_SCALE_GOLDEN, // Golden Scale
     /* 0x0039 */ GI_STONE_OF_AGONY, // Stone of Agony
     /* 0x003A */ GI_GERUDOS_CARD, // Gerudo Membership Card
+
     /* 0x003B */ GI_OCARINA_FAIRY, // Fairy Ocarina
     /* 0x003C */ GI_DEKU_SEEDS_5, // Deku Seeds (5)
     /* 0x003D */ GI_HEART_CONTAINER, // Heart Container
@@ -134,6 +137,7 @@ typedef enum GetItemID {
     /* 0x007A */ GI_DEKU_NUT_UPGRADE_40, // Deku Nut Upgrade (40)
     /* 0x007B */ GI_BULLET_BAG_50, // Bullet Bag (50)
     /* 0x007C */ GI_ICE_TRAP, // Ice Trap
+
     /* 0x007D */ GI_TEXT_0,
     /* 0x007D */ GI_CAPPED_PIECE_OF_HEART = GI_TEXT_0, // Capped Piece of Heart
     /* 0x007E */ GI_VANILLA_MAX,
@@ -321,10 +325,26 @@ typedef enum GetItemID {
     /* 0x0117 */ GI_SMALL_KEY_MODEL_GANONS_CASTLE = GI_SMALL_KEY_MODEL_MAX, // Ganon's Castle Small Key
     /* 0x0118 */ GI_SMALL_KEY_MODEL_CHEST_GAME, // Small Key (Chest Game)
 
-    /* 0x0119 */ GI_RANDO_MAX
+    /* 0x0119 */ GI_FAIRY,
+    /* 0x011A */ GI_NOTHING,
+
+    // 0x011B through 0x0126 reserved for https://github.com/OoTRandomizer/OoT-Randomizer/pull/2108
+
+    // TODO: remove hardcoded value when that PR gets merged
+    /* 0x0127 */ GI_KOKIRI_EMERALD = 0x0127,
+    /* 0x0128 */ GI_GORON_RUBY,
+    /* 0x0129 */ GI_ZORA_SAPPHIRE,
+    /* 0x012A */ GI_LIGHT_MEDALLION,
+    /* 0x012B */ GI_FOREST_MEDALLION,
+    /* 0x012C */ GI_FIRE_MEDALLION,
+    /* 0x012D */ GI_WATER_MEDALLION,
+    /* 0x012E */ GI_SHADOW_MEDALLION,
+    /* 0x012F */ GI_SPIRIT_MEDALLION,
+
+    /* 0x0130 */ GI_RANDO_MAX
 } GetItemId;
 
-_Static_assert(GI_RANDO_MAX == 0x0119, "Remember to update the comment and the assert for the value of GI_RANDO_MAX when adding new items");
+_Static_assert(GI_RANDO_MAX == 0x0130, "Remember to update the comment and the assert for the value of GI_RANDO_MAX when adding new items");
 
 typedef enum {
     /*  0 */ BROWN_CHEST,            // big default chest
