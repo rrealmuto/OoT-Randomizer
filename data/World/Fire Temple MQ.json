@@ -296,8 +296,8 @@
             "Fire Temple MQ After Upper Flare Dancer Hookshot Wonderitem": "can_use(Hookshot)",
             "Fire Temple MQ Hammer Steps Hookshot Wonderitem": "(Small_Key_Fire_Temple, 5) and can_use(Hookshot)",
             "Fire Temple MQ Upper Flare Dancer": "has_soul(Flare_Dancer)",
-            "Fire Temple MQ Hammer Steps Stalfos 1": "has_soul(Flare_Dancer) and has_soul(Stalfos) and (Small_Key_Fire_Temple, 4)",
-            "Fire Temple MQ Hammer Steps Stalfos 2": "has_soul(Flare_Dancer) and has_soul(Stalfos) and (Small_Key_Fire_Temple, 4)"
+            "Fire Temple MQ Hammer Steps Stalfos 1": "has_soul(Flare_Dancer) and has_soul(Stalfos) and (Small_Key_Fire_Temple, 5)",
+            "Fire Temple MQ Hammer Steps Stalfos 2": "has_soul(Flare_Dancer) and has_soul(Stalfos) and (Small_Key_Fire_Temple, 5)"
         }
     }
 ]
