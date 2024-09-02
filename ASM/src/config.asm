@@ -1,7 +1,7 @@
 ;==================================================================================================
 ; Settings and tables which the front-end may write
 ;==================================================================================================
-; These values must be properly aligned to prevent an Address Error Exception on access. You can 
+; These values must be properly aligned to prevent an Address Error Exception on access. You can
 ; see what address a symbol was given after building in the build/asm_symbols.txt file.
 ; Byte values do not need to be aligned.
 ; Halfword values must be on an even byte boundary. ".align 2" can fix this value type's alignment.
