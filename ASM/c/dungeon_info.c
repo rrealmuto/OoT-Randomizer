@@ -848,7 +848,6 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
         int start_top = bg_top + padding;
 
         draw_background(db, bg_left, bg_top, bg_width, bg_height);
-        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
 
         // Draw dungeon names
 
@@ -869,6 +868,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                         1024, 1024);
                 gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
             } else {
+                gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
                 text_print(db, d->name, left, top);
             }
         }
@@ -877,6 +877,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
 
         // Draw maps and compasses
 
+        gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
         if (show_map_compass) {
             // Draw maps
 
