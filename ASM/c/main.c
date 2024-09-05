@@ -82,8 +82,10 @@ void before_skybox_init(z64_game_t* game, int16_t skyboxId) {
 void after_scene_init() {
     check_ganon_entry();
     clear_twinrova_vars();
+    models_reset();
     extern_scene_init();
     check_model_skeletons();
+    reset_collectible_mutex();
     get_current_scene_setup_number();
 }
 
