@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v115](#v115)
   * [v114](#v114)
   * [v113](#v113)
   * [v111](#v111)
@@ -139,6 +140,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v115
+  * Add missing Jabu Jabu's Belly MQ Falling Like Like Room wonderitems
+
 ### v114
   * Fix Water Temple MQ After Dark Link Hookshot Wonderitem logic
   * Fire Temple MQ Hammer Steps Stalfos logic
