@@ -139,7 +139,7 @@ base_enemy_list = {
     (86, 0, 2, 8):      EnemyLocation(75), # Moblin
     (86, 0, 2, 9):      EnemyLocation(75), # Moblin
     (86, 0, 2, 10):     EnemyLocation(75), # Moblin
-    (86, 0, 0, 1):      EnemyLocation(431, switch_flag=0x1F, patch_func=patch_func_sfm_wolfos), # Wolfos
+    (86, 0, 0, 1):      EnemyLocation(431, switch_flag=0x1F, patch_func=patch_func_sfm_wolfos), # Wolfos. Move the spawn point so certain enemies don't end up on the other side of the gate.
     (86, 0, 0, 5):      EnemyLocation(96), # Deku Scrub
     (86, 0, 0, 6):      EnemyLocation(96), # Deku Scrub
     (86, 0, 0, 7):      EnemyLocation(96), # Deku Scrub

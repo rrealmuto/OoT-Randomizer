@@ -237,6 +237,15 @@ class State:
         # Get the enemy type for this location
         
         return self.can_kill(scene,room,setup,index, **kwargs)
+    
+    def enemy_type_at(self, location_name:str, **kwargs):
+        spot = LocationFactory(location_name)
+        scene = spot.scene
+        room,setup,index = spot.default
+        index -= 1
+        enemies = self.world.enemies_by_scene[scene][room][setup]
+        enemy_type, enemy_obj, shuffled = enemies[scene,room,setup,index]
+        return enemy_obj.name
 
     # Logic helper for determining if an enemy at a particular spot can be killed. Used when logic for one spot depends on killing a specific enemy
     def can_kill(self, scene,room,setup,index, **kwargs) -> bool:

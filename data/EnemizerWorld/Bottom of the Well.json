@@ -4,7 +4,7 @@
         "dungeon": "Bottom of the Well",
         "exits": {
             "Kakariko Village": "True",
-            "Bottom of the Well Main Area": "can_kill_named('Bottom of the Well Entryway Skulltula')",
+            "Bottom of the Well Main Area": "is_child and can_kill_named('Bottom of the Well Entryway Skulltula')",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },

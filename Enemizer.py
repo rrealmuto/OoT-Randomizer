@@ -90,6 +90,11 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
         shuffled[enemy_key] = (choice, enemy, True)
     return shuffled
 
+# Get a list of allowed enemy types based on the restrictions passed in
+# enemy_actor_types - enemy dict
+# restrictions - list of location's restrictions. Enemies must be tagged with the same restriction in order to be included
+# meets_enemy_restrictions - list of the enemy restrictions that the location meets. Enemies with ENEMY_RESTRICTIONs will not be allowed unless the location is tagged with that restriction
+# Disallowed enemies - list of enemy actor ID's to explicitly exclude from a location
 def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions: list[LOCATION_RESTRICTION], meets_enemy_restrictions: list[ENEMY_RESTRICTION], disallowed_enemies: list[int]):
     restricted_enemy_actor_types: dict[int,Enemy] = {}
     for enemy_id in enemy_actor_types:
