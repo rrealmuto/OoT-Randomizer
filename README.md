@@ -165,6 +165,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Major items from pots, crates, etc now display above Link's head while the text box is open.
 * Gameplay is no longer interrupted if you receive a junk item from another player in multiworld.
 * Removed the potentially confusing Master Sword icon from the Rainbow Bridge page of the adult Temple of Time altar text.
+* Blue warps now set time of day each time they're taken, fixing a potential softlock.
 
 ### 8.1
 
