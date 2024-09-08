@@ -396,11 +396,11 @@
         "length": 1
     },
     "DPAD_RESOURCE": {
-        "address": "034A2198",
+        "address": "034A2190",
         "length": 0
     },
     "DPAD_RESOURCE_END": {
-        "address": "034A2998",
+        "address": "034A2990",
         "length": 0
     },
     "DUNGEONS_SHUFFLED": {
@@ -448,19 +448,19 @@
         "length": 160
     },
     "FONT_CHAR_TEX_HEIGHT": {
-        "address": "034A1F00",
+        "address": "034A1EF8",
         "length": 4
     },
     "FONT_CHAR_TEX_WIDTH": {
-        "address": "034A1F04",
+        "address": "034A1EFC",
         "length": 4
     },
     "FONT_RESOURCE": {
-        "address": "034A2998",
+        "address": "034A2990",
         "length": 0
     },
     "FONT_RESOURCE_END": {
-        "address": "034A3E60",
+        "address": "034A3E58",
         "length": 0
     },
     "FREE_BOMBCHU_DROPS": {
@@ -584,7 +584,7 @@
         "length": 1
     },
     "NUM_FONT_CHARS": {
-        "address": "034A1EFC",
+        "address": "034A1EF4",
         "length": 4
     },
     "OCARINAS_SHUFFLED": {
@@ -680,7 +680,7 @@
         "length": 4
     },
     "REQUIRED_PENDING_FRAMES": {
-        "address": "034A1B88",
+        "address": "034A1B80",
         "length": 1
     },
     "REWARDS_AS_ITEMS": {
@@ -784,11 +784,11 @@
         "length": 2
     },
     "TRIFORCE_SPRITE_RESOURCE": {
-        "address": "034A3E60",
+        "address": "034A3E58",
         "length": 0
     },
     "TRIFORCE_SPRITE_RESOURCE_END": {
-        "address": "034A4E60",
+        "address": "034A4E58",
         "length": 0
     },
     "TWINROVA_ACTION_TIMER": {
@@ -988,19 +988,19 @@
         "length": 3
     },
     "debug_text_height": {
-        "address": "034A19C6",
+        "address": "034A19BE",
         "length": 1
     },
     "debug_text_width": {
-        "address": "034A19C7",
+        "address": "034A19BF",
         "length": 1
     },
     "defaultDDHeart": {
-        "address": "034A1BFC",
+        "address": "034A1BF4",
         "length": 6
     },
     "defaultHeart": {
-        "address": "034A1C04",
+        "address": "034A1BFC",
         "length": 6
     },
     "dpad_sprite": {
@@ -1048,7 +1048,7 @@
         "length": 16
     },
     "freecam_modes": {
-        "address": "034A1A40",
+        "address": "034A1A38",
         "length": 66
     },
     "hash_sprites": {
@@ -1068,7 +1068,7 @@
         "length": 16
     },
     "icon_sprites": {
-        "address": "034A1B10",
+        "address": "034A1B08",
         "length": 12
     },
     "illegal_model": {
@@ -1080,19 +1080,19 @@
         "length": 2
     },
     "input_icon_height": {
-        "address": "034A1C16",
+        "address": "034A1C0E",
         "length": 1
     },
     "input_icon_width": {
-        "address": "034A1C17",
+        "address": "034A1C0F",
         "length": 1
     },
     "input_number_height": {
-        "address": "034A1C14",
+        "address": "034A1C0C",
         "length": 1
     },
     "input_number_width": {
-        "address": "034A1C15",
+        "address": "034A1C0D",
         "length": 1
     },
     "item_digit_sprite": {
@@ -1136,7 +1136,7 @@
         "length": 4
     },
     "left_alignment": {
-        "address": "034A1C12",
+        "address": "034A1C0A",
         "length": 2
     },
     "linkhead_skull_sprite": {
@@ -1232,7 +1232,7 @@
         "length": 256
     },
     "rupee_colors": {
-        "address": "034A1BF0",
+        "address": "034A1BE8",
         "length": 12
     },
     "rupee_digit_sprite": {
@@ -1292,11 +1292,11 @@
         "length": 4
     },
     "text_height": {
-        "address": "034A1D48",
+        "address": "034A1D40",
         "length": 4
     },
     "text_width": {
-        "address": "034A1D4C",
+        "address": "034A1D44",
         "length": 4
     },
     "texture_table": {
@@ -1304,11 +1304,11 @@
         "length": 496
     },
     "top_alignment": {
-        "address": "034A1C10",
+        "address": "034A1C08",
         "length": 2
     },
     "trade_quest_items": {
-        "address": "034A1F10",
+        "address": "034A1F08",
         "length": 616
     },
     "triforce_sprite": {

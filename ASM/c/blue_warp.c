@@ -7,6 +7,9 @@
 
 #define TEXT_STATE_CLOSING 2
 
+#define SCENE_VOLVAGIA_BOSS_ROOM 0x0015
+#define SCENE_MORPHA_BOSS_ROOM 0x0016
+
 extern uint8_t PLAYER_ID;
 extern uint8_t PLAYER_NAME_ID;
 extern bool REWARDS_AS_ITEMS;
@@ -43,13 +46,13 @@ int32_t DoorWarp1_PlayerInRange_Overwrite(z64_actor_t* actor, z64_game_t* game) 
             extended_savectx.collected_dungeon_rewards[boss_idx] = true;
         }
         // set time of day each time the blue warp is taken to reduce nonrepeatable access
-        if (boss_idx == 5) { // Morpha
+        if (game->scene_index == SCENE_MORPHA_BOSS_ROOM) {
             z64_file.skybox_time = z64_file.day_time = 0x4800; // CLOCK_TIME(6, 45)
         } else {
             z64_file.skybox_time = z64_file.day_time = 0x8000; // CLOCK_TIME(12, 00)
         }
         // reset heat timer after Volvagia
-        if (boss_idx == 4) {
+        if (game->scene_index == SCENE_VOLVAGIA_BOSS_ROOM) {
             z64_file.timer_1_state = 0;
         }
         // immediately activate the blue warp. Queued item will be given after the warp
