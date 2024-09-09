@@ -392,13 +392,13 @@
             "Claim Check"
         ]
     },
-    "Standard Weekly (2024-08-30)": {
+    "Standard Weekly (2024-09-13)": {
         "aliases": [
             "Standard Weekly (Latest)",
             "weekly"
         ],
         "show_seed_info": true,
-        "user_message": "Standard Weekly (2024-08-30)",
+        "user_message": "Standard Weekly (2024-09-13)",
         "world_count": 1,
         "create_spoiler": true,
         "password_lock": false,
@@ -542,7 +542,7 @@
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
         "fae_torch_count": 3,
-        "ruto_already_f1_jabu": false,
+        "ruto_already_f1_jabu": true,
         "ocarina_songs": "off",
         "correct_chest_appearances": "both",
         "chest_textures_specific": [
