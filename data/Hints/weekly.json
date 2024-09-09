@@ -84,7 +84,7 @@
         "dual":            {"order": 7, "weight": 0.0, "fixed": 2, "copies": 2, "remove_stones": [
             "HC (Storms Grotto)",
             "HF (Cow Grotto)"
-        ]}, 
+        ]},
         "sometimes":       {"order": 8, "weight": 0.0, "fixed": 5, "copies": 2, "remove_stones": [
             "HC (Storms Grotto)",
             "HF (Cow Grotto)"
