@@ -5,6 +5,16 @@
 .org 0x80A75CEC
 .word 0x000002C8
 
+; Hook at the end of EnDns_Init, right before it returns
+.org 0x80a74dc0
+; Replaces:
+;   lw      ra, 0x2c(sp)
+;   addiu   sp, sp, 0x40
+;   jr      ra
+;   nop
+    j       EnDns_Init_End_Hook
+    nop
+
 ; Hack EnDns_Init to store the message ID offset which we'll pass in the actor's spawn variable
 ; Hack towards the beginning of the function before the variable is used
 .org 0x80A74C74
@@ -16,11 +26,11 @@
 
 ; Hack later in EnDns_Init where it would normally store textId and use the value that we passed into the variable
 ; At call to Actor_SetScale, the textId is normally stored in the delay slot
-.org 0x80A74D64
+.org 0x80A74D68
 ; Replaces:
 ;   jal     Actor_SetScale
 ;   sh      t3, 0x10E(s0)
-    jal     EnDns_SetTextId
+;    jal     EnDns_SetTextId
     nop
 
 ; Hack EnDns_Update to remove the whole textId nonsense. Don't think this needs to be done every frame

@@ -27,3 +27,4 @@ Actor_SetScale = 0x80020f88;
 
 /* ovl_en_dns (Scrub Salesman) */
 OVL_EN_DNS_sStartingTextIds = 0x80A75D2C;
+OVL_EN_DNS_sItemEntries = 0x80A75DF4;

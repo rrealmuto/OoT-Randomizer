@@ -22,6 +22,15 @@ typedef struct {
     /* 0x0C */ EnDnsPaymentFunc payment;
 } DnsItemEntry; // size = 0x10
 
+
+typedef enum EnDnsCanBuyResult {
+    /*  0 */ DNS_CANBUY_RESULT_NEED_RUPEES,
+    /*  1 */ DNS_CANBUY_RESULT_CAPACITY_FULL,
+    /*  2 */ DNS_CANBUY_RESULT_SUCCESS_NEW_ITEM,
+    /*  3 */ DNS_CANBUY_RESULT_CANT_GET_NOW,
+    /*  4 */ DNS_CANBUY_RESULT_SUCCESS
+} EnDnsCanBuyResult;
+
 typedef struct EnDns {
     /* 0x0000 */ z64_actor_t actor;
     /* 0x013C */ uint8_t skelAnime[0x44];
@@ -37,7 +46,7 @@ typedef struct EnDns {
     /* 0x02B0 */ DnsItemEntry* dnsItemEntry;
     /* 0x02B4 */ float yInitPos;
     // Extended info
-    /* 0x02B8 */ uint8_t messageOffset;
+    /* 0x02B8 */ uint8_t scrub_id;
 } EnDns; // extended_size = 0x02C8
 
 #endif

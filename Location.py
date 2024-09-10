@@ -23,15 +23,14 @@ class DisableType(Enum):
 
 
 class Location:
-    def __init__(self, name: str = '', address: LocationAddress = None, address2: LocationAddress = None, default: LocationDefault = None,
+    def __init__(self, name: str = '', addresses: LocationAddress = None, default: LocationDefault = None,
                  location_type: str = 'Chest', scene: Optional[int] = None, parent: Optional[Region] = None,
                  filter_tags: LocationFilterTags = None, internal: bool = False, vanilla_item: Optional[str] = None) -> None:
         self.name: str = name
         self.parent_region: Optional[Region] = parent
         self.item: Optional[Item] = None
         self.vanilla_item: Optional[str] = vanilla_item
-        self.address: LocationAddress = address
-        self.address2: LocationAddress = address2
+        self.addresses: LocationAddress = addresses
         self.default: LocationDefault = default
         self.type: str = location_type
         self.scene: Optional[int] = scene
@@ -50,7 +49,7 @@ class Location:
         self.rule_string: Optional[str] = None
 
     def copy(self) -> Location:
-        new_location = Location(name=self.name, address=self.address, address2=self.address2, default=self.default,
+        new_location = Location(name=self.name, addresses=self.addresses, default=self.default,
                                 location_type=self.type, scene=self.scene, parent=self.parent_region,
                                 filter_tags=self.filter_tags, internal=self.internal, vanilla_item=self.vanilla_item)
 
@@ -179,8 +178,7 @@ def LocationFactory(locations: str | list[str]) -> Location | list[Location]:
             type, scene, default, addresses, vanilla_item, filter_tags = location_table[match_location]
             if addresses is None:
                 addresses = (None, None)
-            address, address2 = addresses
-            ret.append(Location(match_location, address, address2, default, type, scene, None, filter_tags, False, vanilla_item))
+            ret.append(Location(match_location, addresses, default, type, scene, None, filter_tags, False, vanilla_item))
         else:
             raise KeyError('Unknown Location: %s', location)
 

@@ -244,6 +244,10 @@ PASSWORD:
 .endarea
 REWARDS_AS_ITEMS:
 .byte 0x00
+CFG_SCRUB_SHUFFLE:
+.byte 0x00
+
+
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

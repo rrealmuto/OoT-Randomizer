@@ -30,6 +30,10 @@ class Rom(BigStream):
             symbols = json.load(stream)
             self.symbols: dict[str, int] = {name: {'address': int(sym['address'], 16), 'length': sym['length']} for name, sym in symbols.items()}
 
+        with open(data_path('generated/code_symbols.json'), 'r') as stream:
+            symbols = json.load(stream)
+            self.code_symbols: dict[str, int] = {name: sym for name, sym in symbols.items()}
+
         if file is None:
             return
 
@@ -147,7 +151,10 @@ class Rom(BigStream):
 
     def write_bytes(self, address: int, values: Sequence[int]) -> None:
         super().write_bytes(address, values)
-        self.changed_address.update(zip(range(address, address + len(values)), values))
+        if address is None:
+            self.changed_address.update(zip(range(self.last_address, self.last_address + len(values)), values))
+        else:
+            self.changed_address.update(zip(range(address, address + len(values)), values))
 
     def restore(self) -> None:
         self.buffer = copy.copy(self.original.buffer)
@@ -159,6 +166,9 @@ class Rom(BigStream):
 
     def sym(self, symbol_name: str) -> int:
         return self.symbols[symbol_name]['address']
+
+    def code_sym(self, symbol_name: str) -> int:
+        return self.code_symbols[symbol_name]
 
     def sym_length(self, symbol_name: str) -> int:
         return self.symbols[symbol_name]['length']

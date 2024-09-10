@@ -124,6 +124,7 @@ os.chdir(run_dir)
 PAYLOAD_START = int(symbols['PAYLOAD_START']['address'], 16)
 PAYLOAD_END = int(symbols['PAYLOAD_END']['address'], 16)
 data_symbols = {}
+code_symbols = {}
 for (name, sym) in symbols.items():
     if sym['type'] == 'data':
         addr = int(sym['address'], 16)
@@ -135,8 +136,18 @@ for (name, sym) in symbols.items():
             'address': f'{addr:08X}',
             'length': sym.get('length', 0),
         }
+    elif sym['type'] == 'code':
+        addr = int(sym['address'], 16)
+        sym_name = name
+        if ',' in name:
+            sym_name = name.split(',')[0]
+        code_symbols[sym_name] = addr
+
 with open('../data/generated/symbols.json', 'w') as f:
     json.dump(data_symbols, f, indent=4, sort_keys=True)
+with open('../data/generated/code_symbols.json', 'w') as f:
+    json.dump(code_symbols, f, indent=4, sort_keys=True)
+
 
 if pj64_sym_path:
     pj64_sym_path = os.path.realpath(pj64_sym_path)

@@ -16,7 +16,7 @@ from Hints import HintArea, hint_dist_keys, hint_dist_files
 from Item import Item, ItemFactory, ItemInfo, make_event_item
 from ItemPool import reward_list
 from Location import Location, LocationFactory
-from LocationList import business_scrubs, location_groups, location_table
+from LocationList import business_scrubs, business_scrubs_dict, location_groups, location_table
 from OcarinaSongs import generate_song_list, Song
 from Plandomizer import WorldDistribution, InvalidFileException
 from Region import Region, TimeOfDay
@@ -713,6 +713,41 @@ class World:
                         elif self.settings.shopsanity_prices == 'affordable':
                             self.shop_prices[location.name] = 10
 
+    def set_scrub_prices_new(self) -> None:
+        # Get the shuffled scrubs depending on the setting
+        # If the setting is off, only return the major item scrubs
+        single_item_scrub_locations = [
+                self.get_location("HF Deku Scrub Grotto"),
+                self.get_location("LW Deku Scrub Near Bridge"),
+                self.get_location("LW Deku Scrub Grotto Front"),
+        ]
+        scrub_locations = [location for location in self.get_locations() if location.type in ('Scrub', 'GrottoScrub')]
+
+        for location in scrub_locations:
+            if self.settings.shuffle_scrubs == 'off':
+                price = business_scrubs_dict[location.default][0]
+                shuffled = location in single_item_scrub_locations
+                
+            if self.settings.shuffle_scrubs == 'low':
+                price = 10
+                shuffled = True
+            elif self.settings.shuffle_scrubs == 'random':
+                price = int(random.randint(1,999))
+                shuffled = True
+
+            if location.type == 'GrottoScrub':
+                room, id = location.addresses
+                setup = location.scene & 0x1F
+                scene = 0x3E
+            elif location.type == 'Scrub':
+                room, setup, id = location.addresses
+                scene = location.scene
+            flag = (scene, room, setup, id)
+            self.scrub_prices[flag] = (location, shuffled)
+            location.price = price
+            if location.item is not None:
+                location.item.price = price
+    
     def set_scrub_prices(self) -> None:
         # Get Deku Scrub Locations
         scrub_locations = [location for location in self.get_locations() if location.type in ('Scrub', 'GrottoScrub')]

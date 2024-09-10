@@ -45,3 +45,12 @@ EnDns_Init_StoreMessage:
 
     jr      ra
     nop
+
+EnDns_Init_End_Hook:
+    jal      EnDns_Init_End
+    or       a0, s0, r0
+    ; Replaced code
+    lw       ra, 0x2c(sp)
+    addiu    sp, sp, 0x40
+    jr       ra
+    nop
