@@ -14,7 +14,7 @@ extern uint8_t TRIFORCE_SPRITE_RESOURCE[];
 z64_disp_buf_t rando_overlay_db __attribute__ ((aligned (16)));
 #if DEBUG_MODE
 z64_disp_buf_t debug_db __attribute__ ((aligned (16)));
-#define DEBUG_DB_SIZE 0x400
+#define DEBUG_DB_SIZE 0x600
 #endif
 
 typedef struct {

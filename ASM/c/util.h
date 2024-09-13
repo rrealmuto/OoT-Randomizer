@@ -22,4 +22,7 @@ void file_init(file_t* file);
 void* resolve_overlay_addr(void* addr, uint16_t overlay_id);
 void* resolve_player_ovl_addr(void* addr);
 
+
+extern void ZeldaArena_GetSizes(uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
+
 #endif

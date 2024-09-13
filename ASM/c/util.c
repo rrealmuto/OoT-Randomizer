@@ -31,8 +31,9 @@ void* heap_alloc(int bytes) {
         uint32_t randoarena_maxFree;
         uint32_t randoarena_free;
         uint32_t randoarena_alloc;
+        ZeldaArena_GetSizes(&zarena_maxFree, &zarena_free, &zarena_alloc);
         ArenaImpl_GetSizes(&randoArena, &randoarena_maxFree, &randoarena_free, &randoarena_alloc);
-        sprintf(error_msg, "size = %x\nmaxFree = %x\nfree = %x\nalloc = %x",bytes, (int)randoarena_maxFree, (int)randoarena_free, (int)randoarena_alloc);
+        sprintf(error_msg, "size = %x\nmaxFree = %x\nfree = %x\nalloc = %x\nZeldaArena:\nmaxFree = %x\nfree = %x\nalloc = %x",bytes, (int)randoarena_maxFree, (int)randoarena_free, (int)randoarena_alloc, zarena_maxFree, zarena_free, zarena_alloc);
         Fault_AddHungupAndCrashImpl("Rando arena overflow!", error_msg);
     }
     
