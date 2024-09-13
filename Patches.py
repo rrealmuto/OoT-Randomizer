@@ -1744,6 +1744,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         else:
             xflag = (setup << 22) + (room << 16) + (id << 8) + (subflag)
 
+        # TODO: Fix can_buy/pay_price functions to call the originals when necessary
         scrub_bytes = scrub_struct.pack(scene,xflag, new_msg_id, price,1,location.default,rom.code_sym('EnDns_CanBuyPrice_New'),rom.code_sym('EnDns_PayPrice_New'))
         rom.write_bytes(None, scrub_bytes)
 
