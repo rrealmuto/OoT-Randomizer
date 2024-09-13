@@ -25,4 +25,27 @@ typedef struct
   z64_angle_t z;
 } z64_rot_t;
 
+typedef struct Plane {
+    z64_xyzf_t normal;
+    float originDist;
+} Plane; // size = 0x10
+
+typedef struct TriNorm {
+    z64_xyzf_t vtx[3];
+    Plane plane;
+} TriNorm; // size = 0x34
+
+typedef float MtxF_t[4][4];
+typedef union MtxF {
+    MtxF_t mf;
+    struct {
+        // Note: The order displayed here is the transpose of the order in which matrices are typically written.
+        // For example, [xw, yw, zw] is the translation part of the matrix, not [wx, wy, wz].
+        float xx, yx, zx, wx,
+              xy, yy, zy, wy,
+              xz, yz, zz, wz,
+              xw, yw, zw, ww;
+    };
+} MtxF;
+
 #endif

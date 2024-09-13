@@ -21,3 +21,11 @@ z64_sEquipAnimTimer = 0x8039EAB4;
 z64_sEquipMoveTimer = 0x8039EAB8; */
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
+Actor_WorldDistXZToPoint = 0x80021528;
+
+
+/* Overlay symbols */
+
+/* En_Ik (Iron Knuckle) */
+OVL_EnIk_SetupStandUp = 0x80a67348;
+OVL_EnIk_SetupWalkOrRun = 0x80a676e4;

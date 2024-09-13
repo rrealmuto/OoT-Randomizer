@@ -143,6 +143,43 @@ typedef struct {
     /* 0x40 */ ColliderQuadDim dim;
 } ColliderQuad; // size = 0x80
 
+typedef struct ColliderElementDamageInfoAT {
+    /* 0x00 */ uint32_t dmgFlags; // Damage types dealt by this collider element as AT.
+    /* 0x04 */ uint8_t effect; // Damage Effect (Knockback, Fire, etc.)
+    /* 0x05 */ uint8_t damage; // Damage
+} ColliderElementDamageInfoAT; // size = 0x08
+
+typedef struct ColliderElementDamageInfoAC {
+    /* 0x00 */ uint32_t dmgFlags; // Damage types that may affect this collider element as AC.
+    /* 0x04 */ uint8_t effect;  // Damage Effect (Knockback, Fire, etc.)
+    /* 0x05 */ uint8_t defense; // Damage Resistance
+    /* 0x06 */ z64_xyz_t hitPos; // Point of contact
+} ColliderElementDamageInfoAC; // size = 0x0C
+
+typedef struct ColliderElement {
+    /* 0x00 */ ColliderElementDamageInfoAT atDmgInfo; // Damage properties when acting as an AT collider
+    /* 0x08 */ ColliderElementDamageInfoAC acDmgInfo; // Damage properties when acting as an AC collider
+    /* 0x14 */ uint8_t elemType; // Affects sfx reaction when attacked by Link and hookability. Full purpose unknown.
+    /* 0x15 */ uint8_t atElemFlags; // Information flags for AT collisions
+    /* 0x16 */ uint8_t acElemFlags; // Information flags for AC collisions
+    /* 0x17 */ uint8_t ocElemFlags; // Information flags for OC collisions
+    /* 0x18 */ Collider* atHit; // object touching this element's AT collider
+    /* 0x1C */ Collider* acHit; // object touching this element's AC collider
+    /* 0x20 */ struct ColliderElement* atHitElem; // element that hit the AT collider
+    /* 0x24 */ struct ColliderElement* acHitElem; // element that hit the AC collider
+} ColliderElement; // size = 0x28
+
+typedef struct ColliderTrisElement {
+    /* 0x00 */ ColliderElement base;
+    /* 0x28 */ TriNorm dim;
+} ColliderTrisElement; // size = 0x5C
+
+typedef struct ColliderTris {
+    /* 0x00 */ Collider base;
+    /* 0x18 */ int32_t count;
+    /* 0x1C */ ColliderTrisElement* elements;
+} ColliderTris; // size = 0x20
+
 typedef struct {
     /* 0x00 */ ColliderInit base;
     /* 0x08 */ ColliderInfoInit info;

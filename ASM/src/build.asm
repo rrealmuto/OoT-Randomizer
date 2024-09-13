@@ -141,6 +141,7 @@ RANDO_CONTEXT:
 .include "objects.asm"
 .include "en_dns.asm"
 .include "bg_gate_shutter.asm"
+.include "en_ik.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
