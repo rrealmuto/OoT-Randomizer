@@ -1301,8 +1301,8 @@ enemy_actor_types = {
     0x00EC: Enemy("Spike Enemy", kill_logic='can_kill_spike_enemy', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     0x00F6: Enemy("Anubis Spawner", soul_name="Anubis", categories=[LOCATION_RESTRICTION.FLOATING]),
     0x0113: EnemyWithOpts([
-        Enemy("Iron Knuckle (Black)", var=0xFF02, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Iron Knuckle (White)", var=0xFF03, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Iron Knuckle (Black)", var=0xFF82, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Iron Knuckle (White)", var=0xFF83, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     ]),
     0x0115: Enemy("Skull Kid", var=0xFFFF, filter_func=filter_skullkids),
     0x0121: Enemy("Freezard", categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),

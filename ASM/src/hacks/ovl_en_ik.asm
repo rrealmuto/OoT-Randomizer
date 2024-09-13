@@ -11,16 +11,16 @@
 ; Replaces
 ;   lh      t9, 0x1c(s0)  *
 ;   lh      t6, 0x1c(s0)
-;   lui     t3, 0x80a7
-;   addiu   t3, t3, -0x515c
+;   lui     t3, 0x80a7 ; (reloc so make sure this stays in the same spot)
+;   addiu   t3, t3, -0x515c (reloc so make sure this stays in the same spot)
 ;   andi    t2, t9, 0xff  *
 ;   sw      t3, 0x98(s0)
 ;   sh      t2, 0x1c(s0)  *
     jal     EnIk_Params_Hack
     lh      t9, 0x1c(s0)
-    lh      t6, 0x1c(s0)
     lui     t3, 0x80a7
     addiu   t3, t3, -0x515c
+    lh      t6, 0x1c(s0)
     sw      t3, 0x98(s0)
     nop
 
