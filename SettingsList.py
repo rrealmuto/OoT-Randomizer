@@ -10,6 +10,7 @@ from Item import ItemInfo
 from Location import LocationIterator
 from LocationList import location_table
 from Models import get_model_choices
+from texture_util import get_texture_pack_choices
 from SettingsListTricks import logic_tricks
 from SettingTypes import SettingInfo, SettingInfoStr, SettingInfoList, SettingInfoDict, Textbox, Button, Checkbutton, \
     Combobox, Radiobutton, Fileinput, Directoryinput, Textinput, ComboboxInt, Scale, Numberinput, MultipleSelect, \
@@ -4110,6 +4111,25 @@ class SettingInfos:
             for all recorded Racetime races. A note will appear at the top
             of the pause screen if this is the case.
         ''',
+        default        = 'Default',
+        gui_params     = {
+            "hide_when_disabled": True,
+            "dynamic":            True,
+        },
+    )
+
+    texture_pack = Combobox(
+        gui_text       = 'Texture Pack',
+        gui_tooltip = '''\
+            Choose a custom pack of textures to replace
+            the default chest/pot/crate textures.
+
+            See data/textures/README.md for details
+            on how to add a texture pack.
+        ''',
+        shared         = False,
+        cosmetic       = True,
+        choices        = get_texture_pack_choices(),
         default        = 'Default',
         gui_params     = {
             "hide_when_disabled": True,

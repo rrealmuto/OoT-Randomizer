@@ -415,7 +415,7 @@
         },
         {
           "name": "playermodels_section_generator",
-          "text": "Player Models",
+          "text": "Player Models/Textures",
           "app_type": ["generator"],
           "col_span": 2,
           "row_span": [2,2,2],
@@ -424,7 +424,8 @@
             "model_adult_filepicker",
             "model_child",
             "model_child_filepicker",
-            "model_unavailable_msg"
+            "model_unavailable_msg",
+            "texture_pack"
           ]
         },
         {

@@ -1,5 +1,11 @@
 # Custom textures
-To add custom textures, create PNG files of the appropriate size and place them inside the corresponding directory for chests/crates/pots.
+To add custom textures, create RGBA PNG files of the appropriate size and place them inside the folder
+data/Custom/{texture-pack-name}/{type}/{texture_name}
+
+where
+{texture-pack-name} is the name that will be used to select the set of custom textures in the GUI
+{type} is chest, pot, crate (small crate textures go in the crate folder)
+{texture_name} as described below
 
 Textures must be named as follows:
 Pixel dimensions are Width x Height
