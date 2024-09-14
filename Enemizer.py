@@ -70,24 +70,26 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
         del to_shuffle[plando_enemy_key]
     
     enemy_choices = list(enemy_actor_types.keys())
-    for enemy_key in to_shuffle:
-        enemy_type = to_shuffle[enemy_key]
-        if type(enemy_type) is EnemyLocation: # EnemyLocation with type restrictions
-            restriction = enemy_type.restrictions
-            meets_enemy_restrictions = enemy_type.meets_enemy_restrictions
-            disallowed_enemies = enemy_type.disallowed_enemies
-            #enemy_type = enemy_type.id
-        else: # Just an enemy ID
-            #enemy_type = to_shuffle[enemy_key]
-            restriction = []
-            meets_enemy_restrictions = []
-            disallowed_enemies = []
-        enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies))
-        choice = random.choice(enemy_choices)
-        enemy = enemy_actor_types[choice]
-        if type(enemy) is EnemyWithOpts:
-            enemy = random.choice(enemy.enemyOpts)
-        shuffled[enemy_key] = (choice, enemy, True)
+    if world.settings.enemizer == 'on':
+        for enemy_key in to_shuffle:
+            enemy_type = to_shuffle[enemy_key]
+            if type(enemy_type) is EnemyLocation: # EnemyLocation with type restrictions
+                restriction = enemy_type.restrictions
+                meets_enemy_restrictions = enemy_type.meets_enemy_restrictions
+                disallowed_enemies = enemy_type.disallowed_enemies
+                #enemy_type = enemy_type.id
+            else: # Just an enemy ID
+                #enemy_type = to_shuffle[enemy_key]
+                restriction = []
+                meets_enemy_restrictions = []
+                disallowed_enemies = []
+            enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies))
+            choice = random.choice(enemy_choices)
+            enemy = enemy_actor_types[choice]
+            if type(enemy) is EnemyWithOpts:
+                enemy = random.choice(enemy.enemyOpts)
+            shuffled[enemy_key] = (choice, enemy, True)
+        
     return shuffled
 
 # Get a list of allowed enemy types based on the restrictions passed in

@@ -134,7 +134,7 @@ def build_world_graphs(settings: Settings) -> list[World]:
         # Load common json rule files (those used regardless of MQ status)
         if settings.logic_rules == 'glitched':
             path = 'Glitched World'
-        elif settings.enemizer:
+        elif settings.enemizer == 'on':
             path = 'EnemizerWorld'
         else:
             path = 'World'

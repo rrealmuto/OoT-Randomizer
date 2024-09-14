@@ -2554,8 +2554,14 @@ class SettingInfos:
         },
     )
 
-    enemizer = Checkbutton(
+    enemizer = Combobox(
         gui_text       = 'Enemizer',
+        choices        = {
+            'off':      'Off',
+            'on':       'On',
+            'change':   'Change on room load'
+        },
+        default        = 'off',
         gui_tooltip    = ":)",
         shared         = True,
         gui_params     = {

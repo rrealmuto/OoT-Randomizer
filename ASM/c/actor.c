@@ -233,12 +233,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     if (continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
-    /*
+    
     if(continue_spawn)
     {
         continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
     }
-    */
+    
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -416,12 +416,16 @@ enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_DODOJR, 0x0000 },
     { ACTOR_EN_DODONGO, 0x0000 },
     { ACTOR_EN_FIREFLY, 0x0000 },
+    { ACTOR_EN_FIREFLY, 0x0002 },
+    { ACTOR_EN_FIREFLY, 0x0004 },
     { ACTOR_EN_FLOORMAS, 0x0000 },
-    { ACTOR_EN_PEEHAT, 0x0000 },
+    { ACTOR_EN_PEEHAT, 0xFFFF },
     { ACTOR_EN_MB, 0x0000 },
-    { ACTOR_EN_IK, 0xFF02 }, // Maybe random white/black. 0x0000 is nabooru which crashes
-    { ACTOR_EN_SKJ, 0x0000 }, //Always backflips away
+    { ACTOR_EN_IK, 0xFF82 }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_IK, 0xFF83 }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_SKJ, 0xFFFF }, //Always backflips away
     //{ ACTOR_EN_TUBO_TRAP, 0x0000 },
+    { ACTOR_EN_GOMA, 0x0006},
     { ACTOR_EN_POH, 0x0000 },
     { ACTOR_EN_TITE, 0x0000 },
     { ACTOR_EN_ZF, 0xFF80 }, // maybe also pick dinalfos
@@ -429,10 +433,10 @@ enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_TP, 0xFFFF }, // Crashes on death?? not really. Definitely screws up drawing.
     { ACTOR_EN_ST, 0x0000 },
     { ACTOR_EN_BW, 0x0000 },
-    { ACTOR_EN_AM, 0x0000 },
+    { ACTOR_EN_AM, 0xFFFF },
     { ACTOR_EN_DEKUNUTS, 0x0000 },
-    { ACTOR_EN_VM, 0x0000 },
-     //{ ACTOR_EN_RD, 0x0000 },
+    { ACTOR_EN_VM, 0x0500 },
+    { ACTOR_EN_RD, 0x0000 },
      //{ ACTOR_EN_FD, 0x0000 },
     { ACTOR_EN_SB, 0x0000 },
     { ACTOR_EN_NY, 0x0000 },
@@ -454,8 +458,10 @@ bool is_enemy(ActorEntry* actorEntry) {
 
 int enemy_spawn_index = 0;
 
+uint8_t CFG_RANDOM_ENEMY_SPAWNS = 0;
+
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
-    if(is_enemy(actorEntry)) {
+    if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry)) {
         int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
         //int index = (enemy_spawn_index++) % (array_size(enemy_list));
         actorEntry->id = enemy_list[index].id;
