@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import os
 
 from Rom import Rom
 from PIL import Image
+from Utils import data_path
 
 # Read a ci4 texture from rom and convert to rgba16
 # rom - Rom
@@ -213,6 +215,15 @@ def png_to_ci8(rom: Rom, base_texture_address: int, base_paelette_address: int, 
     for pixel in ci8_texture:
         bytes.extend(int.to_bytes(pixel, 1, 'big'))
     return bytes
+
+def get_texture_pack_choices():
+    path = data_path("textures/Custom")
+    # Get all of the folders in the custom textures directory and use those as the options
+    choices = ["Default"]
+    if os.path.exists(path):
+        folders = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path,f))]
+        choices.extend(folders)
+    return choices
 
 # Function to create rgba16 texture patches for crates
 def build_crate_ci8_patches() -> None:
