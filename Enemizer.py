@@ -118,35 +118,45 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
             restricted_enemy_actor_types[enemy_id] = enemy
     return restricted_enemy_actor_types
 
-def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,Enemy, bool]], rom: Rom, scene_data: list[Scene]):
+def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,Enemy, bool]], rom: Rom, scene_data: list[Scene], enemizer_on: bool):
     
     switch_flags_table = []
-    for enemy_key in shuffled_enemies:
-        keys = [enemy_key]
-        if enemy_key in base_enemy_alts.keys():
-            alt = base_enemy_alts[enemy_key]
-            if type(alt) is list:
-                keys.extend(base_enemy_alts[enemy_key])
-            else:
-                keys.append(base_enemy_alts[enemy_key])
-        for key in keys:
-            enemy_id, enemy, shuffled = shuffled_enemies[enemy_key]
-            if key in enemy_list.keys():
-                enemy_actor = enemy_list[key]
-                if shuffled:
-                    enemy_actor.rot_x = 0
-                    enemy_actor.rot_z = 0
-                    enemy_actor.id = enemy_id
-                    enemy_actor.var = enemy.var
-                    if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
-                        if world.enemy_list[key].patch_func:
-                            world.enemy_list[key].patch_func(enemy_actor)
+    if enemizer_on:
+        for enemy_key in shuffled_enemies:
+            keys = [enemy_key]
+            if enemy_key in base_enemy_alts.keys():
+                alt = base_enemy_alts[enemy_key]
+                if type(alt) is list:
+                    keys.extend(base_enemy_alts[enemy_key])
+                else:
+                    keys.append(base_enemy_alts[enemy_key])
+            for key in keys:
+                enemy_id, enemy, shuffled = shuffled_enemies[enemy_key]
+                if key in enemy_list.keys():
+                    enemy_actor = enemy_list[key]
+                    if shuffled:
+                        enemy_actor.rot_x = 0
+                        enemy_actor.rot_z = 0
+                        enemy_actor.id = enemy_id
+                        enemy_actor.var = enemy.var
+                        if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
+                            if world.enemy_list[key].patch_func:
+                                world.enemy_list[key].patch_func(enemy_actor)
+                        rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
+                        if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
+                            if world.enemy_list[key].switch_flag >= 0:
+                                switch_flags_table.append((key,world.enemy_list[key].switch_flag))
+                else:
+                    print(f"Missing enemy actor {key}")
+    else:
+        for enemy_actor_key in enemy_list:
+            enemy_actor = enemy_list[enemy_actor_key]
+            if enemy_actor_key in world.enemy_list and type(world.enemy_list[enemy_actor_key]) is EnemyLocation:
+                if world.enemy_list[enemy_actor_key].patch_func:
+                    world.enemy_list[enemy_actor_key].patch_func(enemy_actor)
                     rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
-                    if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
-                        if world.enemy_list[key].switch_flag >= 0:
-                            switch_flags_table.append((key,world.enemy_list[key].switch_flag))
-            else:
-                print(f"Missing enemy actor {key}")
+                if world.enemy_list[enemy_actor_key].switch_flag >= 0:
+                    switch_flags_table.append((enemy_actor_key,world.enemy_list[enemy_actor_key].switch_flag))
     
     # Write the switch flags table
     switch_flags_table_bytes = bytearray()
