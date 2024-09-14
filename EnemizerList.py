@@ -1285,8 +1285,8 @@ enemy_actor_types = {
     0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     0x0069: Enemy("Bubble", var=0xFFFF, kill_logic='can_kill_bubble'),
     0x008A: EnemyWithOpts([
-        Enemy("Beamos (Large)", var=0x0500, kill_logic='can_kill_beamos'),
-        Enemy("Beamos (Small)", var=0x0501, kill_logic='can_kill_beamos'),
+        Enemy("Beamos (Large)", var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos'),
+        Enemy("Beamos (Small)", var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos'),
     ]),
     0x008E: Enemy("Floormaster", kill_logic='can_kill_floormaster', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     0x0090: EnemyWithOpts([
@@ -1301,8 +1301,8 @@ enemy_actor_types = {
     0x00EC: Enemy("Spike Enemy", kill_logic='can_kill_spike_enemy', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     0x00F6: Enemy("Anubis Spawner", soul_name="Anubis", categories=[LOCATION_RESTRICTION.FLOATING]),
     0x0113: EnemyWithOpts([
-        Enemy("Iron Knuckle (Black)", var=0xFF82, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Iron Knuckle (White)", var=0xFF83, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Iron Knuckle (Black)", var=0xFF82, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
+        Enemy("Iron Knuckle (White)", var=0xFF83, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
     ]),
     0x0115: Enemy("Skull Kid", var=0xFFFF, filter_func=filter_skullkids),
     0x0121: Enemy("Freezard", categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
