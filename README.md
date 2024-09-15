@@ -140,6 +140,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v116
+  * Stop breaking dark link
+
 ### v115
   * Add missing Jabu Jabu's Belly MQ Falling Like Like Room wonderitems
 

@@ -376,6 +376,8 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
     entry.rot.y = rotY;
     entry.rot.z = rotZ;
 
+    continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
+
     if (continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
         if (spawned) {
