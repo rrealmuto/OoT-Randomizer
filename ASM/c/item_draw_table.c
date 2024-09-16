@@ -163,8 +163,6 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x91] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
     [0x92] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
     [0x93] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
-    // [0x94] = { draw_gi_magic_meter,         { 0x060003D0, 0x06000910, 0x0600EC0, 0x00CE00FF, 0xFFFFFFFF, 0xFFFFFFFF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
-    // [0x94] = { draw_gi_magic_meter,         { 0x060009F0, 0x06000ED0, 0x06001410, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
     [0x94] = { draw_gi_magic_meter,         { 0x06000A80, 0x06000F80, 0x060014C0, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
 };
 
