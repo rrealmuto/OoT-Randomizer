@@ -131,6 +131,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * A message is shown the first time a seed with No Logic is generated, to warn the user that the seed may be unbeatable.
 * New hint distribution field `excluded_goal_categories` to disable specific goal categories.
 * Pre-completed dungeons are crossed out in the dungeon overview menus (A or D-left on the inventory screen).
+* New hint distribution field `one_hint_per_goal` can be set to `true` or `false` to override the automatic settings-based behavior of how goal hints are selected.
 
 #### Bug Fixes
 * Goal hints can now hint items required to defeat Ganon even if they're not required for the rainbow bridge, Ganon's boss key, or the trials. These items will be hinted as being on the "path of the hero".
