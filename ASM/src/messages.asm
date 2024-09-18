@@ -111,3 +111,28 @@ Message_Decode_Control_Code_Hook:
 @no_match:
     j      0x800DC580
     addiu   sp, sp, 0x60
+
+shooting_gallery_no_bow:
+    addiu   sp, sp, -0x20
+    sw      a0, 0x18(sp)
+    sw      ra, 0x1C(sp)
+
+    jal     shooting_gallery_message
+    nop
+
+    lw      a0, 0x18(sp)
+    lw      ra, 0x1C(sp)
+
+    ; Replaced code
+    sw      t4, 0x01EC(a2)
+    sw      t1, 0x0118(a2)
+
+    jr      ra
+    addiu   sp, sp, 0x20
+
+Message_Decode_reset_msgCtx.textPosX:
+    sb      $zero, 0x4BE(at)
+    sh      $zero, 0x4C0(at)
+    lhu     a3, 0x4C0(a3)
+    j       0x800DA354
+    nop

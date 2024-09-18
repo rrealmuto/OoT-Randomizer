@@ -176,6 +176,7 @@ export class GeneratorComponent implements OnInit {
     }
 
     let goalErrorText = "The selected hint distribution includes the Goal hint type. This can drastically increase generation time for large multiworld seeds. Continue?";
+    let noLogicErrorText = "You have selected No Logic. This can produce unbeatable seeds. Continue?";
     let goalDistros = this.global.getGlobalVar('generatorGoalDistros');
 
     if (!goalHintsConfirmed && goalDistros.indexOf(this.global.generator_settingsMap["hint_dist"]) > -1 && this.global.generator_settingsMap["world_count"] > 5) {
@@ -193,6 +194,29 @@ export class GeneratorComponent implements OnInit {
       this.cd.detectChanges();
 
       return;
+    }
+
+    try {
+      let noLogicConfirmed = localStorage.getItem("noLogicConfirmed");
+      if ((!noLogicConfirmed || noLogicConfirmed == "false") && this.global.generator_settingsMap["logic_rules"] === "none") {
+        this.dialogService.open(ConfirmationWindowComponent, {
+          autoFocus: true, closeOnBackdropClick: false, closeOnEsc: false, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "No Logic Warning", dialogMessage: noLogicErrorText }
+        }).onClose.subscribe(confirmed => {
+          //User acknowledged possible unbeatability of no logic seeds
+          if (confirmed) {
+            localStorage.setItem("noLogicConfirmed", JSON.stringify(true));
+            this.generateSeed(fromPatchFile, webRaceSeed, goalHintsConfirmed);
+          }
+        });
+
+        this.generateSeedButtonEnabled = true;
+        this.cd.markForCheck();
+        this.cd.detectChanges();
+
+        return;
+      }
+    } catch (e) {
+      //Browser doesn't allow localStorage access
     }
 
     if (this.global.getGlobalVar('electronAvailable')) { //Electron
@@ -672,6 +696,191 @@ export class GeneratorComponent implements OnInit {
     }).catch(err => {
       console.log(err);
     });
+  }
+
+  getFileFromFileSystemEntry(entry) { //Web only
+    return new Promise<any>(function (resolve, reject) {
+      entry.file((file) => resolve(file), (error) => reject(error));
+    });
+  }
+
+  readDirectoryWeb(directory, fileList: any[]) { //Web only
+
+    var self = this;
+
+    //Recursively read directories
+    return new Promise<any>(function (resolve, reject) {
+
+      let directoryReader = directory.createReader();
+
+      directoryReader.readEntries(async function (entries) {
+
+        for (let entry of entries) {
+
+          if (entry.isDirectory) {
+
+            try {
+              await self.readDirectoryWeb(entry, fileList);
+            }
+            catch (error) {
+              reject(error);
+              return;
+            }
+          }
+          else if (entry.isFile) {
+
+            try {
+              fileList.push(await self.getFileFromFileSystemEntry(entry));
+            }
+            catch (error) {
+              reject(error);
+              return;
+            }
+          }
+        }
+
+        resolve(null);
+
+      }, (error) => reject(error));
+    });
+  }
+
+  onDirectoryDragOverWeb(event, setting: any) { //Web only
+
+    event.preventDefault();
+
+    if (!event.dataTransfer)
+      return;
+
+    //Check setting is enabled first
+    if (!this.global.generator_settingsVisibilityMap[setting.name])
+      return;
+
+    event.dataTransfer.dropEffect = 'link'; //Change cursor to link icon when in input area
+  }
+
+  async onDirectoryDropWeb(event, setting: any) { //Web only
+
+    event.preventDefault();
+
+    if (!event.dataTransfer)
+      return;
+
+    //Only proceed if we have at least one file in the drop
+    if (!event.dataTransfer.files || event.dataTransfer.files.length < 1)
+      return;
+
+    //Check setting is enabled first
+    if (!this.global.generator_settingsVisibilityMap[setting.name])
+      return;
+
+    let items = event.dataTransfer.items;
+    let entries = [];
+
+    //Collect entries
+    for (let item of items) {
+      let entry = item.webkitGetAsEntry();
+
+      if (entry)
+        entries.push(entry);
+    }
+
+    //Build file list
+    let fileList = [];
+    let mainFolders = [];
+    let mainFiles = [];
+
+    try {
+      for (let entry of entries) {
+
+        if (entry.isDirectory) {
+          mainFolders.push(entry.name);
+          await this.readDirectoryWeb(entry, fileList);
+        }
+        else if (entry.isFile) {
+          mainFiles.push(entry.name);
+          fileList.push(await this.getFileFromFileSystemEntry(entry));
+        }
+      }
+    }
+    catch (error) {
+
+      this.dialogService.open(DialogWindowComponent, {
+        autoFocus: true, closeOnBackdropClick: true, closeOnEsc: true, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Error", dialogMessage: error }
+      });
+
+      throw new Error(error);
+    }
+
+    //Create a sensible display name for any directory/file combination
+    let nameParts = [];
+
+    if (mainFolders.length > 0) {
+      nameParts.push(mainFolders[0]);
+
+      if (mainFolders.length > 1) {
+        nameParts.push(`${mainFolders.length - 1} other folder${mainFolders.length > 2 ? "s" : ""}`);
+      }
+    }
+
+    if (mainFiles.length > 0) {
+      nameParts.push(mainFiles[0]);
+
+      if (mainFiles.length > 1) {
+        nameParts.push(`${mainFiles.length - 1} other file${mainFiles.length > 2 ? "s" : ""}`);
+      }
+    }
+
+    let lastNamePart = nameParts.pop();
+    let displayName: string;
+
+    if (nameParts.length > 0)
+      displayName = `${nameParts.join(", ")} and ${lastNamePart}`;
+    else
+      displayName = `${lastNamePart}`;
+
+    //Set setting with display name and file list array
+    this.global.generator_settingsMap[setting.name] = { name: displayName, fileList: fileList };
+    this.cd.markForCheck();
+    this.afterSettingChange(true);
+  }
+
+  onDirectorySelectedWeb(event, setting: any) { //Web only
+
+    let dirPickerMode: boolean = this.global.getGlobalVar("webSupportDirectoryPicker");
+
+    let fileList = event.currentTarget.files;
+
+    if (!fileList || fileList.length < 1)
+      return;
+
+    let displayName: string;
+
+    if (dirPickerMode) {
+      displayName = fileList[0].webkitRelativePath.substr(0, fileList[0].webkitRelativePath.indexOf("/")); //Grab dropped folder name from first file path
+    }
+    else {
+      //Create a sensible display name for any file combination
+      let nameParts = [];
+
+      nameParts.push(fileList[0].name);
+
+      if (fileList.length > 1) {
+        nameParts.push(`${fileList.length - 1} other file${fileList.length > 2 ? "s" : ""}`);
+      }
+
+      let lastNamePart = nameParts.pop();
+
+      if (nameParts.length > 0)
+        displayName = `${nameParts.join(", ")} and ${lastNamePart}`;
+      else
+        displayName = `${lastNamePart}`;
+    }
+
+    //Set setting
+    this.global.generator_settingsMap[setting.name] = { name: displayName, fileList: fileList };
+    this.cd.markForCheck();
+    this.afterSettingChange(true);
   }
 
   browseForPatchFile() { //Electron only

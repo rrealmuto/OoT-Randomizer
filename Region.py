@@ -2,6 +2,8 @@ from __future__ import annotations
 from enum import Enum, unique
 from typing import TYPE_CHECKING, Optional, Any
 
+from ItemList import REWARD_COLORS
+
 if TYPE_CHECKING:
     from Dungeon import Dungeon
     from Entrance import Entrance
@@ -51,22 +53,16 @@ class Region:
         self.is_boss_room: bool = False
         self.savewarp: Optional[Entrance] = None
 
-    def copy(self, *, copy_dict: Optional[dict[int, Any]] = None) -> Region:
-        copy_dict = {} if copy_dict is None else copy_dict
-        if (new_region := copy_dict.get(id(self), None)) and isinstance(new_region, Region):
-            return new_region
+    def copy(self) -> Region:
+        new_region = Region(world=self.world, name=self.name, region_type=self.type)
 
-        new_region = Region(world=self.world.copy(copy_dict=copy_dict), name=self.name, region_type=self.type)
-        copy_dict[id(self)] = new_region
-
-        new_region.exits = [entrance.copy(copy_dict=copy_dict) for entrance in self.exits]
-        new_region.locations = [location.copy(copy_dict=copy_dict) for location in self.locations]
+        new_region.exits = [entrance for entrance in self.exits]
+        new_region.locations = [location for location in self.locations]
 
         # Why does this not work properly?
         # new_region.entrances = [entrance.copy(copy_dict=copy_dict) for entrance in self.entrances]
 
-        if self.dungeon:
-            new_region.dungeon = self.dungeon.copy(copy_dict=copy_dict)
+        new_region.dungeon = self.dungeon
         new_region.dungeon_name = self.dungeon_name
         new_region.hint_name = self.hint_name
         new_region.alt_hint_name = self.alt_hint_name
@@ -75,7 +71,7 @@ class Region:
         new_region.provides_time = self.provides_time
         new_region.scene = self.scene
         new_region.is_boss_room = self.is_boss_room
-        new_region.savewarp = None if self.savewarp is None else self.savewarp.copy(copy_dict=copy_dict)
+        new_region.savewarp = self.savewarp
 
         return new_region
 
@@ -113,24 +109,34 @@ class Region:
         is_dungeon_restricted = False
         is_overworld_restricted = False
 
-        if item.type in ['Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'TCGSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee']:
-            shuffle_setting = (self.world.settings.shuffle_mapcompass if item.type in ['Map', 'Compass'] else
-                               self.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
-                               self.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
-                               self.world.settings.shuffle_tcgkeys if item.type == 'TCGSmallKey' else
-                               self.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
-                               self.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
-                               self.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else None)
+        if item.type in ('Map', 'Compass', 'SmallKey', 'HideoutSmallKey', 'TCGSmallKey', 'BossKey', 'GanonBossKey', 'SilverRupee', 'DungeonReward'):
+            shuffle_setting = (
+                self.world.settings.shuffle_mapcompass if item.type in ('Map', 'Compass') else
+                self.world.settings.shuffle_smallkeys if item.type == 'SmallKey' else
+                self.world.settings.shuffle_hideoutkeys if item.type == 'HideoutSmallKey' else
+                self.world.settings.shuffle_tcgkeys if item.type == 'TCGSmallKey' else
+                self.world.settings.shuffle_bosskeys if item.type == 'BossKey' else
+                self.world.settings.shuffle_ganon_bosskey if item.type == 'GanonBossKey' else
+                self.world.settings.shuffle_silver_rupees if item.type == 'SilverRupee' else
+                self.world.settings.shuffle_dungeon_rewards if item.type == 'DungeonReward' else
+                None
+            )
 
-            is_self_dungeon_restricted = shuffle_setting in ['dungeon', 'vanilla'] and item.type not in ['HideoutSmallKey', 'TCGSmallKey']
+            is_self_dungeon_restricted = (shuffle_setting == 'dungeon' or (shuffle_setting == 'vanilla' and item.type != 'DungeonReward')) and item.type not in ('HideoutSmallKey', 'TCGSmallKey')
             is_self_region_restricted = [HintArea.GERUDO_FORTRESS, HintArea.THIEVES_HIDEOUT] if shuffle_setting == 'fortress' else None
-            is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
+            if item.name in REWARD_COLORS:
+                is_hint_color_restricted = [REWARD_COLORS[item.name]] if shuffle_setting == 'regional' else None
+            else:
+                is_hint_color_restricted = [HintArea.for_dungeon(item.name).color] if shuffle_setting == 'regional' else None
             is_dungeon_restricted = shuffle_setting == 'any_dungeon'
             is_overworld_restricted = shuffle_setting == 'overworld'
 
         if is_self_dungeon_restricted and not manual:
             hint_area = HintArea.at(self)
-            return hint_area.is_dungeon and hint_area.is_dungeon_item(item) and item.world.id == self.world.id
+            if item.name == 'Light Medallion':
+                return hint_area in (HintArea.ROOT, HintArea.TEMPLE_OF_TIME) and item.world.id == self.world.id
+            else:
+                return hint_area.is_dungeon and hint_area.is_dungeon_item(item) and item.world.id == self.world.id
 
         if is_self_region_restricted and not manual:
             return HintArea.at(self) in is_self_region_restricted and item.world.id == self.world.id
@@ -158,7 +164,7 @@ class Region:
             return None
 
     def __str__(self) -> str:
-        return str(self.__unicode__())
+        return self.name
 
-    def __unicode__(self) -> str:
-        return '%s' % self.name
+    def __repr__(self) -> str:
+        return f"{self.world.__repr__()} {self.name}"

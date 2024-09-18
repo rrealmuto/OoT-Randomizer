@@ -231,7 +231,7 @@ uint32_t IsClaimCheckTraded() {
     return SaveFile_TradeItemIsTraded(Z64_ITEM_CLAIM_CHECK);
 }
 
-z64_actor_t* IsTradeItemTraded(int16_t itemActionParam, z64_actor_t *targetActor) {
+z64_actor_t* IsTradeItemTraded(int16_t itemActionParam, z64_actor_t* targetActor) {
     if ((itemActionParam >= PLAYER_AP_LETTER_ZELDA && itemActionParam <= PLAYER_AP_CHICKEN) ||
         (itemActionParam >= PLAYER_AP_POCKET_EGG && itemActionParam < PLAYER_AP_CLAIM_CHECK)) {
         uint16_t itemId = GetTradeItemByAP(itemActionParam);
@@ -432,7 +432,8 @@ void TryPaybackMaskOverride(EnOssan* maskShop, z64_game_t* play) {
 }
 
 int32_t CanBuy_RightSideMask() {
-    if (GET_ITEMGETINF(ITEMGETINF_3F)) {
+    uint16_t paid = (z64_file.scene_flags[0x62].unk_00_ >> 0x07) & 0xF;
+    if (GET_ITEMGETINF(ITEMGETINF_3F) && paid == 0xF) {
         return CANBUY_RESULT_SUCCESS_FANFARE;
     } else {
         return CANBUY_RESULT_CANT_GET_NOW;

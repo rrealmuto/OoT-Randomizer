@@ -33,6 +33,7 @@ export class GUIGlobal implements OnDestroy {
       ["electronAvailable", false],
       ["webSourceVersion", ""],
       ["webIsMasterVersion", false],
+      ["webSupportDirectoryPicker", false],
       ["generatorSettingsArray", []],
       ["generatorSettingsObj", {}],
       ["generatorCosmeticsArray", []],
@@ -78,6 +79,11 @@ export class GUIGlobal implements OnDestroy {
 
       console.log("Web version: " + (<any>window).pythonSourceVersion + " ; master version:", this.getGlobalVar("webIsMasterVersion"));
 
+      let dirPickerSupport = this.testDirectoryPickerFeatureWeb();
+      this.setGlobalVar("webSupportDirectoryPicker", dirPickerSupport);
+
+      console.log("webkitdirectory support:", dirPickerSupport);
+
       this.webInit();
     }
   }
@@ -108,11 +114,40 @@ export class GUIGlobal implements OnDestroy {
 
     var self = this;
 
+    //Switch the GUI theme
+    (<any>window).addEventListener('external_switch_theme', function (event) {
+
+      let detail = event.detail;
+
+      self.generator_settingsMap["theme"] = detail.theme; //Ensure theme is set
+      self.globalEmitter.emit({ name: "theme_switch", message: detail.theme });
+
+    }, false);
+
+    //Allow external updates of any setting, then refresh GUI
+    (<any>window).addEventListener('external_update_setting', function (event) {
+
+      let detail = event.detail;
+
+      if (detail && Array.isArray(detail)) { //Batch
+
+        for (let setting of detail) {
+          self.generator_settingsMap[setting.name] = setting.value;
+        }
+      }
+      else if (detail && detail.name && "value" in detail) { //Single
+        self.generator_settingsMap[detail.name] = detail.value;
+      }
+
+      self.globalEmitter.emit({ name: "refresh_gui" });
+
+    }, false);
+
+    //Legacy: Update settings entry for cached file and then refresh GUI
     (<any>window).addEventListener('emscripten_cache_file_found', function (event) {
 
       let detail = event.detail;
 
-      //Update settings entry for cached file and then refresh GUI
       if (detail) {
 
         if (detail.name == "ROM")
@@ -403,7 +438,7 @@ export class GUIGlobal implements OnDestroy {
 
     await this.parseGeneratorGUISettings(res, userSettings);
 
-    //Check for cached files and then create web events after
+    //Legacy: Check for cached files and then create web events after
     if ((<any>window).emscriptenFoundCachedROMFile)
       this.generator_settingsMap["rom"] = "<using cached ROM>";
 
@@ -412,6 +447,22 @@ export class GUIGlobal implements OnDestroy {
 
     if ((<any>window).emscriptenFoundCachedCommonKeyFile)
       this.generator_settingsMap["web_common_key_file"] = "<using cached common key>";
+
+    //If we have an external override settings map, apply it now
+    if ((<any>window).externalOverrideSettingsMap)
+    {
+      let settings = JSON.parse((<any>window).externalOverrideSettingsMap);
+
+      if (settings && Array.isArray(settings)) { //Batch
+
+        for (let setting of settings) {
+          this.generator_settingsMap[setting.name] = setting.value;
+        }
+      }
+      else if (settings && settings.name && "value" in settings) { //Single
+        this.generator_settingsMap[settings.name] = settings.value;
+      }
+    }
 
     this.createWebEvents();
   }
@@ -484,7 +535,7 @@ export class GUIGlobal implements OnDestroy {
             userSettings[setting.name].forEach(entry => {
 
               let optionEntry = setting.options.find(option => {
-                if (option.name == entry)
+                if (option.name === entry)
                   return true;
 
                 return false;
@@ -503,7 +554,7 @@ export class GUIGlobal implements OnDestroy {
             }
             else {
               let optionEntry = setting.options.find(option => {
-                if (option.name == userSettings[setting.name])
+                if (option.name === userSettings[setting.name])
                   return true;
 
                 return false;
@@ -841,7 +892,7 @@ export class GUIGlobal implements OnDestroy {
               settingsObj[setting.name].forEach(entry => {
 
                 let optionEntry = setting.options.find(option => {
-                  if (option.name == entry)
+                  if (option.name === entry)
                     return true;
 
                   return false;
@@ -856,7 +907,7 @@ export class GUIGlobal implements OnDestroy {
             else if (setting.type == "Combobox") { //Ensure combobox option exists before applying it (in case of outdated settings being loaded)
 
               let optionEntry = setting.options.find(option => {
-                if (option.name == settingsObj[setting.name])
+                if (option.name === settingsObj[setting.name])
                   return true;
 
                 return false;
@@ -1252,6 +1303,24 @@ export class GUIGlobal implements OnDestroy {
   hasRomExtension(fileName: string) {
     fileName = fileName.toLowerCase();
     return fileName.endsWith(".z64") || fileName.endsWith(".n64") || fileName.endsWith(".v64");
+  }
+
+  testDirectoryPickerFeatureWeb() { //Web only
+
+    var input = (<any>document).createElement('input');
+    input.type = 'file';
+
+    if (!("webkitdirectory" in input))
+      return false;
+
+    //Hack: Mobile Chrome claims support, but actually does nothing, so we need to block it separately
+    let isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test((<any>navigator).userAgent);
+    let isChrome = /Chrome/i.test((<any>navigator).userAgent);
+
+    if (isMobile && isChrome)
+      return false;
+
+    return true;
   }
 
   isValidFileObjectWeb(file: any) { //Web only

@@ -1,7 +1,7 @@
 .n64
 .relativeinclude on
 
-// version guard, prevent people from building with older armips versions
+; version guard, prevent people from building with older armips versions
 .if (version() < 110)
 .notice version()
 .error   "Detected armips build is too old. Please install https://github.com/Kingcom/armips version 0.11 or later."
@@ -41,7 +41,7 @@
 .headersize (0x80400000 - 0x03480000)
 
 .org    0x80400000
-.area   0x00200000 //payload max memory
+.area   0x00200000 ; payload max memory
 PAYLOAD_START:
 
 .area 0x20, 0
@@ -65,7 +65,6 @@ RANDO_CONTEXT:
 .include "scarecrow.asm"
 .include "empty_bomb.asm"
 .include "initial_save.asm"
-.include "textbox.asm"
 .include "fishing.asm"
 .include "bgs_fix.asm"
 .include "chus_in_logic.asm"
@@ -117,7 +116,8 @@ RANDO_CONTEXT:
 .include "drop_overrides/bg_haka_tubo.asm"
 .include "drop_overrides/bg_spot18_basket.asm"
 .include "drop_overrides/obj_comb.asm"
-.include "drop_overrides/actor.asm"
+.include "drop_overrides/en_wonderitem.asm"
+.include "actor.asm"
 .include "rand_seed.asm"
 .include "messages.asm"
 .include "player_save_mask.asm"
@@ -125,26 +125,30 @@ RANDO_CONTEXT:
 .include "camera_init.asm"
 .include "chest_game.asm"
 .include "en_item00.asm"
-
+.include "volvagia.asm"
+.include "key_counter.asm"
 .include "armos.asm"
 .include "ocarina_buttons.asm"
-
+.include "fairy_ocarina.asm"
+.include "en_dns.asm"
+.include "bg_gate_shutter.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
-.align 8
-FONT_TEXTURE:
-.incbin("../resources/font.bin")
-DPAD_TEXTURE:
-.incbin("../resources/dpad.bin")
-TRIFORCE_ICON_TEXTURE:
-.incbin("../resources/triforce_sprite.bin")
 
 .align 0x10
+
+; This address bump avoids an audio issue where random crackling or buzzing noises play at possibly
+; very high volume during the entire game, even on the N64 logo screen. If this issue reappears,
+; double this number.
+;
+; For possible proper fixes, see:
+; https://discord.com/channels/274180765816848384/512048482677424138/1251961594380947587
+.skip 0x200
 
 AUDIO_THREAD_MEM_START:
 .skip AUDIO_THREAD_MEM_SIZE
 PAYLOAD_END:
-.endarea //payload max memory
+.endarea ; payload max memory
 
 .close

@@ -49,20 +49,13 @@ class Location:
         self.filter_tags: Optional[tuple[str, ...]] = (filter_tags,) if isinstance(filter_tags, str) else filter_tags
         self.rule_string: Optional[str] = None
 
-    def copy(self, *, copy_dict: Optional[dict[int, Any]] = None) -> Location:
-        copy_dict = {} if copy_dict is None else copy_dict
-        if (new_location := copy_dict.get(id(self), None)) and isinstance(new_location, Location):
-            return new_location
-
+    def copy(self) -> Location:
         new_location = Location(name=self.name, address=self.address, address2=self.address2, default=self.default,
-                                location_type=self.type, scene=self.scene, parent=self.parent_region.copy(copy_dict=copy_dict) if self.parent_region else None,
+                                location_type=self.type, scene=self.scene, parent=self.parent_region,
                                 filter_tags=self.filter_tags, internal=self.internal, vanilla_item=self.vanilla_item)
-        copy_dict[id(self)] = new_location
 
-        new_location.world = self.world.copy(copy_dict=copy_dict)
-        if self.item:
-            new_location.item = self.item.copy(copy_dict=copy_dict)
-            new_location.item.location = new_location
+        new_location.world = self.world
+        new_location.item = self.item
         new_location.access_rule = self.access_rule
         new_location.access_rules = list(self.access_rules)
         new_location.item_rule = self.item_rule
@@ -124,7 +117,7 @@ class Location:
     def has_preview(self) -> bool:
         if self.world is None:
             return False
-        return location_is_viewable(self.name, self.world.settings.correct_chest_appearances, self.world.settings.fast_chests)
+        return location_is_viewable(self.name, self.world.settings.correct_chest_appearances, self.world.settings.fast_chests, world=self.world)
 
     def has_item(self) -> bool:
         return self.item is not None
@@ -138,7 +131,7 @@ class Location:
     def maybe_set_misc_hints(self) -> None:
         if self.item is None or self.item.world is None or self.world is None:
             return
-        if self.item.world.dungeon_rewards_hinted and self.item.name in self.item.world.rewardlist:
+        if self.item.world.dungeon_rewards_hinted and self.item.type == 'DungeonReward':
             if self.item.name not in self.item.world.hinted_dungeon_reward_locations:
                 self.item.world.hinted_dungeon_reward_locations[self.item.name] = self
                 logging.getLogger('').debug(f'{self.item.name} [{self.item.world.id}] set to [{self.name}]')
@@ -154,10 +147,11 @@ class Location:
                 logging.getLogger('').debug(f'{the_location} [{self.world.id}] set to [{self.item.name}]')
 
     def __str__(self) -> str:
-        return str(self.__unicode__())
+        return self.name
 
-    def __unicode__(self) -> str:
-        return '%s' % self.name
+    def __repr__(self) -> str:
+        item_repr = self.item.__repr__() if self.item else "<empty>"
+        return f"{self.world.__repr__()} {self.name} with {item_repr}"
 
 
 @overload

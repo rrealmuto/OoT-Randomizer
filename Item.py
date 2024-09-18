@@ -99,19 +99,12 @@ class Item:
         # Do not alias to junk--it has no solver id!
         self.alias_id: Optional[int] = ItemInfo.solver_ids[escape_name(self.alias[0])] if self.alias else None
 
-    def copy(self, *, copy_dict: Optional[dict[int, Any]] = None) -> Item:
-        copy_dict = {} if copy_dict is None else copy_dict
-        if (new_item := copy_dict.get(id(self), None)) and isinstance(new_item, Item):
-            return new_item
+    def copy(self) -> Item:
+        new_item = Item(name=self.name, world=self.world, event=self.event)
 
-        new_item = Item(name=self.name, world=self.world.copy(copy_dict=copy_dict), event=self.event)
-        copy_dict[id(self)] = new_item
-
-        if self.location:
-            new_item.location = self.location.copy(copy_dict=copy_dict)
+        new_item.location = self.location
         new_item.price = self.price
-        if self.looks_like_item:
-            new_item.looks_like_item = self.looks_like_item.copy(copy_dict=copy_dict)
+        new_item.looks_like_item = self.looks_like_item
 
         return new_item
 
@@ -149,7 +142,8 @@ class Item:
                 (self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('remove', 'vanilla', 'dungeon')) or
                 (self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('remove', 'vanilla', 'dungeon')) or
                 ((self.map or self.compass) and (self.world.settings.shuffle_mapcompass in ('remove', 'startwith', 'vanilla', 'dungeon'))) or
-                (self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ['remove','vanilla','dungeon']))
+                (self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('remove','vanilla','dungeon')) or
+                (self.type == 'DungeonReward' and self.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon')))
 
     @property
     def majoritem(self) -> bool:
@@ -159,7 +153,7 @@ class Item:
             return (self.world.settings.bridge == 'tokens' or self.world.settings.shuffle_ganon_bosskey == 'tokens' or
                 (self.world.settings.shuffle_ganon_bosskey == 'on_lacs' and self.world.settings.lacs_condition == 'tokens'))
 
-        if self.type in ('Drop', 'Event', 'Shop', 'DungeonReward') or not self.advancement:
+        if self.type in ('Drop', 'Event', 'Shop') or not self.advancement:
             return False
 
         if self.name.startswith('Bombchus') and not self.world.settings.free_bombchu_drops:
@@ -171,17 +165,19 @@ class Item:
 
         if self.map or self.compass:
             return False
-        if self.type == 'SmallKey' and self.world.settings.shuffle_smallkeys in ['dungeon', 'vanilla']:
+        if self.type == 'DungeonReward' and self.world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward', 'dungeon'):
+            return False
+        if self.type == 'SmallKey' and self.world.settings.shuffle_smallkeys in ('dungeon', 'vanilla'):
             return False
         if self.type == 'HideoutSmallKey' and self.world.settings.shuffle_hideoutkeys == 'vanilla':
             return False
         if self.type == 'TCGSmallKey' and self.world.settings.shuffle_tcgkeys == 'vanilla':
             return False
-        if self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ['dungeon', 'vanilla']:
+        if self.type == 'BossKey' and self.world.settings.shuffle_bosskeys in ('dungeon', 'vanilla'):
             return False
-        if self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ['dungeon', 'vanilla']:
+        if self.type == 'GanonBossKey' and self.world.settings.shuffle_ganon_bosskey in ('dungeon', 'vanilla'):
             return False
-        if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ['dungeon', 'vanilla']:
+        if self.type == 'SilverRupee' and self.world.settings.shuffle_silver_rupees in ('dungeon', 'vanilla'):
             return False
 
         return True
@@ -193,10 +189,10 @@ class Item:
         return self.name in self.world.goal_items
 
     def __str__(self) -> str:
-        return str(self.__unicode__())
+        return self.name
 
-    def __unicode__(self) -> str:
-        return '%s' % self.name
+    def __repr__(self) -> str:
+        return f"{self.world.__repr__()} {self.name}"
 
 
 @overload

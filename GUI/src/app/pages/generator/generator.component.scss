@@ -261,10 +261,10 @@
   .comboBoxLabel {
     position: relative;
     display: block;
-    left: 10px;
+    padding-left: 10px;
 
     &.oneLineComboBox {
-      left: 0;
+      padding-left: 0;
     }
   }
 
@@ -390,6 +390,10 @@
     padding-left: 5.25px !important;
     margin-top: 5.6px;
     margin-right: 14px !important;
+  }
+
+  .ioHiddenInputWeb {
+    display: none;
   }
 
   .ioInputBrowseButton {

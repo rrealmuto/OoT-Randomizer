@@ -156,7 +156,11 @@ def build_world_graphs(settings: Settings) -> list[World]:
         generate_itempool(world)
         set_shop_rules(world)
         world.set_drop_location_names()
-        world.fill_bosses()
+        if world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+            world.fill_bosses()
+
+        if settings.empty_dungeons_mode == 'rewards':
+            world.set_empty_dungeon_rewards(settings.empty_dungeons_rewards)
 
     if settings.triforce_hunt:
         settings.distribution.configure_triforce_hunt(worlds)
@@ -185,6 +189,7 @@ def make_spoiler(settings: Settings, worlds: list[World]) -> Spoiler:
     elif any(world.dungeon_rewards_hinted for world in worlds) or any(hint_type in settings.misc_hints for hint_type in misc_item_hint_table) or any(hint_type in settings.misc_hints for hint_type in misc_location_hint_table):
         spoiler.find_misc_hint_items()
     spoiler.build_file_hash()
+    spoiler.build_password(settings.password_lock)
     return spoiler
 
 
@@ -221,9 +226,9 @@ def compress_rom(input_file: str, output_file: str, delete_input: bool = False) 
         else:
             compressor_path += "Compress32.exe"
     elif platform.system() == 'Linux':
-        if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+        if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
             compressor_path += "Compress_ARM64"
-        elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+        elif platform.machine() in ('arm', 'armv7l', 'armhf'):
             compressor_path += "Compress_ARM32"
         else:
             compressor_path += "Compress"
@@ -258,9 +263,9 @@ def generate_wad(wad_file: str, rom_file: str, output_file: str, channel_title: 
         else:
             gzinject_path += "gzinject32.exe"
     elif platform.system() == 'Linux':
-        if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+        if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
             gzinject_path += "gzinject_ARM64"
-        elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+        elif platform.machine() in ('arm', 'armv7l', 'armhf'):
             gzinject_path += "gzinject_ARM32"
         else:
             gzinject_path += "gzinject"

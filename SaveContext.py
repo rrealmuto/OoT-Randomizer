@@ -4,8 +4,6 @@ from collections.abc import Callable, Iterable
 from enum import IntEnum
 from typing import TYPE_CHECKING, Optional, Any
 
-from ItemPool import IGNORE_LOCATION
-
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
@@ -243,14 +241,14 @@ class SaveContext:
         extended_table = []
         for address, value in self.save_bits.items():
             table = save_table
-            if(address >= Address.EXTENDED_CONTEXT_START):
+            if address >= Address.EXTENDED_CONTEXT_START:
                 table = extended_table
                 address -= Address.EXTENDED_CONTEXT_START
             if value != 0:
                 table += [(address & 0xFF00) >> 8, address & 0xFF, 0x00, value]
         for address, value in self.save_bytes.items():
             table = save_table
-            if(address >= Address.EXTENDED_CONTEXT_START):
+            if address >= Address.EXTENDED_CONTEXT_START:
                 table = extended_table
                 address -= Address.EXTENDED_CONTEXT_START
             table += [(address & 0xFF00) >> 8, address & 0xFF, 0x01, value]
@@ -288,21 +286,19 @@ class SaveContext:
 
     def give_item(self, world: World, item: str, count: int = 1) -> None:
         if item.endswith(')'):
-            item_base, implicit_count = item[:-1].split(' (', 1)
+            item_base, implicit_count = item[:-1].rsplit(' (', 1)
             if implicit_count.isdigit():
                 item = item_base
                 count *= int(implicit_count)
 
         if item in SaveContext.bottle_types:
             self.give_bottle(item, count)
-        elif item in ["Piece of Heart", "Piece of Heart (Treasure Chest Game)"]:
+        elif item in ("Piece of Heart", "Piece of Heart (Treasure Chest Game)"):
             self.give_health(count / 4)
         elif item == "Heart Container":
             self.give_health(count)
         elif item == "Bombchu Item":
             self.give_bombchu_item(world)
-        elif item == IGNORE_LOCATION:
-            pass # used to disable some skipped and inaccessible locations
         elif item in SaveContext.save_writes_table:
             if item.startswith('Silver Rupee (') or item.startswith('Silver Rupee Pouch ('):
                 puzzle = item[:-1].split(' (', 1)[1]
@@ -404,13 +400,13 @@ class SaveContext:
                         'total_keys.tcg': 6,
                     },
                 }[dungeon]
-                if world.settings.keyring_give_bk:
+                if world.keyring_give_bk(dungeon):
                     bk_names = {
                         "Forest Temple": 'dungeon_items.forest.boss_key',
                         "Fire Temple": 'dungeon_items.fire.boss_key',
                         "Water Temple": 'dungeon_items.water.boss_key',
                         "Spirit Temple": 'dungeon_items.spirit.boss_key',
-                        "Shadow Temple": 'dungeon_items.shadow.boss_key'
+                        "Shadow Temple": 'dungeon_items.shadow.boss_key',
                     }
                     save_writes[dungeon][bk_names[dungeon]] = True
             else:
@@ -891,7 +887,9 @@ class SaveContext:
                 'trials_shadow': Address(extended=True, size=1),
                 'trials_water': Address(extended=True, size=1),
                 'trials_forest': Address(extended=True, size=1),
-            }
+            },
+            'password' : Address(extended=True, size=6),
+
         }
 
     item_id_map: dict[str, int] = {
@@ -1062,6 +1060,9 @@ class SaveContext:
     }
 
     save_writes_table: dict[str, dict[str, Any]] = {
+        "Nothing"        : {},
+        "Recovery Heart" : {},
+        "Fairy Drop"     : {},
         "Deku Stick Capacity": {
             'item_slot.stick'            : 'stick',
             'upgrades.stick_upgrade'     : [2, 3],

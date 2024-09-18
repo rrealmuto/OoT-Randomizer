@@ -26,16 +26,16 @@ class Rom(BigStream):
         self.force_patch: list[int] = []
         self.dma: DMAIterator = DMAIterator(self, DMADATA_START)
 
+        with open(data_path('generated/symbols.json'), 'r') as stream:
+            symbols = json.load(stream)
+            self.symbols: dict[str, int] = {name: {'address': int(sym['address'], 16), 'length': sym['length']} for name, sym in symbols.items()}
+
         if file is None:
             return
 
         decompressed_file: str = local_path('ZOOTDEC.z64')
 
         os.chdir(local_path())
-
-        with open(data_path('generated/symbols.json'), 'r') as stream:
-            symbols = json.load(stream)
-            self.symbols: dict[str, int] = {name: int(addr, 16) for name, addr in symbols.items()}
 
         if os.path.isfile(decompressed_file):
             # Try to read from previously decompressed rom if one exists.
@@ -87,10 +87,10 @@ class Rom(BigStream):
         rom_crc = list(self.buffer[0x10:0x18])
         if rom_crc not in valid_crc:
             # Bad CRC validation
-            raise RuntimeError('ROM file %s is not a valid OoT 1.0 US ROM.' % input_file)
-        elif len(self.buffer) < 0x2000000 or len(self.buffer) > 0x4000000 or file_name[1].lower() not in ['.z64', '.n64']:
+            raise RuntimeError(f'ROM file {input_file} is not a valid OoT 1.0 US ROM.')
+        elif len(self.buffer) < 0x2000000 or len(self.buffer) > 0x4000000 or file_name[1].lower() not in ('.z64', '.n64'):
             # ROM is too big, or too small, or a bad type
-            raise RuntimeError('ROM file %s is not a valid OoT 1.0 US ROM.' % input_file)
+            raise RuntimeError(f'ROM file {input_file} is not a valid OoT 1.0 US ROM.')
         elif len(self.buffer) == 0x2000000:
             # If Input ROM is compressed, then Decompress it
             if output_file:
@@ -112,9 +112,9 @@ class Rom(BigStream):
             else:
                 subcall = [sub_dir + "Decompress32.exe", input_file, output_file]
         elif platform.system() == 'Linux':
-            if platform.machine() in ['arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l']:
+            if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
                 subcall = [sub_dir + "Decompress_ARM64", input_file, output_file]
-            elif platform.machine() in ['arm', 'armv7l', 'armhf']:
+            elif platform.machine() in ('arm', 'armv7l', 'armhf'):
                 subcall = [sub_dir + "Decompress_ARM32", input_file, output_file]
             else:
                 subcall = [sub_dir + "Decompress", input_file, output_file]
@@ -158,7 +158,10 @@ class Rom(BigStream):
         self.write_version_bytes()
 
     def sym(self, symbol_name: str) -> int:
-        return self.symbols[symbol_name]
+        return self.symbols[symbol_name]['address']
+
+    def sym_length(self, symbol_name: str) -> int:
+        return self.symbols[symbol_name]['length']
 
     def write_to_file(self, file: str) -> None:
         self.verify_dmadata()

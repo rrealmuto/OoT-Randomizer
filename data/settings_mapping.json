@@ -62,7 +62,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki article on multiworld</a> for details.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw' target='_blank'>Mido's House Multiworld</a> to connect the worlds together.<br>Increasing Player Count will drastically increase the generation time.",
+          "subheader": "Play interconnected seeds with multiple players. Each player will receive their own world, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki</a> for details.<br>Increasing Player Count will drastically increase the generation time.",
           "row_span": [1,1,1],
           "settings": [
             "world_count",
@@ -107,7 +107,7 @@
         {
           "name": "multiworld_section",
           "text": "Multi-World Generation",
-          "subheader": "Play interconnected seeds with multiple players. Each player receives one of the worlds, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki article on multiworld</a> for details.<br>You will need a plugin like <a href='https://github.com/TestRunnerSRL/bizhawk-co-op' target='_blank'>bizhawk-co-op</a> or <a href='https://midos.house/mw' target='_blank'>Mido's House Multiworld</a> to connect the worlds together.",
+          "subheader": "Play interconnected seeds with multiple players. Each player will receive their own world, which can contain items for other players. See <a href='https://wiki.ootrandomizer.com/index.php?title=Multiworld' target='_blank'>the wiki</a> for details.",
           "row_span": [1,1,1],
           "settings": [
             "player_num"
@@ -163,6 +163,7 @@
             "mq_dungeons_count",
             "empty_dungeons_mode",
             "empty_dungeons_specific",
+            "empty_dungeons_rewards",
             "empty_dungeons_count",
             "shuffle_interior_entrances",
             "shuffle_hideout_entrances",
@@ -196,9 +197,12 @@
             "adult_trade_start",
             "shuffle_freestanding_items",
             "shuffle_pots",
+            "shuffle_empty_pots",
             "shuffle_crates",
+            "shuffle_empty_crates",
             "shuffle_cows",
             "shuffle_beehives",
+            "shuffle_wonderitems",
             "shuffle_kokiri_sword",
             "shuffle_ocarinas",
             "shuffle_gerudo_card",
@@ -214,6 +218,7 @@
           "text": "Shuffle Dungeon Items",
           "row_span": [6,6,9],
           "settings": [
+            "shuffle_dungeon_rewards",
             "shuffle_mapcompass",
             "shuffle_smallkeys",
             "shuffle_hideoutkeys",
@@ -325,6 +330,7 @@
           "text": "Timesavers",
           "row_span": [1,1,1],
           "settings": [
+            "skip_reward_from_rauru",
             "no_escape_sequence",
             "no_guard_stealth",
             "no_epona_race",
@@ -352,9 +358,13 @@
           "settings": [
             "ocarina_songs",
             "correct_chest_appearances",
+            "chest_textures_specific",
+            "soa_unlocks_chest_texture",
             "minor_items_as_major_chest",
             "invisible_chests",
             "correct_potcrate_appearances",
+            "potcrate_textures_specific",
+            "soa_unlocks_potcrate_texture",
             "key_appearance_match_dungeon",
             "clearer_hints",
             "hints",
@@ -399,7 +409,8 @@
             "dpad_dungeon_menu",
             "correct_model_colors",
             "randomize_all_cosmetics",
-            "uninvert_y_axis_in_first_person_camera"
+            "uninvert_y_axis_in_first_person_camera",
+            "input_viewer"
           ]
         },
         {
@@ -504,15 +515,37 @@
           ]
         },
         {
-          "name": "musicsfx_section",
+          "name": "musicsfx_section_generator",
           "text": "Music",
+          "app_type": ["generator"],
           "is_sfx": true,
           "col_span": 2,
           "row_span": [2,2,2],
           "settings": [
+            "custom_music_directorypicker",
+            "custom_music_unavailable_msg",
             "background_music",
+            "display_custom_song_names",
             "fanfares",
-            "ocarina_fanfares"
+            "ocarina_fanfares",
+            "credits_music"
+          ]
+        },
+        {
+          "name": "musicsfx_section_patcher",
+          "text": "Music",
+          "exclude_from_electron": true,
+          "app_type": ["patcher"],
+          "is_sfx": true,
+          "col_span": 2,
+          "row_span": [2,2,2],
+          "settings": [
+            "custom_music_directorypicker",
+            "background_music",
+            "display_custom_song_names",
+            "fanfares",
+            "ocarina_fanfares",
+            "credits_music"
           ]
         },
         {
@@ -520,7 +553,7 @@
           "text": "Items",
           "col_span": 2,
           "row_span": [5,5,5],
-          "settings": [     
+          "settings": [
             "sfx_ocarina",
             "sfx_bombchu_move",
             "sfx_hover_boots",
@@ -543,7 +576,7 @@
           "settings": [
             "sfx_link_adult",
             "sfx_link_child",
-            "sfx_link_unavailable_msg",         
+            "sfx_link_unavailable_msg",
             "sfx_navi_overworld",
             "sfx_navi_enemy",
             "sfx_horse_neigh",

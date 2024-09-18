@@ -131,7 +131,7 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x73] = { draw_gi_various_opa0,        { 0x06000960 } }, // Kokiri Sword
     [0x74] = { draw_gi_gs_token,            { 0x06004DB0, 0x06004EB8 } }, // Gold Skulltula Token II (only for En_Si)
 
-    //Rando-added functions
+    // Rando-added functions
     [0x75] = { draw_gi_various_opa0,        { 0x06000A30 } }, // Triforce Piece
     [0x76] = { draw_gi_small_keys,          { 0x060017C0, 0xFFFFFFFF, 0x3C505AFF } }, // Key Ring
     [0x77] = { draw_gi_song_notes,          { 0x06000F70, 0x00C800FF, 1 } }, // Music Note inverted (Green)
@@ -141,7 +141,7 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x7B] = { draw_gi_song_notes,          { 0x06000F70, 0xC832FFFF, 1 } }, // Music Note inverted (Purple)
     [0x7C] = { draw_gi_song_notes,          { 0x06000F70, 0xC8FF00FF, 1 } }, // Music Note inverted (Yellow)
     [0x7D] = { draw_gi_chubag,              { 0x060006A0, 0x060008E0, 0x06001280, 0xBA3F3AFF, 0xA5231EFF, 0x1695D2FF, 0x054C7FFF } }, // Bombchu Bag
-    [0x7E] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Adult's Wallet}
+    [0x7E] = { draw_gi_silver_rupee_pouch,  { 0x06001850, 0x06001750, 0x06001790, 0x060019A0, 0x060017B0, 0x06001A28, 0x060017D0, 0x06001AD8 } }, // Silver Rupee Pouch
     [0x7F] = { draw_gi_shrink_keys,         { 0x06001060, 0x94E97BFF, 0x2CCF1AFF } }, // Small Key (Forest)
     [0x80] = { draw_gi_shrink_keys,         { 0x06000F00, 0xFD9884FF, 0xED1612FF } }, // Small Key (Fire)
     [0x81] = { draw_gi_shrink_keys,         { 0x06000F40, 0x4C9DEEFF, 0x077AEEFF } }, // Small Key (Water)
@@ -163,9 +163,20 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x91] = { draw_gi_c_button_vertical,   { 0x06000960, 0xFFA000FF, 1 } }, // Cdown button
     [0x92] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 1 } }, // Cleft button
     [0x93] = { draw_gi_c_button_horizontal, { 0x06000E10, 0xFFA000FF, 0 } }, // Cright button
-    [0x94] = { draw_gi_magic_meter,         { 0x06000A80, 0x06000F80, 0x060014C0, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
-};
+    [0x94] = { draw_gi_medallions,          { 0x060004d0, 0x06000f80 } }, // Light Medallion
+    [0x95] = { draw_gi_medallions,          { 0x06000370, 0x06000e40 } }, // Forest Medallion
+    [0x96] = { draw_gi_medallions,          { 0x060001b0, 0x06000c30 } }, // Fire Medallion
+    [0x97] = { draw_gi_medallions,          { 0x06000330, 0x06000e00 } }, // Water Medallion
+    [0x98] = { draw_gi_medallions,          { 0x060002d0, 0x06000d60 } }, // Shadow Medallion
+    [0x99] = { draw_gi_medallions,          { 0x06000380, 0x06000e40 } }, // Spirit Medallion
+    [0x9A] = { draw_gi_stones,              { 0x06000b50, 0x06001290, 0xffffa0ff, 0x00ff00ff } }, // Kokiri Emerald
+    [0x9B] = { draw_gi_stones,              { 0x06000620, 0x06000920, 0xffaaffff, 0xff0064ff } }, // Goron Ruby
+    [0x9C] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
+    [0x9D] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
+    [0x9E] = { draw_gi_nothing,             {} },
+    [0x9F] = { draw_gi_magic_meter,         { 0x06000A80, 0x06000F80, 0x060014C0, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
+    };
 
-void base_draw_gi_model(z64_game_t *game, uint32_t draw_id) {
+void base_draw_gi_model(z64_game_t* game, uint32_t draw_id) {
     item_draw_table[draw_id].draw_func(game, draw_id);
 }
