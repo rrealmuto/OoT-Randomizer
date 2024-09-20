@@ -404,7 +404,7 @@ def get_pool_count(pool: list[str], item_list: list[str]) -> int:
 def replace_x_items(items: list[str], replace_list: list[str], x: int) -> None:
     random.shuffle(items)
     count = 0
-    for i,val in enumerate(items):
+    for i, val in enumerate(items):
         if val in replace_list:
             if count < x:
                 items[i] = get_junk_item()[0]
