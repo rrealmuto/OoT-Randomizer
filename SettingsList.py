@@ -3633,7 +3633,7 @@ class SettingInfos:
             'Custom (count)': Allows specifying a specific number of
             "Junk items" to be converted to Ice Traps in the pool.
 
-            'Custom (%)' : Allows specifiying a percentage of
+            'Custom (%)': Allows specifiying a percentage of
             "Junk" items to be converted to Ice Traps in the pool
         ''',
         shared         = True,
