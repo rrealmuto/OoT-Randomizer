@@ -19,6 +19,8 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [RealRob's Changelog](#realrob-changelog)
+  * [v117](#v117)
+  * [v116](#v116)
   * [v115](#v115)
   * [v114](#v114)
   * [v113](#v113)
@@ -140,6 +142,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 ## RealRob Changelog
+### v117
+  * Fix fix broken drops crash when changing rooms with deku shield in child spirit.
+
 ### v116
   * Stop breaking dark link
 
