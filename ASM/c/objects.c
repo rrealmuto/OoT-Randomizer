@@ -163,7 +163,7 @@ void enitem00_set_link_incoming_item_id(z64_actor_t* actor, z64_game_t* game, in
 int32_t Object_IsLoaded_Hook(z64_obj_ctxt_t* objectCtx, int32_t bankIndex) {
     if (bankIndex >= OBJECT_EXCHANGE_BANK_MAX)
     {
-        return true;
+        return extended_object_ctx.slots[bankIndex].data != 0;
     }
     return Object_IsLoaded(objectCtx, bankIndex);
 }
