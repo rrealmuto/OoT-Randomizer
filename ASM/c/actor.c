@@ -419,6 +419,7 @@ enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_FIREFLY, 0x0002 },
     { ACTOR_EN_FIREFLY, 0x0004 },
     { ACTOR_EN_FLOORMAS, 0x0000 },
+    { ACTOR_EN_WALLMAS, 0x0000 },
     { ACTOR_EN_PEEHAT, 0xFFFF },
     { ACTOR_EN_MB, 0x0000 },
     { ACTOR_EN_IK, 0xFF82 }, // Maybe random white/black. 0x0000 is nabooru which crashes
@@ -437,7 +438,7 @@ enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_DEKUNUTS, 0x0000 },
     { ACTOR_EN_VM, 0x0500 },
     { ACTOR_EN_RD, 0x0000 },
-     //{ ACTOR_EN_FD, 0x0000 },
+    { ACTOR_EN_FD, 0x0000 },
     { ACTOR_EN_SB, 0x0000 },
     { ACTOR_EN_NY, 0x0000 },
     { ACTOR_EN_FZ, 0x0000 },
@@ -460,8 +461,15 @@ int enemy_spawn_index = 0;
 
 uint8_t CFG_RANDOM_ENEMY_SPAWNS = 0;
 
+bool check_enemizer_sequence(z64_game_t* globalCtx) {
+    return !(globalCtx->common.input[0].raw.pad.b && 
+                globalCtx->common.input[0].raw.pad.a && 
+                globalCtx->common.input[0].raw.pad.r && 
+                globalCtx->common.input[0].raw.pad.z);
+}
+
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
-    if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry)) {
+    if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry) && check_enemizer_sequence(globalCtx)) {
         int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
         //int index = (enemy_spawn_index++) % (array_size(enemy_list));
         actorEntry->id = enemy_list[index].id;
