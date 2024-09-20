@@ -899,7 +899,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
     else:
         placed_items['Gift from Sages'] = ItemFactory(IGNORE_LOCATION, world)
 
-    if world.settings.junk_ice_traps in ['off', 'custom_count', 'custom_percent']:
+    if world.settings.junk_ice_traps in ('off', 'custom_count', 'custom_percent'):
         replace_max_item(pool, 'Ice Trap', 0)
     elif world.settings.junk_ice_traps == 'onslaught':
         for item in [item for item, weight in junk_pool_base] + ['Recovery Heart', 'Bombs (20)', 'Arrows (30)']:
