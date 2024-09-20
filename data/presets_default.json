@@ -392,13 +392,13 @@
             "Claim Check"
         ]
     },
-    "Standard Weekly (2024-09-13)": {
+    "Standard Weekly (2024-09-20)": {
         "aliases": [
             "Standard Weekly (Latest)",
             "weekly"
         ],
         "show_seed_info": true,
-        "user_message": "Standard Weekly (2024-09-13)",
+        "user_message": "Standard Weekly (2024-09-20)",
         "world_count": 1,
         "create_spoiler": true,
         "password_lock": false,
@@ -465,7 +465,9 @@
         "shuffle_gerudo_valley_river_exit": false,
         "owl_drops": false,
         "warp_songs": false,
-        "spawn_positions": [],
+        "spawn_positions": [
+            "child"
+        ],
         "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
