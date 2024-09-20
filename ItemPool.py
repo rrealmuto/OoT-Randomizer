@@ -396,7 +396,7 @@ def get_junk_item(count: int = 1, pool: Optional[list[str]] = None, plando_pool:
 
 def get_pool_count(pool: list[str], item_list: list[str]) -> int:
     count = 0
-    for i, val in enumerate(pool):
+    for val in pool:
         if val in item_list:
             count += 1
     return count
