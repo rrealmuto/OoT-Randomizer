@@ -88,7 +88,7 @@ void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
             }
             else {
                 // The slot is no longer active so free the slot and the data from the heap
-                heap_free(slot->data);
+                ZeldaArena_Free(slot->data);
                 slot->id = 0;
                 slot->data = 0;
             }
