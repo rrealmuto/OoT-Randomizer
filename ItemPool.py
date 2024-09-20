@@ -937,7 +937,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pool.remove(junk_item)
             pool.append(pending_item)
 
-    if world.settings.junk_ice_traps in ['custom_count', 'custom_percent']:
+    if world.settings.junk_ice_traps in ('custom_count', 'custom_percent'):
         junk_pool[:] = [('Ice Trap', 1)]
         # Get a list of all "junk" type items
         junk = [item for item, weight in junk_pool_base] + ['Rupee (1)', 'Recovery Heart', 'Bombs (20)', 'Arrows (30)']
