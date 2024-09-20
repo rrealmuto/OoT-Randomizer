@@ -4430,3 +4430,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_file_choose.asm"
 .include "hacks/ovl_en_rd.asm"
 .include "hacks/ovl_en_ik.asm"
+.include "hacks/ovl_en_goma.asm"
