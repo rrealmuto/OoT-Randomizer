@@ -3630,7 +3630,7 @@ class SettingInfos:
             replaced by Ice Traps, even those in the
             base pool.
 
-            'Custom (count)' : Allows specifying a specific number of
+            'Custom (count)': Allows specifying a specific number of
             "Junk items" to be converted to Ice Traps in the pool.
 
             'Custom (%)' : Allows specifiying a percentage of
