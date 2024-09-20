@@ -465,7 +465,9 @@
         "shuffle_gerudo_valley_river_exit": false,
         "owl_drops": false,
         "warp_songs": false,
-        "spawn_positions": ["child"],
+        "spawn_positions": [
+            "child"
+        ],
         "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
