@@ -73,3 +73,10 @@ void* resolve_player_ovl_addr(void* addr) {
         return addr - overlay.vramStart + overlay.loadedRamAddr;
     return NULL;
 }
+
+void* resolve_kaleido_ovl_addr(void* addr) {
+    PausePlayerOverlay overlay = gPausePlayerOverlayTable[0];
+    if(overlay.loadedRamAddr)
+        return addr - overlay.vramStart + overlay.loadedRamAddr;
+    return NULL;
+}

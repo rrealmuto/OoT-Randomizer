@@ -10,12 +10,12 @@
 #define AGE_REQ_NONE 9
 
 #define CHECK_AGE_REQ_SLOT(slot) \
-    ((z64_SlotAgeReqs[slot] == AGE_REQ_NONE) || z64_SlotAgeReqs[slot] == ((void)0, z64_file.link_age))
+    ((gSlotAgeReqs[slot] == AGE_REQ_NONE) || gSlotAgeReqs[slot] == ((void)0, z64_file.link_age))
 
-extern uint8_t z64_SlotAgeReqs[24];
-extern int16_t z64_sEquipState;
-extern int16_t z64_sEquipAnimTimer;
-extern int16_t z64_sEquipMoveTimer;
+extern uint8_t OVL_gSlotAgeReqs[24];
+extern int16_t OVL_sEquipState;
+extern int16_t OVL_sEquipAnimTimer;
+extern int16_t OVL_sEquipMoveTimer;
 
 typedef enum {
     /* 0x00 */ PAUSE_ITEM,

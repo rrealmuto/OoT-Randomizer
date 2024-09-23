@@ -1504,9 +1504,9 @@ nop
 ; Replaces:
 ;   addiu       sp, sp, -0xA8
 ;   sw          s5, 0x0030 (sp)
-;.orga 0xBB7670 ; In memory: 0x8038EFF0
-;    j     KaleidoScope_DrawItemSelect
-;    nop
+.orga 0xBB7670 ; In memory: 0x8038EFF0
+    j     KaleidoScope_DrawItemSelect
+    nop
 
 ;==================================================================================================
 ; Song Fixes

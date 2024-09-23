@@ -8,17 +8,6 @@ z64_ItemIcons = 0x800F8D2C;
 z64_SfxDefaultPos = 0x80104394;
 z64_SfxDefaultFreqAndVolScale = 0x801043A0;
 z64_SfxDefaultReverb = 0x801043A8;
-/* KaleidoScope_DrawAmmoCount = 0x8038EA10;
-KaleidoScope_SetCursorVtx = 0x8038EF94;
-KaleidoScope_QuadTextureIA8 = 0x80394200;
-KaleidoScope_MoveCursorToSpecialPos = 0x80394524;
-KaleidoScope_DrawQuadTextureRGBA32 = 0x80394588;
-KaleidoScope_DrawCursor = 0x80394B00;
-z64_AmmoItems = 0x8039EAA0;
-z64_SlotAgeReqs = 0x8039F114;
-z64_sEquipState = 0x8039EAB0;
-z64_sEquipAnimTimer = 0x8039EAB4;
-z64_sEquipMoveTimer = 0x8039EAB8; */
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
 Actor_WorldDistXZToPoint = 0x80021528;
@@ -29,3 +18,17 @@ Actor_WorldDistXZToPoint = 0x80021528;
 /* En_Ik (Iron Knuckle) */
 OVL_EnIk_SetupStandUp = 0x80a67348;
 OVL_EnIk_SetupWalkOrRun = 0x80a676e4;
+
+
+/* Kaleidoscope */
+OVL_KaleidoScope_DrawAmmoCount = 0x80819670;
+OVL_KaleidoScope_SetCursorVtx = 0x80819BF4;
+OVL_KaleidoScope_QuadTextureIA8 = 0x8081EE60;
+OVL_KaleidoScope_MoveCursorToSpecialPos = 0x8081F184;
+OVL_KaleidoScope_DrawQuadTextureRGBA32 = 0x8081F1E8;
+OVL_KaleidoScope_DrawCursor = 0x8081F760;
+OVL_gAmmoItems = 0x80829700;
+OVL_gSlotAgeReqs = 0x80829D74;
+OVL_sEquipState = 0x80829710;
+OVL_sEquipAnimTimer = 0x80829714;
+OVL_sEquipMoveTimer = 0x80829718;

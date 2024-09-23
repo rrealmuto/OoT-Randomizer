@@ -1,9 +1,22 @@
-/*
 #include "audio.h"
 #include "gfx.h"
 #include "kaleido_item.h"
+#include "util.h"
 
 void KaleidoScope_DrawItemSelect(z64_game_t* play) {
+    KaleidoScope_DrawAmmoCount_func* KaleidoScope_DrawAmmoCount = resolve_kaleido_ovl_addr(OVL_KaleidoScope_DrawAmmoCount);
+    KaleidoScope_SetCursorVtx_func* KaleidoScope_SetCursorVtx = resolve_kaleido_ovl_addr(OVL_KaleidoScope_SetCursorVtx);
+    KaleidoScope_QuadTextureIA8_func* KaleidoScope_QuadTextureIA8 = resolve_kaleido_ovl_addr(OVL_KaleidoScope_QuadTextureIA8);
+    KaleidoScope_MoveCursorToSpecialPos_func* KaleidoScope_MoveCursorToSpecialPos = resolve_kaleido_ovl_addr(OVL_KaleidoScope_MoveCursorToSpecialPos);
+    KaleidoScope_DrawQuadTextureRGBA32_func* KaleidoScope_DrawQuadTextureRGBA32 = resolve_kaleido_ovl_addr(OVL_KaleidoScope_DrawQuadTextureRGBA32);
+    KaleidoScope_DrawCursor_func* KaleidoScope_DrawCursor = resolve_kaleido_ovl_addr(OVL_KaleidoScope_DrawCursor);
+
+    uint8_t* gAmmoItems = resolve_kaleido_ovl_addr(&OVL_gAmmoItems[0]);
+    uint8_t* gSlotAgeReqs = resolve_kaleido_ovl_addr(&OVL_gSlotAgeReqs[0]);
+    int16_t* sEquipState = resolve_kaleido_ovl_addr(&OVL_sEquipState);
+    int16_t* sEquipAnimTimer = resolve_kaleido_ovl_addr(&OVL_sEquipAnimTimer);
+    int16_t* sEquipMoveTimer = resolve_kaleido_ovl_addr(&OVL_sEquipMoveTimer);
+
     static int16_t magic_arrow_effects_r[] = {255, 100, 255 };
     static int16_t magic_arrow_effects_g[] = {0, 100, 255 };
     static int16_t magic_arrow_effects_b[] = {0, 255, 100 };
@@ -307,9 +320,9 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
                             pause_ctxt->equip_anim_x = pause_ctxt->item_vtx[index].v.ob[0] * 10;
                             pause_ctxt->equip_anim_y = pause_ctxt->item_vtx[index].v.ob[1] * 10;
                             pause_ctxt->equip_anim_alpha = 255;
-                            z64_sEquipAnimTimer = 0;
-                            z64_sEquipState = 3;
-                            z64_sEquipMoveTimer = 10;
+                            *sEquipAnimTimer = 0;
+                            *sEquipState = 3;
+                            *sEquipMoveTimer = 10;
                             if ((pause_ctxt->equip_target_item == ITEM_ARROW_FIRE) ||
                                 (pause_ctxt->equip_target_item == ITEM_ARROW_ICE) ||
                                 (pause_ctxt->equip_target_item == ITEM_ARROW_LIGHT)) {
@@ -324,9 +337,9 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
                                                      &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultFreqAndVolScale,
                                                      &z64_SfxDefaultReverb);
                                 pause_ctxt->equip_target_item = 0xBF + index;
-                                z64_sEquipState = 0;
+                                *sEquipState = 0;
                                 pause_ctxt->equip_anim_alpha = 0;
-                                z64_sEquipMoveTimer = 6;
+                                *sEquipMoveTimer = 6;
                             } else {
                                 z64_Audio_PlaySoundGeneral(NA_SE_SY_DECIDE, &z64_SfxDefaultPos, 4, &z64_SfxDefaultFreqAndVolScale,
                                                      &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultReverb);
@@ -417,11 +430,10 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
 
     // Draw the current ammo amounts
     for (i = 0; i < 15; i++) {
-        if ((z64_AmmoItems[i] != ITEM_NONE) && (z64_file.items[i] != ITEM_NONE)) {
+        if ((gAmmoItems[i] != ITEM_NONE) && (z64_file.items[i] != ITEM_NONE)) {
             KaleidoScope_DrawAmmoCount(pause_ctxt, play->common.gfx, z64_file.items[i]);
         }
     }
 
     CLOSE_DISPS(play->common.gfx);
 }
-*/
