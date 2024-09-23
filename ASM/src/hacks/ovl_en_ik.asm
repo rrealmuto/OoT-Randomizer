@@ -20,7 +20,7 @@
     lh      t9, 0x1c(s0)
     lui     t3, 0x80a7
     addiu   t3, t3, -0x515c
-    lh      t6, 0x1c(s0)
+    or      t6, t9, r0 ; Same as    lh t6, 0x1c(s0) because t9 should still contain original params
     sw      t3, 0x98(s0)
     nop
 
