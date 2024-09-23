@@ -3,7 +3,7 @@
 typedef void(*BossGanon_Func)(z64_actor_t*, z64_game_t*);
 
 void BossGanon_StartTextbox_Hack(z64_game_t* globalCtx, uint16_t messageId, z64_actor_t* actor) {
-    if(z64_file.dog_params) {
+    if(z64_file.dogParams) {
         messageId = 0x70C8;
         BossGanon_Func BossGanon_SetupDeathCutscene = Actor_ResolveOverlayAddr(actor, 0x809f44bc);
         BossGanon_SetupDeathCutscene(actor, globalCtx);

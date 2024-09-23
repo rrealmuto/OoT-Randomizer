@@ -1339,7 +1339,7 @@ class Distribution:
             'settings': self.settings.to_json(),
         }
 
-        if not self.settings.password_lock:
+        if not self.settings.password_lock or not spoiler:
             self_dict.pop('password')
 
         if spoiler:

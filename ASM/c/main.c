@@ -41,6 +41,9 @@ void c_init() {
     item_overrides_init();
     init_new_menus();
     extended_objects_init();
+#if DEBUG_MODE
+    SKIP_N64_LOGO = 1;
+#endif
 }
 
 void before_game_state_update() {

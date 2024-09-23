@@ -940,7 +940,6 @@ Actor_Spawn_Continue_Jump_Point:
 ;   jal     0x8006CA64
     jal     MiniMap_Draw_Hook
 
-
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
 .orga 0xA99D48 ; In memory: 0x80023DE8
@@ -4427,6 +4426,7 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/object_fixes.asm"
 .include "hacks/ovl_boss_ganon.asm"
 .include "hacks/ovl_bg_gate_shutter.asm"
+.include "hacks/z_title.asm"
 .include "hacks/z_file_choose.asm"
 .include "hacks/ovl_en_rd.asm"
 .include "hacks/ovl_en_ik.asm"

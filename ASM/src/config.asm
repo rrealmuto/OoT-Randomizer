@@ -1,6 +1,12 @@
 ;==================================================================================================
 ; Settings and tables which the front-end may write
 ;==================================================================================================
+; These values must be properly aligned to prevent an Address Error Exception on access. You can
+; see what address a symbol was given after building in the build/asm_symbols.txt file.
+; Byte values do not need to be aligned.
+; Halfword values must be on an even byte boundary. ".align 2" can fix this value type's alignment.
+; Word values must be on a byte boundary divisible by 4. ".align 4" can correct a misalignment.
+; Doubleword values must be on a byte boundary divisible by 8. ".align 8" can fix a misalignment.
 
 ; This is used to determine if and how the cosmetics can be patched
 ; It this moves then the version will no longer be valid, so it is important that this does not move
@@ -254,6 +260,9 @@ PASSWORD:
 .endarea
 REWARDS_AS_ITEMS:
 .byte 0x00
+.area 14, 0x00
+CFG_DUNGEON_PRECOMPLETED:
+.endarea
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.

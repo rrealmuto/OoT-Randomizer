@@ -1,7 +1,7 @@
-__version__ = '8.1.81'
+__version__ = '8.1.84'
 
 # This is a supplemental version number for branches based off of main dev.
-supplementary_version = 117
+supplementary_version = 118
 
 # Pick a unique identifier byte for your fork if you are intending to have a long-lasting branch.
 # This will be 0x00 for main releases and 0x01 for main dev.
@@ -14,4 +14,4 @@ branch_url = 'https://github.com/rrealmuto/OoT-Randomizer/tree/Dev-Rob'
 base_version = __version__
 
 # And finally, the completed version string. This is what is displayed and used for salting seeds.
-__version__ = f'{base_version} Rob-{supplementary_version}'
+__version__ = f'{base_version} RobE-{supplementary_version}'
