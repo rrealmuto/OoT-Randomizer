@@ -940,6 +940,15 @@ Actor_Spawn_Continue_Jump_Point:
 ;   jal     0x8006CA64
     jal     MiniMap_Draw_Hook
 
+; Hack in Actor_UpdateAll when checking if the object is loaded. If the object isn't loaded, kill the actor and then
+; jump into the branch that calls Actor_Delete
+.org 0x80023f40
+; Replaces:
+;   b   0x800240FC
+;   lw  s0, 0x124(s0)
+    b   0x80023fac
+    nop
+
 ; Hook Actor_UpdateAll when each actor is being initialized. At the call to Actor_SpawnEntry
 ; Used to set the flag (z-rotation) of the actor to its position in the actor table.
 .orga 0xA99D48 ; In memory: 0x80023DE8
