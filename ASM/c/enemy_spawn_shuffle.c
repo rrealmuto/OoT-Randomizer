@@ -57,28 +57,28 @@ soul_menu_info SOUL_MENU_NAMES[] = {
 };
 
 regional_soul_menu_info REGIONAL_SOUL_MENU_NAMES[] = {
-    {SOUL_ID_REGIONAL_DEKU_TREE, "Deku Tree"},
-    {SOUL_ID_REGIONAL_DODONGOS_CAVERN, "Dodongos Cavern"},
-    {SOUL_ID_REGIONAL_JABU, "Jabu Jabu's Belly"},
-    {SOUL_ID_REGIONAL_FOREST_TEMPLE, "Forest Temple"},
-    {SOUL_ID_REGIONAL_FIRE_TEMPLE, "Fire Temple"},
-    {SOUL_ID_REGIONAL_WATER_TEMPLE, "Water Temple"},
-    {SOUL_ID_REGIONAL_SPIRIT_TEMPLE, "Spirit Temple"},
-    {SOUL_ID_REGIONAL_SHADOW_TEMPLE, "Shadow Temple"},
-    {SOUL_ID_REGIONAL_BOTW, "Bottom of the Well"},
-    {SOUL_ID_REGIONAL_ICE_CAVERN, "Ice Cavern"},
-    {SOUL_ID_REGIONAL_GTG, "Gerudo Training Ground"},
-    {SOUL_ID_REGIONAL_GANONS_CASTLE, "Ganons Castle"},
-    {SOUL_ID_REGIONAL_FOREST_AREA, "Forest Region"},
-    {SOUL_ID_REGIONAL_HYRULE_FIELD, "Hyrule Field"},
-    {SOUL_ID_REGIONAL_LAKE_HYLIA, "Lake Hylia"},
-    {SOUL_ID_REGIONAL_GERUDO_AREA, "Gerudo Region"},
-    {SOUL_ID_REGIONAL_MARKET_AREA, "Market Region"},
-    {SOUL_ID_REGIONAL_KAKARIKO_AREA, "Kakariko Region"},
-    {SOUL_ID_REGIONAL_GORON_AREA, "Goron Region"},
-    {SOUL_ID_REGIONAL_ZORA_AREA, "Zora Region"},
-    {SOUL_ID_REGIONAL_LLR, "Lon Lon Ranch"},
-    {SOUL_ID_REGIONAL_GROTTOS, "Grottos"},
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_DEKU_TREE, "Deku Tree"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_DODONGOS_CAVERN, "Dodongos Cavern"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_JABU, "Jabu Jabu's Belly"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_FOREST_TEMPLE, "Forest Temple"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_FIRE_TEMPLE, "Fire Temple"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_WATER_TEMPLE, "Water Temple"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_SPIRIT_TEMPLE, "Spirit Temple"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_SHADOW_TEMPLE, "Shadow Temple"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_BOTW, "Bottom of the Well"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_ICE_CAVERN, "Ice Cavern"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_GTG, "Gerudo Training Ground"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_GANONS_CASTLE, "Ganons Castle"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_FOREST_AREA, "Forest Region"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_HYRULE_FIELD, "Hyrule Field"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_LAKE_HYLIA, "Lake Hylia"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_GERUDO_AREA, "Gerudo Region"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_MARKET_AREA, "Market Region"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_KAKARIKO_AREA, "Kakariko Region"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_GORON_AREA, "Goron Region"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_ZORA_AREA, "Zora Region"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_LLR, "Lon Lon Ranch"),
+    SOUL_MENU_ENTRY(SOUL_ID_REGIONAL_GROTTOS, "Grottos"),
 };
 
 
@@ -232,14 +232,22 @@ bool toggle_soul_enabled(int table_index) {
     extended_savectx.soul_enable_flags[table_index/8] = flags ^ mask;
 }
 
-bool get_soul_inhibited(SOUL_ID id) {
-    return SOUL_MENU_NAMES[id].soul_inhibited;
+bool get_soul_inhibited(SOUL_ID id, soul_menu_info* names) {
+    return names[id].soul_inhibited;
 }
 
 void reset_souls_inhibited() {
-    for(int i = 0; i < NUM_ENEMY_SOULS; i++) {
-        SOUL_MENU_NAMES[i].soul_inhibited = false;
+    if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
+        for(int i = 0; i < NUM_ENEMY_SOULS; i++) {
+            SOUL_MENU_NAMES[i].soul_inhibited = false;
+        }
     }
+    else if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL) {
+        for(int i = 0; i < NUM_REGIONAL_ENEMY_SOULS; i++) {
+            REGIONAL_SOUL_MENU_NAMES[i].soul_inhibited = false;
+        }
+    }
+    
 }
 
 // Spawn override function for enemy spawn shuffle.
@@ -272,7 +280,9 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                             if(regional_enemy_spawn_table[j].scene_group[k] == globalCtx->scene_index) {
                                 // found a scene group matching the current scene
                                 // Check if we have that flag
-                                bool continue_spawn = flags_getsoul(j) && get_soul_enabled(j);
+                                bool has_soul =  flags_getsoul(j);
+                                REGIONAL_SOUL_MENU_NAMES[j].soul_inhibited = !has_soul;
+                                bool continue_spawn = has_soul && get_soul_enabled(j);
                                 curr_room_enemies_inhibited |= !continue_spawn;
                                 return continue_spawn;
                             }

@@ -119,6 +119,7 @@ typedef struct soul_menu_info {
 
 typedef struct regional_soul_menu_info {
     SOUL_ID_REGIONAL soul_id;
+    bool soul_inhibited;
     char* name;
 } regional_soul_menu_info;
 
@@ -135,6 +136,6 @@ extern regional_soul_menu_info REGIONAL_SOUL_MENU_NAMES[];
 #define REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(scene_group_) {.scene_group = scene_group_, .scene_group_length = array_size(scene_group_)}
 
 bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *globalCtx, SPAWN_FLAGS flag);
-bool get_soul_inhibited(SOUL_ID id);
+bool get_soul_inhibited(SOUL_ID id, soul_menu_info* names);
 
 #endif

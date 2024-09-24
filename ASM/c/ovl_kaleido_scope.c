@@ -173,7 +173,7 @@ void draw_soul_menu(menu_ctx* menu, z64_game_t* globalCtx, z64_disp_buf_t* dl) {
             }
         }
         else {
-            if(get_soul_inhibited(names[i].soul_id)) {
+            if(get_soul_inhibited(names[i].soul_id, names)) {
                 gDPSetPrimColor(dl->p++, 0,0,255,255,0,255);
             }
             else {
