@@ -410,6 +410,7 @@ enemy_list_entry_t enemy_list[] = {
 //    { ACTOR_EN_ANUBICE, 0x0000 }, // don't really work by themselves. maybe use spawner
     { ACTOR_EN_BB, 0xFFFF }, // Probably make it so it can pick between green/white/blue/fire?
     { ACTOR_EN_BILI, 0x0000 },
+    { ACTOR_EN_VALI, 0x0000 },
     { ACTOR_EN_BUBBLE, 0x0000 },
     { ACTOR_EN_CROW, 0x0000 },
     { ACTOR_EN_DEKUBABA, 0x0000 },

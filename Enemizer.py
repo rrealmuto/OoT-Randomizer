@@ -186,7 +186,7 @@ def patch_nabooru_knuckle(rom: Rom, scene_data: list[Scene]):
 # Disable the timer in enemizer
 def patch_jabu_jabu_room_timer(rom: Rom, scene_data: list[Scene]):
     timer = scene_data[2].rooms[12].setups[0].actors[0]
-    timer.id = 0xFFFF
+    timer.var = 0x7878 # Patch the timer to have 2 minute time limit
     rom.write_bytes(timer.addr, timer.get_bytes())
 
 # Add patch funcs here, we'll call them in a loop in patches.py
