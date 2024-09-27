@@ -717,7 +717,7 @@ static void draw_counts(z64_disp_buf_t* db, const counter_tile_info_t* info, uin
     // Skulltula
     sprite_load(db, &quest_items_sprite, 11, 1);
     sprite_draw(db, &quest_items_sprite, 0, get_left(data[SLOT_SKULLTULLAS].pos), get_top(data[SLOT_SKULLTULLAS].pos), COUNTER_ICON_SIZE, COUNTER_ICON_SIZE);
-
+/*
     // Triforce
     if (TRIFORCE_HUNT_ENABLED && info->digits[SLOT_TRIFORCE_CURRENT][2] <= 9) {
         static uint8_t frame_counter = 0;
@@ -737,6 +737,7 @@ static void draw_counts(z64_disp_buf_t* db, const counter_tile_info_t* info, uin
         }
         draw_digits(db, info->digits[i], &data[i]);
     }
+    */
 }
 
 
