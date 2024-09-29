@@ -200,11 +200,20 @@
                           <ng-container *ngIf="!global.getGlobalVar('electronAvailable')">
                             <input class="ioInputWeb" nbInput [disabled]="!global.generator_settingsVisibilityMap[setting.name]" readonly type="text" maxlength="260" fieldSize="small" [(ngModel)]="getVariableType(global.generator_settingsMap[setting.name]) === 'string' ? global.generator_settingsMap[setting.name] : global.generator_settingsMap[setting.name].name"
                                    (ngModelChange)="afterSettingChange()" [nbPopover]="tooltipComponent" [nbPopoverContext]="{tooltip: setting.tooltip}" [nbPopoverTrigger]="setting.tooltip && setting.tooltip.length > 0 ? 'hint' : 'noop'" nbPopoverPlacement="top" nbPopoverAdjustment="clockwise" (dragover)="onDirectoryDragOverWeb($event, setting)" (drop)="onDirectoryDropWeb($event, setting)">
-                            <input #refHiddenDirectoryInput class="ioHiddenInputWeb" type="file" webkitdirectory multiple (change)="onDirectorySelectedWeb($event, setting)">
-                            <button class="ioInputBrowseButton" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" nbButton status="info" size="small" (click)="refHiddenDirectoryInput.click()">Browse</button>
+
+                            <!--Desktop supports directory picker, mobile only a file picker-->
+                            <ng-container *ngIf="global.getGlobalVar('webSupportDirectoryPicker')">
+                              <input #refHiddenDirectoryInput class="ioHiddenInputWeb" type="file" webkitdirectory multiple (change)="onDirectorySelectedWeb($event, setting)">
+                              <button class="ioInputBrowseButton" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" nbButton status="info" size="small" (click)="refHiddenDirectoryInput.click()">Browse</button>
+                            </ng-container>
+                            <ng-container *ngIf="!global.getGlobalVar('webSupportDirectoryPicker')">
+                              <input #refHiddenDirectoryInput class="ioHiddenInputWeb" type="file" multiple (change)="onDirectorySelectedWeb($event, setting)">
+                              <button class="ioInputBrowseButton" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" nbButton status="info" size="small" (click)="refHiddenDirectoryInput.click()">Browse</button>
+                            </ng-container>
+
                             <button class="ioInputBrowseButton" [disabled]="!global.generator_settingsVisibilityMap[setting.name]" nbButton status="info" size="small" (click)="global.generator_settingsMap[setting.name] = ''">Clear</button>
                           </ng-container>
-                        </ng-container>
+                          </ng-container>
                         <ng-container *ngSwitchCase="'Presetinput'">
                           <div class="select-wrapper">
                             <nb-select #refPresetSelect
@@ -280,14 +289,9 @@
             <input class="footerInputShort" nbInput type="text" maxlength="260" fieldSize="small" [(ngModel)]="seedString">
             <!--Padding-->
             <div class="tabsetPadding"></div>
-            <!--Release Versions Only-->
-            <ng-container *ngIf="global.getGlobalVar('webIsMasterVersion')">
+            <ng-container>
               <button class="footerGenerateButtonNormalSmall" nbButton status="success" [disabled]="!generateSeedButtonEnabled" (click)="generateSeed()">Generate Seed!</button>
               <button class="footerGenerateButtonRaceSmall" nbButton status="info" [disabled]="!generateSeedButtonEnabled" (click)="generateSeed(false, true)">Generate Race Seed!</button>
-            </ng-container>
-            <!--Dev Version-->
-            <ng-container *ngIf="!global.getGlobalVar('webIsMasterVersion')">
-              <button class="footerGenerateButton" nbButton fullWidth status="success" [disabled]="!generateSeedButtonEnabled" (click)="generateSeed()">Generate Seed!</button>
             </ng-container>
           </ng-container>
         </nb-tab>

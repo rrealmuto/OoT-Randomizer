@@ -33,6 +33,7 @@ export class GUIGlobal implements OnDestroy {
       ["electronAvailable", false],
       ["webSourceVersion", ""],
       ["webIsMasterVersion", false],
+      ["webSupportDirectoryPicker", false],
       ["generatorSettingsArray", []],
       ["generatorSettingsObj", {}],
       ["generatorCosmeticsArray", []],
@@ -77,6 +78,11 @@ export class GUIGlobal implements OnDestroy {
         this.setGlobalVar("webIsMasterVersion", (<any>window).pythonSourceIsMasterVersion);
 
       console.log("Web version: " + (<any>window).pythonSourceVersion + " ; master version:", this.getGlobalVar("webIsMasterVersion"));
+
+      let dirPickerSupport = this.testDirectoryPickerFeatureWeb();
+      this.setGlobalVar("webSupportDirectoryPicker", dirPickerSupport);
+
+      console.log("webkitdirectory support:", dirPickerSupport);
 
       this.webInit();
     }
@@ -1299,6 +1305,24 @@ export class GUIGlobal implements OnDestroy {
     return fileName.endsWith(".z64") || fileName.endsWith(".n64") || fileName.endsWith(".v64");
   }
 
+  testDirectoryPickerFeatureWeb() { //Web only
+
+    var input = (<any>document).createElement('input');
+    input.type = 'file';
+
+    if (!("webkitdirectory" in input))
+      return false;
+
+    //Hack: Mobile Chrome claims support, but actually does nothing, so we need to block it separately
+    let isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile/i.test((<any>navigator).userAgent);
+    let isChrome = /Chrome/i.test((<any>navigator).userAgent);
+
+    if (isMobile && isChrome)
+      return false;
+
+    return true;
+  }
+
   isValidFileObjectWeb(file: any) { //Web only
     return file && typeof (file) == "object" && file.name && file.name.length > 0;
   }
@@ -1482,9 +1506,17 @@ export class GUIGlobal implements OnDestroy {
     }
 
     if (raceSeed) {
+      let masterVersion = this.getGlobalVar("webIsMasterVersion");
+
       useStaticSeed = ""; //Static seeds aren't allowed in race mode
       settingsFile["create_spoiler"] = true; //Force spoiler mode to on
-      settingsFile["encrypt"] = true;
+      
+      if (masterVersion) {
+        settingsFile["encrypt"] = true;
+      }
+      else {
+        settingsFile["web_lock"] = true; //This is filtered out by the web endpoint before generation
+      }
     }
     else {
       delete settingsFile["encrypt"];
