@@ -188,13 +188,13 @@
             "Claim Check"
         ]
     },
-    "S7 Tournament": {
+    "S8 Tournament": {
         "aliases": [
-            "s7",
+            "s8",
             "tournament"
         ],
         "show_seed_info": true,
-        "user_message": "S7 Tournament",
+        "user_message": "S8 Tournament",
         "world_count": 1,
         "create_spoiler": true,
         "password_lock": false,
@@ -210,7 +210,7 @@
         "lacs_rewards": 9,
         "lacs_tokens": 100,
         "lacs_hearts": 20,
-        "bridge": "medallions",
+        "bridge": "vanilla",
         "bridge_medallions": 6,
         "bridge_stones": 3,
         "bridge_rewards": 9,
@@ -218,7 +218,7 @@
         "bridge_hearts": 20,
         "trials_random": false,
         "trials": 0,
-        "shuffle_ganon_bosskey": "remove",
+        "shuffle_ganon_bosskey": "medallions",
         "ganon_bosskey_medallions": 6,
         "ganon_bosskey_stones": 3,
         "ganon_bosskey_rewards": 9,
@@ -261,7 +261,9 @@
         "shuffle_gerudo_valley_river_exit": false,
         "owl_drops": false,
         "warp_songs": false,
-        "spawn_positions": [],
+        "spawn_positions": [
+            "child"
+        ],
         "free_bombchu_drops": false,
         "one_item_per_dungeon": false,
         "shuffle_song_items": "song",
@@ -291,23 +293,22 @@
             "Deku Theater Mask of Truth"
         ],
         "allowed_tricks": [
-            "logic_fewer_tunic_requirements",
             "logic_grottos_without_agony",
-            "logic_child_deadhand",
-            "logic_man_on_roof",
-            "logic_dc_jump",
+            "logic_fewer_tunic_requirements",
             "logic_rusted_switches",
+            "logic_man_on_roof",
             "logic_windmill_poh",
             "logic_crater_bean_poh_with_hovers",
+            "logic_dc_jump",
             "logic_forest_vines",
+            "logic_child_deadhand",
             "logic_lens_botw",
-            "logic_lens_castle",
-            "logic_lens_gtg",
             "logic_lens_shadow",
             "logic_lens_shadow_platform",
             "logic_lens_bongo",
             "logic_lens_spirit",
-            "logic_visible_collisions"
+            "logic_lens_gtg",
+            "logic_lens_castle"
         ],
         "starting_equipment": [
             "deku_shield"
@@ -333,7 +334,7 @@
         "auto_equip_masks": false,
         "plant_beans": false,
         "chicken_count_random": false,
-        "chicken_count": 7,
+        "chicken_count": 3,
         "big_poe_count_random": false,
         "big_poe_count": 1,
         "easier_fire_arrow_entry": false,
@@ -351,14 +352,8 @@
         "soa_unlocks_chest_texture": false,
         "minor_items_as_major_chest": [],
         "invisible_chests": false,
-        "correct_potcrate_appearances": "textures_content",
-        "potcrate_textures_specific": [
-            "major",
-            "bosskeys",
-            "keys",
-            "tokens",
-            "hearts"
-        ],
+        "correct_potcrate_appearances": "off",
+        "potcrate_textures_specific": [],
         "soa_unlocks_potcrate_texture": false,
         "key_appearance_match_dungeon": false,
         "clearer_hints": true,
@@ -370,20 +365,20 @@
             "altar",
             "ganondorf",
             "warp_songs_and_owls",
+            "30_skulltulas",
             "40_skulltulas",
-            "50_skulltulas",
-            "unique_merchants"
+            "50_skulltulas"
         ],
         "text_shuffle": "none",
         "damage_multiplier": "normal",
         "deadly_bonks": "none",
         "no_collectible_hearts": false,
         "starting_tod": "default",
-        "blue_fire_arrows": false,
+        "blue_fire_arrows": true,
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
-        "ice_trap_appearance": "junk_only",
+        "ice_trap_appearance": "anything",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
             "Prescription",
