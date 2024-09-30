@@ -9,14 +9,14 @@ import zlib
 from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
-from Cutscenes import patch_cutscenes
+from Cutscenes import patch_cutscenes, patch_wondertalk2
 from Entrance import Entrance
 from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
         build_ganon_text, build_misc_item_hints, build_misc_location_hints, get_simple_hint_no_prefix, get_item_generic_name
 from Item import Item
 from ItemList import REWARD_COLORS
-from ItemPool import song_list, trade_items, child_trade_items
+from ItemPool import reward_list, song_list, trade_items, child_trade_items
 from Location import Location, DisableType
 from LocationList import business_scrubs
 from Messages import read_messages, update_message_by_id, read_shop_items, update_warp_song_text, \
@@ -90,6 +90,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_abutton',     data_path('items/A_Button.zobj'),            0x1A8),  # A button
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'), 0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),   0x1AA),  # C button Vertical
+        ('object_gi_magic_meter', data_path('items/MagicMeter.zobj'),          0x1B4),  # Magic Meter
     )
 
     if world.settings.key_appearance_match_dungeon:
@@ -364,11 +365,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.world_count > 1:
         world_str = f"{world.id + 1} of {world.settings.world_count}"
     else:
-        world_str = ""
+        world_str = ''
     rom.write_bytes(rom.sym('WORLD_STRING_TXT'), make_bytes(world_str, 12))
 
     time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M") + " UTC"
     rom.write_bytes(rom.sym('TIME_STRING_TXT'), make_bytes(time_str, 25))
+
+    if world.settings.web_id > 0:
+        web_id_str = f'{world.settings.web_id:10}'
+    else:
+        web_id_str = ''
+    rom.write_bytes(rom.sym('WEB_ID_STRING_TXT'), make_bytes(web_id_str, 12))
 
     if world.settings.show_seed_info:
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x01)
@@ -425,22 +432,28 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_bytes(0xCD5E76, [0x0E, 0xDC])
     rom.write_bytes(0xCD5E12, [0x0E, 0xDC])
 
-    # songs as items flag
+    # Some types of locations (boss rewards, songs, and the fairy ocarina) have special behavior,
+    # but need to use the normal Get Item mechanism if shuffled into the main item pool.
+    rewards_as_items = (
+        world.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')
+        or world.distribution.rewards_as_items
+        or any(name in reward_list and record.count for name, record in world.settings.starting_items.items())
+    )
+    if rewards_as_items:
+        rom.write_byte(rom.sym('REWARDS_AS_ITEMS'), 1)
     songs_as_items = (
         world.settings.shuffle_song_items != 'song'
-        or world.distribution.song_as_items
+        or world.distribution.songs_as_items
         or any(name in song_list and record.count for name, record in world.settings.starting_items.items())
         or world.settings.shuffle_individual_ocarina_notes
     )
-
     if songs_as_items:
         rom.write_byte(rom.sym('SONGS_AS_ITEMS'), 1)
-
-    patch_cutscenes(rom, songs_as_items)
-
     if world.settings.shuffle_ocarinas:
-        symbol = rom.sym('OCARINAS_SHUFFLED')
-        rom.write_byte(symbol, 0x01)
+        rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 0x01)
+
+    patch_cutscenes(rom, songs_as_items, world.settings)
+    patch_wondertalk2(rom)
 
     # Speed Pushing of All Pushable Objects (other than armos statues, which are handled in ASM)
     rom.write_bytes(0xDD2B86, [0x40, 0x80])  # block speed
@@ -587,9 +600,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Fix "...???" textbox outside Child Colossus Fairy to use the right flag and disappear once the wall is destroyed
     rom.write_byte(0x21A026F, 0xDD)
 
-    # Remove the "...???" textbox outside the Crater Fairy (change it to an actor that does nothing)
-    rom.write_int16s(0x225E7DC, [0x00B5, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF])
-
     # Forbid Sun's Song from a bunch of cutscenes
     Suns_scenes = [0x2016FC9, 0x2017219, 0x20173D9, 0x20174C9, 0x2017679, 0x20C1539, 0x20C15D9, 0x21A0719, 0x21A07F9, 0x2E90129, 0x2E901B9, 0x2E90249, 0x225E829, 0x225E939, 0x306D009]
     for address in Suns_scenes:
@@ -599,13 +609,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_int32(0xC7B9C0, 0x00000000)
     rom.write_int32(0xC7BAEC, 0x00000000)
     rom.write_int32(0xc7BCA4, 0x00000000)
-
-    # Remove disruptive text from Gerudo Training Ground and early Shadow Temple (vanilla)
-    wonder_text = [0x27C00BC, 0x27C00CC, 0x27C00DC, 0x27C00EC, 0x27C00FC, 0x27C010C, 0x27C011C, 0x27C012C, 0x27CE080,
-                   0x27CE090, 0x2887070, 0x2887080, 0x2887090, 0x2897070, 0x28C7134, 0x28D91BC, 0x28A60F4, 0x28AE084,
-                   0x28B9174, 0x28BF168, 0x28BF178, 0x28BF188, 0x28A1144, 0x28A6104, 0x28D0094]
-    for address in wonder_text:
-        rom.write_byte(address, 0xFB)
 
     # Speed dig text for Dampe
     rom.write_bytes(0x9532F8, [0x08, 0x08, 0x08, 0x59])
@@ -2133,8 +2136,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(symbol, 0x01)
 
         # Autocollect incoming_item_id for magic jars are swapped in vanilla code
-        rom.write_int16(0xA88066, 0x0044)  # Change GI_MAGIC_SMALL to GI_MAGIC_LARGE
-        rom.write_int16(0xA88072, 0x0043)  # Change GI_MAGIC_LARGE to GI_MAGIC_SMALL
+        rom.write_int16(0xA88066, 0x0044)  # Change GI_MAGIC_JAR_SMALL to GI_MAGIC_JAR_LARGE
+        rom.write_int16(0xA88072, 0x0043)  # Change GI_MAGIC_JAR_LARGE to GI_MAGIC_JAR_SMALL
     else:
         # Remove deku shield drop from spirit pot because it's "vanilla behavior"
         # Replace actor parameters in scene 06, room 27 actor list
@@ -2316,7 +2319,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ["ActorOverride", "Freestanding", "RupeeTower", "Pot", "Crate", "FlyingPot", "SmallCrate", "Beehive", "Wonderitem"] and location.disabled != DisableType.ENABLED:
+    if location.type in ('ActorOverride', 'Freestanding', 'RupeeTower', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'Beehive', 'Wonderitem') and location.disabled != DisableType.ENABLED:
         return None
 
     player_id = location.item.world.id + 1
@@ -2325,12 +2328,12 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     else:
         looks_like_item_id = 0
 
-    if location.type in ('NPC', 'Scrub', 'BossHeart', 'Boss'):
+    if location.type in ('NPC', 'Scrub', 'BossHeart'):
         type = 0
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ['Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'Wonderitem']:
+    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'Wonderitem'):
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
@@ -2357,7 +2360,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         type = 0
     elif location.type == 'GrottoScrub' and location.item.type != 'Shop':
         type = 4
-    elif location.type in ('Song', 'Cutscene'):
+    elif location.type in ('Song', 'Cutscene', 'Boss'):
         type = 5
     else:
         return None
@@ -2785,6 +2788,7 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
                 dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
 
     dungeon_is_mq = [1 if world.dungeon_mq.get(c) else 0 for c in codes]
+    dungeon_precompleted = [1 if world.empty_dungeons[c].empty else 0 for c in codes]
 
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_ENABLE'), 2)
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
@@ -2798,6 +2802,7 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)
     rom.write_byte(rom.sym('CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE'), int(world.settings.world_count > 1 and world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'any_dungeon', 'anywhere')))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_WORLDS'), dungeon_reward_worlds)
+    rom.write_bytes(rom.sym('CFG_DUNGEON_PRECOMPLETED'), dungeon_precompleted)
 
 
 # Overwrite an actor in rom w/ the actor data from LocationList

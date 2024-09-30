@@ -21,6 +21,18 @@ from Utils import data_path
 if TYPE_CHECKING:
     from Entrance import Entrance
 
+# Old/New name of a setting
+class Setting_Info_Versioning:
+    def __init__(self, old_name, new_name):
+        self.old_name = old_name # old name of the setting
+        self.new_name = new_name # new name of the setting
+
+settings_versioning = [
+    Setting_Info_Versioning(
+        old_name       = '',
+        new_name       = '',
+    ),
+]
 
 class SettingInfos:
     # Internal & Non-GUI Settings
@@ -356,6 +368,15 @@ class SettingInfos:
         },
     )
 
+    web_id = Numberinput(
+        gui_text         = "Web Seed ID",
+        shared           = False,
+        default          = 0,
+        gui_params       = {
+            'optional': True,
+        },
+    )
+
     user_message = Textinput(
         gui_text       = "User-Configurable Message",
         shared         = True,
@@ -609,7 +630,7 @@ class SettingInfos:
                     'starting_age', 'shuffle_interior_entrances', 'shuffle_hideout_entrances',
                     'shuffle_grotto_entrances', 'shuffle_dungeon_entrances',
                     'shuffle_bosses', 'shuffle_overworld_entrances', 'shuffle_gerudo_valley_river_exit', 'owl_drops', 'warp_songs', 'spawn_positions',
-                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops',
+                    'triforce_hunt', 'triforce_count_per_world', 'triforce_goal_per_world', 'free_bombchu_drops', 'one_item_per_dungeon',
                     'shuffle_mapcompass', 'shuffle_smallkeys', 'shuffle_hideoutkeys', 'shuffle_tcgkeys', 'key_rings_choice', 'key_rings',
                     'shuffle_silver_rupees', 'silver_rupee_pouches_choice', 'silver_rupee_pouches', 'shuffle_bosskeys', 'enhance_map_compass',
                 ],
@@ -2069,7 +2090,7 @@ class SettingInfos:
     )
 
     shuffle_child_trade = MultipleSelect(
-        gui_text       = 'Shuffled Child Trade Sequence Items',
+        gui_text       = 'Shuffle Child Trade Sequence Items',
         default        = [],
         choices        = {
             'Weird Egg':     'Weird Egg',
@@ -2094,18 +2115,20 @@ class SettingInfos:
     )
 
     adult_trade_shuffle = Checkbutton(
-        gui_text       = 'Shuffle All Adult Trade Items',
+        gui_text       = 'Shuffle All Selected Adult Trade Items',
         gui_tooltip    = '''\
-            Shuffle all adult trade sequence items. If disabled,
-            a random item will be selected, and Anju will always
-            give an item even if Pocket Egg is not shuffled.
+            Enable to shuffle every selected Adult Trade Item.
+
+            If disabled and at least one of "Shuffle Adult Trade
+            Sequence Items" is selected, Anju will always give
+            a shuffled item even if Pocket Egg has not been shuffled.
         ''',
         shared         = True,
         default        = False,
     )
 
     adult_trade_start = MultipleSelect(
-        gui_text       = 'Adult Trade Sequence Items',
+        gui_text       = 'Shuffle Adult Trade Sequence Items',
         default        = ['Pocket Egg', 'Pocket Cucco', 'Cojiro', 'Odd Mushroom', 'Odd Potion', 'Poachers Saw',
                           'Broken Sword', 'Prescription', 'Eyeball Frog', 'Eyedrops', 'Claim Check'],
         choices        = {
@@ -2122,7 +2145,17 @@ class SettingInfos:
             'Claim Check':  'Claim Check',
         },
         gui_tooltip    = '''\
-            Select the items to shuffle in the adult trade sequence.
+            Select the Adult Trade Sequence items to shuffle.
+
+            If "Shuffle All Selected Adult Trade Items" is
+            enabled, every selected item will be shuffled.
+
+            If "Shuffle All Selected Adult Trade Items" is
+            disabled, only one of the selected items will be
+            shuffled. If the Odd Mushroom, Eyeball Frog, or
+            Eyedrops is removed from the player's inventory due
+            to an expired timer or game reset, that item can
+            be reacquired from its <i>non-shuffled</i> location.
         ''',
         shared         = True,
     )
@@ -3285,6 +3318,17 @@ class SettingInfos:
         shared         = True,
     )
 
+    fast_shadow_boat = Checkbutton(
+        gui_text       = 'Fast Shadow Boat',
+        gui_tooltip    = '''\
+            The boat sequence in Shadow Temple will be massively sped up.
+            The two Stalfos will still fall on the boat, but you
+            won't have time to fight them.
+        ''',
+        default        = False,
+        shared         = True,
+    )
+
     chicken_count_random = Checkbutton(
         gui_text       = 'Random Cucco Count',
         gui_tooltip    = '''\
@@ -3422,6 +3466,7 @@ class SettingInfos:
     )
 
     hint_dist_user = SettingInfoDict(None, None, True, {})
+    plandomized_locations = SettingInfoDict("Plandomized Locations", None, True, {})
 
     misc_hints = MultipleSelect(
         gui_text        = 'Misc. Hints',
@@ -3847,6 +3892,9 @@ class SettingInfos:
             fail to generate, consider turning this option off.
         ''',
         shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        },
     )
 
     item_pool_value = Combobox(
@@ -3889,11 +3937,13 @@ class SettingInfos:
         gui_text       = 'Ice Traps',
         default        = 'normal',
         choices        = {
-            'off':       'No Ice Traps',
-            'normal':    'Normal Ice Traps',
-            'on':        'Extra Ice Traps',
-            'mayhem':    'Ice Trap Mayhem',
-            'onslaught': 'Ice Trap Onslaught',
+            'off':            'No Ice Traps',
+            'normal':         'Normal Ice Traps',
+            'on':             'Extra Ice Traps',
+            'mayhem':         'Ice Trap Mayhem',
+            'onslaught':      'Ice Trap Onslaught',
+            'custom_count':   'Custom (count)',
+            'custom_percent': 'Custom (%)',
         },
         gui_tooltip    = '''\
             'Off': All Ice Traps are removed.
@@ -3910,8 +3960,54 @@ class SettingInfos:
             'Ice Trap Onslaught': All junk items will be
             replaced by Ice Traps, even those in the
             base pool.
+
+            'Custom (count)': Allows specifying a specific number of
+            "Junk items" to be converted to Ice Traps in the pool.
+
+            'Custom (%)': Allows specifiying a percentage of
+            "Junk" items to be converted to Ice Traps in the pool.
         ''',
         shared         = True,
+        disable        = {
+            'off' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'normal' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'on' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'mayhem' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'onslaught' : {'settings': ['custom_ice_trap_percent', 'custom_ice_trap_count']},
+            'custom_percent' : {'settings': ['custom_ice_trap_count']},
+            'custom_count' : {'settings': ['custom_ice_trap_percent']},
+        },
+    )
+
+    custom_ice_trap_percent = Scale(
+        gui_text       = 'Custom Ice Trap Percent',
+        default        = 50,
+        minimum        = 0,
+        maximum        = 100,
+        gui_tooltip    = '''\
+            Percentage of junk items that will be replaced
+            with Ice Traps when using 'Custom' Ice Traps setting.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
+    )
+
+    custom_ice_trap_count = Scale(
+        gui_text       = 'Custom Ice Trap Count',
+        default        = 100,
+        minimum        = 0,
+        maximum        = 2000,
+        gui_tooltip    = '''\
+            Number of junk items that will be replaced
+            with Ice Traps when using 'Custom' Ice Traps setting.
+        ''',
+        shared         = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+            "size": "medium",
+        },
     )
 
     ice_trap_appearance = Combobox(
