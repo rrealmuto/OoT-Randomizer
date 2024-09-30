@@ -113,6 +113,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 ### Dev
 
 * New options `Custom (count)` and `Custom (%)` for the `Ice Traps` setting.
+* Now supports custom music written for the Majora's Mask Randomizer.
 
 ### 8.2
 
