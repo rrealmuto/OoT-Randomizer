@@ -112,6 +112,8 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+* New options `Custom (count)` and `Custom (%)` for the `Ice Traps` setting.
+
 ### 8.2
 
 #### New Settings and Options

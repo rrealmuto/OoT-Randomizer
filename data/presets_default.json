@@ -179,6 +179,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -378,6 +380,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "anything",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -584,6 +588,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -794,6 +800,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -1001,6 +1009,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -1207,6 +1217,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -1576,6 +1588,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "minimal",
         "junk_ice_traps": "onslaught",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "anything",
         "adult_trade_shuffle": true,
         "adult_trade_start": [
@@ -1772,6 +1786,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -1992,6 +2008,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -2202,6 +2220,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "off",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [
@@ -2393,6 +2413,8 @@
         "fix_broken_drops": false,
         "item_pool_value": "balanced",
         "junk_ice_traps": "normal",
+        "custom_ice_trap_percent": 50,
+        "custom_ice_trap_count": 100,
         "ice_trap_appearance": "junk_only",
         "adult_trade_shuffle": false,
         "adult_trade_start": [

@@ -233,6 +233,9 @@ class TestPlandomizer(unittest.TestCase):
             "plando-new-placed-ice-traps",
             "plando-placed-and-added-ice-traps",
             "non-standard-visible-ice-traps",
+            "custom-ice-traps-percent-triforce-hunt",
+            "custom-ice-traps-count",
+            "custom-ice-traps-percent",
         ]
         for filename in filenames:
             with self.subTest(filename):
@@ -258,6 +261,19 @@ class TestPlandomizer(unittest.TestCase):
                     with self.subTest("ice trap models in non-standard visible locations"):
                         for location in distribution_file['locations']:
                             self.assertIn('model', spoiler['locations'][location])
+                if filename == "custom-ice-traps-count":
+                    self.assertEqual(spoiler['item_pool']['Ice Trap'], 50)
+                if filename in  ["custom-ice-traps-percent", "custom-ice-traps-percent-triforce-hunt"]:
+                    # Count up all the junk that is left
+                    from ItemPool import junk_pool_base
+                    junk = [item for item, weight in junk_pool_base] + ['Rupee (1)', 'Recovery Heart', 'Bombs (20)', 'Arrows (30)']
+                    junk_count = 0
+                    for item in spoiler['item_pool'].keys():
+                        if item in junk:
+                            junk_count += spoiler['item_pool'][item]
+                    ice_trap_count = spoiler['item_pool']['Ice Trap']
+                    # Check that 75% of the junk is ice traps, per the plando
+                    self.assertEqual(int((junk_count + ice_trap_count) * .75), ice_trap_count)
 
     def test_should_not_throw_exception(self):
         filenames = [

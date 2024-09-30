@@ -387,6 +387,8 @@
           "settings": [
             "item_pool_value",
             "junk_ice_traps",
+            "custom_ice_trap_percent",
+            "custom_ice_trap_count",
             "ice_trap_appearance"
           ]
         }
