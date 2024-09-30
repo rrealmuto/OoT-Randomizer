@@ -118,6 +118,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * New hidden `plandomized_locations` setting to allow presets to place specific items at specific locations.
 * The first text box from each carpenter in the Thieves' Hideout is skipped.
 * New setting to speed up the boat ride in the Shadow Temple.
+* Seeds rolled on ootrandomizer.com display their ID in the top left corner of the file select screen.
 
 ### 8.2
 

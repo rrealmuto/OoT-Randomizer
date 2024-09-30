@@ -129,6 +129,11 @@ WORLD_STRING_TXT:
 TIME_STRING_TXT:
 .endarea
 
+; web seed ID string (max length 10 chars)
+.area 0x10, 0
+WEB_ID_STRING_TXT:
+.endarea
+
 ; Initial Save Data table:
 ;
 ; This table describes what extra data should be written when a new save file is created. It must be terminated with
