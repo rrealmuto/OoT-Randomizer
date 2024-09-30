@@ -21,6 +21,18 @@ from Utils import data_path
 if TYPE_CHECKING:
     from Entrance import Entrance
 
+# Old/New name of a setting
+class Setting_Info_Versioning:
+    def __init__(self, old_name, new_name):
+        self.old_name = old_name # old name of the setting
+        self.new_name = new_name # new name of the setting
+
+settings_versioning = [
+    Setting_Info_Versioning(
+        old_name       = '',
+        new_name       = '',
+    ),
+]
 
 class SettingInfos:
     # Internal & Non-GUI Settings
