@@ -499,3 +499,28 @@ def patch_cutscenes(rom: Rom, songs_as_items:bool) -> None:
     rom.write_int32(0xE83D28, 0x00000000)
     # Remove the Navi textbox at the start of state 28 ("This time, we fight together!).
     rom.write_int16(0xE84C80, 0x1000)
+
+def patch_wondertalk2(rom: Rom) -> None:
+    # Wonder_talk2 is an actor that displays a textbox when near a certain spot, either automatically or by pressing A (button turns to Check).
+    # We remove them by moving their Y coordinate far below their normal spot.
+    wonder_talk2_y_coordinates = [
+        0x27C00BC, 0x27C00CC, 0x27C00DC, 0x27C00EC, 0x27C00FC, 0x27C010C, 0x27C011C, 0x27C012C, # Shadow Temple Whispering Wall Maze (Room 0)
+        0x27CE080, 0x27CE090, # Shadow Temple Truthspinner (Room 2)
+        0x2887070, 0x2887080, 0x2887090, # GTG Entrance Room (Room 0)
+        0x2897070, # GTG Stalfos Room (Room 1)
+        0x28A1144, # GTG Flame Wall Maze (Room 2)
+        0x28A60F4, 0x28A6104, # GTG Pushblock Room (Room 3)
+        0x28AE084, # GTG Rotating Statue Room (Room 4)
+        0x28B9174, # GTG Megaton Statue Room (Room 5)
+        0x28BF168, 0x28BF178, 0x28BF188, # GTG Lava Room (Room 6)
+        0x28C7134, # GTG Dinolfos Room (Room 7)
+        0x28D0094, # GTG Ice Arrow Room (Room 8)
+        0x28D91BC, # GTG Shellblade Room (Room 9)
+        0x225E7E0, # Death Mountain Crater (Room 1)
+        0x32A50E4, # Thieves' Hideout Green Cell Room 3 torches (Room 1)
+        0x32AD0E4, # Thieves' Hideout Red Cell Room 1 torch (Room 2)
+        0x32BD102, # Thieves' Hideout Green Cell Room 4 torches (Room 4)
+        0x32C1134, # Thieves' Hideout Blue Cell Room 2 torches (Room 5)
+    ]
+    for address in wonder_talk2_y_coordinates:
+        rom.write_byte(address, 0xFB)
