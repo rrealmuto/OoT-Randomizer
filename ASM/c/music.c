@@ -166,6 +166,7 @@ void display_song_name_on_file_select(z64_disp_buf_t* db) {
             subStringNameLength++;
         }
         gSPDisplayList(db->p++, &setup_db);
+        gDPSetCombineMode(db->p++, G_CC_MODULATEIA_PRIM,G_CC_MODULATEIA_PRIM);
         gDPPipeSync(db->p++);
         gDPSetPrimColor(db->p++, 0, 0, 0, 0, 0, alpha);
         text_print_size(db, subStringName, left + 1, top + 1, TEXT_WIDTH, TEXT_HEIGHT);
