@@ -1,6 +1,7 @@
 from typing import Optional
 
 from Rom import Rom
+from Settings import Settings
 
 def delete_cutscene(rom: Rom, address: int) -> None:
     # Address is the start of the cutscene commands.
@@ -69,7 +70,7 @@ def patch_cutscene_misc_command(rom: Rom, address: int, start_frame:int, end_fra
     rom.write_int16(address + 2, start_frame)
     rom.write_int16(address + 4, end_frame)
 
-def patch_cutscenes(rom: Rom, songs_as_items:bool) -> None:
+def patch_cutscenes(rom: Rom, songs_as_items: bool, settings: Settings) -> None:
     # Speed scene after Deku Tree
     # Deku Tree talking to Link.
     # Cut to 1 frame and redirect destination to the get Emerald cutscene (0x07).
@@ -378,6 +379,25 @@ def patch_cutscenes(rom: Rom, songs_as_items:bool) -> None:
     patch_cutscene_destination_and_length(rom, 0x2001110, 3)
     # Set the "Drain Well" flag at the second frame (first frame is used by the "Fast Windmill" flag).
     patch_cutscene_misc_command(rom, 0x20010D8, 2, 3)
+
+    # This cutscene is not written in the shadow temple scene or in the boat actor, but directly in z_onepointdemo.c instead.
+    # So not compatible with our functions.
+    if settings.fast_shadow_boat:
+        # bg_haka_ship changes to make the boat go faster.
+        rom.write_int16(0xD1923E, 0x0000) # Timer to start moving
+        rom.write_int16(0xD19426, 0x4348) # Speed x10
+        rom.write_int16(0xD19436, 0x447A) # Speed x10
+        # Cutscene changes so that it lasts just long enough to prevent jumping to the skulltula.
+        # Remove all camera cues of the cutscene past the first one by changing the size of keyFrameCount to 1.
+        rom.write_int16(0xAE010E, 0x0001)
+        # Change first camera cue point of view to be less awkward.
+        # Change viewFlags to 2121, this will make the camera focus on Link.
+        rom.write_int16(0xB697F6, 0x2121)
+        # Change the length to 4 sec instead of 2 sec.
+        rom.write_int16(0xB697F8, 0x0050)
+        # Change the at/eye camera values to follow Link from behind.
+        # New value : { 0.0f, 0.0f, 0.0f }, { 50.0f, 30.0f, -200.0f}
+        rom.write_int32s(0xB69804, [0x00000000, 0x00000000, 0x00000000, 0x42480000, 0x42480000, 0xC3480000])
 
     # Speed scene after Shadow Temple
     # Impa becomes a Sage cutscene.

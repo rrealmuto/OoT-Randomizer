@@ -446,7 +446,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.shuffle_ocarinas:
         rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 0x01)
 
-    patch_cutscenes(rom, songs_as_items)
+    patch_cutscenes(rom, songs_as_items, world.settings)
     patch_wondertalk2(rom)
 
     # Speed Pushing of All Pushable Objects (other than armos statues, which are handled in ASM)
