@@ -158,6 +158,7 @@
         "hint_dist": "very_strong",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "dampe_diary",
@@ -363,6 +364,7 @@
         "hint_dist": "tournament",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "ganondorf",
@@ -571,6 +573,7 @@
         "hint_dist": "weekly",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "ganondorf",
@@ -780,6 +783,7 @@
         "hint_dist": "ddr",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "dampe_diary",
@@ -994,6 +998,7 @@
         "hint_dist": "scrubs",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "ganondorf",
             "20_skulltulas",
@@ -1199,6 +1204,7 @@
         "hint_dist": "mw_path",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "ganondorf",
@@ -1578,6 +1584,7 @@
         "hint_dist": "useless",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [],
         "text_shuffle": "complete",
         "damage_multiplier": "ohko",
@@ -1772,6 +1779,7 @@
         "hint_dist": "bingo",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "ganondorf",
@@ -1991,6 +1999,7 @@
         "hint_dist": "league",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "ganondorf",
@@ -2206,6 +2215,7 @@
         "hint_dist": "coop",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "ganondorf",
@@ -2390,6 +2400,7 @@
         "hint_dist": "very_strong_magic",
         "item_hints": [],
         "hint_dist_user": {},
+        "plandomized_locations": {},
         "misc_hints": [
             "altar",
             "dampe_diary",

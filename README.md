@@ -115,6 +115,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * New options `Custom (count)` and `Custom (%)` for the `Ice Traps` setting.
 * Now supports custom music written for the Majora's Mask Randomizer.
 * New Magic Meter item model to allow magic drops to be shuffled in the future.
+* New hidden `plandomized_locations` setting to allow presets to place specific items at specific locations.
 
 ### 8.2
 
