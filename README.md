@@ -119,6 +119,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The first text box from each carpenter in the Thieves' Hideout is skipped.
 * New setting to speed up the boat ride in the Shadow Temple.
 * Seeds rolled on ootrandomizer.com display their ID in the top left corner of the file select screen.
+* The `Other` tab of the generator has been rearranged for better grouping of settings, and the `One Major Item per Dungeon` setting has been moved there since it was causing frequent failures with `Randomize Main Rule Settings`.
 
 ### 8.2
 
