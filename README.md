@@ -112,12 +112,16 @@ issue. You should always Hard Reset to avoid this issue entirely.
 
 ### Dev
 
+#### New Settings and Options
 * New options `Custom (count)` and `Custom (%)` for the `Ice Traps` setting.
+* New hidden `plandomized_locations` setting to allow presets to place specific items at specific locations.
+* New setting to speed up the boat ride in the Shadow Temple.
+* New `Require Lens of Truth for Treasure Chest Game` setting.
+
+#### Other Changes
 * Now supports custom music written for the Majora's Mask Randomizer.
 * New Magic Meter item model to allow magic drops to be shuffled in the future.
-* New hidden `plandomized_locations` setting to allow presets to place specific items at specific locations.
 * The first text box from each carpenter in the Thieves' Hideout is skipped.
-* New setting to speed up the boat ride in the Shadow Temple.
 * Seeds rolled on ootrandomizer.com display their ID in the top left corner of the file select screen.
 * The `Other` tab of the generator has been rearranged for better grouping of settings, and the `One Major Item per Dungeon` setting has been moved there since it was causing frequent failures with `Randomize Main Rule Settings`.
 
