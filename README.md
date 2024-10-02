@@ -124,6 +124,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * The first text box from each carpenter in the Thieves' Hideout is skipped.
 * Seeds rolled on ootrandomizer.com display their ID in the top left corner of the file select screen.
 * The `Other` tab of the generator has been rearranged for better grouping of settings, and the `One Major Item per Dungeon` setting has been moved there since it was causing frequent failures with `Randomize Main Rule Settings`.
+* Biggoron's text after turning in the Eyedrops has been changed to avoid potential confusion.
 
 ### 8.2
 

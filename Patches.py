@@ -1364,6 +1364,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     remove_unused_messages(messages)
     shop_items = read_shop_items(rom, shop_item_file.start + 0x1DEC)
 
+    # Less misleading dialog from Biggoron after turning in eyedrops
+    update_message_by_id(messages, 0x305C, "Brrrring me the Claim Check...\x01to rrreceive anotherrrrrr item...")
+
     # Set Big Poe count to get reward from buyer
     poe_points = world.settings.big_poe_count * 100
     rom.write_int16(0xEE69CE, poe_points)
