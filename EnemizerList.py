@@ -7,11 +7,11 @@ class LOCATION_RESTRICTION(Enum):
     UNDERWATER = 1 # Underwater enemy that requires hookshot
     FLOATING = 2 # Locations that require an enemy that can float. Like because it's over a pit or something.
     ABOVE_GROUND = 3 # Locations that the enemy will spawn above the ground, only place enemies that will automatically move to the ground or won't break if they're in the air
-    INDOORS = 4 # Indoor locations
 
 class ENEMY_RESTRICTION(Enum):
     ABOVE_WATER = 1
-    BABA = 2
+    OUTSIDE = 2
+    INSIDE = 3
 
 # Define an enemy location supporting restrictions
 # restrictions - list of restrictions for this location. Enemy must have these restrictions tagged on them in order to spawn here. Ex. UNDERWATER
@@ -79,95 +79,95 @@ base_enemy_list = {
     (72, 2, 0, 4):      EnemyLocation(144), # Redead/Gibdo
     (72, 3, 0, 2):      EnemyLocation(144), # Redead/Gibdo
     (72, 3, 0, 3):      EnemyLocation(144), # Redead/Gibdo
-    (81, 0, 0, 8):      EnemyLocation(29), # Peahat
-    (81, 0, 0, 9):      EnemyLocation(29), # Peahat
-    (81, 0, 0, 10):     EnemyLocation(29), # Peahat
-    (81, 0, 0, 11):     EnemyLocation(29), # Peahat
-    (81, 0, 0, 12):     EnemyLocation(29), # Peahat
-    (81, 0, 0, 13):     EnemyLocation(29), # Peahat
-    (81, 0, 0, 14):     EnemyLocation(29), # Peahat
-    (83, 1, 2, 2):      EnemyLocation(19), # Keese
-    (83, 1, 2, 3):      EnemyLocation(19), # Keese
-    (83, 1, 2, 4):      EnemyLocation(19), # Keese
-    (83, 1, 2, 5):      EnemyLocation(19), # Keese
-    (83, 1, 2, 6):      EnemyLocation(19), # Keese
-    (83, 1, 2, 7):      EnemyLocation(149), # Skullwaltula
-    (83, 1, 2, 8):      EnemyLocation(149), # Skullwaltula
-    (83, 1, 3, 2):      EnemyLocation(19), # Keese
-    (83, 1, 3, 3):      EnemyLocation(19), # Keese
-    (83, 1, 3, 4):      EnemyLocation(19), # Keese
-    (83, 1, 3, 5):      EnemyLocation(19), # Keese
-    (83, 1, 3, 6):      EnemyLocation(19), # Keese
-    (83, 1, 3, 7):      EnemyLocation(149), # Skullwaltula
-    (83, 1, 3, 8):      EnemyLocation(149), # Skullwaltula
-    (84, 0, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 6):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 7):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 8):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 2, 9):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (84, 0, 0, 42):     EnemyLocation(27), # Tektite
-    (84, 0, 0, 43):     EnemyLocation(27), # Tektite
-    (85, 0, 2, 1):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (85, 0, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (85, 0, 2, 3):      EnemyLocation(55), # Skulltula
-    (85, 0, 2, 4):      EnemyLocation(96), # Deku Scrub
-    (85, 0, 2, 5):      EnemyLocation(96), # Deku Scrub
-    (85, 0, 2, 6):      EnemyLocation(96), # Deku Scrub
-    (85, 0, 2, 7):      EnemyLocation(85), # Deku Baba
-    (85, 0, 2, 8):      EnemyLocation(85), # Deku Baba
-    (85, 0, 2, 9):      EnemyLocation(85), # Deku Baba
-    (85, 0, 2, 10):     EnemyLocation(85), # Deku Baba
-    (85, 1, 2, 2):      EnemyLocation(85), # Deku Baba
-    (85, 1, 2, 3):      EnemyLocation(85), # Deku Baba
-    (85, 1, 2, 4):      EnemyLocation(85), # Deku Baba
-    (85, 1, 2, 5):      EnemyLocation(85), # Deku Baba
-    (85, 1, 2, 6):      EnemyLocation(85), # Deku Baba
-    (85, 1, 2, 7):      EnemyLocation(85), # Deku Baba
-    (85, 1, 0, 1):      EnemyLocation(199), # Whithered Deku Baba
-    (85, 1, 0, 2):      EnemyLocation(199), # Whithered Deku Baba
-    (85, 1, 0, 3):      EnemyLocation(199), # Whithered Deku Baba
-    (85, 1, 0, 4):      EnemyLocation(199), # Whithered Deku Baba
-    (85, 1, 0, 5):      EnemyLocation(199), # Whithered Deku Baba
-    (86, 0, 2, 5):      EnemyLocation(75), # Moblin
-    (86, 0, 2, 6):      EnemyLocation(75), # Moblin
-    (86, 0, 2, 7):      EnemyLocation(75), # Moblin
-    (86, 0, 2, 8):      EnemyLocation(75), # Moblin
-    (86, 0, 2, 9):      EnemyLocation(75), # Moblin
-    (86, 0, 2, 10):     EnemyLocation(75), # Moblin
+    (81, 0, 0, 8):      EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (81, 0, 0, 9):      EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (81, 0, 0, 10):     EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (81, 0, 0, 11):     EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (81, 0, 0, 12):     EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (81, 0, 0, 13):     EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (81, 0, 0, 14):     EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
+    (83, 1, 2, 2):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 2, 3):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 2, 4):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 2, 5):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 2, 6):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 2, 7):      EnemyLocation(149,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skullwaltula
+    (83, 1, 2, 8):      EnemyLocation(149,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skullwaltula
+    (83, 1, 3, 2):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 3, 3):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 3, 4):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 3, 5):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 3, 6):      EnemyLocation(19, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Keese
+    (83, 1, 3, 7):      EnemyLocation(149, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skullwaltula
+    (83, 1, 3, 8):      EnemyLocation(149, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skullwaltula
+    (84, 0, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 6):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 7):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 8):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 2, 9):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (84, 0, 0, 42):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (84, 0, 0, 43):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (85, 0, 2, 1):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (85, 0, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (85, 0, 2, 3):      EnemyLocation(55,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skulltula
+    (85, 0, 2, 4):      EnemyLocation(96,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (85, 0, 2, 5):      EnemyLocation(96,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (85, 0, 2, 6):      EnemyLocation(96,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (85, 0, 2, 7):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 0, 2, 8):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 0, 2, 9):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 0, 2, 10):     EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 2, 2):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 2, 3):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 2, 4):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 2, 5):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 2, 6):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 2, 7):      EnemyLocation(85,meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Baba
+    (85, 1, 0, 1):      EnemyLocation(199, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Whithered Deku Baba
+    (85, 1, 0, 2):      EnemyLocation(199, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Whithered Deku Baba
+    (85, 1, 0, 3):      EnemyLocation(199, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Whithered Deku Baba
+    (85, 1, 0, 4):      EnemyLocation(199, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Whithered Deku Baba
+    (85, 1, 0, 5):      EnemyLocation(199, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Whithered Deku Baba
+    (86, 0, 2, 5):      EnemyLocation(75, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Moblin
+    (86, 0, 2, 6):      EnemyLocation(75, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Moblin
+    (86, 0, 2, 7):      EnemyLocation(75, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Moblin
+    (86, 0, 2, 8):      EnemyLocation(75, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Moblin
+    (86, 0, 2, 9):      EnemyLocation(75, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Moblin
+    (86, 0, 2, 10):     EnemyLocation(75, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Moblin
     (86, 0, 0, 1):      EnemyLocation(431, switch_flag=0x1F, patch_func=patch_func_sfm_wolfos), # Wolfos. Move the spawn point so certain enemies don't end up on the other side of the gate.
-    (86, 0, 0, 5):      EnemyLocation(96), # Deku Scrub
-    (86, 0, 0, 6):      EnemyLocation(96), # Deku Scrub
-    (86, 0, 0, 7):      EnemyLocation(96), # Deku Scrub
-    (86, 0, 0, 8):      EnemyLocation(96), # Deku Scrub
-    (86, 0, 0, 9):      EnemyLocation(96), # Deku Scrub
-    (86, 0, 0, 10):     EnemyLocation(96), # Deku Scrub
-    (87, 0, 2, 15):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (87, 0, 2, 16):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (87, 0, 2, 17):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (87, 0, 2, 18):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (87, 0, 2, 22):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 23):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 24):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 25):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 26):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 27):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 28):     EnemyLocation(27), # Tektite
-    (87, 0, 2, 29):     EnemyLocation(27), # Tektite
-    (87, 0, 0, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (87, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (87, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (87, 0, 0, 19):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
-    (87, 0, 0, 20):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
-    (87, 0, 0, 21):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
-    (89, 0, 2, 18):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (89, 0, 2, 19):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (89, 0, 2, 20):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (89, 0, 2, 21):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+    (86, 0, 0, 5):      EnemyLocation(96, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (86, 0, 0, 6):      EnemyLocation(96, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (86, 0, 0, 7):      EnemyLocation(96, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (86, 0, 0, 8):      EnemyLocation(96, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (86, 0, 0, 9):      EnemyLocation(96, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (86, 0, 0, 10):     EnemyLocation(96, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Deku Scrub
+    (87, 0, 2, 15):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (87, 0, 2, 16):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (87, 0, 2, 17):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (87, 0, 2, 18):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (87, 0, 2, 22):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 23):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 24):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 25):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 26):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 27):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 28):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 2, 29):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 0, 3):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (87, 0, 0, 4):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (87, 0, 0, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (87, 0, 0, 19):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 0, 20):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (87, 0, 0, 21):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (89, 0, 2, 18):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (89, 0, 2, 19):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (89, 0, 2, 20):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (89, 0, 2, 21):     EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
     (89, 0, 2, 24):     EnemyLocation(55), # Skulltula
     (89, 0, 2, 25):     EnemyLocation(55), # Skulltula
     (89, 0, 2, 26):     EnemyLocation(55), # Skulltula
@@ -179,52 +179,52 @@ base_enemy_list = {
     (90, 0, 2, 5):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
     (90, 0, 2, 6):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
     (90, 0, 2, 7):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (91, 1, 2, 1):      EnemyLocation(277), # Skull Kid
-    (91, 1, 2, 2):      EnemyLocation(277), # Skull Kid
-    (91, 3, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (91, 3, 0, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-    (91, 9, 2, 1):      EnemyLocation(277), # Skull Kid
-    (92, 0, 2, 7):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 2, 8):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 2, 9):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 2, 10):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 2, 11):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 0, 7):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 0, 8):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (92, 0, 0, 9):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
+    (91, 1, 2, 1):      EnemyLocation(277, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skull Kid
+    (91, 1, 2, 2):      EnemyLocation(277, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skull Kid
+    (91, 3, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (91, 3, 0, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (91, 9, 2, 1):      EnemyLocation(277, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skull Kid
+    (92, 0, 2, 7):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 2, 8):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 2, 9):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 2, 10):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 2, 11):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 0, 7):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 0, 8):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (92, 0, 0, 9):      EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
     (96, 0, 2, 2):      EnemyLocation(149), # Skullwaltula
     (96, 0, 2, 3):      EnemyLocation(149), # Skullwaltula
     (96, 0, 2, 4):      EnemyLocation(149), # Skullwaltula
-    (96, 0, 2, 6):      EnemyLocation(27), # Tektite
-    (96, 0, 2, 7):      EnemyLocation(27), # Tektite
-    (96, 0, 2, 8):      EnemyLocation(27), # Tektite
+    (96, 0, 2, 6):      EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (96, 0, 2, 7):      EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (96, 0, 2, 8):      EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
     (96, 0, 0, 6):      EnemyLocation(149), # Skullwaltula
     (96, 0, 0, 7):      EnemyLocation(149), # Skullwaltula
     (96, 0, 0, 8):      EnemyLocation(149), # Skullwaltula
-    (96, 0, 0, 9):      EnemyLocation(27), # Tektite
-    (96, 0, 0, 10):     EnemyLocation(27), # Tektite
-    (96, 0, 0, 11):     EnemyLocation(27), # Tektite
-    (96, 0, 0, 12):     EnemyLocation(27), # Tektite
+    (96, 0, 0, 9):      EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (96, 0, 0, 10):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (96, 0, 0, 11):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
+    (96, 0, 0, 12):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
     (97, 1, 2, 8):      EnemyLocation(105), # Bubble
     (97, 1, 2, 9):      EnemyLocation(105), # Bubble
     (97, 1, 2, 10):     EnemyLocation(105), # Bubble
     (97, 1, 2, 11):     EnemyLocation(105), # Bubble
     (97, 1, 2, 12):     EnemyLocation(105), # Bubble
-    (99, 0, 1, 10):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 11):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 12):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 13):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 14):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 15):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 16):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 17):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 18):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 19):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 20):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 21):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 22):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 23):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
-    (99, 0, 1, 24):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Guay
+    (99, 0, 1, 10):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 11):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 12):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 13):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 14):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 15):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 16):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 17):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 18):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 19):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 20):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 21):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 22):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 23):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
+    (99, 0, 1, 24):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
 }
 
 base_enemy_alts = {
@@ -470,10 +470,10 @@ vanilla_dungeon_enemies = {
         (5, 3, 0, 0): EnemyLocation(197, [LOCATION_RESTRICTION.UNDERWATER], []), # Shell Blade
         (5, 3, 0, 2): 27, # Tektite
         (5, 3, 0, 3): 27, # Tektite
-        (5, 4, 0, 1): 396, # Stinger
-        (5, 4, 0, 2): 396, # Stinger
-        (5, 4, 0, 3): 396, # Stinger
-        (5, 4, 0, 4): 396, # Stinger
+        (5, 4, 0, 1): EnemyLocation(396, [LOCATION_RESTRICTION.UNDERWATER]), # Stinger
+        (5, 4, 0, 2): EnemyLocation(396, [LOCATION_RESTRICTION.UNDERWATER]), # Stinger
+        (5, 4, 0, 3): EnemyLocation(396, [LOCATION_RESTRICTION.UNDERWATER]), # Stinger
+        (5, 4, 0, 4): EnemyLocation(396, [LOCATION_RESTRICTION.UNDERWATER]), # Stinger
         (5, 5, 0, 3): 19, # Keese
         (5, 5, 0, 4): 19, # Keese
         (5, 6, 0, 0): 221, # Like like
@@ -1219,24 +1219,19 @@ named_rooms: dict[str, tuple[int,int]] = {
 }
 
 class Enemy:
-    def __init__(self, name: str, var: int = 0, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None, categories: list[int] = [], required_categories: list[int] = []):
+    def __init__(self, name: str, id:int, var: int = 0, weight=1, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None, categories: list[int] = [], required_categories: list[int] = []):
         self.name = name
+        self.id = id
         self.var = var
         self.filter_func = filter_func
         self.kill_logic = kill_logic
         self.categories = categories
         self.required_categories = required_categories
+        self.weight = weight
         if soul_name:
             self.soul_name = soul_name
         else:
             self.soul_name = self.name
-
-class EnemyWithOpts(Enemy):
-    def __init__(self, enemyOpts: list[Enemy], filter_func=None):
-        self.enemyOpts: list[Enemy] = enemyOpts
-        self.filter_func = filter_func
-        self.categories = []
-        self.required_categories = []
 
 # Filter functions, return false to filter out enemy from being shuffled
 
@@ -1254,71 +1249,58 @@ def filter_skullkids(actor: Actor):
     type = (actor.var >> 0x0A) & 0x3F
     return type > 6
 
-enemy_actor_types = {
-    0x0002: Enemy("Stalfos", var=0x0003, kill_logic='can_kill_stalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x000E: Enemy("Octorok", kill_logic='can_kill_octorok', required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
-    0x0011: Enemy("Wallmaster", kill_logic='can_kill_wallmaster', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0012: Enemy("Dodongo", kill_logic='can_kill_dodongo', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0013: EnemyWithOpts([
-        Enemy("Keese", var=0x0002, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Fire Keese", var=0x0000, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND], soul_name="Keese"),
-        Enemy("Ice Keese", var=0x0004, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND], soul_name="Keese"),
-    ]),
-    0x001B: Enemy("Tektite", kill_logic='can_kill_tektite', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x001D: EnemyWithOpts([
-        Enemy("Peahat", var=0xFFFF, kill_logic='can_kill_peahat', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Flying Peahat", var=0x0000, kill_logic='can_kill_flying_peahat', soul_name="Peahat", categories=[LOCATION_RESTRICTION.ABOVE_GROUND])
-    ]),
-    0x0025: Enemy("Lizalfos/Dinalfos", var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x002B: Enemy("Gohma Larva", var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x002D: Enemy("Shabom", kill_logic='can_kill_shabom', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x002F: Enemy("Baby Dodongo", kill_logic='can_kill_baby_dodongo'),
-    0x0034: Enemy("Biri", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0063: Enemy("Bari", soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0035: Enemy("Tailpasaran", var=0xFFFF, kill_logic='can_kill_tailsparan', categories=[LOCATION_RESTRICTION.UNDERWATER]),
-    0x0037: Enemy("Skulltula", kill_logic='can_kill_skulltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0038: Enemy("Torch Slug"),
-    0x004B: Enemy("Moblin", categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0054: Enemy("Armos", var = 0xFFFF, filter_func=filter_armos, kill_logic='can_kill_armos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0055: Enemy("Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba', required_categories=[ENEMY_RESTRICTION.BABA]),
-    0x00C7: Enemy("Whithered Deku Baba", soul_name="Deku Baba", kill_logic='can_kill_deku_baba', required_categories=[ENEMY_RESTRICTION.BABA]),
-    0x0060: Enemy("Deku Scrub", kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
-    0x0069: Enemy("Bubble", var=0xFFFF, kill_logic='can_kill_bubble'),
-    0x008A: EnemyWithOpts([
-        Enemy("Beamos (Large)", var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos'),
-        Enemy("Beamos (Small)", var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos'),
-    ]),
-    0x008E: Enemy("Floormaster", kill_logic='can_kill_floormaster', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x0090: EnemyWithOpts([
-        Enemy("Redead", soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
-        Enemy("Gibdo", var=0x0080, soul_name="Redead and Gibdo", kill_logic='can_kill_redead', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    ]),
-    0x0095: Enemy("Skullwalltula", filter_func=filter_skullwalltula, kill_logic='can_kill_skullwalltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
-    0x0099: Enemy("Flare Dancer", kill_logic='can_kill_flare_dancer', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    # 0x00A4: Enemy("Dead Hand"),
-    0x00C5: Enemy("Shell Blade", kill_logic='can_kill_shell_blade', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x00DD: Enemy("Like like", soul_name="Like-like", kill_logic='can_kill_likelike', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x00EC: Enemy("Spike Enemy", kill_logic='can_kill_spike_enemy', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x00F6: Enemy("Anubis Spawner", var=0x0003, soul_name="Anubis", categories=[LOCATION_RESTRICTION.FLOATING]),
-    0x0113: EnemyWithOpts([
-        Enemy("Iron Knuckle (Black)", var=0xFF82, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
-        Enemy("Iron Knuckle (White)", var=0xFF83, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
-    ]),
-    0x0115: Enemy("Skull Kid", var=0xFFFF, filter_func=filter_skullkids),
-    0x0121: Enemy("Freezard", categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x018C: Enemy("Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
-    0x003A: Enemy("Stingray", var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
-    0x01AF: Enemy("Wolfos", var=0xFF00, kill_logic='can_kill_wolfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    0x01C0: Enemy("Guay", kill_logic='can_kill_basic', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
+enemy_filters = {
+    0x0054: filter_armos,
+    0x0095: filter_skullwalltula,
+    0x0115: filter_skullkids
 }
 
-enemies_by_name = {}
-def build_enemies_by_name():
-    for id, enemy in enemy_actor_types.items():
-        if type(enemy) is Enemy:
-            enemies_by_name[enemy.name] = id
-        elif type(enemy) is EnemyWithOpts:
-            for opt in enemy.enemyOpts:
-                enemies_by_name[opt.name] = id
+enemy_actor_types: list[Enemy] = {
+    Enemy("Stalfos", id=0x0002, var=0x0003, kill_logic='can_kill_stalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Octorok", id=0x000E, kill_logic='can_kill_octorok', required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
+    Enemy("Wallmaster", id=0x0011, kill_logic='can_kill_wallmaster', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Dodongo", id=0x0012, kill_logic='can_kill_dodongo', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Keese", id=0x0013, var=0x0002, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Fire Keese", id=0x0013, var=0x0000, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND], soul_name="Keese"),
+        Enemy("Ice Keese", id=0x0013, var=0x0004, kill_logic='can_kill_keese', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND], soul_name="Keese"),
+    Enemy("Tektite", id=0x001B, kill_logic='can_kill_tektite', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Peahat", id=0x001D, var=0xFFFF, weight=.5, kill_logic='can_kill_peahat', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Flying Peahat", id=0x001D, var=0x0000, weight=.5, kill_logic='can_kill_flying_peahat', soul_name="Peahat", categories=[LOCATION_RESTRICTION.ABOVE_GROUND], required_categories=[ENEMY_RESTRICTION.OUTSIDE]),
+    Enemy("Lizalfos", id=0x0025, var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Dinalfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Gohma Larva", id=0x002B, var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Shabom", id=0x002D, kill_logic='can_kill_shabom', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo'),
+    Enemy("Biri", id=0x0034, soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Bari", id=0x0063, soul_name="Biri and Bari", kill_logic='can_kill_biri', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Tailpasaran", id=0x0035, var=0xFFFF, kill_logic='can_kill_tailsparan', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Skulltula", id=0x0037, kill_logic='can_kill_skulltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Torch Slug", id=0x0038),
+    Enemy("Moblin", id=0x004B, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Armos", id=0x0054, var = 0xFFFF, kill_logic='can_kill_armos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
+    #Enemy("Whithered Deku Baba", id=0x00C7, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
+    Enemy("Deku Scrub", id=0x0060, kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Bubble", id=0x0069, var=0xFFFF, kill_logic='can_kill_bubble'),
+        Enemy("Beamos (Large)", id=0x008A, var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos'),
+        Enemy("Beamos (Small)", id=0x008A, var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos'),
+    Enemy("Floormaster", id=0x008E, kill_logic='can_kill_floormaster', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Redead", id=0x0090, soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
+        Enemy("Gibdo", id=0x0090, var=0x0080, soul_name="Redead and Gibdo", kill_logic='can_kill_redead', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Skullwalltula", id=0x0095, kill_logic='can_kill_skullwalltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
+    Enemy("Flare Dancer", id=0x0099, kill_logic='can_kill_flare_dancer', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Shell Blade", id=0x00C5, kill_logic='can_kill_shell_blade', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Like like", id=0x00DD, soul_name="Like-like", kill_logic='can_kill_likelike', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Spike Enemy", id=0x00EC, kill_logic='can_kill_spike_enemy', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Anubis Spawner", id=0x00F6, var=0x0003, soul_name="Anubis", categories=[LOCATION_RESTRICTION.FLOATING]),
+        Enemy("Iron Knuckle (Black)", id=0x0113, var=0xFF82, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
+        Enemy("Iron Knuckle (White)", id=0x0113, var=0xFF83, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
+    Enemy("Skull Kid", id=0x0115, var=0xFFFF),
+    Enemy("Freezard", id=0x0121, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Stinger", id=0x018C, kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Stingray", id=0x003A, var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Wolfos", id=0x01AF, var=0xFF00, kill_logic='can_kill_wolfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Guay", id=0x01C0, kill_logic='can_kill_basic', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
+}
 
-build_enemies_by_name()
+enemies_by_name = {enemy.name: enemy for enemy in enemy_actor_types}

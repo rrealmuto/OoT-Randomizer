@@ -73,8 +73,11 @@ void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, RoomContext* roomCtx, EnHoll
     extended_object_ctx.inhibit_clear_flag = 0;
 }
 
+int8_t gPrevRoom;
+
 void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
     int8_t prevRoom = roomCtx->prevRoom.num;
+    gPrevRoom = prevRoom;
     Room_Change(globalCtx, roomCtx);
     
     if(extended_object_ctx.inhibit_clear_flag)

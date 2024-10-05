@@ -244,13 +244,13 @@ class State:
         room,setup,index = spot.default
         index -= 1
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_type, enemy_obj, shuffled = enemies[scene,room,setup,index]
+        enemy_obj, shuffled = enemies[scene,room,setup,index]
         return enemy_obj.name
 
     # Logic helper for determining if an enemy at a particular spot can be killed. Used when logic for one spot depends on killing a specific enemy
     def can_kill(self, scene,room,setup,index, **kwargs) -> bool:
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_type, enemy_obj, shuffled = enemies[scene,room,setup,index]
+        enemy_obj, shuffled = enemies[scene,room,setup,index]
         # Check soul for this enemy
         has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
     
@@ -281,7 +281,7 @@ class State:
         # Loop through each enemy and determine defeatability
         # Need to check for the soul for each enemy, and the defeatability function
         for enemy in enemies:
-            enemy_type, enemy_obj, shuffled = enemies[enemy]
+            enemy_obj, shuffled = enemies[enemy]
             if not self.has_soul(enemy_obj.soul_name, **kwargs):
                 return False
 

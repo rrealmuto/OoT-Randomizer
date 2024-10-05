@@ -12,7 +12,14 @@ z64_SfxDefaultReverb = 0x801043A8;
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
 Actor_WorldDistXZToPoint = 0x80021528;
+BgCheck_EntityRaycastDown1 = 0x8002f3a4;
+BgCheck_EntityRaycastDown2 = 0x8002f400;
+BgCheck_EntityRaycastDown3 = 0x8002f454;
 BgCheck_EntityRaycastDown4 = 0x8002F4B8;
+BgCheck_EntityRaycastDown5 = 0x8002f520;
+BgCheck_AnyRaycastDown1 = 0x8002f644;
+WaterBox_GetSurface1 = 0x800347fc;
+Flags_GetTempClear = 0x80020694;
 
 /* Overlay symbols */
 
@@ -33,3 +40,7 @@ OVL_gSlotAgeReqs = 0x80829D74;
 OVL_sEquipState = 0x80829710;
 OVL_sEquipAnimTimer = 0x80829714;
 OVL_sEquipMoveTimer = 0x80829718;
+
+
+/* Door_Shutter */
+OVL_DoorShutter_BarAndWaitSwitchFlag = 0x808b8fe8;

@@ -1625,8 +1625,7 @@ typedef struct {
   char             unk_07_[0x0010];        /* 0x00798 */
   z64_lighting_t   lighting;               /* 0x007A8 */
   char             unk_08_[0x0008];        /* 0x007B8 */
-  CollisionContext *col_hdr;                /* 0x007C0 */
-  char             unk_09_[0x1460];        /* 0x007C4 */
+  CollisionContext colChkCtx;                /* 0x007C0 */
   z64_actor_ctxt_t actor_ctxt;             /* 0x01C24 */
   uint8_t          n_actors_loaded;        /* 0x01C2C */
   char             unk_0A_[0x0003];        /* 0x01C2D */
@@ -2715,5 +2714,6 @@ extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64
 extern uintptr_t z64_segments[16];
 extern void Fault_AddHungupAndCrashImpl(const char* msg1, const char* msg2);
 extern int32_t sprintf(char* dst, char* fmt, ...);
+extern int32_t Flags_GetTempClear(z64_game_t* globalCtx, int32_t flag);
 
 #endif

@@ -12,10 +12,11 @@ def get_rom_enemies(scenes: list[Scene], rom: Rom):
             for setup in room.setups:
                 actors = room.setups[setup].actors
                 for i in range(0, len(actors)):
-                    if actors[i].id in enemy_actor_types.keys():
-                        filter = enemy_actor_types[actors[i].id].filter_func
-                        if(filter is None or filter(actors[i])):
-                            enemy_list[(scene.id, room.id,setup,i)] = (actors[i])
+                    filter = None
+                    if actors[i].id in enemy_filters.keys():
+                        filter = enemy_filters[actors[i].id]
+                    if(filter is None or filter(actors[i])):
+                        enemy_list[(scene.id, room.id,setup,i)] = (actors[i])
     return enemy_list
 
 def set_enemies(worlds: list[World]):
@@ -56,21 +57,15 @@ def shuffle_enemies(worlds: list[World]):
 def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int | EnemyLocation]) -> dict[tuple[int,int,int,int], tuple[int,bool]]:
     to_shuffle = enemy_list.copy()
 
-    shuffled: dict[tuple[int,int,int,int], tuple[int,bool]] = {}
+    shuffled: dict[tuple[int,int,int,int], tuple[Enemy,bool]] = {}
     # Handle plandoed enemies
     for plando_enemy_key, enemy_name in world.distribution.enemies.items():
-        enemy_id = enemies_by_name[enemy_name]
-        enemy = enemy_actor_types[enemy_id]
-        if type(enemy) is EnemyWithOpts:
-            for opt in enemy.enemyOpts:
-                if opt.name == enemy_name:
-                    enemy = opt
-                    break
-
-        shuffled[plando_enemy_key] = (enemy_id, enemy, True)
+        enemy = enemies_by_name[enemy_name]
+        
+        shuffled[plando_enemy_key] = (enemy, True)
         del to_shuffle[plando_enemy_key]
     
-    enemy_choices = list(enemy_actor_types.keys())
+
     if world.settings.enemizer == 'on':
         for enemy_key in to_shuffle:
             enemy_type = to_shuffle[enemy_key]
@@ -85,11 +80,10 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
                 meets_enemy_restrictions = []
                 disallowed_enemies = []
             enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies))
-            choice = random.choice(enemy_choices)
-            enemy = enemy_actor_types[choice]
-            if type(enemy) is EnemyWithOpts:
-                enemy = random.choice(enemy.enemyOpts)
-            shuffled[enemy_key] = (choice, enemy, True)
+            weights = [enemy.weight for enemy in enemy_choices]
+            enemy = random.choices(enemy_choices, weights=weights)[0]
+            
+            shuffled[enemy_key] = (enemy, True)
         
     return shuffled
 
@@ -99,16 +93,16 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
 # meets_enemy_restrictions - list of the enemy restrictions that the location meets. Enemies with ENEMY_RESTRICTIONs will not be allowed unless the location is tagged with that restriction
 # Disallowed enemies - list of enemy actor ID's to explicitly exclude from a location
 def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions: list[LOCATION_RESTRICTION], meets_enemy_restrictions: list[ENEMY_RESTRICTION], disallowed_enemies: list[int]):
-    restricted_enemy_actor_types: dict[int,Enemy] = {}
-    for enemy_id in enemy_actor_types:
-        enemy = enemy_actor_types[enemy_id]
+    #restricted_enemy_actor_types: dict[int,Enemy] = {}
+    restricted_enemy_actor_types: list[Enemy] = []
+    for enemy in enemy_actor_types:
         meets_restrictions = True
         for restriction in restrictions:
             if restriction not in enemy.categories:
                 meets_restrictions = False
                 break
         for disallowed in disallowed_enemies:
-            if enemy_id == disallowed:
+            if enemy.id == disallowed:
                 meets_restrictions = False
                 break
         for required_category in enemy.required_categories:
@@ -116,10 +110,10 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
                 meets_restrictions = False
                 break
         if meets_restrictions:
-            restricted_enemy_actor_types[enemy_id] = enemy
+            restricted_enemy_actor_types.append(enemy)
     return restricted_enemy_actor_types
 
-def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[int,Enemy, bool]], rom: Rom, scene_data: list[Scene], enemizer_on: bool):
+def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[Enemy, bool]], rom: Rom, scene_data: list[Scene], enemizer_on: bool):
     
     switch_flags_table = []
     if enemizer_on:
@@ -132,13 +126,13 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                 else:
                     keys.append(base_enemy_alts[enemy_key])
             for key in keys:
-                enemy_id, enemy, shuffled = shuffled_enemies[enemy_key]
+                enemy, shuffled = shuffled_enemies[enemy_key]
                 if key in enemy_list.keys():
                     enemy_actor = enemy_list[key]
-                    if shuffled:
+                    if shuffled and enemy_actor.id != 0xFFFF:
                         enemy_actor.rot_x = 0
                         enemy_actor.rot_z = 0
-                        enemy_actor.id = enemy_id
+                        enemy_actor.id = enemy.id
                         enemy_actor.var = enemy.var
                         if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                             if world.enemy_list[key].patch_func:

@@ -19,6 +19,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [Enemy Shuffle Changelog](#enemy_shuffle_changelog)
+  * [v123](#v123)
   * [v122](#v122)
 
 * [RealRob's Changelog](#realrob-changelog)
@@ -145,6 +146,14 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v123
+  * Force enemies to spawn on ground.
+  * Reenable Deku Babas
+  * Add outdoor requirement for flying peahats
+  * Add enemy probability weights
+  * Fix Dodongo's Cavern lizalfos room doors
+
+### v122
   * Fix to prevent Bari from always falling through the floor
 
 ## RealRob Changelog

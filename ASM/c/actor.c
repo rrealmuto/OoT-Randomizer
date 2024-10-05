@@ -17,6 +17,7 @@
 #include "item_table.h"
 #include "enemy_spawn_shuffle.h"
 #include "minimap.h"
+#include "bg_check.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -461,6 +462,7 @@ bool is_enemy(ActorEntry* actorEntry) {
 int enemy_spawn_index = 0;
 
 uint8_t CFG_RANDOM_ENEMY_SPAWNS = 0;
+uint8_t CFG_ENEMIZER = 0;
 
 bool check_enemizer_sequence(z64_game_t* globalCtx) {
     return !(globalCtx->common.input[0].raw.pad.b && 
@@ -476,6 +478,37 @@ bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool
         actorEntry->id = enemy_list[index].id;
         actorEntry->params = enemy_list[index].var;
         *overridden = true;
+    }
+
+    if(CFG_ENEMIZER && is_enemy(actorEntry)) {
+        
+        // Raycast Down enemies that need to spawn on the floor
+        CollisionPoly floorPoly;
+        z64_xyzf_t spawnPos = {
+            .x = (float)actorEntry->pos.x,
+            .y = (float)actorEntry->pos.y + 2.0, // Slight increment y for enemies that are already on the ground
+            .z = (float)actorEntry->pos.z
+        };
+        float floorY = BgCheck_AnyRaycastDown1(&globalCtx->colChkCtx, &floorPoly, &spawnPos);
+        float waterY = spawnPos.y;
+        WaterBox* waterBox;
+        // Check if the water surface is higher than the floor, and if the actor is not spawned inside the water
+        if(WaterBox_GetSurface1(globalCtx, &globalCtx->colChkCtx, spawnPos.x, spawnPos.z, &waterY, & waterBox) && (waterY > floorY) && (waterY <= spawnPos.y)) {
+            // Spawn the enemy on the water's surface
+            floorY = waterY;
+        }
+        if(floorY != BGCHECK_Y_MIN) {
+            actorEntry->pos.y = (int16_t)floorY;
+        }
+
+        // Hard-coded check for DC lizalfos fight
+        if((globalCtx->scene_index == 0x01) && (globalCtx->room_ctx.curRoom.num == 3)) {
+            // Check player height against this actor
+            z64_actor_t* player = globalCtx->actor_list[ACTORCAT_PLAYER].first;
+            if(ABS(player->pos_world.y - (float)actorEntry->pos.y) > 100.0) {
+                return false; // Don't continue spawning the enemy because it's from the other entrance
+            }
+        }
     }
     return true;
 }

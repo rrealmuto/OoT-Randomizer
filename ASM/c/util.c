@@ -59,6 +59,14 @@ void file_init(file_t* file) {
     read_file(file->buf, file->vrom_start, file->size);
 }
 
+void* resolve_actor_overlay_addr(void* addr, z64_actor_t* actor) {
+    ActorOverlay* overlay = actor->overlay_entry;
+    if (overlay->loadedRamAddr) {
+        return addr - overlay->vramStart + overlay->loadedRamAddr;
+    }
+    return NULL;
+}
+
 void* resolve_overlay_addr(void* addr, uint16_t overlay_id) {
     ActorOverlay overlay = gActorOverlayTable[overlay_id];
     if (overlay.loadedRamAddr) {

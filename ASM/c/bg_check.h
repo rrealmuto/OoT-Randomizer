@@ -8,6 +8,13 @@
 struct z64_actor_t;
 
 #define BG_ACTOR_MAX 50
+#define BGACTOR_NEG_ONE -1
+#define BGCHECK_SCENE BG_ACTOR_MAX
+#define BGCHECK_Y_MIN -32000.0f
+#define BGCHECK_XYZ_ABSMAX 32760.0f
+#define BGCHECK_SUBDIV_OVERLAP 50
+#define BGCHECK_SUBDIV_MIN 150.0f
+
 
 typedef struct ScaleRotPos {
     /* 0x00 */ z64_xyzf_t scale;
@@ -139,7 +146,13 @@ typedef struct CollisionContext {
     /* 0x1460 */ uint32_t memSize; // Size of all allocated memory plus CollisionContext
 } CollisionContext; // size = 0x1464
 
+struct z64_game_t;
 
+extern float BgCheck_EntityRaycastDown1(CollisionContext* colCtx, CollisionPoly** outGroundPoly, z64_xyzf_t* pos);
+extern float BgCheck_EntityRaycastDown2(struct z64_game_t* globalCtx, CollisionContext* colCtx, CollisionPoly** outGroundPoly, z64_xyzf_t* pos);
+extern float BgCheck_EntityRaycastDown3(CollisionContext* colCtx, CollisionPoly** outGroundPoly, int32_t* bgId, z64_xyzf_t* pos);
 extern float BgCheck_EntityRaycastDown4(CollisionContext* colCtx, CollisionPoly** outGroundPoly, int32_t* bgId, struct z64_actor_t* actor, z64_xyzf_t* pos);
-
+extern float BgCheck_EntityRaycastDown5(struct z64_game_t* globalCtx, CollisionContext* colCtx, CollisionPoly** outGroundPoly, int32_t* bgId, struct z64_actor_t* actor, z64_xyzf_t* pos);
+extern float BgCheck_AnyRaycastDown1(CollisionContext* colCtx, CollisionPoly* outGroundPoly, z64_xyzf_t* pos);
+extern int32_t WaterBox_GetSurface1(struct z64_game_t* globalCtx, CollisionContext* colCtx, float x, float z, float* ySurface, WaterBox** outWaterBox);
 #endif
