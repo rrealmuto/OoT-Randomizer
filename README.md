@@ -118,6 +118,10 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * New setting to speed up the boat ride in the Shadow Temple.
 * New `Require Lens of Truth for Treasure Chest Game` setting.
 
+#### Bug fixes
+
+* Ocarina buttons required to play the Song of Time are now part of the `path of time` goal.
+
 #### Other Changes
 * Now supports custom music written for the Majora's Mask Randomizer.
 * New Magic Meter item model to allow magic drops to be shuffled in the future.
