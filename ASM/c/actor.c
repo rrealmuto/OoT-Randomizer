@@ -484,12 +484,13 @@ bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool
         
         // Raycast Down enemies that need to spawn on the floor
         CollisionPoly floorPoly;
+        CollisionPoly* pFloorPoly = &floorPoly;
         z64_xyzf_t spawnPos = {
             .x = (float)actorEntry->pos.x,
             .y = (float)actorEntry->pos.y + 2.0, // Slight increment y for enemies that are already on the ground
             .z = (float)actorEntry->pos.z
         };
-        float floorY = BgCheck_AnyRaycastDown1(&globalCtx->colChkCtx, &floorPoly, &spawnPos);
+        float floorY = BgCheck_EntityRaycastDown1(&globalCtx->colChkCtx, &pFloorPoly, &spawnPos);
         float waterY = spawnPos.y;
         WaterBox* waterBox;
         // Check if the water surface is higher than the floor, and if the actor is not spawned inside the water

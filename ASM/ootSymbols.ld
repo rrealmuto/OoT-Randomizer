@@ -44,3 +44,7 @@ OVL_sEquipMoveTimer = 0x80829718;
 
 /* Door_Shutter */
 OVL_DoorShutter_BarAndWaitSwitchFlag = 0x808b8fe8;
+
+/* En_Dekubaba */
+OVL_EnDekubaba_SetupPrepareLunge = 0x808fbc50;
+OVL_EnDekubaba_SetupGrow = 0x808fb9e0;

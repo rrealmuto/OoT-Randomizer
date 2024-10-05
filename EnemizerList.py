@@ -1278,7 +1278,7 @@ enemy_actor_types: list[Enemy] = {
     Enemy("Torch Slug", id=0x0038),
     Enemy("Moblin", id=0x004B, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Armos", id=0x0054, var = 0xFFFF, kill_logic='can_kill_armos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
+    Enemy("Deku Baba", id=0x0055,weight=100, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
     #Enemy("Whithered Deku Baba", id=0x00C7, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
     Enemy("Deku Scrub", id=0x0060, kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     Enemy("Bubble", id=0x0069, var=0xFFFF, kill_logic='can_kill_bubble'),
