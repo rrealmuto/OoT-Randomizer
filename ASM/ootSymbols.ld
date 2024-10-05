@@ -12,7 +12,7 @@ z64_SfxDefaultReverb = 0x801043A8;
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
 Actor_WorldDistXZToPoint = 0x80021528;
-
+BgCheck_EntityRaycastDown4 = 0x8002F4B8;
 
 /* Overlay symbols */
 

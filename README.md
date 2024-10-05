@@ -18,6 +18,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 
 ## Index
 
+* [Enemy Shuffle Changelog](#enemy_shuffle_changelog)
+  * [v122](#v122)
+
 * [RealRob's Changelog](#realrob-changelog)
   * [v117](#v117)
   * [v116](#v116)
@@ -140,6 +143,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [5.1](#51)
   * [5.0](#50)
   * [4.0](#40)
+
+# Enemy Shuffle Changelog
+  * Fix to prevent Bari from always falling through the floor
 
 ## RealRob Changelog
 ### v117

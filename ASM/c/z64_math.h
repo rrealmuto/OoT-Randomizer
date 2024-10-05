@@ -10,6 +10,13 @@ typedef struct z64_xyz_t
   int16_t z;
 } z64_xyz_t;
 
+typedef struct z64_xyz_s32_t
+{
+  int32_t x;
+  int32_t y;
+  int32_t z;
+} z64_xyz_s32_t;
+
 typedef struct z64_xyzf_t
 {
   float x;
@@ -47,5 +54,11 @@ typedef union MtxF {
               xw, yw, zw, ww;
     };
 } MtxF;
+
+
+typedef struct Sphere16 {
+    z64_xyz_t center;
+    int16_t radius;
+} Sphere16; // size = 0x08
 
 #endif

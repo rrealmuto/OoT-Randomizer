@@ -5,6 +5,7 @@
 #include "z64_math.h"
 #include "color.h"
 #include "z64collision_check.h"
+#include "bg_check.h"
 #include "save.h"
 
 #define Z64_OOT10             0x00
@@ -173,32 +174,6 @@ typedef struct {
   uint16_t unk_01_;
   uint32_t seg_params; /* segment address of z64_camera_params_t */
 } z64_camera_t;
-
-typedef struct {
-  z64_xyz_t     pos;
-  int16_t       width;
-  int16_t       depth;
-  struct {
-    uint32_t    unk_00_ : 12;
-    uint32_t    active  : 1;
-    uint32_t    group   : 6; /* ? */
-    uint32_t    unk_01_ : 5;
-    uint32_t    camera  : 8;
-  } flags;
-} z64_col_water_t;
-
-typedef struct {
-  z64_xyz_t         min;
-  z64_xyz_t         max;
-  uint16_t          n_vtx;
-  z64_xyz_t        *vtx;
-  uint16_t          n_poly;
-  z64_col_poly_t   *poly;
-  z64_col_type_t   *type;
-  z64_camera_t     *camera;
-  uint16_t          n_water;
-  z64_col_water_t  *water;
-} z64_col_hdr_t;
 
 typedef enum {
   Z64_ITEM_NULL = -1,
@@ -1650,7 +1625,7 @@ typedef struct {
   char             unk_07_[0x0010];        /* 0x00798 */
   z64_lighting_t   lighting;               /* 0x007A8 */
   char             unk_08_[0x0008];        /* 0x007B8 */
-  z64_col_hdr_t   *col_hdr;                /* 0x007C0 */
+  CollisionContext *col_hdr;                /* 0x007C0 */
   char             unk_09_[0x1460];        /* 0x007C4 */
   z64_actor_ctxt_t actor_ctxt;             /* 0x01C24 */
   uint8_t          n_actors_loaded;        /* 0x01C2C */

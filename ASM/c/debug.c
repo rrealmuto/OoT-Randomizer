@@ -833,7 +833,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                                     decimal_to_hex(overlay_id, idActor);
                                     text_print_size(db, idActor, left + 5, top + 5, font_width, font_height);
                                     char ramStartOverlay[10];
-                                    uint32_t numberToConvert = (uintptr_t)overlay.vramStart;
+                                    uint32_t numberToConvert = (uintptr_t)overlay.loadedRamAddr;
                                     decimal_to_hex(numberToConvert, ramStartOverlay);
                                     text_print_size(db, ramStartOverlay, left + 10*font_width + 5, top + 5, font_width, font_height);
                                 }
