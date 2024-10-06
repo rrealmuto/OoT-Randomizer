@@ -146,6 +146,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v127
+  * Prevent flare dancers from falling out of bounds all the time
+
 ### v126
   * Add separate drop logic to enemy list
 

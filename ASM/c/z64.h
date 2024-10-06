@@ -2715,5 +2715,6 @@ extern uintptr_t z64_segments[16];
 extern void Fault_AddHungupAndCrashImpl(const char* msg1, const char* msg2);
 extern int32_t sprintf(char* dst, char* fmt, ...);
 extern int32_t Flags_GetTempClear(z64_game_t* globalCtx, int32_t flag);
+void Actor_UpdateBgCheckInfo(z64_game_t* play, z64_actor_t* actor, float wallCheckHeight, float wallCheckRadius, float ceilingCheckHeight, int32_t flags);
 
 #endif

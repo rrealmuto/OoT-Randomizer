@@ -92,6 +92,15 @@
 //
 #define ACTOR_FLAG_28 (1 << 28)
 
+#define UPDBGCHECKINFO_FLAG_0 (1 << 0) // check wall
+#define UPDBGCHECKINFO_FLAG_1 (1 << 1) // check ceiling
+#define UPDBGCHECKINFO_FLAG_2 (1 << 2) // check floor and water
+#define UPDBGCHECKINFO_FLAG_3 (1 << 3)
+#define UPDBGCHECKINFO_FLAG_4 (1 << 4)
+#define UPDBGCHECKINFO_FLAG_5 (1 << 5) // unused
+#define UPDBGCHECKINFO_FLAG_6 (1 << 6) // disable water ripples
+#define UPDBGCHECKINFO_FLAG_7 (1 << 7) // alternate wall check?
+
 typedef enum {
     #include "actor_table.h"
     /* 0x0192 */ ACTOR_ID_MAX // originally "ACTOR_DLF_MAX"
@@ -104,6 +113,11 @@ typedef struct {
     /* 0x02 */ xflag_t flag;
     /* 0x04 */ uint8_t minimap_draw_flags;
 } ActorAdditionalData;
+
+typedef struct enemy_list_entry_t {
+    int16_t id;
+    uint16_t var;
+} enemy_list_entry_t;
 
 void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game);
 void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index);

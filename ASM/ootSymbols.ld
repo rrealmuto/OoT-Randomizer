@@ -20,6 +20,7 @@ BgCheck_EntityRaycastDown5 = 0x8002f520;
 BgCheck_AnyRaycastDown1 = 0x8002f644;
 WaterBox_GetSurface1 = 0x800347fc;
 Flags_GetTempClear = 0x80020694;
+Actor_UpdateBgCheckInfo = 0x80021e6c;
 
 /* Overlay symbols */
 
@@ -48,3 +49,6 @@ OVL_DoorShutter_BarAndWaitSwitchFlag = 0x808b8fe8;
 /* En_Dekubaba */
 OVL_EnDekubaba_SetupPrepareLunge = 0x808fbc50;
 OVL_EnDekubaba_SetupGrow = 0x808fb9e0;
+
+/* En_Fd */
+OVL_EnFd_Update = 0x80956378;

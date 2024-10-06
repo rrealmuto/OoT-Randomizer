@@ -18,6 +18,7 @@
 #include "enemy_spawn_shuffle.h"
 #include "minimap.h"
 #include "bg_check.h"
+#include "en_encount1.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -397,8 +398,13 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
 
     continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
 
+    /*if(continue_spawn) {
+        bool overridden = false;
+        continue_spawn = spawn_override_enemizer(&entry, globalCtx, &overridden);
+    }*/
+
     if (continue_spawn) {
-        z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+        z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, entry.id,(float)entry.pos.x, (float)entry.pos.y, (float)entry.pos.z, entry.rot.x, entry.rot.y, entry.rot.z, entry.params);
         if (spawned) {
             if (spawn_actor_with_flag) {
                 Actor_StoreFlag(spawned, globalCtx, *spawn_actor_with_flag);
@@ -418,11 +424,6 @@ z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_g
     actor_spawn_as_child_parent = NULL;
     return spawned;
 }
-
-typedef struct {
-    int16_t id;
-    uint16_t var;
-} enemy_list_entry_t;
 
 enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_TEST, 0x0003 }, //Stalfos, 0000 makes it invisible
@@ -567,6 +568,19 @@ typedef struct {
 
 kill_switch_entry KILL_SWITCH_TABLE[NUM_KILL_SWITCH_FLAGS];
 
+void Actor_Kill_UpdateSpawner(z64_actor_t* actor) {
+    // Check if this actor has a parent spawner
+    if (actor->parent != NULL && actor->parent->actor_id == ACTOR_EN_ENCOUNT1)
+    {
+        // Decrease the spawner counter
+        EnEncount1* spawner = (EnEncount1*)actor->parent;
+        if(spawner->actor.update != NULL) {
+            if(spawner->curNumSpawn > 0) {
+                spawner->curNumSpawn--;
+            }
+        }
+    }
+}
 
 // New Actor_Kill function to extend functionality
 void Actor_Kill_New(z64_actor_t* actor) {
@@ -581,6 +595,8 @@ void Actor_Kill_New(z64_actor_t* actor) {
             break;
         }
     }
+
+    //Actor_Kill_UpdateSpawner(actor);
 
     // Do what the original function does
     actor->draw = NULL;

@@ -4443,3 +4443,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/ovl_en_vali.asm"
 .include "hacks/ovl_door_shutter.asm"
 .include "hacks/ovl_en_dekubaba.asm"
+.include "hacks/ovl_en_fd.asm"
