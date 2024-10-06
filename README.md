@@ -146,6 +146,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v125
+  * Skip raycast down for certain locations
+
 ### v124
   * Make deku babas always attack
 

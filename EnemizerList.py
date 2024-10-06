@@ -19,13 +19,14 @@ class ENEMY_RESTRICTION(Enum):
 # disallowed enemies - list of enemy types to explicitly disallow
 # patch_func - function that will apply a ROM patch applicable to this location
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None, switch_flag = -1):
+    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[int] = [], patch_func = None, switch_flag = -1, skip_raycast = False):
         self.id = vanilla_id
         self.restrictions = restrictions
         self.meets_enemy_restrictions = meets_enemy_restrictions
         self.disallowed_enemies = disallowed_enemies
         self.patch_func = patch_func
         self.switch_flag = switch_flag
+        self.skip_raycast = skip_raycast
 
 # Move the SFM wolfos more towards the center, some enemies like flare dancer might jump over the fence
 def patch_func_sfm_wolfos(actor: Actor):
@@ -394,10 +395,10 @@ vanilla_dungeon_enemies = {
         (3, 15, 0, 2): 55, # Skulltula
         (3, 17, 0, 0): 55, # Skulltula
         (3, 18, 0, 0): 142, # Floormaster
-        (3, 19, 0, 0): 17, # Wallmaster
-        (3, 20, 0, 0): 105, # Bubble
-        (3, 20, 0, 1): 105, # Bubble
-        (3, 20, 0, 2): 17, # Wallmaster
+        (3, 19, 0, 0): EnemyLocation(17, skip_raycast=True), # Wallmaster
+        (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
+        (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
+        (3, 20, 0, 2): EnemyLocation(17, skip_raycast=True), # Wallmaster
         (3, 21, 0, 0): 105, # Bubble
         (3, 21, 0, 1): 105, # Bubble
     },
@@ -517,13 +518,13 @@ vanilla_dungeon_enemies = {
         (6, 1, 0, 2): 19, # Keese
         (6, 1, 0, 3): 19, # Keese
         (6, 1, 0, 4): 19, # Keese
-        (6, 2, 0, 0): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
-        (6, 2, 0, 1): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
-        (6, 2, 0, 2): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
-        (6, 2, 0, 3): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], []), # Keese
+        (6, 2, 0, 0): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], [], skip_raycast=True), # Keese
+        (6, 2, 0, 1): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], [], skip_raycast=True), # Keese
+        (6, 2, 0, 2): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], [], skip_raycast=True), # Keese
+        (6, 2, 0, 3): EnemyLocation(19, [LOCATION_RESTRICTION.FLOATING], [], skip_raycast=True), # Keese
         (6, 2, 0, 5): 19, # Keese
         (6, 2, 0, 6): 17, # Wallmaster
-        (6, 3, 0, 0): EnemyLocation(105, [LOCATION_RESTRICTION.FLOATING], []), # Bubble
+        (6, 3, 0, 0): EnemyLocation(105, [LOCATION_RESTRICTION.FLOATING], [], skip_raycast=True), # Bubble
         (6, 3, 0, 3): 2, # Stalfos
         (6, 4, 0, 0): 149, # Skullwaltula
         (6, 4, 0, 1): 149, # Skullwaltula
@@ -891,9 +892,9 @@ mq_dungeon_enemies = {
     (3, 17, 0, 0): 55, # Skulltula
     (3, 17, 0, 1): 55, # Skulltula
     (3, 18, 0, 0): 144, # Redead/Gibdo
-    (3, 19, 0, 0): 17, # Wallmaster
-    (3, 20, 0, 0): 105, # Bubble
-    (3, 20, 0, 1): 105, # Bubble
+    (3, 19, 0, 0): EnemyLocation(17, skip_raycast=True), # Wallmaster
+    (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
+    (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
     (3, 20, 0, 2): 17, # Wallmaster
     (3, 21, 0, 0): 142, # Floormaster
     },

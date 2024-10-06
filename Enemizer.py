@@ -116,6 +116,7 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
 def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[Enemy, bool]], rom: Rom, scene_data: list[Scene], enemizer_on: bool):
     
     switch_flags_table = []
+    skip_raycast_table = []
     if enemizer_on:
         for enemy_key in shuffled_enemies:
             keys = [enemy_key]
@@ -141,6 +142,8 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                         if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                             if world.enemy_list[key].switch_flag >= 0:
                                 switch_flags_table.append((key,world.enemy_list[key].switch_flag))
+                        if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation and world.enemy_list[key].skip_raycast:
+                            skip_raycast_table.append(key)
                 else:
                     print(f"Missing enemy actor {key}")
     else:
@@ -169,6 +172,21 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
         switch_flags_table_bytes.extend(switch_flag.to_bytes(1, 'big'))
         switch_flags_table_bytes.extend(bytearray([0,0,0]))
     rom.write_bytes(rom.sym('KILL_SWITCH_TABLE'), switch_flags_table_bytes)
+
+    # Write the raycast skip table
+    skip_raycast_table_bytes = bytearray()
+    for flag in skip_raycast_table:
+        scene, room, setup, id = flag
+        id += 1
+        subflag = 0
+        if scene == 0x3E: # handle grottos separately...
+            default = ((setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((id & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
+        else:
+            default = (setup << 22) + (room << 16) + (id << 8) + (subflag)
+        skip_raycast_table_bytes.extend(scene.to_bytes(1, 'big'))
+        skip_raycast_table_bytes.extend(bytearray([0,0,0]))
+        skip_raycast_table_bytes.extend(default.to_bytes(4, 'big'))
+    rom.write_bytes(rom.sym('SKIP_RAYCAST_TABLE'), skip_raycast_table_bytes)
 
 # Nabooru knuckle enemizer patch function
 # Patch the door to work on room clear instead of switch flag

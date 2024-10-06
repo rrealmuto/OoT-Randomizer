@@ -58,9 +58,26 @@ void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
     return (addr - actor->overlay_entry->vramStart + actor->overlay_entry->loadedRamAddr);
 }
 
+// Build an xflag from scene/room/setup/index/subflag
+void BuildFlag(z64_game_t* globalCtx, xflag_t* flag, uint8_t index, uint8_t subflag){
+    flag->scene = globalCtx->scene_index;
+    if (globalCtx->scene_index == 0x3E) {
+        flag->grotto.room = globalCtx->room_ctx.curRoom.num;
+        flag->grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
+        flag->grotto.flag = index;
+        flag->grotto.subflag = subflag;
+    } else {
+        flag->room = globalCtx->room_ctx.curRoom.num;
+        flag->setup = curr_scene_setup;
+        flag->flag = index;
+        flag->subflag = subflag;
+    }
+}
+
 // Build an xflag from actor ID and subflag
 // Store the flag using the pointer
 void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
+    
     flag->scene = z64_game.scene_index;
     if (z64_game.scene_index == 0x3E) {
         flag->grotto.room = actor->room_index;
@@ -74,6 +91,7 @@ void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, ui
         flag->subflag = subflag;
     }
 }
+
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
 // Prior to being called, CURR_ACTOR_SPAWN_INDEX is set to the current position in the actor spawn list.
@@ -471,6 +489,21 @@ bool check_enemizer_sequence(z64_game_t* globalCtx) {
                 globalCtx->common.input[0].raw.pad.z);
 }
 
+
+#define NUM_SKIP_RAYCAST 50
+xflag_t SKIP_RAYCAST_TABLE[NUM_SKIP_RAYCAST];
+
+bool should_raycast(xflag_t* flag) {
+    for(int i = 0; i < NUM_SKIP_RAYCAST; i++) {
+        if(SKIP_RAYCAST_TABLE[i].all == 0) {
+            break;
+        }
+        if(SKIP_RAYCAST_TABLE[i].all == flag->all)
+            return false;
+    }
+    return true;
+}
+
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
     if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry) && check_enemizer_sequence(globalCtx)) {
         int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
@@ -481,27 +514,30 @@ bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool
     }
 
     if(CFG_ENEMIZER && is_enemy(actorEntry)) {
+        xflag_t flag = {0};
+        BuildFlag(globalCtx, &flag, CURR_ACTOR_SPAWN_INDEX, 0);
+        if(should_raycast(&flag)) {
+            // Raycast Down enemies that need to spawn on the floor
+            CollisionPoly floorPoly;
+            CollisionPoly* pFloorPoly = &floorPoly;
+            z64_xyzf_t spawnPos = {
+                .x = (float)actorEntry->pos.x,
+                .y = (float)actorEntry->pos.y + 2.0, // Slight increment y for enemies that are already on the ground
+                .z = (float)actorEntry->pos.z
+            };
+            float floorY = BgCheck_EntityRaycastDown1(&globalCtx->colChkCtx, &pFloorPoly, &spawnPos);
+            float waterY = spawnPos.y;
+            WaterBox* waterBox;
+            // Check if the water surface is higher than the floor, and if the actor is not spawned inside the water
+            if(WaterBox_GetSurface1(globalCtx, &globalCtx->colChkCtx, spawnPos.x, spawnPos.z, &waterY, & waterBox) && (waterY > floorY) && (waterY <= spawnPos.y)) {
+                // Spawn the enemy on the water's surface
+                floorY = waterY;
+            }
+            if(floorY != BGCHECK_Y_MIN) {
+                actorEntry->pos.y = (int16_t)floorY;
+            }
+        }
         
-        // Raycast Down enemies that need to spawn on the floor
-        CollisionPoly floorPoly;
-        CollisionPoly* pFloorPoly = &floorPoly;
-        z64_xyzf_t spawnPos = {
-            .x = (float)actorEntry->pos.x,
-            .y = (float)actorEntry->pos.y + 2.0, // Slight increment y for enemies that are already on the ground
-            .z = (float)actorEntry->pos.z
-        };
-        float floorY = BgCheck_EntityRaycastDown1(&globalCtx->colChkCtx, &pFloorPoly, &spawnPos);
-        float waterY = spawnPos.y;
-        WaterBox* waterBox;
-        // Check if the water surface is higher than the floor, and if the actor is not spawned inside the water
-        if(WaterBox_GetSurface1(globalCtx, &globalCtx->colChkCtx, spawnPos.x, spawnPos.z, &waterY, & waterBox) && (waterY > floorY) && (waterY <= spawnPos.y)) {
-            // Spawn the enemy on the water's surface
-            floorY = waterY;
-        }
-        if(floorY != BGCHECK_Y_MIN) {
-            actorEntry->pos.y = (int16_t)floorY;
-        }
-
         // Hard-coded check for DC lizalfos fight
         if((globalCtx->scene_index == 0x01) && (globalCtx->room_ctx.curRoom.num == 3)) {
             // Check player height against this actor
@@ -530,6 +566,7 @@ typedef struct {
 } kill_switch_entry;
 
 kill_switch_entry KILL_SWITCH_TABLE[NUM_KILL_SWITCH_FLAGS];
+
 
 // New Actor_Kill function to extend functionality
 void Actor_Kill_New(z64_actor_t* actor) {
