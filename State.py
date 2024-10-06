@@ -236,7 +236,7 @@ class State:
         index -= 1 # Keys from LocationList are 1-indexed so subtract 1
         # Get the enemy type for this location
         
-        return self.can_kill(scene,room,setup,index, **kwargs)
+        return self.can_kill_with_drop(scene,room,setup,index, **kwargs)
     
     def enemy_type_at(self, location_name:str, **kwargs):
         spot = LocationFactory(location_name)
@@ -246,6 +246,18 @@ class State:
         enemies = self.world.enemies_by_scene[scene][room][setup]
         enemy_obj, shuffled = enemies[scene,room,setup,index]
         return enemy_obj.name
+
+    def can_kill_with_drop(self, scene, room, setup, index, **kwargs) -> bool:
+        enemies = self.world.enemies_by_scene[scene][room][setup]
+        enemy_obj, shuffled = enemies[scene,room,setup,index]
+        # Check soul for this enemy
+        has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
+    
+        # TODO Build an ID -> Defeatibility check mapping
+        # Check defeatibility
+        can_kill = self.world.parser.parse_rule(enemy_obj.drop_logic)(self, **kwargs)
+
+        return has_soul and can_kill
 
     # Logic helper for determining if an enemy at a particular spot can be killed. Used when logic for one spot depends on killing a specific enemy
     def can_kill(self, scene,room,setup,index, **kwargs) -> bool:

@@ -1220,7 +1220,7 @@ named_rooms: dict[str, tuple[int,int]] = {
 }
 
 class Enemy:
-    def __init__(self, name: str, id:int, var: int = 0, weight=1, filter_func = None, kill_logic: str = 'worst_case_kill_logic', soul_name = None, categories: list[int] = [], required_categories: list[int] = []):
+    def __init__(self, name: str, id:int, var: int = 0, weight=1, filter_func = None, kill_logic: str = 'worst_case_kill_logic', drop_logic = None, soul_name = None, categories: list[int] = [], required_categories: list[int] = []):
         self.name = name
         self.id = id
         self.var = var
@@ -1229,6 +1229,7 @@ class Enemy:
         self.categories = categories
         self.required_categories = required_categories
         self.weight = weight
+        self.drop_logic = drop_logic if drop_logic is not None else self.kill_logic
         if soul_name:
             self.soul_name = soul_name
         else:
@@ -1279,7 +1280,7 @@ enemy_actor_types: list[Enemy] = {
     Enemy("Torch Slug", id=0x0038),
     Enemy("Moblin", id=0x004B, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Armos", id=0x0054, var = 0xFFFF, kill_logic='can_kill_armos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
+    Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer', drop_logic='can_kill_deku_baba'),
     #Enemy("Whithered Deku Baba", id=0x00C7, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
     Enemy("Deku Scrub", id=0x0060, kill_logic='can_kill_scrub', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     Enemy("Bubble", id=0x0069, var=0xFFFF, kill_logic='can_kill_bubble'),
