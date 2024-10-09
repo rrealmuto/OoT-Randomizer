@@ -117,6 +117,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * New hidden `plandomized_locations` setting to allow presets to place specific items at specific locations.
 * New setting to speed up the boat ride in the Shadow Temple.
 * New `Require Lens of Truth for Treasure Chest Game` setting.
+* The cutscene that plays when Morpha is defeated has been shortened from around 30 seconds to around 5 seconds.
 
 #### Bug fixes
 
