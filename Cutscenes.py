@@ -473,7 +473,7 @@ def patch_cutscenes(rom: Rom, songs_as_items: bool, settings: Settings) -> None:
     # Remove the Navi textbox at the start of state 28 ("This time, we fight together!).
     rom.write_int16(0xE84C80, 0x1000)
 
-def patch_wondertalk2(rom: Rom) -> None:
+def patch_wondertalk2(rom: Rom, settings: Settings) -> None:
     # Wonder_talk2 is an actor that displays a textbox when near a certain spot, either automatically or by pressing A (button turns to Check).
     # We remove them by moving their Y coordinate far below their normal spot.
     wonder_talk2_y_coordinates = [
@@ -497,3 +497,9 @@ def patch_wondertalk2(rom: Rom) -> None:
     ]
     for address in wonder_talk2_y_coordinates:
         rom.write_byte(address, 0xFB)
+
+    if 'frogs2' in settings.misc_hints:
+        # Prevent setting the replaced textbox flag so that the hint is easily repeatible by walking over the spot again.
+        # And move the hint spot down the log so that it doesn't pop every time a song is played, and let some room to do ocarina item glitch.
+        rom.write_int16s(0x2059412, [0x03C0, 0x00E2, 0xFAA6]) # Move coordinates. Original value : 1000, 205, -1202. New value : 960, 226, -1370.
+        rom.write_byte(0x205941F, 0xBF) # Never set the flag.
