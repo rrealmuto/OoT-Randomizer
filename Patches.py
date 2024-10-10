@@ -453,7 +453,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 0x01)
 
     patch_cutscenes(rom, songs_as_items, world.settings)
-    patch_wondertalk2(rom)
+    patch_wondertalk2(rom, world.settings)
 
     # Speed Pushing of All Pushable Objects (other than armos statues, which are handled in ASM)
     rom.write_bytes(0xDD2B86, [0x40, 0x80])  # block speed

@@ -122,6 +122,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 #### Bug fixes
 
 * Ocarina buttons required to play the Song of Time are now part of the `path of time` goal.
+* The `Frogs Ocarina Game` misc. hint text box has been moved slightly so it no longer requires reloading the area to reread.
 
 #### Other Changes
 * Now supports custom music written for the Majora's Mask Randomizer.
