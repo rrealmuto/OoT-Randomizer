@@ -146,6 +146,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v128
+  * Realign .rodata section to hopefully fix N64 console crashes
+
 ### v127
   * Prevent flare dancers from falling out of bounds all the time
 
