@@ -3,7 +3,7 @@ SECTIONS
     /* Allocatable and important sections */
     .text   : { *(.text*);   }
     test_sym = .;
-    .rodata : SUBALIGN(8){ *(.rodata*); }
+    .rodata : { *(.rodata*); }
 
     /*
      * Put the NOLOAD sections (bss, sbss, etc) into data to
