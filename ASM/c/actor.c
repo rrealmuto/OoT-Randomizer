@@ -78,7 +78,7 @@ void BuildFlag(z64_game_t* globalCtx, xflag_t* flag, uint8_t index, uint8_t subf
 // Build an xflag from actor ID and subflag
 // Store the flag using the pointer
 void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
-    
+
     flag->scene = z64_game.scene_index;
     if (z64_game.scene_index == 0x3E) {
         flag->grotto.room = actor->room_index;
@@ -253,12 +253,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     if (continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
-    
+
     if(continue_spawn)
     {
         continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
     }
-    
+
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -425,55 +425,81 @@ z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_g
     return spawned;
 }
 
+bool filter_skullwalltula(ActorEntry* actorEntry) {
+    // Filter gold skulltulas, type == 4 or type == 5
+    uint16_t type = (actorEntry->params & 0xE000) >> 13;
+    return !((type == 4) || (type == 5));
+}
+
+bool filter_armos(ActorEntry* actorEntry) {
+    // Filter armos, var == 0 is a pushable statue so we don't want to filter these
+    return actorEntry->params != 0;
+}
+
+bool filter_skullkids(ActorEntry* actorEntry) {
+    // Filter skull kids, type <= 6 are the ocarina game ones
+    uint16_t type = (actorEntry->params >> 0x0A) & 0x3F;
+    return type > 6;
+}
+
+
 enemy_list_entry_t enemy_list[] = {
-    { ACTOR_EN_TEST, 0x0003 }, //Stalfos, 0000 makes it invisible
-//    { ACTOR_EN_ANUBICE, 0x0000 }, // don't really work by themselves. maybe use spawner
-    { ACTOR_EN_BB, 0xFFFF }, // Probably make it so it can pick between green/white/blue/fire?
-    { ACTOR_EN_BILI, 0x0000 },
-    { ACTOR_EN_VALI, 0x0000 },
-    { ACTOR_EN_BUBBLE, 0x0000 },
-    { ACTOR_EN_CROW, 0x0000 },
-    { ACTOR_EN_DEKUBABA, 0x0000 },
-    { ACTOR_EN_DODOJR, 0x0000 },
-    { ACTOR_EN_DODONGO, 0x0000 },
-    { ACTOR_EN_FIREFLY, 0x0000 },
-    { ACTOR_EN_FIREFLY, 0x0002 },
-    { ACTOR_EN_FIREFLY, 0x0004 },
-    { ACTOR_EN_FLOORMAS, 0x0000 },
-    { ACTOR_EN_WALLMAS, 0x0000 },
-    { ACTOR_EN_PEEHAT, 0xFFFF },
-    { ACTOR_EN_MB, 0x0000 },
-    { ACTOR_EN_IK, 0xFF82 }, // Maybe random white/black. 0x0000 is nabooru which crashes
-    { ACTOR_EN_IK, 0xFF83 }, // Maybe random white/black. 0x0000 is nabooru which crashes
-    { ACTOR_EN_SKJ, 0xFFFF }, //Always backflips away
-    //{ ACTOR_EN_TUBO_TRAP, 0x0000 },
-    { ACTOR_EN_GOMA, 0x0006},
-    { ACTOR_EN_POH, 0x0000 },
-    { ACTOR_EN_TITE, 0x0000 },
-    { ACTOR_EN_ZF, 0xFF80 }, // maybe also pick dinalfos
-    { ACTOR_EN_ZF, 0xFFFE }, // maybe also pick dinalfos
-    { ACTOR_EN_TP, 0xFFFF }, // Crashes on death?? not really. Definitely screws up drawing.
-    { ACTOR_EN_ST, 0x0000 },
-    { ACTOR_EN_BW, 0x0000 },
-    { ACTOR_EN_AM, 0xFFFF },
-    { ACTOR_EN_DEKUNUTS, 0x0000 },
-    { ACTOR_EN_VM, 0x0500 },
-    { ACTOR_EN_RD, 0x0000 },
-    { ACTOR_EN_FD, 0x0000 },
-    { ACTOR_EN_SB, 0x0000 },
-    { ACTOR_EN_NY, 0x0000 },
-    { ACTOR_EN_FZ, 0x0000 },
-    { ACTOR_EN_EIYER, 0x000A }, // This is the ring of 4 from jabu. Maybe just use one.
-    { ACTOR_EN_WF, 0xFF00 },
-    { ACTOR_EN_RR, 0x0000},
-    { ACTOR_EN_REEBA, 0x0000},
-    { ACTOR_EN_SKB, 0x0000}
+    { ACTOR_EN_TEST, 0x0003, NULL }, //Stalfos, 0000 makes it invisible
+//    { ACTOR_EN_ANUBICE, NULL, 0x0000 }, // don't really work by themselves. maybe use spawner
+    { ACTOR_EN_ANUBICE_TAG, 0x0003, NULL},
+    { ACTOR_EN_BB, 0xFFFF, NULL }, // Probably make it so it can pick between green/white/blue/fire?
+    { ACTOR_EN_BILI, 0x0000, NULL },
+    { ACTOR_EN_VALI, 0x0000, NULL },
+    { ACTOR_EN_BUBBLE, 0x0000, NULL },
+    { ACTOR_EN_CROW, 0x0000, NULL },
+    { ACTOR_EN_DEKUBABA, 0x0000, NULL },
+    { ACTOR_EN_DODOJR, 0x0000, NULL },
+    { ACTOR_EN_DODONGO, 0x0000, NULL },
+    { ACTOR_EN_FIREFLY, 0x0000, NULL },
+    { ACTOR_EN_FIREFLY, 0x0002, NULL },
+    { ACTOR_EN_FIREFLY, 0x0004, NULL },
+    { ACTOR_EN_FLOORMAS, 0x0000, NULL },
+    { ACTOR_EN_WALLMAS, 0x0000, NULL },
+    { ACTOR_EN_PEEHAT, 0xFFFF, NULL },
+    { ACTOR_EN_MB, 0x0002, NULL },
+    { ACTOR_EN_MB, 0xFFFF, NULL },
+    { ACTOR_EN_IK, 0xFF82, NULL }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_IK, 0xFF83, NULL }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_SKJ, 0xFFFF, filter_skullkids }, //Always backflips away
+    //{ ACTOR_EN_TUBO_TRAP, 0x0000, NULL },
+    { ACTOR_EN_GOMA, 0x0006, NULL},
+    { ACTOR_EN_POH, 0x0000, NULL },
+    { ACTOR_EN_TITE, 0x0000, NULL },
+    { ACTOR_EN_ZF, 0xFF80, NULL }, // maybe also pick dinalfos
+    { ACTOR_EN_ZF, 0xFFFE, NULL }, // maybe also pick dinalfos
+    { ACTOR_EN_TP, 0xFFFF, NULL }, // Crashes on death?? not really. Definitely screws up drawing.
+    { ACTOR_EN_ST, 0x0000, NULL },
+    { ACTOR_EN_BW, 0x0000, NULL },
+    { ACTOR_EN_AM, 0xFFFF, filter_armos },
+    { ACTOR_EN_DEKUNUTS, 0x0000, NULL },
+    { ACTOR_EN_VM, 0x0500, NULL },
+    { ACTOR_EN_RD, 0x7F02, NULL },
+    { ACTOR_EN_RD, 0x7FFE, NULL },
+    { ACTOR_EN_FD, 0x0000, NULL },
+    { ACTOR_EN_SB, 0x0000, NULL },
+    { ACTOR_EN_NY, 0x0000, NULL },
+    { ACTOR_EN_FZ, 0x0000, NULL },
+    { ACTOR_EN_EIYER, 0x000A, NULL }, // This is the ring of 4 from jabu. Maybe just use one.
+    { ACTOR_EN_WF, 0xFF00, NULL },
+    { ACTOR_EN_RR, 0x0000, NULL},
+    { ACTOR_EN_REEBA, 0x0000, NULL},
+    { ACTOR_EN_SKB, 0x0000, NULL},
+    { ACTOR_EN_SW, 0x0000, filter_skullwalltula }
 };
 
 bool is_enemy(ActorEntry* actorEntry) {
     for(int i = 0; i < array_size(enemy_list); i++) {
-        if(enemy_list[i].id == actorEntry->id)
+        if(enemy_list[i].id == actorEntry->id) {
+            if (enemy_list[i].filter != NULL) {
+                return enemy_list[i].filter(actorEntry);
+            }
             return true;
+        }
     }
     return false;
 }
@@ -484,9 +510,9 @@ uint8_t CFG_RANDOM_ENEMY_SPAWNS = 0;
 uint8_t CFG_ENEMIZER = 0;
 
 bool check_enemizer_sequence(z64_game_t* globalCtx) {
-    return !(globalCtx->common.input[0].raw.pad.b && 
-                globalCtx->common.input[0].raw.pad.a && 
-                globalCtx->common.input[0].raw.pad.r && 
+    return !(globalCtx->common.input[0].raw.pad.b &&
+                globalCtx->common.input[0].raw.pad.a &&
+                globalCtx->common.input[0].raw.pad.r &&
                 globalCtx->common.input[0].raw.pad.z);
 }
 
@@ -538,7 +564,7 @@ bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool
                 actorEntry->pos.y = (int16_t)floorY;
             }
         }
-        
+
         // Hard-coded check for DC lizalfos fight
         if((globalCtx->scene_index == 0x01) && (globalCtx->room_ctx.curRoom.num == 3)) {
             // Check player height against this actor
@@ -585,7 +611,7 @@ void Actor_Kill_UpdateSpawner(z64_actor_t* actor) {
 // New Actor_Kill function to extend functionality
 void Actor_Kill_New(z64_actor_t* actor) {
     // Set our kill switch flags
-    
+
     // Build an xflag for this actor
     xflag_t flag = { 0 };
     Actor_BuildFlag(actor, &flag, Actor_GetAdditionalData(actor)->actor_id, 0);

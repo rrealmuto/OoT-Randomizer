@@ -27,11 +27,11 @@ def build_enemylist(world: World):
     enemy_list = base_enemy_list.copy()
     mq_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == True]
     vanilla_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == False]
-    
+
     for dungeon in mq_dungeons:
         if dungeon in mq_dungeon_enemies.keys():
             enemy_list.update(mq_dungeon_enemies[dungeon])
-    
+
     for dungeon in vanilla_dungeons:
         if dungeon in vanilla_dungeon_enemies.keys():
             enemy_list.update(vanilla_dungeon_enemies[dungeon])
@@ -61,10 +61,10 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
     # Handle plandoed enemies
     for plando_enemy_key, enemy_name in world.distribution.enemies.items():
         enemy = enemies_by_name[enemy_name]
-        
+
         shuffled[plando_enemy_key] = (enemy, True)
         del to_shuffle[plando_enemy_key]
-    
+
 
     if world.settings.enemizer == 'on':
         for enemy_key in to_shuffle:
@@ -82,9 +82,9 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
             enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies))
             weights = [enemy.weight for enemy in enemy_choices]
             enemy = random.choices(enemy_choices, weights=weights)[0]
-            
+
             shuffled[enemy_key] = (enemy, True)
-        
+
     return shuffled
 
 # Get a list of allowed enemy types based on the restrictions passed in
@@ -114,7 +114,7 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], restrictions:
     return restricted_enemy_actor_types
 
 def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], shuffled_enemies: dict[tuple[int,int,int,int], tuple[Enemy, bool]], rom: Rom, scene_data: list[Scene], enemizer_on: bool):
-    
+
     switch_flags_table = []
     skip_raycast_table = []
     if enemizer_on:
@@ -155,7 +155,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                     rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
                 if world.enemy_list[enemy_actor_key].switch_flag >= 0:
                     switch_flags_table.append((enemy_actor_key,world.enemy_list[enemy_actor_key].switch_flag))
-    
+
     # Write the switch flags table
     switch_flags_table_bytes = bytearray()
     for flag, switch_flag in switch_flags_table:

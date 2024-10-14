@@ -2572,7 +2572,7 @@ class SettingInfos:
                         to check that enemies can be defeated
 
             Dynamic:    Enemies will shuffle every time you reload a room. This is mostly
-                        experimental and has no way to guarantee that the player 
+                        experimental and has no way to guarantee that the player
                         can defeat all of the enemies in a given room. If a room is broken,
                         try holding the secret button sequence while loading the room.
         ''',
@@ -2989,7 +2989,7 @@ class SettingInfos:
             'randomize_key': 'randomize_settings',
         },
     )
-    
+
     shuffle_gossipstones = Checkbutton(
         gui_text       = 'Shuffle Gossip Stones',
         gui_tooltip    = '''\
@@ -4015,8 +4015,8 @@ class SettingInfos:
 
             There is a deku shield drop from a pot in the Spirit Temple child
             side Anubis room that does not appear in the vanilla game, and
-            logic might require you to get a deku shield this way. 
-            
+            logic might require you to get a deku shield this way.
+
             There is a
             magic jar on top of the Gerudo Training Ground eye statue that does
             not always refill your magic in the vanilla game.

@@ -138,7 +138,7 @@ void Fishing_HandleOwnerDialog_Hook(Fishing* this, z64_game_t* globalCtx) {
                         Message_CloseTextbox(globalCtx);
                         if(globalCtx->msgContext.choiceIndex == 0) {
                             // Chose to fish. Set up fishing game
-                            
+
                             globalCtx->unk_interfacectx_260_fishing = 1; // This is what sets the interface to "fishing" mode and lets you use the pole
                             globalCtx->startPlayerFishing(globalCtx); // This does something
                             *pFishingPlayState = 1;  // Tell's the Fishing actors that we're fishing
@@ -205,11 +205,11 @@ void Fishing_HandleOwnerDialog_Hook(Fishing* this, z64_game_t* globalCtx) {
         else {
             Fishing_HandleOwnerDialog(this, globalCtx);
         }
-        
+
     }
     else {
-        
+
         Fishing_HandleOwnerDialog(this, globalCtx);
     }
-    
+
 }

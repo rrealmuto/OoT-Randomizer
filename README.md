@@ -146,6 +146,16 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v129
+  * Fix Anubis not included in enemy table
+  * Add Spear Moblins
+  * Make Hammer Moblins spawn better, rotate towards player
+  * Fix some enemies in MQ Child Spirit
+  * Fix redead/gibdo spawn params
+  * Restrict water stingers to water locations
+  * Add filter functions to dynamic enemizer/is_enemy checks
+  * Fix MQ Jabu falling like likes
+
 ### v128
   * Realign .rodata section to hopefully fix N64 console crashes
 

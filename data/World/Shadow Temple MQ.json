@@ -159,7 +159,7 @@
         "region_name": "Shadow Temple Lower Huge Pit",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Huge Pit Lower Beamos": "can_kill_beamos and 
+            "Shadow Temple MQ Huge Pit Lower Beamos": "can_kill_beamos and
                 not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
                 ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots and
                     (has_fire_source or logic_shadow_mq_huge_pit))"

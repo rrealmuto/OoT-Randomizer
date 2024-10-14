@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import Enum
 from ProcessActors import Actor, Scene
 import Rom
@@ -33,6 +34,20 @@ def patch_func_sfm_wolfos(actor: Actor):
     actor.x = -195
     actor.y = 0
     actor.z = 1900
+
+# Move the stalfos in MQ Child spirit down onto the platform
+def patch_mq_spirit_child_stalfos(actor: Actor):
+    actor.y = 50
+
+# Move the like likes in the room in MQ jabu to just spawn on the ground
+# They normally spawn in cages above the room
+def patch_mq_jabu_likelike_left(actor: Actor):
+    actor.x = 827
+    actor.y = -300
+
+def patch_mq_jabu_likelike_right(actor: Actor):
+    actor.x = 488
+    actor.y = -300
 
 base_enemy_list = {
     (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
@@ -651,7 +666,7 @@ vanilla_dungeon_enemies = {
         (9, 11, 0, 2): 19, # Keese
     },
     'Ganons Castle': {
-        
+
         (13, 0, 0, 0): 138, # Beamos
         (13, 0, 0, 1): 138, # Beamos
         (13, 2, 0, 0): 289, # Freezard
@@ -837,8 +852,8 @@ mq_dungeon_enemies = {
     (2, 5, 0, 5): 221, # Like like
     (2, 6, 0, 0): 99, # Bari
     (2, 7, 0, 0): 37, # Lizalfos/Dinalfos
-    (2, 11, 0, 5): 221, # Like like
-    (2, 11, 0, 6): 221, # Like like
+    (2, 11, 0, 5): EnemyLocation(221, patch_func=patch_mq_jabu_likelike_right), # Like like
+    (2, 11, 0, 6): EnemyLocation(221, patch_func=patch_mq_jabu_likelike_left), # Like like
     (2, 12, 0, 0): 149, # Skullwaltula
     (2, 12, 0, 1): 53, # Tailpasaran
     (2, 12, 0, 2): 53, # Tailpasaran
@@ -951,11 +966,11 @@ mq_dungeon_enemies = {
     (6, 2, 0, 0): 144, # Redead/Gibdo
     (6, 2, 0, 1): 144, # Redead/Gibdo
     (6, 2, 0, 2): 144, # Redead/Gibdo
-    (6, 3, 0, 0): 19, # Keese
-    (6, 3, 0, 1): 19, # Keese
-    (6, 3, 0, 2): 19, # Keese
-    (6, 3, 0, 3): 19, # Keese
-    (6, 3, 0, 4): 19, # Keese
+    (6, 3, 0, 0): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+    (6, 3, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+    (6, 3, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+    (6, 3, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+    (6, 3, 0, 4): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
     (6, 3, 0, 12): 246, # Anubis Spawner
     (6, 4, 0, 0): 47, # Baby Dodongo
     (6, 4, 0, 1): 47, # Baby Dodongo
@@ -1009,7 +1024,7 @@ mq_dungeon_enemies = {
     (6, 26, 0, 1): 37, # Lizalfos/Dinalfos
     (6, 26, 0, 6): 105, # Bubble
     (6, 26, 0, 7): 105, # Bubble
-    (6, 27, 0, 7): 2, # Stalfos
+    (6, 27, 0, 7): EnemyLocation(2, skip_raycast=True, patch_func=patch_mq_spirit_child_stalfos), # Stalfos
     },
     'Shadow Temple': {
 (7, 1, 0, 0): 144, # Redead/Gibdo
@@ -1268,8 +1283,8 @@ enemy_actor_types: list[Enemy] = {
     Enemy("Tektite", id=0x001B, kill_logic='can_kill_tektite', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Peahat", id=0x001D, var=0xFFFF, weight=.5, kill_logic='can_kill_peahat', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Flying Peahat", id=0x001D, var=0x0000, weight=.5, kill_logic='can_kill_flying_peahat', soul_name="Peahat", categories=[LOCATION_RESTRICTION.ABOVE_GROUND], required_categories=[ENEMY_RESTRICTION.OUTSIDE]),
-    Enemy("Lizalfos", id=0x0025, var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Dinalfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Lizalfos", id=0x0025, var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Dinalfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Gohma Larva", id=0x002B, var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Shabom", id=0x002D, kill_logic='can_kill_shabom', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo'),
@@ -1278,7 +1293,8 @@ enemy_actor_types: list[Enemy] = {
     Enemy("Tailpasaran", id=0x0035, var=0xFFFF, kill_logic='can_kill_tailsparan', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     Enemy("Skulltula", id=0x0037, kill_logic='can_kill_skulltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Torch Slug", id=0x0038),
-    Enemy("Moblin", id=0x004B, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Moblin", id=0x004B, var=0x0002, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Moblin (Spear)", id=0x004B, var=0xFFFF, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Armos", id=0x0054, var = 0xFFFF, kill_logic='can_kill_armos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer', drop_logic='can_kill_deku_baba'),
     #Enemy("Whithered Deku Baba", id=0x00C7, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
@@ -1287,8 +1303,8 @@ enemy_actor_types: list[Enemy] = {
         Enemy("Beamos (Large)", id=0x008A, var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos'),
         Enemy("Beamos (Small)", id=0x008A, var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos'),
     Enemy("Floormaster", id=0x008E, kill_logic='can_kill_floormaster', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Redead", id=0x0090, soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
-        Enemy("Gibdo", id=0x0090, var=0x0080, soul_name="Redead and Gibdo", kill_logic='can_kill_redead', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Redead", id=0x0090, var=0x7F02, soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
+        Enemy("Gibdo", id=0x0090, var=0x7FFE, soul_name="Redead and Gibdo", kill_logic='can_kill_redead', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Skullwalltula", id=0x0095, kill_logic='can_kill_skullwalltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING]),
     Enemy("Flare Dancer", id=0x0099, kill_logic='can_kill_flare_dancer', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Shell Blade", id=0x00C5, kill_logic='can_kill_shell_blade', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
@@ -1299,7 +1315,7 @@ enemy_actor_types: list[Enemy] = {
         Enemy("Iron Knuckle (White)", id=0x0113, var=0xFF83, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
     Enemy("Skull Kid", id=0x0115, var=0xFFFF),
     Enemy("Freezard", id=0x0121, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Stinger", id=0x018C, kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Stinger", id=0x018C, kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER], required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
     Enemy("Stingray", id=0x003A, var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', categories=[LOCATION_RESTRICTION.UNDERWATER]),
     Enemy("Wolfos", id=0x01AF, var=0xFF00, kill_logic='can_kill_wolfos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Guay", id=0x01C0, kill_logic='can_kill_basic', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),

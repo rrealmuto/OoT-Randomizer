@@ -68,8 +68,8 @@
             "Bottom of the Well Left Side Skulltula": "can_kill_skulltula",
             "Bottom of the Well Dead Hand Skulltula": "can_play(Zeldas_Lullaby) and can_kill_skulltula",
             "Bottom of the Well Patrolling Bubble": "can_kill_bubble",
-            "Bottom of the Well Basement Redead Near Water": "can_kill_redead",      
-            "Bottom of the Well Basement Redead Near Chest": "can_kill_redead and 
+            "Bottom of the Well Basement Redead Near Water": "can_kill_redead",
+            "Bottom of the Well Basement Redead Near Chest": "can_kill_redead and
                 ((boulder_type('BOTW_CHEST_BOULDER_1') == BOULDER_TYPE_BROWN or boulder_type('BOTW_CHEST_BOULDER_2') == BOULDER_TYPE_BROWN) and
                 (has_explosives or
                 (Progressive_Strength_Upgrade and

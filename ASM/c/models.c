@@ -44,7 +44,7 @@ uint32_t load_object_file(uint32_t object_id, uint8_t* buf) {
 }
 
 void load_object(loaded_object_t* object, uint32_t object_id) {
-    
+
     object->object_id = object_id;
     // Allocate buffer for object
     object->buf = heap_alloc(get_object_size(object_id));

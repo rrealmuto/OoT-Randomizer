@@ -27,7 +27,7 @@ void* heap_alloc(int bytes) {
     void* ret = __osMalloc(&randoArena, bytes);
     char error_msg[256];
     if(ret == NULL) {
-                
+
         uint32_t randoarena_maxFree;
         uint32_t randoarena_free;
         uint32_t randoarena_alloc;
@@ -36,7 +36,7 @@ void* heap_alloc(int bytes) {
         sprintf(error_msg, "size = %x\nmaxFree = %x\nfree = %x\nalloc = %x\nZeldaArena:\nmaxFree = %x\nfree = %x\nalloc = %x",bytes, (int)randoarena_maxFree, (int)randoarena_free, (int)randoarena_alloc, zarena_maxFree, zarena_free, zarena_alloc);
         Fault_AddHungupAndCrashImpl("Rando arena overflow!", error_msg);
     }
-    
+
     return ret;
 }
 

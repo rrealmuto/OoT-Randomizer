@@ -1147,7 +1147,7 @@ struct z64_actor_s
   z64_col_poly_t* floor_poly;       /* 0x0078 */
   char            unk_09_[0x000C];  /* 0x007C */
   uint16_t        unk_flags_00;     /* 0x0088 */
-  int16_t         unk_roty;         /* 0x008A */
+  int16_t         yawTowardsPlayer; /* 0x008A */
   float           distsq_from_link; /* 0x008C */
   float           xzdist_from_link; /* 0x0090 */
   float           ydist_from_link;  /* 0x0094 */

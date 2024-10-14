@@ -43,11 +43,11 @@
             "Bottom of the Well MQ Perimeter Behind Gate Pot": "has_explosives and Slingshot",
             "Bottom of the Well MQ First Hallway Redead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
-                has_soul(Skulltula) and 
+                has_soul(Skulltula) and
                 (
                 ((can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1') or can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1')) and can_child_attack or Nuts)
-                or can_use(Dins_Fire) 
-                or (can_play(Zeldas_Lullaby) and 
+                or can_use(Dins_Fire)
+                or (can_play(Zeldas_Lullaby) and
                     (Slingshot or (logic_botw_mq_pits and can_kill_skulltula))))",
             "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
             "Bottom of the Well MQ Basement Skulltula 1": "can_kill_skulltula",

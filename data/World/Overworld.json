@@ -2618,7 +2618,7 @@
             "GC Boulder Maze 2 Chests": "
                 can_pass_boulder('GC_BOULDER_MAZE_27') or
                 can_pass_boulder('GC_BOULDER_MAZE_42') or
-                can_pass_boulder('GC_BOULDER_MAZE_21')        
+                can_pass_boulder('GC_BOULDER_MAZE_21')
             "
         }
     },
@@ -2740,7 +2740,7 @@
         "scene": "Goron City",
         "hint": "GORON_CITY",
         "events": {
-            "GC Woods Warp Open": "(can_pass_boulder('GC_LW_BOULDER_1') or can_pass_boulder('GC_LW_BOULDER_2') or can_pass_boulder('GC_LW_BOULDER_3')) or 
+            "GC Woods Warp Open": "(can_pass_boulder('GC_LW_BOULDER_1') or can_pass_boulder('GC_LW_BOULDER_2') or can_pass_boulder('GC_LW_BOULDER_3')) or
             (
                 (boulder_type('GC_LW_BOULDER_1') == BOULDER_TYPE_BROWN or
                 boulder_type('GC_LW_BOULDER_2') == BOULDER_TYPE_BROWN or

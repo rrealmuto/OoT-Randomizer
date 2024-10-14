@@ -70,7 +70,7 @@ typedef struct CollisionHeader {
     /* 0x20 */ BgCamInfo* bgCamList;
     /* 0x24 */ uint16_t numWaterBoxes;
     /* 0x28 */ WaterBox* waterBoxes;
-} CollisionHeader; 
+} CollisionHeader;
 
 typedef struct SSList {
     uint16_t head; // first SSNode index

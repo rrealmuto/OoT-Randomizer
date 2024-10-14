@@ -19,13 +19,13 @@ void DoorShutter_BarAndWaitSwitchFlag_Override(DoorShutter* this, z64_game_t* gl
                 if (gPrevRoom == 4 || gPrevRoom == 1) {
                     z64_Flags_SetSwitch(globalCtx, this->dyna.actor.variable & 0x3F);
                 }
-            } 
+            }
             else if (flag == 0x06) { // Upper Room
                 if (gPrevRoom == 10 || gPrevRoom == 12) {
                     z64_Flags_SetSwitch(globalCtx, this->dyna.actor.variable & 0x3F);
                 }
             }
-            
+
         }
     }
     DoorShutter_BarAndWaitSwitchFlag(this, globalCtx);

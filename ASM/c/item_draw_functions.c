@@ -639,29 +639,29 @@ void draw_gi_flame(z64_game_t *game, colorRGBA8_t prim, colorRGBA8_t env) {
     translate_sys_matrix(0, -35.0f, -10.0f, 1);
     scale_sys_matrix(.0125,.0075,.01, 1);
     gSPMatrix(gfx->poly_xlu.p++, append_sys_matrix(gfx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    
+
     int16_t redGreen = 20;
 
     append_setup_dl_25_to_xlu(gfx);
     gDPSetEnvColor(gfx->poly_xlu.p++, env.r, env.g, env.b, 0);
     gDPSetPrimColor(gfx->poly_xlu.p++, 0x0, 0x80, prim.r, prim.g, prim.b, 255);
 
-    gSPSegment(gfx->poly_xlu.p++, 0x08, 
+    gSPSegment(gfx->poly_xlu.p++, 0x08,
         gen_double_tile(gfx, G_TX_RENDERTILE, 0, 0, 0x20, 0x40, 1, 0,
             (-game->gameplay_frames & 0x7F) << 2, 0x20, 0x80));
 
     gSPDisplayList(gfx->poly_xlu.p++, 0x04000000 | kFlameDlist);
-    
+
 }
 
 void draw_gi_opa_with_flame(z64_game_t* game, uint32_t draw_id) {
-    
+
     draw_gi_various_opa0(game, draw_id);
     draw_gi_flame(game, item_draw_table[draw_id].args[1].color, item_draw_table[draw_id].args[2].color);
 }
 
 void draw_gi_deku_nut_with_flame(z64_game_t* game, uint32_t draw_id) {
-    
+
     draw_gi_deku_nut(game, draw_id);
     draw_gi_flame(game, item_draw_table[draw_id].args[1].color, item_draw_table[draw_id].args[2].color);
 }

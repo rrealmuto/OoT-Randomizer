@@ -6,7 +6,7 @@ dh  0x01B5
 
 ; Hack the params of the draw function to pass in the segment offset of our new display list
 .org 0x80ab43a8
-; Replaces 
+; Replaces
 ;   lui     t5, 0x0501
 ;   addiu   t5, t5, -0x5C48
     lui     t5, 0x0600

@@ -412,7 +412,7 @@ item_row_t item_table[] = {
     [0x2042] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9342, 0x01B4, 0x63, no_upgrade, give_regional_enemy_soul, 19, -1, NULL),
     [0x2043] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9343, 0x01B4, 0x63, no_upgrade, give_regional_enemy_soul, 20, -1, NULL),
     [0x2044] = ITEM_ROW(0x53,        GOLD_CHEST,  0x41, -1, 0x9344, 0x01B4, 0x63, no_upgrade, give_regional_enemy_soul, 21, -1, NULL),
-    
+
     [0x2100] = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9500, 0x01B6, 0xA2, no_upgrade, give_fishing_rod, -1, -1, NULL), // Fishing Rod
     [0x2101] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9501, 0x01B7, 0xA3, no_upgrade, give_fish,        6, 1, NULL), // Fish (child, 6 lb)
     [0x2102] = ITEM_ROW(0x53,      BROWN_CHEST, 0x41, -1, 0x9502, 0x01B7, 0xA3, no_upgrade, give_fish,        8, 1, NULL), // Fish (child, 8 lb)

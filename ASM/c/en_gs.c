@@ -37,7 +37,7 @@ void En_Gs_Update_Hack(EnGs* this, z64_game_t* globalCtx) {
                             z64_SpawnActor(&globalCtx->actor_ctxt, globalCtx, ACTOR_EN_ELF, this->actor.pos_world.x,
                                 this->actor.pos_world.y + 40.0f, this->actor.pos_world.z, 0, 0, 0, FAIRY_HEAL_TIMED);
                         }
-                    
+
                     //Audio_PlayActorSound2(&this->actor, NA_SE_EV_BUTTERFRY_TO_FAIRY);
                 } else if (globalCtx->msgContext.unk_E3F2 == OCARINA_SONG_STORMS) {
                     z64_SpawnActor(&globalCtx->actor_ctxt, globalCtx, ACTOR_EN_ELF, this->actor.pos_world.x,

@@ -327,7 +327,7 @@ void debug_utilities(z64_disp_buf_t* db)
     draw_debug_int(5, randoarena_maxFree);
     draw_debug_int(6, randoarena_free);
     draw_debug_int(7, randoarena_alloc);
-    
+
 
     draw_debug_menu(db);
     draw_debug_numbers(db);

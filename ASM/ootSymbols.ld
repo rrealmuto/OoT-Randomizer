@@ -52,3 +52,8 @@ OVL_EnDekubaba_SetupGrow = 0x808fb9e0;
 
 /* En_Fd */
 OVL_EnFd_Update = 0x80956378;
+
+/* En_Mb */
+OVL_EnMb_Init = 0x808e5d4c;
+OVL_EnMb_SetupClubWaitPlayerNear = 0x808e6590;
+OVL_EnMb_ClubWaitPlayerNear = 0x808e8a54;

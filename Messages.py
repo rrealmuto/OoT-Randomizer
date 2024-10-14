@@ -1235,7 +1235,7 @@ def add_item_messages(messages: list[Message], shop_items: Iterable[ShopItem], w
 
 
 def find_message_index(messages: list[Message], id):
-    
+
     for i in range(0, len(messages)):
         if messages[i].id == id:
             return i

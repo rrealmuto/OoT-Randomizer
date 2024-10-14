@@ -43,12 +43,11 @@ int32_t Collider_SetCylinder_Hook(z64_game_t* globalCtx, ColliderCylinder* colli
                 actor->scale.y *= scale;
                 actor->scale.z *= scale;
             }
-            
+
             break;
         }
         curr++;
     }
-    
+
     return Collider_SetCylinder(globalCtx, collider, actor, &copy_collider_init);
 }
-

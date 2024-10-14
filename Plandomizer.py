@@ -693,9 +693,9 @@ class WorldDistribution:
                         raise RuntimeError('Entrance already shuffled in world %d: %s' % (self.id + 1, name))
 
                 target_region = record.region
-                
+
                 matched_targets_to_region = list(filter(lambda target: (target.connected_region and target.connected_region.name == target_region)
-                                                        or (target.reverse and target.reverse.connected_region and target.reverse.connected_region.name == target_region and not target.decoupled), 
+                                                        or (target.reverse and target.reverse.connected_region and target.reverse.connected_region.name == target_region and not target.decoupled),
                                                         target_entrance_pools[pool_type]))
                 if not matched_targets_to_region:
                     raise RuntimeError('No entrance found to replace with %s that leads to %s in world %d' %

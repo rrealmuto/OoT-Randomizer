@@ -95,26 +95,26 @@
                 (can_use(Hookshot) or can_use(Boomerang)) and
                 (
                     here(
-                        (((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_BROWN) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_BROWN)) and 
+                        (((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_BROWN) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_BROWN)) and
                         (
-                            has_bombchus 
-                                or 
+                            has_bombchus
+                                or
                             (Bombs and (can_play(Song_of_Time) or is_adult))
                                 or
                             (can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs))
                         ))
                         or
-                        (((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_BRONZE) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_BRONZE)) and 
+                        (((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_BRONZE) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_BRONZE)) and
                         (
                             can_use(Megaton_Hammer) and (can_play(Song_of_Time) or logic_deku_mq_compass_gs)
                         ))
                         or
-                        (((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_RED_ICE) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_RED_ICE)) and 
+                        (((boulder_type('DEKU_COMPASS_BOULDER_1') == BOULDER_TYPE_RED_ICE) or (boulder_type('DEKU_COMPASS_BOULDER_2') == BOULDER_TYPE_RED_ICE)) and
                         (
                             Blue_Fire
                         ))
                     )
-                    or 
+                    or
                     (
                         (here(
                             (boulder_type('DEKU_COMPASS_BOULDER_3') == BOULDER_TYPE_BROWN)

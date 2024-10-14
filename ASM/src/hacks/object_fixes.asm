@@ -67,7 +67,7 @@ jal Object_GetIndex
 
 ; Hack the call the Object_GetIndex in DoorKiller_Init to just call the vanilla function
 ; So that the proper fake door object loads
-.org 0x80b742b0 
+.org 0x80b742b0
 ; Replaces:
 ;   jal Object_GetIndex ; (original, which is hacked)
     jal Object_GetIndex ; (our version of the original, bypassing the hack)

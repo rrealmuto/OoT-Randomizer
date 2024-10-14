@@ -195,7 +195,7 @@ class State:
     def has_soul(self, enemy: str, **kwargs) -> bool:
         # Get the spot (this can be a location, an entrance (region transition), or an Event)
         spot = kwargs['spot']
-        
+
         if self.world.settings.shuffle_enemy_spawns == 'regional': # Regional soul shuffle so determine the region soul from the spot's parent region's scene
             scene = None
             # Other types of locations we need to be a bit creative
@@ -235,9 +235,9 @@ class State:
             setup = 0
         index -= 1 # Keys from LocationList are 1-indexed so subtract 1
         # Get the enemy type for this location
-        
+
         return self.can_kill_with_drop(scene,room,setup,index, **kwargs)
-    
+
     def enemy_type_at(self, location_name:str, **kwargs):
         spot = LocationFactory(location_name)
         scene = spot.scene
@@ -252,7 +252,7 @@ class State:
         enemy_obj, shuffled = enemies[scene,room,setup,index]
         # Check soul for this enemy
         has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
-    
+
         # TODO Build an ID -> Defeatibility check mapping
         # Check defeatibility
         can_kill = self.world.parser.parse_rule(enemy_obj.drop_logic)(self, **kwargs)
@@ -265,7 +265,7 @@ class State:
         enemy_obj, shuffled = enemies[scene,room,setup,index]
         # Check soul for this enemy
         has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
-    
+
         # TODO Build an ID -> Defeatibility check mapping
         # Check defeatibility
         can_kill = self.world.parser.parse_rule(enemy_obj.kill_logic)(self, **kwargs)
@@ -283,7 +283,7 @@ class State:
             setup = 0
         index -= 1 # Keys from LocationList are 1-indexed so subtract 1
         # Get the enemy type for this location
-        
+
         return self.can_kill(scene,room,setup,index, **kwargs)
 
     # Logic helper for determining if a room/scene/setup can be cleared
@@ -298,10 +298,10 @@ class State:
                 return False
 
         return True
-    
+
     #def can_clear_room(self, scene, room, **kwargs) -> bool:
     #    return self.can_clear_room_setup(scene,room,0, **kwargs)
-    
+
     def can_clear_room(self, room:str, **kwargs) -> bool:
         tup = named_rooms[room]
         if len(tup) == 2:
@@ -371,7 +371,7 @@ class State:
             # Check for blue fire
             #return self.world.parser.parse_rule('Blue_Fire')(self, age=age)
             return self.Blue_Fire(self, age=age)
-        
+
         # Should never get here
         return False
 

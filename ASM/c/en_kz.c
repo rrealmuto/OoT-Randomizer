@@ -19,7 +19,7 @@ extern void EnKz_Update(z64_actor_t* this, z64_game_t* globalCtx);
 typedef void(*ActorUpdateFunc)(z64_actor_t* this, z64_game_t* globalCtx);
 
 z64_actor_t* EnKz_SpawnRedIce_Hook(z64_actor_ctxt_t* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
-    
+
     z64_actor_t* spawned = NULL;
     if(CFG_BOULDER_SHUFFLE) {
         xflag_t flag;
@@ -43,7 +43,7 @@ z64_actor_t* EnKz_SpawnRedIce_Hook(z64_actor_ctxt_t* actorCtx, z64_actor_t* pare
             case BOULDER_TYPE_RED_ICE:
                 spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
                 break;
-            case BOULDER_TYPE_HEAVY_BLOCK: 
+            case BOULDER_TYPE_HEAVY_BLOCK:
                 spawned = NULL;
                 break;
             default:

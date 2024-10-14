@@ -7,4 +7,4 @@ EnIk_Params_Hack:
     jr      ra
     sh      t2, 0x1c(s0) ; Replaced code
 
-    
+

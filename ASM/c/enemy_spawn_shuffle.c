@@ -247,7 +247,7 @@ void reset_souls_inhibited() {
             REGIONAL_SOUL_MENU_NAMES[i].soul_inhibited = false;
         }
     }
-    
+
 }
 
 // Spawn override function for enemy spawn shuffle.

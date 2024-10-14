@@ -24,7 +24,7 @@ extended_object_lookup_load:
     ADDIU   A2, A2, -0x193
 
 ; Address of the object table (regular/extended) needs to go into t2
-; Index is in a1 and the a1 register was also stored in 0x24(sp) at the beginning of the function. 
+; Index is in a1 and the a1 register was also stored in 0x24(sp) at the beginning of the function.
 ; The main index isn't required but 0x24(sp) is used later in calculations so make sure to update that too
 extended_object_lookup_objectspawn:
     bge     a1, 0x192, @@extended_item ; If the object index > 0x192 it's an extended object

@@ -114,10 +114,19 @@ typedef struct {
     /* 0x04 */ uint8_t minimap_draw_flags;
 } ActorAdditionalData;
 
+
+typedef bool (*enemizer_filter_func)(ActorEntry* actorEntry);
+
 typedef struct enemy_list_entry_t {
     int16_t id;
     uint16_t var;
+    enemizer_filter_func filter;
 } enemy_list_entry_t;
+
+typedef struct enemizer_filter_list_entry_t {
+    int16_t id;
+    enemizer_filter_func filter;
+} enemizer_filter_list_entry_t;
 
 void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game);
 void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index);

@@ -310,7 +310,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         (29, 'texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_heart_rgba16_patch.bin'),
         (31, 'texture_grass_custom',        0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_texture_gray_rgba16.bin'),
         (32, 'texture_grass_small_custom',  0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_small_texture_gray_rgba16.bin'),
-        
+
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
@@ -2138,7 +2138,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.tokensanity == 'off':
         # Change the GS token pickup message to fade out after 2 seconds (40 frames)
         update_message_by_id(messages, 0x00B4, bytearray(get_message_by_id(messages, 0x00B4).raw_text)[:-1] + b'\x0E\x28', allow_duplicates=True)
-        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed 
+        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed
         rom.write_int32s(0xEC68C0, [0x00000000, 0x00000000])
         rom.write_int32s(0xEC69B0, [0x00000000, 0x00000000])
         rom.write_int32(0xEC6A10, 0x34020002) # li v0, 2
@@ -2277,7 +2277,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         patch_boulders(world.boulders_by_id, rom)
 
         # Update brown bombable boulders to use collider for explosion detection instead of fixed distance
-        # Hack in ObjBombiwa_Update at 0x80a8388c, ROM 
+        # Hack in ObjBombiwa_Update at 0x80a8388c, ROM
         # Replaces:
         # jal 0x8002650C
         # or a1, s0, r0
@@ -2292,7 +2292,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom_enemies = get_rom_enemies(scene_data, rom)
         #for enemy in rom_enemies:
         #    print(f"{enemy}: {rom_enemies[enemy].id}, # {enemy_actor_typesrom_enemies[enemy].id].name}")
-        
+
         patch_enemies(world,rom_enemies, world.shuffled_enemies, rom, scene_data, world.settings.enemizer == 'on')
         for patch_func in enemizer_patches:
             patch_func(rom, scene_data)
@@ -2300,8 +2300,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.write_byte(rom.sym('CFG_ENEMIZER'), 1)
     if world.settings.enemizer == 'change':
         rom.write_byte(rom.sym('CFG_RANDOM_ENEMY_SPAWNS'), 1)
-        
-        
+
+
 
     # Have the Gold Skulltula Count in the pause menu turn red when equal to the
     # available number of skulls in the world instead of 100.
