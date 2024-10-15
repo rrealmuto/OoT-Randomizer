@@ -17,14 +17,14 @@
             "Dodongos Cavern MQ Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Deku Scrub Lobby Rear": "can_stun_deku",
             "Dodongos Cavern MQ Deku Scrub Lobby Front": "can_stun_deku",
-            "Dodongos Cavern MQ Gossip Stone Drop" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) and can_play(Song_of_Time)", 
+            "Dodongos Cavern MQ Gossip Stone Drop" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) and can_play(Song_of_Time)",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
                 can_summon_gossip_fairy and has_bottle"
         },
         "events": {
-            "DC MQ Lobby Switch Under Boulder Pressed": "can_pass_boulder('DC_LOBBY_SWITCH_BOULDER') or 
+            "DC MQ Lobby Switch Under Boulder Pressed": "can_pass_boulder('DC_LOBBY_SWITCH_BOULDER') or
                 ((boulder_type('DC_LOBBY_SWITCH_BOULDER') == BOULDER_TYPE_BROWN) and Progressive_Strength_Upgrade)"
         },
         "exits": {
@@ -47,8 +47,8 @@
         "events": {
             "DC Elevator Boulders Passed": "
                 here(
-                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_1') or 
-                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_2') or 
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_1') or
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_2') or
                     can_pass_boulder('DC_LOBBY_UPPER_BOULDER_3')
                 ) or
                 ((
@@ -57,8 +57,8 @@
                     (boulder_type('DC_LOBBY_UPPER_BOULDER_3') == BOULDER_TYPE_BROWN)
                 )
                 and (
-                    here(can_use(Dins_Fire)) 
-                    or 
+                    here(can_use(Dins_Fire))
+                    or
                     at('Dodongos Cavern Torch Puzzle Upper', (Progressive_Strength_Upgrade or can_use(Bow)))
                 ))"
         }
@@ -226,36 +226,36 @@
             "DC Upper Lizalfos Passed Boulders": "
                 ((can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_5') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_6') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_11') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_12')) and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                 (
-                    (boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_SILVER) or 
+                    (boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_SILVER) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire)) and
                     (
-                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or 
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire))
                     )
                 ) or
                 (
-                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or 
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire)) and
                     (
-                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or 
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire))
                     )
                 ) or
                 (
-                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or 
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_RED_ICE) and Blue_Fire)) and
                     (
-                        (boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_SILVER) or 
+                        (boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_SILVER) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_RED_ICE) and Blue_Fire))
@@ -267,7 +267,7 @@
     {
         "region_name": "Dodongos Cavern Two Flames Room",
         "dungeon": "Dodongos Cavern",
-        "locations": 
+        "locations":
         {
             "Dodongos Cavern MQ After Upper Lizalfos Pot 1": "True",
             "Dodongos Cavern MQ After Upper Lizalfos Pot 2": "True",

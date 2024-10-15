@@ -114,7 +114,7 @@ override_special_grotto_entrances_1:
     lw      ra, 0x04(sp)
     addiu   sp, sp, 0x18
     jr      ra
-    nop              
+    nop
 
 override_special_grotto_entrances_2:
     addiu   sp, sp, -0x18
@@ -220,7 +220,7 @@ override_special_grotto_entrances:
     lb      a3, 0x0002(t3)          ; room number where the grotto exit is
     li      t0, 0x04FF
     sw      t0, 0x0010(sp)          ; player variable to spawn with (0x04FF = exiting grotto with no initial camera focus)
-    addiu   t0, t3, 0x0008          
+    addiu   t0, t3, 0x0008
     sw      t0, 0x0014(sp)          ; pointer to XYZ coordinates
     lh      t0, 0x0004(t3)
     sw      t0, 0x0018(sp)          ; angle when exiting the grotto

@@ -16,11 +16,11 @@ def build_boulders(world: World):
     for dungeon in mq_dungeons:
         if dungeon in mq_dungeon_boulders.keys():
             boulders.update(mq_dungeon_boulders[dungeon])
-    
+
     for dungeon in vanilla_dungeons:
         if dungeon in vanilla_dungeon_boulders.keys():
             boulders.update(vanilla_dungeon_boulders[dungeon])
-    
+
     world.boulder_list = boulders
     shuffled_boulders_by_id = {}
     shuffled_boulders = {}
@@ -111,7 +111,7 @@ def _shuffle_boulders(world) -> tuple[dict[str, dict[tuple[int,int,int,int], dic
     for boulder_id in boulder_keys:
         shuffled_boulders [boulder_id] = target_types.pop(0)
         #shuffled_boulders[boulder_key] = BOULDER_TYPE.BROWN
-        
+
     for boulder_id in shuffled_boulders:
         boulder = world.boulder_list[boulder_id]
         for flag in boulder:

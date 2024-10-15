@@ -33,7 +33,7 @@ void get_chest_override(z64_actor_t* actor) {
     Chest* chest = (Chest*)actor;
     uint8_t size = chest->en_box.type;
     uint8_t color = size;
-    
+
     uint8_t scene = z64_game.scene_index;
     uint8_t item_id = (actor->variable & 0x0FE0) >> 5;
     override_t override = lookup_override(actor, scene, item_id);

@@ -26,7 +26,6 @@ def process_sequence_mmr_zseq(filepath: str, file_name: str, seq_type: str, incl
         type_match = True
     elif seq_type.lower() == 'bgm' and not ('8' in mmrs_categories or '9' in mmrs_categories or '10' in mmrs_categories):
         type_match = True
-    
     if not type_match:
         return None
 
@@ -44,12 +43,12 @@ def process_sequence_mmrs(filepath: str, file_name: str, seq_type: str, include_
         seq_file = None
         zbank_file = None
         bankmeta_file = None
-        for f in zip.namelist():    
+        for f in zip.namelist():
             # Uncomment if MMR ever decides to wisen up and use a common format
             #if f.endswith(".meta"):
             #    meta_file = f
             #    continue
-            if f.endswith(".zseq"):
+            if f.endswith(".zseq") or f.endswith(".seq"):
                 seq_file = f
                 continue
             if f.endswith(".zbank"):
@@ -63,7 +62,7 @@ def process_sequence_mmrs(filepath: str, file_name: str, seq_type: str, include_
             raise FileNotFoundError(f'No .seq file in: "{file_name}". This should never happen')
         if zbank_file and not bankmeta_file:
             raise FileNotFoundError(f'Custom track "{file_name}" contains .zbank but no .bankmeta')
-        type_match = False        
+        type_match = False
         if 'categories.txt' in zip.namelist():
             mmrs_categories_txt = zip.read('categories.txt').decode()
             delimitingChar: str = ','
@@ -78,7 +77,6 @@ def process_sequence_mmrs(filepath: str, file_name: str, seq_type: str, include_
                 type_match = True
         else:
             raise Exception("OWL LIED TO ME")
-        
         if type_match:
             if zbank_file:
                 instrument_set = '-'
@@ -98,7 +96,6 @@ def process_sequence_mmrs(filepath: str, file_name: str, seq_type: str, include_
             if not os.path.exists(os.path.join(data_path(), 'Music', 'MM.audiobin')):
                 # Raise error. Maybe just skip and log a warning?
                 raise FileNotFoundError(".MMRS sequence found but missing MM.audiobin")
-            
             for f in zip.namelist():
                 if f.lower().endswith(".zsound"):
                     split: str = f.split('.zsound')
@@ -113,7 +110,7 @@ def process_sequence_mmrs(filepath: str, file_name: str, seq_type: str, include_
                     seq.zsounds.append(zsound)
             return seq
         return None
-    
+
 def process_sequence_ootrs(filepath: str, file_name: str, seq_type: str, include_custom_audiobanks: bool, groups) -> Sequence:
     with zipfile.ZipFile(filepath) as zip:
         # Make sure meta file and seq file exists
@@ -143,11 +140,11 @@ def process_sequence_ootrs(filepath: str, file_name: str, seq_type: str, include
             raise FileNotFoundError(f'No .seq file in: "{file_name}". This should never happen')
         if zbank_file and not bankmeta_file:
             raise FileNotFoundError(f'Custom track "{file_name}" contains .zbank but no .bankmeta')
-            
+
         instrument_set = '-'
         cosmetic_name = filepath
         type_match = False
-        
+
         # Read meta info
         with zip.open(meta_file, 'r') as stream:
             lines = io.TextIOWrapper(stream).readlines() # Use TextIOWrapper in order to get text instead of binary from the seq.

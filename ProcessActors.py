@@ -38,7 +38,7 @@ class Room:
         self.id = id
         self.setups: dict[int, RoomSetup] = Room.process_room(rom, rom_addr)
         self.rom_addr = rom_addr
-    
+
     @staticmethod
     def process_room(rom: Rom, rom_addr: int) -> dict[int, RoomSetup]:
         room_list = {}
@@ -62,7 +62,7 @@ class Room:
                     break
                 offset += 8
         room_list[setup] = RoomSetup(rom, room_base, room_data)
-    
+
 class Scene:
     def __init__(self, rom: Rom, id: int, scene_addr: int):
         self.rooms: list[Room] = []
@@ -78,7 +78,7 @@ class Scene:
             command = rom.read_byte(offset)
             if command == 0x07: # Special object
                 self.keep_id = rom.read_int16(offset + 6)
-            offset += 8 
+            offset += 8
 
         command = 0
         offset = scene_data
@@ -156,7 +156,7 @@ def process_room(rom, room_list, room_base, room_data, scene_id, room_id, setup,
         offset += 8
     room_list[(scene_id, room_id, setup)] = (room_data, room_actors, object_list, keep_id)
     #room_list.append((scene_id, room_id, setup, room_data, room_actors, object_list, keep_id))
-                
+
 
 def scene_get_actors(rom, actor_func, scene_data, scene, alternate=None, setup_num=0):
     actors = {}
@@ -567,12 +567,12 @@ def get_overlay_table_entry(rom, actor_id):
     vram_end = rom.read_int32(base + 12)
     file_ram = rom.read_int32(base + 16)
     init_addr = rom.read_int32(base + 20)
-    
+
     if vram_start:
         init_vrom = init_addr - vram_start + vrom_start
     else:
         init_vrom = 0xA87000 + init_addr - 0x800110A0
-        
+
     init_object = rom.read_int16(init_vrom + 8)
     return {
         'vrom_start': vrom_start,

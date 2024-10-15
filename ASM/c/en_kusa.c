@@ -26,7 +26,7 @@ int enkusa_dropcollectible_hack(z64_actor_t* actor, z64_game_t* game)
 }
 
 void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
-    // 
+    //
     // Resolve original function from overlay
     // Figure out which texture to use
     // Original texture for big grass is 0x0500B140
@@ -102,7 +102,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     func(actor,game);
 }
 
-/* 
+/*
 in field_keep
 gFieldBushDL 0x0500b9d0
 {
@@ -110,12 +110,12 @@ gFieldBushDL 0x0500b9d0
     00000008: E3001001 00000000  gsDPSetTextureLUT(G_TT_NONE),
     00000010: D7000002 FFFFFFFF  gsSPTexture(qu016(0.999985), qu016(0.999985), 0, G_TX_RENDERTILE, G_ON),
     00000018: FD100000 0500B140  gsDPLoadTextureBlock(0x0500B140, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, 5, 5, G_TX_NOLOD, G_TX_NOLOD),
-    00000020: F5100000 07094250 
-    00000028: E6000000 00000000 
-    00000030: F3000000 073FF100 
-    00000038: E7000000 00000000 
-    00000040: F5101000 00094250 
-    00000048: F2000000 0007C07C 
+    00000020: F5100000 07094250
+    00000028: E6000000 00000000
+    00000030: F3000000 073FF100
+    00000038: E7000000 00000000
+    00000040: F5101000 00094250
+    00000048: F2000000 0007C07C
     00000050: FC127E03 FFFFF3F8  gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, COMBINED, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED),
     00000058: E200001C C8113078  gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2),
     00000060: D9F3FBFF 00000000  gsSPClearGeometryMode(G_CULL_BACK | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR),

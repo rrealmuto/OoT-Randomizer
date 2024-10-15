@@ -174,10 +174,11 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x9C] = { draw_gi_stones,              { 0x06000b00, 0x060012f0, 0x32ffffff, 0x320096ff } }, // Zora Sapphire
     [0x9D] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
     [0x9E] = { draw_gi_nothing,             {} },
-    [0x9F] = { draw_gi_opa_with_flame,      { 0x060004D0, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Stick
-    [0xA0] = { draw_gi_deku_nut_with_flame, { 0x06000E90, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Nut
-    [0xA1] = { draw_gi_various_opa0,        { 0x06001140 }}, // Fishie rod
-    [0xA2] = { draw_gi_various_opa0,        { 0x06001160 }}, // Fishie
+    [0x9F] = { draw_gi_magic_meter,         { 0x06000A80, 0x06000F80, 0x060014C0, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
+    [0xA0] = { draw_gi_opa_with_flame,      { 0x060004D0, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Stick
+    [0xA1] = { draw_gi_deku_nut_with_flame, { 0x06000E90, 0xC0C0C0FF, 0xC0C0C0FF } }, // Deku Nut
+    [0xA2] = { draw_gi_various_opa0,        { 0x06001140 }}, // Fishie rod
+    [0xA3] = { draw_gi_various_opa0,        { 0x06001160 }}, // Fishie
 };
 
 void base_draw_gi_model(z64_game_t* game, uint32_t draw_id) {

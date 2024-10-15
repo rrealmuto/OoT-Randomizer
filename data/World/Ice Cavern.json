@@ -74,8 +74,8 @@
         "region_name": "Ice Cavern Push Block Room",
         "dungeon": "Ice Cavern",
         "locations": {
-           
-            
+
+
             "Ice Cavern Push Block Room Red Rupee 1": "can_play(Song_of_Time) or can_use(Boomerang)",
             "Ice Cavern Push Block Room Red Rupee 2": "can_play(Song_of_Time) or can_use(Boomerang)",
             "Ice Cavern Push Block Room Red Rupee 3": "can_play(Song_of_Time) or can_use(Boomerang)",
@@ -95,10 +95,10 @@
             "Ice Cavern Compass Chest Keese 3": "can_kill_keese"
         },
         "exits": {
-            "Ice Cavern End": "(Silver_Rupee_Ice_Cavern_Push_Block, 5) and 
+            "Ice Cavern End": "(Silver_Rupee_Ice_Cavern_Push_Block, 5) and
                 (
-                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_1') or 
-                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_2') or 
+                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_1') or
+                    can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_2') or
                     can_pass_boulder('ICE_CAVERN_NEAR_END_BOULDER_3')
                 )"
         }

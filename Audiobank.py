@@ -1,3 +1,4 @@
+from __future__ import annotations
 from io import FileIO
 from Rom import Rom
 
@@ -118,7 +119,6 @@ class AudioBank:
 
     def __str__(self):
         return "Offset: " + hex(self.bank_offset) + ", " + "Len:" + hex(self.size)
-    
     def get_all_samples(self) -> list[Sample]:
         all_sounds = self.drums + self.instruments + self.SFX
         all_samples: list[Sample] = []
@@ -131,7 +131,6 @@ class AudioBank:
                     all_samples.append(instrument.lowNoteSample)
                 if instrument.normalNoteSample:
                     all_samples.append(instrument.normalNoteSample)
-                    
             elif type(sound) == Drum:
                 drum: Drum = sound
                 if drum.sample:
@@ -164,7 +163,6 @@ class SFX:
         self.sampleOffset = int.from_bytes(bankdata[sfx_offset:sfx_offset+4], 'big')
         self.sampleTuning = int.from_bytes(bankdata[sfx_offset+4:sfx_offset+8], 'big')
         self.sample: Sample = Sample(bankdata, audiotable_file, audiotable_index, self.sampleOffset, audiotable_id, self)
-        
 
 class Instrument:
     def __init__(self, inst_id: int, bankdata: bytearray, audiotable_file: bytearray, audiotable_index: bytearray, instr_offset: int, audiotable_id: int) -> None:
@@ -182,4 +180,3 @@ class Instrument:
         self.lowNoteSample: Sample = Sample(bankdata, audiotable_file, audiotable_index, self.lowNoteSampleOffset, audiotable_id, self) if self.lowNoteSampleOffset != 0 else None
         self.normalNoteSample: Sample = Sample(bankdata, audiotable_file, audiotable_index, self.normalNoteSampleOffset, audiotable_id, self) if self.normalNoteSampleOffset != 0 else None
         self.highNoteSample: Sample = Sample(bankdata, audiotable_file, audiotable_index, self.highNoteSampleOffset, audiotable_id, self) if self.highNoteSampleOffset != 0 else None
-

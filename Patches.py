@@ -9,7 +9,7 @@ import zlib
 from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
-from Cutscenes import patch_cutscenes
+from Cutscenes import patch_cutscenes, patch_wondertalk2
 from Entrance import Entrance
 from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
@@ -95,8 +95,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         ('object_gi_abutton',     data_path('items/A_Button.zobj'),            0x1A8),  # A button
         ('object_gi_cbutton',     data_path('items/C_Button_Horizontal.zobj'), 0x1A9),  # C button Horizontal
         ('object_gi_cbutton',     data_path('items/C_Button_Vertical.zobj'),   0x1AA),  # C button Vertical
-        ('object_gi_fishingrod',  data_path('items/FishingRod.zobj'),          0x1B6),  # Fishing Rod
-        ('object_gi_fish',        data_path('items/Fish.zobj'),                0x1B7),  # Fish
+        ('object_gi_magic_meter', data_path('items/MagicMeter.zobj'),          0x1B4),  # Magic Meter
+        ('object_gi_fishingrod',  data_path('items/FishingRod.zobj'),          0x1B7),  # Fishing Rod
+        ('object_gi_fish',        data_path('items/Fish.zobj'),                0x1B8),  # Fish
     )
 
     if world.settings.key_appearance_match_dungeon:
@@ -137,7 +138,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x05CC, [0xFF, 0xFF, 0xFF]), # Outer Primary Color?
                 (0x05D4, [0xFF, 0xFF, 0xFF]), # Outer Env Color?
             ]),
-        ('object_soul', 0x1B4, # Gold Skulltula Token -> Soul Token)
+        ('object_soul', 0x1B5, # Gold Skulltula Token -> Soul Token)
             [
                 ('object_gi_sutaru', 0x01858000, 0x01858650),
             ],
@@ -147,7 +148,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x0514, [0xFF, 0x00, 0x00]),
                 (0x051C, [0x96, 0x00, 0x00])
             ]),
-        ('object_silver_rock', 0x1B5,
+        ('object_silver_rock', 0x1B6,
             [
                 ('gameplay_field_keep', 0x00F689D0, 0x00F689F0), # silver_rock_tlut offset 0x0000
                 ('gameplay_field_keep', 0x00F689F8, 0x00F691F8), # silver_rock_texture offset 0x0020
@@ -309,7 +310,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         (29, 'texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_heart_rgba16_patch.bin'),
         (31, 'texture_grass_custom',        0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_texture_gray_rgba16.bin'),
         (32, 'texture_grass_small_custom',  0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_small_texture_gray_rgba16.bin'),
-        
+
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
@@ -415,11 +416,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.world_count > 1:
         world_str = f"{world.id + 1} of {world.settings.world_count}"
     else:
-        world_str = ""
+        world_str = ''
     rom.write_bytes(rom.sym('WORLD_STRING_TXT'), make_bytes(world_str, 12))
 
     time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M") + " UTC"
     rom.write_bytes(rom.sym('TIME_STRING_TXT'), make_bytes(time_str, 25))
+
+    if world.settings.web_id > 0:
+        web_id_str = f'{world.settings.web_id:10}'
+    else:
+        web_id_str = ''
+    rom.write_bytes(rom.sym('WEB_ID_STRING_TXT'), make_bytes(web_id_str, 12))
 
     if world.settings.show_seed_info:
         rom.write_byte(rom.sym('CFG_SHOW_SETTING_INFO'), 0x01)
@@ -496,7 +503,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.shuffle_ocarinas:
         rom.write_byte(rom.sym('OCARINAS_SHUFFLED'), 0x01)
 
-    patch_cutscenes(rom, songs_as_items)
+    patch_cutscenes(rom, songs_as_items, world.settings)
+    patch_wondertalk2(rom, world.settings)
 
     # Speed Pushing of All Pushable Objects (other than armos statues, which are handled in ASM)
     rom.write_bytes(0xDD2B86, [0x40, 0x80])  # block speed
@@ -643,9 +651,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Fix "...???" textbox outside Child Colossus Fairy to use the right flag and disappear once the wall is destroyed
     rom.write_byte(0x21A026F, 0xDD)
 
-    # Remove the "...???" textbox outside the Crater Fairy (change it to an actor that does nothing)
-    rom.write_int16s(0x225E7DC, [0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF])
-
     # Forbid Sun's Song from a bunch of cutscenes
     Suns_scenes = [0x2016FC9, 0x2017219, 0x20173D9, 0x20174C9, 0x2017679, 0x20C1539, 0x20C15D9, 0x21A0719, 0x21A07F9, 0x2E90129, 0x2E901B9, 0x2E90249, 0x225E829, 0x225E939, 0x306D009]
     for address in Suns_scenes:
@@ -655,13 +660,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_int32(0xC7B9C0, 0x00000000)
     rom.write_int32(0xC7BAEC, 0x00000000)
     rom.write_int32(0xc7BCA4, 0x00000000)
-
-    # Remove disruptive text from Gerudo Training Ground and early Shadow Temple (vanilla)
-    wonder_text = [0x27C00BC, 0x27C00CC, 0x27C00DC, 0x27C00EC, 0x27C00FC, 0x27C010C, 0x27C011C, 0x27C012C, 0x27CE080,
-                   0x27CE090, 0x2887070, 0x2887080, 0x2887090, 0x2897070, 0x28C7134, 0x28D91BC, 0x28A60F4, 0x28AE084,
-                   0x28B9174, 0x28BF168, 0x28BF178, 0x28BF188, 0x28A1144, 0x28A6104, 0x28D0094]
-    for address in wonder_text:
-        rom.write_byte(address, 0xFB)
 
     # Speed dig text for Dampe
     rom.write_bytes(0x9532F8, [0x08, 0x08, 0x08, 0x59])
@@ -1434,6 +1432,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     remove_unused_messages(messages)
     shop_items = read_shop_items(rom, shop_item_file.start + 0x1DEC)
 
+    # Less misleading dialog from Biggoron after turning in eyedrops
+    update_message_by_id(messages, 0x305C, "Brrrring me the Claim Check...\x01to rrreceive anotherrrrrr item...")
+
     # Set Big Poe count to get reward from buyer
     poe_points = world.settings.big_poe_count * 100
     rom.write_int16(0xEE69CE, poe_points)
@@ -1937,6 +1938,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         update_message_by_id(messages, 0x6E, "Wait, that room was off limits!\x02")
         update_message_by_id(messages, 0x704C, "I hope you like it!\x02")
 
+    if world.settings.tcg_requires_lens:
+        rom.write_byte(rom.sym('TCG_REQUIRES_LENS'), 0x01)
+
     if world.settings.shuffle_pots != 'off': # Update the first BK door in ganon's castle to use a separate flag so it can be unlocked to get to the pots
         patch_ganons_tower_bk_door(rom, 0x15) # Using flag 0x15 for the door. GBK doors normally use 0x14.
     locked_doors = get_doors_to_unlock(rom, world)
@@ -2137,7 +2141,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.tokensanity == 'off':
         # Change the GS token pickup message to fade out after 2 seconds (40 frames)
         update_message_by_id(messages, 0x00B4, bytearray(get_message_by_id(messages, 0x00B4).raw_text)[:-1] + b'\x0E\x28', allow_duplicates=True)
-        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed 
+        # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed
         rom.write_int32s(0xEC68C0, [0x00000000, 0x00000000])
         rom.write_int32s(0xEC69B0, [0x00000000, 0x00000000])
         rom.write_int32(0xEC6A10, 0x34020002) # li v0, 2
@@ -2276,7 +2280,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         patch_boulders(world.boulders_by_id, rom)
 
         # Update brown bombable boulders to use collider for explosion detection instead of fixed distance
-        # Hack in ObjBombiwa_Update at 0x80a8388c, ROM 
+        # Hack in ObjBombiwa_Update at 0x80a8388c, ROM
         # Replaces:
         # jal 0x8002650C
         # or a1, s0, r0
@@ -2953,6 +2957,7 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
                 dungeon_rewards[codes.index(area.dungeon_name)] = boss_reward_index(location.item)
 
     dungeon_is_mq = [1 if world.dungeon_mq.get(c) else 0 for c in codes]
+    dungeon_precompleted = [1 if world.empty_dungeons[c].empty else 0 for c in codes]
 
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_ENABLE'), 2)
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
@@ -2966,6 +2971,7 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_AREAS'), dungeon_reward_areas)
     rom.write_byte(rom.sym('CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE'), int(world.settings.world_count > 1 and world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'any_dungeon', 'anywhere')))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_WORLDS'), dungeon_reward_worlds)
+    rom.write_bytes(rom.sym('CFG_DUNGEON_PRECOMPLETED'), dungeon_precompleted)
 
 
 # Overwrite an actor in rom w/ the actor data from LocationList

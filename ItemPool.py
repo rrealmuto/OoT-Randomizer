@@ -483,10 +483,9 @@ def get_junk_item(count: int = 1, pool: Optional[list[str]] = None, plando_pool:
     return return_pool
 
 
-
 def get_pool_count(pool: list[str], item_list: list[str]) -> int:
     count = 0
-    for i, val in enumerate(pool):
+    for val in pool:
         if val in item_list:
             count += 1
     return count
@@ -494,7 +493,7 @@ def get_pool_count(pool: list[str], item_list: list[str]) -> int:
 def replace_x_items(items: list[str], replace_list: list[str], x: int) -> None:
     random.shuffle(items)
     count = 0
-    for i,val in enumerate(items):
+    for i, val in enumerate(items):
         if val in replace_list:
             if count < x:
                 items[i] = get_junk_item()[0]
@@ -1071,7 +1070,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
     else:
         placed_items['Gift from Sages'] = ItemFactory(IGNORE_LOCATION, world)
 
-    if world.settings.junk_ice_traps in ['off', 'custom_count', 'custom_percent']:
+    if world.settings.junk_ice_traps in ('off', 'custom_count', 'custom_percent'):
         replace_max_item(pool, 'Ice Trap', 0)
     elif world.settings.junk_ice_traps == 'onslaught':
         for item in [item for item, weight in junk_pool_base] + ['Recovery Heart', 'Bombs (20)', 'Arrows (30)']:
@@ -1109,7 +1108,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             pool.remove(junk_item)
             pool.append(pending_item)
 
-    if world.settings.junk_ice_traps in ['custom_count', 'custom_percent']:
+    if world.settings.junk_ice_traps in ('custom_count', 'custom_percent'):
         junk_pool[:] = [('Ice Trap', 1)]
         # Get a list of all "junk" type items
         junk = [item for item, weight in junk_pool_base] + ['Rupee (1)', 'Recovery Heart', 'Bombs (20)', 'Arrows (30)']

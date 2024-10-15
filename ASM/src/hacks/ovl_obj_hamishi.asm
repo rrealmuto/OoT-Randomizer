@@ -2,11 +2,11 @@
 
 ; Hack the actor initialization variable to use the new standalone object
 .org 0x80b80c18
-dh  0x1B5
+dh  0x1B6
 
 ; Hack the params of the draw function to pass in the segment offset of our new display list
 .org 0x80b80be0
-; Replaces 
+; Replaces
 ;   lui     t5, 0x0501
 ;   addiu   t5, t5, -0x5C48
     lui     t5, 0x0600
@@ -26,4 +26,4 @@ dh  0x1B5
 .org 0x80b80830
 ; Replaces
 ;   li      t2, 0x2
-    li      t2, 0x1B5
+    li      t2, 0x1B6

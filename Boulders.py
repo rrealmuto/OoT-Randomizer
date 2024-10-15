@@ -146,7 +146,7 @@ def patch_kz_boulder(boulder, rom: Rom, key: tuple[int,int,int,int], collider_ov
     return
 
 boulder_list = {
-    
+
     'HF_UNNAMED_1': {(81, 0, 1, 27): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (81, 0, 2, 37): {'type': BOULDER_TYPE.SILVER, 'switch': 60, }, (81, 0, 0, 30): {'type': BOULDER_TYPE.SILVER, 'switch': 60, },},
     'HF_SOUTHEAST_GROTTO_BOULDER': {(81, 0, 0, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 8, }, (81, 0, 1, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 8, }, (81, 0, 2, 67): {'type': BOULDER_TYPE.BROWN, 'switch': 8, },},
     'HF_NEAR_MARKET_GROTTO_BOULDER': {(81, 0, 0, 69): {'type': BOULDER_TYPE.BROWN, 'switch': 14, }, (81, 0, 1, 67): {'type': BOULDER_TYPE.BROWN, 'switch': 14, }, (81, 0, 2, 68): {'type': BOULDER_TYPE.BROWN, 'switch': 14, },},
@@ -396,7 +396,7 @@ def patch_boulders(boulders: dict[tuple[int,int,int,int], tuple[str,BOULDER_TYPE
             key, subflag, override = collider_override
         # Write to the collider_override_table
         scene, room, setup, flag = key
-        bytes = [scene, 0x00, 0x00, 0x00, 0x00, 
+        bytes = [scene, 0x00, 0x00, 0x00, 0x00,
                                        ((setup & 0x03) << 6) | (room & 0x3f),
                                        flag + 1,
                                        subflag,

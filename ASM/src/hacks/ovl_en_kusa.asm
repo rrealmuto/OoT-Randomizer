@@ -1,5 +1,5 @@
 ; Hacks for Grass/Bushes
-.headersize(0x80A7F8B0 - 0xE021F0) 
+.headersize(0x80A7F8B0 - 0xE021F0)
 
 ; Hack EnKusa_DropCollectible to override drops for grass shuffle
 ; At the start of EnKusa_DropCollectible

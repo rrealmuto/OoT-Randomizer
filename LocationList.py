@@ -160,7 +160,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Child Maze Grass Wonderitem 1",                             ("Wonderitem",   0x55,  (2,0,6),  None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Child Maze Grass Wonderitem 2",                             ("Wonderitem",   0x55,  (2,0,7),  None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest", "Wonderitem"))),
     ("KF Shop Wonderitem",                                           ("Wonderitem",   0x2D,  (0,0,5),  None,                        'Rupees (5)',                            ("Kokiri Forest", "Forest", "Wonderitem"))),
-    
+
     # Kokiri Forest Enemies
     ("KF Adult Platforms Octorok",                                   ("EnemyDrop",    0x55, (0,2,2), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
     ("KF Adult Near Shop Octorok",                                   ("EnemyDrop",    0x55, (0,2,3), None,                       'Rupees (5)',                          ("Kokiri Forest", "Forest", "EnemyDrop"))),
@@ -634,7 +634,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HC Storms Grotto Pot 2",                                       ("Pot",          0x3E,  (8,0x16,8), None,                      'Bombs (5)',                             ("Hyrule Castle", "Grottos", "Pots",))),
     ("HC Storms Grotto Pot 3",                                       ("Pot",          0x3E,  (8,0x16,10), None,                     'Arrows (5)',                            ("Hyrule Castle", "Grottos", "Pots",))),
     ("HC Storms Grotto Pot 4",                                       ("Pot",          0x3E,  (8,0x16,12), None,                     'Deku Nuts (5)',                         ("Hyrule Castle", "Grottos", "Pots",))),
-    
+
     # Hyrule Castle Gossip Stones
     ("HC Malon Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,4), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
     ("HC Rock Wall Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,3), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),

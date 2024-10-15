@@ -67,7 +67,7 @@
         "region_name": "Ice Cavern Large Room",
         "dungeon": "Ice Cavern",
         "locations": {
-            
+
             "Ice Cavern MQ GS Ice Block": "is_adult or can_child_attack",
             "Ice Cavern MQ GS Scarecrow": "
                 can_use(Scarecrow) or (Hover_Boots and can_use(Longshot)) or

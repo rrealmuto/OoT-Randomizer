@@ -2,6 +2,7 @@
 #include "z64.h"
 #include "get_items.h"
 #include "models.h"
+#include "item_table.h"
 
 /*
  Bit-mapped configuration for new object system.
@@ -76,10 +77,10 @@ void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, RoomContext* roomCtx, EnHoll
 void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
     int8_t prevRoom = roomCtx->prevRoom.num;
     Room_Change(globalCtx, roomCtx);
-    
+
     if(extended_object_ctx.inhibit_clear_flag)
         return;
-    
+
     if(prevRoom >= 0){
         extended_object_t* slot = &extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX];
         for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
@@ -95,7 +96,7 @@ void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
             slot++;
         }
     }
-    
+
 }
 
 int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
@@ -120,7 +121,7 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
             // Allocate space on our heap
             extended_object_ctx.slots[free_index].data = heap_alloc(size);
             //extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX + i].data = extended_object_ctx.free;
-            
+
             // Load the object
             size = load_object_file(object_id, extended_object_ctx.slots[free_index].data);
             extended_object_ctx.slots[free_index].id = object_id;
@@ -150,10 +151,10 @@ void enitem00_set_link_incoming_item_id(z64_actor_t* actor, z64_game_t* game, in
     // Run z64_ActorOfferGetItem regardless of CFG_OBJECT_SYSTEM
     if (!z64_ActorOfferGetItem(&this->actor, game, incoming_item_id, 50.0f, 10.0f) && CFG_OBJECT_SYSTEM) {
         switch (incoming_item_id) {
-            case 0x43: // GI_MAGIC_SMALL
+            case GI_MAGIC_JAR_SMALL: // GI_MAGIC_SMALL
                 z64_GiveItem(game, Z64_ITEM_MAGIC_SMALL);
                 break;
-            case 0x44: // GI_MAGIC_LARGE
+            case GI_MAGIC_JAR_LARGE: // GI_MAGIC_LARGE
                 z64_GiveItem(game, Z64_ITEM_MAGIC_LARGE);
                 break;
         }
@@ -179,7 +180,7 @@ void Actor_SetObjectDependency_Hook(z64_game_t* globalCtx, z64_actor_t* actor) {
 
 void Actor_Draw_gSPSegment_Hack(z64_actor_t* actor) {
     z64_gfx_t *gfx = z64_game.common.gfx;
-    
+
     if (actor->obj_bank_index >= OBJECT_EXCHANGE_BANK_MAX) {
         gSPSegment(gfx->poly_opa.p++, 0x06, extended_object_ctx.slots[actor->obj_bank_index].data);
         gSPSegment(gfx->poly_xlu.p++, 0x06, extended_object_ctx.slots[actor->obj_bank_index].data);
