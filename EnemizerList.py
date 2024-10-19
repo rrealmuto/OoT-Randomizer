@@ -1294,7 +1294,7 @@ enemy_actor_types: list[Enemy] = {
     Enemy("Skulltula", id=0x0037, kill_logic='can_kill_skulltula', categories=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Torch Slug", id=0x0038),
         Enemy("Moblin", id=0x004B, var=0x0002, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Moblin (Spear)", soul_name="Moblin" id=0x004B, var=0xFFFF, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Moblin (Spear)", soul_name="Moblin", id=0x004B, var=0xFFFF, weight=.5, categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Armos", id=0x0054, var = 0xFFFF, kill_logic='can_kill_armos', categories=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer', drop_logic='can_kill_deku_baba'),
     #Enemy("Whithered Deku Baba", id=0x00C7, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
