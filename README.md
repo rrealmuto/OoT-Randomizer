@@ -146,6 +146,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v130
+  * Fix spear moblin soul
+
 ### v129
   * Fix Anubis not included in enemy table
   * Add Spear Moblins
