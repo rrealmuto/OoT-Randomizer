@@ -440,7 +440,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'HideoutSmallKey':                                          (["a get out of jail free card"], "a Jail Key", 'item'),
     'TCGSmallKey':                                              (["a key to becoming a winner"], "a Game Key", 'item'),
     'SmallKeyRing':                                             (["a toolbox for unlocking", "a dungeon season pass", "a jingling ring", "a skeleton key"], "a Small Key Ring", 'item'),
-    'HideoutSmallKeyRing':                                      (["a pack of get out of jail free cards"], "a Jail Key Ring", 'item'),
+    'HideoutSmallKeyRing':                                      (["a deck of get out of jail free cards"], "a Jail Key Ring", 'item'),
     'TCGSmallKeyRing':                                          (["the keys to becoming a winner"], "a Game Key Ring", 'item'),
     'SilverRupee':                                              (["an entry fee", "a priced artifact"], "a Silver Rupee", 'item'),
     'Boss Key (Forest Temple)':                                 (["a master of unlocking for a deep forest", "a master pass for a deep forest"], "the Forest Temple Boss Key", 'item'),
