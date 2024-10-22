@@ -468,7 +468,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Small Key Ring (Gerudo Training Ground)':                  (["a toolbox for unlocking the test of thieves", "a dungeon season pass for the test of thieves", "a jingling ring for the test of thieves", "a skeleton key for the test of thieves"], "a Gerudo Training Ground Small Key Ring", 'item'),
     'Small Key Ring (Ganons Castle)':                           (["a toolbox for unlocking a conquered citadel", "a dungeon season pass for a conquered citadel", "a jingling ring for a conquered citadel", "a skeleton key for a conquered citadel"], "a Ganon's Castle Small Key Ring", 'item'),
     'Small Key Ring (Thieves Hideout)':                         (["a deck of get out of jail free cards"], "a Jail Key Ring", 'item'),
-    'Small Key Ring (Treasure Chest Game)':                     (["an abundance of keys to becoming a winner"], "a Game Key Ring", 'item'),
+    'Small Key Ring (Treasure Chest Game)':                     (["the keys to becoming a winner"], "a Game Key Ring", 'item'),
     'Silver Rupee (Dodongos Cavern Staircase)':                 (["an entry fee for an immense cavern", "a priced artifact from an immense cavern"], "a Silver Rupee for Dodongo's Cavern", 'item'),
     'Silver Rupee (Ice Cavern Spinning Scythe)':                (["an entry fee for a frozen maze", "a priced artifact from a frozen maze"], "a Silver Rupee for the Ice Cavern", 'item'),
     'Silver Rupee (Ice Cavern Push Block)':                     (["an entry fee for a frozen maze", "a priced artifact from a frozen maze"], "a Silver Rupee for the Ice Cavern", 'item'),
