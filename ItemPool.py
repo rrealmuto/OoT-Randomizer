@@ -375,7 +375,7 @@ item_groups: dict[str, Sequence[str]] = {
     'Map': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Map']),
     'Compass': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Compass']),
     'BossKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'BossKey']),
-    'SmallKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'SmallKey']),
+    'SmallKey': sorted([name for name, item in ItemInfo.items.items() if item.type in ('SmallKey', 'SmallKeyRing')]),
 
     'ForestFireWater': ('Forest Medallion', 'Fire Medallion', 'Water Medallion'),
     'FireWater': ('Fire Medallion', 'Water Medallion'),

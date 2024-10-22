@@ -177,7 +177,7 @@ def is_restricted_dungeon_item(item: Item) -> bool:
         return False
     return (
         ((item.map or item.compass) and item.world.settings.shuffle_mapcompass == 'dungeon') or
-        (item.type == 'SmallKey' and item.world.settings.shuffle_smallkeys == 'dungeon') or
+        (item.type in ('SmallKey', 'SmallKeyRing') and item.world.settings.shuffle_smallkeys == 'dungeon') or
         (item.type == 'BossKey' and item.world.settings.shuffle_bosskeys == 'dungeon') or
         (item.type == 'GanonBossKey' and item.world.settings.shuffle_ganon_bosskey == 'dungeon') or
         (item.type == 'SilverRupee' and item.world.settings.shuffle_silver_rupees == 'dungeon') or
@@ -1159,9 +1159,9 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
                 or location.item.name == 'Biggoron Sword'
                 or location.item.name == 'Double Defense'
                 # Handle make keys not in own dungeon major items
-                or (location.item.type == 'SmallKey' and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
-                or (location.item.type == 'HideoutSmallKey' and not world.settings.shuffle_hideoutkeys == 'vanilla')
-                or (location.item.type == 'TCGSmallKey' and not world.settings.shuffle_tcgkeys == 'vanilla')
+                or (location.item.type in ('SmallKey', 'SmallKeyRing') and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
+                or (location.item.type in ('HideoutSmallKey', 'HideoutSmallKeyRing') and not world.settings.shuffle_hideoutkeys == 'vanilla')
+                or (location.item.type in ('TCGSmallKey', 'TCGSmallKeyRing') and not world.settings.shuffle_tcgkeys == 'vanilla')
                 or (location.item.type == 'BossKey' and not (world.settings.shuffle_bosskeys == 'dungeon' or world.settings.shuffle_bosskeys == 'vanilla'))
                 or (location.item.type == 'GanonBossKey' and not (world.settings.shuffle_ganon_bosskey == 'vanilla'
                     or world.settings.shuffle_ganon_bosskey == 'dungeon' or world.settings.shuffle_ganon_bosskey == 'on_lacs'
