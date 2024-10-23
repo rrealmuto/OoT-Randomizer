@@ -65,11 +65,8 @@ class State:
                 return False
         return True
 
-    def count_of(self, items: Iterable[int]) -> int:
-        s = 0
-        for i in items:
-            s += self.solv_items[i]
-        return s
+    def count_distinct(self, items: Iterable[int]) -> int:
+        return sum(1 for i in items if self.solv_items[i] > 0)
 
     def item_count(self, item: int) -> int:
         return self.solv_items[item]
@@ -93,17 +90,17 @@ class State:
         )
 
     def has_medallions(self, count: int) -> bool:
-        return self.count_of(ItemInfo.medallion_ids) >= count
+        return self.count_distinct(ItemInfo.medallion_ids) >= count
 
     def has_stones(self, count: int) -> bool:
-        return self.count_of(ItemInfo.stone_ids) >= count
+        return self.count_distinct(ItemInfo.stone_ids) >= count
 
 
     def has_dungeon_rewards(self, count: int) -> bool:
-        return (self.count_of(ItemInfo.medallion_ids) + self.count_of(ItemInfo.stone_ids)) >= count
+        return self.count_distinct(ItemInfo.medallion_ids) + self.count_distinct(ItemInfo.stone_ids) >= count
 
     def has_ocarina_buttons(self, count: int) -> bool:
-        return (self.count_of(ItemInfo.ocarina_buttons_ids)) >= count
+        return self.count_distinct(ItemInfo.ocarina_buttons_ids) >= count
 
     # TODO: Store the item's solver id in the goal
     def has_item_goal(self, item_goal: dict[str, Any]) -> bool:
