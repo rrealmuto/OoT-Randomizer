@@ -674,7 +674,7 @@ class World:
         item_dict = defaultdict(list)
         for item in items:
             item_dict[item.name].append(item)
-            if (self.settings.shuffle_hideoutkeys in ('fortress', 'regional') and item.type == 'HideoutSmallKey') or (self.settings.shuffle_tcgkeys == 'regional' and item.type == 'TCGSmallKey'):
+            if (self.settings.shuffle_hideoutkeys in ('fortress', 'regional') and item.type in ('HideoutSmallKey', 'HideoutSmallKeyRing')) or (self.settings.shuffle_tcgkeys == 'regional' and item.type in ('TCGSmallKey', 'TCGSmallKeyRing')):
                 item.priority = True
 
         for dungeon in self.dungeons:

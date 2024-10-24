@@ -249,7 +249,7 @@ def fill_dungeons_restrictive(worlds: list[World], search: Search, shuffled_loca
     # sort in the order Other, Small Key, Boss Key before placing dungeon items
     # python sort is stable, so the ordering is still random within groups
     # fill_restrictive processes the resulting list backwards so the Boss Keys will actually be placed first
-    sort_order = {"BossKey": 3, "GanonBossKey": 3, "SmallKey": 2}
+    sort_order = {"BossKey": 3, "GanonBossKey": 3, "SmallKey": 2, "SmallKeyRing": 2}
     dungeon_items.sort(key=lambda item: sort_order.get(item.type, 1))
 
     # place dungeon items
