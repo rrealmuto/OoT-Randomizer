@@ -49,7 +49,7 @@
         "region_name": "Forest Temple Outdoor Ledge",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple MQ Redead Chest": "True"
+            "Forest Temple MQ ReDead Chest": "True"
         },
         "exits": {
             "Forest Temple NW Outdoors": "True"
