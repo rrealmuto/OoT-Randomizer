@@ -1246,8 +1246,8 @@ class World:
             exclude_item_list.append('Magic Bean')
             exclude_item_list.append('Buy Magic Bean')
             exclude_item_list.append('Magic Bean Pack')
-        if not self.settings.blue_fire_arrows:
-            # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled
+        if not (self.settings.blue_fire_arrows or self.settings.shuffle_enemy_drops):
+            # Ice Arrows can only be required when the Blue Fire Arrows setting is enabled or Enemy Drops are shuffled.
             exclude_item_list.append('Ice Arrows')
         if 'logic_lens_botw' in self.settings.allowed_tricks or self.settings.shuffle_pots in ('off', 'overworld'):
             # These silver rupees unlock a door to an area that's also reachable with lens
