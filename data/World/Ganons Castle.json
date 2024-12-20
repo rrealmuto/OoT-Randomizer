@@ -184,7 +184,8 @@
             "Ganons Castle Fire Trial Red Bubble 3": "
                 has_soul(Bubble) and can_use(Goron_Tunic) and Hover_Boots and (Magic_Meter or Bow)",
             "Ganons Castle Fire Trial Deepest Red Bubble": "
-                has_soul(Bubble) and can_use(Goron_Tunic) and Hover_Boots and (Magic_Meter or Bombs)"
+                has_soul(Bubble) and can_use(Goron_Tunic) and Hover_Boots and
+                (Magic_Meter or Bombs or Biggoron_Sword)"
         },
         "exits": {
             "Ganons Castle Fire Trial Ending": "
