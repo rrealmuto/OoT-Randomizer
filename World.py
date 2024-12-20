@@ -1237,9 +1237,11 @@ class World:
             # Serenade and Prelude are never required unless one of those settings is enabled
             exclude_item_list.append('Serenade of Water')
             exclude_item_list.append('Prelude of Light')
-        if self.settings.logic_rules == 'glitchless':
-            # Both two-handed swords can be required in glitch logic, so only consider them foolish in glitchless
+        if self.settings.logic_rules == 'glitchless' and not self.settings.shuffle_enemy_drops:
+            # Biggoron Sword can only be required in glitched logic or shuffled enemy drops
             exclude_item_list.append('Biggoron Sword')
+        if self.settings.logic_rules == 'glitchless':
+            # Giant's Knife can be required in glitched logic
             exclude_item_list.append('Giants Knife')
         if self.settings.plant_beans:
             # Magic Beans are useless if beans are already planted
