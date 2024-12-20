@@ -1241,7 +1241,7 @@ class World:
             # Biggoron Sword can only be required in glitched logic or shuffled enemy drops
             exclude_item_list.append('Biggoron Sword')
         if self.settings.logic_rules == 'glitchless':
-            # Giant's Knife can be required in glitched logic
+            # Giant's Knife is cannot currently be required in any logic, but it was requested that it not be foolish in glitched or no logic.
             exclude_item_list.append('Giants Knife')
         if self.settings.plant_beans:
             # Magic Beans are useless if beans are already planted
