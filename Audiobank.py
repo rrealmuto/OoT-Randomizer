@@ -66,6 +66,29 @@ class Sample:
             self.audiotable_addr = -1
             self.data = None
 
+class AudioSequence_TableEntry:
+    def __init__(self, table_entry: bytearray):
+        self.addr = int.from_bytes(table_entry[0:4], 'big')
+        self.size = int.from_bytes(table_entry[4:8], 'big')
+    
+    def __str__(self):
+        return f"{hex(self.addr)} - {hex(self.size)}"
+
+class AudioBank_TableEntry:
+    def __init__(self, table_entry: bytearray):
+        self.addr: int = int.from_bytes(table_entry[0:4], 'big')
+        self.size: int = int.from_bytes(table_entry[4:8], 'big')
+        self.load_location = table_entry[8]
+        self.type: int = table_entry[9]
+        self.audiotable_id: int = table_entry[10] # Read audiotable id from the table entry. Instrument data offsets are in relation to this
+        self.unk: int = table_entry[11] # 0xFF
+        self.num_instruments: int = table_entry[12]
+        self.num_drums: int = table_entry[13]
+        self.num_sfx: int = int.from_bytes(table_entry[14:16], 'big')
+
+    def __str__(self):
+        return f"{hex(self.addr)} - {hex(self.size)}"
+
 # Loads an audiobank and it's corresponding instrument/drum/sfxs
 class AudioBank:
 
@@ -89,6 +112,7 @@ class AudioBank:
         self.bank_data = audiobank_file[self.bank_offset:self.bank_offset + self.size]
         self.original_data = self.bank_data.copy()
         self.table_entry: bytearray = table_entry
+        self.table_entry_real: AudioBank_TableEntry = AudioBank_TableEntry(table_entry)
         self.duplicate_banks: list[AudioBank] = []
         # Process the bank
 
