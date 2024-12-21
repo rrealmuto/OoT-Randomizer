@@ -119,8 +119,7 @@
             "Fire Temple MQ GS Big Lava Room Open Door": "True",
             "Fairy Pot": "
                 has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
-                (Hookshot or logic_fire_song_of_time)"
-
+                (Hookshot or (logic_fire_song_of_time and shuffle_pots != 'All' and shuffle_pots != 'Dungeons Only'))"
         },
         "exits": {
             "Fire Temple Elevator Room": "Goron_Tunic and (Small_Key_Fire_Temple, 2)"
