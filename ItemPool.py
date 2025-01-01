@@ -902,7 +902,7 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 shuffle_item = True
                 # If fast shadow boat is on, the two stalfos on top on it are very hard to kill before the boat goes away.
                 if world.settings.fast_shadow_boat:
-                    if location.name in ("Shadow Temple Boat Stalfos 1", "Shadow Temple Boat Stalfos 2"):
+                    if location.name in ("Shadow Temple Boat Stalfos 1", "Shadow Temple Boat Stalfos 2", "Shadow Temple MQ Boat Stalfos 1", "Shadow Temple MQ Boat Stalfos 2"):
                         shuffle_item = False
                         location.disabled = DisableType.DISABLED
             else:
