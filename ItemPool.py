@@ -833,6 +833,13 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             else:
                 dungeon = [dungeon for dungeon in world.dungeons if dungeon.name == 'Ganons Castle'][0]
                 dungeon.boss_key.append(ItemFactory(item, world))
+        # Grass
+        elif location.type == 'Grass':
+            if world.settings.shuffle_grass:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
 
         # Dungeon Items
         elif location.dungeon is not None:

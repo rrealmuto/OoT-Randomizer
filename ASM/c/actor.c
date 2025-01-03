@@ -5,6 +5,7 @@
 #include "obj_kibako.h"
 #include "obj_kibako2.h"
 #include "obj_comb.h"
+#include "en_kusa.h"
 #include "textures.h"
 #include "actor.h"
 #include "en_wonderitem.h"
@@ -28,6 +29,8 @@ extern xflag_t* spawn_actor_with_flag;
 #define OBJ_KIBAKO2         0x1A0   // Large Crate
 #define EN_G_SWITCH         0x0117 //Silver Rupee
 #define EN_WONDER_ITEM      0x0112  // Wonder Item
+#define EN_KUSA             0x0125 // Grass/Bush
+#define OBJ_MURE2           0x0151 // Obj_Mure2 - Bush/Rock circles
 
 // Get a pointer to the additional data that is stored at the beginning of every actor
 // This is calculated as the actor's address + the actor instance size from the overlay table.
@@ -50,6 +53,9 @@ void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, ui
         flag->flag = actor_index;
         flag->subflag = subflag;
     }
+}
+void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
+    return (addr - actor->overlay_entry->vramStart + actor->overlay_entry->loadedRamAddr);
 }
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
@@ -82,6 +88,8 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
         case OBJ_KIBAKO2:
         case EN_ITEM00:
         case EN_WONDER_ITEM:
+        case EN_KUSA:
+        case OBJ_MURE2:
         {
             // For these actors, only store the flag if there is a valid override
             if (override.key.all) {
@@ -145,6 +153,10 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
     } else if (actor->actor_id == OBJ_COMB) {
         override = get_newflag_override(flag);
         pChestType = &(((ObjComb*)actor)->chest_type);
+    }
+    else if(actor->actor_id == EN_KUSA) {
+        override = get_newflag_override(flag);
+        pChestType = &(((EnKusa*)actor)->chest_type);
     }
     if (override.key.all != 0 && pChestType != NULL) { // If we don't have an override key, then either this item doesn't have an override entry, or it has already been collected.
         if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && override.key.all > 0) { // For "unchecked" PTMC setting: Check if we have an override which means it wasn't collected.

@@ -1022,7 +1022,7 @@ struct z64_actor_s
   void           *dtor;             /* 0x012C */
   void           *main_proc;        /* 0x0130 */
   void           *draw_proc;        /* 0x0134 */
-  void           *code_entry;       /* 0x0138 */
+  ActorOverlay *overlay_entry;    /* 0x0138 */
                                     /* 0x013C */
 };
 

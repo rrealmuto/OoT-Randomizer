@@ -23,4 +23,6 @@ void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, ui
 ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
 override_t get_newflag_override(xflag_t* flag);
 extern ActorOverlay gActorOverlayTable[];
+void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr);
+
 #endif

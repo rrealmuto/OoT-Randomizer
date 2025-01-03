@@ -82,7 +82,6 @@
     "can_break_lower_beehive": "can_use(Boomerang) or can_use(Hookshot) or Bombs or (logic_beehives_bombchus and has_bombchus)",
     "can_break_upper_beehive": "can_use(Boomerang) or can_use(Hookshot) or (logic_beehives_bombchus and has_bombchus)",
     "can_mow_the_lawn": "is_adult or (is_child and (Sticks or Kokiri_Sword or Progressive_Strength_Upgrade or Boomerang or has_explosives))",
-
     # can_use and helpers
     # The parser reduces this to smallest form based on item category.
     # Note that can_use(item) is False for any item not covered here.
