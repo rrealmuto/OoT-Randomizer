@@ -3918,7 +3918,7 @@ class SettingInfos:
     )
 
     potcrate_textures_specific = MultipleSelect(
-        gui_text        = 'Pot and Crate Textures',
+        gui_text        = 'Pot, Crate, & Grass Textures',
         choices         = {
             'major':    "Major items",
             'bosskeys': "Boss keys",
@@ -3928,9 +3928,9 @@ class SettingInfos:
         },
         default         = ['major', 'bosskeys', 'keys', 'tokens', 'hearts'],
         gui_tooltip     = '''\
-            Select specific pots and crates textures.
+            Select specific pot/crate/grass textures.
             Any unchecked option will make all items in the category
-            appear in regular pots/crates.
+            appear in regular pots/crates/grass.
         ''',
         shared          = True,
         gui_params     = {
@@ -3939,9 +3939,9 @@ class SettingInfos:
     )
 
     soa_unlocks_potcrate_texture = Checkbutton(
-        gui_text       = 'Stone of Agony Unlocks Pot and Crate Textures',
+        gui_text       = 'Stone of Agony Unlocks Pot, Crate, & Grass Textures',
         gui_tooltip    = '''\
-            Textures for pots and crates will only be correct
+            Textures for pots, crates, and grass will only be correct
             when Stone of Agony is found.
         ''',
         shared         = True,

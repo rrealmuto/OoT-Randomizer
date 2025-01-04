@@ -8,6 +8,14 @@
 
 void* EnKusa_Draw = 0x80a80a50;
 
+extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
+extern uint8_t POTCRATE_GOLD_TEXTURE;
+extern uint8_t POTCRATE_GILDED_TEXTURE;
+extern uint8_t POTCRATE_SILVER_TEXTURE;
+extern uint8_t POTCRATE_SKULL_TEXTURE;
+extern uint8_t POTCRATE_HEART_TEXTURE;
+extern uint8_t SOA_UNLOCKS_POTCRATE_TEXTURE;
+
 // Hacked call at the beginning of enkusa_dropcollectible
 // Use this for our grass shuffle drops
 // Return 0 if we didn't override so it returns to the original EnKusa_DropCollectible function
@@ -48,47 +56,59 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     }
 
     // Check CTMC
-    switch (this->chest_type) {
-        case GILDED_CHEST:
-            texture = custom_textures[actor->variable & 0x03];
-            color.r = 255;
-            color.g = 243;
-            color.b = 0;
-            break;
+    if (!SOA_UNLOCKS_POTCRATE_TEXTURE || z64_file.stone_of_agony != 0) {
+        switch (this->chest_type) {
+            case GILDED_CHEST:
+                if (POTCRATE_GILDED_TEXTURE) {
+                    texture = custom_textures[actor->variable & 0x03];
+                    color.r = 255;
+                    color.g = 243;
+                    color.b = 0;
+                }
+                break;
 
-        case SILVER_CHEST:
-            texture = custom_textures[actor->variable & 0x03];
-            color.r = 176;
-            color.g = 176;
-            color.b = 176;
-            break;
+            case SILVER_CHEST:
+                if (POTCRATE_SILVER_TEXTURE) {
+                    texture = custom_textures[actor->variable & 0x03];
+                    color.r = 176;
+                    color.g = 176;
+                    color.b = 176;
+                }
+                break;
 
-        case GOLD_CHEST:
-            texture = custom_textures[actor->variable & 0x03];
-            color.r = 0;
-            color.g = 0;
-            color.b = 255;
-            break;
+            case GOLD_CHEST:
+                if (POTCRATE_GOLD_TEXTURE) {
+                    texture = custom_textures[actor->variable & 0x03];
+                    color.r = 0;
+                    color.g = 0;
+                    color.b = 255;
+                }
+                break;
 
-        case SKULL_CHEST_SMALL:
-        case SKULL_CHEST_BIG:
-            texture = custom_textures[actor->variable & 0x03];
-            color.r = 46;
-            color.g = 46;
-            color.b = 46;
-            break;
+            case SKULL_CHEST_SMALL:
+            case SKULL_CHEST_BIG:
+                if (POTCRATE_SKULL_TEXTURE) {
+                    texture = custom_textures[actor->variable & 0x03];
+                    color.r = 46;
+                    color.g = 46;
+                    color.b = 46;
+                }
+                break;
 
-        case HEART_CHEST_SMALL:
-        case HEART_CHEST_BIG:
-            texture = custom_textures[actor->variable & 0x03];
-            color.r = 255;
-            color.g = 51;
-            color.b = 163;
-            break;
+            case HEART_CHEST_SMALL:
+            case HEART_CHEST_BIG:
+                if (POTCRATE_HEART_TEXTURE) {
+                    texture = custom_textures[actor->variable & 0x03];
+                    color.r = 255;
+                    color.g = 51;
+                    color.b = 163;
+                }
+                break;
 
-        default:
+            default:
 
-            break;
+                break;
+        }
     }
     z64_gfx_t *gfx = game->common.gfx;
 
