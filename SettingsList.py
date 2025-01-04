@@ -3681,8 +3681,10 @@ class SettingInfos:
     key_appearance_match_dungeon = Checkbutton(
         gui_text       = 'Key Appearance Matches Dungeon',
         gui_tooltip    = '''\
-            Small keys and boss keys (not key rings)
+            Small keys and boss keys
             will use custom models to match their dungeon.
+
+            Key rings will be colored to match their dungeon.
         ''',
         shared         = True,
     )

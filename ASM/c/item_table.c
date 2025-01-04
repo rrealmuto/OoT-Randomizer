@@ -245,21 +245,21 @@ item_row_t item_table[GI_RANDO_MAX] = {
     [GI_MAGIC_BEAN_PACK]                                        = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9048, 0x00F3, 0x3E, no_upgrade, give_bean_pack,      -1, -1, NULL), // Magic Bean Pack
     [GI_TRIFORCE_PIECE]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9003, 0x0193, 0x76, no_upgrade, give_triforce_piece, -1, -1, NULL), // Triforce piece
 
-    [GI_SMALL_KEY_RING_FOREST_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FOREST_ID, 1, resolve_text_keyrings), // Forest Temple Small Key Ring
-    [GI_SMALL_KEY_RING_FIRE_TEMPLE]                             = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FIRE_ID,   1, resolve_text_keyrings), // Fire Temple Small Key Ring
-    [GI_SMALL_KEY_RING_WATER_TEMPLE]                            = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, WATER_ID,  1, resolve_text_keyrings), // Water Temple Small Key Ring
-    [GI_SMALL_KEY_RING_SPIRIT_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, SPIRIT_ID, 1, resolve_text_keyrings), // Spirit Temple Small Key Ring
-    [GI_SMALL_KEY_RING_SHADOW_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, SHADOW_ID, 1, resolve_text_keyrings), // Shadow Temple Small Key Ring
-    [GI_SMALL_KEY_RING_BOTTOM_OF_THE_WELL]                      = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, BOTW_ID,   0, resolve_text_keyrings), // Bottom of the Well Small Key Ring
-    [GI_SMALL_KEY_RING_GERUDO_TRAINING]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, GTG_ID,    0, resolve_text_keyrings), // Gerudo Training Small Key Ring
-    [GI_SMALL_KEY_RING_THIEVES_HIDEOUT]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, FORT_ID,   0, resolve_text_keyrings), // Thieves' Hideout Small Key Ring
-    [GI_SMALL_KEY_RING_GANONS_CASTLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, CASTLE_ID, 0, resolve_text_keyrings), // Ganon's Castle Small Key Ring
+    [GI_SMALL_KEY_RING_FOREST_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA1, no_upgrade, give_small_key_ring, FOREST_ID, 1, resolve_text_keyrings), // Forest Temple Small Key Ring
+    [GI_SMALL_KEY_RING_FIRE_TEMPLE]                             = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA2, no_upgrade, give_small_key_ring, FIRE_ID,   1, resolve_text_keyrings), // Fire Temple Small Key Ring
+    [GI_SMALL_KEY_RING_WATER_TEMPLE]                            = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA3, no_upgrade, give_small_key_ring, WATER_ID,  1, resolve_text_keyrings), // Water Temple Small Key Ring
+    [GI_SMALL_KEY_RING_SPIRIT_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA4, no_upgrade, give_small_key_ring, SPIRIT_ID, 1, resolve_text_keyrings), // Spirit Temple Small Key Ring
+    [GI_SMALL_KEY_RING_SHADOW_TEMPLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA5, no_upgrade, give_small_key_ring, SHADOW_ID, 1, resolve_text_keyrings), // Shadow Temple Small Key Ring
+    [GI_SMALL_KEY_RING_BOTTOM_OF_THE_WELL]                      = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA6, no_upgrade, give_small_key_ring, BOTW_ID,   0, resolve_text_keyrings), // Bottom of the Well Small Key Ring
+    [GI_SMALL_KEY_RING_GERUDO_TRAINING]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA7, no_upgrade, give_small_key_ring, GTG_ID,    0, resolve_text_keyrings), // Gerudo Training Small Key Ring
+    [GI_SMALL_KEY_RING_THIEVES_HIDEOUT]                         = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA8, no_upgrade, give_small_key_ring, FORT_ID,   0, resolve_text_keyrings), // Thieves' Hideout Small Key Ring
+    [GI_SMALL_KEY_RING_GANONS_CASTLE]                           = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xA9, no_upgrade, give_small_key_ring, CASTLE_ID, 0, resolve_text_keyrings), // Ganon's Castle Small Key Ring
 
     [GI_BOMBCHU_BAG_20]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 20, -1, NULL), // Bombchu Bag (20)
     [GI_BOMBCHU_BAG_10]                                         = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus, 10, -1, NULL), // Bombchu Bag (10)
     [GI_BOMBCHU_BAG_5]                                          = ITEM_ROW(0x53,      GILDED_CHEST, 0x41, -1, 0x9019, 0x0197, 0x7E, no_upgrade, give_bombchus,  5, -1, NULL), // Bombchu Bag (5)
 
-    [GI_SMALL_KEY_RING_TREASURE_CHEST_GAME]                     = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0x77, no_upgrade, give_small_key_ring, TCG_ID, 0, resolve_text_keyrings), // Treasure Chest Game Small Key Ring
+    [GI_SMALL_KEY_RING_TREASURE_CHEST_GAME]                     = ITEM_ROW(0x53,      SILVER_CHEST, 0x41, -1, 0x9200, 0x0195, 0xAA, no_upgrade, give_small_key_ring, TCG_ID, 0, resolve_text_keyrings), // Treasure Chest Game Small Key Ring
 
     [GI_SILVER_RUPEE_DODONGOS_CAVERN_STAIRCASE]                 = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, -1, 0x901B, 0x0198, 0x72, no_upgrade, give_silver_rupee, DODONGO_ID, 0x00, resolve_text_silver_rupees), // Silver Rupee (Dodongos Cavern Staircase)
     [GI_SILVER_RUPEE_ICE_CAVERN_SPINNING_SCYTHE]                = ITEM_ROW(0x4D,      SILVER_CHEST, 0x85, -1, 0x901C, 0x0198, 0x72, no_upgrade, give_silver_rupee, ICE_ID,     0x01, resolve_text_silver_rupees), // Silver Rupee (Ice Cavern Spinning Scythe)

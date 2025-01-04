@@ -17,6 +17,9 @@ typedef Gfx* (*gen_double_tile_fn)(z64_gfx_t* gfx, int32_t tile1, uint32_t x1, u
 #define append_setup_dl_25_to_xlu ((append_setup_dl_25_to_xlu_fn)0x8007E2C0)
 #define gen_double_tile ((gen_double_tile_fn)0x8007EB84)
 
+static const colorRGBA8_t SMALL_KEY_DEFAULT_PRIM = {.r = 0xFF, .g = 0xFF, .b = 0xFF, .a = 0xFF};
+static const colorRGBA8_t SMALL_KEY_DEFAULT_ENV = {.r = 0x3C, .g = 0x50, .b = 0x5A, .a = 0xFF};
+
 void draw_gi_bombchu_and_masks(z64_game_t* game, uint32_t draw_id) {
     z64_gfx_t* gfx = game->common.gfx;
 
@@ -449,8 +452,16 @@ void draw_gi_song_notes(z64_game_t* game, uint32_t draw_id) {
 
 void draw_gi_small_keys(z64_game_t* game, uint32_t draw_id) {
     z64_gfx_t* gfx = game->common.gfx;
-    colorRGBA8_t prim_color = item_draw_table[draw_id].args[1].color;
-    colorRGBA8_t env_color = item_draw_table[draw_id].args[2].color;
+    colorRGBA8_t prim_color;
+    colorRGBA8_t env_color;
+    if(CUSTOM_KEY_MODELS) {
+        prim_color = item_draw_table[draw_id].args[1].color;
+        env_color = item_draw_table[draw_id].args[2].color;
+    }
+    else {
+        prim_color = SMALL_KEY_DEFAULT_PRIM;
+        env_color = SMALL_KEY_DEFAULT_ENV;
+    }
 
     append_setup_dl_25_to_opa(gfx);
     gSPMatrix(gfx->poly_opa.p++, append_sys_matrix(gfx), G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);

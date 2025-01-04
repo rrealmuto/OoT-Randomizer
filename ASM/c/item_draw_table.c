@@ -175,6 +175,17 @@ item_draw_table_entry_t item_draw_table[] = {
     [0x9D] = { draw_gi_fairy,               { 0x06000EF0 } }, // Fairy (not in a bottle but uses the fairy from the bottle)
     [0x9E] = { draw_gi_nothing,             {} },
     [0x9F] = { draw_gi_magic_meter,         { 0x06000A80, 0x06000F80, 0x060014C0, 0x00CE00FF, 0xFFFFFFFF, 0x000000FF } }, // Magic Meter , 0x000000FF -- 0x06000F70, 0x00CE00FF, --, 0x06009C0, 0x06001030, 0x00CE00FF, 0xFFFFFFFF
+    
+    [0xA0] = { draw_gi_small_keys,         { 0x060017C0, 0x94E97BFF, 0x2CCF1AFF } }, // Small Key Ring (Forest)
+    [0xA1] = { draw_gi_small_keys,         { 0x060017C0, 0xFD9884FF, 0xED1612FF } }, // Small Key Ring (Fire)
+    [0xA2] = { draw_gi_small_keys,         { 0x060017C0, 0x4C9DEEFF, 0x077AEEFF } }, // Small Key Ring (Water)
+    [0xA3] = { draw_gi_small_keys,         { 0x060017C0, 0xFACD8FFF, 0xF5B433FF } }, // Small Key Ring (Spirit)
+    [0xA4] = { draw_gi_small_keys,         { 0x060017C0, 0x9454ebFF, 0x7A18DDFF } }, // Small Key Ring (Shadow)
+    [0xA5] = { draw_gi_small_keys,         { 0x060017C0, 0xFAD1FAFF, 0xE9B3EFFF } }, // Small Key Ring (Well)
+    [0xA6] = { draw_gi_small_keys,         { 0x060017C0, 0xFEFB9CFF, 0xE3E312FF } }, // Small Key Ring (GTG)
+    [0xA7] = { draw_gi_small_keys,         { 0x060017C0, 0xFFFFFFFF, 0x8c8c8cFF } }, // Small Key Ring (Thieves)
+    [0xA8] = { draw_gi_small_keys,         { 0x060017C0, 0x6E7467FF, 0x262724FF } }, // Small Key Ring (Ganon)
+    [0xA9] = { draw_gi_small_keys,         { 0x060017C0, 0xC79B42FF, 0x9F7937FF } }, // Small Key Ring (Treasure Chest Game)
     };
 
 void base_draw_gi_model(z64_game_t* game, uint32_t draw_id) {
