@@ -3525,6 +3525,8 @@ class SettingInfos:
             The boat sequence in Shadow Temple will be massively sped up.
             The two Stalfos will still fall on the boat, but you
             won't have time to fight them.
+            If Shuffle Enemy Drops is enabled, these two Stalfos will be 
+            removed from the pool and won't even spawn.
         ''',
         default        = False,
         shared         = True,
