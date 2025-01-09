@@ -1,6 +1,7 @@
 #include "trade_quests.h"
 
 extern uint8_t CFG_ADULT_TRADE_SHUFFLE;
+extern uint8_t CFG_ENEMIZER;
 
 const exchange_item_t trade_quest_items[] = {
     {  0, Z64_ITEM_WEIRD_EGG,           Z64_EXCH_ITEM_WEIRD_EGG,    PLAYER_AP_WEIRD_EGG    , 0 }, // "Weird Egg"
@@ -296,7 +297,11 @@ int32_t SetBiggoronAnimationState() {
 // Because entrance rando can also lock you out of the
 // trade sequence, this change is always active regardless
 // of adult trade shuffle status
+// For enemizer - just ignore this behavior and always spawn them
 int32_t ShouldSkullKidSpawn() {
+    if (CFG_ENEMIZER) {
+        return Z64_ITEM_CLAIM_CHECK;
+    }
     if (SaveFile_TradeItemIsOwned(Z64_ITEM_COJIRO)) {
         if (!SaveFile_TradeItemIsTraded(Z64_ITEM_COJIRO)) {
             return Z64_ITEM_POCKET_EGG;

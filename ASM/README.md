@@ -58,7 +58,11 @@ You'll need to disable `Unique Game Save Directory` in Project64 for these to wo
 
 How to use the Debug mode: 
 - First put the DEBUG_MODE variable at 1 in debug.h.
+<<<<<<< HEAD
 - Now the N64 logo sequence at the start of the game will be skipped, the L button will allow you to levitate and you will then have access to a hidden menu with the following options:
+=======
+- Now the N64 logo sequence at the start of the game will be skipped, the L button will allow you to levitaten and you will then have access to a hidden menu with the following options:
+>>>>>>> e07525805 (Enemizer)
   - Instant warps to Dungeons, Bosses or Overworld locations
   - Item inventory edits
   - Instant age switch with the current location kept
@@ -66,7 +70,11 @@ How to use the Debug mode:
   - In-game clock
   - Actor and overlay list
   - Scene flags setters
+<<<<<<< HEAD
 The menu will appear if you press R + either L or Dpad Up.
+=======
+The menu will appear if you press either Dpad-Up or L.
+>>>>>>> e07525805 (Enemizer)
 Use Dpad-Left/Dpad-Right and A/B to navigate it.
 The warps and items are easily customizable with the code at the top of debug.c.
 - Additionally, you can call functions to print numbers on screen, to help you debug new features.

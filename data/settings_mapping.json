@@ -185,7 +185,8 @@
             "free_bombchu_drops",
             "plandomized_locations",
             "shuffle_boulders",
-            "golden_boulders"
+            "golden_boulders",
+            "enemizer"
           ]
         },
         {
