@@ -1,5 +1,16 @@
 .headersize (0x800110A0 - 0xA87000)
 
+; ==================================
+; Hook Play_Init
+; ==================================
+.org 0x8009a750
+; Replaces
+;   addiu   sp, sp, -0x90
+;   sw      s2, 0x28(sp)
+    j   Play_Init_Hook
+    nop
+Play_Init_Hook_Continue:
+
 ; Hook at the start collider_setcylinder so we can override cylinder radii
 .org 0x8004acec
 ; Replaces:
@@ -105,6 +116,12 @@ Room_Change_Continue:
 ;   nop
     jal     Actor_Update_Hook ; Call our hook
     or      a2, r0, t9  ; Copy the function pointer in a2 so we can call it
+
+; Hack Actor_Kill with our replacement function
+.org 0x80020eb4
+; Replaces: who cares
+    j       Actor_Kill_New
+    nop
 
 ; Always show the debugger
 .org 0x800af360

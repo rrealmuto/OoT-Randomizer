@@ -41,7 +41,7 @@ void extended_objects_reset() {
     for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         extended_object_ctx.slots[i].id = 0;
         if(extended_object_ctx.slots[i].data) {
-            heap_free(extended_object_ctx.slots[i].data);
+            ZeldaArena_Free(extended_object_ctx.slots[i].data);
         }
         extended_object_ctx.slots[i].is_active = 0;
         extended_object_ctx.slots[i].data = NULL;
@@ -75,8 +75,11 @@ void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, RoomContext* roomCtx, EnHoll
     extended_object_ctx.inhibit_clear_flag = 0;
 }
 
+int8_t gPrevRoom;
+
 void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
     int8_t prevRoom = roomCtx->prevRoom.num;
+    gPrevRoom = prevRoom;
     Room_Change(globalCtx, roomCtx);
     
     if(extended_object_ctx.inhibit_clear_flag)
@@ -90,7 +93,7 @@ void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
             }
             else {
                 // The slot is no longer active so free the slot and the data from the heap
-                heap_free(slot->data);
+                ZeldaArena_Free(slot->data);
                 slot->id = 0;
                 slot->data = 0;
             }
@@ -104,6 +107,10 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
     int32_t index = Object_GetIndex(object_ctx, object_id);
     int32_t free_index = -1;
     if (index == -1) {
+        if(object_id == 1 || object_id == 2) {
+            // Don't spawn gameplay_field/dungeon keep on our extended space
+            return index;
+        }
         // Check if the object is in our table already
         for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
             if(free_index < 0 && extended_object_ctx.slots[i].id == 0) {
@@ -120,7 +127,7 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
             // Figure out how much space we need
             uint32_t size = get_object_size(object_id);
             // Allocate space on our heap
-            extended_object_ctx.slots[free_index].data = heap_alloc(size);
+            extended_object_ctx.slots[free_index].data = ZeldaArena_Malloc(size);
             //extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX + i].data = extended_object_ctx.free;
             
             // Load the object
