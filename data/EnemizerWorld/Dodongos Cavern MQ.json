@@ -1,0 +1,491 @@
+[
+    {
+        "region_name": "Dodongos Cavern Beginning",
+        "dungeon": "Dodongos Cavern",
+        "exits": {
+            "Death Mountain": "True",
+            "Dodongos Cavern Lobby": "
+                here(can_blast_or_smash or Progressive_Strength_Upgrade) or
+                dodongos_cavern_shortcuts",
+            "Farores Wind Warp": "can_use(Farores_Wind)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Lobby",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Map Chest": "can_blast_or_smash or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Deku Scrub Lobby Rear": "can_stun_deku",
+            "Dodongos Cavern MQ Deku Scrub Lobby Front": "can_stun_deku",
+            "Dodongos Cavern MQ Gossip Stone Drop" : "here(can_blast_or_smash or Progressive_Strength_Upgrade) and can_play(Song_of_Time)",
+            "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
+            "Gossip Stone Fairy": "
+                (can_blast_or_smash or Progressive_Strength_Upgrade) and
+                can_summon_gossip_fairy and has_bottle"
+        },
+        "events": {
+            "DC MQ Lobby Switch Under Boulder Pressed": "can_pass_boulder('DC_LOBBY_SWITCH_BOULDER') or
+                ((boulder_type('DC_LOBBY_SWITCH_BOULDER') == BOULDER_TYPE_BROWN) and Progressive_Strength_Upgrade)"
+        },
+        "exits": {
+            "Dodongos Cavern Elevator": "DC_MQ_Lobby_Switch_Under_Boulder_Pressed",
+            "Dodongos Cavern Lower Right Side": "here(can_blast_or_smash)",
+            "Dodongos Cavern Poes Room": "is_adult",
+            "Dodongos Cavern Mouth": "dodongos_cavern_shortcuts"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Elevator",
+        "dungeon": "Dodongos Cavern",
+        "exits": {
+            "Dodongos Cavern Lower Staircase": "True",
+            "Dodongos Cavern Torch Puzzle Upper": "DC_Elevator_Boulders_Passed",
+            "Dodongos Cavern Poes Room": "
+                logic_dc_mq_child_bombs and (Kokiri_Sword or Sticks) and can_take_damage",
+            "Dodongos Cavern Mouth": "has_explosives"
+        },
+        "events": {
+            "DC Elevator Boulders Passed": "
+                here(
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_1') or
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_2') or
+                    can_pass_boulder('DC_LOBBY_UPPER_BOULDER_3')
+                ) or
+                ((
+                    (boulder_type('DC_LOBBY_UPPER_BOULDER_1') == BOULDER_TYPE_BROWN) or
+                    (boulder_type('DC_LOBBY_UPPER_BOULDER_2') == BOULDER_TYPE_BROWN) or
+                    (boulder_type('DC_LOBBY_UPPER_BOULDER_3') == BOULDER_TYPE_BROWN)
+                )
+                and (
+                    here(can_use(Dins_Fire))
+                    or
+                    at('Dodongos Cavern Torch Puzzle Upper', (Progressive_Strength_Upgrade or can_use(Bow)))
+                ))"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Song of Time Block Room",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
+            "Dodongos Cavern MQ Song of Time Block Room Skullwalltula": "
+                has_soul(Skullwalltula) and
+                ((can_play(Song_of_Time) and (is_adult or can_child_attack)) or
+                    can_use(Dins_Fire) or can_use(Megaton_Hammer))",
+            "Dodongos Cavern MQ Song of Time Block Room Skulltula 1": "
+                has_soul(Skulltula) and
+                (is_adult or (can_play(Song_of_Time) and can_child_damage) or has_bombchus)",
+            "Dodongos Cavern MQ Song of Time Block Room Skulltula 2": "
+                has_soul(Skulltula) and
+                (is_adult or (can_play(Song_of_Time) and can_child_damage) or has_bombchus)",
+            "Dodongos Cavern MQ Song of Time Block Room Skulltula 3": "
+                has_soul(Skulltula) and
+                (is_adult or (can_play(Song_of_Time) and can_child_damage) or has_bombchus)",
+            "Dodongos Cavern MQ GS Song of Time Block Room": "
+                can_play(Song_of_Time) and (is_adult or can_child_attack)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Lower Staircase",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Staircase Crate Bottom Left": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Staircase Crate Bottom Right": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Staircase Pot 1": "True",
+            "Dodongos Cavern MQ Staircase Pot 2": "True",
+            "Dodongos Cavern MQ Staircase Pot 3": "True",
+            "Dodongos Cavern MQ Staircase Pot 4": "True",
+            "Dodongos Cavern MQ Staircase Beamos 1": "can_kill_beamos_with_bomb_flower",
+            "Dodongos Cavern MQ Staircase Beamos 2": "can_kill_beamos_with_bomb_flower",
+            "Dodongos Cavern MQ Staircase Silver Rupee Beamos": "True",
+            "Dodongos Cavern MQ Staircase Silver Rupee Lower Crate": "can_break_crate or Progressive_Strength_Upgrade"
+        },
+        "exits": {
+            "Dodongos Cavern Song of Time Block Room": "True",
+            "Dodongos Cavern Upper Staircase": "
+                has_explosives or Progressive_Strength_Upgrade or
+                can_use(Dins_Fire) or (logic_dc_staircase and can_use(Bow))"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Upper Staircase",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Deku Scrub Staircase": "can_stun_deku",
+            "Dodongos Cavern MQ Staircase Crate Mid Left": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Crate Mid Right": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Crate Top Left": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Crate Top Right": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Silver Rupee Mid Left Crate": "can_break_crate",
+            "Dodongos Cavern MQ Staircase Silver Rupee Top Right Crate": "can_break_crate"
+        },
+        "exits": {
+            "Dodongos Cavern Above Staircase":"is_adult or can_child_attack or Nuts"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Above Staircase",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Staircase Silver Rupee Vines": "True",
+            "Dodongos Cavern MQ Staircase Skulltula 1": "can_kill_skulltula",
+            "Dodongos Cavern MQ Staircase Skulltula 2": "can_kill_skulltula"
+        },
+        "exits": {
+            "Dodongos Cavern Lower Staircase": "True",
+            "Dodongos Cavern Upper Staircase": "is_adult or can_child_attack or Nuts",
+            "Dodongos Cavern Compass Chest Room": "(Silver_Rupee_Dodongos_Cavern_Staircase, 5)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Compass Chest Room",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Compass Chest": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern MQ Compass Room Dodongo 1": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern MQ Compass Room Dodongo 2": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern MQ Compass Room Dodongo 3": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern Compass Room Grass 1": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 2": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 3": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 4": "can_mow_the_lawn"
+        },
+        "exits": {
+            "Dodongos Cavern Torch Puzzle Lower": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern Above Staircase": "True" # The door towards the staircase doesnt get barred shut regardless of how you enter the room
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Torch Puzzle Lower",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Torch Puzzle Room Recovery Heart": "True",
+            "Dodongos Cavern MQ Torch Puzzle Room Pot Pillar": "
+                can_use(Boomerang) or at('Dodongos Cavern Torch Puzzle Upper', True)",
+            "Dodongos Cavern MQ Before Upper Lizalfos Skulltula 1": "can_kill_skulltula"
+        },
+        "exits": {
+            "Dodongos Cavern Compass Chest Room": "True",
+            "Dodongos Cavern Larvae Room": "has_fire_source_with_torch",
+            "Dodongos Cavern Before Upper Lizalfos": "here(has_fire_source_with_torch)",
+            "Dodongos Cavern Torch Puzzle Upper": "
+                is_adult and (logic_dc_jump or Hover_Boots or Hookshot)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Larvae Room",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Larvae Room Chest": "has_soul(Gohma_Larvae)",
+            "Dodongos Cavern MQ Larvae Room Crate 1": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 2": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 3": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 4": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 5": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Crate 6": "can_break_crate",
+            "Dodongos Cavern MQ Larvae Room Gohma Larva 1": "has_soul(Gohma_Larvae)",
+            "Dodongos Cavern MQ Larvae Room Gohma Larva 2": "has_soul(Gohma_Larvae)",
+            "Dodongos Cavern MQ Larvae Room Gohma Larva 3": "has_soul(Gohma_Larvae)",
+            "Dodongos Cavern MQ Larvae Room Gohma Larva 4": "has_soul(Gohma_Larvae)",
+            "Dodongos Cavern MQ Larvae Room Gohma Larva 5": "has_soul(Gohma_Larvae)",
+            "Dodongos Cavern MQ GS Larvae Room": "True"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Before Upper Lizalfos",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Before Upper Lizalfos Pot 1": "True",
+            "Dodongos Cavern MQ Before Upper Lizalfos Pot 2": "True",
+            "Dodongos Cavern MQ Before Upper Lizalfos Keese 1": "can_kill_keese_stationary",
+            "Dodongos Cavern MQ Before Upper Lizalfos Keese 2": "can_kill_keese_stationary",
+            "Dodongos Cavern MQ Before Upper Lizalfos Keese Near Bomb Flower": "has_soul(Keese)",
+            "Dodongos Cavern MQ Before Upper Lizalfos Skulltula 2": "has_soul(Skulltula)",
+            "Dodongos Cavern MQ Before Upper Lizalfos Skulltula 3": "has_soul(Skulltula)",
+            "Dodongos Cavern MQ Before Upper Lizalfos Baby Dodongo 1": "can_kill_baby_dodongo",
+            "Dodongos Cavern MQ Before Upper Lizalfos Baby Dodongo 2": "can_kill_baby_dodongo",
+            "Dodongos Cavern MQ Before Upper Lizalfos Baby Dodongo 3": "can_kill_baby_dodongo"
+        },
+        "exits": {
+            "Dodongos Cavern Upper Lizalfos": "here((can_use(Sticks) and Progressive_Strength_Upgrade) or can_blast_or_smash)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Upper Lizalfos",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Upper Lizalfos Pot 1": "True",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 2": "True",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 3": "True",
+            "Dodongos Cavern MQ Upper Lizalfos Pot 4": "True",
+            "Dodongos Cavern MQ Upper Lizalfos 1": "can_kill_lizalfos",
+            "Dodongos Cavern MQ Upper Lizalfos 2": "can_kill_lizalfos",
+            "Dodongos Cavern MQ GS Lizalfos Room": "DC_Upper_Lizalfos_Passed_Boulders"
+        },
+        "exits": {
+            "Dodongos Cavern Before Upper Lizalfos": "can_kill_lizalfos",
+            "Dodongos Cavern Two Flames Room": "can_kill_lizalfos",
+            "Dodongos Cavern Lower Lizalfos": "DC_Upper_Lizalfos_Passed_Boulders"
+        },
+        "events": {
+            # Can reach this in boulder shuffle in a few ways
+            # Break either of the two on the left side closest to the platform in the lava (5 and 6) or on the right side (11 and 12) and jump. Requires taking damage from the lava or Goron Tunic
+            # Break any two consective boulders on the platform (7,8) (8,9) or (9,10).
+            # Silver boulders won't spawn at 7 or 10 so if they are shuffled there assume it isn't there
+            # Blue fire in a bottle will require taking damage
+            # Can pick up silver boulders on the platform using hover boots. Requires taking damage
+            "DC Upper Lizalfos Passed Boulders": "
+                ((can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_5') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_6') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_11') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_12')) and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                (
+                    (boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_SILVER) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire)) and
+                    (
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire))
+                    )
+                ) or
+                (
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire)) and
+                    (
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire))
+                    )
+                ) or
+                (
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_RED_ICE) and Blue_Fire)) and
+                    (
+                        (boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_SILVER) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_RED_ICE) and Blue_Fire))
+                    )
+                )
+            "
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Two Flames Room",
+        "dungeon": "Dodongos Cavern",
+        "locations":
+        {
+            "Dodongos Cavern MQ After Upper Lizalfos Pot 1": "True",
+            "Dodongos Cavern MQ After Upper Lizalfos Pot 2": "True",
+            "Dodongos Cavern MQ After Upper Lizalfos Crate 1": "can_break_crate",
+            "Dodongos Cavern MQ After Upper Lizalfos Crate 2": "can_break_crate",
+            "Dodongos Cavern MQ After Upper Lizalfos Keese 1": "can_kill_keese_stationary",
+            "Dodongos Cavern MQ After Upper Lizalfos Keese Near Bomb Flower": "has_soul(Keese)"
+        },
+        "exits": {
+            "Dodongos Cavern Upper Lizalfos": "True",
+            "Dodongos Cavern Torch Puzzle Upper": "here(can_pass_boulder('DC_TWOFLAMES_BOULDER'))"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Torch Puzzle Upper",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Torch Puzzle Room Chest": "True",
+            "Dodongos Cavern MQ Torch Puzzle Room Pot Corner": "True"
+        },
+        "exits": {
+            "Dodongos Cavern Torch Puzzle Lower": "True",
+            "Dodongos Cavern Two Flames Room": "True",
+            "Dodongos Cavern Lower Right Side": "DC_Elevator_Boulders_Passed and Progressive_Strength_Upgrade and can_take_damage",
+            "Dodongos Cavern Mouth": "
+                Progressive_Strength_Upgrade and
+                here((logic_dc_mq_eyes_adult and is_adult) or (logic_dc_mq_eyes_child and is_child))"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Lower Right Side",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos": "
+                (can_blast_or_smash or Progressive_Strength_Upgrade) and can_stun_deku",
+            "Dodongos Cavern MQ Right Side Pot 1": "True",
+            "Dodongos Cavern MQ Right Side Pot 2": "True",
+            "Dodongos Cavern MQ Right Side Pot 3": "True",
+            "Dodongos Cavern MQ Right Side Pot 4": "True",
+            "Dodongos Cavern MQ Right Side Skulltula": "can_kill_skulltula",
+            "Dodongos Cavern MQ Right Side Keese": "can_kill_keese"
+        },
+        "exits": {
+            # Logic for child only access to the poes room. Adult has access directly from the lobby
+            "Dodongos Cavern Poes Room": "
+                 has_soul(Lizalfos_and_Dinalfos) and (boulder_type('DC_LOWER_HALL_EYESWITCH_BOULDER') == BOULDER_TYPE_BROWN) and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or
+                    can_use(Dins_Fire) or has_explosives) and
+                can_use(Slingshot))",
+            # Need to have access to the lower lizalfos room to access the recovery heart, baby dodongos
+            "Dodongos Cavern Hall Before Lower Lizalfos": "here(can_use(Bow) or Progressive_Strength_Upgrade or
+                    can_use(Dins_Fire) or has_explosives) and
+                (can_use(Slingshot) or can_use(Bow))"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Hall Before Lower Lizalfos",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Right Side Baby Dodongo 1": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
+            "Dodongos Cavern MQ Right Side Baby Dodongo 2": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))"
+        },
+        "exits": {
+            "Dodongos Cavern Lower Lizalfos" : "True",
+            "Dodongos Cavern Lower Lizalfos Enemies": "True",
+            "Dodongos Cavern Lower Right Side": "True"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Lower Lizalfos",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern Lower Lizalfos Hidden Recovery Heart": "True"
+        },
+        "exits": {
+            # Child can fall down from above to reach Poes room, but Adult must defeat the
+            # lower Lizalfos here first, since they don't spawn when jumping down from above.
+            "Dodongos Cavern Poes Room": "has_soul(Lizalfos_and_Dinalfos) and here(is_adult)"
+        }
+    },
+    {
+        # Need this as a separate region because if child jumps down from above the enemies won't spawn
+        "region_name": "Dodongos Cavern Lower Lizalfos Enemies",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Lower Lizalfos 1": "can_kill_lizalfos",
+            "Dodongos Cavern MQ Lower Lizalfos 2": "can_kill_lizalfos"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Poes Room",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Bomb Bag Chest": "True",
+            "Dodongos Cavern MQ Poes Room Pot 1": "True",
+            "Dodongos Cavern MQ Poes Room Pot 2": "True",
+            "Dodongos Cavern MQ Poes Room Pot 3": "True",
+            "Dodongos Cavern MQ Poes Room Pot 4": "True",
+            "Dodongos Cavern MQ Poes Room Crate 1": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 2": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 3": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 4": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 5": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 6": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate 7": "can_break_crate or Progressive_Strength_Upgrade",
+            "Dodongos Cavern MQ Poes Room Crate Near Bomb Flower": "
+                can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire)",
+            "Dodongos Cavern Scrub Room Grass 1": "can_mow_the_lawn and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or can_use(Dins_Fire) or has_explosives))",
+            "Dodongos Cavern Scrub Room Grass 2": "can_mow_the_lawn and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or can_use(Dins_Fire) or has_explosives))",
+            "Dodongos Cavern MQ GS Scrub Room": "
+                (here(can_use(Bow)) or Progressive_Strength_Upgrade or
+                    can_use(Dins_Fire) or has_explosives) and
+                (can_use(Hookshot) or can_use(Boomerang))"
+        },
+        "exits": {
+            "Dodongos Cavern Hall Before Lower Lizalfos": "has_soul(Lizalfos_and_Dinalfos)", # Reverse access to the lower right side
+            "Dodongos Cavern Lower Lizalfos": "True",
+            "Dodongos Cavern Lower Lizalfos Enemies": "True",
+            "Dodongos Cavern Lower Scrubs Room": "can_use(Bow) or has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Lower Scrubs Room",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Lower Scrub Room Scrub 1" : "can_kill_scrub",
+            "Dodongos Cavern MQ Lower Scrub Room Scrub 2" : "can_kill_scrub",
+            "Dodongos Cavern MQ Lower Scrub Room Keese": "can_kill_keese"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Mouth",
+        "dungeon": "Dodongos Cavern",
+        "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
+        "locations": {
+            "Dodongos Cavern MQ Under Grave Chest": "True",
+            "Dodongos Cavern MQ Room Before Boss Pot 1": "True",
+            "Dodongos Cavern MQ Room Before Boss Pot 2": "True",
+            "Dodongos Cavern MQ Armos Army Room Pot 1": "True",
+            "Dodongos Cavern MQ Armos Army Room Pot 2": "True",
+            "Dodongos Cavern Armos Army Grass": "True",
+            "Dodongos Cavern MQ Back Poe Room Pot 1": "True",
+            "Dodongos Cavern MQ Back Poe Room Pot 2": "True",
+            "Dodongos Cavern Back Poe Room Grass": "True",
+            "Dodongos Cavern MQ GS Back Area": "
+                can_use(Boomerang) or
+                at('Dodongos Cavern Before Boss', is_adult or can_child_attack or
+                    Progressive_Strength_Upgrade)",
+            "Dodongos Cavern MQ Before Boss Baby Dodongo 1": "has_soul(Baby_Dodongo)",
+            "Dodongos Cavern MQ Before Boss Baby Dodongo 2": "has_soul(Baby_Dodongo)",
+            "Dodongos Cavern MQ Armos Army Armos 1": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Armos 2": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Armos 3": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Armos 4": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Armos 5": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Armos 6": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Armos 7": "
+                has_soul(Armos) and
+                (is_adult or Sticks or has_explosives or
+                    ((Nuts or Boomerang) and (Kokiri_Sword or Slingshot)) or
+                    at('Dodongos Cavern Before Boss', Progressive_Strength_Upgrade))",
+            "Dodongos Cavern MQ Armos Army Baby Dodongo 1": "has_soul(Baby_Dodongo)",
+            "Dodongos Cavern MQ Armos Army Baby Dodongo 2": "has_soul(Baby_Dodongo)",
+            "Dodongos Cavern MQ Armos Army Lizalfos": "can_kill_lizalfos"
+        },
+        "exits": {
+            "Dodongos Cavern Lobby": "True",
+            # The final line of this exit is for using an Armos to explode the bomb flowers.
+            # This should really be a separate trick, but it's only relevant in mixed pools.
+            "Dodongos Cavern Before Boss": "
+                is_adult or has_explosives or can_use(Dins_Fire) or dodongos_cavern_shortcuts or
+                (logic_dc_mq_eyes_child and can_kill_armos)"
+        }
+    },
+    {
+        "region_name": "Dodongos Cavern Before Boss",
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern MQ Armos Army Room Upper Pot 1": "True",
+            "Dodongos Cavern MQ Armos Army Room Upper Pot 2": "True",
+            "Fairy Pot": "has_bottle"
+        },
+        "exits": {
+            "King Dodongo Boss Room": "True"
+        }
+    }
+]

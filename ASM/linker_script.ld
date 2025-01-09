@@ -2,6 +2,7 @@ SECTIONS
 {
     /* Allocatable and important sections */
     .text   : { *(.text*);   }
+    test_sym = .;
     .rodata : { *(.rodata*); }
 
     /*

@@ -1,0 +1,133 @@
+[
+    {
+        "region_name": "Bottom of the Well",
+        "dungeon": "Bottom of the Well",
+        "exits": {
+            "Kakariko Village": "True",
+            "Bottom of the Well Perimeter": "is_child",
+            "Farores Wind Warp": "can_use(Farores_Wind)"
+        }
+    },
+    {
+        "region_name": "Bottom of the Well Perimeter",
+        "dungeon": "Bottom of the Well",
+        "locations": {
+            "Bottom of the Well MQ Compass Chest": "
+                has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
+            "Bottom of the Well MQ Dead Hand Freestanding Key": "
+                has_explosives or (logic_botw_mq_dead_hand_key and Boomerang)",
+            "Bottom of the Well Dead Hand Grass 1": "can_mow_the_lawn",
+            "Bottom of the Well Dead Hand Grass 2": "can_mow_the_lawn",
+            "Bottom of the Well Dead Hand Grass 3": "can_mow_the_lawn",
+            "Bottom of the Well Dead Hand Grass 4": "can_mow_the_lawn",
+            "Bottom of the Well MQ Bombable Recovery Heart 1": "has_explosives",
+            "Bottom of the Well MQ Bombable Recovery Heart 2": "has_explosives",
+            "Bottom of the Well MQ Basement Recovery Heart 1": "True",
+            "Bottom of the Well MQ Basement Recovery Heart 2": "True",
+            "Bottom of the Well MQ Basement Recovery Heart 3": "True",
+            "Bottom of the Well MQ Coffin Recovery Heart 1": "
+                (Small_Key_Bottom_of_the_Well, 2) and (Sticks or can_use(Dins_Fire))",
+            "Bottom of the Well MQ Coffin Recovery Heart 2": "
+                (Small_Key_Bottom_of_the_Well, 2) and (Sticks or can_use(Dins_Fire))",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ Main Area Left Slingshot Wonderitem 4": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ Main Area Right Slingshot Wonderitem 4": "Slingshot",
+            "Bottom of the Well MQ Perimeter Behind Gate Pot": "has_explosives and Slingshot",
+            "Bottom of the Well MQ First Hallway ReDead": "can_kill_redead",
+            "Bottom of the Well MQ Center Room Pitfall Skulltula": "
+                has_soul(Skulltula) and 
+                (
+                ((can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1') or can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1')) and can_child_attack or Nuts)
+                or can_use(Dins_Fire) 
+                or (can_play(Zeldas_Lullaby) and 
+                    (Slingshot or (logic_botw_mq_pits and can_kill_skulltula))))",
+            "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
+            "Bottom of the Well MQ Basement Invisible Skulltula 1": "
+                can_kill_skulltula and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ Basement Invisible Skulltula 2": "
+                can_kill_skulltula and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ Basement Invisible Skulltula 3": "
+                can_kill_skulltula and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ Basement ReDead 1": "can_kill_redead",
+            "Bottom of the Well MQ Basement ReDead 2": "can_kill_redead",
+            "Bottom of the Well MQ Basement ReDead 3": "can_kill_redead",
+            "Bottom of the Well MQ Basement ReDead 4": "can_kill_redead",
+            "Bottom of the Well MQ Basement ReDead 5": "can_kill_redead",
+            "Bottom of the Well MQ Coffin Room Gibdo": "
+                (Small_Key_Bottom_of_the_Well, 2) and can_kill_redead",
+            "Bottom of the Well MQ False Floor Wallmaster": "
+                can_kill_wallmaster and (Sticks or has_explosives or Slingshot or Boomerang)",
+            "Bottom of the Well MQ False Floor Floormaster": "
+                can_kill_floormaster and (Sticks or has_explosives or Slingshot or Boomerang)",
+            "Bottom of the Well MQ Inside Cage Skullwalltula Lower": "
+                has_soul(Skullwalltula) and
+                (can_use(Dins_Fire) or
+                    ((Small_Key_Bottom_of_the_Well, 2) and
+                        (Sticks or has_explosives or Slingshot or Boomerang)))",
+            "Bottom of the Well MQ Inside Cage Skullwalltula Higher": "
+                has_soul(Skullwalltula) and
+                (can_use(Dins_Fire) or
+                    ((Small_Key_Bottom_of_the_Well, 2) and
+                        (Sticks or has_explosives or Slingshot or Boomerang)))",
+            "Bottom of the Well MQ Dead Hand": "
+                has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
+            "Bottom of the Well MQ GS Basement": "can_child_attack",
+            "Bottom of the Well MQ GS Coffin Room": "
+                (Small_Key_Bottom_of_the_Well, 2) and can_child_attack",
+            "Wall Fairy": "has_bottle and Slingshot" # The fairy pot is obsolete
+        },
+        "exits": {
+            "Bottom of the Well Middle": "
+                can_play(Zeldas_Lullaby) or (logic_botw_mq_pits and has_explosives)"
+        },
+        "events": {
+            "Bottom of the Well West Switch Pressed": "((can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1') or can_pass_boulder('BOTW_LEFT_SIDE_BOULDER_1')) and can_child_attack or Nuts) or (can_play(Zeldas_Lullaby) and logic_botw_mq_pits)"
+        }
+    },
+    {
+        "region_name": "Bottom of the Well Middle",
+        "dungeon": "Bottom of the Well",
+        "locations": {
+            "Bottom of the Well MQ Map Chest": "True",
+            "Bottom of the Well MQ East Inner Room Freestanding Key": "True",
+            "Bottom of the Well MQ Lens of Truth Chest": "
+                (Small_Key_Bottom_of_the_Well, 2) and has_explosives",
+            "Bottom of the Well MQ Center Room Right Pot 1": "True",
+            "Bottom of the Well MQ Center Room Right Pot 2": "True",
+            "Bottom of the Well MQ Center Room Right Pot 3": "True",
+            "Bottom of the Well MQ East Inner Room Pot 1": "True",
+            "Bottom of the Well MQ East Inner Room Pot 2": "True",
+            "Bottom of the Well MQ East Inner Room Pot 3": "True",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1": "Slingshot",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2": "Slingshot",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3": "Slingshot",
+            "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 4": "Slingshot",
+            "Bottom of the Well MQ Center Room Wallmaster": "has_soul(Wallmaster)"
+        },
+        "exits": {
+            "Bottom of the Well West Inner Room": "Bottom_of_the_Well_West_Switch_Pressed"
+        }
+    },
+    {
+        "region_name": "Bottom of the Well West Inner Room",
+        "dungeon": "Bottom of the Well",
+        "locations": {
+            "Bottom of the Well MQ West Inner Room Invisible Keese 1": "
+                can_kill_keese_stationary and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ West Inner Room Invisible Keese 2": "
+                can_kill_keese_stationary and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ West Inner Room Invisible Keese 3": "
+                can_kill_keese_stationary and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ West Inner Room Invisible Skulltula 1": "
+                can_kill_skulltula and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ West Inner Room Invisible Skulltula 2": "
+                can_kill_skulltula and (logic_lens_botw_mq or can_use(Lens_of_Truth))",
+            "Bottom of the Well MQ GS West Inner Room": "can_child_attack"
+        }
+    }
+]
