@@ -328,21 +328,7 @@
         "hint": "LOST_WOODS",
         "events": {
             "Odd Mushroom Access": "is_adult and (('Cojiro Access' and not adult_trade_shuffle) or Cojiro)",
-            "Poachers Saw Access": "is_adult and (('Odd Potion Access' and not adult_trade_shuffle) or Odd_Potion)",
-            # Ensure Skull Kids can be made to spawn as adult, in case the adult trade item has been found.
-            "Skull Kids Present": "
-                is_adult and has_soul(Skull_Kid) and
-                (adult_trade_shuffle or
-                    ((selected_adult_trade_item == 'Pocket Egg' or selected_adult_trade_item == 'Pocket Cucco') and
-                        at('Kak Carpenter Boss House', is_adult) and
-                        at('Kakariko Village', is_adult and at_day) and
-                        at('Kak Odd Medicine Building', is_adult)) or
-                    ((selected_adult_trade_item == 'Cojiro' or selected_adult_trade_item == 'Odd Mushroom') and
-                        at('Kak Odd Medicine Building', is_adult)) or
-                    selected_adult_trade_item == 'Odd Potion' or selected_adult_trade_item == 'Poachers Saw' or
-                    selected_adult_trade_item == 'Broken Sword' or selected_adult_trade_item == 'Prescription' or
-                    selected_adult_trade_item == 'Eyeball Frog' or selected_adult_trade_item == 'Eyedrops' or
-                    selected_adult_trade_item == 'Claim Check')"
+            "Poachers Saw Access": "is_adult and (('Odd Potion Access' and not adult_trade_shuffle) or Odd_Potion)"
         },
         "locations": {
             "LW Skull Kid": "is_child and can_play(Sarias_Song)",
@@ -363,9 +349,9 @@
             "LW Near Ocarina Game Wonderitem 1": "is_child",
             "LW Near Ocarina Game Wonderitem 2": "is_child",
             "LW Near Ocarina Game Wonderitem 3": "is_child",
-            "LW Adult Sarias Friend Skullkid Enemy": "'Skull Kids Present'",
-            "LW Adult Ocarina Game Skullkid Enemy 1": "'Skull Kids Present'",
-            "LW Adult Ocarina Game Skullkid Enemy 2": "'Skull Kids Present'",
+            "LW Adult Sarias Friend Skullkid Enemy": "is_adult and has_soul(Skull_Kid)",
+            "LW Adult Ocarina Game Skullkid Enemy 1": "is_adult and has_soul(Skull_Kid)",
+            "LW Adult Ocarina Game Skullkid Enemy 2": "is_adult and has_soul(Skull_Kid)",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
