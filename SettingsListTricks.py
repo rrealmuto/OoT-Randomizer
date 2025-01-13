@@ -1588,7 +1588,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Hover Boots can again be used to obtain the Token,
                     all without Hookshot or Boomerang.
                     '''},
-    'Ice Cavern MQ Red Ice GS without Song of Time': {
+    'Ice Cavern MQ Red Ice GS without Song of Time or Blue Fire Arrows': {
         'name'    : 'logic_ice_mq_red_ice_gs',
         'tags'    : ("Ice Cavern MQ", "Gold Skulltulas", "Master Quest", "Adult",),
         'tooltip' : '''\
