@@ -1561,20 +1561,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.settings.minimap_enemy_tracker:
             rom.write_byte(rom.sym('CFG_MINIMAP_ENEMY_TRACKER'), 0x01)
 
-        if world.settings.fast_shadow_boat:
-            # Prevent the shadow boat stalfos from spawning by putting their Y coordinate far above.
-            scene_data = process_scenes(rom)
-            if not world.dungeon_mq['Shadow Temple']:
-                shadow_stalfos_boat_1 = scene_data[7].rooms[21].setups[0].actors[13]
-                rom.write_int16(shadow_stalfos_boat_1.addr + 4, 0x0000)
-                shadow_stalfos_boat_2 = scene_data[7].rooms[21].setups[0].actors[14]
-                rom.write_int16(shadow_stalfos_boat_2.addr + 4, 0x0000)
-            else:
-                shadow_stalfos_boat_1 = scene_data[7].rooms[21].setups[0].actors[16]
-                rom.write_int16(shadow_stalfos_boat_1.addr + 4, 0x0000)
-                shadow_stalfos_boat_2 = scene_data[7].rooms[21].setups[0].actors[17]
-                rom.write_int16(shadow_stalfos_boat_2.addr + 4, 0x0000)
-
     # Write flag table data
     xflags_tables, alt_list = build_xflags_from_world(world)
     xflag_scene_table, xflag_room_table, xflag_room_blob, max_bit = build_xflag_tables(xflags_tables)
