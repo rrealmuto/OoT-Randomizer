@@ -31,6 +31,7 @@ class EnemyLocation:
         self.patch_func = patch_func
         self.switch_flag = switch_flag
         self.skip_raycast = skip_raycast
+        self.location_specific_enemy_logic = {}
 
 # Move the SFM wolfos more towards the center, some enemies like flare dancer might jump over the fence
 def patch_func_sfm_wolfos(actor: Actor):
@@ -278,227 +279,227 @@ base_enemy_alts = {
 
 vanilla_dungeon_enemies = {
     'Deku Tree': {
-        (0, 0, 0, 0): 149, # Skullwaltula
-        (0, 0, 0, 1): 149, # Skullwaltula
-        (0, 0, 0, 2): 149, # Skullwaltula
-        (0, 0, 0, 3): 55, # Skulltula
-        (0, 0, 0, 4): 55, # Skulltula
-        (0, 0, 0, 5): 55, # Skulltula
-        (0, 0, 0, 11): 85, # Deku Baba
-        (0, 0, 0, 12): 85, # Deku Baba
-        (0, 0, 0, 13): 85, # Deku Baba
-        (0, 3, 0, 0): 199, # Whithered Deku Baba
-        (0, 3, 0, 3): 85, # Deku Baba
-        (0, 3, 0, 4): 85, # Deku Baba
-        (0, 3, 0, 5): 85, # Deku Baba
-        (0, 5, 0, 0): 55, # Skulltula
-        (0, 6, 0, 0): 199, # Whithered Deku Baba
-        (0, 6, 0, 1): 199, # Whithered Deku Baba
-        (0, 6, 0, 4): 85, # Deku Baba
-        (0, 7, 0, 0): 199, # Whithered Deku Baba
-        (0, 7, 0, 1): 55, # Skulltula
-        (0, 7, 0, 4): 85, # Deku Baba
-        (0, 7, 0, 5): 43, # Gohma Larva
-        (0, 7, 0, 6): 43, # Gohma Larva
-        (0, 7, 0, 7): 43, # Gohma Larva
-        (0, 8, 0, 0): 55, # Skulltula
-        (0, 10, 0, 0): 199, # Whithered Deku Baba
-        (0, 10, 0, 1): 55, # Skulltula
-        (0, 10, 0, 4): 85, # Deku Baba
+        (0, 0, 0, 0):  EnemyLocation(149), # Skullwaltula
+        (0, 0, 0, 1):  EnemyLocation(149), # Skullwaltula
+        (0, 0, 0, 2):  EnemyLocation(149), # Skullwaltula
+        (0, 0, 0, 3):  EnemyLocation(55), # Skulltula
+        (0, 0, 0, 4):  EnemyLocation(55), # Skulltula
+        (0, 0, 0, 5):  EnemyLocation(55), # Skulltula
+        (0, 0, 0, 11): EnemyLocation( 85), # Deku Baba
+        (0, 0, 0, 12): EnemyLocation( 85), # Deku Baba
+        (0, 0, 0, 13): EnemyLocation( 85), # Deku Baba
+        (0, 3, 0, 0):  EnemyLocation(199), # Whithered Deku Baba
+        (0, 3, 0, 3):  EnemyLocation(85), # Deku Baba
+        (0, 3, 0, 4):  EnemyLocation(85), # Deku Baba
+        (0, 3, 0, 5):  EnemyLocation(85), # Deku Baba
+        (0, 5, 0, 0):  EnemyLocation(55), # Skulltula
+        (0, 6, 0, 0):  EnemyLocation(199), # Whithered Deku Baba
+        (0, 6, 0, 1):  EnemyLocation(199), # Whithered Deku Baba
+        (0, 6, 0, 4):  EnemyLocation(85), # Deku Baba
+        (0, 7, 0, 0):  EnemyLocation(199), # Whithered Deku Baba
+        (0, 7, 0, 1):  EnemyLocation(55), # Skulltula
+        (0, 7, 0, 4):  EnemyLocation(85), # Deku Baba
+        (0, 7, 0, 5):  EnemyLocation(43), # Gohma Larva
+        (0, 7, 0, 6):  EnemyLocation(43), # Gohma Larva
+        (0, 7, 0, 7):  EnemyLocation(43), # Gohma Larva
+        (0, 8, 0, 0):  EnemyLocation(55), # Skulltula
+        (0, 10, 0, 0): EnemyLocation( 199), # Whithered Deku Baba
+        (0, 10, 0, 1): EnemyLocation( 55), # Skulltula
+        (0, 10, 0, 4): EnemyLocation( 85), # Deku Baba
     },
     'Dodongos Cavern': {
-        (1, 0, 0, 5): 19, # Keese
-        (1, 0, 0, 6): 19, # Keese
-        (1, 0, 0, 7): 138, # Beamos
-        (1, 0, 0, 8): 138, # Beamos
-        (1, 0, 0, 9): 138, # Beamos
-        (1, 1, 0, 0): 19, # Keese
-        (1, 1, 0, 1): 19, # Keese
-        (1, 1, 0, 2): 47, # Baby Dodongo
-        (1, 1, 0, 3): 47, # Baby Dodongo
-        (1, 1, 0, 4): 47, # Baby Dodongo
-        (1, 1, 0, 5): 47, # Baby Dodongo
-        (1, 1, 0, 6): 47, # Baby Dodongo
-        (1, 1, 0, 7): 47, # Baby Dodongo
-        (1, 2, 0, 0): 149, # Skullwaltula
-        (1, 3, 0, 1): 37, # Lizalfos/Dinalfos
-        (1, 3, 0, 2): 37, # Lizalfos/Dinalfos
-        (1, 3, 0, 3): 37, # Lizalfos/Dinalfos
-        (1, 3, 0, 4): 37, # Lizalfos/Dinalfos
-        (1, 4, 0, 0): 18, # Dodongo
-        (1, 4, 0, 1): 18, # Dodongo
-        (1, 4, 0, 2): 18, # Dodongo
-        (1, 5, 0, 0): 84, # Armos
-        (1, 5, 0, 1): 84, # Armos
-        (1, 5, 0, 2): 84, # Armos
-        (1, 5, 0, 3): 19, # Keese
-        (1, 5, 0, 4): 19, # Keese
-        (1, 7, 0, 1): 19, # Keese
-        (1, 7, 0, 2): 19, # Keese
-        (1, 8, 0, 0): 19, # Keese
-        (1, 8, 0, 1): 19, # Keese
-        (1, 10, 0, 1): 47, # Baby Dodongo
-        (1, 10, 0, 2): 47, # Baby Dodongo
-        (1, 10, 0, 3): 47, # Baby Dodongo
-        (1, 11, 0, 0): 19, # Keese
-        (1, 11, 0, 1): 19, # Keese
-        (1, 11, 0, 2): 19, # Keese
-        (1, 14, 0, 0): 84, # Armos
-        (1, 15, 0, 0): 84, # Armos
+        (1, 0, 0, 5):  EnemyLocation(19), # Keese
+        (1, 0, 0, 6):  EnemyLocation(19), # Keese
+        (1, 0, 0, 7):  EnemyLocation(138), # Beamos
+        (1, 0, 0, 8):  EnemyLocation(138), # Beamos
+        (1, 0, 0, 9):  EnemyLocation(138), # Beamos
+        (1, 1, 0, 0):  EnemyLocation(19), # Keese
+        (1, 1, 0, 1):  EnemyLocation(19), # Keese
+        (1, 1, 0, 2):  EnemyLocation(47), # Baby Dodongo
+        (1, 1, 0, 3):  EnemyLocation(47), # Baby Dodongo
+        (1, 1, 0, 4):  EnemyLocation(47), # Baby Dodongo
+        (1, 1, 0, 5):  EnemyLocation(47), # Baby Dodongo
+        (1, 1, 0, 6):  EnemyLocation(47), # Baby Dodongo
+        (1, 1, 0, 7):  EnemyLocation(47), # Baby Dodongo
+        (1, 2, 0, 0):  EnemyLocation(149), # Skullwaltula
+        (1, 3, 0, 1):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 2):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 3):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 4):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 4, 0, 0):  EnemyLocation(18), # Dodongo
+        (1, 4, 0, 1):  EnemyLocation(18), # Dodongo
+        (1, 4, 0, 2):  EnemyLocation(18), # Dodongo
+        (1, 5, 0, 0):  EnemyLocation(84), # Armos
+        (1, 5, 0, 1):  EnemyLocation(84), # Armos
+        (1, 5, 0, 2):  EnemyLocation(84), # Armos
+        (1, 5, 0, 3):  EnemyLocation(19), # Keese
+        (1, 5, 0, 4):  EnemyLocation(19), # Keese
+        (1, 7, 0, 1):  EnemyLocation(19), # Keese
+        (1, 7, 0, 2):  EnemyLocation(19), # Keese
+        (1, 8, 0, 0):  EnemyLocation(19), # Keese
+        (1, 8, 0, 1):  EnemyLocation(19), # Keese
+        (1, 10, 0, 1): EnemyLocation( 47), # Baby Dodongo
+        (1, 10, 0, 2): EnemyLocation( 47), # Baby Dodongo
+        (1, 10, 0, 3): EnemyLocation( 47), # Baby Dodongo
+        (1, 11, 0, 0): EnemyLocation( 19), # Keese
+        (1, 11, 0, 1): EnemyLocation( 19), # Keese
+        (1, 11, 0, 2): EnemyLocation( 19), # Keese
+        (1, 14, 0, 0): EnemyLocation( 84), # Armos
+        (1, 15, 0, 0): EnemyLocation( 84), # Armos
     },
     'Jabu Jabus Belly': {
         (2, 0, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 0, 0, 1): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-        (2, 0, 0, 3): 45, # Shabom
-        (2, 0, 0, 4): 45, # Shabom
+        (2, 0, 0, 3): EnemyLocation(45), # Shabom
+        (2, 0, 0, 4): EnemyLocation(45), # Shabom
         (2, 1, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-        (2, 1, 0, 1): 52, # Biri
-        (2, 2, 0, 1): 99, # Bari
-        (2, 2, 0, 2): 99, # Bari
-        (2, 2, 0, 4): 52, # Biri
-        (2, 2, 0, 5): 52, # Biri
-        (2, 2, 0, 6): 52, # Biri
-        (2, 3, 0, 1): 52, # Biri
-        (2, 3, 0, 2): 52, # Biri
-        (2, 3, 0, 3): 52, # Biri
-        (2, 3, 0, 4): 52, # Biri
+        (2, 1, 0, 1): EnemyLocation(52), # Biri
+        (2, 2, 0, 1): EnemyLocation(99), # Bari
+        (2, 2, 0, 2): EnemyLocation(99), # Bari
+        (2, 2, 0, 4): EnemyLocation(52), # Biri
+        (2, 2, 0, 5): EnemyLocation(52), # Biri
+        (2, 2, 0, 6): EnemyLocation(52), # Biri
+        (2, 3, 0, 1): EnemyLocation(52), # Biri
+        (2, 3, 0, 2): EnemyLocation(52), # Biri
+        (2, 3, 0, 3): EnemyLocation(52), # Biri
+        (2, 3, 0, 4): EnemyLocation(52), # Biri
         (2, 4, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-        (2, 5, 0, 1): 52, # Biri
-        (2, 5, 0, 2): 52, # Biri
-        (2, 5, 0, 3): 52, # Biri
-        (2, 5, 0, 4): 52, # Biri
-        (2, 5, 0, 5): 52, # Biri
-        (2, 6, 0, 0): 52, # Biri
-        (2, 6, 0, 1): 52, # Biri
-        (2, 7, 0, 0): 53, # Tailpasaran
-        (2, 7, 0, 1): 53, # Tailpasaran
-        (2, 7, 0, 2): 53, # Tailpasaran
-        (2, 7, 0, 3): 53, # Tailpasaran
-        (2, 7, 0, 4): 53, # Tailpasaran
-        (2, 8, 0, 1): 52, # Biri
-        (2, 8, 0, 2): 52, # Biri
-        (2, 8, 0, 3): 52, # Biri
-        (2, 8, 0, 4): 52, # Biri
-        (2, 9, 0, 0): 58, # Singray
-        (2, 9, 0, 1): 58, # Singray
-        (2, 9, 0, 2): 58, # Singray
-        (2, 9, 0, 3): 58, # Singray
-        (2, 12, 0, 2): 45, # Shabom
-        (2, 12, 0, 3): 45, # Shabom
-        (2, 12, 0, 4): 45, # Shabom
-        (2, 12, 0, 5): 45, # Shabom
-        (2, 12, 0, 6): 45, # Shabom
-        (2, 12, 0, 7): 45, # Shabom
-        (2, 12, 0, 8): 45, # Shabom
-        (2, 12, 0, 9): 45, # Shabom
-        (2, 12, 0, 10): 45, # Shabom
+        (2, 5, 0, 1):   EnemyLocation(52), # Biri
+        (2, 5, 0, 2):   EnemyLocation(52), # Biri
+        (2, 5, 0, 3):   EnemyLocation(52), # Biri
+        (2, 5, 0, 4):   EnemyLocation(52), # Biri
+        (2, 5, 0, 5):   EnemyLocation(52), # Biri
+        (2, 6, 0, 0):   EnemyLocation(52), # Biri
+        (2, 6, 0, 1):   EnemyLocation(52), # Biri
+        (2, 7, 0, 0):   EnemyLocation(53), # Tailpasaran
+        (2, 7, 0, 1):   EnemyLocation(53), # Tailpasaran
+        (2, 7, 0, 2):   EnemyLocation(53), # Tailpasaran
+        (2, 7, 0, 3):   EnemyLocation(53), # Tailpasaran
+        (2, 7, 0, 4):   EnemyLocation(53), # Tailpasaran
+        (2, 8, 0, 1):   EnemyLocation(52), # Biri
+        (2, 8, 0, 2):   EnemyLocation(52), # Biri
+        (2, 8, 0, 3):   EnemyLocation(52), # Biri
+        (2, 8, 0, 4):   EnemyLocation(52), # Biri
+        (2, 9, 0, 0):   EnemyLocation(58), # Singray
+        (2, 9, 0, 1):   EnemyLocation(58), # Singray
+        (2, 9, 0, 2):   EnemyLocation(58), # Singray
+        (2, 9, 0, 3):   EnemyLocation(58), # Singray
+        (2, 12, 0, 2):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 3):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 4):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 5):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 6):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 7):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 8):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 9):  EnemyLocation( 45), # Shabom
+        (2, 12, 0, 10): EnemyLocation( 45), # Shabom
         (2, 13, 0, 0): EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 13, 0, 1): EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-        (2, 14, 0, 0): 58, # Singray
-        (2, 14, 0, 1): 58, # Singray
-        (2, 14, 0, 2): 58, # Singray
-        (2, 14, 0, 10): 45, # Shabom
-        (2, 14, 0, 11): 45, # Shabom
-        (2, 14, 0, 12): 45, # Shabom
-        (2, 14, 0, 13): 45, # Shabom
-        (2, 14, 0, 14): 45, # Shabom
-        (2, 14, 0, 15): 45, # Shabom
-        (2, 14, 0, 16): 45, # Shabom
+        (2, 14, 0, 0):  EnemyLocation(58), # Singray
+        (2, 14, 0, 1):  EnemyLocation(58), # Singray
+        (2, 14, 0, 2):  EnemyLocation(58), # Singray
+        (2, 14, 0, 10): EnemyLocation( 45), # Shabom
+        (2, 14, 0, 11): EnemyLocation( 45), # Shabom
+        (2, 14, 0, 12): EnemyLocation( 45), # Shabom
+        (2, 14, 0, 13): EnemyLocation( 45), # Shabom
+        (2, 14, 0, 14): EnemyLocation( 45), # Shabom
+        (2, 14, 0, 15): EnemyLocation( 45), # Shabom
+        (2, 14, 0, 16): EnemyLocation( 45), # Shabom
     },
     'Forest Temple': {
-        (3, 0, 0, 0): 431, # Wolfos
-        (3, 0, 0, 1): 431, # Wolfos
-        (3, 1, 0, 0): 55, # Skulltula
-        (3, 3, 0, 4): 55, # Skulltula
-        (3, 4, 0, 0): 105, # Bubble
-        (3, 5, 0, 4): 55, # Skulltula
-        (3, 6, 0, 0): 2, # Stalfos
-        (3, 6, 0, 1): 2, # Stalfos
+        (3, 0, 0, 0): EnemyLocation(431), # Wolfos
+        (3, 0, 0, 1): EnemyLocation(431), # Wolfos
+        (3, 1, 0, 0): EnemyLocation(55), # Skulltula
+        (3, 3, 0, 4): EnemyLocation(55), # Skulltula
+        (3, 4, 0, 0): EnemyLocation(105), # Bubble
+        (3, 5, 0, 4): EnemyLocation(55), # Skulltula
+        (3, 6, 0, 0): EnemyLocation(2), # Stalfos
+        (3, 6, 0, 1): EnemyLocation(2), # Stalfos
         (3, 7, 0, 2): EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-        (3, 7, 0, 3): 149, # Skullwaltula
-        (3, 7, 0, 4): 85, # Deku Baba
-        (3, 7, 0, 5): 85, # Deku Baba
+        (3, 7, 0, 3): EnemyLocation(149), # Skullwaltula
+        (3, 7, 0, 4): EnemyLocation(85), # Deku Baba
+        (3, 7, 0, 5): EnemyLocation(85), # Deku Baba
         (3, 8, 0, 0): EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
-        (3, 8, 0, 1): 149, # Skullwaltula
-        (3, 8, 0, 2): 149, # Skullwaltula
-        (3, 8, 0, 3): 149, # Skullwaltula
-        (3, 8, 0, 4): 85, # Deku Baba
-        (3, 8, 0, 5): 85, # Deku Baba
-        (3, 10, 0, 0): 105, # Bubble
-        (3, 11, 0, 0): 105, # Bubble
-        (3, 11, 0, 1): 105, # Bubble
-        (3, 11, 0, 2): 105, # Bubble
-        (3, 15, 0, 0): 55, # Skulltula
-        (3, 15, 0, 1): 55, # Skulltula
-        (3, 15, 0, 2): 55, # Skulltula
-        (3, 17, 0, 0): 55, # Skulltula
-        (3, 18, 0, 0): 142, # Floormaster
+        (3, 8, 0, 1):  EnemyLocation(149), # Skullwaltula
+        (3, 8, 0, 2):  EnemyLocation(149), # Skullwaltula
+        (3, 8, 0, 3):  EnemyLocation(149), # Skullwaltula
+        (3, 8, 0, 4):  EnemyLocation(85), # Deku Baba
+        (3, 8, 0, 5):  EnemyLocation(85), # Deku Baba
+        (3, 10, 0, 0): EnemyLocation( 105), # Bubble
+        (3, 11, 0, 0): EnemyLocation( 105), # Bubble
+        (3, 11, 0, 1): EnemyLocation( 105), # Bubble
+        (3, 11, 0, 2): EnemyLocation( 105), # Bubble
+        (3, 15, 0, 0): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 1): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 2): EnemyLocation( 55), # Skulltula
+        (3, 17, 0, 0): EnemyLocation( 55), # Skulltula
+        (3, 18, 0, 0): EnemyLocation( 142), # Floormaster
         (3, 19, 0, 0): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], skip_raycast=True, patch_func=patch_forest_first_rotating_hallway_wallmaster), # Wallmaster
         (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
         (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
         (3, 20, 0, 2): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], skip_raycast=True, patch_func=patch_forest_second_rotating_hallway_wallmaster), # Wallmaster
-        (3, 21, 0, 0): 105, # Bubble
-        (3, 21, 0, 1): 105, # Bubble
+        (3, 21, 0, 0): EnemyLocation(105), # Bubble
+        (3, 21, 0, 1): EnemyLocation(105), # Bubble
     },
     'Fire Temple': {
-        (4, 0, 0, 0): 19, # Keese
-        (4, 0, 0, 4): 19, # Keese
-        (4, 1, 0, 1): 105, # Bubble
-        (4, 1, 0, 3): 19, # Keese
-        (4, 1, 0, 5): 105, # Bubble
-        (4, 1, 0, 6): 19, # Keese
-        (4, 1, 0, 8): 19, # Keese
-        (4, 1, 0, 11): 105, # Bubble
-        (4, 1, 0, 12): 105, # Bubble
-        (4, 1, 0, 13): 105, # Bubble
-        (4, 1, 0, 14): 105, # Bubble
-        (4, 1, 0, 15): 105, # Bubble
-        (4, 1, 0, 16): 105, # Bubble
-        (4, 1, 0, 17): 19, # Keese
-        (4, 1, 0, 22): 105, # Bubble
-        (4, 3, 0, 0): 153, # Flare Dancer
-        (4, 4, 0, 0): 56, # Torch Slug
-        (4, 4, 0, 3): 56, # Torch Slug
-        (4, 5, 0, 4): 56, # Torch Slug
-        (4, 5, 0, 6): 56, # Torch Slug
-        (4, 5, 0, 11): 56, # Torch Slug
-        (4, 10, 0, 14): 19, # Keese
-        (4, 10, 0, 25): 19, # Keese
-        (4, 10, 0, 44): 19, # Keese
-        (4, 13, 0, 2): 19, # Keese
-        (4, 13, 0, 8): 19, # Keese
-        (4, 13, 0, 9): 19, # Keese
-        (4, 14, 0, 0): 19, # Keese
-        (4, 14, 0, 1): 19, # Keese
-        (4, 14, 0, 6): 19, # Keese
-        (4, 14, 0, 7): 19, # Keese
-        (4, 15, 0, 0): 19, # Keese
-        (4, 15, 0, 1): 56, # Torch Slug
-        (4, 15, 0, 2): 19, # Keese
-        (4, 15, 0, 3): 56, # Torch Slug
-        (4, 15, 0, 5): 56, # Torch Slug
-        (4, 15, 0, 6): 19, # Keese
-        (4, 15, 0, 7): 56, # Torch Slug
-        (4, 16, 0, 0): 105, # Bubble
-        (4, 16, 0, 1): 105, # Bubble
-        (4, 16, 0, 2): 105, # Bubble
-        (4, 16, 0, 3): 105, # Bubble
-        (4, 16, 0, 4): 105, # Bubble
-        (4, 18, 0, 0): 221, # Like like
-        (4, 19, 0, 0): 221, # Like like
-        (4, 21, 0, 0): 19, # Keese
-        (4, 21, 0, 1): 19, # Keese
-        (4, 21, 0, 3): 19, # Keese
-        (4, 21, 0, 4): 19, # Keese
-        (4, 24, 0, 0): 153, # Flare Dancer
+        (4, 0, 0, 0):   EnemyLocation(19), # Keese
+        (4, 0, 0, 4):   EnemyLocation(19), # Keese
+        (4, 1, 0, 1):   EnemyLocation(105), # Bubble
+        (4, 1, 0, 3):   EnemyLocation(19), # Keese
+        (4, 1, 0, 5):   EnemyLocation(105), # Bubble
+        (4, 1, 0, 6):   EnemyLocation(19), # Keese
+        (4, 1, 0, 8):   EnemyLocation(19), # Keese
+        (4, 1, 0, 11):  EnemyLocation( 105), # Bubble
+        (4, 1, 0, 12):  EnemyLocation( 105), # Bubble
+        (4, 1, 0, 13):  EnemyLocation( 105), # Bubble
+        (4, 1, 0, 14):  EnemyLocation( 105), # Bubble
+        (4, 1, 0, 15):  EnemyLocation( 105), # Bubble
+        (4, 1, 0, 16):  EnemyLocation( 105), # Bubble
+        (4, 1, 0, 17):  EnemyLocation( 19), # Keese
+        (4, 1, 0, 22):  EnemyLocation( 105), # Bubble
+        (4, 3, 0, 0):   EnemyLocation(153), # Flare Dancer
+        (4, 4, 0, 0):   EnemyLocation(56), # Torch Slug
+        (4, 4, 0, 3):   EnemyLocation(56), # Torch Slug
+        (4, 5, 0, 4):   EnemyLocation(56), # Torch Slug
+        (4, 5, 0, 6):   EnemyLocation(56), # Torch Slug
+        (4, 5, 0, 11):  EnemyLocation( 56), # Torch Slug
+        (4, 10, 0, 14): EnemyLocation( 19), # Keese
+        (4, 10, 0, 25): EnemyLocation( 19), # Keese
+        (4, 10, 0, 44): EnemyLocation( 19), # Keese
+        (4, 13, 0, 2):  EnemyLocation(19), # Keese
+        (4, 13, 0, 8):  EnemyLocation(19), # Keese
+        (4, 13, 0, 9):  EnemyLocation(19), # Keese
+        (4, 14, 0, 0):  EnemyLocation(19), # Keese
+        (4, 14, 0, 1):  EnemyLocation(19), # Keese
+        (4, 14, 0, 6):  EnemyLocation(19), # Keese
+        (4, 14, 0, 7):  EnemyLocation(19), # Keese
+        (4, 15, 0, 0):  EnemyLocation(19), # Keese
+        (4, 15, 0, 1):  EnemyLocation(56), # Torch Slug
+        (4, 15, 0, 2):  EnemyLocation(19), # Keese
+        (4, 15, 0, 3):  EnemyLocation(56), # Torch Slug
+        (4, 15, 0, 5):  EnemyLocation(56), # Torch Slug
+        (4, 15, 0, 6):  EnemyLocation(19), # Keese
+        (4, 15, 0, 7):  EnemyLocation(56), # Torch Slug
+        (4, 16, 0, 0):  EnemyLocation(105), # Bubble
+        (4, 16, 0, 1):  EnemyLocation(105), # Bubble
+        (4, 16, 0, 2):  EnemyLocation(105), # Bubble
+        (4, 16, 0, 3):  EnemyLocation(105), # Bubble
+        (4, 16, 0, 4):  EnemyLocation(105), # Bubble
+        (4, 18, 0, 0):  EnemyLocation(221), # Like like
+        (4, 19, 0, 0):  EnemyLocation(221), # Like like
+        (4, 21, 0, 0):  EnemyLocation(19), # Keese
+        (4, 21, 0, 1):  EnemyLocation(19), # Keese
+        (4, 21, 0, 3):  EnemyLocation(19), # Keese
+        (4, 21, 0, 4):  EnemyLocation(19), # Keese
+        (4, 24, 0, 0):  EnemyLocation(153), # Flare Dancer
     },
     'Water Temple': {
-        (5, 0, 0, 2): 19, # Keese
-        (5, 0, 0, 3): 19, # Keese
-        (5, 0, 0, 4): 236, # Spike
-        (5, 0, 0, 5): 236, # Spike
-        (5, 0, 0, 12): 27, # Tektite
-        (5, 0, 0, 13): 27, # Tektite
+        (5, 0, 0, 2):  EnemyLocation(19), # Keese
+        (5, 0, 0, 3):  EnemyLocation(19), # Keese
+        (5, 0, 0, 4):  EnemyLocation(236), # Spike
+        (5, 0, 0, 5):  EnemyLocation(236), # Spike
+        (5, 0, 0, 12): EnemyLocation( 27), # Tektite
+        (5, 0, 0, 13): EnemyLocation( 27), # Tektite
         (5, 2, 0, 0): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
         (5, 2, 0, 1): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
         (5, 2, 0, 2): EnemyLocation(236, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Spike
@@ -507,722 +508,722 @@ vanilla_dungeon_enemies = {
         (5, 2, 0, 5): EnemyLocation(236, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Spike
         (5, 2, 0, 6): EnemyLocation(236, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Spike
         (5, 3, 0, 0): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
-        (5, 3, 0, 2): 27, # Tektite
-        (5, 3, 0, 3): 27, # Tektite
+        (5, 3, 0, 2): EnemyLocation(27), # Tektite
+        (5, 3, 0, 3): EnemyLocation(27), # Tektite
         (5, 4, 0, 1): EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
         (5, 4, 0, 2): EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
         (5, 4, 0, 3): EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
         (5, 4, 0, 4): EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
-        (5, 5, 0, 3): 19, # Keese
-        (5, 5, 0, 4): 19, # Keese
-        (5, 6, 0, 0): 221, # Like like
+        (5, 5, 0, 3): EnemyLocation(19), # Keese
+        (5, 5, 0, 4): EnemyLocation(19), # Keese
+        (5, 6, 0, 0): EnemyLocation(221), # Like like
         (5, 6, 0, 1): EnemyLocation(27, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
         (5, 6, 0, 2): EnemyLocation(27, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
-        (5, 6, 0, 3): 27, # Tektite
-        (5, 6, 0, 4): 27, # Tektite
+        (5, 6, 0, 3): EnemyLocation(27), # Tektite
+        (5, 6, 0, 4): EnemyLocation(27), # Tektite
         (5, 6, 0, 5): EnemyLocation(27, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
-        (5, 8, 0, 2): 197, # Shell Blade
-        (5, 8, 0, 3): 197, # Shell Blade
-        (5, 9, 0, 0): 27, # Tektite
-        (5, 10, 0, 1): 27, # Tektite
-        (5, 12, 0, 0): 197, # Shell Blade
-        (5, 12, 0, 3): 27, # Tektite
-        (5, 12, 0, 4): 27, # Tektite
-        (5, 12, 0, 5): 27, # Tektite
-        (5, 12, 0, 6): 27, # Tektite
-        (5, 12, 0, 7): 27, # Tektite
-        (5, 12, 0, 8): 27, # Tektite
-        (5, 14, 0, 0): 396, # Stinger
-        (5, 14, 0, 1): 396, # Stinger
-        (5, 14, 0, 2): 396, # Stinger
-        (5, 14, 0, 3): 396, # Stinger
-        (5, 14, 0, 4): 396, # Stinger
-        (5, 15, 0, 0): 27, # Tektite
-        (5, 15, 0, 1): 27, # Tektite
-        (5, 18, 0, 0): 197, # Shell Blade
-        (5, 18, 0, 1): 197, # Shell Blade
-        (5, 18, 0, 2): 197, # Shell Blade
-        (5, 19, 0, 0): 236, # Spike
-        (5, 19, 0, 1): 236, # Spike
-        (5, 19, 0, 2): 236, # Spike
-        (5, 19, 0, 3): 236, # Spike
+        (5, 8, 0, 2):  EnemyLocation(197), # Shell Blade
+        (5, 8, 0, 3):  EnemyLocation(197), # Shell Blade
+        (5, 9, 0, 0):  EnemyLocation(27), # Tektite
+        (5, 10, 0, 1): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 0): EnemyLocation( 197), # Shell Blade
+        (5, 12, 0, 3): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 4): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 5): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 6): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 7): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 8): EnemyLocation( 27), # Tektite
+        (5, 14, 0, 0): EnemyLocation( 396), # Stinger
+        (5, 14, 0, 1): EnemyLocation( 396), # Stinger
+        (5, 14, 0, 2): EnemyLocation( 396), # Stinger
+        (5, 14, 0, 3): EnemyLocation( 396), # Stinger
+        (5, 14, 0, 4): EnemyLocation( 396), # Stinger
+        (5, 15, 0, 0): EnemyLocation( 27), # Tektite
+        (5, 15, 0, 1): EnemyLocation( 27), # Tektite
+        (5, 18, 0, 0): EnemyLocation( 197), # Shell Blade
+        (5, 18, 0, 1): EnemyLocation( 197), # Shell Blade
+        (5, 18, 0, 2): EnemyLocation( 197), # Shell Blade
+        (5, 19, 0, 0): EnemyLocation( 236), # Spike
+        (5, 19, 0, 1): EnemyLocation( 236), # Spike
+        (5, 19, 0, 2): EnemyLocation( 236), # Spike
+        (5, 19, 0, 3): EnemyLocation( 236), # Spike
     },
     'Spirit Temple': {
-        (6, 0, 0, 0): 84, # Armos
-        (6, 0, 0, 1): 84, # Armos
-        (6, 0, 0, 2): 138, # Beamos
-        (6, 1, 0, 0): 84, # Armos
-        (6, 1, 0, 1): 19, # Keese
-        (6, 1, 0, 2): 19, # Keese
-        (6, 1, 0, 3): 19, # Keese
-        (6, 1, 0, 4): 19, # Keese
+        (6, 0, 0, 0): EnemyLocation(84), # Armos
+        (6, 0, 0, 1): EnemyLocation(84), # Armos
+        (6, 0, 0, 2): EnemyLocation(138), # Beamos
+        (6, 1, 0, 0): EnemyLocation(84), # Armos
+        (6, 1, 0, 1): EnemyLocation(19), # Keese
+        (6, 1, 0, 2): EnemyLocation(19), # Keese
+        (6, 1, 0, 3): EnemyLocation(19), # Keese
+        (6, 1, 0, 4): EnemyLocation(19), # Keese
         (6, 2, 0, 0): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (6, 2, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (6, 2, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (6, 2, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-        (6, 2, 0, 5): 19, # Keese
-        (6, 2, 0, 6): 17, # Wallmaster
+        (6, 2, 0, 5): EnemyLocation(19), # Keese
+        (6, 2, 0, 6): EnemyLocation(17), # Wallmaster
         (6, 3, 0, 0): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Bubble
-        (6, 3, 0, 3): 2, # Stalfos
+        (6, 3, 0, 3): EnemyLocation(2), # Stalfos
         (6, 4, 0, 0): EnemyLocation(149, disallowed_enemies=['Deku Baba']), # Skullwaltula
         (6, 4, 0, 1): EnemyLocation(149, disallowed_enemies=['Deku Baba']), # Skullwaltula
         (6, 4, 0, 2): EnemyLocation(149, disallowed_enemies=['Deku Scrub']), # Skullwaltula
         (6, 4, 0, 3): EnemyLocation(149, disallowed_enemies=['Deku Scrub']), # Skullwaltula
-        (6, 4, 0, 4): 37, # Lizalfos/Dinalfos
-        (6, 4, 0, 5): 37, # Lizalfos/Dinalfos
-        (6, 5, 0, 11): 84, # Armos
-        (6, 8, 0, 4): 138, # Beamos
-        (6, 8, 0, 5): 138, # Beamos
-        (6, 8, 0, 6): 138, # Beamos
-        (6, 10, 0, 0): 275, # Iron Knuckle
-        (6, 12, 0, 0): 221, # Like like
-        (6, 14, 0, 0): 431, # Wolfos
-        (6, 15, 0, 8): 17, # Wallmaster
-        (6, 15, 0, 9): 142, # Floormaster
-        (6, 15, 0, 12): 221, # Like like
-        (6, 16, 0, 0): 138, # Beamos
+        (6, 4, 0, 4):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (6, 4, 0, 5):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (6, 5, 0, 11): EnemyLocation( 84), # Armos
+        (6, 8, 0, 4):  EnemyLocation(138), # Beamos
+        (6, 8, 0, 5):  EnemyLocation(138), # Beamos
+        (6, 8, 0, 6):  EnemyLocation(138), # Beamos
+        (6, 10, 0, 0): EnemyLocation( 275), # Iron Knuckle
+        (6, 12, 0, 0): EnemyLocation( 221), # Like like
+        (6, 14, 0, 0): EnemyLocation( 431), # Wolfos
+        (6, 15, 0, 8): EnemyLocation( 17), # Wallmaster
+        (6, 15, 0, 9): EnemyLocation( 142), # Floormaster
+        (6, 15, 0, 12):EnemyLocation( 221), # Like like
+        (6, 16, 0, 0): EnemyLocation(138), # Beamos
         (6, 17, 0, 0): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
         (6, 17, 0, 1): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
         (6, 17, 0, 2): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
-        (6, 17, 0, 3): 138, # Beamos
-        (6, 18, 0, 0): 84, # Armos
-        (6, 18, 0, 1): 84, # Armos
-        (6, 18, 0, 2): 84, # Armos
-        #(6, 18, 0, 3): 84, # Armos # Leave one armos so we can press the switch
-        (6, 20, 0, 0): 275, # Iron Knuckle
-        (6, 22, 0, 10): 56, # Torch Slug
-        (6, 22, 0, 11): 56, # Torch Slug
-        (6, 22, 0, 12): 56, # Torch Slug
-        (6, 22, 0, 13): 56, # Torch Slug
-        (6, 23, 0, 1): 149, # Skullwaltula
-        (6, 23, 0, 4): 138, # Beamos
-        (6, 23, 0, 5): 138, # Beamos
-        (6, 23, 0, 6): 138, # Beamos
-        (6, 23, 0, 7): 138, # Beamos
-        (6, 26, 0, 0): 105, # Bubble
-        (6, 26, 0, 1): 105, # Bubble
-        (6, 26, 0, 2): 105, # Bubble
-        (6, 26, 0, 3): 37, # Lizalfos/Dinalfos
-        (6, 26, 0, 4): 37, # Lizalfos/Dinalfos
+        (6, 17, 0, 3):  EnemyLocation(138), # Beamos
+        (6, 18, 0, 0):  EnemyLocation(84), # Armos
+        (6, 18, 0, 1):  EnemyLocation(84), # Armos
+        (6, 18, 0, 2):  EnemyLocation(84), # Armos
+        #(6, 18, 0, 3): EnemyLocation( 84), # Armos # Leave one armos so we can press the switch
+        (6, 20, 0, 0):  EnemyLocation(275), # Iron Knuckle
+        (6, 22, 0, 10): EnemyLocation( 56), # Torch Slug
+        (6, 22, 0, 11): EnemyLocation( 56), # Torch Slug
+        (6, 22, 0, 12): EnemyLocation( 56), # Torch Slug
+        (6, 22, 0, 13): EnemyLocation( 56), # Torch Slug
+        (6, 23, 0, 1):  EnemyLocation(149), # Skullwaltula
+        (6, 23, 0, 4):  EnemyLocation(138), # Beamos
+        (6, 23, 0, 5):  EnemyLocation(138), # Beamos
+        (6, 23, 0, 6):  EnemyLocation(138), # Beamos
+        (6, 23, 0, 7):  EnemyLocation(138), # Beamos
+        (6, 26, 0, 0):  EnemyLocation(105), # Bubble
+        (6, 26, 0, 1):  EnemyLocation(105), # Bubble
+        (6, 26, 0, 2):  EnemyLocation(105), # Bubble
+        (6, 26, 0, 3):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (6, 26, 0, 4):  EnemyLocation(37), # Lizalfos/Dinalfos
         (6, 27, 0, 0): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
     },
     'Shadow Temple': {
-        (7, 1, 0, 0): 19, # Keese
-        (7, 1, 0, 1): 19, # Keese
-        (7, 1, 0, 2): 144, # Redead/Gibdo
-        (7, 2, 0, 0): 138, # Beamos
-        (7, 5, 0, 0): 138, # Beamos
-        (7, 7, 0, 0): 144, # Redead/Gibdo
-        (7, 7, 0, 1): 144, # Redead/Gibdo
-        (7, 8, 0, 0): 55, # Skulltula
-        (7, 8, 0, 1): 55, # Skulltula
-        (7, 8, 0, 2): 55, # Skulltula
-        (7, 8, 0, 3): 55, # Skulltula
-        (7, 9, 0, 1): 105, # Bubble
-        (7, 9, 0, 2): 17, # Wallmaster
-        (7, 9, 0, 5): 138, # Beamos
-        (7, 9, 0, 12): 2, # Stalfos
-        (7, 11, 0, 0): 144, # Redead/Gibdo
-        (7, 11, 0, 1): 144, # Redead/Gibdo
-        (7, 13, 0, 0): 144, # Redead/Gibdo
-        (7, 13, 0, 1): 144, # Redead/Gibdo
-        (7, 14, 0, 0): 19, # Keese
-        (7, 14, 0, 1): 19, # Keese
-        (7, 14, 0, 2): 19, # Keese
-        (7, 14, 0, 3): 19, # Keese
-        (7, 15, 0, 0): 142, # Floormaster
-        (7, 15, 0, 1): 142, # Floormaster
-        (7, 16, 0, 0): 19, # Keese
-        (7, 16, 0, 1): 19, # Keese
-        (7, 16, 0, 2): 19, # Keese
-        (7, 16, 0, 3): 221, # Like like
-        (7, 17, 0, 0): 142, # Floormaster
-        (7, 18, 0, 0): 55, # Skulltula
-        (7, 19, 0, 0): 144, # Redead/Gibdo
-        (7, 19, 0, 1): 144, # Redead/Gibdo
-        (7, 20, 0, 0): 144, # Redead/Gibdo
-        (7, 20, 0, 1): 144, # Redead/Gibdo
+        (7, 1, 0, 0):  EnemyLocation(19), # Keese
+        (7, 1, 0, 1):  EnemyLocation(19), # Keese
+        (7, 1, 0, 2):  EnemyLocation(144), # Redead/Gibdo
+        (7, 2, 0, 0):  EnemyLocation(138), # Beamos
+        (7, 5, 0, 0):  EnemyLocation(138), # Beamos
+        (7, 7, 0, 0):  EnemyLocation(144), # Redead/Gibdo
+        (7, 7, 0, 1):  EnemyLocation(144), # Redead/Gibdo
+        (7, 8, 0, 0):  EnemyLocation(55), # Skulltula
+        (7, 8, 0, 1):  EnemyLocation(55), # Skulltula
+        (7, 8, 0, 2):  EnemyLocation(55), # Skulltula
+        (7, 8, 0, 3):  EnemyLocation(55), # Skulltula
+        (7, 9, 0, 1):  EnemyLocation(105), # Bubble
+        (7, 9, 0, 2):  EnemyLocation(17), # Wallmaster
+        (7, 9, 0, 5):  EnemyLocation(138), # Beamos
+        (7, 9, 0, 12): EnemyLocation( 2), # Stalfos
+        (7, 11, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (7, 11, 0, 1): EnemyLocation( 144), # Redead/Gibdo
+        (7, 13, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (7, 13, 0, 1): EnemyLocation( 144), # Redead/Gibdo
+        (7, 14, 0, 0): EnemyLocation( 19), # Keese
+        (7, 14, 0, 1): EnemyLocation( 19), # Keese
+        (7, 14, 0, 2): EnemyLocation( 19), # Keese
+        (7, 14, 0, 3): EnemyLocation( 19), # Keese
+        (7, 15, 0, 0): EnemyLocation( 142), # Floormaster
+        (7, 15, 0, 1): EnemyLocation( 142), # Floormaster
+        (7, 16, 0, 0): EnemyLocation( 19), # Keese
+        (7, 16, 0, 1): EnemyLocation( 19), # Keese
+        (7, 16, 0, 2): EnemyLocation( 19), # Keese
+        (7, 16, 0, 3): EnemyLocation( 221), # Like like
+        (7, 17, 0, 0): EnemyLocation( 142), # Floormaster
+        (7, 18, 0, 0): EnemyLocation( 55), # Skulltula
+        (7, 19, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (7, 19, 0, 1): EnemyLocation( 144), # Redead/Gibdo
+        (7, 20, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (7, 20, 0, 1): EnemyLocation( 144), # Redead/Gibdo
         (7, 21, 0, 13): EnemyLocation(2, patch_func=patch_shadow_temple_boat_stalfos_1), # Stalfos
         (7, 21, 0, 14): EnemyLocation(2, patch_func=patch_shadow_temple_boat_stalfos_2), # Stalfos
     },
     'Bottom of the Well': {
-        (8, 0, 0, 0): 55, # Skulltula
-        (8, 0, 0, 1): 55, # Skulltula
-        (8, 0, 0, 2): 55, # Skulltula
-        (8, 0, 0, 3): 55, # Skulltula
-        (8, 0, 0, 4): 17, # Wallmaster
-        (8, 0, 0, 5): 221, # Like like
-        (8, 0, 0, 33): 105, # Bubble
-        (8, 1, 0, 13): 144, # Redead/Gibdo
-        (8, 1, 0, 14): 144, # Redead/Gibdo
-        (8, 2, 0, 0): 144, # Redead/Gibdo
+        (8, 0, 0, 0):  EnemyLocation(55), # Skulltula
+        (8, 0, 0, 1):  EnemyLocation(55), # Skulltula
+        (8, 0, 0, 2):  EnemyLocation(55), # Skulltula
+        (8, 0, 0, 3):  EnemyLocation(55), # Skulltula
+        (8, 0, 0, 4):  EnemyLocation(17), # Wallmaster
+        (8, 0, 0, 5):  EnemyLocation(221), # Like like
+        (8, 0, 0, 33): EnemyLocation( 105), # Bubble
+        (8, 1, 0, 13): EnemyLocation( 144), # Redead/Gibdo
+        (8, 1, 0, 14): EnemyLocation( 144), # Redead/Gibdo
+        (8, 2, 0, 0):  EnemyLocation(144), # Redead/Gibdo
         (8, 3, 0, 0): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
         (8, 3, 0, 1): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
         (8, 3, 0, 2): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
-        (8, 3, 0, 4): 138, # Beamos
+        (8, 3, 0, 4): EnemyLocation(138), # Beamos
         (8, 5, 0, 0): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
         (8, 5, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (8, 5, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (8, 5, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-        (8, 6, 0, 0): 85, # Deku Baba
+        (8, 6, 0, 0): EnemyLocation(85), # Deku Baba
     },
     'Ice Cavern': {
-        (9, 1, 0, 1): 289, # Freezard
-        (9, 1, 0, 10): 289, # Freezard
-        (9, 1, 0, 11): 289, # Freezard
-        (9, 1, 0, 12): 289, # Freezard
-        (9, 5, 0, 3): 19, # Keese
-        (9, 5, 0, 4): 19, # Keese
-        (9, 5, 0, 5): 19, # Keese
-        (9, 6, 0, 17): 289, # Freezard
-        (9, 6, 0, 18): 289, # Freezard
-        (9, 7, 0, 0): 431, # Wolfos
-        (9, 8, 0, 8): 289, # Freezard
-        (9, 9, 0, 0): 19, # Keese
-        (9, 9, 0, 1): 19, # Keese
-        (9, 9, 0, 2): 19, # Keese
-        (9, 9, 0, 4): 289, # Freezard
-        (9, 9, 0, 13): 289, # Freezard
-        (9, 9, 0, 14): 289, # Freezard
-        (9, 11, 0, 0): 19, # Keese
-        (9, 11, 0, 1): 19, # Keese
-        (9, 11, 0, 2): 19, # Keese
+        (9, 1, 0, 1):  EnemyLocation(289), # Freezard
+        (9, 1, 0, 10): EnemyLocation( 289), # Freezard
+        (9, 1, 0, 11): EnemyLocation( 289), # Freezard
+        (9, 1, 0, 12): EnemyLocation( 289), # Freezard
+        (9, 5, 0, 3):  EnemyLocation(19), # Keese
+        (9, 5, 0, 4):  EnemyLocation(19), # Keese
+        (9, 5, 0, 5):  EnemyLocation(19), # Keese
+        (9, 6, 0, 17): EnemyLocation( 289), # Freezard
+        (9, 6, 0, 18): EnemyLocation( 289), # Freezard
+        (9, 7, 0, 0):  EnemyLocation(431), # Wolfos
+        (9, 8, 0, 8):  EnemyLocation(289), # Freezard
+        (9, 9, 0, 0):  EnemyLocation(19), # Keese
+        (9, 9, 0, 1):  EnemyLocation(19), # Keese
+        (9, 9, 0, 2):  EnemyLocation(19), # Keese
+        (9, 9, 0, 4):  EnemyLocation(289), # Freezard
+        (9, 9, 0, 13): EnemyLocation( 289), # Freezard
+        (9, 9, 0, 14): EnemyLocation( 289), # Freezard
+        (9, 11, 0, 0): EnemyLocation( 19), # Keese
+        (9, 11, 0, 1): EnemyLocation( 19), # Keese
+        (9, 11, 0, 2): EnemyLocation( 19), # Keese
     },
     'Ganons Castle': {
 
-        (13, 0, 0, 0): 138, # Beamos
-        (13, 0, 0, 1): 138, # Beamos
-        (13, 2, 0, 0): 289, # Freezard
-        (13, 2, 0, 1): 289, # Freezard
-        (13, 3, 0, 6): 17, # Wallmaster
-        (13, 5, 0, 0): 431, # Wolfos
+        (13, 0, 0, 0): EnemyLocation(138), # Beamos
+        (13, 0, 0, 1): EnemyLocation(138), # Beamos
+        (13, 2, 0, 0): EnemyLocation(289), # Freezard
+        (13, 2, 0, 1): EnemyLocation(289), # Freezard
+        (13, 3, 0, 6): EnemyLocation(17), # Wallmaster
+        (13, 5, 0, 0): EnemyLocation(431), # Wolfos
         (13, 6, 0, 1): EnemyLocation(138, disallowed_enemies=["Skull Kid", "Flare Dancer"]), # Beamos
-        (13, 8, 0, 11): 17, # Wallmaster
-        (13, 9, 0, 6): 19, # Keese
-        (13, 9, 0, 7): 19, # Keese
-        (13, 9, 0, 8): 19, # Keese
-        (13, 9, 0, 9): 55, # Skulltula
-        (13, 10, 0, 1): 17, # Wallmaster
+        (13, 8, 0, 11): EnemyLocation( 17), # Wallmaster
+        (13, 9, 0, 6):  EnemyLocation(19), # Keese
+        (13, 9, 0, 7):  EnemyLocation(19), # Keese
+        (13, 9, 0, 8):  EnemyLocation(19), # Keese
+        (13, 9, 0, 9):  EnemyLocation(55), # Skulltula
+        (13, 10, 0, 1): EnemyLocation( 17), # Wallmaster
         (13, 12, 0, 0): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], meets_enemy_restrictions=[ENEMY_RESTRICTION.INSIDE], skip_raycast=True), # Bubble
-        (13, 12, 0, 3): 221, # Like like
-        (13, 14, 0, 3): 56, # Torch Slug
-        (13, 14, 0, 4): 105, # Bubble
-        (13, 14, 0, 5): 105, # Bubble
-        (13, 14, 0, 6): 105, # Bubble
-        (13, 14, 0, 7): 105, # Bubble
-        (13, 17, 0, 10): 138, # Beamos
-        (13, 18, 0, 6): 56, # Torch Slug
-        (13, 18, 0, 7): 56, # Torch Slug
-        (13, 18, 0, 18): 17, # Wallmaster
-        (13, 18, 0, 20): 17, # Wallmaster
-        (13, 18, 0, 22): 17, # Wallmaster
+        (13, 12, 0, 3):  EnemyLocation(221), # Like like
+        (13, 14, 0, 3):  EnemyLocation(56), # Torch Slug
+        (13, 14, 0, 4):  EnemyLocation(105), # Bubble
+        (13, 14, 0, 5):  EnemyLocation(105), # Bubble
+        (13, 14, 0, 6):  EnemyLocation(105), # Bubble
+        (13, 14, 0, 7):  EnemyLocation(105), # Bubble
+        (13, 17, 0, 10): EnemyLocation( 138), # Beamos
+        (13, 18, 0, 6):  EnemyLocation(56), # Torch Slug
+        (13, 18, 0, 7):  EnemyLocation(56), # Torch Slug
+        (13, 18, 0, 18): EnemyLocation( 17), # Wallmaster
+        (13, 18, 0, 20): EnemyLocation( 17), # Wallmaster
+        (13, 18, 0, 22): EnemyLocation( 17), # Wallmaster
     },
     'Gerudo Training Ground': {
-        (11, 1, 0, 0): 2, # Stalfos
-        (11, 1, 0, 1): 2, # Stalfos
-        (11, 2, 0, 4): 17, # Wallmaster
-        (11, 2, 0, 5): 17, # Wallmaster
-        (11, 3, 0, 1): 431, # Wolfos
-        (11, 3, 0, 2): 431, # Wolfos
-        (11, 3, 0, 4): 431, # Wolfos
-        (11, 3, 0, 5): 431, # Wolfos
-        (11, 5, 0, 1): 56, # Torch Slug
-        (11, 5, 0, 2): 56, # Torch Slug
-        (11, 5, 0, 3): 19, # Keese
-        (11, 5, 0, 4): 19, # Keese
+        (11, 1, 0, 0): EnemyLocation(2), # Stalfos
+        (11, 1, 0, 1): EnemyLocation(2), # Stalfos
+        (11, 2, 0, 4): EnemyLocation(17), # Wallmaster
+        (11, 2, 0, 5): EnemyLocation(17), # Wallmaster
+        (11, 3, 0, 1): EnemyLocation(431), # Wolfos
+        (11, 3, 0, 2): EnemyLocation(431), # Wolfos
+        (11, 3, 0, 4): EnemyLocation(431), # Wolfos
+        (11, 3, 0, 5): EnemyLocation(431), # Wolfos
+        (11, 5, 0, 1): EnemyLocation(56), # Torch Slug
+        (11, 5, 0, 2): EnemyLocation(56), # Torch Slug
+        (11, 5, 0, 3): EnemyLocation(19), # Keese
+        (11, 5, 0, 4): EnemyLocation(19), # Keese
         (11, 6, 0, 2): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING]), # Bubble
         (11, 6, 0, 3): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING]), # Bubble
-        (11, 7, 0, 0): 37, # Lizalfos/Dinalfos
-        (11, 7, 0, 1): 37, # Lizalfos/Dinalfos
-        (11, 7, 0, 13): 138, # Beamos
+        (11, 7, 0, 0):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (11, 7, 0, 1):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (11, 7, 0, 13): EnemyLocation( 138), # Beamos
         (11, 9, 0, 4): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
         (11, 9, 0, 5): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
         (11, 9, 0, 6): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
         (11, 9, 0, 7): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
-        (11, 10, 0, 0): 221, # Like like
-        (11, 10, 0, 1): 221, # Like like
-        (11, 10, 0, 2): 221, # Like like
+        (11, 10, 0, 0): EnemyLocation(221), # Like like
+        (11, 10, 0, 1): EnemyLocation(221), # Like like
+        (11, 10, 0, 2): EnemyLocation(221), # Like like
     },
 }
 
 mq_dungeon_enemies = {
     'Deku Tree': {
-        (0, 0, 0, 0): 199, # Whithered Deku Baba
-        (0, 0, 0, 1): 199, # Whithered Deku Baba
-        (0, 0, 0, 2): 19, # Keese
-        (0, 0, 0, 3): 19, # Keese
-        (0, 0, 0, 4): 149, # Skullwaltula
-        (0, 0, 0, 10): 85, # Deku Baba
-        (0, 0, 0, 11): 85, # Deku Baba
-        (0, 0, 0, 22): 43, # Gohma Larva
-        (0, 0, 0, 23): 43, # Gohma Larva
-        (0, 1, 0, 3): 85, # Deku Baba
-        (0, 1, 0, 9): 43, # Gohma Larva
-        (0, 1, 0, 10): 43, # Gohma Larva
-        (0, 2, 0, 0): 149, # Skullwaltula
-        (0, 2, 0, 1): 149, # Skullwaltula
-        (0, 2, 0, 2): 55, # Skulltula
-        (0, 2, 0, 13): 43, # Gohma Larva
-        (0, 2, 0, 14): 43, # Gohma Larva
-        (0, 3, 0, 0): 199, # Whithered Deku Baba
-        (0, 3, 0, 6): 85, # Deku Baba
-        (0, 3, 0, 7): 85, # Deku Baba
-        (0, 3, 0, 8): 85, # Deku Baba
-        (0, 4, 0, 4): 96, # Deku Scrub
-        (0, 4, 0, 5): 43, # Gohma Larva
-        (0, 4, 0, 6): 43, # Gohma Larva
-        (0, 4, 0, 7): 43, # Gohma Larva
-        (0, 5, 0, 0): 199, # Whithered Deku Baba
-        (0, 5, 0, 1): 55, # Skulltula
-        (0, 5, 0, 7): 43, # Gohma Larva
-        (0, 6, 0, 0): 19, # Keese
-        (0, 6, 0, 3): 96, # Deku Scrub
-        (0, 6, 0, 4): 43, # Gohma Larva
-        (0, 6, 0, 5): 43, # Gohma Larva
-        (0, 6, 0, 6): 43, # Gohma Larva
-        (0, 6, 0, 7): 43, # Gohma Larva
-        (0, 6, 0, 8): 43, # Gohma Larva
-        (0, 6, 0, 9): 43, # Gohma Larva
-        (0, 6, 0, 10): 43, # Gohma Larva
-        (0, 6, 0, 11): 43, # Gohma Larva
-        (0, 7, 0, 0): 199, # Whithered Deku Baba
-        (0, 7, 0, 1): 19, # Keese
-        (0, 7, 0, 2): 19, # Keese
-        (0, 7, 0, 3): 19, # Keese
-        (0, 7, 0, 4): 19, # Keese
-        (0, 7, 0, 6): 85, # Deku Baba
-        (0, 7, 0, 7): 85, # Deku Baba
-        (0, 8, 0, 2): 85, # Deku Baba
-        (0, 8, 0, 7): 43, # Gohma Larva
-        (0, 8, 0, 8): 43, # Gohma Larva
-        (0, 8, 0, 9): 43, # Gohma Larva
-        (0, 8, 0, 10): 43, # Gohma Larva
-        (0, 10, 0, 4): 85, # Deku Baba
-        (0, 10, 0, 6): 43, # Gohma Larva
-        (0, 10, 0, 7): 43, # Gohma Larva
-        (0, 10, 0, 8): 43, # Gohma Larva
-        (0, 10, 0, 9): 43, # Gohma Larva
-        (0, 10, 0, 10): 43, # Gohma Larva
-        (0, 10, 0, 11): 43, # Gohma Larva
+        (0, 0, 0, 0):   EnemyLocation(199), # Whithered Deku Baba
+        (0, 0, 0, 1):   EnemyLocation(199), # Whithered Deku Baba
+        (0, 0, 0, 2):   EnemyLocation(19), # Keese
+        (0, 0, 0, 3):   EnemyLocation(19), # Keese
+        (0, 0, 0, 4):   EnemyLocation(149), # Skullwaltula
+        (0, 0, 0, 10):  EnemyLocation( 85), # Deku Baba
+        (0, 0, 0, 11):  EnemyLocation( 85), # Deku Baba
+        (0, 0, 0, 22):  EnemyLocation( 43), # Gohma Larva
+        (0, 0, 0, 23):  EnemyLocation( 43), # Gohma Larva
+        (0, 1, 0, 3):   EnemyLocation(85), # Deku Baba
+        (0, 1, 0, 9):   EnemyLocation(43), # Gohma Larva
+        (0, 1, 0, 10):  EnemyLocation( 43), # Gohma Larva
+        (0, 2, 0, 0):   EnemyLocation(149), # Skullwaltula
+        (0, 2, 0, 1):   EnemyLocation(149), # Skullwaltula
+        (0, 2, 0, 2):   EnemyLocation(55), # Skulltula
+        (0, 2, 0, 13):  EnemyLocation( 43), # Gohma Larva
+        (0, 2, 0, 14):  EnemyLocation( 43), # Gohma Larva
+        (0, 3, 0, 0):   EnemyLocation(199), # Whithered Deku Baba
+        (0, 3, 0, 6):   EnemyLocation(85), # Deku Baba
+        (0, 3, 0, 7):   EnemyLocation(85), # Deku Baba
+        (0, 3, 0, 8):   EnemyLocation(85), # Deku Baba
+        (0, 4, 0, 4):   EnemyLocation(96), # Deku Scrub
+        (0, 4, 0, 5):   EnemyLocation(43), # Gohma Larva
+        (0, 4, 0, 6):   EnemyLocation(43), # Gohma Larva
+        (0, 4, 0, 7):   EnemyLocation(43), # Gohma Larva
+        (0, 5, 0, 0):   EnemyLocation(199), # Whithered Deku Baba
+        (0, 5, 0, 1):   EnemyLocation(55), # Skulltula
+        (0, 5, 0, 7):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 0):   EnemyLocation(19), # Keese
+        (0, 6, 0, 3):   EnemyLocation(96), # Deku Scrub
+        (0, 6, 0, 4):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 5):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 6):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 7):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 8):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 9):   EnemyLocation(43), # Gohma Larva
+        (0, 6, 0, 10):  EnemyLocation( 43), # Gohma Larva
+        (0, 6, 0, 11):  EnemyLocation( 43), # Gohma Larva
+        (0, 7, 0, 0):   EnemyLocation(199), # Whithered Deku Baba
+        (0, 7, 0, 1):   EnemyLocation(19), # Keese
+        (0, 7, 0, 2):   EnemyLocation(19), # Keese
+        (0, 7, 0, 3):   EnemyLocation(19), # Keese
+        (0, 7, 0, 4):   EnemyLocation(19), # Keese
+        (0, 7, 0, 6):   EnemyLocation(85), # Deku Baba
+        (0, 7, 0, 7):   EnemyLocation(85), # Deku Baba
+        (0, 8, 0, 2):   EnemyLocation(85), # Deku Baba
+        (0, 8, 0, 7):   EnemyLocation(43), # Gohma Larva
+        (0, 8, 0, 8):   EnemyLocation(43), # Gohma Larva
+        (0, 8, 0, 9):   EnemyLocation(43), # Gohma Larva
+        (0, 8, 0, 10):  EnemyLocation( 43), # Gohma Larva
+        (0, 10, 0, 4):  EnemyLocation( 85), # Deku Baba
+        (0, 10, 0, 6):  EnemyLocation( 43), # Gohma Larva
+        (0, 10, 0, 7):  EnemyLocation( 43), # Gohma Larva
+        (0, 10, 0, 8):  EnemyLocation( 43), # Gohma Larva
+        (0, 10, 0, 9):  EnemyLocation( 43), # Gohma Larva
+        (0, 10, 0, 10): EnemyLocation( 43), # Gohma Larva
+        (0, 10, 0, 11): EnemyLocation( 43), # Gohma Larva
     },
     'Dodongos Cavern': {
-        (1, 1, 0, 2): 55, # Skulltula
-        (1, 1, 0, 4): 19, # Keese
-        (1, 1, 0, 5): 47, # Baby Dodongo
-        (1, 1, 0, 6): 47, # Baby Dodongo
-        (1, 2, 0, 1): 199, # Whithered Deku Baba
-        (1, 2, 0, 2): 55, # Skulltula
-        (1, 2, 0, 3): 55, # Skulltula
-        (1, 2, 0, 7): 138, # Beamos
-        (1, 2, 0, 8): 138, # Beamos
-        (1, 3, 0, 1): 37, # Lizalfos/Dinalfos
-        (1, 3, 0, 2): 37, # Lizalfos/Dinalfos
-        (1, 3, 0, 3): 37, # Lizalfos/Dinalfos
-        (1, 3, 0, 4): 37, # Lizalfos/Dinalfos
-        (1, 5, 0, 4): 18, # Dodongo
-        (1, 5, 0, 5): 18, # Dodongo
-        (1, 5, 0, 6): 18, # Dodongo
-        (1, 6, 0, 1): 43, # Gohma Larva
-        (1, 6, 0, 2): 43, # Gohma Larva
-        (1, 6, 0, 3): 43, # Gohma Larva
-        (1, 6, 0, 4): 43, # Gohma Larva
-        (1, 6, 0, 5): 43, # Gohma Larva
-        (1, 7, 0, 0): 47, # Baby Dodongo
-        (1, 7, 0, 1): 47, # Baby Dodongo
-        (1, 8, 0, 0): 84, # Armos
-        (1, 8, 0, 1): 84, # Armos
-        (1, 8, 0, 2): 84, # Armos
-        (1, 8, 0, 3): 84, # Armos
-        (1, 8, 0, 4): 84, # Armos
-        (1, 8, 0, 5): 84, # Armos
-        (1, 8, 0, 6): 84, # Armos
-        (1, 8, 0, 13): 47, # Baby Dodongo
-        (1, 8, 0, 14): 47, # Baby Dodongo
-        (1, 8, 0, 15): 37, # Lizalfos/Dinalfos
-        (1, 10, 0, 0): 19, # Keese
-        (1, 10, 0, 1): 19, # Keese
-        (1, 10, 0, 2): 19, # Keese
-        (1, 10, 0, 3): 55, # Skulltula
-        (1, 10, 0, 4): 55, # Skulltula
-        (1, 10, 0, 5): 55, # Skulltula
-        (1, 10, 0, 8): 47, # Baby Dodongo
-        (1, 10, 0, 9): 47, # Baby Dodongo
-        (1, 10, 0, 10): 47, # Baby Dodongo
-        (1, 12, 0, 0): 19, # Keese
-        (1, 12, 0, 1): 19, # Keese
-        (1, 13, 0, 2): 96, # Deku Scrub
-        (1, 13, 0, 3): 96, # Deku Scrub
-        (1, 13, 0, 4): 19, # Keese
-        (1, 15, 0, 0): 149, # Skullwaltula
-        (1, 15, 0, 1): 55, # Skulltula
-        (1, 15, 0, 2): 55, # Skulltula
-        (1, 15, 0, 3): 55, # Skulltula
+        (1, 1, 0, 2):   EnemyLocation(55), # Skulltula
+        (1, 1, 0, 4):   EnemyLocation(19), # Keese
+        (1, 1, 0, 5):   EnemyLocation(47), # Baby Dodongo
+        (1, 1, 0, 6):   EnemyLocation(47), # Baby Dodongo
+        (1, 2, 0, 1):   EnemyLocation(199), # Whithered Deku Baba
+        (1, 2, 0, 2):   EnemyLocation(55), # Skulltula
+        (1, 2, 0, 3):   EnemyLocation(55), # Skulltula
+        (1, 2, 0, 7):   EnemyLocation(138), # Beamos
+        (1, 2, 0, 8):   EnemyLocation(138), # Beamos
+        (1, 3, 0, 1):   EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 2):   EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 3):   EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 4):   EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 5, 0, 4):   EnemyLocation(18), # Dodongo
+        (1, 5, 0, 5):   EnemyLocation(18), # Dodongo
+        (1, 5, 0, 6):   EnemyLocation(18), # Dodongo
+        (1, 6, 0, 1):   EnemyLocation(43), # Gohma Larva
+        (1, 6, 0, 2):   EnemyLocation(43), # Gohma Larva
+        (1, 6, 0, 3):   EnemyLocation(43), # Gohma Larva
+        (1, 6, 0, 4):   EnemyLocation(43), # Gohma Larva
+        (1, 6, 0, 5):   EnemyLocation(43), # Gohma Larva
+        (1, 7, 0, 0):   EnemyLocation(47), # Baby Dodongo
+        (1, 7, 0, 1):   EnemyLocation(47), # Baby Dodongo
+        (1, 8, 0, 0):   EnemyLocation(84), # Armos
+        (1, 8, 0, 1):   EnemyLocation(84), # Armos
+        (1, 8, 0, 2):   EnemyLocation(84), # Armos
+        (1, 8, 0, 3):   EnemyLocation(84), # Armos
+        (1, 8, 0, 4):   EnemyLocation(84), # Armos
+        (1, 8, 0, 5):   EnemyLocation(84), # Armos
+        (1, 8, 0, 6):   EnemyLocation(84), # Armos
+        (1, 8, 0, 13):  EnemyLocation( 47), # Baby Dodongo
+        (1, 8, 0, 14):  EnemyLocation( 47), # Baby Dodongo
+        (1, 8, 0, 15):  EnemyLocation( 37), # Lizalfos/Dinalfos
+        (1, 10, 0, 0):  EnemyLocation( 19), # Keese
+        (1, 10, 0, 1):  EnemyLocation( 19), # Keese
+        (1, 10, 0, 2):  EnemyLocation( 19), # Keese
+        (1, 10, 0, 3):  EnemyLocation( 55), # Skulltula
+        (1, 10, 0, 4):  EnemyLocation( 55), # Skulltula
+        (1, 10, 0, 5):  EnemyLocation( 55), # Skulltula
+        (1, 10, 0, 8):  EnemyLocation( 47), # Baby Dodongo
+        (1, 10, 0, 9):  EnemyLocation( 47), # Baby Dodongo
+        (1, 10, 0, 10): EnemyLocation( 47), # Baby Dodongo
+        (1, 12, 0, 0):  EnemyLocation(19), # Keese
+        (1, 12, 0, 1):  EnemyLocation(19), # Keese
+        (1, 13, 0, 2):  EnemyLocation(96), # Deku Scrub
+        (1, 13, 0, 3):  EnemyLocation(96), # Deku Scrub
+        (1, 13, 0, 4):  EnemyLocation(19), # Keese
+        (1, 15, 0, 0):  EnemyLocation(149), # Skullwaltula
+        (1, 15, 0, 1):  EnemyLocation(55), # Skulltula
+        (1, 15, 0, 2):  EnemyLocation(55), # Skulltula
+        (1, 15, 0, 3):  EnemyLocation(55), # Skulltula
     },
     'Jabu Jabus Belly': {
-        (2, 0, 0, 0): 14, # Octorok
-    (2, 0, 0, 7): 45, # Shabom
-    (2, 0, 0, 8): 45, # Shabom
-    (2, 0, 0, 9): 45, # Shabom
-    (2, 1, 0, 3): 52, # Biri
-    (2, 1, 0, 4): 52, # Biri
-    (2, 1, 0, 16): 396, # Stinger
-    (2, 2, 0, 2): 52, # Biri
-    (2, 2, 0, 3): 52, # Biri
-    (2, 3, 0, 3): 52, # Biri
-    (2, 3, 0, 10): 45, # Shabom
-    (2, 4, 0, 7): 37, # Lizalfos/Dinalfos
-    (2, 5, 0, 4): 221, # Like like
-    (2, 5, 0, 5): 221, # Like like
-    (2, 6, 0, 0): 99, # Bari
-    (2, 7, 0, 0): 37, # Lizalfos/Dinalfos
-    (2, 11, 0, 5): EnemyLocation(221, patch_func=patch_mq_jabu_likelike_right), # Like like
-    (2, 11, 0, 6): EnemyLocation(221, patch_func=patch_mq_jabu_likelike_left), # Like like
-    (2, 12, 0, 0): 149, # Skullwaltula
-    (2, 12, 0, 1): 53, # Tailpasaran
-    (2, 12, 0, 2): 53, # Tailpasaran
-    (2, 12, 0, 3): 53, # Tailpasaran
-    (2, 12, 0, 9): 45, # Shabom
-    (2, 12, 0, 10): 45, # Shabom
-    (2, 13, 0, 1): 19, # Keese
-    (2, 13, 0, 2): 19, # Keese
-    (2, 13, 0, 3): 19, # Keese
-    (2, 13, 0, 5): 396, # Stinger
-    (2, 13, 0, 6): 396, # Stinger
-    (2, 14, 0, 0): 58, # Singray
-    (2, 14, 0, 1): 58, # Singray
-    (2, 14, 0, 3): 221, # Like like
-    (2, 14, 0, 4): 37, # Lizalfos/Dinalfos
+        (2, 0, 0, 0):  EnemyLocation(14), # Octorok
+        (2, 0, 0, 7):  EnemyLocation(45), # Shabom
+        (2, 0, 0, 8):  EnemyLocation(45), # Shabom
+        (2, 0, 0, 9):  EnemyLocation(45), # Shabom
+        (2, 1, 0, 3):  EnemyLocation(52), # Biri
+        (2, 1, 0, 4):  EnemyLocation(52), # Biri
+        (2, 1, 0, 16): EnemyLocation( 396), # Stinger
+        (2, 2, 0, 2):  EnemyLocation(52), # Biri
+        (2, 2, 0, 3):  EnemyLocation(52), # Biri
+        (2, 3, 0, 3):  EnemyLocation(52), # Biri
+        (2, 3, 0, 10): EnemyLocation( 45), # Shabom
+        (2, 4, 0, 7):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (2, 5, 0, 4):  EnemyLocation(221), # Like like
+        (2, 5, 0, 5):  EnemyLocation(221), # Like like
+        (2, 6, 0, 0):  EnemyLocation(99), # Bari
+        (2, 7, 0, 0):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (2, 11, 0, 5): EnemyLocation(221, patch_func=patch_mq_jabu_likelike_right), # Like like
+        (2, 11, 0, 6): EnemyLocation(221, patch_func=patch_mq_jabu_likelike_left), # Like like
+        (2, 12, 0, 0):  EnemyLocation(149), # Skullwaltula
+        (2, 12, 0, 1):  EnemyLocation(53), # Tailpasaran
+        (2, 12, 0, 2):  EnemyLocation(53), # Tailpasaran
+        (2, 12, 0, 3):  EnemyLocation(53), # Tailpasaran
+        (2, 12, 0, 9):  EnemyLocation(45), # Shabom
+        (2, 12, 0, 10): EnemyLocation( 45), # Shabom
+        (2, 13, 0, 1):  EnemyLocation(19), # Keese
+        (2, 13, 0, 2):  EnemyLocation(19), # Keese
+        (2, 13, 0, 3):  EnemyLocation(19), # Keese
+        (2, 13, 0, 5):  EnemyLocation(396), # Stinger
+        (2, 13, 0, 6):  EnemyLocation(396), # Stinger
+        (2, 14, 0, 0):  EnemyLocation(58), # Singray
+        (2, 14, 0, 1):  EnemyLocation(58), # Singray
+        (2, 14, 0, 3):  EnemyLocation(221), # Like like
+        (2, 14, 0, 4):  EnemyLocation(37), # Lizalfos/Dinalfos
     },
     'Forest Temple': {
-        (3, 0, 0, 0): 149, # Skullwaltula
-    (3, 0, 0, 1): 149, # Skullwaltula
-    (3, 0, 0, 2): 149, # Skullwaltula
-    (3, 0, 0, 3): 149, # Skullwaltula
-    (3, 0, 0, 4): 149, # Skullwaltula
-    (3, 0, 0, 5): 55, # Skulltula
-    (3, 1, 0, 0): 55, # Skulltula
-    (3, 1, 0, 1): 55, # Skulltula
-    (3, 1, 0, 2): 55, # Skulltula
-    (3, 5, 0, 4): 2, # Stalfos
-    (3, 6, 0, 0): 431, # Wolfos
-    (3, 6, 0, 1): 431, # Wolfos
-    (3, 7, 0, 2): 149, # Skullwaltula
-    (3, 7, 0, 3): 85, # Deku Baba
-    (3, 7, 0, 4): 85, # Deku Baba
-    (3, 7, 0, 5): 85, # Deku Baba
-    (3, 8, 0, 0): 14, # Octorok
-    (3, 8, 0, 1): 14, # Octorok
-    (3, 8, 0, 2): 14, # Octorok
-    (3, 8, 0, 3): 149, # Skullwaltula
-    (3, 8, 0, 4): 149, # Skullwaltula
-    (3, 8, 0, 5): 149, # Skullwaltula
-    (3, 8, 0, 6): 55, # Skulltula
-    (3, 10, 0, 0): 55, # Skulltula
-    (3, 11, 0, 1): 105, # Bubble
-    (3, 11, 0, 2): 105, # Bubble
-    (3, 15, 0, 0): 55, # Skulltula
-    (3, 15, 0, 1): 55, # Skulltula
-    (3, 15, 0, 2): 55, # Skulltula
-    (3, 15, 0, 3): 55, # Skulltula
-    (3, 15, 0, 4): 55, # Skulltula
-    (3, 15, 0, 5): 55, # Skulltula
-    (3, 15, 0, 6): 55, # Skulltula
-    (3, 17, 0, 0): 55, # Skulltula
-    (3, 17, 0, 1): 55, # Skulltula
-    (3, 18, 0, 0): 144, # Redead/Gibdo
-    (3, 19, 0, 0): EnemyLocation(17, skip_raycast=True), # Wallmaster
-    (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
-    (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
-    (3, 20, 0, 2): 17, # Wallmaster
-    (3, 21, 0, 0): 142, # Floormaster
+        (3, 0, 0, 0):  EnemyLocation(149), # Skullwaltula
+        (3, 0, 0, 1):  EnemyLocation(149), # Skullwaltula
+        (3, 0, 0, 2):  EnemyLocation(149), # Skullwaltula
+        (3, 0, 0, 3):  EnemyLocation(149), # Skullwaltula
+        (3, 0, 0, 4):  EnemyLocation(149), # Skullwaltula
+        (3, 0, 0, 5):  EnemyLocation(55), # Skulltula
+        (3, 1, 0, 0):  EnemyLocation(55), # Skulltula
+        (3, 1, 0, 1):  EnemyLocation(55), # Skulltula
+        (3, 1, 0, 2):  EnemyLocation(55), # Skulltula
+        (3, 5, 0, 4):  EnemyLocation(2), # Stalfos
+        (3, 6, 0, 0):  EnemyLocation(431), # Wolfos
+        (3, 6, 0, 1):  EnemyLocation(431), # Wolfos
+        (3, 7, 0, 2):  EnemyLocation(149), # Skullwaltula
+        (3, 7, 0, 3):  EnemyLocation(85), # Deku Baba
+        (3, 7, 0, 4):  EnemyLocation(85), # Deku Baba
+        (3, 7, 0, 5):  EnemyLocation(85), # Deku Baba
+        (3, 8, 0, 0):  EnemyLocation(14), # Octorok
+        (3, 8, 0, 1):  EnemyLocation(14), # Octorok
+        (3, 8, 0, 2):  EnemyLocation(14), # Octorok
+        (3, 8, 0, 3):  EnemyLocation(149), # Skullwaltula
+        (3, 8, 0, 4):  EnemyLocation(149), # Skullwaltula
+        (3, 8, 0, 5):  EnemyLocation(149), # Skullwaltula
+        (3, 8, 0, 6):  EnemyLocation(55), # Skulltula
+        (3, 10, 0, 0): EnemyLocation( 55), # Skulltula
+        (3, 11, 0, 1): EnemyLocation( 105), # Bubble
+        (3, 11, 0, 2): EnemyLocation( 105), # Bubble
+        (3, 15, 0, 0): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 1): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 2): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 3): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 4): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 5): EnemyLocation( 55), # Skulltula
+        (3, 15, 0, 6): EnemyLocation( 55), # Skulltula
+        (3, 17, 0, 0): EnemyLocation( 55), # Skulltula
+        (3, 17, 0, 1): EnemyLocation( 55), # Skulltula
+        (3, 18, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (3, 19, 0, 0): EnemyLocation(17, skip_raycast=True), # Wallmaster
+        (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
+        (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
+        (3, 20, 0, 2): EnemyLocation(17), # Wallmaster
+        (3, 21, 0, 0): EnemyLocation(142), # Floormaster
     },
     'Fire Temple': {
-        (4, 3, 0, 0): 153, # Flare Dancer
-    (4, 4, 0, 3): 37, # Lizalfos/Dinalfos
-    (4, 5, 0, 6): 149, # Skullwaltula
-    (4, 5, 0, 8): 37, # Lizalfos/Dinalfos
-    (4, 5, 0, 9): 37, # Lizalfos/Dinalfos
-    (4, 5, 0, 10): 37, # Lizalfos/Dinalfos
-    (4, 5, 0, 11): 37, # Lizalfos/Dinalfos
-    (4, 7, 0, 2): 56, # Torch Slug
-    (4, 7, 0, 3): 56, # Torch Slug
-    (4, 14, 0, 2): 2, # Stalfos
-    (4, 14, 0, 3): 2, # Stalfos
-    (4, 15, 0, 0): 19, # Keese
-    (4, 15, 0, 2): 2, # Stalfos
-    (4, 15, 0, 3): 2, # Stalfos
-    (4, 17, 0, 2): 221, # Like like
-    (4, 18, 0, 0): 275, # Iron Knuckle
-    (4, 24, 0, 0): 153, # Flare Dancer
-    (4, 25, 0, 0): 37, # Lizalfos/Dinalfos
+        (4, 3, 0, 0):  EnemyLocation(153), # Flare Dancer
+        (4, 4, 0, 3):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (4, 5, 0, 6):  EnemyLocation(149), # Skullwaltula
+        (4, 5, 0, 8):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (4, 5, 0, 9):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (4, 5, 0, 10): EnemyLocation( 37), # Lizalfos/Dinalfos
+        (4, 5, 0, 11): EnemyLocation( 37), # Lizalfos/Dinalfos
+        (4, 7, 0, 2):  EnemyLocation(56), # Torch Slug
+        (4, 7, 0, 3):  EnemyLocation(56), # Torch Slug
+        (4, 14, 0, 2): EnemyLocation( 2), # Stalfos
+        (4, 14, 0, 3): EnemyLocation( 2), # Stalfos
+        (4, 15, 0, 0): EnemyLocation( 19), # Keese
+        (4, 15, 0, 2): EnemyLocation( 2), # Stalfos
+        (4, 15, 0, 3): EnemyLocation( 2), # Stalfos
+        (4, 17, 0, 2): EnemyLocation( 221), # Like like
+        (4, 18, 0, 0): EnemyLocation( 275), # Iron Knuckle
+        (4, 24, 0, 0): EnemyLocation( 153), # Flare Dancer
+        (4, 25, 0, 0): EnemyLocation( 37), # Lizalfos/Dinalfos
     },
     'Water Temple': {
-        (5, 2, 0, 1): 236, # Spike
-    (5, 3, 0, 5): 2, # Stalfos
-    (5, 3, 0, 6): 2, # Stalfos
-    (5, 6, 0, 2): 2, # Stalfos
-    (5, 6, 0, 3): 2, # Stalfos
-    (5, 6, 0, 4): 2, # Stalfos
-    (5, 10, 0, 0): 37, # Lizalfos/Dinalfos
-    (5, 14, 0, 1): 18, # Dodongo
-    (5, 14, 0, 2): 18, # Dodongo
-    (5, 14, 0, 3): 18, # Dodongo
-    (5, 14, 0, 4): 18, # Dodongo
-    (5, 14, 0, 5): 18, # Dodongo
-    (5, 14, 0, 6): 18, # Dodongo
-    (5, 14, 0, 7): 18, # Dodongo
-    (5, 16, 0, 1): 2, # Stalfos
-    (5, 18, 0, 0): 236, # Spike
-    (5, 18, 0, 1): 37, # Lizalfos/Dinalfos
-    (5, 18, 0, 2): 37, # Lizalfos/Dinalfos
-    (5, 19, 0, 0): 2, # Stalfos
-    (5, 19, 0, 1): 2, # Stalfos
-    (5, 19, 0, 2): 2, # Stalfos
-    (5, 20, 0, 0): 37, # Lizalfos/Dinalfos
-    (5, 20, 0, 1): 37, # Lizalfos/Dinalfos
+        (5, 2, 0, 1):  EnemyLocation(236), # Spike
+        (5, 3, 0, 5):  EnemyLocation(2), # Stalfos
+        (5, 3, 0, 6):  EnemyLocation(2), # Stalfos
+        (5, 6, 0, 2):  EnemyLocation(2), # Stalfos
+        (5, 6, 0, 3):  EnemyLocation(2), # Stalfos
+        (5, 6, 0, 4):  EnemyLocation(2), # Stalfos
+        (5, 10, 0, 0): EnemyLocation( 37), # Lizalfos/Dinalfos
+        (5, 14, 0, 1): EnemyLocation( 18), # Dodongo
+        (5, 14, 0, 2): EnemyLocation( 18), # Dodongo
+        (5, 14, 0, 3): EnemyLocation( 18), # Dodongo
+        (5, 14, 0, 4): EnemyLocation( 18), # Dodongo
+        (5, 14, 0, 5): EnemyLocation( 18), # Dodongo
+        (5, 14, 0, 6): EnemyLocation( 18), # Dodongo
+        (5, 14, 0, 7): EnemyLocation( 18), # Dodongo
+        (5, 16, 0, 1): EnemyLocation( 2), # Stalfos
+        (5, 18, 0, 0): EnemyLocation( 236), # Spike
+        (5, 18, 0, 1): EnemyLocation( 37), # Lizalfos/Dinalfos
+        (5, 18, 0, 2): EnemyLocation( 37), # Lizalfos/Dinalfos
+        (5, 19, 0, 0): EnemyLocation( 2), # Stalfos
+        (5, 19, 0, 1): EnemyLocation( 2), # Stalfos
+        (5, 19, 0, 2): EnemyLocation( 2), # Stalfos
+        (5, 20, 0, 0): EnemyLocation( 37), # Lizalfos/Dinalfos
+        (5, 20, 0, 1): EnemyLocation( 37), # Lizalfos/Dinalfos
     },
     'Spirit Temple': {
-        (6, 1, 0, 0): 56, # Torch Slug
-    (6, 1, 0, 1): 56, # Torch Slug
-    (6, 1, 0, 2): 19, # Keese
-    (6, 1, 0, 3): 19, # Keese
-    (6, 2, 0, 0): 144, # Redead/Gibdo
-    (6, 2, 0, 1): 144, # Redead/Gibdo
-    (6, 2, 0, 2): 144, # Redead/Gibdo
-    (6, 3, 0, 0): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-    (6, 3, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-    (6, 3, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-    (6, 3, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-    (6, 3, 0, 4): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-    (6, 3, 0, 12): 246, # Anubis Spawner
-    (6, 4, 0, 0): 47, # Baby Dodongo
-    (6, 4, 0, 1): 47, # Baby Dodongo
-    (6, 4, 0, 2): 47, # Baby Dodongo
-    (6, 4, 0, 3): 47, # Baby Dodongo
-    (6, 4, 0, 4): 221, # Like like
-    (6, 4, 0, 11): 138, # Beamos
-    (6, 5, 0, 0): 17, # Wallmaster
-    (6, 5, 0, 1): 142, # Floormaster
-    (6, 5, 0, 20): 17, # Wallmaster
-    (6, 8, 0, 2): 105, # Bubble
-    (6, 8, 0, 3): 105, # Bubble
-    (6, 8, 0, 4): 105, # Bubble
-    (6, 8, 0, 18): 17, # Wallmaster
-    (6, 8, 0, 20): 17, # Wallmaster
-    (6, 9, 0, 0): 55, # Skulltula
-    (6, 10, 0, 5): 275, # Iron Knuckle
-    (6, 12, 0, 0): 55, # Skulltula
-    (6, 12, 0, 1): 55, # Skulltula
-    (6, 12, 0, 2): 55, # Skulltula
-    (6, 12, 0, 3): 55, # Skulltula
-    (6, 12, 0, 4): 55, # Skulltula
-    (6, 12, 0, 5): 55, # Skulltula
-    (6, 12, 0, 6): 55, # Skulltula
-    (6, 12, 0, 7): 55, # Skulltula
-    (6, 12, 0, 8): 55, # Skulltula
-    (6, 13, 0, 1): 75, # Moblin
-    (6, 15, 0, 0): 2, # Stalfos
-    (6, 15, 0, 1): 2, # Stalfos
-    (6, 15, 0, 2): 17, # Wallmaster
-    (6, 15, 0, 7): 17, # Wallmaster
-    (6, 15, 0, 9): 17, # Wallmaster
-    (6, 15, 0, 11): 17, # Wallmaster
-    (6, 17, 0, 6): 138, # Beamos
-    (6, 17, 0, 7): 138, # Beamos
-    (6, 17, 0, 8): 138, # Beamos
-    (6, 17, 0, 9): 138, # Beamos
-    (6, 18, 0, 0): 37, # Lizalfos/Dinalfos
-    (6, 18, 0, 1): 37, # Lizalfos/Dinalfos
-    (6, 19, 0, 0): 142, # Floormaster
-    (6, 20, 0, 5): 275, # Iron Knuckle
-    (6, 21, 0, 0): 144, # Redead/Gibdo
-    (6, 22, 0, 0): 275, # Iron Knuckle
-    (6, 23, 0, 0): 149, # Skullwaltula
-    (6, 23, 0, 1): 56, # Torch Slug
-    (6, 23, 0, 2): 19, # Keese
-    (6, 23, 0, 3): 19, # Keese
-    (6, 23, 0, 4): 19, # Keese
-    (6, 23, 0, 5): 19, # Keese
-    (6, 26, 0, 0): 56, # Torch Slug
-    (6, 26, 0, 1): 37, # Lizalfos/Dinalfos
-    (6, 26, 0, 6): 105, # Bubble
-    (6, 26, 0, 7): 105, # Bubble
-    (6, 27, 0, 7): EnemyLocation(2, skip_raycast=True, patch_func=patch_mq_spirit_child_stalfos), # Stalfos
+        (6, 1, 0, 0): EnemyLocation(56), # Torch Slug
+        (6, 1, 0, 1): EnemyLocation(56), # Torch Slug
+        (6, 1, 0, 2): EnemyLocation(19), # Keese
+        (6, 1, 0, 3): EnemyLocation(19), # Keese
+        (6, 2, 0, 0): EnemyLocation(144), # Redead/Gibdo
+        (6, 2, 0, 1): EnemyLocation(144), # Redead/Gibdo
+        (6, 2, 0, 2): EnemyLocation(144), # Redead/Gibdo
+        (6, 3, 0, 0): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+        (6, 3, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+        (6, 3, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+        (6, 3, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+        (6, 3, 0, 4): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+        (6, 3, 0, 12):  EnemyLocation( 246), # Anubis Spawner
+        (6, 4, 0, 0):   EnemyLocation(47), # Baby Dodongo
+        (6, 4, 0, 1):   EnemyLocation(47), # Baby Dodongo
+        (6, 4, 0, 2):   EnemyLocation(47), # Baby Dodongo
+        (6, 4, 0, 3):   EnemyLocation(47), # Baby Dodongo
+        (6, 4, 0, 4):   EnemyLocation(221), # Like like
+        (6, 4, 0, 11):  EnemyLocation( 138), # Beamos
+        (6, 5, 0, 0):   EnemyLocation(17), # Wallmaster
+        (6, 5, 0, 1):   EnemyLocation(142), # Floormaster
+        (6, 5, 0, 20):  EnemyLocation( 17), # Wallmaster
+        (6, 8, 0, 2):   EnemyLocation(105), # Bubble
+        (6, 8, 0, 3):   EnemyLocation(105), # Bubble
+        (6, 8, 0, 4):   EnemyLocation(105), # Bubble
+        (6, 8, 0, 18):  EnemyLocation( 17), # Wallmaster
+        (6, 8, 0, 20):  EnemyLocation( 17), # Wallmaster
+        (6, 9, 0, 0):   EnemyLocation(55), # Skulltula
+        (6, 10, 0, 5):  EnemyLocation( 275), # Iron Knuckle
+        (6, 12, 0, 0):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 1):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 2):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 3):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 4):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 5):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 6):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 7):  EnemyLocation( 55), # Skulltula
+        (6, 12, 0, 8):  EnemyLocation( 55), # Skulltula
+        (6, 13, 0, 1):  EnemyLocation( 75), # Moblin
+        (6, 15, 0, 0):  EnemyLocation( 2), # Stalfos
+        (6, 15, 0, 1):  EnemyLocation( 2), # Stalfos
+        (6, 15, 0, 2):  EnemyLocation( 17), # Wallmaster
+        (6, 15, 0, 7):  EnemyLocation( 17), # Wallmaster
+        (6, 15, 0, 9):  EnemyLocation( 17), # Wallmaster
+        (6, 15, 0, 11): EnemyLocation( 17), # Wallmaster
+        (6, 17, 0, 6):  EnemyLocation(138), # Beamos
+        (6, 17, 0, 7):  EnemyLocation(138), # Beamos
+        (6, 17, 0, 8):  EnemyLocation(138), # Beamos
+        (6, 17, 0, 9):  EnemyLocation(138), # Beamos
+        (6, 18, 0, 0):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (6, 18, 0, 1):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (6, 19, 0, 0):  EnemyLocation(142), # Floormaster
+        (6, 20, 0, 5):  EnemyLocation(275), # Iron Knuckle
+        (6, 21, 0, 0):  EnemyLocation(144), # Redead/Gibdo
+        (6, 22, 0, 0):  EnemyLocation(275), # Iron Knuckle
+        (6, 23, 0, 0):  EnemyLocation(149), # Skullwaltula
+        (6, 23, 0, 1):  EnemyLocation(56), # Torch Slug
+        (6, 23, 0, 2):  EnemyLocation(19), # Keese
+        (6, 23, 0, 3):  EnemyLocation(19), # Keese
+        (6, 23, 0, 4):  EnemyLocation(19), # Keese
+        (6, 23, 0, 5):  EnemyLocation(19), # Keese
+        (6, 26, 0, 0):  EnemyLocation(56), # Torch Slug
+        (6, 26, 0, 1):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (6, 26, 0, 6):  EnemyLocation(105), # Bubble
+        (6, 26, 0, 7):  EnemyLocation(105), # Bubble
+        (6, 27, 0, 7): EnemyLocation(2, skip_raycast=True, patch_func=patch_mq_spirit_child_stalfos), # Stalfos
     },
     'Shadow Temple': {
-(7, 1, 0, 0): 144, # Redead/Gibdo
-    (7, 1, 0, 1): 144, # Redead/Gibdo
-    (7, 1, 0, 2): 144, # Redead/Gibdo
-    (7, 1, 0, 3): 144, # Redead/Gibdo
-    (7, 5, 0, 0): 138, # Beamos
-    (7, 6, 0, 0): 55, # Skulltula
-    (7, 6, 0, 1): 55, # Skulltula
-    (7, 6, 0, 2): 55, # Skulltula
-    (7, 6, 0, 3): 55, # Skulltula
-    (7, 7, 0, 0): 144, # Redead/Gibdo
-    (7, 7, 0, 1): 144, # Redead/Gibdo
-    (7, 8, 0, 1): 55, # Skulltula
-    (7, 8, 0, 2): 138, # Beamos
-    (7, 8, 0, 3): 138, # Beamos
-    (7, 9, 0, 5): 105, # Bubble
-    (7, 9, 0, 6): 138, # Beamos
-    (7, 9, 0, 7): 138, # Beamos
-    (7, 9, 0, 10): 138, # Beamos
-    (7, 11, 0, 8): 144, # Redead/Gibdo
-    (7, 11, 0, 9): 144, # Redead/Gibdo
-    (7, 13, 0, 0): 19, # Keese
-    (7, 13, 0, 1): 19, # Keese
-    (7, 13, 0, 2): 19, # Keese
-    (7, 13, 0, 3): 19, # Keese
-    (7, 13, 0, 4): 55, # Skulltula
-    (7, 13, 0, 5): 55, # Skulltula
-    (7, 13, 0, 6): 55, # Skulltula
-    (7, 13, 0, 7): 55, # Skulltula
-    (7, 14, 0, 4): 2, # Stalfos
-    (7, 14, 0, 5): 2, # Stalfos
-    (7, 15, 0, 0): 105, # Bubble
-    (7, 15, 0, 1): 105, # Bubble
-    (7, 15, 0, 2): 221, # Like like
-    (7, 16, 0, 0): 19, # Keese
-    (7, 16, 0, 1): 19, # Keese
-    (7, 16, 0, 2): 19, # Keese
-    (7, 16, 0, 3): 221, # Like like
-    (7, 18, 0, 0): 55, # Skulltula
-    (7, 19, 0, 0): 144, # Redead/Gibdo
-    (7, 19, 0, 1): 144, # Redead/Gibdo
-    (7, 19, 0, 2): 144, # Redead/Gibdo
-    (7, 19, 0, 3): 144, # Redead/Gibdo
-    (7, 20, 0, 0): 144, # Redead/Gibdo
-    (7, 20, 0, 1): 144, # Redead/Gibdo
-    (7, 21, 0, 3): 149, # Skullwaltula
-    (7, 21, 0, 4): 55, # Skulltula
-    (7, 21, 0, 16): EnemyLocation(2, patch_func=patch_shadow_temple_boat_stalfos_1), # Stalfos
-    (7, 21, 0, 17): EnemyLocation(2, patch_func=patch_shadow_temple_boat_stalfos_2), # Stalfos
+        (7, 1, 0, 0):  EnemyLocation(144), # Redead/Gibdo
+        (7, 1, 0, 1):  EnemyLocation(144), # Redead/Gibdo
+        (7, 1, 0, 2):  EnemyLocation(144), # Redead/Gibdo
+        (7, 1, 0, 3):  EnemyLocation(144), # Redead/Gibdo
+        (7, 5, 0, 0):  EnemyLocation(138), # Beamos
+        (7, 6, 0, 0):  EnemyLocation(55), # Skulltula
+        (7, 6, 0, 1):  EnemyLocation(55), # Skulltula
+        (7, 6, 0, 2):  EnemyLocation(55), # Skulltula
+        (7, 6, 0, 3):  EnemyLocation(55), # Skulltula
+        (7, 7, 0, 0):  EnemyLocation(144), # Redead/Gibdo
+        (7, 7, 0, 1):  EnemyLocation(144), # Redead/Gibdo
+        (7, 8, 0, 1):  EnemyLocation(55), # Skulltula
+        (7, 8, 0, 2):  EnemyLocation(138), # Beamos
+        (7, 8, 0, 3):  EnemyLocation(138), # Beamos
+        (7, 9, 0, 5):  EnemyLocation(105), # Bubble
+        (7, 9, 0, 6):  EnemyLocation(138), # Beamos
+        (7, 9, 0, 7):  EnemyLocation(138), # Beamos
+        (7, 9, 0, 10): EnemyLocation( 138), # Beamos
+        (7, 11, 0, 8): EnemyLocation( 144), # Redead/Gibdo
+        (7, 11, 0, 9): EnemyLocation( 144), # Redead/Gibdo
+        (7, 13, 0, 0): EnemyLocation( 19), # Keese
+        (7, 13, 0, 1): EnemyLocation( 19), # Keese
+        (7, 13, 0, 2): EnemyLocation( 19), # Keese
+        (7, 13, 0, 3): EnemyLocation( 19), # Keese
+        (7, 13, 0, 4): EnemyLocation( 55), # Skulltula
+        (7, 13, 0, 5): EnemyLocation( 55), # Skulltula
+        (7, 13, 0, 6): EnemyLocation( 55), # Skulltula
+        (7, 13, 0, 7): EnemyLocation( 55), # Skulltula
+        (7, 14, 0, 4): EnemyLocation( 2), # Stalfos
+        (7, 14, 0, 5): EnemyLocation( 2), # Stalfos
+        (7, 15, 0, 0): EnemyLocation( 105), # Bubble
+        (7, 15, 0, 1): EnemyLocation( 105), # Bubble
+        (7, 15, 0, 2): EnemyLocation( 221), # Like like
+        (7, 16, 0, 0): EnemyLocation( 19), # Keese
+        (7, 16, 0, 1): EnemyLocation( 19), # Keese
+        (7, 16, 0, 2): EnemyLocation( 19), # Keese
+        (7, 16, 0, 3): EnemyLocation( 221), # Like like
+        (7, 18, 0, 0): EnemyLocation( 55), # Skulltula
+        (7, 19, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (7, 19, 0, 1): EnemyLocation( 144), # Redead/Gibdo
+        (7, 19, 0, 2): EnemyLocation( 144), # Redead/Gibdo
+        (7, 19, 0, 3): EnemyLocation( 144), # Redead/Gibdo
+        (7, 20, 0, 0): EnemyLocation( 144), # Redead/Gibdo
+        (7, 20, 0, 1): EnemyLocation( 144), # Redead/Gibdo
+        (7, 21, 0, 3): EnemyLocation( 149), # Skullwaltula
+        (7, 21, 0, 4): EnemyLocation( 55), # Skulltula
+        (7, 21, 0, 16): EnemyLocation(2, patch_func=patch_shadow_temple_boat_stalfos_1), # Stalfos
+        (7, 21, 0, 17): EnemyLocation(2, patch_func=patch_shadow_temple_boat_stalfos_2), # Stalfos
     },
     'Bottom of the Well': {
-        (8, 0, 0, 0): 149, # Skullwaltula
-    (8, 0, 0, 1): 149, # Skullwaltula
-    (8, 0, 0, 2): 55, # Skulltula
-    (8, 0, 0, 3): 17, # Wallmaster
-    (8, 0, 0, 4): 144, # Redead/Gibdo
-    (8, 1, 0, 1): 55, # Skulltula
-    (8, 1, 0, 2): 55, # Skulltula
-    (8, 1, 0, 3): 55, # Skulltula
-    (8, 1, 0, 4): 17, # Wallmaster
-    (8, 1, 0, 5): 144, # Redead/Gibdo
-    (8, 1, 0, 6): 144, # Redead/Gibdo
-    (8, 1, 0, 7): 144, # Redead/Gibdo
-    (8, 1, 0, 8): 144, # Redead/Gibdo
-    (8, 1, 0, 9): 144, # Redead/Gibdo
-    (8, 2, 0, 0): 144, # Redead/Gibdo
-    (8, 3, 0, 0): 17, # Wallmaster
-    (8, 3, 0, 1): 142, # Floormaster
-    (8, 6, 0, 0): 19, # Keese
-    (8, 6, 0, 1): 19, # Keese
-    (8, 6, 0, 2): 19, # Keese
-    (8, 6, 0, 3): 55, # Skulltula
-    (8, 6, 0, 4): 55, # Skulltula
+        (8, 0, 0, 0): EnemyLocation(149), # Skullwaltula
+        (8, 0, 0, 1): EnemyLocation(149), # Skullwaltula
+        (8, 0, 0, 2): EnemyLocation(55), # Skulltula
+        (8, 0, 0, 3): EnemyLocation(17), # Wallmaster
+        (8, 0, 0, 4): EnemyLocation(144), # Redead/Gibdo
+        (8, 1, 0, 1): EnemyLocation(55), # Skulltula
+        (8, 1, 0, 2): EnemyLocation(55), # Skulltula
+        (8, 1, 0, 3): EnemyLocation(55), # Skulltula
+        (8, 1, 0, 4): EnemyLocation(17), # Wallmaster
+        (8, 1, 0, 5): EnemyLocation(144), # Redead/Gibdo
+        (8, 1, 0, 6): EnemyLocation(144), # Redead/Gibdo
+        (8, 1, 0, 7): EnemyLocation(144), # Redead/Gibdo
+        (8, 1, 0, 8): EnemyLocation(144), # Redead/Gibdo
+        (8, 1, 0, 9): EnemyLocation(144), # Redead/Gibdo
+        (8, 2, 0, 0): EnemyLocation(144), # Redead/Gibdo
+        (8, 3, 0, 0): EnemyLocation(17), # Wallmaster
+        (8, 3, 0, 1): EnemyLocation(142), # Floormaster
+        (8, 6, 0, 0): EnemyLocation(19), # Keese
+        (8, 6, 0, 1): EnemyLocation(19), # Keese
+        (8, 6, 0, 2): EnemyLocation(19), # Keese
+        (8, 6, 0, 3): EnemyLocation(55), # Skulltula
+        (8, 6, 0, 4): EnemyLocation(55), # Skulltula
     },
     'Ice Cavern': {
-        (9, 1, 0, 0): 289, # Freezard
-    (9, 1, 0, 1): 27, # Tektite
-    (9, 1, 0, 2): 27, # Tektite
-    (9, 3, 0, 5): 431, # Wolfos
-    (9, 3, 0, 6): 289, # Freezard
-    (9, 3, 0, 7): 289, # Freezard
-    (9, 5, 0, 3): 431, # Wolfos
-    (9, 5, 0, 4): 431, # Wolfos
-    (9, 5, 0, 5): 19, # Keese
-    (9, 5, 0, 6): 19, # Keese
-    (9, 6, 0, 3): 19, # Keese
-    (9, 6, 0, 4): 19, # Keese
-    (9, 7, 0, 3): 2, # Stalfos
-    (9, 8, 0, 0): 289, # Freezard
-    (9, 8, 0, 1): 289, # Freezard
-    (9, 9, 0, 0): 289, # Freezard
-    (9, 9, 0, 1): 289, # Freezard
-    (9, 9, 0, 5): 289, # Freezard
-    (9, 11, 0, 11): 431, # Wolfos
-    (9, 11, 0, 12): 431, # Wolfos
-    (9, 11, 0, 13): 149, # Skullwaltula
+        (9, 1, 0, 0):   EnemyLocation(289), # Freezard
+        (9, 1, 0, 1):   EnemyLocation(27), # Tektite
+        (9, 1, 0, 2):   EnemyLocation(27), # Tektite
+        (9, 3, 0, 5):   EnemyLocation(431), # Wolfos
+        (9, 3, 0, 6):   EnemyLocation(289), # Freezard
+        (9, 3, 0, 7):   EnemyLocation(289), # Freezard
+        (9, 5, 0, 3):   EnemyLocation(431), # Wolfos
+        (9, 5, 0, 4):   EnemyLocation(431), # Wolfos
+        (9, 5, 0, 5):   EnemyLocation(19), # Keese
+        (9, 5, 0, 6):   EnemyLocation(19), # Keese
+        (9, 6, 0, 3):   EnemyLocation(19), # Keese
+        (9, 6, 0, 4):   EnemyLocation(19), # Keese
+        (9, 7, 0, 3):   EnemyLocation(2), # Stalfos
+        (9, 8, 0, 0):   EnemyLocation(289), # Freezard
+        (9, 8, 0, 1):   EnemyLocation(289), # Freezard
+        (9, 9, 0, 0):   EnemyLocation(289), # Freezard
+        (9, 9, 0, 1):   EnemyLocation(289), # Freezard
+        (9, 9, 0, 5):   EnemyLocation(289), # Freezard
+        (9, 11, 0, 11): EnemyLocation( 431), # Wolfos
+        (9, 11, 0, 12): EnemyLocation( 431), # Wolfos
+        (9, 11, 0, 13): EnemyLocation( 149), # Skullwaltula
     },
     'Gerudo Training Ground': {
-        (11, 1, 0, 0): 275, # Iron Knuckle
-    (11, 2, 0, 0): 289, # Freezard
-    (11, 2, 0, 17): 17, # Wallmaster
-    (11, 2, 0, 21): 17, # Wallmaster
-    (11, 3, 0, 4): 2, # Stalfos
-    (11, 3, 0, 5): 2, # Stalfos
-    (11, 3, 0, 6): 55, # Skulltula
-    (11, 3, 0, 7): 55, # Skulltula
-    (11, 3, 0, 8): 55, # Skulltula
-    (11, 5, 0, 0): 275, # Iron Knuckle
-    (11, 5, 0, 1): 56, # Torch Slug
-    (11, 5, 0, 2): 56, # Torch Slug
-    (11, 6, 0, 1): 105, # Bubble
-    (11, 6, 0, 2): 105, # Bubble
-    (11, 6, 0, 3): 105, # Bubble
-    (11, 7, 0, 0): 37, # Lizalfos/Dinalfos
-    (11, 7, 0, 1): 37, # Lizalfos/Dinalfos
-    (11, 7, 0, 2): 37, # Lizalfos/Dinalfos
-    (11, 7, 0, 3): 18, # Dodongo
-    (11, 7, 0, 4): 18, # Dodongo
-    (11, 7, 0, 5): 84, # Armos
-    (11, 9, 0, 0): 396, # Stinger
-    (11, 9, 0, 1): 396, # Stinger
-    (11, 9, 0, 3): 99, # Bari
-    (11, 9, 0, 4): 197, # Shell Blade
-    (11, 10, 0, 0): 289, # Freezard
-    (11, 10, 0, 1): 289, # Freezard
-    (11, 10, 0, 2): 236, # Spike
-    (11, 10, 0, 3): 236, # Spike
-    (11, 10, 0, 4): 236, # Spike
+        (11, 1, 0, 0):  EnemyLocation(275), # Iron Knuckle
+        (11, 2, 0, 0):  EnemyLocation(289), # Freezard
+        (11, 2, 0, 17): EnemyLocation( 17), # Wallmaster
+        (11, 2, 0, 21): EnemyLocation( 17), # Wallmaster
+        (11, 3, 0, 4):  EnemyLocation(2), # Stalfos
+        (11, 3, 0, 5):  EnemyLocation(2), # Stalfos
+        (11, 3, 0, 6):  EnemyLocation(55), # Skulltula
+        (11, 3, 0, 7):  EnemyLocation(55), # Skulltula
+        (11, 3, 0, 8):  EnemyLocation(55), # Skulltula
+        (11, 5, 0, 0):  EnemyLocation(275), # Iron Knuckle
+        (11, 5, 0, 1):  EnemyLocation(56), # Torch Slug
+        (11, 5, 0, 2):  EnemyLocation(56), # Torch Slug
+        (11, 6, 0, 1):  EnemyLocation(105), # Bubble
+        (11, 6, 0, 2):  EnemyLocation(105), # Bubble
+        (11, 6, 0, 3):  EnemyLocation(105), # Bubble
+        (11, 7, 0, 0):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (11, 7, 0, 1):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (11, 7, 0, 2):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (11, 7, 0, 3):  EnemyLocation(18), # Dodongo
+        (11, 7, 0, 4):  EnemyLocation(18), # Dodongo
+        (11, 7, 0, 5):  EnemyLocation(84), # Armos
+        (11, 9, 0, 0):  EnemyLocation(396), # Stinger
+        (11, 9, 0, 1):  EnemyLocation(396), # Stinger
+        (11, 9, 0, 3):  EnemyLocation(99), # Bari
+        (11, 9, 0, 4):  EnemyLocation(197), # Shell Blade
+        (11, 10, 0, 0): EnemyLocation( 289), # Freezard
+        (11, 10, 0, 1): EnemyLocation( 289), # Freezard
+        (11, 10, 0, 2): EnemyLocation( 236), # Spike
+        (11, 10, 0, 3): EnemyLocation( 236), # Spike
+        (11, 10, 0, 4): EnemyLocation( 236), # Spike
     },
     'Ganons Castle': {
-        (13, 0, 0, 0): 84, # Armos
-    (13, 0, 0, 1): 84, # Armos
-    (13, 0, 0, 2): 275, # Iron Knuckle
-    (13, 0, 0, 9): 105, # Bubble
-    (13, 0, 0, 10): 105, # Bubble
-    (13, 2, 0, 1): 289, # Freezard
-    (13, 2, 0, 2): 289, # Freezard
-    (13, 2, 0, 3): 289, # Freezard
-    (13, 3, 0, 0): 19, # Keese
-    (13, 3, 0, 3): 19, # Keese
-    (13, 3, 0, 4): 19, # Keese
-    (13, 3, 0, 5): 19, # Keese
-    (13, 5, 0, 1): 2, # Stalfos
-    (13, 5, 0, 2): 2, # Stalfos
-    (13, 6, 0, 1): 84, # Armos
-    (13, 6, 0, 8): 138, # Beamos
-    (13, 6, 0, 9): 138, # Beamos
-    (13, 6, 0, 10): 138, # Beamos
-    (13, 6, 0, 11): 138, # Beamos
-    (13, 6, 0, 12): 138, # Beamos
-    (13, 6, 0, 13): 138, # Beamos
-    (13, 8, 0, 3): 138, # Beamos
-    (13, 9, 0, 6): 56, # Torch Slug
-    (13, 9, 0, 7): 56, # Torch Slug
-    (13, 9, 0, 8): 37, # Lizalfos/Dinalfos
-    (13, 10, 0, 3): 149, # Skullwaltula
-    (13, 12, 0, 5): 105, # Bubble
-    (13, 12, 0, 6): 138, # Beamos
-    (13, 12, 0, 7): 138, # Beamos
-    (13, 12, 0, 8): 138, # Beamos
-    (13, 12, 0, 9): 138, # Beamos
-    (13, 14, 0, 1): 56, # Torch Slug
-    (13, 14, 0, 2): 56, # Torch Slug
-    (13, 14, 0, 16): 138, # Beamos
-    (13, 17, 0, 9): 56, # Torch Slug
-    (13, 17, 0, 10): 19, # Keese
-    (13, 17, 0, 11): 19, # Keese
-    (13, 17, 0, 12): 275, # Iron Knuckle
-    (13, 18, 0, 6): 144, # Redead/Gibdo
-    (13, 18, 0, 7): 144, # Redead/Gibdo
-    (13, 18, 0, 8): 144, # Redead/Gibdo
-    (13, 18, 0, 9): 105, # Bubble
-    (13, 18, 0, 10): 105, # Bubble
-    (13, 18, 0, 24): 17, # Wallmaster
+        (13, 0, 0, 0):   EnemyLocation(84), # Armos
+        (13, 0, 0, 1):   EnemyLocation(84), # Armos
+        (13, 0, 0, 2):   EnemyLocation(275), # Iron Knuckle
+        (13, 0, 0, 9):   EnemyLocation(105), # Bubble
+        (13, 0, 0, 10):  EnemyLocation( 105), # Bubble
+        (13, 2, 0, 1):   EnemyLocation(289), # Freezard
+        (13, 2, 0, 2):   EnemyLocation(289), # Freezard
+        (13, 2, 0, 3):   EnemyLocation(289), # Freezard
+        (13, 3, 0, 0):   EnemyLocation(19), # Keese
+        (13, 3, 0, 3):   EnemyLocation(19), # Keese
+        (13, 3, 0, 4):   EnemyLocation(19), # Keese
+        (13, 3, 0, 5):   EnemyLocation(19), # Keese
+        (13, 5, 0, 1):   EnemyLocation(2), # Stalfos
+        (13, 5, 0, 2):   EnemyLocation(2), # Stalfos
+        (13, 6, 0, 1):   EnemyLocation(84), # Armos
+        (13, 6, 0, 8):   EnemyLocation(138), # Beamos
+        (13, 6, 0, 9):   EnemyLocation(138), # Beamos
+        (13, 6, 0, 10):  EnemyLocation( 138), # Beamos
+        (13, 6, 0, 11):  EnemyLocation( 138), # Beamos
+        (13, 6, 0, 12):  EnemyLocation( 138), # Beamos
+        (13, 6, 0, 13):  EnemyLocation( 138), # Beamos
+        (13, 8, 0, 3):   EnemyLocation(138), # Beamos
+        (13, 9, 0, 6):   EnemyLocation(56), # Torch Slug
+        (13, 9, 0, 7):   EnemyLocation(56), # Torch Slug
+        (13, 9, 0, 8):   EnemyLocation(37), # Lizalfos/Dinalfos
+        (13, 10, 0, 3):  EnemyLocation( 149), # Skullwaltula
+        (13, 12, 0, 5):  EnemyLocation( 105), # Bubble
+        (13, 12, 0, 6):  EnemyLocation( 138), # Beamos
+        (13, 12, 0, 7):  EnemyLocation( 138), # Beamos
+        (13, 12, 0, 8):  EnemyLocation( 138), # Beamos
+        (13, 12, 0, 9):  EnemyLocation( 138), # Beamos
+        (13, 14, 0, 1):  EnemyLocation( 56), # Torch Slug
+        (13, 14, 0, 2):  EnemyLocation( 56), # Torch Slug
+        (13, 14, 0, 16): EnemyLocation( 138), # Beamos
+        (13, 17, 0, 9):  EnemyLocation(56), # Torch Slug
+        (13, 17, 0, 10): EnemyLocation( 19), # Keese
+        (13, 17, 0, 11): EnemyLocation( 19), # Keese
+        (13, 17, 0, 12): EnemyLocation( 275), # Iron Knuckle
+        (13, 18, 0, 6):  EnemyLocation(144), # Redead/Gibdo
+        (13, 18, 0, 7):  EnemyLocation(144), # Redead/Gibdo
+        (13, 18, 0, 8):  EnemyLocation(144), # Redead/Gibdo
+        (13, 18, 0, 9):  EnemyLocation(105), # Bubble
+        (13, 18, 0, 10): EnemyLocation( 105), # Bubble
+        (13, 18, 0, 24): EnemyLocation( 17), # Wallmaster
     }
 }
 
@@ -1311,33 +1312,33 @@ enemy_actor_types: list[Enemy] = [
         Enemy("Dinalfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Gohma Larva", id=0x002B, var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Shabom", id=0x002D, kill_logic='can_kill_shabom', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
-    Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo'),
+    Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Biri", id=0x0034, soul_name="Biri and Bari", kill_logic='can_kill_biri', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
     Enemy("Bari", id=0x0063, soul_name="Biri and Bari", kill_logic='can_kill_biri', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Tailpasaran", id=0x0035, var=0xFFFF, kill_logic='can_kill_tailsparan', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),
     Enemy("Skulltula", id=0x0037, kill_logic='can_kill_skulltula', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Torch Slug", kill_logic='can_kill_torch_slug', id=0x0038),
+    Enemy("Torch Slug", kill_logic='can_kill_torch_slug', id=0x0038, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Moblin", kill_logic='can_kill_moblin', id=0x004B, var=0x0002, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Moblin (Spear)", kill_logic='can_kill_moblin', soul_name="Moblin", id=0x004B, var=0xFFFF, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Armos", id=0x0054, var = 0xFFFF, kill_logic='can_kill_armos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer', drop_logic='can_kill_deku_baba'),
+    Enemy("Deku Baba", id=0x0055, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer', drop_logic='can_kill_deku_baba', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     #Enemy("Whithered Deku Baba", id=0x00C7, soul_name="Deku Baba", kill_logic='can_kill_deku_baba_enemizer'),
-    Enemy("Deku Scrub", id=0x0060, kill_logic='can_kill_scrub', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),
-    Enemy("Bubble", id=0x0069, var=0xFFFF, kill_logic='can_kill_blue_bubble'),
-        Enemy("Beamos (Large)", id=0x008A, var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos'),
-        Enemy("Beamos (Small)", id=0x008A, var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos'),
+    Enemy("Deku Scrub", id=0x0060, kill_logic='can_kill_scrub', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Bubble", id=0x0069, var=0xFFFF, kill_logic='can_kill_blue_bubble', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Beamos (Large)", id=0x008A, var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Beamos (Small)", id=0x008A, var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Floormaster", id=0x008E, kill_logic='can_kill_floormaster', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Redead", id=0x0090, var=0x7F02, soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
+        Enemy("Redead", id=0x0090, var=0x7F02, soul_name="Redead and Gibdo", kill_logic='can_kill_redead', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Gibdo", id=0x0090, var=0x7FFE, soul_name="Redead and Gibdo", kill_logic='can_kill_redead', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Skullwalltula", id=0x0095, kill_logic='can_kill_skullwalltula', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Skullwalltula", id=0x0095, kill_logic='can_kill_skullwalltula', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Flare Dancer", id=0x0099, kill_logic='can_kill_flare_dancer', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Shell Blade", id=0x00C5, kill_logic='can_kill_shell_blade', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Like Like", id=0x00DD, soul_name="Like Like", kill_logic='can_kill_like_like', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Spike Enemy", id=0x00EC, kill_logic='can_kill_spike_enemy', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Anubis Spawner", id=0x00F6, var=0x0003, soul_name="Anubis", kill_logic='can_kill_anubis', meets_location_restrictions=[LOCATION_RESTRICTION.FLOATING]),
+    Enemy("Anubis Spawner", id=0x00F6, var=0x0003, soul_name="Anubis", kill_logic='can_kill_anubis', meets_location_restrictions=[LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Iron Knuckle (Black)", kill_logic='can_kill_iron_knuckle', id=0x0113, var=0xFF82, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
         Enemy("Iron Knuckle (White)", kill_logic='can_kill_iron_knuckle', id=0x0113, var=0xFF83, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
-    Enemy("Skull Kid", kill_logic='can_kill_skull_kid', id=0x0115, var=0xFFFF),
+    Enemy("Skull Kid", kill_logic='can_kill_skull_kid', id=0x0115, var=0xFFFF, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Freezard", kill_logic='can_kill_freezard', id=0x0121, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Stinger", id=0x018C, kill_logic='can_kill_stinger', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER], required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
     Enemy("Stingray", id=0x003A, var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),

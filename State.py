@@ -270,13 +270,23 @@ class State:
         # Check soul for this enemy
         has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
 
-        # TODO Build an ID -> Defeatibility check mapping
         # Check defeatibility
-        if enemy_obj.name in can_kill_cache:
+
+        # Check for location specific logic
+        enemy_tuple = (scene, room, setup, index)
+        if enemy_obj.name in self.world.enemy_list[enemy_tuple].location_specific_enemy_logic:
+            if type(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name]) == str:
+                self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name] = self.world.parser.parse_rule(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name])
+            can_kill_rule = self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name]
+        
+        # Non-location specific enemy logic, cache the rules
+        elif enemy_obj.name in can_kill_cache:
             can_kill_rule = can_kill_cache[enemy_obj.name]
         else:
             can_kill_rule = self.world.parser.parse_rule(enemy_obj.kill_logic)
             can_kill_cache[enemy_obj.name] = can_kill_rule
+        
+        # Run the rule
         can_kill = can_kill_rule(self, **kwargs)
         return has_soul and can_kill
 
@@ -301,10 +311,8 @@ class State:
         # Loop through each enemy and determine defeatability
         # Need to check for the soul for each enemy, and the defeatability function
         for enemy in enemies:
-            enemy_obj, shuffled = enemies[enemy]
-            can_kill = self.world.parser.parse_rule(enemy_obj.kill_logic)(self, **kwargs)
-            has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
-            if not (has_soul and can_kill):
+            scene, room, setup, index = enemy
+            if not self.can_kill(scene, room, setup, index, **kwargs):
                 return False
 
         return True
