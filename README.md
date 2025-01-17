@@ -19,8 +19,6 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ## Index
 
 * [Enemy Shuffle Changelog](#enemy_shuffle_changelog)
-  * [v123](#v123)
-  * [v122](#v122)
 
 * [RealRob's Changelog](#realrob-changelog)
   * [v138](#v138)
@@ -155,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v141
+  * Various enemizer logic and enemy restriction fixes
+
 ### v140
   * "Temporary" address bump to fix audio issues
 
