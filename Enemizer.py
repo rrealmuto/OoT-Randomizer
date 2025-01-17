@@ -1,4 +1,5 @@
 from __future__ import annotations
+from ast import literal_eval
 import random
 from ProcessActors import *
 from EnemizerList import *
@@ -6,7 +7,7 @@ from World import World
 
 
 def get_rom_enemies(scenes: list[Scene], rom: Rom):
-    enemy_list: dict[tuple[int,int,int,int],Actor] = {}
+    rom_enemies: dict[tuple[int,int,int,int],Actor] = {}
     for scene in scenes:
         for room in scene.rooms:
             for setup in room.setups:
@@ -16,27 +17,45 @@ def get_rom_enemies(scenes: list[Scene], rom: Rom):
                     if actors[i].id in enemy_filters.keys():
                         filter = enemy_filters[actors[i].id]
                     if(filter is None or filter(actors[i])):
-                        enemy_list[(scene.id, room.id,setup,i)] = (actors[i])
-    return enemy_list
+                        rom_enemies[(scene.id, room.id,setup,i)] = (actors[i])
+    return rom_enemies
 
 def set_enemies(worlds: list[World]):
     for world in worlds:
         world.enemy_list = build_enemylist(world)
 
-def build_enemylist(world: World):
-    enemy_list = base_enemy_list.copy()
+def build_enemylist(world: World) -> dict[tuple[int,int,int,int], EnemyLocation]:
+    
+    location_specific_enemy_logic = {}
+    with open(os.path.join(data_path("EnemizerWorld"), "Location Specific Enemy Logic.json"), 'r') as f:
+        location_specific_enemy_logic = json.loads(f.read())
+    
+    enemy_list: dict[tuple[int,int,int,int], EnemyLocation] = {}
+    overworld_enemy_list = base_enemy_list.copy()
+    update_location_specific_logic(overworld_enemy_list, location_specific_enemy_logic["Overworld"])
+    enemy_list.update(overworld_enemy_list)
+
     mq_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == True]
     vanilla_dungeons = [dungeon for dungeon in world.dungeon_mq if world.dungeon_mq[dungeon] == False]
 
     for dungeon in mq_dungeons:
         if dungeon in mq_dungeon_enemies.keys():
-            enemy_list.update(mq_dungeon_enemies[dungeon])
+            dungeon_enemies = mq_dungeon_enemies[dungeon].copy()
+            update_location_specific_logic(dungeon_enemies, location_specific_enemy_logic["MQ Dungeons"][dungeon])
+            enemy_list.update(dungeon_enemies)
 
     for dungeon in vanilla_dungeons:
         if dungeon in vanilla_dungeon_enemies.keys():
-            enemy_list.update(vanilla_dungeon_enemies[dungeon])
+            dungeon_enemies = vanilla_dungeon_enemies[dungeon].copy()
+            update_location_specific_logic(dungeon_enemies, location_specific_enemy_logic["Vanilla Dungeons"][dungeon])
+            enemy_list.update(dungeon_enemies)
 
     return enemy_list
+
+def update_location_specific_logic(enemy_list: dict[tuple[int,int,int,int], EnemyLocation], location_specific_enemy_logic: dict[str, str]):
+    for location in location_specific_enemy_logic.keys():
+        location_tuple = literal_eval(location)
+        enemy_list[location_tuple].location_specific_enemy_logic = location_specific_enemy_logic[location]
 
 def shuffle_enemies(worlds: list[World]):
     for world in worlds:
