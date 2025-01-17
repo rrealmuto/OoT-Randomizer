@@ -114,8 +114,8 @@ base_enemy_list = {
     (65, 1, 0, 0):      EnemyLocation(144), # Redead/Gibdo
     (65, 1, 0, 1):      EnemyLocation(144), # Redead/Gibdo
     (65, 1, 0, 2):      EnemyLocation(144), # Redead/Gibdo
-    (72, 2, 0, 3):      EnemyLocation(144), # Redead/Gibdo
-    (72, 2, 0, 4):      EnemyLocation(144), # Redead/Gibdo
+    (72, 2, 0, 3):      EnemyLocation(144, disallowed_enemies=['Flare Dancer', 'Skull Kid']), # Redead/Gibdo
+    (72, 2, 0, 4):      EnemyLocation(144, disallowed_enemies=['Flare Dancer', 'Skull Kid']), # Redead/Gibdo
     (72, 3, 0, 2):      EnemyLocation(144), # Redead/Gibdo
     (72, 3, 0, 3):      EnemyLocation(144), # Redead/Gibdo
     (81, 0, 0, 8):      EnemyLocation(29, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Peahat
