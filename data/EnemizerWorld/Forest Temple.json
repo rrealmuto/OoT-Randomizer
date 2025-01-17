@@ -183,7 +183,7 @@
             "Forest Temple Upper Stalfos Pot 4" : "True"
         },
         "exits": {
-            "Forest Temple After Upper Stalfos": "can_kill_stalfos"
+            "Forest Temple After Upper Stalfos": "can_clear_room(FOREST_TEMPLE_LOWER_STALFOS) and can_kill_stalfos"
         }
     },
     {
