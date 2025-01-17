@@ -73,13 +73,15 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
                 restriction = shuffle_enemy.restrictions
                 meets_enemy_restrictions = shuffle_enemy.meets_enemy_restrictions
                 disallowed_enemies = shuffle_enemy.disallowed_enemies
+                allowed_enemies = shuffle_enemy.explicit_allowed_enemies
                 #enemy_type = enemy_type.id
             else: # Just an enemy ID
                 #enemy_type = to_shuffle[enemy_key]
                 restriction = []
                 meets_enemy_restrictions = []
                 disallowed_enemies = []
-            enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies))
+                allowed_enemies = []
+            enemy_choices = list(get_restricted_enemy_types(enemy_actor_types, restriction, meets_enemy_restrictions, disallowed_enemies, allowed_enemies))
             weights = [enemy.weight for enemy in enemy_choices]
             enemy = random.choices(enemy_choices, weights=weights)[0]
 
@@ -92,12 +94,17 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
 # restrictions - list of location's restrictions. Enemies must be tagged with the same restriction in order to be included
 # meets_enemy_restrictions - list of the enemy restrictions that the location meets. Enemies with ENEMY_RESTRICTIONs will not be allowed unless the location is tagged with that restriction
 # Disallowed enemies - list of enemy actor ID's to explicitly exclude from a location
-def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], location_restrictions: list[LOCATION_RESTRICTION], meets_enemy_restrictions: list[ENEMY_RESTRICTION], disallowed_enemies: list[int]):
+def get_restricted_enemy_types(enemy_actor_types: list[Enemy], location_restrictions: list[LOCATION_RESTRICTION], meets_enemy_restrictions: list[ENEMY_RESTRICTION], disallowed_enemies: list[str], allowed_enemies: list[str]):
     #restricted_enemy_actor_types: dict[int,Enemy] = {}
     restricted_enemy_actor_types: list[Enemy] = []
     for enemy in enemy_actor_types:
         meets_restrictions = True
         
+        if enemy.name in allowed_enemies:
+            meets_restrictions = True
+            restricted_enemy_actor_types.append(enemy)
+            continue
+
         # Check location restrictions against enemy. An enemy must meet all of the locations restrictions in order to be placed
         for restriction in location_restrictions:
             if restriction not in enemy.meets_location_restrictions:
@@ -105,7 +112,7 @@ def get_restricted_enemy_types(enemy_actor_types: dict[int,Enemy], location_rest
                 break
 
         # Check explicitly disallowed enemies
-        if enemy.id in disallowed_enemies:
+        if enemy.name in disallowed_enemies:
             meets_restrictions = False
             break
         
@@ -176,7 +183,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
         switch_flags_table_bytes.extend(default.to_bytes(4,'big'))
         switch_flags_table_bytes.extend(switch_flag.to_bytes(1, 'big'))
         switch_flags_table_bytes.extend(bytearray([0,0,0]))
-    rom.write_bytes(rom.sym('KILL_SWITCH_TABLE'), switch_flags_table_bytes)
+    rom.write_bytes_at_symbol('KILL_SWITCH_TABLE', switch_flags_table_bytes)
 
     # Write the raycast skip table
     skip_raycast_table_bytes = bytearray()
@@ -191,7 +198,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
         skip_raycast_table_bytes.extend(scene.to_bytes(1, 'big'))
         skip_raycast_table_bytes.extend(bytearray([0,0,0]))
         skip_raycast_table_bytes.extend(default.to_bytes(4, 'big'))
-    rom.write_bytes(rom.sym('SKIP_RAYCAST_TABLE'), skip_raycast_table_bytes)
+    rom.write_bytes_at_symbol('SKIP_RAYCAST_TABLE', skip_raycast_table_bytes)
 
 # Nabooru knuckle enemizer patch function
 # Patch the door to work on room clear instead of switch flag
