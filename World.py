@@ -367,6 +367,7 @@ class World:
         new_world.boulders = self.boulders
         new_world.boulders_by_id = self.boulders_by_id
         new_world.enemies_by_scene = self.enemies_by_scene
+        new_world.enemy_list = self.enemy_list
 
         new_world.dungeons = [dungeon for dungeon in self.dungeons]
         new_world.regions = [region for region in self.regions]
