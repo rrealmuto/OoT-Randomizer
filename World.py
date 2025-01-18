@@ -9,6 +9,7 @@ from collections.abc import Iterable, Iterator
 from typing import Any, Optional
 
 from Dungeon import Dungeon
+from EnemizerList import Enemy
 from Entrance import Entrance
 from Goals import Goal, GoalCategory
 from HintList import get_required_hints, misc_item_hint_table, misc_location_hint_table
@@ -59,7 +60,7 @@ class World:
         self.cached_bigocto_location: Optional[Location] = None
         self.boulders: dict[str, BOULDER_TYPE]
         self.boulders_by_id: dict[tuple(int,int,int,int), BOULDER_TYPE]
-        self.enemies_by_scene = None
+        self.enemies_by_scene: dict[int,dict[int,dict[int,dict[tuple[int,int,int,int], Enemy]]]] = None
 
         self.parser: Rule_AST_Transformer = Rule_AST_Transformer(self)
         self.event_items: set[str] = set()

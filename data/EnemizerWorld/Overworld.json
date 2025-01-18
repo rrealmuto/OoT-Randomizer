@@ -2945,7 +2945,7 @@
             "DMC Child Blue Rupee 4": "is_child",
             "DMC Child Blue Rupee 5": "is_child",
             "DMC Child Blue Rupee 6": "is_child",
-            "DMC Red Bubble Below Bridge To Fire Temple": "is_adult and Longshot and Goron_Tunic and can_kill_this",
+            "DMC Red Bubble Below Bridge To Fire Temple": "is_adult and Goron_Tunic and can_kill_this",
             "DMC First Plank Red Bubble": "is_adult and Goron_Tunic and can_kill_this",
             "DMC Second Plank Red Bubble 1": "is_adult and Goron_Tunic and can_kill_this",
             "DMC Second Plank Red Bubble 2": "is_adult and Goron_Tunic and can_kill_this"
