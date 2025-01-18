@@ -133,7 +133,7 @@ def get_restricted_enemy_types(enemy_actor_types: list[Enemy], location_restrict
         # Check explicitly disallowed enemies
         if enemy.name in disallowed_enemies:
             meets_restrictions = False
-            break
+            continue
         
         # Check enemy restrictions against location. A location must meet all of the enemy's restrictions in order to be placed
         for required_category in enemy.required_categories:
