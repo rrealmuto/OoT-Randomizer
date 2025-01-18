@@ -331,7 +331,7 @@
         "exits": {
             # Logic for child only access to the poes room. Adult has access directly from the lobby
             "Dodongos Cavern Poes Room": "
-                 has_soul(Lizalfos_and_Dinalfos) and (boulder_type('DC_LOWER_HALL_EYESWITCH_BOULDER') == BOULDER_TYPE_BROWN) and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or
+                 has_soul(Lizalfos_and_Dinolfos) and (boulder_type('DC_LOWER_HALL_EYESWITCH_BOULDER') == BOULDER_TYPE_BROWN) and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or
                     can_use(Dins_Fire) or has_explosives) and
                 can_use(Slingshot))",
             # Need to have access to the lower lizalfos room to access the recovery heart, baby dodongos
@@ -362,7 +362,7 @@
         "exits": {
             # Child can fall down from above to reach Poes room, but Adult must defeat the
             # lower Lizalfos here first, since they don't spawn when jumping down from above.
-            "Dodongos Cavern Poes Room": "has_soul(Lizalfos_and_Dinalfos) and here(is_adult)"
+            "Dodongos Cavern Poes Room": "has_soul(Lizalfos_and_Dinolfos) and here(is_adult)"
         }
     },
     {
@@ -400,7 +400,7 @@
                 (can_use(Hookshot) or can_use(Boomerang))"
         },
         "exits": {
-            "Dodongos Cavern Hall Before Lower Lizalfos": "has_soul(Lizalfos_and_Dinalfos)", # Reverse access to the lower right side
+            "Dodongos Cavern Hall Before Lower Lizalfos": "has_soul(Lizalfos_and_Dinolfos)", # Reverse access to the lower right side
             "Dodongos Cavern Lower Lizalfos": "True",
             "Dodongos Cavern Lower Lizalfos Enemies": "True",
             "Dodongos Cavern Lower Scrubs Room": "can_use(Bow) or has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)"

@@ -73,6 +73,10 @@ def patch_forest_second_rotating_hallway_wallmaster(actor: Actor):
     actor.y = 1228
     actor.z = -3328
 
+# Move the like like in water temple before dark link. It normally spawns under the floor
+def patch_water_temple_like_like(actor: Actor):
+    actor.y = 1060
+
 base_enemy_list = {
     (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
     (10, 0, 0, 2):      EnemyLocation(37), # Lizalfos/Dinalfos
@@ -245,11 +249,11 @@ base_enemy_list = {
     (96, 0, 0, 10):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
     (96, 0, 0, 11):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
     (96, 0, 0, 12):     EnemyLocation(27, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Tektite
-    (97, 1, 2, 8):      EnemyLocation(105), # Bubble
-    (97, 1, 2, 9):      EnemyLocation(105), # Bubble
-    (97, 1, 2, 10):     EnemyLocation(105), # Bubble
-    (97, 1, 2, 11):     EnemyLocation(105), # Bubble
-    (97, 1, 2, 12):     EnemyLocation(105), # Bubble
+    (97, 1, 2, 8):      EnemyLocation(105, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE], disallowed_enemies=["Flare Dancer", "Skull Kid", "Stalfos"]), # Bubble
+    (97, 1, 2, 9):      EnemyLocation(105, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE], disallowed_enemies=["Flare Dancer", "Skull Kid", "Stalfos"]), # Bubble
+    (97, 1, 2, 10):     EnemyLocation(105, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE], disallowed_enemies=["Flare Dancer", "Skull Kid", "Stalfos"]), # Bubble
+    (97, 1, 2, 11):     EnemyLocation(105, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE], disallowed_enemies=["Flare Dancer", "Skull Kid", "Stalfos"]), # Bubble
+    (97, 1, 2, 12):     EnemyLocation(105, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE], disallowed_enemies=["Flare Dancer", "Skull Kid", "Stalfos"]), # Bubble
     (99, 0, 1, 10):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
     (99, 0, 1, 11):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
     (99, 0, 1, 12):     EnemyLocation(448, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
@@ -516,7 +520,7 @@ vanilla_dungeon_enemies = {
         (5, 4, 0, 4): EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
         (5, 5, 0, 3): EnemyLocation(19), # Keese
         (5, 5, 0, 4): EnemyLocation(19), # Keese
-        (5, 6, 0, 0): EnemyLocation(221), # Like like
+        (5, 6, 0, 0): EnemyLocation(221, patch_func=patch_water_temple_like_like), # Like like
         (5, 6, 0, 1): EnemyLocation(27, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
         (5, 6, 0, 2): EnemyLocation(27, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Tektite
         (5, 6, 0, 3): EnemyLocation(27), # Tektite
@@ -1268,7 +1272,7 @@ class Enemy:
         self.meets_location_restrictions = meets_location_restrictions
         self.required_categories = required_categories
         self.weight = weight
-        self.drop_logic = drop_logic if drop_logic is not None else self.kill_logic
+        self.drop_logic = drop_logic
         if soul_name:
             self.soul_name = soul_name
         else:
@@ -1308,8 +1312,8 @@ enemy_actor_types: list[Enemy] = [
         Enemy("Tektite (Blue)", id=0x001B, var=0xFFFE, kill_logic='can_kill_tektite', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER], soul_name="Tektite"),
     Enemy("Peahat", id=0x001D, var=0xFFFF, weight=.5, kill_logic='can_kill_peahat', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
         Enemy("Flying Peahat", id=0x001D, var=0x0000, weight=.5, kill_logic='can_kill_flying_peahat', soul_name="Peahat", meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER], required_categories=[ENEMY_RESTRICTION.OUTSIDE]),
-    Enemy("Lizalfos", id=0x0025, var=0xFF80, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
-        Enemy("Dinalfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinalfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Lizalfos", id=0x0025, var=0xFF80, soul_name="Lizalfos and Dinolfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+        Enemy("Dinolfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinolfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Gohma Larva", id=0x002B, var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Shabom", id=0x002D, kill_logic='can_kill_shabom', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
     Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),

@@ -291,8 +291,8 @@
             "Spirit Temple MQ Beamos Room Small Wooden Crate": "True",
             "Spirit Temple MQ Chest Switch Sword Wonderitem": "True",
             "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer",
-            "Spirit Temple MQ Chest Switch Dinolfos 1": "has_soul(Lizalfos_and_Dinalfos)",
-            "Spirit Temple MQ Chest Switch Dinolfos 2": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple MQ Chest Switch Dinolfos 1": "has_soul(Lizalfos_and_Dinolfos)",
+            "Spirit Temple MQ Chest Switch Dinolfos 2": "has_soul(Lizalfos_and_Dinolfos)",
             "Spirit Temple MQ Boss Key Gibdo": "has_soul(Redead_and_Gibdo) and Mirror_Shield"
         },
         "exits": {
@@ -368,7 +368,7 @@
         "locations": {
             "Spirit Temple MQ Mirror Puzzle Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)",
             "Spirit Temple MQ Big Mirror Torch Slug": "has_soul(Torch_Slug)",
-            "Spirit Temple MQ Big Mirror Dinolfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple MQ Big Mirror Dinolfos": "has_soul(Lizalfos_and_Dinolfos)",
             "Spirit Temple MQ Big Mirror Green Bubble 1": "has_soul(Bubble)",
             "Spirit Temple MQ Big Mirror Green Bubble 2": "has_soul(Bubble)"
         },
