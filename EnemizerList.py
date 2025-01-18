@@ -77,6 +77,10 @@ def patch_forest_second_rotating_hallway_wallmaster(actor: Actor):
 def patch_water_temple_like_like(actor: Actor):
     actor.y = 1060
 
+# Move the fire keese in the side room in BOTW before the gate so it doesn't raycast down into the basement
+def patch_botw_side_room_keese(actor: Actor):
+    actor.z = -1075
+
 base_enemy_list = {
     (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
     (10, 0, 0, 2):      EnemyLocation(37), # Lizalfos/Dinalfos
@@ -661,11 +665,11 @@ vanilla_dungeon_enemies = {
         (8, 1, 0, 13): EnemyLocation( 144), # Redead/Gibdo
         (8, 1, 0, 14): EnemyLocation( 144), # Redead/Gibdo
         (8, 2, 0, 0):  EnemyLocation(144), # Redead/Gibdo
-        (8, 3, 0, 0): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
-        (8, 3, 0, 1): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
-        (8, 3, 0, 2): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
-        (8, 3, 0, 4): EnemyLocation(138), # Beamos
-        (8, 5, 0, 0): EnemyLocation(19, disallowed_enemies=['Skull Kid']), # Keese
+        (8, 3, 0, 0): EnemyLocation(19, disallowed_enemies=['Skull Kid', 'Flare Dancer']), # Keese
+        (8, 3, 0, 1): EnemyLocation(19, disallowed_enemies=['Skull Kid', 'Flare Dancer']), # Keese
+        (8, 3, 0, 2): EnemyLocation(19, disallowed_enemies=['Skull Kid', 'Flare Dancer'], patch_func=patch_botw_side_room_keese), # Keese
+        (8, 3, 0, 4): EnemyLocation(138, disallowed_enemies=['Skull Kid', 'Flare Dancer']), # Beamos
+        (8, 5, 0, 0): EnemyLocation(19, disallowed_enemies=['Skull Kid', 'Flare Dancer']), # Keese
         (8, 5, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (8, 5, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (8, 5, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
