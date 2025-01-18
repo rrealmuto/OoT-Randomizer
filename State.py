@@ -255,12 +255,15 @@ class State:
 
         # TODO Build an ID -> Defeatibility check mapping
         # Check defeatibility
-        if enemy_obj.name in can_kill_drop_cache:
-            can_kill_rule = can_kill_drop_cache[enemy_obj.name]
+        if enemy_obj.drop_logic: # Check if this enemy type has separate drop logic from its kill logic. Really only used for deku babas currently so probably eventually get rid of this.
+            if enemy_obj.name in can_kill_drop_cache:
+                can_kill_rule = can_kill_drop_cache[enemy_obj.name]
+            else:
+                can_kill_rule = self.world.parser.parse_rule(enemy_obj.drop_logic)
+                can_kill_drop_cache[enemy_obj.name] = can_kill_rule
+            can_kill = can_kill_rule(self, **kwargs)
         else:
-            can_kill_rule = self.world.parser.parse_rule(enemy_obj.drop_logic)
-            can_kill_drop_cache[enemy_obj.name] = can_kill_rule
-        can_kill = can_kill_rule(self, **kwargs)
+            can_kill = self.can_kill(scene, room, setup, index, **kwargs)
         return has_soul and can_kill
 
     # Logic helper for determining if an enemy at a particular spot can be killed. Used when logic for one spot depends on killing a specific enemy
@@ -278,7 +281,11 @@ class State:
             if type(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name]) == str:
                 self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name] = self.world.parser.parse_rule(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name])
             can_kill_rule = self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name]
-        
+        # Check for location specific generic logic
+        elif "Other" in self.world.enemy_list[enemy_tuple].location_specific_enemy_logic:
+            if type(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic["Other"]) == str:
+                self.world.enemy_list[enemy_tuple].location_specific_enemy_logic["Other"] = self.world.parser.parse_rule(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic["Other"])
+            can_kill_rule = self.world.enemy_list[enemy_tuple].location_specific_enemy_logic["Other"]
         # Non-location specific enemy logic, cache the rules
         elif enemy_obj.name in can_kill_cache:
             can_kill_rule = can_kill_cache[enemy_obj.name]

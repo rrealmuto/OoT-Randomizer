@@ -157,6 +157,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v142
+  * Correct spelling of Dinolfos throughout codebase.
+  * Fix water temple like like enemizer logic. 
+  * Add location specific enemy logic system and add logic for DMC bubbles
+
 ### v141
   * Various enemizer logic and enemy restriction fixes
 
