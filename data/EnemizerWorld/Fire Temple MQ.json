@@ -152,11 +152,11 @@
             "Fire Temple MQ Lower Lizalfos Maze Crate 2": "True",
             "Fire Temple MQ Lower Lizalfos Maze Crate 3": "True",
             "Fire Temple MQ Maze Face On Wall Hookshot Wonderitem": "Hookshot",
-            "Fire Temple MQ Shortcut Room Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 1": "has_soul(Lizalfos_and_Dinalfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 2": "has_soul(Lizalfos_and_Dinalfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 3": "has_soul(Lizalfos_and_Dinalfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 4": "has_soul(Lizalfos_and_Dinalfos)",
+            "Fire Temple MQ Shortcut Room Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 1": "has_soul(Lizalfos_and_Dinolfos)",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 2": "has_soul(Lizalfos_and_Dinolfos)",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 3": "has_soul(Lizalfos_and_Dinolfos)",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 4": "has_soul(Lizalfos_and_Dinolfos)",
             "Fire Temple MQ Lizalfos Maze Skullwalltula": "
                 has_soul(Skullwalltula) and (has_explosives or Megaton_Hammer or can_use(Dins_Fire))"
         },
@@ -275,7 +275,7 @@
         "locations": {
             "Fire Temple MQ Flame Maze Right Pot 1": "True",
             "Fire Temple MQ Flame Maze Right Pot 2": "True",
-            "Fire Temple MQ Flame Maze Side Room Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Fire Temple MQ Flame Maze Side Room Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
             "Fire Temple MQ GS Flame Maze Side Room": "True"
         }
     },

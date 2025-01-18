@@ -232,10 +232,10 @@
         "locations": {
             "Ganons Castle MQ Light Trial Torch Slug 1": "has_soul(Torch_Slug)",
             "Ganons Castle MQ Light Trial Torch Slug 2": "has_soul(Torch_Slug)",
-            "Ganons Castle MQ Light Trial Dinolfos": "has_soul(Lizalfos_and_Dinalfos)"
+            "Ganons Castle MQ Light Trial Dinolfos": "has_soul(Lizalfos_and_Dinolfos)"
         },
         "exits": {
-            "Ganons Castle Light Trial Hallway": "has_soul(Torch_Slug) and has_soul(Lizalfos_and_Dinalfos)"
+            "Ganons Castle Light Trial Hallway": "has_soul(Torch_Slug) and has_soul(Lizalfos_and_Dinolfos)"
         }
     },
     {
