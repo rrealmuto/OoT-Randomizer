@@ -157,6 +157,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v143
+  * Fix some Jabu enemizer logic
+
 ### v142
   * Correct spelling of Dinolfos throughout codebase.
   * Fix water temple like like enemizer logic. 
