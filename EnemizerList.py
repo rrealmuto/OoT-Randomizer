@@ -1240,6 +1240,7 @@ named_rooms: dict[str, tuple[int,int]] = {
     'ROYAL FAMILY TOMB ENTRYWAY': (0x41,0),
     'SFM WOLFOS GROTTO': (0x3E, 7),
     'JABU COMPASS': (2, 12),
+    'JABU BOOMERANG': (2, 9),
     'FOREST TEMPLE LOWER STALFOS': (3,6),
     'FOREST TEMPLE BEFORE LEDGE': (3, 21),
     'FIRE TEMPLE LOWER LOCKED DOOR': (4,15),
