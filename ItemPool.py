@@ -549,6 +549,9 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         if location.vanilla_item is None:
             continue
 
+        if world.settings.fix_broken_drops and location.name == "Spirit Temple Child Anubis Pot 4":
+            location.vanilla_item = "Deku Shield"
+
         item = location.vanilla_item
         shuffle_item = None  # None for don't handle, False for place item, True for add to pool.
 
