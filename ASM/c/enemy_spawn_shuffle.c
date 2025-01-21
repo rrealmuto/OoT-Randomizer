@@ -232,19 +232,19 @@ bool toggle_soul_enabled(int table_index) {
     extended_savectx.soul_enable_flags[table_index/8] = flags ^ mask;
 }
 
-bool get_soul_inhibited(SOUL_ID id, soul_menu_info* names) {
-    return names[id].soul_inhibited;
+SOUL_STATUS get_soul_status(SOUL_ID id, soul_menu_info* names) {
+    return names[id].soul_status;
 }
 
 void reset_souls_inhibited() {
     if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
         for(int i = 0; i < NUM_ENEMY_SOULS; i++) {
-            SOUL_MENU_NAMES[i].soul_inhibited = false;
+            SOUL_MENU_NAMES[i].soul_status = SOUL_STATUS_NONE;
         }
     }
     else if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL) {
         for(int i = 0; i < NUM_REGIONAL_ENEMY_SOULS; i++) {
-            REGIONAL_SOUL_MENU_NAMES[i].soul_inhibited = false;
+            REGIONAL_SOUL_MENU_NAMES[i].soul_status = false;
         }
     }
 
@@ -266,7 +266,7 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                     enemy_spawn_table_entry *table_entry = &(enemy_spawn_table[i]);
                     bool continue_spawn = true;
                     bool has_soul = flags_getsoul(table_entry->index);
-                    SOUL_MENU_NAMES[table_entry->index].soul_inhibited = !has_soul;
+                    SOUL_MENU_NAMES[table_entry->index].soul_status |= has_soul ? SOUL_STATUS_PRESENT : SOUL_STATUS_INHIBITED;
                     continue_spawn &= has_soul & get_soul_enabled(table_entry->index);
                     curr_room_enemies_inhibited |= !continue_spawn;
                     return continue_spawn;
@@ -281,7 +281,7 @@ bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *glob
                                 // found a scene group matching the current scene
                                 // Check if we have that flag
                                 bool has_soul =  flags_getsoul(j);
-                                REGIONAL_SOUL_MENU_NAMES[j].soul_inhibited = !has_soul;
+                                REGIONAL_SOUL_MENU_NAMES[j].soul_status |= has_soul ? SOUL_STATUS_PRESENT : SOUL_STATUS_INHIBITED;
                                 bool continue_spawn = has_soul && get_soul_enabled(j);
                                 curr_room_enemies_inhibited |= !continue_spawn;
                                 return continue_spawn;
