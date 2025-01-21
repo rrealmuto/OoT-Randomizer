@@ -1324,7 +1324,7 @@ enemy_actor_types: list[Enemy] = [
     Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Biri", id=0x0034, soul_name="Biri and Bari", kill_logic='can_kill_biri', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
     Enemy("Bari", id=0x0063, soul_name="Biri and Bari", kill_logic='can_kill_biri', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Tailpasaran", id=0x0035, var=0xFFFF, kill_logic='can_kill_tailsparan', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),
+    Enemy("Tailpasaran", id=0x0035, var=0xFFFF, kill_logic='can_kill_tailsparan', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Skulltula", id=0x0037, kill_logic='can_kill_skulltula', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Torch Slug", kill_logic='can_kill_torch_slug', id=0x0038, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Moblin", kill_logic='can_kill_moblin', id=0x004B, var=0x0002, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
