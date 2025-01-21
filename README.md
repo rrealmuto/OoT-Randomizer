@@ -159,6 +159,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 # Enemy Shuffle Changelog
 ### v144
   * Fix tailpasaran spawning underwater.
+  * Add green indicator to soul menu for current room's present and obtained souls.
 
 ### v143
   * Fix some Jabu enemizer logic
