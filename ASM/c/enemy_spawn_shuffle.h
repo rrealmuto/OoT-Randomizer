@@ -111,15 +111,21 @@ typedef struct regional_enemy_spawn_table_entry{
     uint8_t scene_group_length; 
 } regional_enemy_spawn_table_entry;
 
+typedef enum {
+    SOUL_STATUS_NONE        = 0,
+    SOUL_STATUS_INHIBITED   = 1 << 1,
+    SOUL_STATUS_PRESENT     = 1 << 2
+} SOUL_STATUS;
+
 typedef struct soul_menu_info {
     SOUL_ID soul_id;
-    bool soul_inhibited;
+    SOUL_STATUS soul_status;
     char* name;
 } soul_menu_info;
 
 typedef struct regional_soul_menu_info {
     SOUL_ID_REGIONAL soul_id;
-    bool soul_inhibited;
+    SOUL_STATUS soul_status;
     char* name;
 } regional_soul_menu_info;
 
@@ -131,11 +137,11 @@ extern uint8_t CFG_ENEMY_SPAWN_SHUFFLE;
 extern soul_menu_info SOUL_MENU_NAMES[];
 extern regional_soul_menu_info REGIONAL_SOUL_MENU_NAMES[];
 
-#define SOUL_MENU_ENTRY(soul_id_, name_) {.soul_id = soul_id_, .name=name_, .soul_inhibited = false}
+#define SOUL_MENU_ENTRY(soul_id_, name_) {.soul_id = soul_id_, .name=name_, .soul_status = SOUL_STATUS_NONE}
 #define ENEMY_SPAWN_TABLE_ENTRY(actor_id_,index_,flags_, override_func_) {.actor_id = actor_id_, .index = index_, .flags = flags_, .override_func = override_func_}
 #define REGIONAL_ENEMY_SPAWN_TABLE_ENTRY(scene_group_) {.scene_group = scene_group_, .scene_group_length = array_size(scene_group_)}
 
 bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *globalCtx, SPAWN_FLAGS flag);
-bool get_soul_inhibited(SOUL_ID id, soul_menu_info* names);
+SOUL_STATUS get_soul_status(SOUL_ID id, soul_menu_info* names);
 
 #endif
