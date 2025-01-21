@@ -157,6 +157,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v144
+  * Fix tailpasaran spawning underwater.
+
 ### v143
   * Fix some Jabu enemizer logic
 
