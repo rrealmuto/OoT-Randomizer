@@ -159,6 +159,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 # Enemy Shuffle Changelog
 ### v144
   * Fix tailpasaran spawning underwater.
+  * Fix BOTW center room wallmaster.
+  * Fix Shadow temple huge pit bubble.
+  * Fix Fire temple stair case keese.
   * Add green indicator to soul menu for current room's present and obtained souls.
 
 ### v143
