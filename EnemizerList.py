@@ -9,6 +9,7 @@ class LOCATION_RESTRICTION(Enum):
     FLOATING = 2 # Locations that require an enemy that can float. Like because it's over a pit or something.
     ABOVE_GROUND = 3 # Locations that the enemy will spawn above the ground, only place enemies that will automatically move to the ground or won't break if they're in the air
     ABOVE_WATER = 4 # Location is above water and requires that the enemy  
+    EXPLICIT = 5 # Location should only spawn enemies that are explicitly specified. No enemy should be set to meet this restriction
 
 # Enemy specific restrictions. Locations must be tagged w/ these in order for the enemy to be placed.
 class ENEMY_RESTRICTION(Enum):
@@ -80,6 +81,10 @@ def patch_water_temple_like_like(actor: Actor):
 # Move the fire keese in the side room in BOTW before the gate so it doesn't raycast down into the basement
 def patch_botw_side_room_keese(actor: Actor):
     actor.z = -1075
+
+# Move the wallmaster in the central room of BOTW so it doesn't raycast down into the basement
+def patch_botw_wallmaster(actor: Actor):
+    actor.z = -950
 
 base_enemy_list = {
     (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
@@ -479,8 +484,8 @@ vanilla_dungeon_enemies = {
         (4, 13, 0, 9):  EnemyLocation(19), # Keese
         (4, 14, 0, 0):  EnemyLocation(19), # Keese
         (4, 14, 0, 1):  EnemyLocation(19), # Keese
-        (4, 14, 0, 6):  EnemyLocation(19), # Keese
-        (4, 14, 0, 7):  EnemyLocation(19), # Keese
+        (4, 14, 0, 6):  EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], skip_raycast=True), # Keese
+        (4, 14, 0, 7):  EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], skip_raycast=True), # Keese
         (4, 15, 0, 0):  EnemyLocation(19), # Keese
         (4, 15, 0, 1):  EnemyLocation(56), # Torch Slug
         (4, 15, 0, 2):  EnemyLocation(19), # Keese
@@ -627,7 +632,7 @@ vanilla_dungeon_enemies = {
         (7, 8, 0, 1):  EnemyLocation(55), # Skulltula
         (7, 8, 0, 2):  EnemyLocation(55), # Skulltula
         (7, 8, 0, 3):  EnemyLocation(55), # Skulltula
-        (7, 9, 0, 1):  EnemyLocation(105), # Bubble
+        (7, 9, 0, 1):  EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING]), # Bubble
         (7, 9, 0, 2):  EnemyLocation(17), # Wallmaster
         (7, 9, 0, 5):  EnemyLocation(138), # Beamos
         (7, 9, 0, 12): EnemyLocation( 2), # Stalfos
@@ -659,7 +664,7 @@ vanilla_dungeon_enemies = {
         (8, 0, 0, 1):  EnemyLocation(55), # Skulltula
         (8, 0, 0, 2):  EnemyLocation(55), # Skulltula
         (8, 0, 0, 3):  EnemyLocation(55), # Skulltula
-        (8, 0, 0, 4):  EnemyLocation(17), # Wallmaster
+        (8, 0, 0, 4):  EnemyLocation(17, patch_func=patch_botw_wallmaster), # Wallmaster
         (8, 0, 0, 5):  EnemyLocation(221), # Like like
         (8, 0, 0, 33): EnemyLocation( 105), # Bubble
         (8, 1, 0, 13): EnemyLocation( 144), # Redead/Gibdo
@@ -1320,7 +1325,7 @@ enemy_actor_types: list[Enemy] = [
     Enemy("Lizalfos", id=0x0025, var=0xFF80, soul_name="Lizalfos and Dinolfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
         Enemy("Dinolfos", id=0x0025, var=0xFFFE, soul_name="Lizalfos and Dinolfos", kill_logic='can_kill_lizalfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Gohma Larva", id=0x002B, var=0x0006, soul_name="Gohma Larvae", kill_logic='can_kill_gohma_larva', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
-    Enemy("Shabom", id=0x002D, kill_logic='can_kill_shabom', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
+    Enemy("Shabom", id=0x002D, kill_logic='can_kill_shabom', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
     Enemy("Baby Dodongo", id=0x002F, kill_logic='can_kill_baby_dodongo', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Biri", id=0x0034, soul_name="Biri and Bari", kill_logic='can_kill_biri', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
     Enemy("Bari", id=0x0063, soul_name="Biri and Bari", kill_logic='can_kill_biri', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.ABOVE_GROUND]),
