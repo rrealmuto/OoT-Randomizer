@@ -157,6 +157,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v147
+  * Fix Deku Tree baba logic
+
 ### v146
   * Golden Boulder setting
 
