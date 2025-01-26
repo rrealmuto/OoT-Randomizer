@@ -98,9 +98,9 @@
         "region_name": "Deku Tree Basement Torch Room",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree Basement Torch Room Withered Deku Baba 1": "can_kill_withered_deku_baba",
-            "Deku Tree Basement Torch Room Withered Deku Baba 2": "can_kill_withered_deku_baba",
-            "Deku Tree Basement Torch Room Deku Baba 3": "can_kill_deku_baba"
+            "Deku Tree Basement Torch Room Withered Deku Baba 1": "can_kill_this",
+            "Deku Tree Basement Torch Room Withered Deku Baba 2": "can_kill_this",
+            "Deku Tree Basement Torch Room Deku Baba 3": "can_kill_this"
         },
         "exits":
         {
