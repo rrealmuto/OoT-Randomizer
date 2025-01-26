@@ -153,6 +153,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v145
+  * Fix Forest Temple Upper Stalfos spawning with soul shuffle + enemy shuffle
+  * Add Child KF and Deku Tree Enemies
+
 ### v144
   * Fix tailpasaran spawning underwater.
   * Fix BOTW center room wallmaster.
