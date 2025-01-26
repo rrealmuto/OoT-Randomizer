@@ -143,6 +143,7 @@ RANDO_CONTEXT:
 .include "player.asm"
 .include "en_ishi.asm"
 .include "en_ik.asm"
+.include "en_rd.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

@@ -157,6 +157,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v148
+  * Fix redead infinite suns song loop when dying/unstunned while ToD changes after playing suns song
+
 ### v147
   * Fix Deku Tree baba logic
 
