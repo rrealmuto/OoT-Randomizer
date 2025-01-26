@@ -13,18 +13,25 @@
             "Deku Tree MQ Lobby Crate": "can_break_crate",
             "Deku Tree MQ Slingshot Room Crate 1": "can_break_crate",
             "Deku Tree MQ Slingshot Room Crate 2": "can_break_crate",
+            "Deku Tree MQ Lobby Lower Withered Deku Baba": "can_kill_withered_deku_baba",
+            "Deku Tree MQ Lobby Upper Withered Deku Baba": "can_kill_withered_deku_baba",
             "Deku Tree MQ Lobby Lower Keese": "can_kill_keese_stationary",
             "Deku Tree MQ Lobby Upper Keese": "can_kill_keese_stationary",
             "Deku Tree MQ Lobby Vines Skullwalltula": "
                 has_soul(Skullwalltula) and (is_adult or can_child_attack)",
             "Deku Tree MQ Lobby Gohma Larva 1": "can_kill_gohma_larva",
             "Deku Tree MQ Lobby Gohma Larva 2": "can_kill_gohma_larva",
+            "Deku Tree MQ Slingshot Room Deku Baba": "can_kill_deku_baba",
             "Deku Tree MQ Slingshot Room Gohma Larva 1": "can_kill_gohma_larva",
             "Deku Tree MQ Slingshot Room Gohma Larva 2": "can_kill_gohma_larva",
             "Deku Tree MQ Slingshot Room Gohma Larva 3": "can_kill_gohma_larva",
             "Deku Tree MQ Slingshot Room Gohma Larva 4": "can_kill_gohma_larva",
             "Deku Tree MQ Slingshot Room Gohma Larva 5": "can_kill_gohma_larva",
             "Deku Tree MQ Slingshot Room Gohma Larva 6": "can_kill_gohma_larva",
+            "Deku Tree MQ Basement Withered Deku Baba": "can_kill_withered_deku_baba",
+            "Deku Tree MQ Basement Lower Deku Baba 1": "can_kill_deku_baba",
+            "Deku Tree MQ Basement Lower Deku Baba 2": "can_kill_deku_baba",
+            "Deku Tree MQ Basement Ledge Deku Baba": "can_kill_deku_baba",
             "Deku Tree MQ Slingshot Room Grass 1": "can_mow_the_lawn",
             "Deku Tree MQ Slingshot Room Grass 2": "can_mow_the_lawn",
             "Deku Tree MQ Slingshot Room Grass 3": "can_mow_the_lawn",
@@ -62,6 +69,7 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Near Compass Room Recovery Heart": "True",
+            "Deku Tree MQ Before Compass Deku Baba": "can_kill_deku_baba",
             "Deku Tree MQ Before Compass Gohma Larva 1": "can_kill_gohma_larva",
             "Deku Tree MQ Before Compass Gohma Larva 2": "can_kill_gohma_larva",
             "Deku Tree MQ Room Before Compass Grass 1": "can_mow_the_lawn",
@@ -193,6 +201,8 @@
         "region_name": "Deku Tree Basement Larva Room",
         "dungeon": "Deku Tree",
         "locations": {
+            "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn",
             "Deku Tree MQ Basement Larva Room Keese": "can_kill_keese_stationary",
             "Deku Tree MQ Basement Larva Room Deku Scrub": "can_kill_scrub",
             "Deku Tree MQ Basement Larva Room Gohma Larva 1": "can_kill_gohma_larva",
@@ -211,18 +221,6 @@
             "Deku Tree Basement Water Room Back": "
                 has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub) and
                 (Kokiri_Sword or can_use_projectile or (Nuts and Sticks))"
-        }
-    },
-    {
-        "region_name": "Deku Tree Basement Larva Room",
-        "dungeon": "Deku Tree",
-        "locations": {
-            "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
-            "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn"
-        },
-        "exits": {
-            "Deku Tree Basement Back Room": "(here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks)))",
-            "Deku Tree Basement Water Room Back": "(can_use(Kokiri_Sword) or can_use_projectile or (Nuts and can_use(Sticks)))"
         }
     },
     {
