@@ -238,11 +238,13 @@
                 ((can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_5') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_6') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_11') or can_pass_boulder('DC_UPPER_LIZALFOS_BOULDER_12')) and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                 (
                     (boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_SILVER) or
+                    (boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_GOLD) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_7') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire)) and
                     (
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_GOLD) and is_adult and Golden_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire))
@@ -250,11 +252,13 @@
                 ) or
                 (
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_GOLD) and is_adult and Golden_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_8') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire)) and
                     (
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                        ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_GOLD) and is_adult and Golden_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_RED_ICE) and Blue_Fire_in_fire))
@@ -262,11 +266,13 @@
                 ) or
                 (
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_SILVER) and is_adult and Silver_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
+                    ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_GOLD) and is_adult and Golden_Gauntlets and Hover_Boots and (can_use(Goron_Tunic) or damage_multiplier != 'ohko')) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                     ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_9') == BOULDER_TYPE_RED_ICE) and Blue_Fire)) and
                     (
                         (boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_SILVER) or
+                        (boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_GOLD) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_BROWN) and can_blast_or_smash) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_BRONZE) and can_use(Megaton_Hammer) or
                         ((boulder_type('DC_UPPER_LIZALFOS_BOULDER_10') == BOULDER_TYPE_RED_ICE) and Blue_Fire))
