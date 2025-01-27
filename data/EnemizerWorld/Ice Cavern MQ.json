@@ -58,7 +58,8 @@
                 (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_BROWN and can_blast_or_smash) or
                 (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_BRONZE and Megaton_Hammer) or
                 (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_RED_ICE and (blue_fire_arrows and can_use(Blue_Fire_Arrows)) or (Blue_Fire and (can_play(Song_of_Time) or logic_ice_mq_red_ice_gs))) or
-                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_SILVER and can_play(Song_of_Time) and can_use(Silver_Gauntlets))"
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_SILVER and can_play(Song_of_Time) and can_use(Silver_Gauntlets)) or
+                (boulder_type('ICE_COMPASS_SKULLTULA_BOULDER') == BOULDER_TYPE_GOLD and can_play(Song_of_Time) and can_use(Golden_Gauntlets))"
         }
     },
     {
@@ -75,9 +76,9 @@
                 (logic_ice_mq_scarecrow and is_adult)"
         },
         "exits": {
-            "Ice Cavern End": "is_adult and ((can_pass_boulder('ICE_LARGE_ROOM_BOULDER_1') and not boulder_type('ICE_LARGE_ROOM_BOULDER_1') == BOULDER_TYPE_SILVER)
-                                          or (can_pass_boulder('ICE_LARGE_ROOM_BOULDER_2') and not boulder_type('ICE_LARGE_ROOM_BOULDER_2') == BOULDER_TYPE_SILVER)
-                                          or (can_pass_boulder('ICE_LARGE_ROOM_BOULDER_3') and not boulder_type('ICE_LARGE_ROOM_BOULDER_3') == BOULDER_TYPE_SILVER))" # Can't lift these if they're silver boulders
+            "Ice Cavern End": "is_adult and ((can_pass_boulder('ICE_LARGE_ROOM_BOULDER_1') and not ((boulder_type('ICE_LARGE_ROOM_BOULDER_1') == BOULDER_TYPE_SILVER) or (boulder_type('ICE_LARGE_ROOM_BOULDER_1') == BOULDER_TYPE_GOLD) ))
+                                          or (can_pass_boulder('ICE_LARGE_ROOM_BOULDER_2') and not ((boulder_type('ICE_LARGE_ROOM_BOULDER_2') == BOULDER_TYPE_SILVER) or (boulder_type('ICE_LARGE_ROOM_BOULDER_2') == BOULDER_TYPE_GOLD) ))
+                                          or (can_pass_boulder('ICE_LARGE_ROOM_BOULDER_3') and not ((boulder_type('ICE_LARGE_ROOM_BOULDER_3') == BOULDER_TYPE_SILVER) or (boulder_type('ICE_LARGE_ROOM_BOULDER_3') == BOULDER_TYPE_GOLD) )))" # Can't lift these if they're silver boulders
         }
     },
     {
