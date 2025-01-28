@@ -7,6 +7,7 @@
 #include "item_table.h"
 #include "util.h"
 #include "save.h"
+#include "get_items.h"
 
 extern uint8_t SHUFFLE_FISHIES;
 extern xflag_t* spawn_actor_with_flag;
@@ -33,10 +34,10 @@ z64_actor_t* Fishing_Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int
         override_t override = get_newflag_override(&fish_flag);
         if(override.key.all) {
             spawn_actor_with_flag = &fish_flag;
-            Fishing* fish = z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+            Fishing* fish = (Fishing*)z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
             fish->override = override;
             spawn_actor_with_flag = NULL;
-            return fish;
+            return &fish->actor;
         }
         return NULL;
     }
@@ -63,7 +64,7 @@ void Fishing_GiveOverride_Kill(z64_actor_t* this) {
     if(fish->override.key.all) {
         // Reset the fishing variables that keep track if we have caught a fish
         float* pFishOnHandLength = (float*)resolve_overlay_addr(pFishOnHandLength_VRAM, 0xFE);
-        uint8_t* pFishOnHandIsLoach = (float*)resolve_overlay_addr(pFishOnHandIsLoach_VRAM, 0xFE);
+        uint8_t* pFishOnHandIsLoach = (uint8_t*)resolve_overlay_addr(pFishOnHandIsLoach_VRAM, 0xFE);
         *pFishOnHandIsLoach = 0;
         *pFishOnHandLength = 0.0;
     }

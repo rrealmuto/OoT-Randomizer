@@ -68,3 +68,5 @@ OVL_BgMoriBigst_SetupFall = 0x809273d4;
 OVL_BgMoriBigst_SetupDone = 0x809276c0;
 
 OVL_EnKarebaba_SetupDeadItemDrop = 0x809ba560;
+
+OVL_EnKusa_Draw = 0x80a80a50;

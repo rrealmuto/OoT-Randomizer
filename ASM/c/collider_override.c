@@ -5,6 +5,8 @@
 
 extern int8_t curr_scene_setup;
 
+extern int32_t Collider_SetCylinder(z64_game_t* globalCtx, ColliderCylinder* collider, z64_actor_t* actor, ColliderCylinderInit* src);
+
 typedef struct collidercylinder_override {
     xflag_t xflag;
     int16_t radius_override;

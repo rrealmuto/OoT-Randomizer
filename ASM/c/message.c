@@ -244,7 +244,7 @@ void treasure_chest_game_message() {
 
 // Function to display custom textboxes ingame.
 void display_misc_messages() {
-    if (Message_GetState(((uint8_t *)(&z64_game)) + 0x20D8) == 0) {
+    if (Message_GetState(&z64_game.msgContext) == 0) {
         // Each minigame warning message can only be triggered in their respective
         // scenes. Order doesn't matter.
         if (shooting_gallery_show_message == 1) {

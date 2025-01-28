@@ -6,6 +6,7 @@
 #include "en_item00.h"
 #include "override.h"
 
+struct item_row_t;
 extern uint8_t CFG_ADULT_TRADE_SHUFFLE;
 extern uint8_t CFG_CHILD_TRADE_SHUFFLE;
 
@@ -57,7 +58,7 @@ void reset_collectible_mutex();
 void override_flags_init();
 bool Get_NewFlag(xflag_t* flag);
 void Set_NewFlag(xflag_t* flag);
-
+void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t* override, struct item_row_t* item_row);
 extern xflag_t drop_collectible_override_flag;
 extern EnItem00* collectible_mutex;
 

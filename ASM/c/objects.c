@@ -3,7 +3,7 @@
 #include "get_items.h"
 #include "item_table.h"
 #include "models.h"
-
+#include "util.h"
 /*
  Bit-mapped configuration for new object system.
 | 7       | 6            2 |             1 |                 0 |

@@ -1557,7 +1557,7 @@ typedef struct {
 
 /* game context */
 struct z64_game_t;
-typedef struct {
+typedef struct z64_game_t {
   z64_ctxt_t       common;                 /* 0x00000 */
   uint16_t         scene_index;            /* 0x000A4 */
   uint8_t          scene_config;           /* 0x000A6  */
@@ -2254,7 +2254,7 @@ typedef void (*z64_Io_proc)               (uint32_t dev_addr, void* dram_addr,
                                            uint32_t size, int32_t direction);
 typedef void (*z64_SceneConfig_proc)      (z64_game_t* game);
 typedef void (*z64_DisplayTextbox_proc)   (z64_game_t* game, uint16_t text_id,
-                                           int unknown_);
+                                           z64_actor_t* unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t* game, uint8_t item);
 
 typedef void(*z64_LinkDamage_proc)        (z64_game_t* ctxt, z64_link_t* link,

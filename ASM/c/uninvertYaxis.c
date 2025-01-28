@@ -6,7 +6,7 @@ void manage_uninvert_yaxis() {
 
     if (CFG_UNINVERT_YAXIS_IN_FIRST_PERSON_CAMERA) {
         // Never if a choice textbox is on screen.
-        if (Message_GetState(((uint8_t*)(&z64_game)) + 0x20D8) == 4) {
+        if (Message_GetState(&z64_game.msgContext) == 4) {
             return;
         }
         // Also never in pause menu.

@@ -8,6 +8,8 @@
 
 #include "stdint.h"
 #include "z64_math.h"
+#include "z64.h"
+
 // From z64.h
 struct z64_actor_t;
 

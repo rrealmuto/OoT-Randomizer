@@ -7,6 +7,7 @@
 
 void heap_init();
 void* heap_alloc(int bytes);
+void heap_free(void* ptr);
 
 typedef struct {
     uint8_t* buf;

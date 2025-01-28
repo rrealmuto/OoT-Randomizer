@@ -6,7 +6,7 @@
 #include "item_table.h"
 #include "actor.h"
 
-void* EnKusa_Draw = 0x80a80a50;
+extern void OVL_EnKusa_Draw(z64_actor_t* thisx, z64_game_t* play);
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint8_t POTCRATE_GOLD_TEXTURE;
@@ -40,7 +40,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Original texture for big grass is 0x0500B140
     // Pick the original texture based on grass type
     EnKusa* this = (EnKusa*)actor;
-    static uint8_t* textures[] = { 0x0500B140, 0x04035BD0, 0x04035BD0 };
+    static uint8_t* textures[] = { (uint8_t*)0x0500B140, (uint8_t*)0x04035BD0, (uint8_t*)0x04035BD0 };
     uint8_t* grass_texture_custom = get_texture(TEXTURE_ID_GRASS_CUSTOM);
     uint8_t* grass_small_texture_custom = get_texture(TEXTURE_ID_GRASS_SMALL_CUSTOM);
     uint8_t* custom_textures[] = {grass_texture_custom, grass_small_texture_custom, grass_small_texture_custom };
@@ -118,7 +118,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     gSPEndDisplayList(gfx->poly_opa.d + 1);
     gMoveWd(gfx->poly_opa.p++, G_MW_SEGMENT, 9 * sizeof(int), gfx->poly_opa.d);
     gDPSetPrimColor(gfx->poly_opa.p++, 0,0, color.r,color.g,color.b, color.a);
-    ActorFunc func = (ActorFunc)Actor_ResolveOverlayAddr(actor, EnKusa_Draw);
+    ActorFunc func = (ActorFunc)Actor_ResolveOverlayAddr(actor, &OVL_EnKusa_Draw);
     func(actor,game);
 }
 

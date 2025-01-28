@@ -2,14 +2,14 @@
 #include "actor.h"
 
 
-typedef enum BOULDER_TYPE {
+typedef enum {
     BOULDER_TYPE_BROWN = 0,
     BOULDER_TYPE_BRONZE = 1,
     BOULDER_TYPE_SILVER = 2,
     BOULDER_TYPE_RED_ICE = 3,
     BOULDER_TYPE_GOLD = 4,
     BOULDER_TYPE_HEAVY_BLOCK = 5,
-};
+} BOULDER_TYPE;
 
 uint8_t KZ_BOULDER_TYPE;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -62,7 +62,7 @@ z64_actor_t* EnKz_SpawnRedIce_Hook(z64_actor_ctxt_t* actorCtx, z64_actor_t* pare
 }
 
 void EnKz_Update_Hook(z64_actor_t* this, z64_game_t* globalCtx) {
-    ActorUpdateFunc EnKz_Update = Actor_ResolveOverlayAddr(this, 0x80ad6d70);
+    ActorUpdateFunc EnKz_Update = Actor_ResolveOverlayAddr(this, (void*)0x80ad6d70);
     if(CFG_BOULDER_SHUFFLE) {
         if((this->child == NULL) || (this->child->update == NULL)) {
             this->child = NULL;
