@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v150
+  * Fix spawning/reduce enemy restrictions in some locations
+
 ### v149
   * Fix generation error with no adult trade items selected
 
