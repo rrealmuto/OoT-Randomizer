@@ -169,6 +169,8 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                         if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                             if world.enemy_list[key].patch_func:
                                 world.enemy_list[key].patch_func(enemy_actor)
+                            if enemy.name in world.enemy_list[key].var_overrides.keys():
+                                enemy_actor.var = world.enemy_list[key].var_overrides[enemy.name]
                         rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
                         if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                             if world.enemy_list[key].switch_flag >= 0:
