@@ -23,7 +23,7 @@ class ENEMY_RESTRICTION(Enum):
 # disallowed enemies - list of enemy types to explicitly disallow
 # patch_func - function that will apply a ROM patch applicable to this location
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[str] = [], explicit_allowed_enemies: list[str] = [], patch_func = None, switch_flag = -1, skip_raycast = False):
+    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[str] = [], explicit_allowed_enemies: list[str] = [], patch_func = None, switch_flag = -1, skip_raycast = False, var_overrides = {}):
         self.id = vanilla_id
         self.restrictions = restrictions
         self.meets_enemy_restrictions = meets_enemy_restrictions
@@ -33,6 +33,7 @@ class EnemyLocation:
         self.switch_flag = switch_flag
         self.skip_raycast = skip_raycast
         self.location_specific_enemy_logic = {}
+        self.var_overrides = var_overrides
 
 # Move the SFM wolfos more towards the center, some enemies like flare dancer might jump over the fence
 def patch_func_sfm_wolfos(actor: Actor):
@@ -85,6 +86,11 @@ def patch_botw_side_room_keese(actor: Actor):
 # Move the wallmaster in the central room of BOTW so it doesn't raycast down into the basement
 def patch_botw_wallmaster(actor: Actor):
     actor.z = -950
+
+var_overrides_iron_knuckles = {
+    "Iron Knuckle (White)": 0xFF03,
+    "Iron Knuckle (Black)": 0xFF02,
+}
 
 base_enemy_list = {
     (10, 0, 0, 1):      EnemyLocation(37), # Lizalfos/Dinalfos
@@ -234,8 +240,8 @@ base_enemy_list = {
     (90, 0, 2, 7):      EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE], skip_raycast=True), # Octorok
     (91, 1, 2, 1):      EnemyLocation(277, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skull Kid
     (91, 1, 2, 2):      EnemyLocation(277, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skull Kid
-    (91, 3, 2, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
-    (91, 3, 0, 2):      EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (91, 3, 2, 2):      EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
+    (91, 3, 0, 2):      EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER, ENEMY_RESTRICTION.OUTSIDE]), # Octorok
     (91, 9, 2, 1):      EnemyLocation(277, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Skull Kid
     (92, 0, 2, 7):      EnemyLocation(448, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
     (92, 0, 2, 8):      EnemyLocation(448, meets_enemy_restrictions=[ENEMY_RESTRICTION.OUTSIDE]), # Guay
@@ -595,9 +601,9 @@ vanilla_dungeon_enemies = {
         (6, 15, 0, 9): EnemyLocation( 142), # Floormaster
         (6, 15, 0, 12):EnemyLocation( 221), # Like like
         (6, 16, 0, 0): EnemyLocation(138), # Beamos
-        (6, 17, 0, 0): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
-        (6, 17, 0, 1): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
-        (6, 17, 0, 2): EnemyLocation(246, disallowed_enemies=['Skull Kid']), # Anubis Spawner
+        (6, 17, 0, 0): EnemyLocation(246, disallowed_enemies=['Skull Kid'], var_overrides=var_overrides_iron_knuckles), # Anubis Spawner
+        (6, 17, 0, 1): EnemyLocation(246, disallowed_enemies=['Skull Kid'], var_overrides=var_overrides_iron_knuckles), # Anubis Spawner
+        (6, 17, 0, 2): EnemyLocation(246, disallowed_enemies=['Skull Kid'], var_overrides=var_overrides_iron_knuckles), # Anubis Spawner
         (6, 17, 0, 3):  EnemyLocation(138), # Beamos
         (6, 18, 0, 0):  EnemyLocation(84), # Armos
         (6, 18, 0, 1):  EnemyLocation(84), # Armos
@@ -718,7 +724,7 @@ vanilla_dungeon_enemies = {
         (13, 9, 0, 9):  EnemyLocation(55), # Skulltula
         (13, 10, 0, 1): EnemyLocation( 17), # Wallmaster
         (13, 12, 0, 0): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], meets_enemy_restrictions=[ENEMY_RESTRICTION.INSIDE], skip_raycast=True), # Bubble
-        (13, 12, 0, 3):  EnemyLocation(221), # Like like
+        (13, 12, 0, 3):  EnemyLocation(221, var_overrides = var_overrides_iron_knuckles), # Like like
         (13, 14, 0, 3):  EnemyLocation(56), # Torch Slug
         (13, 14, 0, 4):  EnemyLocation(105), # Bubble
         (13, 14, 0, 5):  EnemyLocation(105), # Bubble
@@ -1358,6 +1364,8 @@ enemy_actor_types: list[Enemy] = [
     Enemy("Stingray", id=0x003A, var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),
     Enemy("Wolfos", id=0x01AF, var=0xFF00, kill_logic='can_kill_wolfos', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Guay", id=0x01C0, kill_logic='can_kill_basic', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER, LOCATION_RESTRICTION.FLOATING, LOCATION_RESTRICTION.ABOVE_GROUND, LOCATION_RESTRICTION.ABOVE_WATER]),
+    #Enemy("Dark Link", id=0x0033, kill_logic='is_adult or Kokiri_Sword', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    #Enemy("Dead Hand", id=0x00A4, var=0xFFFF, kill_logic='is_adult or Kokiri_Sword or Sticks', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
 ]
 
 enemies_by_name = {enemy.name: enemy for enemy in enemy_actor_types}

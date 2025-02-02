@@ -153,6 +153,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v151
+  * Make some iron knuckles not start moving immediately on spawn
+  * Improve logic for Shadow Trial
+  * Fix DMC bubble location specific logic for freezard
+
 ### v150
   * Fix spawning/reduce enemy restrictions in some locations
 

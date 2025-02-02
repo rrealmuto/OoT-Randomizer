@@ -8,7 +8,7 @@
             "Gohma Larva": "Longshot and has_explosives or Bow or can_use(Dins_Fire) or Hookshot",
             "Lizalfos": "has_explosives or Bow or Biggoron_Sword or Longshot",
             "Dinalfos": "Bombs or Bow or Longshot",
-            "Freezard": "Longshot and (has_explosives or can_use(Dins_Fire) or can_use(Fire_Arrows)",
+            "Freezard": "(Longshot and (has_explosives or can_use(Dins_Fire))) or can_use(Fire_Arrows)",
             "Like Like": "Bow or (Longshot and Bombs)",
             "Dodongo": "Bow or (Longshot and has_explosives)",
             "Peahat": "Longshot and at_night and Bombs",
