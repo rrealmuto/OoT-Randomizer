@@ -218,6 +218,16 @@ class State:
             soul_str = enemy + " Soul"
         return (not self.world.shuffle_enemy_spawns or self.has(ItemInfo.solver_ids[escape_name(soul_str)]))
 
+    def has_soul_at(self, location_name: str, **kwargs) -> bool:
+        # Get the enemy type at this location
+        spot = LocationFactory(location_name)
+        scene = spot.scene
+        room,setup,index = spot.default
+        index -= 1
+        enemies = self.world.enemies_by_scene[scene][room][setup]
+        enemy_obj, shuffled = enemies[scene,room,setup,index]
+        return self.has_soul(enemy_obj.soul_name, **kwargs)
+
     # Logic helper for determining if an enemy at a partciular spot can be killed, only use for enemy drop shuffle
     def can_kill_this(self, **kwargs) -> bool:
         spot = kwargs['spot']
