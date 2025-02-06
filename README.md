@@ -157,6 +157,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [4.0](#40)
 
 # Enemy Shuffle Changelog
+### v152
+  * Fix Twinrova Iron Knuckle Logic
+
 ### v151
   * Make some iron knuckles not start moving immediately on spawn
   * Improve logic for Shadow Trial
