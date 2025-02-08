@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v153
+  * Fix enemies shuffled onto Jabu pit room Baris
+
 ### v152
   * Fix Twinrova Iron Knuckle Logic
 
