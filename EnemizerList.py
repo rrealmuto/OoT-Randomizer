@@ -87,6 +87,10 @@ def patch_botw_side_room_keese(actor: Actor):
 def patch_botw_wallmaster(actor: Actor):
     actor.z = -950
 
+# Move the baris in the pit room in jabu down a bit. Sometimes they like to spawn in the ceiling?
+def patch_jabu_pit_room_bari(actor: Actor):
+    actor.y = -100
+
 var_overrides_iron_knuckles = {
     "Iron Knuckle (White)": 0xFF03,
     "Iron Knuckle (Black)": 0xFF02,
@@ -373,8 +377,8 @@ vanilla_dungeon_enemies = {
         (2, 0, 0, 4): EnemyLocation(45), # Shabom
         (2, 1, 0, 0): EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (2, 1, 0, 1): EnemyLocation(52), # Biri
-        (2, 2, 0, 1): EnemyLocation(99), # Bari
-        (2, 2, 0, 2): EnemyLocation(99), # Bari
+        (2, 2, 0, 1): EnemyLocation(99, patch_func=patch_jabu_pit_room_bari), # Bari
+        (2, 2, 0, 2): EnemyLocation(99, patch_func=patch_jabu_pit_room_bari), # Bari
         (2, 2, 0, 4): EnemyLocation(52), # Biri
         (2, 2, 0, 5): EnemyLocation(52), # Biri
         (2, 2, 0, 6): EnemyLocation(52), # Biri
