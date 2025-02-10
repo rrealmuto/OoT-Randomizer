@@ -1,5 +1,5 @@
-from __future__ import annotations
 
+from __future__ import annotations
 
 # Below is the list of possible glitchless tricks.
 # The order they are listed in is also the order in which
@@ -57,7 +57,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     'Boulder Freestandings with Boomerang' : {
         'name'    : 'logic_boomerang_boulders',
-        'tags'    : ("General", "Freestandings", "Lost Woods", "Death Mountain Trail", "Ice Cavern", "Ganon's Castle MQ", "Vanilla Dungeons", "Master Quest", "Overworld", "Entrance Shuffle", "Child",),
+        'tags'    : ("General", "Freestandings", "Lost Woods", "Death Mountain Trail", "Ice Cavern", "Ganon's Castle MQ", "Vanilla Dungeons", "Master Quest", "Overworld", "Entrance Shuffle", "Child", "Bottom of the Well"),
         'tooltip' : '''\
                     Obtain freestandings inside boulders or red ice
                     without having to remove the boulder first.
@@ -66,6 +66,8 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     - DMT Rock Blue Rupee
                     - DMT Rock Red Rupee
                     - Ice Cavern Frozen Blue Rupee
+                    - BotW Coffins
+                    - Spirit Boulder GS
                     - Ganons Castle MQ Water Trial Recovery Heart
                     '''},
     'Hammer Rusted Switches and Boulders Through Walls': {
@@ -1260,13 +1262,16 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     'Shadow Temple Stone Umbrella Skip': {
         'name'    : 'logic_shadow_umbrella',
-        'tags'    : ("Shadow Temple", "Shadow Temple MQ", "Master Quest", "Vanilla Dungeons", "Adult",),
+        'tags'    : ("Shadow Temple", "Shadow Temple MQ", "Master Quest", "Vanilla Dungeons", "Adult","Glitched"),
         'tooltip' : '''\
                     A very precise Hover Boots movement
                     from off of the lower chest can get you
                     on top of the crushing spikes without
                     needing to pull the block. Applies to
                     both Vanilla and Master Quest.
+
+                    In Glitch Logic, this trick applies to also
+                    backflipping through the falling spikes.
                     '''},
     'Shadow Temple Falling Spikes GS with Hover Boots': {
         'name'    : 'logic_shadow_umbrella_gs',
@@ -1770,4 +1775,872 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     In this case to do it without taking damage is
                     especially precise.
                     '''},
+
+
+    '(Glitch) Lunge Storage': {
+        'name'    : 'glitch_lunge_storage',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(Glitch) Equip Swap': {
+        'name'    : 'glitch_equip_swap',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    This has a built-in assumption that 
+                    to successfully be able to equip swap
+                    Child needs access to anything in the
+                    leftmost column, and Adult needs access
+                    to a spell.  No other slot targets are
+                    considered by logic, even if you can 
+                    perform them.
+                    '''}, 
+    '(Glitch) Itemless Forest Escape': {
+        'name'    : 'glitch_itemless_forest_escape',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Pokey Escape': {
+        'name'    : 'glitch_pokey_escape',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) WESS Escape': {
+        'name'    : 'glitch_wess_escape',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Hovering with Explosives': {
+        'name'    : 'glitch_hovering',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Requires a way to get ISG, a shield, and
+                    either bombs or chus. This trick makes no
+                    distinction between bombs and chus for the 
+                    purpose of generalized hovering.
+                    '''},
+    '(Glitch) Megaflips and Megasidehops': {
+        'name'    : 'glitch_megaflip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Ocarina Items': {
+        'name'    : 'glitch_oi',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    This trick only logically considers Putaway
+                    OI as it only requires a bottle and nothing
+                    else so it is usable in more places.
+                    '''}, 
+    '(Glitch) Superslide': {
+        'name'    : 'glitch_superslide',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(Glitch) HESS': {
+        'name'    : 'glitch_hess',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(GGJ) Hoverboots Recoil': {
+        'name'    : 'logic_hovers_recoil',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Allows for the use of Hover Boots momentum 
+                    after a recoil or damage
+                    in many scenarios.
+                    '''},      
+    '(Glitch) Moustache Clip': {
+        'name'    : 'glitch_moustache_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Clip into the Deku Tree as Adult with
+                    only explosives and a shield.
+                    '''},
+    '(Glitch) Glitch Damage Value': {
+        'name'    : 'glitch_damage_value',
+        'tags'    : ("Glitch","QPA","Glitch Damage Value"),
+        'tooltip' : '''\
+                    Allows for use of QPA or Empty Jumpslash
+                    to store the glitch damage value and use
+                    it for power crouch stabbing or isg.
+
+                    Other specific use cases may have a separate
+                    trick.
+                    '''}, 
+    '(Glitch) LW Target with GDV': {
+        'name'    : 'glitch_lw_target_hover',
+        'tags'    : ("Glitch","QPA","Glitch Damage Value"),
+        'tooltip' : '''\
+                    '''},
+    '(Glitch) Navi Dive': {
+        'name'    : 'glitch_navi_dive',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Aqua Escape Child': {
+        'name'    : 'glitch_aqua_escape_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Aqua Escape Adult': {
+        'name'    : 'glitch_aqua_escape_adult',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Weirdshot': {
+        'name'    : 'glitch_weirdshot',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Damage Boost': {
+        'name'    : 'logic_damage_boost',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Hookshot Jumps': {
+        'name'    : 'glitch_hookshot_jump',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(GGJ) LH Tree GS with only Hookshot': {
+        'name'    : 'logic_lh_tree_gs_hookshot',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) LH to Zora\'s Domain as Child with Nothing': {
+        'name'    : 'glitch_lh_to_zd_child_nothing',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Clip into the house through the corner
+                    and swim OOB.
+                    '''},   
+    '(Glitch) Enter Water Groundclip': {
+        'name'    : 'glitch_enter_water_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Ledge Clips': {
+        'name'    : 'glitch_ledge_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Enter Water Lab Clip Adult': {
+        'name'    : 'glitch_enter_water_lab_clip_adult',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Enter Water Lab Clip Child': {
+        'name'    : 'glitch_enter_water_lab_clip_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Lakeside Lab with less stuff': {
+        'name'    : 'glitch_lakeside_lab_with_less',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) GV Broken Bridge with Hookshot': {
+        'name'    : 'logic_gv_bridge_hookshot',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) GV Broken Bridge with Hammer Recoil Boost': {
+        'name'    : 'logic_gv_bridge_hammer_recoil',
+        'tags'    : ("",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(GGJ) GV Broken Bridge Cucco Jump': {
+        'name'    : 'logic_cucco_jump',
+        'tags'    : ("",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Ledge Cancel': {
+        'name'    : 'glitch_ledge_cancel',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) GV Tent as Child': {
+        'name'    : 'logic_gv_tent_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) GTG Adult Groundclip': {
+        'name'    : 'glitch_gtg_adult_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) GTG Child Groundclip': {
+        'name'    : 'glitch_gtg_child_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) GF Gate Skip': {
+        'name'    : 'logic_gf_gateskip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(GGJ) GF Unload with Antigrav': {
+        'name'    : 'logic_gf_unload',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(GGJ) GF Archery Area without Gerudo Card as Adult': {
+        'name'    : 'logic_gf_archery_no_card',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) GF Gate Skip Groundclip': {
+        'name'    : 'glitch_gf_gate_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(GGJ) TH Breakroom to Balcony as Child': {
+        'name'    : 'logic_th_breakroom_to_balcony_child',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Wallwalking': {
+        'name'    : 'logic_wallwalking',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Colossus Grotto Weirdclip': {
+        'name'    : 'glitch_colossus_grotto_weirdclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Market Night Baz and Sling': {
+        'name'    : 'logic_market_night_baz_sling',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(GGJ) Market Night Potion': {
+        'name'    : 'logic_market_night_potion',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Market Night Mask Shop': {
+        'name'    : 'logic_market_night_mask_shop',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD GFL
+                    '''},
+    '(GGJ) Market Day Treasure Chest Game': {
+        'name'    : 'logic_market_day_tcg',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD GFL
+                    '''},
+    '(Glitch) ToT DoT Skip Child with Lunge Storage': {
+        'name'    : 'glitch_dot_skip_child_lunge',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) ToT DoT Skip Child Swordless': {
+        'name'    : 'glitch_dot_skip_child_swordless',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) ToT DoT Skip Adult with Hover Recoil': {
+        'name'    : 'glitch_dot_skip_adult_hover_recoil',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(Glitch) ToT DoT Skip Adult with Hovers and BGS': {
+        'name'    : 'glitch_dot_skip_adult_hovers_bgs',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) ToT DoT Skip Adult with BGS only': {
+        'name'    : 'glitch_dot_skip_adult_bgs_only',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) HC Garden Ledge without Trade Item': {
+        'name'    : 'glitch_hc_garden_no_trade',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD (Potential for softlock with letter shenanigans)
+                    '''}, 
+    '(Glitch) HC Fairy Fountain Wallwalk': {
+        'name'    : 'glitch_hc_fairy_wallwalk',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+     '(Glitch) Treasure Chest Game with Suns Song and OI': {
+        'name'    : 'glitch_tcg_suns',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Kakariko Tower GS with ISG': {
+        'name'    : 'glitch_kakariko_tower_gs_isg',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Kak to BotW Odie Clip': {
+        'name'    : 'glitch_kak_botw_odie',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Kak to BotW Ledge Clip Damage Boost': {
+        'name'    : 'glitch_kak_botw_ledge',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Kak Granny\'s House as Child': {
+        'name'    : 'glitch_kak_child_granny',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Impa\'s House Front to Back': {
+        'name'    : 'glitch_impas_cow_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(GGJ) Kak Windmill HP Child Jumpslash': {
+        'name'    : 'logic_kak_windmill_heart_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},                 
+    '(GGJ) Graveyard Box HP Damage Boost': {
+        'name'    : 'logic_graveyard_hp_damage_boost',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Graveyard Royal Tomb Jumpslash Clip Child': {
+        'name'    : 'glitch_rft_js_clip_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Graveyard to Shadow Early Hookshot Jump': {
+        'name'    : 'glitch_graveyard_shadow_early_hookshot',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Graveyard to Shadow Early Hover': {
+        'name'    : 'glitch_graveyard_shadow_early_hover',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Graveyard to Shadow Early Bomb Push': {
+        'name'    : 'glitch_graveyard_shadow_early_bomb_push',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) DMT to Summit with Hookshot Jump': {
+        'name'    : 'glitch_dmt_hookshot_jump',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) DMT to DC Groundclip': {
+        'name'    : 'glitch_dmt_dc_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) DMT Explosiveless Magic': {
+        'name'    : 'glitch_dmt_explosiveless_magic',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Glitchless Megaflip': {
+        'name'    : 'logic_glitchless_megaflip',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Goron City LW Boulders with Bow': {
+        'name'    : 'logic_gc_lw_boulders_bow',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Using a precise shot, you can hit one of 
+                    the bomb flowers with an arrow through the
+                    boulders when going from LW to Goron City
+                    '''},
+    '(Glitch) GC to DMC as Child': {
+        'name'    : 'glitch_gc_dmc_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) DMC Fairy Fountain from Trail': {
+        'name'    : 'glitch_dmc_fairy_from_trail',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(Glitch) ZR to LW as Adult Ledge Clip': {
+        'name'    : 'glitch_zr_lw_adult_ledge_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) ZR to LW as Child Megasideohp': {
+        'name'    : 'glitch_zr_lw_chlid_mega',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) ZR to ZD Itemless': {
+        'name'    : 'glitch_zr_zd_itemless',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},    
+    '(Glitch) ZD Child OoB': {
+        'name'    : 'glitch_zd_child_oob',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Bombchu clip
+                    '''}, 
+    '(Glitch) ZD to ZF Ledge Cancel': {
+        'name'    : 'glitch_zd_zf_ledge_cancel',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) ZD to ZF Burning Stick': {
+        'name'    : 'glitch_zd_zf_ledge_cancel',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) ZD Reverse KZ Adult': {
+        'name'    : 'glitch_zd_reverse_kz_adult',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(Glitch) ZD Reverse KZ Child': {
+        'name'    : 'glitch_zd_reverse_kz_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) ZF Enter Jabu Jumpslash': {
+        'name'    : 'logic_jabu_no_fish',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(Glitch) ZF Enter Jabu Adult with Hovers': {
+        'name'    : 'glitch_adult_jabu_hovers',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) ZF Enter Jabu Adult without Hovers': {
+        'name'    : 'glitch_adult_jabu_no_hovers',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) ZF Great Fairy Fountain without Explosives': {
+        'name'    : 'logic_zf_fairy_no_explosives',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) HF Web Grotto Groundclip': {
+        'name'    : 'glitch_hf_web_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) HF Tektite Grotto with Rang': {
+        'name'    : 'logic_tektite_hp_rang',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Deku 231 with Hammer': {
+        'name'    : 'logic_231_hammer',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(Glitch) Jabu First Switch Hover': {
+        'name'    : 'glitch_jabu_switch_hover',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Jabu Compass Tentacle Skip': {
+        'name'    : 'glitch_jabu_compass_skip_tentacle',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Jabu Compass with Death': {
+        'name'    : 'glitch_jabu_compass_with_death',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Forest Temple Basement': {
+        'name'    : 'glitch_forest_temple_basement',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Forest Basement GS Hover': {
+        'name'    : 'glitch_forest_basement_gs',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Forest Temple Boss Key Skip': {
+        'name'    : 'glitch_forest_bk_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Fire Temple Boss Key Skip (Ledge clip)': {
+        'name'    : 'glitch_fire_bk_skip_ledge',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Fire Temple Boss Key Skip (Hover)': {
+        'name'    : 'glitch_fire_bk_skip_hover',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Water Temple Boss Key Skip with Bombs': {
+        'name'    : 'glitch_water_bk_skip_bombs',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Water Temple Boss Key Skip with Chus': {
+        'name'    : 'glitch_water_bk_skip_chus',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Temple Boss Key Skip Boat Key': {
+        'name'    : 'glitch_shadow_bk_skip_boat_key',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Temple Boss Key Skip from Deadhand': {
+        'name'    : 'glitch_shadow_bk_skip_deadhand',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Temple Boss Key Skip pre-boss': {
+        'name'    : 'glitch_shadow_bk_skip_boss',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Spirit Temple Boss Key Skip Groundclip': {
+        'name'    : 'glitch_spirit_bk_skip_groundclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Spirit Temple Boss Key Skip Headclip': {
+        'name'    : 'glitch_spirit_bk_skip_headclip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Ice Cavern Map ledges as Child': {
+        'name'    : 'glitch_ice_map_child',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Ice Cavern HP without Bottle': {
+        'name'    : 'logic_ice_HP_no_bottle',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(GGJ) Ice Cavern Push Block Silver Rupee Jumpslash': {
+        'name'    : 'logic_ice_push_block_silver',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Reverse Ice Cavern': {
+        'name'    : 'glitch_reverse_ice',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Void Warps (ToDo)': {
+        'name'    : 'glitch_',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) BotW Blank A': {
+        'name'    : 'glitch_botw_blank_a',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    Softlock potential with Ocarina, only the
+                    method with timestop considered because
+                    we can\'t logically check for a lack of a 
+                    sword.
+                    '''},
+    '(Glitch) DC Beyond the Head without Explosives': {
+        'name'    : 'glitch_dc_head_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) GTG Lobby Eye Switch Hover': {
+        'name'    : 'glitch_gtg_lobby_eye',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) GTG Vine Clips': {
+        'name'    : 'glitch_gtg_vine_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(GGJ) GTG Pillar Jumps': {
+        'name'    : 'logic_gtg_pillar_jumps',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) GTG Burning Chest without Hammer': {
+        'name'    : 'logic_gtg_burning_chest_without_hammer',
+        'tags'    : ("",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Fire Temple Child enemy room': {
+        'name'    : 'glitch_fire_child_enemy_room',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Fire Temple Block skip': {
+        'name'    : 'glitch_fire_block_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(Glitch) Fire Temple Scarecrow Hover': {
+        'name'    : 'glitch_fire_scarecrow_hover',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Water Temple More Alcove Access': {
+        'name'    : 'logic_water_temple_alcove',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Water Temple Ledge clip to South Basement': {
+        'name'    : 'glitch_water_south_basement_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Water Temple Torch Clips': {
+        'name'    : 'glitch_water_torch_clip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Water Dragon Head Cutscene Dive': {
+        'name'    : 'glitch_water_dragon_cs_dive',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Water Temple Dragon Head Hover': {
+        'name'    : 'glitch_water_dragon_hover',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Water Temple Song of Time Block Skip': {
+        'name'    : 'glitch_water_sot_block_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Shadow Temple Double Damage Boosts': {
+        'name'    : 'logic_shadow_double_boosts',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Shadow Temple as Child': {
+        'name'    : 'glitch_child_shadow',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Temple Gate clip to Falling Spikes': {
+        'name'    : 'glitch_shadow_gate_falling_spikes',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Boat Skull without Longshot Master': {
+        'name'    : 'glitch_shadow_boat_skull',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Boat Skull as Adult with Nothing': {
+        'name'    : 'glitch_shadow_boat_skull_adult_nothing',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Temple no Boat': {
+        'name'    : 'glitch_shadow_no_Boat',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},   
+    '(Glitch) Shadow Temple Before Boss Recovery Hearts Hovers': {
+        'name'    : 'glitch_shadow_heart_chasm_hovers',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},  
+    '(Glitch) Ganon\'s Tower Trials Skip': {
+        'name'    : 'glitch_igc_trials_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Ganon\'s Tower Trials Skip from Spirit Trial': {
+        'name'    : 'glitch_igc_trials_skip_spirit_trial',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Shadow Trial First Gap Without Fire': {
+        'name'    : 'logic_shadow_trial_no_fire_gap',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Shadow Trial Hess': {
+        'name'    : 'glitch_shadow_trial_hess',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}, 
+    '(Glitch) Fire Trial Pillar Silver without Gauntlets': {
+        'name'    : 'glitch_fire_trial_pillar_silver',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Fire Trial Longshot Skip': {
+        'name'    : 'logic_fire_trial_longshot_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Spirit Temple Child side as Adult': {
+        'name'    : 'glitch_spirit_child_side_as_adult',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Spirit Temple Adult side Block Skip': {
+        'name'    : 'glitch_spirit_adult_block_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Spirit Temple Child side Crawlspace skip as Adult': {
+        'name'    : 'glitch_spirit_child_side_crawlspace_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},    
+    '(GGJ) Spirit Compass with just Hoverboots': {
+        'name'    : 'glitch_spirit_compass_hoverboots_only',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Spirit Hover': {
+        'name'    : 'glitch_spirit_hover',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) Jabu Jabu GS Near Boss with Jumpslash': {
+        'name'    : 'logic_jabu_gs_near_boss_js',
+        'tags'    : ("Child","Adult","Jabu Jabu's Belly"),
+        'tooltip' : '''\
+                    You can kill this Gold Skulltula through
+                    the wall with a jumpslash and climb
+                    the vines to collect it
+                    '''}              
 }

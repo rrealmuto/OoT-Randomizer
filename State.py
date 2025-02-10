@@ -7,6 +7,7 @@ from Location import Location
 from RulesCommon import AccessRule, escape_name
 from Boulders import BOULDER_TYPE
 
+
 if TYPE_CHECKING:
     from Goals import GoalCategory, Goal
     from Location import Location
@@ -38,6 +39,7 @@ class State:
 
         self.can_blast_or_smash: AccessRule = self.world.parser.parse_rule("can_blast_or_smash")
         self.Blue_Fire: AccessRule = self.world.parser.parse_rule("Blue_Fire")
+        self.can_equip_swap: AccessRule = self.world.parser.parse_rule("can_equip_swap")
 
     def copy(self, new_world: Optional[World] = None) -> State:
         new_world = new_world if new_world else self.world
@@ -261,11 +263,11 @@ class State:
 
     def can_pass_boulder_type(self, boulder_type:BOULDER_TYPE, age: str, **kwargs) -> bool:
         if boulder_type == BOULDER_TYPE.BRONZE:
-            # Check for hammer and adult
-            return age == 'adult' and self.has(Megaton_Hammer)
+            # Check for hammer and adult or the ability to equip swap
+            return self.has(Megaton_Hammer) and (age == 'adult' or self.can_equip_swap(self, age='child'))
         elif boulder_type == BOULDER_TYPE.SILVER:
             # Check for adult+str2
-            return age == 'adult' and self.has(Progressive_Strength_Upgrade, 2)
+            return (age == 'adult' and self.has(Progressive_Strength_Upgrade, 2))  
         elif boulder_type == BOULDER_TYPE.GOLD:
             return age == 'adult' and self.has(Progressive_Strength_Upgrade, 3)
         elif boulder_type == BOULDER_TYPE.BROWN:
@@ -274,7 +276,7 @@ class State:
         elif boulder_type == BOULDER_TYPE.RED_ICE:
             # Check for blue fire
             #return self.world.parser.parse_rule('Blue_Fire')(self, age=age)
-            return self.Blue_Fire(self, age=age)
+            return self.Blue_Fire(self, age=age)  
         
         # Should never get here
         return False

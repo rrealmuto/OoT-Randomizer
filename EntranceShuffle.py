@@ -943,6 +943,7 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
     if placed_one_way_entrances is None:
         placed_one_way_entrances = []
 
+
     if not world.settings.decouple_entrances:
         # Unless entrances are decoupled, we don't want the player to end up through certain entrances as the wrong age
         # This means we need to hard check that none of the relevant entrances are ever reachable as that age
@@ -954,6 +955,10 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
         if world.dungeon_mq['Forest Temple'] and 'Forest Temple' in world.settings.dungeon_shortcuts:
             CHILD_FORBIDDEN.append('Phantom Ganon Boss Room -> Forest Temple Before Boss')
             ADULT_FORBIDDEN.append('Phantom Ganon Boss Room -> Forest Temple Before Boss')
+
+        # In glitch logic, this is a legal entrance fully considered 
+        if world.settings.logic_rules == 'glitched': 
+            CHILD_FORBIDDEN.remove('GV Carpenter Tent -> GV Fortress Side')
 
         for entrance in world.get_shufflable_entrances():
             if entrance.shuffled:
@@ -967,6 +972,7 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
                     raise EntranceShuffleError('%s is potentially accessible as child' % entrance.name)
                 elif entrance.name in ADULT_FORBIDDEN and not entrance_unreachable_as(entrance, 'adult', already_checked=[entrance.reverse]):
                     raise EntranceShuffleError('%s is potentially accessible as adult' % entrance.name)
+
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
