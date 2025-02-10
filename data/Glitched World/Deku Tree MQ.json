@@ -6,8 +6,8 @@
             "Deku Tree MQ Map Chest": "True",
             "Deku Tree MQ Slingshot Chest": "
                 has_soul(Gohma_Larvae) and has_soul(Deku_Baba) and (is_adult or can_child_attack)",
-            "Deku Tree MQ Slingshot Room Back Chest": "has_fire_source_with_torch or can_use(Bow)",
-            "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow)",
+            "Deku Tree MQ Slingshot Room Back Chest": "has_fire_source_with_torch or can_use(Bow) or can_gdv",
+            "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow) or can_gdv",
             "Deku Tree MQ Lower Lobby Recovery Heart": "True",
             "Deku Tree MQ Slingshot Room Recovery Heart": "True",
             "Deku Tree MQ Lobby Crate": "can_break_crate",
@@ -58,8 +58,8 @@
         },
         "exits": {
             "KF Outside Deku Tree": "True",
-            "Deku Tree Near Compass Room": "here(has_fire_source_with_torch or can_use(Bow))",
-            "Deku Tree Basement Torches Room": "here(can_use(Slingshot) or can_use(Bow))",
+            "Deku Tree Near Compass Room": "here(has_fire_source_with_torch or can_use(Bow) or can_gdv)",
+            "Deku Tree Basement Torches Room": "here(can_use(Slingshot) or can_use(Bow) or (can_gdv and can_hover))",
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
@@ -81,7 +81,7 @@
             "Deku Tree MQ Room Before Compass Grass 7": "can_mow_the_lawn"
         },
         "exits": {
-            "Deku Tree Compass Room": "here(can_use(Slingshot) or can_use(Bow))"
+            "Deku Tree Compass Room": "here(can_use(Slingshot) or can_use(Bow) or (can_gdv and can_hover))"
         }
     },
     {
@@ -101,7 +101,7 @@
             "Deku Tree MQ Compass Room Grass 2": "can_mow_the_lawn",
             "Deku Tree MQ Compass Room Grass 3": "can_mow_the_lawn",
             "Deku Tree MQ Compass Room Grass 4": "can_mow_the_lawn",
-            "Deku Tree MQ GS Compass Room": "
+            "Deku Tree MQ GS Compass Room": "(can_weirdshot and can_use(Longshot)) or (
                 (can_use(Hookshot) or can_use(Boomerang)) and
                 (
                     here(
@@ -141,7 +141,7 @@
                         ) and can_play(Song_of_Time))
                     )
                 )
-            "
+            )"
         }
     },
     {
@@ -158,7 +158,7 @@
             "Deku Tree MQ Basement Torch Room Grass 4": "can_mow_the_lawn"
         },
         "exits": {
-            "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch)"
+            "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch or can_gdv)"
         }
     },
     {
@@ -185,7 +185,7 @@
         "region_name": "Deku Tree Basement Water Room Back",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree MQ After Spinning Log Chest": "can_play(Song_of_Time)",
+            "Deku Tree MQ After Spinning Log Chest": "can_play(Song_of_Time) or (glitch_deku_mq_sot_skull_hook and can_use(Hookshot))",
             "Deku Tree MQ Basement Spike Roller Room Back Grass 1": "can_mow_the_lawn",
             "Deku Tree MQ Basement Spike Roller Room Back Grass 2": "can_mow_the_lawn"
         },
@@ -193,7 +193,7 @@
             "Deku Tree Basement Water Room Front": "True",
             "Deku Tree Basement Larva Room": "
                 here((can_use(Sticks) and (logic_deku_mq_log or Deku_Shield or Hylian_Shield))
-                   or can_use(Dins_Fire)) or
+                   or can_use(Dins_Fire) or can_gdv) or
                 at('Deku Tree Basement Water Room Front', can_use(Fire_Arrows))"
         }
     },
@@ -249,7 +249,7 @@
         },
         "exits": {
             "Deku Tree Basement Ledge": "is_child",
-            "Deku Tree Basement Back Side Room": "here(has_fire_source_with_torch)",
+            "Deku Tree Basement Back Side Room": "here(has_fire_source_with_torch or can_gdv)",
             "Deku Tree Basement Larva Room": "True"
         }
     },
@@ -261,7 +261,7 @@
             "Deku Tree MQ Basement Back Room Gohma Larva 2": "can_kill_gohma_larva",
             "Deku Tree MQ Basement Back Room Gohma Larva 3": "can_kill_gohma_larva",
             "Deku Tree MQ Basement Back Room Gohma Larva 4": "can_kill_gohma_larva",
-            "Deku Tree MQ GS Basement Back Room": "can_use(Hookshot) or can_use(Boomerang)"
+            "Deku Tree MQ GS Basement Back Room": "can_use(Hookshot) or can_use(Boomerang) or can_hover"
         }
     },
     {
@@ -275,7 +275,7 @@
         },
         "exits": {
             "Deku Tree Basement Back Room": "is_child",
-            "Deku Tree Before Boss": "deku_tree_shortcuts or here(has_fire_source_with_torch)"
+            "Deku Tree Before Boss": "deku_tree_shortcuts or here((has_fire_source_with_torch) or can_gdv)"
         }
     },
     {
@@ -292,7 +292,8 @@
         },
         "exits": {
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
-            "Queen Gohma Boss Room": "deku_tree_shortcuts or (here(has_shield) and has_soul(Deku_Scrub))"
+            "Queen Gohma Boss Room": "deku_tree_shortcuts or (here(has_shield) and has_soul(Deku_Scrub))
+                or at('Deku Tree Lobby', is_adult and glitch_deku_boss_door_skip)"
         }
     }
 ]

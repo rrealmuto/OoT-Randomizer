@@ -183,7 +183,7 @@
         },
         "exits": {
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
-            "Queen Gohma Boss Room": "at('Deku Tree Lobby',is_adult) or
+            "Queen Gohma Boss Room": "at('Deku Tree Lobby',is_adult and glitch_deku_boss_door_skip) or
                 (
                 deku_tree_shortcuts or (here(has_shield or 
                 (logic_231_hammer and can_use(Megaton_Hammer)) ) and has_soul(Deku_Scrub))

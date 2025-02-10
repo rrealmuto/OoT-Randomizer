@@ -2231,7 +2231,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     TBD
                     '''},
     '(Glitch) ZR to LW as Child Megasideohp': {
-        'name'    : 'glitch_zr_lw_chlid_mega',
+        'name'    : 'glitch_zr_lw_child_mega',
         'tags'    : ("Glitch",),
         'tooltip' : '''\
                     TBD
@@ -2255,7 +2255,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     TBD
                     '''}, 
     '(Glitch) ZD to ZF Burning Stick': {
-        'name'    : 'glitch_zd_zf_ledge_cancel',
+        'name'    : 'glitch_zd_zf_burning_stick',
         'tags'    : ("Glitch",),
         'tooltip' : '''\
                     TBD
@@ -2642,5 +2642,25 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     You can kill this Gold Skulltula through
                     the wall with a jumpslash and climb
                     the vines to collect it
-                    '''}              
+                    '''},
+    '(Glitch) MQ Deku SoT Skull with Hookshot': {
+        'name'    : 'glitch_deku_mq_sot_skull_hook',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) Deku Boss Door Skip': {
+        'name'    : 'glitch_deku_boss_door_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(GGJ) MQ DC Pass Boulder with Hoverboots Jump': {
+        'name'    : 'logic_dc_mq_hoverboots_boulder_jump',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''}
+              
 }
+    
