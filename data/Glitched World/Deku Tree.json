@@ -49,8 +49,7 @@
             "KF Outside Deku Tree": "True",
             "Deku Tree Slingshot Room": "here(has_shield or can_use(Megaton_Hammer)) and has_soul(Deku_Scrub)",
             "Deku Tree Basement": "deku_tree_shortcuts or here(is_adult or can_child_attack or Nuts)",
-            "Farores Wind Warp": "can_use(Farores_Wind)",
-            "Queen Gohma Boss Room": "is_adult"
+            "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
     {
@@ -184,8 +183,11 @@
         },
         "exits": {
             "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
-            "Queen Gohma Boss Room": "deku_tree_shortcuts or (here(has_shield or 
-                (logic_231_hammer and can_use(Megaton_Hammer)) ) and has_soul(Deku_Scrub))"
+            "Queen Gohma Boss Room": "at('Deku Tree Lobby',is_adult) or
+                (
+                deku_tree_shortcuts or (here(has_shield or 
+                (logic_231_hammer and can_use(Megaton_Hammer)) ) and has_soul(Deku_Scrub))
+                )"
         }
     }
 ]

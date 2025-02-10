@@ -436,9 +436,9 @@ def set_entrances(worlds: list[World], savewarps_to_connect: list[tuple[Entrance
         savewarp.connect(savewarp.replaces.connected_region)
 
     for world in worlds:
-        if world.settings.logic_rules != 'glitched':
+        #if world.settings.logic_rules != 'glitched':
             # Set entrance data for all entrances, even those we aren't shuffling
-            set_all_entrances_data(world)
+        set_all_entrances_data(world)
 
 # Shuffles entrances that need to be shuffled in all worlds
 def shuffle_random_entrances(worlds: list[World]) -> None:

@@ -304,7 +304,7 @@
         },
         "exits": {
             "Ganons Castle Spirit Trial Second Room Front": "(Silver_Rupee_Ganons_Castle_Spirit_Trial, 5)",
-            "Ganons Castle Tower": "glitch_igc_trials_skip_spirit_trial and is_adult"
+            "Ganons Castle Tower": "glitch_igc_trials_skip_spirit_trial and is_adult and is_glitched"
         }
     },
     {

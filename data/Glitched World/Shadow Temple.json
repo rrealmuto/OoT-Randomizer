@@ -40,15 +40,7 @@
         "exits": {
             "Shadow Temple First Beamos": "can_use(Hover_Boots) or can_mega or 
                 (logic_shadow_double_boosts and can_shield and Bombs and has_bombchus and 
-                    (damage_multiplier == 'normal' or damage_multiplier != 'half' or can_use(Nayrus_Love)) )",
-            "Bongo Bongo Boss Room": "(
-                glitch_shadow_bk_skip_boat_key and can_use(Hover_Boots) and
-                Bombs and (can_hess or can_superslide)
-            ) or (
-                glitch_shadow_bk_skip_deadhand and is_adult and can_take_damage and
-                (can_mega or can_superslide or can_hess or first_person_item) and has_explosives
-            )
-            "
+                    (damage_multiplier == 'normal' or damage_multiplier != 'half' or can_use(Nayrus_Love)) )"
         }
     },
     {
@@ -359,8 +351,15 @@
                 or (glitch_shadow_heart_chasm_hovers and can_hover)",
             "Bongo Bongo Boss Room": "(Small_Key_Shadow_Temple, 5) and (Boss_Key_Shadow_Temple
                 or (glitch_shadow_bk_skip_boss and has_explosives and can_take_damage and is_adult)
-                )
-            "
+                or at('Shadow Temple Beginning',(
+                    glitch_shadow_bk_skip_boat_key and can_use(Hover_Boots) and
+                    Bombs and (can_hess or can_superslide)
+                        ) or (
+                    glitch_shadow_bk_skip_deadhand and is_adult and can_take_damage and
+                    (can_mega or can_superslide or can_hess or first_person_item) and has_explosives
+                    )
+                    )
+                )"
         }
     }
 ]

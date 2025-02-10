@@ -44,8 +44,7 @@
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts
                 or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_shield)",
             "Forest Temple Falling Room": "can_hover or (can_use(Hover_Boots) and has_explosives and 
-                damage_multiplier != 'ohko')",
-            "Phantom Ganon Boss Room": "is_adult and glitch_forest_bk_skip"
+                damage_multiplier != 'ohko')"
         }
     },
     {
@@ -81,9 +80,7 @@
                 (logic_forest_well_swim and can_use(Hookshot))",
             "Forest Temple Outdoors High Balconies": "can_kill_blue_bubble",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)",
-            "Forest Temple Outside Upper Ledge": "can_hover or can_megajump",
-            "Phantom Ganon Boss Room": "is_child and has_bombchus and glitch_forest_bk_skip and 
-                damage_multiplier != 'ohko'"
+            "Forest Temple Outside Upper Ledge": "can_hover or can_megajump"
         }
     },
     {
@@ -317,7 +314,10 @@
         "savewarp": "SFM Forest Temple Entrance Ledge -> Forest Temple Lobby",
         "exits": {
             "Forest Temple Basement": "forest_temple_shortcuts",
-            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple"
+            "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple or 
+                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_glitched) or 
+                at('Forest Temple NW Outdoors',is_glitched and is_child and has_bombchus and glitch_forest_bk_skip and 
+                damage_multiplier != 'ohko')"
         }
     }
 ]

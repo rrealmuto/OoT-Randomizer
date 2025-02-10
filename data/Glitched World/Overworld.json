@@ -293,7 +293,7 @@
                 or (glitch_moustache_clip and can_shield and has_explosives and can_take_damage)
                 or (can_hess and Hover_Boots)",
             "Kokiri Forest": "is_adult or open_forest == 'open' or 'Showed Mido Sword & Shield' or can_hess
-                or can_superslide or can_megaflip"
+                or can_superslide or can_mega"
         }
     },
     {
