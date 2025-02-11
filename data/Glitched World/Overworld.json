@@ -1079,7 +1079,7 @@
                 (is_child and 
                     (glitch_gtg_child_groundclip and can_jumpslash)
                 )",
-            "GF Balcony": "can_use(Longshot)"
+            "GF Balcony": "can_use(Hookshot) and is_glitched"
         }
     },
     {

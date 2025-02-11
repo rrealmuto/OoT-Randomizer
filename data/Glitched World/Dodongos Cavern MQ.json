@@ -28,7 +28,8 @@
                 ((boulder_type('DC_LOBBY_SWITCH_BOULDER') == BOULDER_TYPE_BROWN) and Progressive_Strength_Upgrade) or can_weirdslide"
         },
         "exits": {
-            "Dodongos Cavern Elevator": "DC_MQ_Lobby_Switch_Under_Boulder_Pressed",
+            "Dodongos Cavern Elevator": "DC_MQ_Lobby_Switch_Under_Boulder_Pressed or
+                (glitch_death_hookshot_jump and can_use(Hookshot) and Fairy)",
             "Dodongos Cavern Lower Right Side": "here(can_blast_or_smash or can_gdv)",
             "Dodongos Cavern Poes Room": "is_adult or can_groundjump",
             "Dodongos Cavern Mouth": "dodongos_cavern_shortcuts or (logic_dc_chu_eyes and has_bombchus)"

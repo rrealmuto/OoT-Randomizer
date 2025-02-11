@@ -42,7 +42,7 @@
             "Forest Temple Before Block Puzzle": "(Small_Key_Forest_Temple, 1)",
             "Forest Temple Basement": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts
-                or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_shield)",
+                or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_mega)",
             "Forest Temple Falling Room": "can_hover or (can_use(Hover_Boots) and has_explosives and 
                 damage_multiplier != 'ohko')"
         }

@@ -2,9 +2,6 @@
     {
         "region_name": "Shadow Temple Entryway",
         "dungeon": "Shadow Temple",
-        "events": {
-            "Child Shadow": "is_child and glitch_child_shadow"
-        },
         "exits": {
             "Graveyard Warp Pad Region": "True",
             "Shadow Temple Beginning": "

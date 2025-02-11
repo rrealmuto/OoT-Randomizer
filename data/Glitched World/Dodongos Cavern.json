@@ -42,7 +42,8 @@
                     (is_glitched and Progressive_Strength_Upgrade and can_shield)
                 ) or can_use(Sticks) or can_use(Dins_Fire) or can_gdv_stick
                 )",
-            "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True)",
+            "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True) or
+                (glitch_death_hookshot_jump and can_use(Hookshot) and Fairy)",
             "Dodongos Cavern Mouth": "dodongos_cavern_shortcuts or (logic_dc_chu_eyes and has_bombchus)"
         }
     },

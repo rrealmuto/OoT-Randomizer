@@ -657,15 +657,15 @@ class SettingInfos:
             some minor tricks. Add minor tricks to consider for logic
             in the 'Detailed Logic' tab.
 
-            'Glitched': Movement-oriented glitches are likely required.
-            No locations excluded.
+            'Glitched': Glitches with toggable tricks for accessability 
+            to curate the overall difficulty level for every skill level. 
 
             'No Logic': Maximize randomization, All locations are
             considered available. MAY BE IMPOSSIBLE TO BEAT.
         ''',
         disable        = {
             'glitchless': {'settings': ['tricks_list_msg']},
-            'glitched':   {'settings': ['tricks_list_msg']},
+            'glitched':   {'settings': ['tricks_list_msg', 'blue_fire_arrows']},
             'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
@@ -4083,7 +4083,10 @@ class SettingInfos:
             They can be used to melt red ice
             and break the mud walls in Dodongo's Cavern.
         ''',
-        default        = False,
+        default        = True,
+        gui_params     = {
+            "hide_when_disabled": True,
+        },
         shared         = True,
     )
 

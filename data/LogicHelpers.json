@@ -212,7 +212,7 @@
     "can_mega": "glitch_megaflip and has_explosives and can_shield",
     "can_isg": "can_shield and (is_adult or Sticks or Kokiri_Sword or child_hammer)",
     "can_hover": "glitch_hovering and can_isg and Bombs and has_bombchus and can_shield",
-    "can_weirdslide": "glitch_weirdshot and is_adult and (Bow or Fire_Arrows or Hookshot or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows or
+    "can_weirdslide": "glitch_weirdshot and is_adult and Bombs and can_shield and (Bow or Fire_Arrows or Hookshot or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows or
     (can_equip_swap and Slingshot))",
     "can_weirdshot": "can_weirdslide and can_use(Hookshot)",
     "can_lunge_storage": "glitch_lunge_storage and can_jumpslash",
@@ -256,5 +256,6 @@
         )",
     "can_pass_mud_wall": "can_blast_or_smash or can_gdv or (is_glitched and can_use(Blue_Fire_Arrows))",
     "can_pass_mud_wall_str": "can_pass_mud_wall or Progressive_Strength_Upgrade",
-    "can_hover_jabu_cow": "can_hover and can_gdv"
+    "can_hover_jabu_cow": "can_hover and can_gdv",
+    "Child_Shadow": "is_child and glitch_child_shadow"
 }
