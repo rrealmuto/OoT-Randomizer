@@ -2573,7 +2573,9 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
         'name'    : 'glitch_igc_trials_skip',
         'tags'    : ("Glitch",),
         'tooltip' : '''\
-                    TBD
+                    Includes the hover in the main room of both
+                    vanilla and MQ, and for MQ also includes
+                    the torch clip from the initial hallway.
                     '''},
     '(Glitch) Ganon\'s Tower Trials Skip from Spirit Trial': {
         'name'    : 'glitch_igc_trials_skip_spirit_trial',
@@ -2660,7 +2662,24 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
         'tags'    : ("Glitch",),
         'tooltip' : '''\
                     TBD
+                    '''},
+    '(GGJ) MQ DC Upper Lizalfos Boulder Skip': {
+        'name'    : 'logic_dc_mq_upper_lizalfos_boulder_skip',
+        'tags'    : ("GGJ",),
+        'tooltip' : '''\
+                    Megajump
+                    '''},
+    '(Glitch) MQ Fire Before Boss Torch puzzle with GDV': {
+        'name'    : 'glitch_fire_mq_torch_puzzle',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
+                    '''},
+    '(Glitch) MQ Water BK Skip': {
+        'name'    : 'glitch_water_mq_bk_skip',
+        'tags'    : ("Glitch",),
+        'tooltip' : '''\
+                    TBD
                     '''}
-              
 }
     

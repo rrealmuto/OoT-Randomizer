@@ -3308,7 +3308,7 @@
             "ZR Open Grotto": "True",
             "ZR Fairy Grotto": "here(can_pass_boulder('ZR_FAIRY_GROTTO_BOULDER')) or can_weirdslide",
             "LW Underwater Entrance": "can_dive or can_use(Iron_Boots) or (is_adult and glitch_zr_lw_adult_ledge_clip)
-                or (is_child and glitch_zr_lw_chlid_mega and can_mega)",
+                or (is_child and glitch_zr_lw_child_mega and can_mega)",
             "ZR Storms Grotto": "can_open_storm_grotto",
             "ZR Behind Waterfall": "
                 can_play(Zeldas_Lullaby) or

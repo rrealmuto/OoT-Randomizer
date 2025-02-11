@@ -11,11 +11,13 @@
         "exits": {
             "DMC Fire Temple Entrance": "True",
             "Fire Temple Near Boss": "
-                (is_adult or logic_fire_mq_child_flame) and has_fire_source and
+                (is_adult or logic_fire_mq_child_flame) and (has_fire_source or can_gdv) and
                 (logic_fewer_tunic_requirements or Goron_Tunic)",
             "Fire Temple Lower Locked Door": "(Small_Key_Fire_Temple, 5)",
             "Fire Temple Big Lava Room": "
                 is_adult and Megaton_Hammer and (logic_fewer_tunic_requirements or Goron_Tunic)",
+            "Fire Temple Lower Flare Dancer Room": "can_weirdshot and can_shield and Biggoron_Sword and 
+                Megaton_Hammer",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -23,14 +25,15 @@
         "region_name": "Fire Temple Near Boss",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Near Boss Chest": "
-                is_adult and
+            "Fire Temple MQ Near Boss Chest": "can_weirdshot or (can_gdv and can_use(Hover_Boots) and glitch_fire_mq_torch_puzzle) or
+                (is_adult and
                 ((logic_fire_mq_near_boss and has_fire_source and Bow) or
                     ((Hover_Boots or Hookshot) and
                         ((can_use(Fire_Arrows) and can_break_heated_crate) or
                             (can_use(Dins_Fire) and
                                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
-                                    Goron_Tunic or Hover_Boots or Bow or Longshot)))))",
+                                    Goron_Tunic or Hover_Boots or Bow or Longshot)))))
+                )",
             "Fire Temple MQ Near Boss Pot 1": "can_use(Hookshot) or can_use(Hover_Boots)",
             "Fire Temple MQ Near Boss Pot 2": "can_use(Hookshot) or can_use(Hover_Boots)",
             "Fire Temple MQ Near Boss Left Crate 1": "can_break_heated_crate",
@@ -55,7 +58,10 @@
         "savewarp": "DMC Fire Temple Entrance -> Fire Temple Lower",
         "exits": {
             "Fire Temple Near Boss": "is_adult and (logic_fewer_tunic_requirements or Goron_Tunic)",
-            "Volvagia Boss Room": "Boss_Key_Fire_Temple"
+            "Volvagia Boss Room": "Boss_Key_Fire_Temple or 
+                at('Fire Temple Near Boss',is_adult and Goron_Tunic and has_bombchus and can_isg and can_hover
+                    and glitch_fire_bk_skip_hover) or
+                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge and is_glitched)"
         }
     },
     {
@@ -67,7 +73,8 @@
             "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "can_kill_stalfos"
         },
         "exits": {
-            "Fire Temple Lower Locked Door After Stalfos": "has_soul(Keese) and can_kill_stalfos"
+            "Fire Temple Lower Locked Door After Stalfos": "has_soul(Keese) and can_kill_stalfos",
+            "Fire Temple Lower": "(Small_Key_Fire_Temple, 5)"
         }
     },
     {
@@ -86,16 +93,21 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Fire Temple Lower Flare Dancer Room": "has_soul(Iron_Knuckle)"
+            "Fire Temple Lower Flare Dancer Room": "has_soul(Iron_Knuckle)",
+            "Fire Temple Lower Locked Door": "True"
         }
     },
     {
         "region_name": "Fire Temple Lower Flare Dancer Room",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Map Chest": "has_soul(Flare_Dancer) and can_use(Megaton_Hammer)",
+            "Fire Temple MQ Map Chest": "(has_soul(Flare_Dancer) and can_use(Megaton_Hammer)) or 
+                at('Fire Temple Lower',can_weirdshot)",
             "Fire Temple MQ Megaton Hammer Chest": "is_adult and can_kill_flare_dancer",
             "Fire Temple MQ Lower Flare Dancer": "can_kill_flare_dancer"
+        },
+        "exits": {
+            "Fire Temple Lower Locked Door After Stalfos": "True"
         }
     },
     {
@@ -137,7 +149,8 @@
             "Fire Temple MQ Shortcut Room Hammer Wonderitem 3": "True"
         },
         "exits": {
-            "Fire Temple Lower Lizalfos Maze": "has_fire_source or (logic_fire_mq_climb and Hover_Boots)"
+            "Fire Temple Lower Lizalfos Maze": "(has_fire_source or can_gdv) or (logic_fire_mq_climb and Hover_Boots)",
+            "Fire Temple Shortcut": "can_weirdshot"
         }
     },
     {
@@ -182,7 +195,8 @@
             "Fire Temple Block On Fire Room": "
                 (Longshot or (can_play(Song_of_Time) and Hookshot)) and
                 (has_explosives or logic_rusted_switches or (Longshot and logic_fire_scarecrow))",
-            "Fire Temple Shoot Torch On Wall Room": "(Small_Key_Fire_Temple, 3)"
+            "Fire Temple Shoot Torch On Wall Room": "(Small_Key_Fire_Temple, 3)",
+            "Fire Temple Lower Lizalfos Maze": "is_glitched"
         }
     },
     {
@@ -196,6 +210,9 @@
             "Fire Temple MQ Shortcut Crate 4": "True",
             "Fire Temple MQ Shortcut Crate 5": "True",
             "Fire Temple MQ Shortcut Crate 6": "True"
+        },
+        "exits": {
+            "Fire Temple Upper Lizalfos Maze": "True"
         }
     },
     {

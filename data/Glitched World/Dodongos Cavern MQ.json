@@ -220,12 +220,14 @@
             "Dodongos Cavern MQ Upper Lizalfos Pot 4": "True",
             "Dodongos Cavern MQ Upper Lizalfos 1": "can_kill_lizalfos",
             "Dodongos Cavern MQ Upper Lizalfos 2": "can_kill_lizalfos",
-            "Dodongos Cavern MQ GS Lizalfos Room": "DC_Upper_Lizalfos_Passed_Boulders"
+            "Dodongos Cavern MQ GS Lizalfos Room": "DC_Upper_Lizalfos_Passed_Boulders or 
+                (logic_dc_mq_upper_lizalfos_boulder_skip and can_megajump)"
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "can_kill_lizalfos",
             "Dodongos Cavern Two Flames Room": "can_kill_lizalfos",
-            "Dodongos Cavern Lower Lizalfos": "DC_Upper_Lizalfos_Passed_Boulders"
+            "Dodongos Cavern Lower Lizalfos": "DC_Upper_Lizalfos_Passed_Boulders or 
+                (logic_dc_mq_upper_lizalfos_boulder_skip and can_megajump)"
         },
         "events": {
             # Can reach this in boulder shuffle in a few ways
@@ -295,7 +297,8 @@
         },
         "exits": {
             "Dodongos Cavern Upper Lizalfos": "True",
-            "Dodongos Cavern Torch Puzzle Upper": "here(can_pass_boulder('DC_TWOFLAMES_BOULDER'))"
+            "Dodongos Cavern Torch Puzzle Upper": "here(can_pass_boulder('DC_TWOFLAMES_BOULDER')) or
+                (is_adult and can_groundjump)"
         }
     },
     {
@@ -319,7 +322,7 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos": "
-                (can_blast_or_smash or Progressive_Strength_Upgrade) and can_stun_deku",
+                can_pass_mud_wall_str and can_stun_deku",
             "Dodongos Cavern MQ Right Side Pot 1": "True",
             "Dodongos Cavern MQ Right Side Pot 2": "True",
             "Dodongos Cavern MQ Right Side Pot 3": "True",
@@ -343,8 +346,8 @@
         "region_name": "Dodongos Cavern Hall Before Lower Lizalfos",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern MQ Right Side Baby Dodongo 1": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))",
-            "Dodongos Cavern MQ Right Side Baby Dodongo 2": "has_soul(Baby_Dodongo) and (is_adult or (Kokiri_Sword or Sticks or Slingshot or Boomerang or has_explosives))"
+            "Dodongos Cavern MQ Right Side Baby Dodongo 1": "can_kill_baby_dodongo",
+            "Dodongos Cavern MQ Right Side Baby Dodongo 2": "can_kill_baby_dodongo"
         },
         "exits": {
             "Dodongos Cavern Lower Lizalfos" : "True",
@@ -390,19 +393,19 @@
             "Dodongos Cavern MQ Poes Room Crate 6": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate 7": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate Near Bomb Flower": "
-                can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire)",
+                can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire) or can_gdv",
             "Dodongos Cavern Scrub Room Grass 1": "can_mow_the_lawn and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or can_use(Dins_Fire) or has_explosives))",
             "Dodongos Cavern Scrub Room Grass 2": "can_mow_the_lawn and ((here(can_use(Bow)) or Progressive_Strength_Upgrade or can_use(Dins_Fire) or has_explosives))",
             "Dodongos Cavern MQ GS Scrub Room": "
                 (here(can_use(Bow)) or Progressive_Strength_Upgrade or
-                    can_use(Dins_Fire) or has_explosives) and
+                    can_use(Dins_Fire) or has_explosives or can_gdv) and
                 (can_use(Hookshot) or can_use(Boomerang))"
         },
         "exits": {
             "Dodongos Cavern Hall Before Lower Lizalfos": "has_soul(Lizalfos_and_Dinalfos)", # Reverse access to the lower right side
             "Dodongos Cavern Lower Lizalfos": "True",
             "Dodongos Cavern Lower Lizalfos Enemies": "True",
-            "Dodongos Cavern Lower Scrubs Room": "can_use(Bow) or has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)"
+            "Dodongos Cavern Lower Scrubs Room": "can_use(Bow) or has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire) or can_gdv"
         }
     },
     {

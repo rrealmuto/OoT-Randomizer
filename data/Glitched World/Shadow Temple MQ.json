@@ -4,9 +4,9 @@
         "dungeon": "Shadow Temple",
         "exits": {
             "Graveyard Warp Pad Region": "True",
-            "Shadow Temple Beginning": "
+            "Shadow Temple Beginning": "is_adult and 
                 (logic_lens_shadow_mq or can_use(Lens_of_Truth)) and
-                (can_use(Hover_Boots) or can_use(Hookshot))",
+                (can_use(Hover_Boots) or can_use(Hookshot) or can_mega)",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -22,7 +22,7 @@
         "exits": {
             "Shadow Temple First Beamos": "
                 shadow_temple_shortcuts or can_use(Fire_Arrows) or Hover_Boots or
-                (logic_shadow_mq_gap and Longshot)",
+                (logic_shadow_mq_gap and Longshot) or can_mega",
             "Shadow Temple Whispering Walls Front": "has_explosives and (Small_Key_Shadow_Temple, 6)"
         }
     },
@@ -43,7 +43,8 @@
             "Shadow Temple MQ Compass Room ReDead 4": "has_soul(Redead_and_Gibdo)"
         },
         "exits": {
-            "Shadow Temple Whispering Walls Back": "can_play(Song_of_Time)"
+            "Shadow Temple Whispering Walls Back": "can_play(Song_of_Time) or 
+                (can_take_damage and Bombs and is_glitched)"
         }
     },
     {
@@ -54,7 +55,8 @@
             "Shadow Temple MQ Whispering Walls After Time Block Flying Pot 2": "has_soul(Flying_Pot)"
         },
         "exits": {
-            "Shadow Temple First Dead Hand": "has_soul(Dead_hand) and Bow"
+            "Shadow Temple First Dead Hand": "has_soul(Dead_hand) and (Bow or can_use(Slingshot) or 
+                can_gdv_stick or (has_soul(Redead_and_Gibdo) and has_soul(Flying_Pot) and can_gdv_empty))"
         }
     },
     {
@@ -69,7 +71,8 @@
         "region_name": "Shadow Temple First Beamos",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
+            "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)
+                or can_weirdshot",
             "Shadow Temple MQ Early Gibdos Chest": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple MQ Near Ship Invisible Chest": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left": "True",
@@ -86,7 +89,11 @@
             "Shadow Temple MQ Early Gibdo 1": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple MQ Early Gibdo 2": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple MQ Near Ship Skullwalltula": "
-                has_soul(Skullwalltula) and (Megaton_Hammer or at('Shadow Temple Boat', Longshot or Bow))"
+                has_soul(Skullwalltula) and (
+                    Megaton_Hammer or 
+                    at('Shadow Temple Aboard Boat', Longshot or Bow)
+                    or at('Shadow Temple Boat Area Balcony',True)
+                    )"
         },
         # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
         # access. However, your final locked door does not actually prevent you from reaching any area
@@ -100,9 +107,15 @@
         "exits": {
             "Shadow Temple Upper Huge Pit": "
                 has_explosives and
-                (((Small_Key_Shadow_Temple, 2) and not shadow_temple_shortcuts) or
+                (((Small_Key_Shadow_Temple, 2) and not (shadow_temple_shortcuts or
+                 (is_glitched and can_jumpslash))) or
                     (Small_Key_Shadow_Temple, 5))",
-            "Shadow Temple Boat": "shadow_temple_shortcuts"
+            "Shadow Temple Boat Dock": "shadow_temple_shortcuts or
+                    (is_glitched and can_jumpslash)",
+            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and (
+                    (is_adult and can_take_damage and has_bombchus) or
+                    (is_adult and glitch_shadow_boat_skull_adult_nothing and can_shield)
+                )"
         }
     },
     {
@@ -112,7 +125,7 @@
             "Shadow Temple Upper Huge Pit Locations": "
                 not shadow_temple_shortcuts or (Small_Key_Shadow_Temple, 6) or
                 ((logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots)",
-            "Shadow Temple Lower Huge Pit": "has_fire_source or logic_shadow_mq_huge_pit"
+            "Shadow Temple Lower Huge Pit": "(has_fire_source or can_gdv) or logic_shadow_mq_huge_pit"
         }
     },
     {
@@ -120,9 +133,9 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Invisible Blades Visible Chest": "
-                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10) or can_weirdshot",
             "Shadow Temple MQ Invisible Blades Invisible Chest": "
-                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
+                (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10) or can_weirdshot",
             "Shadow Temple MQ Invisible Blades Silver Rupee Back Left": "True",
             "Shadow Temple MQ Invisible Blades Silver Rupee Back Right": "True",
             "Shadow Temple MQ Guillotine Hallway Skulltula": "has_soul(Skulltula)",
@@ -130,9 +143,9 @@
             "Shadow Temple MQ Guillotine Hallway Beamos 2": "can_kill_beamos",
             "Shadow Temple MQ Huge Pit Red Bubble": "has_soul(Bubble) and Magic_Meter",
             "Shadow Temple MQ Huge Pit Upper Beamos 1": "
-                has_soul(Beamos) and (has_explosives or Progressive_Strength_Upgrade or Bow)",
+                has_soul(Beamos) and (has_explosives or Progressive_Strength_Upgrade or Bow or can_gdv)",
             "Shadow Temple MQ Huge Pit Upper Beamos 2": "
-                has_soul(Beamos) and (has_explosives or Progressive_Strength_Upgrade or Bow)",
+                has_soul(Beamos) and (has_explosives or Progressive_Strength_Upgrade or Bow or can_gdv)",
             "Shadow Temple MQ Invisible Blades Keese 1": "has_soul(Keese)",
             "Shadow Temple MQ Invisible Blades Keese 2": "has_soul(Keese)",
             "Shadow Temple MQ Invisible Blades Keese 3": "has_soul(Keese)",
@@ -206,7 +219,8 @@
             "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower": "Longshot",
             "Shadow Temple MQ Huge Pit Lower Beamos": "can_kill_beamos",
             "Shadow Temple MQ GS Falling Spikes Room": "
-                (logic_shadow_umbrella_gs and Hover_Boots) or Hookshot"
+                (logic_shadow_umbrella_gs and Hover_Boots) or Hookshot
+                or can_groundjump"
         }
     },
     {
@@ -289,20 +303,45 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Shadow Temple Boat": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Boat Dock": "(Small_Key_Shadow_Temple, 5)",
             "Shadow Temple Wind Tunnel": "Hover_Boots or logic_shadow_mq_windy_walkway"
         }
     },
     {
-        "region_name": "Shadow Temple Boat",
+        "region_name": "Shadow Temple Aboard Boat",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Before Boat Recovery Heart 1": "can_use(Distant_Scarecrow)",
-            "Shadow Temple MQ Before Boat Recovery Heart 2": "can_use(Distant_Scarecrow)"
+            
         },
         "exits": {
-            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)",
+            "Shadow Temple Boat Dock": "True",
+            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and
+                ((can_use(Hover_Boots) and (can_mega or can_superslide)) or can_hover)",
             "Shadow Temple Beyond Boat": "can_play(Zeldas_Lullaby)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Boat Dock",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            
+        },
+        "exits": {
+            "Shadow Temple Aboard Boat": "is_adult",
+            "Shadow Temple Boat Area Balcony": "can_use(Distant_Scarecrow)",
+            "Shadow Temple After Wind": "(Small_Key_Shadow_Temple, 5)"
+        }
+    },
+    {
+        "region_name": "Shadow Temple Boat Area Balcony",
+        "dungeon": "Shadow Temple",
+        "locations": {
+            "Shadow Temple MQ Before Boat Recovery Heart 1": "True",
+            "Shadow Temple MQ Before Boat Recovery Heart 2": "True"
+        },
+        "exits": {
+            "Shadow Temple Boat Dock": "True",
+            "Shadow Temple Aboard Boat": "can_mega or can_use(Hover_Boots)"
         }
     },
     {
@@ -319,7 +358,8 @@
         },
         "exits": {
             "Shadow Temple Across Chasm": "
-                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts"
+                Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts
+                or (can_use(Hover_Boots) and (can_mega or can_superslide or (logic_hovers_recoil and damage_multiplier != 'ohko')))"
         }
     },
     {
@@ -332,7 +372,7 @@
         },
         "exits": {
             "Shadow Temple Invisible Maze": "Bow and can_play(Song_of_Time) and Longshot",
-            "Shadow Temple Before Boss": "Hover_Boots"
+            "Shadow Temple Before Boss": "Hover_Boots or can_mega"
         }
     },
     {
@@ -363,8 +403,8 @@
         "region_name": "Shadow Temple Spike Walls Room",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Spike Walls Left Chest": "can_use(Dins_Fire)",
-            "Shadow Temple MQ Boss Key Chest": "can_use(Dins_Fire)",
+            "Shadow Temple MQ Spike Walls Left Chest": "can_use(Dins_Fire) or can_gdv",
+            "Shadow Temple MQ Boss Key Chest": "can_use(Dins_Fire) or can_gdv",
             "Shadow Temple MQ Spike Walls Pot": "True",
             "Shadow Temple MQ Spike Walls Keese 1": "has_soul(Keese)",
             "Shadow Temple MQ Spike Walls Keese 2": "has_soul(Keese)",
@@ -399,7 +439,18 @@
             "Shadow Temple MQ GS Near Boss": "has_projectile(adult) or can_use(Dins_Fire)"
         },
         "exits": {
-            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple"
+            "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple 
+            or (glitch_shadow_bk_skip_boss and has_explosives and can_take_damage and is_adult)
+                or at('Shadow Temple First Dead Hand',(
+                    glitch_shadow_bk_skip_boat_key and can_use(Hover_Boots) and
+                    Bombs and (can_hess or can_superslide)
+                        ) or (
+                    glitch_shadow_bk_skip_deadhand and is_adult and can_take_damage and
+                    (((can_superslide or can_hess) and Bombs) or first_person_item) 
+                    and has_explosives and (can_mega or Hover_Boots)
+                    )
+                    )
+                "
         }
     }
 ]

@@ -17,6 +17,7 @@
                     (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or
                     (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot)))
                     (Sticks and Slingshot and (Nuts or Boomerang)))",
+            "Ganons Castle Tower": "can_use(Hookshot) and glitch_igc_trials_skip",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
@@ -29,16 +30,18 @@
             "Ganons Castle Water Trial": "True",
             "Ganons Castle Shadow Trial": "True",
             "Ganons Castle Fire Trial": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
-            "Ganons Castle Light Trial": "can_use(Golden_Gauntlets)",
+            "Ganons Castle Light Trial": "can_use(Golden_Gauntlets) or
+                (has_explosives and can_take_damage and is_adult)",
             "Ganons Castle Spirit Trial": "True",
             "Ganons Castle Deku Scrubs": "logic_lens_castle_mq or can_use(Lens_of_Truth)",
-            "Ganons Castle Tower": "
+            "Ganons Castle Tower": "(glitch_igc_trials_skip and can_hover) or (
                 (skipped_trials[Forest] or 'Forest Trial Clear') and
                 (skipped_trials[Fire] or 'Fire Trial Clear') and
                 (skipped_trials[Water] or 'Water Trial Clear') and
                 (skipped_trials[Shadow] or 'Shadow Trial Clear') and
                 (skipped_trials[Spirit] or 'Spirit Trial Clear') and
-                (skipped_trials[Light] or 'Light Trial Clear')"
+                (skipped_trials[Light] or 'Light Trial Clear')
+                )"
         }
     },
     {
@@ -55,8 +58,8 @@
         "region_name": "Ganons Castle Forest Trial Wind Room",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Castle MQ Forest Trial Eye Switch Chest": "can_use(Bow) or can_use(Slingshot)",
-            "Ganons Castle MQ Forest Trial Frozen Eye Switch Chest": "has_fire_source",
+            "Ganons Castle MQ Forest Trial Eye Switch Chest": "can_use(Bow) or can_use(Slingshot) or (can_gdv and can_use(Hover_Boots))",
+            "Ganons Castle MQ Forest Trial Frozen Eye Switch Chest": "has_fire_source or can_gdv",
             "Ganons Castle MQ Forest Trial Stalfos 1": "True",
             "Ganons Castle MQ Forest Trial Stalfos 2": "True",
             "Ganons Castle MQ Forest Trial Armos": "can_kill_armos",
@@ -97,7 +100,10 @@
         },
         "exits": {
             # These boulders share a single switch flag. Breaking one and reloading the room they will all be gone
-            "Ganons Castle Water Trial Push Block Room": "(can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_1') or can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_2') or can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_3') or can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_4')) and (Small_Key_Ganons_Castle, 3)"
+            # Glitch - megaflipping off the water bypasses the boulders
+            "Ganons Castle Water Trial Push Block Room": "(can_mega or can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_1') or can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_2') or 
+                can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_3') or can_pass_boulder('IGC_WATER_TRIAL_FIRST_ROOM_DOOR_BOULDER_4')) 
+                and (Small_Key_Ganons_Castle, 3)"
         }
     },
     {
@@ -144,7 +150,7 @@
             "Ganons Castle MQ Shadow Trial Bomb Flower Chest": "
                 is_adult and ((Bow and (Hookshot or Hover_Boots)) or
                 at('Ganons Castle Shadow Trial Moving Platform',
-                    has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire)))",
+                    has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire) or can_gdv))",
             "Ganons Castle MQ Shadow Trial Green Bubble": "
                 has_soul(Bubble) and (Bombs or (is_adult and (Bow or Magic_Meter)) or can_use(Slingshot))"
         },
@@ -212,7 +218,11 @@
         "exits": {
             "Ganons Castle Fire Trial Ending": "
                 is_adult and Goron_Tunic and (Silver_Rupee_Ganons_Castle_Fire_Trial, 5) and
-                (Longshot or (Golden_Gauntlets and (Hover_Boots or (logic_fire_trial_mq and Hookshot))))"
+                (Longshot or 
+                    (Golden_Gauntlets and 
+                        ( Hover_Boots or (logic_fire_trial_mq and Hookshot) )
+                    )
+                )"
         }
     },
     {
@@ -314,7 +324,7 @@
             "Ganons Castle MQ Spirit Trial Green Bubble 2": "has_soul(Bubble) and (has_bombchus or Magic_Meter)"
         },
         "exits": {
-            "Ganons Castle Spirit Trial Second Room": "has_bombchus"
+            "Ganons Castle Spirit Trial Second Room": "has_bombchus or can_weirdshot"
         }
     },
     {
@@ -322,9 +332,9 @@
         "dungeon": "Ganons Castle",
         "locations": {
             "Ganons Castle MQ Spirit Trial Invisible Chest": "logic_lens_castle_mq or can_use(Lens_of_Truth)",
-            "Ganons Castle MQ Spirit Trial Gibdo": "has_soul(Redead_and_Gibdo)",
-            "Ganons Castle MQ Spirit Trial ReDead 1": "has_soul(Redead_and_Gibdo)",
-            "Ganons Castle MQ Spirit Trial ReDead 2": "has_soul(Redead_and_Gibdo)"
+            "Ganons Castle MQ Spirit Trial Gibdo": "can_kill_redead",
+            "Ganons Castle MQ Spirit Trial ReDead 1": "can_kill_redead",
+            "Ganons Castle MQ Spirit Trial ReDead 2": "can_kill_redead"
         },
         "exits": {
             "Ganons Castle Spirit Trial Ending": "can_use(Fire_Arrows) and Mirror_Shield"

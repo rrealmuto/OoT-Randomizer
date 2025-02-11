@@ -356,7 +356,8 @@
                     Bombs and (can_hess or can_superslide)
                         ) or (
                     glitch_shadow_bk_skip_deadhand and is_adult and can_take_damage and
-                    (can_mega or can_superslide or can_hess or first_person_item) and has_explosives
+                    (((can_superslide or can_hess) and Bombs) or first_person_item) 
+                    and has_explosives and (can_mega or Hover_Boots)
                     )
                     )
                 )"

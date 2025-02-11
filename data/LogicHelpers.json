@@ -87,12 +87,14 @@
             or (_is_adult_item(item) and is_adult and item)
             or (_is_magic_arrow(item) and is_adult and item and Bow and Magic_Meter)
             or (_is_child_item(item) and is_child and item)
-            or (_is_swappable(item) and can_equip_swap and item)",
+            or (_is_swappable(item) and can_equip_swap and item)
+            or (_adult_slingshot(item) and is_adult and Bow and can_equip_swap)",
     "_is_magic_item(item)": "item == Dins_Fire or item == Farores_Wind or item == Nayrus_Love or item == Lens_of_Truth",
     "_is_adult_item(item)": "item == Bow or item == Megaton_Hammer or item == Iron_Boots or item == Hover_Boots or item == Hookshot or item == Longshot or item == Silver_Gauntlets or item == Golden_Gauntlets or item == Goron_Tunic or item == Zora_Tunic or item == Scarecrow or item == Distant_Scarecrow or item == Mirror_Shield",
     "_is_child_item(item)": "item == Slingshot or item == Boomerang or item == Kokiri_Sword or item == Sticks or item == Deku_Shield",
     "_is_magic_arrow(item)": "item == Fire_Arrows or item == Light_Arrows or item == Blue_Fire_Arrows",
     "_is_swappable(item)": "item == Megaton_Hammer or item == Boomerang",
+    "_adult_slingshot(item)": "item == Slingshot",
 
     # Biggoron's trade path
     # ER with certain settings disables timers and prevents items from reverting on save warp.
@@ -251,5 +253,8 @@
             )
         or (is_child and has_explosives
                 )
-        )"
+        )",
+    "can_pass_mud_wall": "can_blast_or_smash or can_gdv or (is_glitched and can_use(Blue_Fire_Arrows))",
+    "can_pass_mud_wall_str": "can_pass_mud_wall or Progressive_Strength_Upgrade",
+    "can_hover_jabu_cow": "can_hover and can_gdv"
 }

@@ -665,7 +665,7 @@ class SettingInfos:
         ''',
         disable        = {
             'glitchless': {'settings': ['tricks_list_msg']},
-            'glitched':   {'settings': ['mq_dungeons_mode', 'mq_dungeons_specific','mq_dungeons_count','tricks_list_msg']},
+            'glitched':   {'settings': ['tricks_list_msg']},
             'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,

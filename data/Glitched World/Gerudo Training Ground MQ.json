@@ -14,19 +14,21 @@
             "Gerudo Training Ground MQ Hidden Ceiling Chest": "logic_lens_gtg_mq or can_use(Lens_of_Truth)",
             "Gerudo Training Ground MQ Maze Path First Chest": "True",
             "Gerudo Training Ground MQ Maze Path Second Chest": "True",
-            "Gerudo Training Ground MQ Maze Path Third Chest": "(Small_Key_Gerudo_Training_Ground, 1)",
+            "Gerudo Training Ground MQ Maze Path Third Chest": "(Small_Key_Gerudo_Training_Ground, 1)
+                or can_weirdshot",
             "Gerudo Training Ground MQ Lobby Left Pot 1": "True",
             "Gerudo Training Ground MQ Lobby Left Pot 2": "True",
             "Gerudo Training Ground MQ Lobby Right Pot 1": "True",
             "Gerudo Training Ground MQ Lobby Right Pot 2": "True",
-            "Gerudo Training Ground MQ Maze Crate": "
-                (Small_Key_Gerudo_Training_Ground, 3) and can_break_crate"
+            "Gerudo Training Ground MQ Maze Crate": "can_weirdshot or (
+                (Small_Key_Gerudo_Training_Ground, 3) and can_break_crate)"
         },
         "exits": {
             "Gerudo Fortress": "True",
             "Gerudo Training Ground Right Side": "here(can_use(Bow) or can_use(Slingshot))",
-            "Gerudo Training Ground Left Side": "has_fire_source and can_kill_iron_knuckle",
-            "Farores Wind Warp": "can_use(Farores_Wind)"
+            "Gerudo Training Ground Left Side": "(has_fire_source or can_gdv) and can_kill_iron_knuckle",
+            "Farores Wind Warp": "can_use(Farores_Wind)",
+            "Gerudo Training Ground Central Maze Right": "can_weirdshot"
         }
     },
     {
@@ -84,7 +86,7 @@
         },
         "exits": {
             "Gerudo Training Ground Lava Room Door": "Longshot",
-            "Gerudo Training Ground Lava Room Front": "has_fire_source",
+            "Gerudo Training Ground Lava Room Front": "has_fire_source or can_gdv",
             "Gerudo Training Ground Lava Room Back Bubble": "
                 Hookshot and Gerudo_Training_Ground_Lava_Silver_Rupees_Collected",
             "Gerudo Training Ground Water Room": "Gerudo_Training_Ground_Lava_Silver_Rupees_Collected"
@@ -130,7 +132,7 @@
         },
         "exits": {
             "Gerudo Training Ground Underwater": "
-                has_fire_source and Iron_Boots and can_take_damage and
+                (has_fire_source or can_gdv or can_weirdshot) and Iron_Boots and can_take_damage and
                 (logic_fewer_tunic_requirements or Zora_Tunic)"
         }
     },
@@ -182,11 +184,22 @@
             "Blue Fire": "has_bottle"
         },
         "exits": {
-            "Gerudo Training Ground Back Areas": "
-                is_adult and has_soul(Stalfos) and has_soul(Skulltula) and (logic_lens_gtg_mq or can_use(Lens_of_Truth)) and can_pass_boulder('GTG_STALFOS_ROOM_BOULDER') and
-                (can_play(Song_of_Time) or (logic_gtg_fake_wall and Hover_Boots))",
+            "Gerudo Training Ground Stalfos Room Alcove": "is_adult and has_soul(Stalfos) and has_soul(Skulltula) and (logic_lens_gtg_mq or can_use(Lens_of_Truth)) and
+                (can_play(Song_of_Time) or (logic_gtg_fake_wall and Hover_Boots) or can_groundjump)",
             "Gerudo Training Ground Heavy Block Room": "
                 has_soul(Stalfos) and has_soul(Skulltula) and can_use(Silver_Gauntlets)"
+        }
+    },
+    {
+        "region_name": "Gerudo Training Ground Stalfos Room Alcove",
+        "dungeon": "Gerudo Training Ground",
+        "locations": {
+        },
+        "exits": {
+            "Gerudo Training Ground Stalfos Room": "True",
+            "Gerudo Training Ground Back Areas": "can_pass_boulder('GTG_STALFOS_ROOM_BOULDER')",
+            "Gerudo Training Ground Heavy Block Room": "(can_use(Hover_boots) and 
+                (can_mega or (Megaton_Hammer and logic_hovers_recoil and is_glitched)))"
         }
     },
     {
