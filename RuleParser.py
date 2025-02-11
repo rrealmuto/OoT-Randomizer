@@ -248,7 +248,8 @@ class Rule_AST_Transformer(ast.NodeTransformer):
             if isinstance(n, ast.Name) and n.id in escaped_items:
                 return ast.Constant(escaped_items[n.id])
             elif isinstance(n, ast.List):
-                return n
+                for i in range(0, len(n.elts)):
+                    n.elts[i] = escape_or_string(n.elts[i])
             elif not (isinstance(n, ast.Constant) and isinstance(n.value, str)):
                 return self.visit(n)
             return n

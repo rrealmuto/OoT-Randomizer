@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v154
+  * Fix generation error w/ boulder types in a list
+
 ### v153
   * Fix enemies shuffled onto Jabu pit room Baris
 
