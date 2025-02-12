@@ -252,7 +252,7 @@
             "Lost Woods": "True",
             "LW Bridge From Forest": "can_leave_forest",
             "KF Storms Grotto": "can_open_storm_grotto",
-            "Deku Tree Lobby": "is_adult and (can_hover or can_superslide or can_hess or can_megajump)"
+            "Deku Tree Lobby": "can_hover or (can_use(Hover_Boots) and (can_megajump or can_superslide or can_hess))"
         }
     },
     {
