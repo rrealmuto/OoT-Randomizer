@@ -2128,7 +2128,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                       include_rewards='altar' in world.settings.misc_hints and not world.settings.enhance_map_compass,
                       include_wincons='altar' in world.settings.misc_hints)
 
-    if world.settings.tokensanity == 'off':
+    if world.settings.fast_tokens:
         # Change the GS token pickup message to fade out after 2 seconds (40 frames)
         update_message_by_id(messages, 0x00B4, bytearray(get_message_by_id(messages, 0x00B4).raw_text)[:-1] + b'\x0E\x28', allow_duplicates=True)
         # Prevent the GS token actor from freezing the player and waiting for the textbox to be closed 
