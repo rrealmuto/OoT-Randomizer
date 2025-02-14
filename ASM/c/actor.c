@@ -25,7 +25,7 @@ extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 extern uint8_t SHUFFLE_SILVER_RUPEES;
 extern int8_t curr_scene_setup;
-extern xflag_t* spawn_actor_with_flag;
+extern xflag_t* spawn_actor_with_flag; // Use to spawned an actor with an xflag. Set this and then it will be consumed by Actor_Spawn_Hook.
 
 #define BG_HAKA_TUBO        0x00BB  // Shadow temple spinning pot
 #define BG_SPOT18_BASKET    0x015C  // Goron city spinning pot
@@ -48,6 +48,9 @@ extern xflag_t* spawn_actor_with_flag;
 #define EN_GS               0x1B9   // Gossip Stone
 
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
+bool actor_spawn_override_enemizer(ActorEntry* actorEntry, z64_game_t* globalCtx);
+
+uint8_t actor_spawn_count = 0; // Used to handling nested calls to actor spawn (for example an enemy that spawns children in its Init function)
 
 uint8_t actor_spawn_as_child_flag = 0;
 z64_actor_t* actor_spawn_as_child_parent = NULL;
@@ -381,6 +384,31 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
     return 0;
 }
 
+
+typedef struct enemy_spawn_override {
+    xflag_t flag;
+    uint16_t actor_id;
+    uint16_t var;
+} enemy_spawn_override;
+
+#define NUM_ENEMY_SPAWN_OVERRIDE_TABLE_ENTRIES 10
+
+// Enemy spawn override table is used to override enemies that are dynamically spawned
+enemy_spawn_override enemy_spawn_override_table[NUM_ENEMY_SPAWN_OVERRIDE_TABLE_ENTRIES] = { 0 };
+
+enemy_spawn_override* get_enemy_spawn_override_entry(xflag_t* flag) {
+    for (int i = 0; i < NUM_ENEMY_SPAWN_OVERRIDE_TABLE_ENTRIES; i++) {
+        if (enemy_spawn_override_table[i].flag.all == 0) {
+            return NULL;
+        }
+        if (enemy_spawn_override_table[i].flag.scene == flag->scene && enemy_spawn_override_table[i].flag.all == flag->all) {
+            // Found a match
+            return &enemy_spawn_override_table[i];
+        }
+    }
+    return NULL;
+}
+
 // This is our entrypoint back into Actor_Spawn. Call/return this to spawn the actor
 extern z64_actor_t* Actor_Spawn_Continue(void* actorCtx, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
 
@@ -398,11 +426,10 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
     entry.rot.z = rotZ;
 
     continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
-
-    /*if(continue_spawn) {
-        bool overridden = false;
-        continue_spawn = spawn_override_enemizer(&entry, globalCtx, &overridden);
-    }*/
+    actor_spawn_count += 1;
+    if(continue_spawn) {
+        continue_spawn = actor_spawn_override_enemizer(&entry, globalCtx);
+    }
 
     if (continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, entry.id,posX, posY, posZ, entry.rot.x, entry.rot.y, entry.rot.z, entry.params);
@@ -412,8 +439,10 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
                 Actor_StoreChestType(spawned, globalCtx);
             }
         }
+        actor_spawn_count -= 1;
         return spawned;
     }
+    actor_spawn_count -= 1;
     return NULL;
 }
 
@@ -541,18 +570,40 @@ bool should_raycast(xflag_t* flag) {
     return true;
 }
 
+// Enemizer override function for enemies that get spawned by other actors and not as part of the room's actor list
+// Using the spawn override table
+bool actor_spawn_override_enemizer(ActorEntry* actorEntry, z64_game_t* globalCtx) {
+    xflag_t flag = {0};
+    // Check for enemizer, and if this enemy is being spawned with a flag
+    if (CFG_ENEMIZER && spawn_actor_with_flag) {
+        flag = *spawn_actor_with_flag;
+        // Check if the enemy's flag is in the enemy spawn override table and override it
+        enemy_spawn_override* override = get_enemy_spawn_override_entry(&flag);
+        // Override the spawn if we found an override and if this is the first call to actor_spawn
+        if(override && actor_spawn_count == 1) {
+            actorEntry->id = override->actor_id;
+            actorEntry->params = override->var;
+        }
+    }
+    return true;
+}
+
+// Enemizer override function for enemies that are spawned as part of the room's actor list
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
-    if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry) && check_enemizer_sequence(globalCtx)) {
+    // Override for dynamic enemizer
+    if(((CFG_RANDOM_ENEMY_SPAWNS && check_enemizer_sequence(globalCtx))) && is_enemy(actorEntry)) {
         int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
         //int index = (enemy_spawn_index++) % (array_size(enemy_list));
         actorEntry->id = enemy_list[index].id;
         actorEntry->params = enemy_list[index].var;
         *overridden = true;
     }
-
+    
     if(CFG_ENEMIZER && is_enemy(actorEntry)) {
         xflag_t flag = {0};
-        BuildFlag(globalCtx, &flag, CURR_ACTOR_SPAWN_INDEX, 0);
+        if (CURR_ACTOR_SPAWN_INDEX) {
+            BuildFlag(globalCtx, &flag, CURR_ACTOR_SPAWN_INDEX, 0);
+        }
         if(should_raycast(&flag)) {
             // Raycast Down enemies that need to spawn on the floor
             CollisionPoly floorPoly;
@@ -604,6 +655,7 @@ typedef struct {
 
 kill_switch_entry KILL_SWITCH_TABLE[NUM_KILL_SWITCH_FLAGS];
 
+// Spawner actors
 void Actor_Kill_UpdateSpawner(z64_actor_t* actor) {
     // Check if this actor has a parent spawner
     if (actor->parent != NULL && actor->parent->actor_id == ACTOR_EN_ENCOUNT1)
@@ -616,6 +668,18 @@ void Actor_Kill_UpdateSpawner(z64_actor_t* actor) {
             }
         }
     }
+}
+
+// Hack for forest platform. Check if the actor has a parent BgMoriBigst
+void Actor_Kill_ForestPlatform(z64_actor_t* actor) {
+    if(actor->parent && actor->parent->actor_id == 0x0086) { // BgMoriBigst
+        if(((BgMoriBigst*)(actor->parent))->child1 == actor) {
+            ((BgMoriBigst*)(actor->parent))->child1 = NULL;
+        }
+        if(((BgMoriBigst*)(actor->parent))->child2 == actor) {
+            ((BgMoriBigst*)(actor->parent))->child2 = NULL;
+        }
+    }    
 }
 
 // New Actor_Kill function to extend functionality
@@ -632,15 +696,7 @@ void Actor_Kill_New(z64_actor_t* actor) {
         }
     }
 
-    // Hack for forest platform. Check if the actor has a parent BgMoriBigst
-    if(actor->parent && actor->parent->actor_id == 0x0086) { // BgMoriBigst
-        if(((BgMoriBigst*)(actor->parent))->child1 == actor) {
-            ((BgMoriBigst*)(actor->parent))->child1 = NULL;
-        }
-        if(((BgMoriBigst*)(actor->parent))->child2 == actor) {
-            ((BgMoriBigst*)(actor->parent))->child2 = NULL;
-        }
-    }
+    Actor_Kill_ForestPlatform(actor);
     //Actor_Kill_UpdateSpawner(actor);
 
     // Do what the original function does

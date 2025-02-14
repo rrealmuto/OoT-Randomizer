@@ -907,7 +907,7 @@ class SaveContext:
                 'broken_sword'           : Address(0xD4 + 0x1C * 0x60 + 0x10, size=4, mask=0x00020000),
                 'prescription'           : Address(0xD4 + 0x1C * 0x60 + 0x10, size=4, mask=0x00040000),
                 'eyeball_frog'           : Address(0xD4 + 0x1C * 0x60 + 0x10, size=4, mask=0x00080000),
-                'eyedrops'               : Address(0xD4 + 0x1C * 0x60 + 0x10, size=4, mask=0x00100000),
+                'eye_drops'               : Address(0xD4 + 0x1C * 0x60 + 0x10, size=4, mask=0x00100000),
                 'claim_check'            : Address(0xD4 + 0x1C * 0x60 + 0x10, size=4, mask=0x00200000),
             },
 

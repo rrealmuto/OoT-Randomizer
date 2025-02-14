@@ -23,7 +23,7 @@ class ENEMY_RESTRICTION(Enum):
 # disallowed enemies - list of enemy types to explicitly disallow
 # patch_func - function that will apply a ROM patch applicable to this location
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[str] = [], explicit_allowed_enemies: list[str] = [], patch_func = None, switch_flag = -1, skip_raycast = False, var_overrides = {}):
+    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[str] = [], explicit_allowed_enemies: list[str] = [], patch_func = None, switch_flag = -1, skip_raycast = False, var_overrides = {}, add_to_override_table = False):
         self.id = vanilla_id
         self.restrictions = restrictions
         self.meets_enemy_restrictions = meets_enemy_restrictions
@@ -34,62 +34,67 @@ class EnemyLocation:
         self.skip_raycast = skip_raycast
         self.location_specific_enemy_logic = {}
         self.var_overrides = var_overrides
+        self.add_to_override_table = add_to_override_table
 
 # Move the SFM wolfos more towards the center, some enemies like flare dancer might jump over the fence
-def patch_func_sfm_wolfos(actor: Actor):
+def patch_func_sfm_wolfos(actor: Actor, rom: Rom):
     actor.x = -195
     actor.y = 0
     actor.z = 1900
 
 # Move the stalfos in MQ Child spirit down onto the platform
-def patch_mq_spirit_child_stalfos(actor: Actor):
+def patch_mq_spirit_child_stalfos(actor: Actor, rom: Rom):
     actor.y = 50
 
 # Move the like likes in the room in MQ jabu to just spawn on the ground
 # They normally spawn in cages above the room
-def patch_mq_jabu_likelike_left(actor: Actor):
+def patch_mq_jabu_likelike_left(actor: Actor, rom: Rom):
     actor.x = 827
     actor.y = -300
 
-def patch_mq_jabu_likelike_right(actor: Actor):
+def patch_mq_jabu_likelike_right(actor: Actor, rom: Rom):
     actor.x = 488
     actor.y = -300
 
 # Move the shadow temple boat stalfos over to the end platform
-def patch_shadow_temple_boat_stalfos_1(actor: Actor):
+def patch_shadow_temple_boat_stalfos_1(actor: Actor, rom: Rom):
     actor.x = -2300
     actor.y = -1360
     actor.z = -1570
 
-def patch_shadow_temple_boat_stalfos_2(actor: Actor):
+def patch_shadow_temple_boat_stalfos_2(actor: Actor, rom: Rom):
     actor.x = -2700
     actor.y = -1360
     actor.z = -1570
 
 # Move the wallmasters in the rotating hallways onto the ground. These hallways aren't loaded when the enemies are spawned so the ray cast doesn't work properly
-def patch_forest_first_rotating_hallway_wallmaster(actor: Actor):
+def patch_forest_first_rotating_hallway_wallmaster(actor: Actor, rom: Rom):
     actor.y = 1228
 
-def patch_forest_second_rotating_hallway_wallmaster(actor: Actor):
+def patch_forest_second_rotating_hallway_wallmaster(actor: Actor, rom: Rom):
     actor.x = 1964
     actor.y = 1228
     actor.z = -3328
 
 # Move the like like in water temple before dark link. It normally spawns under the floor
-def patch_water_temple_like_like(actor: Actor):
+def patch_water_temple_like_like(actor: Actor, rom: Rom):
     actor.y = 1060
 
 # Move the fire keese in the side room in BOTW before the gate so it doesn't raycast down into the basement
-def patch_botw_side_room_keese(actor: Actor):
+def patch_botw_side_room_keese(actor: Actor, rom: Rom):
     actor.z = -1075
 
 # Move the wallmaster in the central room of BOTW so it doesn't raycast down into the basement
-def patch_botw_wallmaster(actor: Actor):
+def patch_botw_wallmaster(actor: Actor, rom: Rom):
     actor.z = -950
 
 # Move the baris in the pit room in jabu down a bit. Sometimes they like to spawn in the ceiling?
-def patch_jabu_pit_room_bari(actor: Actor):
+def patch_jabu_pit_room_bari(actor: Actor, rom: Rom):
     actor.y = -100
+
+# Move the first stalfos spawn in the bow room in forest temple
+def patch_forest_bow_room_stalfos_1(actor: Actor, rom: Rom):
+    rom.write_bytes(0x809272dA - 0x80927020 + 0x00CC4790, [0x43, 0xC8])
 
 var_overrides_iron_knuckles = {
     "Iron Knuckle (White)": 0xFF03,
@@ -438,6 +443,9 @@ vanilla_dungeon_enemies = {
         (3, 5, 0, 4): EnemyLocation(55), # Skulltula
         (3, 6, 0, 0): EnemyLocation(2), # Stalfos
         (3, 6, 0, 1): EnemyLocation(2), # Stalfos
+        (3, 6, 0, 5, 1): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True, patch_func=patch_forest_bow_room_stalfos_1), # Stalfos
+        (3, 6, 0, 5, 2): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
+        (3, 6, 0, 5, 3): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
         (3, 7, 0, 2): EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (3, 7, 0, 3): EnemyLocation(149), # Skullwaltula
         (3, 7, 0, 4): EnemyLocation(85), # Deku Baba
@@ -1351,7 +1359,7 @@ enemy_actor_types: list[Enemy] = [
     Enemy("Bubble", id=0x0069, var=0xFFFF, kill_logic='can_kill_blue_bubble'),
         Enemy("Beamos (Large)", id=0x008A, var=0x0500, kill_logic='can_kill_beamos', soul_name='Beamos'),
         Enemy("Beamos (Small)", id=0x008A, var=0x0501, kill_logic='can_kill_beamos', soul_name='Beamos'),
-    Enemy("Floormaster", id=0x008E, kill_logic='can_kill_floormaster', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
+    Enemy("Floormaster", id=0x008E, kill_logic='can_kill_floormaster', meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]), # Floormasters can not be spawned via SpawnAsChild because each sets its parent/child to one of the others
         Enemy("Redead", id=0x0090, var=0x7F02, soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
         Enemy("Gibdo", id=0x0090, var=0x7FFE, soul_name="Redead and Gibdo", kill_logic='can_kill_redead'),
     Enemy("Skullwalltula", id=0x0095, kill_logic='can_kill_skullwalltula', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),

@@ -63,14 +63,18 @@ def shuffle_enemies(worlds: list[World]):
         # Enemies by scene/room
         scene_enemies = {}
         for key in world.shuffled_enemies:
-            scene, room, setup, index = key
+            if len(key) == 5:
+                scene, room, setup, index, subflag = key
+            else:
+                scene, room, setup, index = key
+                subflag = 0
             if scene not in scene_enemies.keys():
                 scene_enemies[scene] = {}
             if room not in scene_enemies[scene].keys():
                 scene_enemies[scene][room] = {}
             if setup not in scene_enemies[scene][room].keys():
                 scene_enemies[scene][room][setup] = {}
-            scene_enemies[scene][room][setup][key] = world.shuffled_enemies[key]
+            scene_enemies[scene][room][setup][(scene, room, setup, index, subflag)] = world.shuffled_enemies[key]
         world.enemies_by_scene = scene_enemies
 
 def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int | EnemyLocation]) -> dict[tuple[int,int,int,int], tuple[int,bool]]:
@@ -148,6 +152,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
 
     switch_flags_table = []
     skip_raycast_table = []
+    enemy_override_table = []
     if enemizer_on:
         for enemy_key in shuffled_enemies:
             keys = [enemy_key]
@@ -168,7 +173,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                         enemy_actor.var = enemy.var
                         if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation:
                             if world.enemy_list[key].patch_func:
-                                world.enemy_list[key].patch_func(enemy_actor)
+                                world.enemy_list[key].patch_func(enemy_actor, rom)
                             if enemy.name in world.enemy_list[key].var_overrides.keys():
                                 enemy_actor.var = world.enemy_list[key].var_overrides[enemy.name]
                         rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
@@ -177,6 +182,14 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
                                 switch_flags_table.append((key,world.enemy_list[key].switch_flag))
                         if key in world.enemy_list and type(world.enemy_list[key]) is EnemyLocation and world.enemy_list[key].skip_raycast:
                             skip_raycast_table.append(key)
+                elif key in world.enemy_list.keys() and world.enemy_list[key].add_to_override_table:
+                    var = enemy.var
+                    if type(world.enemy_list[key]) is EnemyLocation:
+                        if world.enemy_list[key].patch_func:
+                            world.enemy_list[key].patch_func(None, rom)
+                        if enemy.name in world.enemy_list[key].var_overrides.keys():
+                            var = world.enemy_list[key].var_overrides[enemy.name]
+                    enemy_override_table.append((key, enemy.id, var))
                 else:
                     print(f"Missing enemy actor {key}")
     else:
@@ -184,7 +197,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
             enemy_actor = enemy_list[enemy_actor_key]
             if enemy_actor_key in world.enemy_list and type(world.enemy_list[enemy_actor_key]) is EnemyLocation:
                 if world.enemy_list[enemy_actor_key].patch_func:
-                    world.enemy_list[enemy_actor_key].patch_func(enemy_actor)
+                    world.enemy_list[enemy_actor_key].patch_func(enemy_actor, rom)
                     rom.write_bytes(enemy_actor.addr, enemy_actor.get_bytes())
                 if world.enemy_list[enemy_actor_key].switch_flag >= 0:
                     switch_flags_table.append((enemy_actor_key,world.enemy_list[enemy_actor_key].switch_flag))
@@ -220,6 +233,25 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
         skip_raycast_table_bytes.extend(bytearray([0,0,0]))
         skip_raycast_table_bytes.extend(default.to_bytes(4, 'big'))
     rom.write_bytes_at_symbol('SKIP_RAYCAST_TABLE', skip_raycast_table_bytes)
+
+    # Write the enemy override table
+    enemy_override_table_bytes = bytearray()
+    for flag, enemy_id, var in enemy_override_table:
+        if len(flag) == 4:
+            scene, room, setup, index = flag
+            subflag = 0
+        elif len(flag) == 5:
+            scene, room, setup, index, subflag = flag
+        if scene == 0x3E: # handle grottos separately...
+            default = ((setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((index & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
+        else:
+            default = (setup << 22) + (room << 16) + (index << 8) + (subflag)
+        enemy_override_table_bytes.extend(scene.to_bytes(1, 'big'))
+        enemy_override_table_bytes.extend(bytearray([0,0,0]))
+        enemy_override_table_bytes.extend(default.to_bytes(4, 'big'))
+        enemy_override_table_bytes.extend(enemy_id.to_bytes(2, 'big'))
+        enemy_override_table_bytes.extend(var.to_bytes(2, 'big'))
+    rom.write_bytes_at_symbol('enemy_spawn_override_table', enemy_override_table_bytes)
 
 # Nabooru knuckle enemizer patch function
 # Patch the door to work on room clear instead of switch flag

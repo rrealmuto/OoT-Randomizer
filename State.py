@@ -222,10 +222,14 @@ class State:
         # Get the enemy type at this location
         spot = LocationFactory(location_name)
         scene = spot.scene
-        room,setup,index = spot.default
+        if len(spot.default) ==3:
+            room,setup,index = spot.default
+            subflag = 0
+        elif len(spot.default) == 4:
+            room, setup, index, subflag = spot.default
         index -= 1
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_obj, shuffled = enemies[scene,room,setup,index]
+        enemy_obj, shuffled = enemies[scene,room,setup,index, subflag]
         return self.has_soul(enemy_obj.soul_name, **kwargs)
 
     # Logic helper for determining if an enemy at a partciular spot can be killed, only use for enemy drop shuffle
@@ -240,26 +244,34 @@ class State:
             default = spot.default[0]
         else:
             default = spot.default
-        room,setup,index = default
+        if len(default) ==3:
+            room,setup,index = default
+            subflag = 0
+        elif len(default) == 4:
+            room, setup, index, subflag = default
         if scene == 0x3E: # Grotto scene so don't care about setup
             setup = 0
         index -= 1 # Keys from LocationList are 1-indexed so subtract 1
         # Get the enemy type for this location
 
-        return self.can_kill_with_drop(scene,room,setup,index, **kwargs)
+        return self.can_kill_with_drop(scene,room,setup,index, subflag, **kwargs)
 
     def enemy_type_at(self, location_name:str, **kwargs):
         spot = LocationFactory(location_name)
         scene = spot.scene
-        room,setup,index = spot.default
+        if len(spot.default) ==3:
+            room,setup,index = spot.default
+            subflag = 0
+        elif len(spot.default) == 4:
+            room, setup, index, subflag = spot.default
         index -= 1
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_obj, shuffled = enemies[scene,room,setup,index]
+        enemy_obj, shuffled = enemies[scene,room,setup,index, subflag]
         return enemy_obj.name
 
-    def can_kill_with_drop(self, scene, room, setup, index, **kwargs) -> bool:
+    def can_kill_with_drop(self, scene, room, setup, index, subflag, **kwargs) -> bool:
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_obj, shuffled = enemies[scene,room,setup,index]
+        enemy_obj, shuffled = enemies[scene,room,setup,index, subflag]
         # Check soul for this enemy
         has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
 
@@ -273,20 +285,23 @@ class State:
                 can_kill_drop_cache[enemy_obj.name] = can_kill_rule
             can_kill = can_kill_rule(self, **kwargs)
         else:
-            can_kill = self.can_kill(scene, room, setup, index, **kwargs)
+            can_kill = self.can_kill(scene, room, setup, index, subflag, **kwargs)
         return has_soul and can_kill
 
     # Logic helper for determining if an enemy at a particular spot can be killed. Used when logic for one spot depends on killing a specific enemy
-    def can_kill(self, scene,room,setup,index, **kwargs) -> bool:
+    def can_kill(self, scene,room,setup,index,subflag, **kwargs) -> bool:
         enemies = self.world.enemies_by_scene[scene][room][setup]
-        enemy_obj, shuffled = enemies[scene,room,setup,index]
+        enemy_obj, shuffled = enemies[scene,room,setup,index, subflag]
         # Check soul for this enemy
         has_soul = self.has_soul(enemy_obj.soul_name, **kwargs)
 
         # Check defeatibility
 
         # Check for location specific logic
-        enemy_tuple = (scene, room, setup, index)
+        if subflag == 0:
+            enemy_tuple = (scene, room, setup, index)
+        else:
+            enemy_tuple = (scene, room, setup, index, subflag)
         if enemy_obj.name in self.world.enemy_list[enemy_tuple].location_specific_enemy_logic:
             if type(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name]) == str:
                 self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name] = self.world.parser.parse_rule(self.world.enemy_list[enemy_tuple].location_specific_enemy_logic[enemy_obj.name])
@@ -313,13 +328,17 @@ class State:
             raise Exception("Can't use can_kill_this for non EnemyDrop accessibility checks")
         # Get the key from LocationList
         scene = spot.scene
-        room,setup,index = spot.default
+        if len(spot.default) == 3:
+            room,setup,index = spot.default
+            subflag = 0
+        elif len(spot.default) == 4:
+            room, setup, index, subflag = spot.default
         if scene == 0x3E: # Grotto scene so don't care about setup
             setup = 0
         index -= 1 # Keys from LocationList are 1-indexed so subtract 1
         # Get the enemy type for this location
 
-        return self.can_kill(scene,room,setup,index, **kwargs)
+        return self.can_kill(scene,room,setup,index,subflag, **kwargs)
 
     # Logic helper for determining if a room/scene/setup can be cleared
     def can_clear_room_setup(self, scene,room,setup, **kwargs) -> bool:
@@ -328,8 +347,8 @@ class State:
         # Loop through each enemy and determine defeatability
         # Need to check for the soul for each enemy, and the defeatability function
         for enemy in enemies:
-            scene, room, setup, index = enemy
-            if not self.can_kill(scene, room, setup, index, **kwargs):
+            scene, room, setup, index, subflag = enemy
+            if not self.can_kill(scene, room, setup, index, subflag, **kwargs):
                 return False
 
         return True
