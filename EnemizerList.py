@@ -443,9 +443,9 @@ vanilla_dungeon_enemies = {
         (3, 5, 0, 4): EnemyLocation(55), # Skulltula
         (3, 6, 0, 0): EnemyLocation(2), # Stalfos
         (3, 6, 0, 1): EnemyLocation(2), # Stalfos
-        (3, 6, 0, 5, 1): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True, patch_func=patch_forest_bow_room_stalfos_1), # Stalfos
-        (3, 6, 0, 5, 2): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
-        (3, 6, 0, 5, 3): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
+        (3, 6, 0, 4, 1): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True, patch_func=patch_forest_bow_room_stalfos_1), # Stalfos
+        (3, 6, 0, 4, 2): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
+        (3, 6, 0, 4, 3): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
         (3, 7, 0, 2): EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
         (3, 7, 0, 3): EnemyLocation(149), # Skullwaltula
         (3, 7, 0, 4): EnemyLocation(85), # Deku Baba
@@ -938,6 +938,9 @@ mq_dungeon_enemies = {
         (3, 5, 0, 4):  EnemyLocation(2), # Stalfos
         (3, 6, 0, 0):  EnemyLocation(431), # Wolfos
         (3, 6, 0, 1):  EnemyLocation(431), # Wolfos
+        (3, 6, 0, 4, 1): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True, patch_func=patch_forest_bow_room_stalfos_1), # Stalfos
+        (3, 6, 0, 4, 2): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
+        (3, 6, 0, 4, 3): EnemyLocation(2, disallowed_enemies=["Floormaster"], add_to_override_table = True), # Stalfos
         (3, 7, 0, 2):  EnemyLocation(149), # Skullwaltula
         (3, 7, 0, 3):  EnemyLocation(85), # Deku Baba
         (3, 7, 0, 4):  EnemyLocation(85), # Deku Baba
@@ -1264,7 +1267,7 @@ named_rooms: dict[str, tuple[int,int]] = {
     'SFM WOLFOS GROTTO': (0x3E, 7),
     'JABU COMPASS': (2, 12),
     'JABU BOOMERANG': (2, 9),
-    'FOREST TEMPLE LOWER STALFOS': (3,6),
+    'FOREST TEMPLE STALFOS': (3,6),
     'FOREST TEMPLE BEFORE LEDGE': (3, 21),
     'FIRE TEMPLE LOWER LOCKED DOOR': (4,15),
     'WATER TEMPLE MAP CHEST': (5, 19),
@@ -1287,7 +1290,7 @@ named_rooms: dict[str, tuple[int,int]] = {
     'GTG HEAVY BLOCK': (11,10),
     'GTG HAMMER ROOM': (11,5),
     'GANONS CASTLE WATER TRIAL ENTRY': (13,2),
-    'GANONS CASTLE LIGHT TRIAL INVISIBLE ENEMIES': (13,9),
+    'GANONS CASTLE LIGHT TRIAL INVISIBLE ENEMIES': (13,9)
 }
 
 class Enemy:

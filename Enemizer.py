@@ -242,6 +242,7 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
             subflag = 0
         elif len(flag) == 5:
             scene, room, setup, index, subflag = flag
+        index += 1 # Increment by 1 so it matches the xflag
         if scene == 0x3E: # handle grottos separately...
             default = ((setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((index & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
         else:
