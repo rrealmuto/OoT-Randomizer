@@ -60,6 +60,22 @@ def update_location_specific_logic(enemy_list: dict[tuple[int,int,int,int], Enem
 def shuffle_enemies(worlds: list[World]):
     for world in worlds:
         world.shuffled_enemies = _shuffle_enemies(world,world.enemy_list)
+
+        # Process enemy logic at this time
+        for enemy_key in world.shuffled_enemies:
+            enemy_obj = world.shuffled_enemies[enemy_key][0]
+            # Check if we should use a location specific logic rule for the enemy at this location
+            if enemy_obj.name in world.enemy_list[enemy_key].location_specific_enemy_logic:
+                # Use the location specific kill rule for this enemy type
+                world.enemy_list[enemy_key].kill_rule = world.parser.parse_rule(world.enemy_list[enemy_key].location_specific_enemy_logic[enemy_obj.name])
+                world.enemy_list[enemy_key].drop_rule = None
+            else:
+                # Use the generic kill rule
+                world.enemy_list[enemy_key].kill_rule = world.parser.parse_rule(enemy_obj.kill_logic)
+                if enemy_obj.drop_logic:
+                    world.enemy_list[enemy_key].drop_rule = world.parser.parse_rule(enemy_obj.drop_logic)
+                else:
+                    world.enemy_list[enemy_key].drop_rule = None
         # Enemies by scene/room
         scene_enemies = {}
         for key in world.shuffled_enemies:
