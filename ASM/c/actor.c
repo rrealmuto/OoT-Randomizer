@@ -20,6 +20,7 @@
 #include "bg_mori_bigst.h"
 #include "bg_check.h"
 #include "en_encount1.h"
+#include "debug.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -452,6 +453,13 @@ bool filter_skullkids(ActorEntry* actorEntry) {
     return type > 6;
 }
 
+bool filter_octoroks(ActorEntry* actorEntry) {
+    #ifdef DEBUG_MODE
+    return true;
+    #else
+    return false;
+    #endif
+}
 
 enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_TEST, 0x0003, NULL }, //Stalfos, 0000 makes it invisible
@@ -499,7 +507,8 @@ enemy_list_entry_t enemy_list[] = {
     { ACTOR_EN_RR, 0x0000, NULL},
     { ACTOR_EN_REEBA, 0x0000, NULL},
     { ACTOR_EN_SKB, 0x0000, NULL},
-    { ACTOR_EN_SW, 0x0000, filter_skullwalltula }
+    { ACTOR_EN_SW, 0x0000, filter_skullwalltula },
+    { ACTOR_EN_OKUTA, 0x0000, filter_octoroks }
 };
 
 bool is_enemy(ActorEntry* actorEntry) {
@@ -541,6 +550,14 @@ bool should_raycast(xflag_t* flag) {
     return true;
 }
 
+#ifdef DEBUG_MODE
+// Used by debug mode to spawn specific enemies
+bool debug_enemizer_spawns = false;
+uint16_t debug_spawn_actor_id = 0;
+uint16_t debug_spawn_actor_var = 0;
+
+#endif
+
 bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
     if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry) && check_enemizer_sequence(globalCtx)) {
         int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
@@ -549,6 +566,13 @@ bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool
         actorEntry->params = enemy_list[index].var;
         *overridden = true;
     }
+    #ifdef DEBUG_MODE
+    if (debug_enemizer_spawns && is_enemy(actorEntry)) {
+        actorEntry->id = debug_spawn_actor_id;
+        actorEntry->params = debug_spawn_actor_var;
+        *overridden = true;
+    }
+    #endif
 
     if(CFG_ENEMIZER && is_enemy(actorEntry)) {
         xflag_t flag = {0};
