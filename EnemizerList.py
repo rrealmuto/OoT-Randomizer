@@ -549,13 +549,14 @@ vanilla_dungeon_enemies = {
         (5, 8, 0, 3):  EnemyLocation(197), # Shell Blade
         (5, 9, 0, 0):  EnemyLocation(27), # Tektite
         (5, 10, 0, 1): EnemyLocation( 27), # Tektite
-        (5, 12, 0, 0): EnemyLocation( 197), # Shell Blade
-        (5, 12, 0, 3): EnemyLocation( 27), # Tektite
-        (5, 12, 0, 4): EnemyLocation( 27), # Tektite
-        (5, 12, 0, 5): EnemyLocation( 27), # Tektite
-        (5, 12, 0, 6): EnemyLocation( 27), # Tektite
-        (5, 12, 0, 7): EnemyLocation( 27), # Tektite
-        (5, 12, 0, 8): EnemyLocation( 27), # Tektite
+        (5, 12, 0, 0): EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
+        (5, 12, 0, 3): EnemyLocation(2, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER], disallowed_enemies=['Stalfos', 'Tektite', 'Peahat', 'Flying Peahat', 'Baby Dodongo', 'Tailpasaran', 'Torch Slug', 'Moblin (Spear)', 'Deku Baba', 'Beamos (Large)', 'Beamos (Small)', 'Redead', 'Gibdo', 'Flare Dancer', 'Iron Knuckle (Black)', 'Iron Knuckle (White)', 'Skull Kid', 'Wolfos']), # Tektite
+        (5, 12, 0, 5): EnemyLocation(2, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER], disallowed_enemies=['Stalfos', 'Tektite', 'Peahat', 'Flying Peahat', 'Baby Dodongo', 'Tailpasaran', 'Torch Slug', 'Moblin (Spear)', 'Deku Baba', 'Beamos (Large)', 'Beamos (Small)', 'Redead', 'Gibdo', 'Flare Dancer', 'Iron Knuckle (Black)', 'Iron Knuckle (White)', 'Skull Kid', 'Wolfos']), # Tektite
+        (5, 12, 0, 7): EnemyLocation(2, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER], disallowed_enemies=['Stalfos', 'Tektite', 'Peahat', 'Flying Peahat', 'Baby Dodongo', 'Tailpasaran', 'Torch Slug', 'Moblin (Spear)', 'Deku Baba', 'Beamos (Large)', 'Beamos (Small)', 'Redead', 'Gibdo', 'Flare Dancer', 'Iron Knuckle (Black)', 'Iron Knuckle (White)', 'Skull Kid', 'Wolfos']), # Tektite
+        (5, 12, 0, 8): EnemyLocation(2, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER], disallowed_enemies=['Stalfos', 'Tektite', 'Peahat', 'Flying Peahat', 'Baby Dodongo', 'Tailpasaran', 'Torch Slug', 'Moblin (Spear)', 'Deku Baba', 'Beamos (Large)', 'Beamos (Small)', 'Redead', 'Gibdo', 'Flare Dancer', 'Iron Knuckle (Black)', 'Iron Knuckle (White)', 'Skull Kid', 'Wolfos']), # Tektite
+        
+        (5, 12, 0, 6): EnemyLocation(2, disallowed_enemies=['Flare Dancer', 'Skull Kid']), # Tektite
+        (5, 12, 0, 4): EnemyLocation(2, disallowed_enemies=['Flare Dancer', 'Skull Kid']), # Tektite
         (5, 14, 0, 0): EnemyLocation( 396), # Stinger
         (5, 14, 0, 1): EnemyLocation( 396), # Stinger
         (5, 14, 0, 2): EnemyLocation( 396), # Stinger
