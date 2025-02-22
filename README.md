@@ -153,6 +153,11 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v155
+  * Improve enemizer logic processing
+  * Add location specific logic for enemies in water temple boulder room
+  * Improve skullwalltula behavior in enemizer :)
+
 ### v154
   * Fix generation error w/ boulder types in a list
 
