@@ -2436,6 +2436,11 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Revert Enemizer Patches if it's not enabled
     if world.settings.enemizer == 'off':
         rom.revert_patch("ENFD_PATCH_BGM_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_1_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_2_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_3_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_4_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_5_ENEMIZER")
 
     # Write numeric seed truncated to 32 bits for rng seeding
     # Overwritten with new seed every time a new rng value is generated
