@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v156
+  * Fix DMT summit boulder shuffle logic in enemizer
+
 ### v155
   * Improve enemizer logic processing
   * Add location specific logic for enemies in water temple boulder room
