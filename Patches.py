@@ -2427,7 +2427,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
         patch_enemies(world,rom_enemies, world.shuffled_enemies, rom, scene_data, world.settings.enemizer == 'on')
         for patch_func in enemizer_patches:
-            patch_func(rom, scene_data)
+            patch_func(rom, world, scene_data)
         rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 1)
         rom.write_byte(rom.sym('CFG_ENEMIZER'), 1)
     if world.settings.enemizer == 'change':

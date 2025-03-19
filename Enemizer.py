@@ -239,20 +239,22 @@ def patch_enemies(world: World,enemy_list: dict[tuple[int,int,int,int],Actor], s
 
 # Nabooru knuckle enemizer patch function
 # Patch the door to work on room clear instead of switch flag
-def patch_nabooru_knuckle(rom: Rom, scene_data: list[Scene]):
+def patch_nabooru_knuckle(rom: Rom, world: World, scene_data: list[Scene]):
     nabooru_transition = scene_data[23].transition_actors[1]
     nabooru_transition.var = 0x40
     rom.write_bytes(nabooru_transition.addr, nabooru_transition.get_bytes())
 
 # Jabu Jabu Shabom Room timer patch
 # Disable the timer in enemizer
-def patch_jabu_jabu_room_timer(rom: Rom, scene_data: list[Scene]):
-    timer = scene_data[2].rooms[12].setups[0].actors[0]
-    timer.var = 0x7878 # Patch the timer to have 2 minute time limit
-    rom.write_bytes(timer.addr, timer.get_bytes())
+# Only for vanilla jabu
+def patch_jabu_jabu_room_timer(rom: Rom, world: World, scene_data: list[Scene]):
+    if not world.dungeon_mq['Jabu Jabus Belly']:
+        timer = scene_data[2].rooms[12].setups[0].actors[0]
+        timer.var = 0x7878 # Patch the timer to have 2 minute time limit
+        rom.write_bytes(timer.addr, timer.get_bytes())
 
 # Patch RestrictionFlags list to allow weapons in adult market
-def patch_adult_market(rom: Rom, scene_data: list[Scene]):
+def patch_adult_market(rom: Rom, world: World, scene_data: list[Scene]):
     rom.write_int32(0xB6D2B0 + 0xB4, 0x22000000)
 
 # Add patch funcs here, we'll call them in a loop in patches.py
