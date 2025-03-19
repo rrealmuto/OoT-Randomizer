@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v157
+  * Fix Jabu Shabom Room patch being applied to MQ
+
 ### v156
   * Fix DMT summit boulder shuffle logic in enemizer
 
