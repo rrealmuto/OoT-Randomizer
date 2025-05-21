@@ -1763,31 +1763,6 @@ skip_GS_BGS_text:
     sw      r0, 0x0428(v0)
 
 ;==================================================================================================
-; Damage Multiplier
-;==================================================================================================
-
-; Replaces:
-;   lbu     t7, 0x3d(a1)
-;   beql    t7, zero, 0x20
-;   lh      t8, 0x30(a1)
-;   bgezl   s0, 0x20
-;   lh      t8, 0x30(a1)
-;   sra     s0, s0, 1    ; double defense
-;   sll     s0, s0, 0x10
-;   sra     s0, s0, 0x10 ; s0 = damage
-
-.orga 0xAE807C
-    bgez    s0, @@continue ; check if damage is negative
-    lh      t8, 0x30(a1)   ; load hp for later
-    jal     Apply_Damage_Multiplier
-    nop
-    lh      t8, 0x30(a1)   ; load hp for later
-    nop
-    nop
-    nop
-@@continue:
-
-;==================================================================================================
 ; Roll Collision / Bonks Kill Player
 ;==================================================================================================
 
@@ -4446,3 +4421,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/ovl_enskjneedle.asm"
 .include "hacks/ovl_item_shield.asm"
 .include "hacks/ovl_en_sw.asm"
+.include "hacks/damage_multiplier.asm"
