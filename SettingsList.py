@@ -4116,6 +4116,17 @@ class SettingInfos:
         shared         = True,
     )
 
+    gloom = Checkbutton(
+        gui_text       = 'Gloom Mode',
+        default        = False,
+        gui_tooltip    = '''\
+            When enabled, every time the player
+            takes damage, their overall health
+            is reduced by one heart.
+        ''',
+        shared         = True
+    )
+
     deadly_bonks = Combobox(
         gui_text       = 'Bonks Do Damage',
         default        = 'none',
