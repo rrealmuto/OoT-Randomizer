@@ -29,6 +29,7 @@ void extended_objects_init() {
     for(int i = 0; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         extended_object_ctx.slots[i].id = 0;
         extended_object_ctx.slots[i].is_active = 0;
+        extended_object_ctx.slots[i].room = -1;
         extended_object_ctx.slots[i].data = NULL;
     }
 }
@@ -44,6 +45,7 @@ void extended_objects_reset() {
             ZeldaArena_Free(extended_object_ctx.slots[i].data);
         }
         extended_object_ctx.slots[i].is_active = 0;
+        extended_object_ctx.slots[i].room = -1;
         extended_object_ctx.slots[i].data = NULL;
     }
 }
@@ -91,10 +93,11 @@ void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
             if(slot->data && slot->is_active) {
                 slot->is_active = 0;
             }
-            else {
+            else if(slot->room != roomCtx->curRoom.num) { // Don't unload the object if it is for the current room. Mostly sanity check to fix actor glitch crashing
                 // The slot is no longer active so free the slot and the data from the heap
                 ZeldaArena_Free(slot->data);
                 slot->id = 0;
+                slot->room = -1;
                 slot->data = 0;
             }
             slot++;
@@ -134,6 +137,7 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
             size = load_object_file(object_id, extended_object_ctx.slots[free_index].data);
             extended_object_ctx.slots[free_index].id = object_id;
             extended_object_ctx.slots[free_index].is_active = 1;
+            extended_object_ctx.slots[free_index].room = z64_game.room_ctx.curRoom.num;
             //extended_object_ctx.free += size;
             //extended_object_ctx.num++;
             return free_index;

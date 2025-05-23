@@ -11,6 +11,7 @@
 typedef struct extended_object {
     int16_t id;
     uint8_t is_active;
+    uint8_t room;
     void*   data;
 } extended_object_t;
 
