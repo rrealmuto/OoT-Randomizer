@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v159
+  * Disallow iron knuckles in DC lizalfos room
+
 ### v158
   * Fix actor glitch crashes
 

@@ -345,10 +345,10 @@ vanilla_dungeon_enemies = {
         (1, 1, 0, 6):  EnemyLocation(47), # Baby Dodongo
         (1, 1, 0, 7):  EnemyLocation(47), # Baby Dodongo
         (1, 2, 0, 0):  EnemyLocation(149), # Skullwaltula
-        (1, 3, 0, 1):  EnemyLocation(37), # Lizalfos/Dinalfos
-        (1, 3, 0, 2):  EnemyLocation(37), # Lizalfos/Dinalfos
-        (1, 3, 0, 3):  EnemyLocation(37), # Lizalfos/Dinalfos
-        (1, 3, 0, 4):  EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 1):  EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
+        (1, 3, 0, 2):  EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
+        (1, 3, 0, 3):  EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
+        (1, 3, 0, 4):  EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
         (1, 4, 0, 0):  EnemyLocation(18), # Dodongo
         (1, 4, 0, 1):  EnemyLocation(18), # Dodongo
         (1, 4, 0, 2):  EnemyLocation(18), # Dodongo
@@ -840,10 +840,10 @@ mq_dungeon_enemies = {
         (1, 2, 0, 3):   EnemyLocation(55), # Skulltula
         (1, 2, 0, 7):   EnemyLocation(138), # Beamos
         (1, 2, 0, 8):   EnemyLocation(138), # Beamos
-        (1, 3, 0, 1):   EnemyLocation(37), # Lizalfos/Dinalfos
-        (1, 3, 0, 2):   EnemyLocation(37), # Lizalfos/Dinalfos
-        (1, 3, 0, 3):   EnemyLocation(37), # Lizalfos/Dinalfos
-        (1, 3, 0, 4):   EnemyLocation(37), # Lizalfos/Dinalfos
+        (1, 3, 0, 1):   EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
+        (1, 3, 0, 2):   EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
+        (1, 3, 0, 3):   EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
+        (1, 3, 0, 4):   EnemyLocation(37, disallowed_enemies=["Iron Knuckle (Black)", "Iron Knuckle (White)"]), # Lizalfos/Dinalfos
         (1, 5, 0, 4):   EnemyLocation(18), # Dodongo
         (1, 5, 0, 5):   EnemyLocation(18), # Dodongo
         (1, 5, 0, 6):   EnemyLocation(18), # Dodongo
