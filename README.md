@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v158
+  * Fix actor glitch crashes
+
 ### v157
   * Fix Jabu Shabom Room patch being applied to MQ
 
