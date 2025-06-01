@@ -51,12 +51,6 @@
             "Forest Temple GS Level Island Courtyard": "
                 can_use(Longshot) or
                 at('Forest Temple Outside Upper Ledge', can_use(Hookshot) or can_use(Boomerang))",
-            "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
-            "Deku Baba Nuts": "
-                has_soul(Deku_Baba) and (
-                    is_adult or Slingshot or Sticks or
-                    has_explosives or Kokiri_Sword or can_use(Dins_Fire)
-                )",
             "Forest Temple Level Island Courtyard Lower Deku Baba": "can_kill_this",
             "Forest Temple Level Island Courtyard Octorok": "can_kill_this",
             "Forest Temple Level Island Courtyard Skullwalltula Lower": "can_kill_this",
@@ -66,10 +60,7 @@
         "exits": {
             "Forest Temple NE Outdoors": "(Progressive_Scale, 2)",
             # Other methods of crossing through the well are not currently relevant.
-            "Forest Temple Outdoors High Balconies": "
-                here((has_soul(Bubble)) and
-                    (is_adult or has_explosives or
-                        ((Boomerang or Nuts or Deku_Shield) and (Sticks or Kokiri_Sword or Slingshot))))",
+            "Forest Temple Outdoors High Balconies": "here(can_kill_named('Forest Temple Map Chest Blue Bubble'))",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)"
         }
     },
