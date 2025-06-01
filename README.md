@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### v160
+  * Fix ganons tower access missing in enemizer
+
 ### v159
   * Disallow iron knuckles in DC lizalfos room
 

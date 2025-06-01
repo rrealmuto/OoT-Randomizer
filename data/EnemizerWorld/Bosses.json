@@ -166,6 +166,10 @@
     {
         "region_name": "Ganons Castle Tower",
         "dungeon": "Ganons Castle",
+        "events": {
+            # Used for the "path to the tower" goal
+            "Ganons Tower Access": "is_adult"
+        },
         "locations": {
             "Ganons Tower Boss Key Chest": "can_clear_room(GANONS_TOWER_LIZALFOS) and can_clear_room(GANONS_TOWER_STALFOS)",
             "Ganons Tower Dinolfos 1": "can_kill_this",
