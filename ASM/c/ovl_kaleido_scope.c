@@ -170,14 +170,24 @@ void draw_soul_menu(menu_ctx* menu, z64_game_t* globalCtx, z64_disp_buf_t* dl) {
     for(int i = menu->curr_min_line; i < menu->curr_min_line + MAX_LINES; i++) {
         if(flags_getsoul(names[i].soul_id)) {
             if(get_soul_enabled(names[i].soul_id)) {
-                gDPSetPrimColor(dl->p++, 0,0,255,255,255,255);
+                if (get_soul_status(names[i].soul_id, names) & SOUL_STATUS_PRESENT) {
+                    gDPSetPrimColor(dl->p++, 0,0,0,255,0,255);
+                }
+                else {
+                    gDPSetPrimColor(dl->p++, 0,0,255,255,255,255);
+                }
             }
             else {
                 gDPSetPrimColor(dl->p++, 0,0,255,0,0,255);
             }
         }
         else {
-            gDPSetPrimColor(dl->p++, 0,0,85,85,85,255);
+            if(get_soul_status(names[i].soul_id, names) & SOUL_STATUS_INHIBITED) {
+                gDPSetPrimColor(dl->p++, 0,0,255,255,0,255);
+            }
+            else {
+                gDPSetPrimColor(dl->p++, 0,0,85,85,85,255);
+            }
         }
         int x = text_print_size(dl, names[i].name,50, y,8,8);
         if(menu->curr_line == i) {

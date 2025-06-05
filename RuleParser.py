@@ -13,6 +13,7 @@ from RulesCommon import AccessRule, allowed_globals, escape_name
 from State import State
 from Utils import data_path, read_logic_file
 from Boulders import boulder_rules
+from EnemizerList import named_rooms
 
 if TYPE_CHECKING:
     from World import World
@@ -73,8 +74,12 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         self.rule_cache: dict[str, AccessRule] = {}
 
     def visit_Name(self, node: ast.Name) -> Any:
+        if "REDEAD_GROTTO" in node.id:
+            pass
         if node.id.startswith('BOULDER_TYPE'):
             return ast.Constant(value=boulder_rules[node.id])
+        if node.id in named_rooms.keys():
+            return ast.Constant(value=node.id)
         if node.id in dir(self):
             return getattr(self, node.id)(node)
         elif node.id in rule_aliases:
@@ -242,6 +247,9 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         def escape_or_string(n: ast.AST) -> Any:
             if isinstance(n, ast.Name) and n.id in escaped_items:
                 return ast.Constant(escaped_items[n.id])
+            elif isinstance(n, ast.List):
+                for i in range(0, len(n.elts)):
+                    n.elts[i] = escape_or_string(n.elts[i])
             elif not (isinstance(n, ast.Constant) and isinstance(n.value, str)):
                 return self.visit(n)
             return n
@@ -469,7 +477,7 @@ class Rule_AST_Transformer(ast.NodeTransformer):
         return ast.Constant(True)
 
     def at_night(self, node: ast.Call) -> ast.expr:
-        if self.current_spot.type == 'GS Token' and self.world.settings.logic_no_night_tokens_without_suns_song:
+        if self.current_spot and self.current_spot.type == 'GS Token' and self.world.settings.logic_no_night_tokens_without_suns_song:
             # Using visit here to resolve 'can_play' rule
             return self.visit(ast.parse('can_play(Suns_Song)', mode='eval').body)
         if self.world.ensure_tod_access:

@@ -45,6 +45,6 @@ Object_UpdateEntries_Extended:
 
 ; Hooking calling to unload room from EnHoll so we can pass the holl actor
 ; actor is in a3
-EnHoll_Room_Change_Hook:
-    j   EnHoll_Room_Change_Hack
-    or  a2, r0, a3
+;EnHoll_Room_Change_Hook:
+;    j   EnHoll_Room_Change_Hack
+;    or  a2, r0, a3

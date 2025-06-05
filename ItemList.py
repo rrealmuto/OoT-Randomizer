@@ -327,7 +327,7 @@ class GetItemId(IntEnum):
     GI_SOUL_KEESE = 0x0204
     GI_SOUL_TEKTITE = 0x0205
     GI_SOUL_PEAHAT = 0x0206
-    GI_SOUL_LIZALFOS_AND_DINALFOS = 0x0207
+    GI_SOUL_LIZALFOS_AND_DINOLFOS = 0x0207
     GI_SOUL_GOHMA_LARVAE = 0x0208
     GI_SOUL_SHABOM = 0x0209
     GI_SOUL_BABY_DODONGO = 0x020A
@@ -633,7 +633,7 @@ item_table: dict[str, tuple[str, Optional[bool], Optional[int], Optional[dict[st
     'Keese Soul':                                      ('Soul',     True,  GetItemId.GI_SOUL_KEESE, None),
     'Tektite Soul':                                    ('Soul',     True,  GetItemId.GI_SOUL_TEKTITE, None),
     'Peahat Soul':                                     ('Soul',     True,  GetItemId.GI_SOUL_PEAHAT, None),
-    'Lizalfos and Dinalfos Soul':                      ('Soul',     True,  GetItemId.GI_SOUL_LIZALFOS_AND_DINALFOS, None),
+    'Lizalfos and Dinolfos Soul':                      ('Soul',     True,  GetItemId.GI_SOUL_LIZALFOS_AND_DINOLFOS, None),
     'Gohma Larvae Soul':                               ('Soul',     True,  GetItemId.GI_SOUL_GOHMA_LARVAE, None),
     'Shabom Soul':                                     ('Soul',     True,  GetItemId.GI_SOUL_SHABOM, None),
     'Baby Dodongo Soul':                               ('Soul',     True,  GetItemId.GI_SOUL_BABY_DODONGO, None),

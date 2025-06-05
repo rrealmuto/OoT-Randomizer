@@ -160,6 +160,12 @@ class Rom(BigStream):
         super().write_bytes(address, values)
         self.changed_address.update(zip(range(address, address + len(values)), values))
 
+    def write_bytes_at_symbol(self, symbol: str,  values: Sequence[int]) -> None:
+        addr = self.sym(symbol)
+        if len(values) > self.sym_length(symbol):
+            raise Exception(f"Error writing {len(values)} bytes to {symbol}. Only have {self.sym_length(symbol)} bytes")
+        self.write_bytes(addr, values)
+
     def revert_patch(self, patch_name: str) -> None:
         # Get the _START and _END symbols
         patch_start = OverlayTable.VRAM_2_VROM(self.overlay_table, self.patch_symbols[patch_name + "_START"])
