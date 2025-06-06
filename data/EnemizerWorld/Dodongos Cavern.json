@@ -84,8 +84,8 @@
             "Dodongos Cavern Lower Lizalfos 2" : "can_kill_this"
         },
         "exits" : {
-            "Dodongos Cavern Torch Room": "False", #TODO Fix this
-            "Dodongos Cavern Lower Right Side": "False" #TODO Fix this
+            "Dodongos Cavern Torch Room": "can_kill_named('Dodongos Cavern Lower Lizalfos 1') and can_kill_named('Dodongos Cavern Lower Lizalfos 2')",
+            "Dodongos Cavern Lower Right Side": "can_kill_named('Dodongos Cavern Lower Lizalfos 1') and can_kill_named('Dodongos Cavern Lower Lizalfos 2')"
         }
     },
     {
@@ -191,8 +191,8 @@
             "Dodongos Cavern Upper Lizalfos 2" : "can_kill_this"
         },
         "exits": {
-            "Dodongos Cavern Before Upper Lizalfos": "False", #TODO Fix this
-            "Dodongos Cavern Far Bridge": "False" #TODO Fix this
+            "Dodongos Cavern Before Upper Lizalfos": "can_kill_named('Dodongos Cavern Upper Lizalfos 1') and can_kill_named('Dodongos Cavern Upper Lizalfos 2')",
+            "Dodongos Cavern Far Bridge": "can_kill_named('Dodongos Cavern Upper Lizalfos 1') and can_kill_named('Dodongos Cavern Upper Lizalfos 2')"
         }
     },
     {
