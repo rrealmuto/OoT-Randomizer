@@ -935,9 +935,9 @@ mq_dungeon_enemies = {
         (3, 7, 0, 3):  EnemyLocation(85), # Deku Baba
         (3, 7, 0, 4):  EnemyLocation(85), # Deku Baba
         (3, 7, 0, 5):  EnemyLocation(85), # Deku Baba
-        (3, 8, 0, 0):  EnemyLocation(14), # Octorok
-        (3, 8, 0, 1):  EnemyLocation(14), # Octorok
-        (3, 8, 0, 2):  EnemyLocation(14), # Octorok
+        (3, 8, 0, 0):  EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[LOCATION_RESTRICTION.ABOVE_WATER]), # Octorok
+        (3, 8, 0, 1):  EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[LOCATION_RESTRICTION.ABOVE_WATER]), # Octorok
+        (3, 8, 0, 2):  EnemyLocation(14, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[LOCATION_RESTRICTION.ABOVE_WATER]), # Octorok
         (3, 8, 0, 3):  EnemyLocation(149), # Skullwaltula
         (3, 8, 0, 4):  EnemyLocation(149), # Skullwaltula
         (3, 8, 0, 5):  EnemyLocation(149), # Skullwaltula
@@ -955,10 +955,10 @@ mq_dungeon_enemies = {
         (3, 17, 0, 0): EnemyLocation( 55), # Skulltula
         (3, 17, 0, 1): EnemyLocation( 55), # Skulltula
         (3, 18, 0, 0): EnemyLocation( 144), # Redead/Gibdo
-        (3, 19, 0, 0): EnemyLocation(17, skip_raycast=True), # Wallmaster
+        (3, 19, 0, 0): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], skip_raycast=True, patch_func=patch_forest_first_rotating_hallway_wallmaster), # Wallmaster
         (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
         (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
-        (3, 20, 0, 2): EnemyLocation(17), # Wallmaster
+        (3, 20, 0, 2): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], skip_raycast=True, patch_func=patch_forest_second_rotating_hallway_wallmaster), # Wallmaster
         (3, 21, 0, 0): EnemyLocation(142), # Floormaster
     },
     'Fire Temple': {
