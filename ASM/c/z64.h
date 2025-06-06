@@ -1101,6 +1101,17 @@ typedef struct {
     /* 0x18 */ void* ramFileName;
 } PausePlayerOverlay;
 
+typedef struct ActorShape {
+    /* 0x00 */ z64_xyz_t rot; // Current actor shape rotation
+    /* 0x06 */ int16_t face; // Used to index eyes and mouth textures. Only used by player
+    /* 0x08 */ float yOffset; // Model y axis offset. Represents model space units
+    /* 0x0C */ void* shadowDraw; // Shadow draw function
+    /* 0x10 */ float shadowScale; // Changes the size of the shadow
+    /* 0x14 */ uint8_t shadowAlpha; // Default is 255
+    /* 0x15 */ uint8_t feetFloorFlag; // 0 if actor or feet aren't on ground, or 1 or 2 depending on feet positions
+    /* 0x18 */ z64_xyzf_t feetPos[2]; // Update by using `Actor_SetFeetPos` in PostLimbDraw
+} ActorShape; // size = 0x30
+
 typedef struct z64_actor_s z64_actor_t;
 struct z64_game_t;
 
@@ -1113,7 +1124,7 @@ struct z64_actor_s
   z64_xyzf_t      pos_init;         /* 0x0008 */
   z64_rot_t       rot_init;         /* 0x0014 */
   char            unk_01_[0x0002];  /* 0x001A */
-  uint16_t        variable;         /* 0x001C */
+  int16_t        variable;          /* 0x001C */
   uint8_t         obj_bank_index;   /* 0x001E */
   char            navi_tgt_dist;    /* 0x001F */
   uint16_t        sound_effect;     /* 0x0020 */
@@ -1145,10 +1156,8 @@ struct z64_actor_s
   char            unk_0D_;          /* 0x00B0 */
   uint8_t         damage_effect;    /* 0x00B1 */
   char            unk_0E_[0x0002];  /* 0x00B2 */
-  z64_rot_t       rot_2;            /* 0x00B4 */
-  int16_t         face;             /* 0x00BA */
-  float           yOffset;          /* 0x00BC */
-  char            unk_0F_[0x0040];  /* 0x00C0 */
+  ActorShape      shape;            /* 0x00B4 */
+  char            unk_0F_[0x001C];  /* 0x00E4 */
   z64_xyzf_t      pos_4;            /* 0x0100 */
   uint16_t        unk_10_;          /* 0x010C */
   uint16_t        text_id;          /* 0x010E */

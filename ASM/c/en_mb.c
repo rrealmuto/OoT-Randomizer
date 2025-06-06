@@ -55,7 +55,7 @@ void EnMb_ClubWaitPlayerNearAndRotate(EnMb* this, z64_game_t* globalCtx) {
         yaw = -0x800;
     }
     this->actor.rot_world.y += yaw;
-    this->actor.rot_2.y += yaw;
+    this->actor.shape.rot.y += yaw;
     EnMbActionFunc EnMb_ClubWaitPlayerNear = resolve_actor_overlay_addr(&OVL_EnMb_ClubWaitPlayerNear, &this->actor);
     EnMb_ClubWaitPlayerNear(this, globalCtx);
 }

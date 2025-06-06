@@ -4423,3 +4423,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/ovl_item_shield.asm"
 .include "hacks/ovl_en_sw.asm"
 .include "hacks/damage_multiplier.asm"
+.include "hacks/ovl_en_tp.asm"

@@ -422,7 +422,7 @@ void try_pending_item() {
         EnItem00* collectible = (EnItem00*)z64_SpawnActor(&z64_game.actor_ctxt, &z64_game, 0x0015, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0, 0, 0, 0x8000 | item_row->collectible);
         collectible->override = override;
         collectible->scale = collectible->actor.scale.x = collectible->actor.scale.y = collectible->actor.scale.z = 0.015f;
-        collectible->actor.yOffset = 750.0f;
+        collectible->actor.shape.yOffset = 750.0f;
         lookup_model_by_override(&collectible->model, collectible->override);
         pop_pending_item();
         after_key_received(override.key);
@@ -567,7 +567,7 @@ void reset_collectible_mutex() {
 // New EnItem00 function that freezes Link until the messagebox is closed. Similar to how skulls work.
 void Collectible_WaitForMessageBox(EnItem00* this, z64_game_t* game) {
     // Put the item above Link's head and keep it spinning like the normal action function
-    this->actor.rot_2.y += 960;
+    this->actor.shape.rot.y += 960;
     this->actor.pos_world = z64_link.common.pos_world;
     this->actor.pos_world.y += 40.0f;
     if (z64_file.link_age == 0) { // Link is adult so move it up another 20.0f
@@ -997,7 +997,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
             if (player != PLAYER_ID) {
                 pItem->timeToLive = 15; // same time to live as regular bounce effect.
                 pItem->unk_154 = 35;     // not quite sure but this is what the vanilla game does.
-                pItem->actor.rot_2.z = 0;
+                pItem->actor.shape.rot.z = 0;
                 pItem->actor.xz_speed = 0;
                 pItem->actor.vel_1.y = 0;
                 pItem->actor.gravity = 0;
@@ -1019,7 +1019,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
         pItem->timeToLive = 15;  // unk_15A is a frame timer that is decremented each frame by the main actor code.
         pItem->unk_154 = 35;     // not quite sure but this is what the vanilla game does.
         pItem->getItemId = 0;
-        pItem->actor.rot_2.z = 0;
+        pItem->actor.shape.rot.z = 0;
         pItem->actor.xz_speed = 0;
         pItem->actor.vel_1.y = 0;
         pItem->actor.gravity = 0;

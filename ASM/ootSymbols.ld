@@ -72,6 +72,16 @@ z64_LoadRoom_addr = 0x80080A3C;
 z64_UnloadRoom = 0x80080C98;
 gActorOverlayTable = 0x800E8530;
 gPausePlayerOverlayTable = 0x800FE480;
+Collider_UpdateSpheres = 0x80050CE4;
+Collider_SetJntSph = 0x8004a874;
+CollisionCheck_SetAT = 0x8004bd50;
+CollisionCheck_SetAC = 0x8004bf40;
+CollisionCheck_SetOC = 0x8004c130;
+
+Matrix_Push = 0x800aa6ec;
+Matrix_Pop = 0x800aa724;
+Matrix_SetTranslateRotateYXZ = 0x800ab510;
+Matrix_Scale = 0x800aa8fc;
 
 /* Overlay symbols */
 
@@ -120,5 +130,8 @@ OVL_BgMoriBigst_SetupDone = 0x809276c0;
 
 /* En_karebaba */
 OVL_EnKarebaba_SetupDeadItemDrop = 0x809ba560;
+
+/* En_Tp */
+OVL_EnTp_Update = 0x808c39c8;
 
 OVL_EnKusa_Draw = 0x80a80a50;
