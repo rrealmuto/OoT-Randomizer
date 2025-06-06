@@ -1252,6 +1252,8 @@ mq_dungeon_enemies = {
 }
 
 named_rooms: dict[str, tuple[int,int]] = {
+    'DEKU MQ SLINGSHOT ROOM': (0, 10),
+    'DEKU MQ BASEMENT LARVA ROOM': (0, 6),
     'KAK REDEAD GROTTO': (0x3E, 2),
     'ROYAL FAMILY TOMB ENTRYWAY': (0x41,0),
     'SFM WOLFOS GROTTO': (0x3E, 7),
