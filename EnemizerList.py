@@ -884,13 +884,13 @@ mq_dungeon_enemies = {
         (1, 15, 0, 3):  EnemyLocation(55), # Skulltula
     },
     'Jabu Jabus Belly': {
-        (2, 0, 0, 0):  EnemyLocation(14), # Octorok
-        (2, 0, 0, 7):  EnemyLocation(45), # Shabom
-        (2, 0, 0, 8):  EnemyLocation(45), # Shabom
-        (2, 0, 0, 9):  EnemyLocation(45), # Shabom
-        (2, 1, 0, 3):  EnemyLocation(52), # Biri
+        (2, 0, 0, 0):  EnemyLocation(14, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Octorok
+        (2, 0, 0, 7):  EnemyLocation(45, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Shabom
+        (2, 0, 0, 8):  EnemyLocation(45, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Shabom
+        (2, 0, 0, 9):  EnemyLocation(45, meets_enemy_restrictions=[ENEMY_RESTRICTION.ABOVE_WATER]), # Shabom
+        (2, 1, 0, 3):  EnemyLocation(52, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], skip_raycast=True), # Biri
         (2, 1, 0, 4):  EnemyLocation(52), # Biri
-        (2, 1, 0, 16): EnemyLocation( 396), # Stinger
+        (2, 1, 0, 16): EnemyLocation( 396, restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], meets_enemy_restrictions=[LOCATION_RESTRICTION.ABOVE_WATER], skip_raycast=True), # Stinger
         (2, 2, 0, 2):  EnemyLocation(52), # Biri
         (2, 2, 0, 3):  EnemyLocation(52), # Biri
         (2, 3, 0, 3):  EnemyLocation(52), # Biri
@@ -1261,6 +1261,8 @@ named_rooms: dict[str, tuple[int,int]] = {
     'SFM WOLFOS GROTTO': (0x3E, 7),
     'JABU COMPASS': (2, 12),
     'JABU BOOMERANG': (2, 9),
+    'JABU MQ FALLING LIKELIKE': (2, 11),
+    'JABU MQ INVISIBLE ENEMIES': (2, 13),
     'FOREST TEMPLE LOWER STALFOS': (3,6),
     'FOREST TEMPLE BEFORE LEDGE': (3, 21),
     'FIRE TEMPLE LOWER LOCKED DOOR': (4,15),
