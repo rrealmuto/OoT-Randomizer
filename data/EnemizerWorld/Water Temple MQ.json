@@ -199,18 +199,18 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Water Temple Before Dark Link": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK)"
+            "Water Temple Before Dark Link": "True"
         }
     },
     {
         "region_name": "Water Temple Before Dark Link",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple MQ Before Dark Link Top Pot 1": "True",
-            "Water Temple MQ Before Dark Link Top Pot 2": "True",
-            "Water Temple MQ Before Dark Link Stalfos 1": "True",
-            "Water Temple MQ Before Dark Link Stalfos 2": "True",
-            "Water Temple MQ Before Dark Link Stalfos 3": "True"
+            "Water Temple MQ Before Dark Link Top Pot 1": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK)",
+            "Water Temple MQ Before Dark Link Top Pot 2": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK)",
+            "Water Temple MQ Before Dark Link Stalfos 1": "can_kill_this",
+            "Water Temple MQ Before Dark Link Stalfos 2": "can_kill_this",
+            "Water Temple MQ Before Dark Link Stalfos 3": "can_kill_this"
         },
         "exits": {
             "Water Temple River": "has_soul(Dark_Link)"

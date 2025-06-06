@@ -30,17 +30,17 @@
         "region_name": "Shadow Temple Whispering Walls Front",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Compass Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Compass Chest": "can_clear_room(SHADOW_TEMPLE_MQ_COMPASS_CHEST)",
             "Shadow Temple MQ Whispering Walls Pot 1": "True",
             "Shadow Temple MQ Whispering Walls Pot 2": "True",
             "Shadow Temple MQ Compass Room Pot 1": "True",
             "Shadow Temple MQ Compass Room Pot 2": "True",
             "Shadow Temple MQ Whispering Walls Before Time Block Flying Pot 1": "has_soul(Flying_Pot)",
             "Shadow Temple MQ Whispering Walls Before Time Block Flying Pot 2": "has_soul(Flying_Pot)",
-            "Shadow Temple MQ Compass Room ReDead 1": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Compass Room ReDead 2": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Compass Room ReDead 3": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Compass Room ReDead 4": "has_soul(Redead_and_Gibdo)"
+            "Shadow Temple MQ Compass Room ReDead 1": "can_kill_this",
+            "Shadow Temple MQ Compass Room ReDead 2": "can_kill_this",
+            "Shadow Temple MQ Compass Room ReDead 3": "can_kill_this",
+            "Shadow Temple MQ Compass Room ReDead 4": "can_kill_this"
         },
         "exits": {
             "Shadow Temple Whispering Walls Back": "can_play(Song_of_Time)"
@@ -70,23 +70,22 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
-            "Shadow Temple MQ Early Gibdos Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Early Gibdos Chest": "can_kill_this",
             "Shadow Temple MQ Near Ship Invisible Chest": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right": "True",
-            "Shadow Temple MQ First Beamos": "can_kill_beamos",
-            "Shadow Temple MQ Scythe Shortcut Skulltula 1": "has_soul(Skulltula)",
-            "Shadow Temple MQ Scythe Shortcut Skulltula 2": "has_soul(Skulltula)",
-            "Shadow Temple MQ Scythe Shortcut Skulltula 3": "has_soul(Skulltula)",
-            "Shadow Temple MQ Scythe Shortcut Skulltula 4": "has_soul(Skulltula)",
-            "Shadow Temple MQ Near Ship Invisible Skulltula": "has_soul(Skulltula)",
-            "Shadow Temple MQ Early Gibdo 1": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Early Gibdo 2": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Near Ship Skullwalltula": "
-                has_soul(Skullwalltula) and (Megaton_Hammer or at('Shadow Temple Boat', Longshot or Bow))"
+            "Shadow Temple MQ First Beamos": "can_kill_this",
+            "Shadow Temple MQ Scythe Shortcut Skulltula 1": "can_kill_this",
+            "Shadow Temple MQ Scythe Shortcut Skulltula 2": "can_kill_this",
+            "Shadow Temple MQ Scythe Shortcut Skulltula 3": "can_kill_this",
+            "Shadow Temple MQ Scythe Shortcut Skulltula 4": "can_kill_this",
+            "Shadow Temple MQ Near Ship Invisible Skulltula": "can_kill_this",
+            "Shadow Temple MQ Early Gibdo 1": "can_kill_this",
+            "Shadow Temple MQ Early Gibdo 2": "can_kill_this",
+            "Shadow Temple MQ Near Ship Skullwalltula": "at('Shadow Temple Boat', Distant_Scarecrow and can_kill_this)"
         },
         # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
         # access. However, your final locked door does not actually prevent you from reaching any area
@@ -125,18 +124,16 @@
                 (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10)",
             "Shadow Temple MQ Invisible Blades Silver Rupee Back Left": "True",
             "Shadow Temple MQ Invisible Blades Silver Rupee Back Right": "True",
-            "Shadow Temple MQ Guillotine Hallway Skulltula": "has_soul(Skulltula)",
-            "Shadow Temple MQ Guillotine Hallway Beamos 1": "can_kill_beamos",
-            "Shadow Temple MQ Guillotine Hallway Beamos 2": "can_kill_beamos",
-            "Shadow Temple MQ Huge Pit Red Bubble": "has_soul(Bubble) and Magic_Meter",
-            "Shadow Temple MQ Huge Pit Upper Beamos 1": "
-                has_soul(Beamos) and (has_explosives or Progressive_Strength_Upgrade or Bow)",
-            "Shadow Temple MQ Huge Pit Upper Beamos 2": "
-                has_soul(Beamos) and (has_explosives or Progressive_Strength_Upgrade or Bow)",
-            "Shadow Temple MQ Invisible Blades Keese 1": "has_soul(Keese)",
-            "Shadow Temple MQ Invisible Blades Keese 2": "has_soul(Keese)",
-            "Shadow Temple MQ Invisible Blades Keese 3": "has_soul(Keese)",
-            "Shadow Temple MQ Invisible Blades Like Like": "has_soul(Like_Like)"
+            "Shadow Temple MQ Guillotine Hallway Skulltula": "can_kill_this",
+            "Shadow Temple MQ Guillotine Hallway Beamos 1": "can_kill_this",
+            "Shadow Temple MQ Guillotine Hallway Beamos 2": "can_kill_this",
+            "Shadow Temple MQ Huge Pit Red Bubble": "can_kill_this",
+            "Shadow Temple MQ Huge Pit Upper Beamos 1": "can_kill_this",
+            "Shadow Temple MQ Huge Pit Upper Beamos 2": "can_kill_this",
+            "Shadow Temple MQ Invisible Blades Keese 1": "can_kill_this",
+            "Shadow Temple MQ Invisible Blades Keese 2": "can_kill_this",
+            "Shadow Temple MQ Invisible Blades Keese 3": "can_kill_this",
+            "Shadow Temple MQ Invisible Blades Like Like": "can_kill_this"
         },
         "exits": {
             "Shadow Temple Close Proximity to Invisible Blades": "
@@ -144,7 +141,7 @@
                 can_use(Nayrus_Love)",
             "Shadow Temple Invisible Blades Song of Time Blocks": "
                 can_play(Song_of_Time) or
-                (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko' and has_soul(Like_Like))"
+                (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko' and enemy_type_at('Shadow Temple MQ Invisible Blades Like Like') == 'Like Like')"
         }
     },
     {
@@ -204,7 +201,7 @@
             "Shadow Temple MQ Huge Pit Silver Rupee Right": "True",
             "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Upper": "Longshot",
             "Shadow Temple MQ Huge Pit Silver Rupee Ceiling Lower": "Longshot",
-            "Shadow Temple MQ Huge Pit Lower Beamos": "can_kill_beamos",
+            "Shadow Temple MQ Huge Pit Lower Beamos": "can_kill_this",
             "Shadow Temple MQ GS Falling Spikes Room": "
                 (logic_shadow_umbrella_gs and Hover_Boots) or Hookshot"
         }
@@ -213,7 +210,7 @@
         "region_name": "Shadow Temple Invisible Spikes Lower",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Invisible Spikes Chest": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Invisible Spikes Chest": "can_clear_room(SHADOW_TEMPLE_INVISIBLE_SPIKES)",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Center Front": "True",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Center Right": "True",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Left Hookshot Target": "Hookshot",
@@ -222,15 +219,15 @@
             "Shadow Temple MQ Invisible Spikes Silver Rupee Near Ledge": "Hookshot",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Front": "Hookshot",
             "Shadow Temple MQ Invisible Spikes Silver Rupee Ceiling Middle": "Hookshot",
-            "Shadow Temple MQ Invisible Spikes ReDead 1": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Invisible Spikes ReDead 2": "has_soul(Redead_and_Gibdo)"
+            "Shadow Temple MQ Invisible Spikes ReDead 1": "can_kill_this",
+            "Shadow Temple MQ Invisible Spikes ReDead 2": "can_kill_this"
         },
         "exits": {
             "Shadow Temple Stalfos Room": "
-                (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10) and has_soul(Stalfos)",
+                (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10)",
             "Shadow Temple Invisible Spikes Upper": "
                 Hookshot and
-                (Longshot or has_soul(Redead_and_Gibdo) or (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10))",
+                (Longshot or can_clear_room(SHADOW_TEMPLE_INVISIBLE_SPIKES) or (Silver_Rupee_Shadow_Temple_Invisible_Spikes, 10))",
             "Shadow Temple Lower Huge Pit": "
                 (logic_lens_shadow_mq_platform or can_use(Lens_of_Truth)) and Hover_Boots"
         }
@@ -239,9 +236,9 @@
         "region_name": "Shadow Temple Stalfos Room",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ Stalfos Room Chest": "True",
-            "Shadow Temple MQ Stalfos Room Stalfos 1": "True",
-            "Shadow Temple MQ Stalfos Room Stalfos 2": "True"
+            "Shadow Temple MQ Stalfos Room Chest": "can_clear_room(SHADOW_TEMPLE_MQ_STALFOS)",
+            "Shadow Temple MQ Stalfos Room Stalfos 1": "can_kill_this",
+            "Shadow Temple MQ Stalfos Room Stalfos 2": "can_kill_this"
         }
     },
     {
@@ -261,11 +258,11 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Wind Hint Chest": "True",
-            "Shadow Temple MQ Wind Tunnel Skulltula": "has_soul(Skulltula) and Hookshot",
-            "Shadow Temple MQ Wind Hint ReDead 1": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Wind Hint ReDead 2": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Wind Hint ReDead 3": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ Wind Hint ReDead 4": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Wind Tunnel Skulltula": "can_kill_this",
+            "Shadow Temple MQ Wind Hint ReDead 1": "can_kill_this",
+            "Shadow Temple MQ Wind Hint ReDead 2": "can_kill_this",
+            "Shadow Temple MQ Wind Hint ReDead 3": "can_kill_this",
+            "Shadow Temple MQ Wind Hint ReDead 4": "can_kill_this",
             "Shadow Temple MQ GS Wind Hint Room": "Hookshot"
         },
         "exits": {
@@ -277,14 +274,14 @@
         "region_name": "Shadow Temple After Wind",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple MQ After Wind Enemy Chest": "has_soul(Redead_and_Gibdo) and has_soul(Flying_Pot)",
+            "Shadow Temple MQ After Wind Enemy Chest": "can_clear_room(SHADOW_TEMPLE_AFTER_WIND) and has_soul(Flying_Pot)",
             "Shadow Temple MQ After Wind Hidden Chest": "has_explosives",
             "Shadow Temple MQ After Wind Pot 1": "True",
             "Shadow Temple MQ After Wind Pot 2": "True",
             "Shadow Temple MQ After Wind Flying Pot 1": "has_soul(Flying_Pot)",
             "Shadow Temple MQ After Wind Flying Pot 2": "has_soul(Flying_Pot)",
-            "Shadow Temple MQ After Wind Gibdo Left": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple MQ After Wind Gibdo Right": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ After Wind Gibdo Left": "can_kill_this",
+            "Shadow Temple MQ After Wind Gibdo Right": "can_kill_this",
             "Shadow Temple MQ GS After Wind": "True",
             "Nut Pot": "True"
         },
@@ -311,8 +308,8 @@
         "locations": {
             "Shadow Temple MQ After Boat Pot 1": "True",
             "Shadow Temple MQ After Boat Pot 2": "True",
-            "Shadow Temple MQ Boat Stalfos 1": "has_soul(Stalfos)",
-            "Shadow Temple MQ Boat Stalfos 2": "has_soul(Stalfos)",
+            "Shadow Temple MQ Boat Stalfos 1": "can_kill_this",
+            "Shadow Temple MQ Boat Stalfos 2": "can_kill_this",
             "Shadow Temple MQ GS After Ship": "
                 Hookshot or (logic_shadow_mq_after_boat_gs and
                    (has_explosives or Bow or can_use(Dins_Fire) or can_shield))"
@@ -347,9 +344,9 @@
             "Shadow Temple MQ Bomb Flower Room Pot 1": "True",
             "Shadow Temple MQ Bomb Flower Room Pot 2": "True",
             "Shadow Temple MQ 3 Spinning Pots Wonderitem": "True",
-            "Shadow Temple MQ Invisible Walls Blue Bubble 1": "has_soul(Bubble)",
-            "Shadow Temple MQ Invisible Walls Blue Bubble 2": "has_soul(Bubble)",
-            "Shadow Temple MQ Invisible Walls Like Like": "has_soul(Like_Like)",
+            "Shadow Temple MQ Invisible Walls Blue Bubble 1": "can_kill_this",
+            "Shadow Temple MQ Invisible Walls Blue Bubble 2": "can_kill_this",
+            "Shadow Temple MQ Invisible Walls Like Like": "can_kill_this",
             "Shadow Temple MQ Bomb Flower Dead Hand": "
                 has_soul(Dead_hand) and (logic_lens_shadow_mq_dead_hand or can_use(Lens_of_Truth))"
         },
@@ -366,14 +363,14 @@
             "Shadow Temple MQ Spike Walls Left Chest": "can_use(Dins_Fire)",
             "Shadow Temple MQ Boss Key Chest": "can_use(Dins_Fire)",
             "Shadow Temple MQ Spike Walls Pot": "True",
-            "Shadow Temple MQ Spike Walls Keese 1": "has_soul(Keese)",
-            "Shadow Temple MQ Spike Walls Keese 2": "has_soul(Keese)",
-            "Shadow Temple MQ Spike Walls Keese 3": "has_soul(Keese)",
-            "Shadow Temple MQ Spike Walls Keese 4": "has_soul(Keese)",
-            "Shadow Temple MQ Spike Walls Invisible Skulltula 1": "has_soul(Skulltula)",
-            "Shadow Temple MQ Spike Walls Invisible Skulltula 2": "has_soul(Skulltula)",
-            "Shadow Temple MQ Spike Walls Invisible Skulltula 3": "has_soul(Skulltula)",
-            "Shadow Temple MQ Spike Walls Invisible Skulltula 4": "has_soul(Skulltula)"
+            "Shadow Temple MQ Spike Walls Keese 1": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Keese 2": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Keese 3": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Keese 4": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Invisible Skulltula 1": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Invisible Skulltula 2": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Invisible Skulltula 3": "can_use(Dins_Fire) and can_kill_this",
+            "Shadow Temple MQ Spike Walls Invisible Skulltula 4": "can_use(Dins_Fire) and can_kill_this"
         }
     },
     {

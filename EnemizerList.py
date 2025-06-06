@@ -643,7 +643,7 @@ vanilla_dungeon_enemies = {
         (7, 8, 0, 1):  EnemyLocation(55), # Skulltula
         (7, 8, 0, 2):  EnemyLocation(55), # Skulltula
         (7, 8, 0, 3):  EnemyLocation(55), # Skulltula
-        (7, 9, 0, 1):  EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING]), # Bubble
+        (7, 9, 0, 1):  EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Bubble
         (7, 9, 0, 2):  EnemyLocation(17), # Wallmaster
         (7, 9, 0, 5):  EnemyLocation(138), # Beamos
         (7, 9, 0, 12): EnemyLocation( 2), # Stalfos
@@ -1089,7 +1089,7 @@ mq_dungeon_enemies = {
         (7, 8, 0, 1):  EnemyLocation(55), # Skulltula
         (7, 8, 0, 2):  EnemyLocation(138), # Beamos
         (7, 8, 0, 3):  EnemyLocation(138), # Beamos
-        (7, 9, 0, 5):  EnemyLocation(105), # Bubble
+        (7, 9, 0, 5):  EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Bubble
         (7, 9, 0, 6):  EnemyLocation(138), # Beamos
         (7, 9, 0, 7):  EnemyLocation(138), # Beamos
         (7, 9, 0, 10): EnemyLocation( 138), # Beamos
@@ -1276,8 +1276,10 @@ named_rooms: dict[str, tuple[int,int]] = {
     'SPIRIT TEMPLE ADULT ANUBIS ROOM': (6,17),
     'SHADOW TEMPLE MAP CHEST': (7,1),
     'SHADOW TEMPLE COMPASS CHEST': (7,7),
+    'SHADOW TEMPLE MQ COMPASS CHEST': (7,1),
     'SHADOW TEMPLE INVISIBLE BLADES': (7,16),
     'SHADOW TEMPLE INVISIBLE SPIKES': (7,11),
+    'SHADOW TEMPLE MQ STALFOS': (7,14),
     'SHADOW TEMPLE AFTER WIND': (7,20),
     'ICE CAVERN ENTRYWAY': (9,1),
     'GANONS TOWER LIZALFOS': (10,0),
