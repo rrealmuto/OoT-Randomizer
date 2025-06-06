@@ -73,11 +73,11 @@
             "Water Temple MQ Lizalfos Hallway Hookshot Wonderitem": "Hookshot",
             "Water Temple MQ Longshot Chest Hookshot Wonderitem": "Hookshot",
             "Water Temple MQ Map Chest Stalfos 1": "
-                has_fire_source and has_soul(Stalfos) and Reset_Water_Level",
+                has_fire_source and can_kill_this and Reset_Water_Level",
             "Water Temple MQ Map Chest Stalfos 2": "
-                has_fire_source and has_soul(Stalfos) and Reset_Water_Level",
+                has_fire_source and can_kill_this and Reset_Water_Level",
             "Water Temple MQ Map Chest Stalfos 3": "
-                has_fire_source and has_soul(Stalfos) and Reset_Water_Level"
+                has_fire_source and can_kill_this and Reset_Water_Level"
         },
         "exits": {
             "Water Temple Below Central Pillar": "
@@ -107,7 +107,7 @@
             "Water Temple MQ Central Pillar Lower Crate 13": "can_bonk",
             "Water Temple MQ Central Pillar Lower Crate 14": "can_bonk",
             "Water Temple MQ Below Central Pillar Hookshot Wonderitem": "Hookshot",
-            "Water Temple MQ Central Pillar Spike": "can_bonk and Hookshot and has_soul(Spike_Enemy)"
+            "Water Temple MQ Central Pillar Spike": "can_bonk and Hookshot and can_kill_this"
         }
     },
     {
@@ -135,7 +135,7 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Compass Chest": "
-                has_soul(Spike_Enemy) and has_soul(Lizalfos_and_Dinolfos) and Reset_Water_Level and
+                can_clear_room(WATER_TEMPLE_MQ_COMPASS) and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Longshot Chest": "Hookshot",
             "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
@@ -143,16 +143,16 @@
             "Water Temple MQ Lizalfos Hallway Gate Crate 1": "can_use(Dins_Fire) and can_break_crate",
             "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire) and can_break_crate",
             "Water Temple MQ Compass Chest Hookshot Wonderitem": "(Bow or can_use(Dins_Fire)) and Hookshot",
-            "Water Temple MQ Lizalfos Hallway Lizalfos 1": "has_soul(Lizalfos_and_Dinolfos)",
-            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "has_soul(Lizalfos_and_Dinolfos)",
+            "Water Temple MQ Lizalfos Hallway Lizalfos 1": "can_kill_this",
+            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "can_kill_this",
             "Water Temple MQ Compass Chest Spike": "
-                has_soul(Spike_Enemy) and Reset_Water_Level and
+                can_kill_this and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Compass Chest Lizalfos 1": "
-                has_soul(Lizalfos_and_Dinolfos) and Reset_Water_Level and
+                can_kill_this and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Compass Chest Lizalfos 2": "
-                has_soul(Lizalfos_and_Dinolfos) and Reset_Water_Level and
+                can_kill_this and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ GS Lizalfos Hallway": "can_use(Dins_Fire)"
         },
@@ -179,7 +179,7 @@
             "Water Temple MQ Before Upper Water Switch Upper Small Crate": "Longshot",
             "Water Temple MQ GS Before Upper Water Switch": "Longshot",
             "Water Temple MQ Upper Water Switch Hookshot Wonderitem": "Hookshot",
-            "Water Temple MQ Before Upper Water Switch Lizalfos": "has_soul(Lizalfos_and_Dinolfos)"
+            "Water Temple MQ Before Upper Water Switch Lizalfos": "can_kill_this"
         }
     },
     {
@@ -199,7 +199,7 @@
             "Nut Pot": "True"
         },
         "exits": {
-            "Water Temple Before Dark Link": "has_soul(Stalfos)"
+            "Water Temple Before Dark Link": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK)"
         }
     },
     {
@@ -297,8 +297,8 @@
         "region_name": "Water Temple Triple Wall Torch",
         "dungeon": "Water Temple",
         "locations": {
-            "Water Temple MQ Triple Wall Torch Stalfos 1": "True",
-            "Water Temple MQ Triple Wall Torch Stalfos 2": "True"
+            "Water Temple MQ Triple Wall Torch Stalfos 1": "can_kill_this",
+            "Water Temple MQ Triple Wall Torch Stalfos 2": "can_kill_this"
         },
         "exits": {
             "Water Temple Triple Wall Torch Gate": "can_use(Fire_Arrows)"
@@ -351,7 +351,7 @@
             "Water Temple MQ Freestanding Key Room Crate 4": "can_break_crate",
             "Water Temple MQ Freestanding Key Room Crate 5": "can_break_crate",
             "Water Temple MQ Freestanding Key Hookshot Wonderitem": "True",
-            "Water Temple MQ Freestanding Key Stalfos": "True"
+            "Water Temple MQ Freestanding Key Stalfos": "can_kill_this"
         },
         "exits": {
             "Water Temple 3 Water Spouts Room": "(Small_Key_Water_Temple, 2)"
@@ -380,17 +380,17 @@
             "Water Temple MQ Dodongo Room Lower Crate 3": "can_break_crate",
             "Water Temple MQ Dodongo Room Upper Crate": "can_break_crate",
             "Water Temple MQ Dodongo Room Hall Crate": "can_break_crate",
-            "Water Temple MQ Dodongo Room Dodongo 1": "has_soul(Dodongo)",
-            "Water Temple MQ Dodongo Room Dodongo 2": "has_soul(Dodongo)",
-            "Water Temple MQ Dodongo Room Dodongo 3": "has_soul(Dodongo)",
-            "Water Temple MQ Dodongo Room Dodongo 4": "has_soul(Dodongo)",
-            "Water Temple MQ Dodongo Room Dodongo 5": "has_soul(Dodongo)",
-            "Water Temple MQ Dodongo Room Dodongo 6": "has_soul(Dodongo)",
-            "Water Temple MQ Dodongo Room Dodongo 7": "has_soul(Dodongo)"
+            "Water Temple MQ Dodongo Room Dodongo 1": "can_kill_this",
+            "Water Temple MQ Dodongo Room Dodongo 2": "can_kill_this",
+            "Water Temple MQ Dodongo Room Dodongo 3": "can_kill_this",
+            "Water Temple MQ Dodongo Room Dodongo 4": "can_kill_this",
+            "Water Temple MQ Dodongo Room Dodongo 5": "can_kill_this",
+            "Water Temple MQ Dodongo Room Dodongo 6": "can_kill_this",
+            "Water Temple MQ Dodongo Room Dodongo 7": "can_kill_this"
         },
         "exits": {
-            "Water Temple Freestanding Key Area Behind Gate": "has_soul(Dodongo)",
-            "Water Temple 3 Water Spouts Room": "has_soul(Dodongo)"
+            "Water Temple Freestanding Key Area Behind Gate": "can_clear_room(WATER_TEMPLE_MQ_DODONGO)",
+            "Water Temple 3 Water Spouts Room": "can_clear_room(WATER_TEMPLE_MQ_DODONGO)"
         }
     },
     {

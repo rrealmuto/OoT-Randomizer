@@ -982,7 +982,7 @@ mq_dungeon_enemies = {
         (4, 25, 0, 0): EnemyLocation( 37), # Lizalfos/Dinalfos
     },
     'Water Temple': {
-        (5, 2, 0, 1):  EnemyLocation(236), # Spike
+        (5, 2, 0, 1):  EnemyLocation(236, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Spike
         (5, 3, 0, 5):  EnemyLocation(2), # Stalfos
         (5, 3, 0, 6):  EnemyLocation(2), # Stalfos
         (5, 6, 0, 2):  EnemyLocation(2), # Stalfos
@@ -1268,6 +1268,9 @@ named_rooms: dict[str, tuple[int,int]] = {
     'FIRE TEMPLE LOWER LOCKED DOOR': (4,15),
     'WATER TEMPLE MAP CHEST': (5, 19),
     'WATER TEMPLE TORCHES CHEST': (5,18),
+    'WATER TEMPLE MQ COMPASS': (5,18),
+    'WATER TEMPLE MQ BEFORE DARK LINK': (5,6),
+    'WATER TEMPLE MQ DODONGO': (5,14),
     'WATER TEMPLE CENTRAL PILLAR': (5,2),
     'SPIRIT TEMPLE CHILD START': (6,1),
     'SPIRIT TEMPLE ADULT ANUBIS ROOM': (6,17),
