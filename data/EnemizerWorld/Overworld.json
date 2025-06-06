@@ -3474,7 +3474,9 @@
         "scene": "Deku Theater",
         "locations": {
             "Deku Theater Skull Mask": "is_child and Skull_Mask",
-            "Deku Theater Mask of Truth": "is_child and Mask_of_Truth"
+            "Deku Theater Mask of Truth": "is_child and Mask_of_Truth",
+            "Deku Theater Skull Mask Hint": "True",
+            "Deku Theater Mask of Truth Hint": "True"
         },
         "exits": {
             "LW Beyond Mido": "True"
