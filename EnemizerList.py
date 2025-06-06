@@ -972,7 +972,7 @@ mq_dungeon_enemies = {
         (4, 7, 0, 2):  EnemyLocation(56), # Torch Slug
         (4, 7, 0, 3):  EnemyLocation(56), # Torch Slug
         (4, 14, 0, 2): EnemyLocation( 2), # Stalfos
-        (4, 14, 0, 3): EnemyLocation( 2), # Stalfos
+        (4, 14, 0, 3): EnemyLocation( 2, restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], skip_raycast=True), # Stalfos
         (4, 15, 0, 0): EnemyLocation( 19), # Keese
         (4, 15, 0, 2): EnemyLocation( 2), # Stalfos
         (4, 15, 0, 3): EnemyLocation( 2), # Stalfos

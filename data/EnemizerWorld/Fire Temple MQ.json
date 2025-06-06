@@ -62,12 +62,12 @@
         "region_name": "Fire Temple Lower Locked Door",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Before Lower Flare Dancer Keese": "can_kill_keese",
-            "Fire Temple MQ Before Lower Flare Dancer Stalfos 1": "can_kill_stalfos",
-            "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "can_kill_stalfos"
+            "Fire Temple MQ Before Lower Flare Dancer Keese": "can_kill_this",
+            "Fire Temple MQ Before Lower Flare Dancer Stalfos 1": "can_kill_this",
+            "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "can_kill_this"
         },
         "exits": {
-            "Fire Temple Lower Locked Door After Stalfos": "has_soul(Keese) and can_kill_stalfos"
+            "Fire Temple Lower Locked Door After Stalfos": "can_kill_named('Fire Temple MQ Before Lower Flare Dancer Keese') and can_kill_named('Fire Temple MQ Before Lower Flare Dancer Stalfos 1') and can_kill_named('Fire Temple MQ Before Lower Flare Dancer Stalfos 2')"
         }
     },
     {
@@ -82,11 +82,11 @@
             "Fire Temple MQ Iron Knuckle Room Pot 6": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 7": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 8": "True",
-            "Fire Temple MQ Iron Knuckle": "has_soul(Iron_Knuckle)",
+            "Fire Temple MQ Iron Knuckle": "can_kill_this",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Fire Temple Lower Flare Dancer Room": "has_soul(Iron_Knuckle)"
+            "Fire Temple Lower Flare Dancer Room": "can_kill_named('Fire Temple MQ Iron Knuckle')"
         }
     },
     {
@@ -94,8 +94,8 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple MQ Map Chest": "has_soul(Flare_Dancer) and can_use(Megaton_Hammer)",
-            "Fire Temple MQ Megaton Hammer Chest": "is_adult and can_kill_flare_dancer",
-            "Fire Temple MQ Lower Flare Dancer": "can_kill_flare_dancer"
+            "Fire Temple MQ Megaton Hammer Chest": "is_adult and can_kill_named('Fire Temple MQ Lower Flare Dancer')",
+            "Fire Temple MQ Lower Flare Dancer": "can_kill_this"
         }
     },
     {
@@ -152,13 +152,13 @@
             "Fire Temple MQ Lower Lizalfos Maze Crate 2": "True",
             "Fire Temple MQ Lower Lizalfos Maze Crate 3": "True",
             "Fire Temple MQ Maze Face On Wall Hookshot Wonderitem": "Hookshot",
-            "Fire Temple MQ Shortcut Room Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 1": "has_soul(Lizalfos_and_Dinolfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 2": "has_soul(Lizalfos_and_Dinolfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 3": "has_soul(Lizalfos_and_Dinolfos)",
-            "Fire Temple MQ Lizalfos Maze Lizalfos 4": "has_soul(Lizalfos_and_Dinolfos)",
+            "Fire Temple MQ Shortcut Room Lizalfos": "can_kill_this",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 1": "can_kill_this",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 2": "can_kill_this",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 3": "can_kill_this",
+            "Fire Temple MQ Lizalfos Maze Lizalfos 4": "can_kill_this",
             "Fire Temple MQ Lizalfos Maze Skullwalltula": "
-                has_soul(Skullwalltula) and (has_explosives or Megaton_Hammer or can_use(Dins_Fire))"
+                can_kill_this and (has_explosives or Megaton_Hammer or can_use(Dins_Fire))"
         },
         "exits": {
             "Fire Temple Upper Lizalfos Maze": "
@@ -206,8 +206,8 @@
             "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 2": "True",
             "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 3": "True",
             "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 4": "True",
-            "Fire Temple MQ Elevator Above Maze Torch Slug 1": "has_soul(Torch_Slug)",
-            "Fire Temple MQ Elevator Above Maze Torch Slug 2": "has_soul(Torch_Slug)",
+            "Fire Temple MQ Elevator Above Maze Torch Slug 1": "can_kill_this",
+            "Fire Temple MQ Elevator Above Maze Torch Slug 2": "can_kill_this",
             "Fire Temple MQ GS Skull On Fire": "True",
             "Wall Fairy": "has_bottle"
         },
@@ -275,7 +275,7 @@
         "locations": {
             "Fire Temple MQ Flame Maze Right Pot 1": "True",
             "Fire Temple MQ Flame Maze Right Pot 2": "True",
-            "Fire Temple MQ Flame Maze Side Room Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
+            "Fire Temple MQ Flame Maze Side Room Lizalfos": "can_kill_this",
             "Fire Temple MQ GS Flame Maze Side Room": "True"
         }
     },
@@ -288,7 +288,7 @@
             "Fire Temple MQ Flame Maze Hookshot Wonderitem": "Hookshot"
         },
         "exits": {
-            "Fire Temple Upper": "has_soul(Flare_Dancer)"
+            "Fire Temple Upper": "can_kill_named('Fire Temple MQ Upper Flare Dancer')"
         }
     },
     {
@@ -309,8 +309,8 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple MQ Hammer Steps Hookshot Wonderitem": "Hookshot",
-            "Fire Temple MQ Hammer Steps Stalfos 1": "has_soul(Stalfos)",
-            "Fire Temple MQ Hammer Steps Stalfos 2": "has_soul(Stalfos)"
+            "Fire Temple MQ Hammer Steps Stalfos 1": "can_kill_this",
+            "Fire Temple MQ Hammer Steps Stalfos 2": "can_kill_this"
         }
     }
 ]
