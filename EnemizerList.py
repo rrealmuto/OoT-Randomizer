@@ -22,8 +22,9 @@ class ENEMY_RESTRICTION(Enum):
 # meets_enemy_restrictions - list of enemy restrictions that this location meets. Ex. certain enemies can only spawn above water
 # disallowed enemies - list of enemy types to explicitly disallow
 # patch_func - function that will apply a ROM patch applicable to this location
+# is_bad_actor - Set to true to indicate that this actor only spawns if fix_broken_actors is on
 class EnemyLocation:
-    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[str] = [], explicit_allowed_enemies: list[str] = [], patch_func = None, switch_flag = -1, skip_raycast = False, var_overrides = {}):
+    def __init__(self, vanilla_id, restrictions: list[LOCATION_RESTRICTION] = [], meets_enemy_restrictions: list[ENEMY_RESTRICTION] = [], disallowed_enemies: list[str] = [], explicit_allowed_enemies: list[str] = [], patch_func = None, switch_flag = -1, skip_raycast = False, var_overrides = {}, is_broken_actor = False):
         self.id = vanilla_id
         self.restrictions = restrictions
         self.meets_enemy_restrictions = meets_enemy_restrictions
@@ -34,6 +35,7 @@ class EnemyLocation:
         self.skip_raycast = skip_raycast
         self.location_specific_enemy_logic = {}
         self.var_overrides = var_overrides
+        self.is_broken_actor = is_broken_actor
 
 # Move the SFM wolfos more towards the center, some enemies like flare dancer might jump over the fence
 def patch_func_sfm_wolfos(actor: Actor):
@@ -1009,15 +1011,15 @@ mq_dungeon_enemies = {
     'Spirit Temple': {
         (6, 1, 0, 0): EnemyLocation(56), # Torch Slug
         (6, 1, 0, 1): EnemyLocation(56), # Torch Slug
-        (6, 1, 0, 2): EnemyLocation(19), # Keese
-        (6, 1, 0, 3): EnemyLocation(19), # Keese
+        (6, 1, 0, 2): EnemyLocation(19, is_broken_actor=True), # Keese
+        (6, 1, 0, 3): EnemyLocation(19, is_broken_actor=True), # Keese
         (6, 2, 0, 0): EnemyLocation(144), # Redead/Gibdo
         (6, 2, 0, 1): EnemyLocation(144), # Redead/Gibdo
         (6, 2, 0, 2): EnemyLocation(144), # Redead/Gibdo
         (6, 3, 0, 0): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (6, 3, 0, 1): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-        (6, 3, 0, 2): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
-        (6, 3, 0, 3): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
+        (6, 3, 0, 2): EnemyLocation(19), # Keese
+        (6, 3, 0, 3): EnemyLocation(19), # Keese
         (6, 3, 0, 4): EnemyLocation(19, restrictions=[LOCATION_RESTRICTION.FLOATING], skip_raycast=True), # Keese
         (6, 3, 0, 12):  EnemyLocation( 246), # Anubis Spawner
         (6, 4, 0, 0):   EnemyLocation(47), # Baby Dodongo
@@ -1274,6 +1276,11 @@ named_rooms: dict[str, tuple[int,int]] = {
     'WATER TEMPLE CENTRAL PILLAR': (5,2),
     'SPIRIT TEMPLE CHILD START': (6,1),
     'SPIRIT TEMPLE ADULT ANUBIS ROOM': (6,17),
+    'SPIRIT TEMPLE MQ BEAMOS': (6,17),
+    'SPIRIT TEMPLE MQ 4 WALLMASTERS': (6,15),
+    'SPIRIT TEMPLE MQ MAP': (6,3),
+    'SPIRIT TEMPLE CHILD CLIMB': (6,4),
+    'SPIRIT TEMPLE MQ CHILD GIBDO': (6,2),
     'SHADOW TEMPLE MAP CHEST': (7,1),
     'SHADOW TEMPLE COMPASS CHEST': (7,7),
     'SHADOW TEMPLE MQ COMPASS CHEST': (7,1),

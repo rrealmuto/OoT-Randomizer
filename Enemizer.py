@@ -89,8 +89,8 @@ def shuffle_enemies(worlds: list[World]):
             scene_enemies[scene][room][setup][key] = world.shuffled_enemies[key]
         world.enemies_by_scene = scene_enemies
 
-def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int | EnemyLocation]) -> dict[tuple[int,int,int,int], tuple[int,bool]]:
-    to_shuffle = enemy_list.copy()
+def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int], EnemyLocation]) -> dict[tuple[int,int,int,int], tuple[int,bool]]:
+    to_shuffle: dict[tuple[int,int,int,int], EnemyLocation] = enemy_list.copy()
 
     shuffled: dict[tuple[int,int,int,int], tuple[Enemy,bool]] = {}
     # Handle plandoed enemies
@@ -100,6 +100,11 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int],int |
         shuffled[plando_enemy_key] = (enemy, True)
         del to_shuffle[plando_enemy_key]
 
+    # Remove broken actors if fix_broken_actors is off
+    if not world.settings.fix_broken_actors:
+        for enemy in enemy_list:
+            if to_shuffle[enemy].is_broken_actor:
+                del to_shuffle[enemy]
 
     if world.settings.enemizer == 'on':
         for enemy_key in to_shuffle:

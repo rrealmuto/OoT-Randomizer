@@ -70,7 +70,7 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Map Chest": "(Silver_Rupee_Shadow_Temple_Scythe_Shortcut, 5)",
-            "Shadow Temple MQ Early Gibdos Chest": "can_kill_this",
+            "Shadow Temple MQ Early Gibdos Chest": "can_kill_named('Shadow Temple MQ Early Gibdo 1') and can_kill_named('Shadow Temple MQ Early Gibdo 2')",
             "Shadow Temple MQ Near Ship Invisible Chest": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Left": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge": "True",
