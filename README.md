@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 8.3.12.Rob-5
+  * Forgot GTG
+
 ### 8.3.12.Rob-E4
   * Preliminary MQ Enemizer logic
 
