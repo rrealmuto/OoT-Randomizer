@@ -1289,6 +1289,7 @@ named_rooms: dict[str, tuple[int,int]] = {
     'SHADOW TEMPLE MQ STALFOS': (7,14),
     'SHADOW TEMPLE AFTER WIND': (7,20),
     'ICE CAVERN ENTRYWAY': (9,1),
+    'ICE CAVERN CENTRAL': (9,3),
     'GANONS TOWER LIZALFOS': (10,0),
     'GANONS TOWER STALFOS': (10,2),
     'GANONS TOWER KNUCKLES': (10,4),
