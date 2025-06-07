@@ -1232,7 +1232,7 @@ mq_dungeon_enemies = {
         (13, 9, 0, 7):   EnemyLocation(56), # Torch Slug
         (13, 9, 0, 8):   EnemyLocation(37), # Lizalfos/Dinalfos
         (13, 10, 0, 3):  EnemyLocation( 149), # Skullwaltula
-        (13, 12, 0, 5):  EnemyLocation( 105), # Bubble
+        (13, 12, 0, 5):  EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], meets_enemy_restrictions=[ENEMY_RESTRICTION.INSIDE], skip_raycast=True), # Bubble
         (13, 12, 0, 6):  EnemyLocation( 138), # Beamos
         (13, 12, 0, 7):  EnemyLocation( 138), # Beamos
         (13, 12, 0, 8):  EnemyLocation( 138), # Beamos
@@ -1298,8 +1298,11 @@ named_rooms: dict[str, tuple[int,int]] = {
     'GTG BEFORE HEAVY BLOCK': (11,3),
     'GTG HEAVY BLOCK': (11,10),
     'GTG HAMMER ROOM': (11,5),
+    'GANONS CASTLE MQ ENTRYWAY': (13,0),
+    'GANONS CASTLE FOREST TRIAL BEGINNING': (13,5),
     'GANONS CASTLE WATER TRIAL ENTRY': (13,2),
     'GANONS CASTLE LIGHT TRIAL INVISIBLE ENEMIES': (13,9),
+    'GANONS CASTLE LIGHT TRIAL BEGINNING': (13,9),
 }
 
 class Enemy:
