@@ -153,10 +153,13 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
-### v8.3.12.Rob-E3
+### 8.3.12.Rob-E4
+  * Preliminary MQ Enemizer logic
+
+### 8.3.12.Rob-E3
   * Fix Deku Theater misc. hints in enemizer
 
-### v8.3.12.Rob-E2
+### 8.3.12.Rob-E2
   * Fix tailpasaran 0,0,0 bug.
 
 ### v160
