@@ -293,14 +293,15 @@
         },
         "exits": {
             "Ganons Castle Spirit Trial After Knuckle": "
-                ((enemy_type_at('Ganons Castle MQ Spirit Trial Torch Slug') == 'Iron Knuckle (White)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Torch Slug') == 'Iron Knuckle (Black)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 1') == 'Iron Knuckle (White)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 1') == 'Iron Knuckle (Black)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 2') == 'Iron Knuckle (White)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 2') == 'Iron Knuckle (Black)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Iron Knuckle') == 'Iron Knuckle (White)') or
-                (enemy_type_at('Ganons Castle MQ Spirit Trial Iron Knuckle') == 'Iron Knuckle (Black)') or logic_rusted_switches) and
+                (has_soul(Iron_Knuckle) and (
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Torch Slug') == 'Iron Knuckle (White)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Torch Slug') == 'Iron Knuckle (Black)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 1') == 'Iron Knuckle (White)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 1') == 'Iron Knuckle (Black)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 2') == 'Iron Knuckle (White)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Fire Keese 2') == 'Iron Knuckle (Black)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Iron Knuckle') == 'Iron Knuckle (White)') or
+                    (enemy_type_at('Ganons Castle MQ Spirit Trial Iron Knuckle') == 'Iron Knuckle (Black)') or logic_rusted_switches)) and
                 can_use(Megaton_Hammer)"
         }
     },

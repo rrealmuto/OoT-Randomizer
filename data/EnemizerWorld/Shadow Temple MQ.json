@@ -141,7 +141,7 @@
                 can_use(Nayrus_Love)",
             "Shadow Temple Invisible Blades Song of Time Blocks": "
                 can_play(Song_of_Time) or
-                (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko' and enemy_type_at('Shadow Temple MQ Invisible Blades Like Like') == 'Like Like')"
+                (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko' and has_soul(Like_like) and enemy_type_at('Shadow Temple MQ Invisible Blades Like Like') == 'Like Like')"
         }
     },
     {

@@ -1195,10 +1195,10 @@ mq_dungeon_enemies = {
         (11, 7, 0, 3):  EnemyLocation(18), # Dodongo
         (11, 7, 0, 4):  EnemyLocation(18), # Dodongo
         (11, 7, 0, 5):  EnemyLocation(84), # Armos
-        (11, 9, 0, 0):  EnemyLocation(396), # Stinger
-        (11, 9, 0, 1):  EnemyLocation(396), # Stinger
+        (11, 9, 0, 0):  EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
+        (11, 9, 0, 1):  EnemyLocation(396, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Stinger
         (11, 9, 0, 3):  EnemyLocation(99), # Bari
-        (11, 9, 0, 4):  EnemyLocation(197), # Shell Blade
+        (11, 9, 0, 4):  EnemyLocation(197, restrictions=[LOCATION_RESTRICTION.UNDERWATER]), # Shell Blade
         (11, 10, 0, 0): EnemyLocation( 289), # Freezard
         (11, 10, 0, 1): EnemyLocation( 289), # Freezard
         (11, 10, 0, 2): EnemyLocation( 236), # Spike
@@ -1295,6 +1295,7 @@ named_rooms: dict[str, tuple[int,int]] = {
     'GANONS TOWER KNUCKLES': (10,4),
     'GTG STALFOS ROOM': (11,1),
     'GTG BEAMOS ROOM': (11,7),
+    'GTG RIGHT SIDE ROOM': (11,7),
     'GTG BEFORE HEAVY BLOCK': (11,3),
     'GTG HEAVY BLOCK': (11,10),
     'GTG HAMMER ROOM': (11,5),
