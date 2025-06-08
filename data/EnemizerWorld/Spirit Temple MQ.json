@@ -138,10 +138,9 @@
                 here(has_fire_source or
                    (logic_spirit_mq_frozen_eye and can_use(Bow) and can_play(Song_of_Time)))",
             "Spirit Temple Silver Gauntlets Chest": "
-                (((Small_Key_Spirit_Temple, 7) and can_kill_named('Spirit Temple MQ Child Side Iron Knuckle') and
-                        (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
-                    ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
-                        can_kill_named('Spirit Temple MQ Adult Side Iron Knuckle') and can_kill_named('Spirit Temple MQ Before Adult Knuckle Floormaster')))",
+            ((Small_Key_Spirit_Temple, 7) and can_kill_named('Spirit Temple MQ Child Side Iron Knuckle') and (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
+            ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and can_kill_named('Spirit Temple MQ Child Side Iron Knuckle') and can_kill_named('Spirit Temple MQ Adult Side Iron Knuckle') and can_kill_named('Spirit Temple MQ Before Adult Knuckle Floormaster')) or
+            (is_adult and (Small_Key_Spirit_Temple, 5) and can_play(Song_of_Time) and (has_explosives or Nuts) and can_kill_named('Spirit Temple MQ Adult Side Iron Knuckle') and can_kill_named('Spirit Temple MQ Before Adult Knuckle Floormaster'))",
             "Spirit Temple MQ Child Climb Pot": "(Small_Key_Spirit_Temple, 6)",
             "Spirit Temple MQ Central Chamber Floor Pot 1": "True",
             "Spirit Temple MQ Central Chamber Floor Pot 2": "True",
