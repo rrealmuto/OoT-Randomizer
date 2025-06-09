@@ -8,6 +8,50 @@ class ML64Pak:
     def __init__(self, pak_data: bytearray):
         self.pak_data = pak_data
 
+    def get_zobj(self):
+        header = self.pak_data[0:16]
+
+        num_items = header[14]
+        
+        sounds = {}
+        # read each item
+        for i in range(0, num_items):
+            item_offset = 0x10 + (i * 0x10)
+            item = self.pak_data[item_offset:item_offset + 0x10]
+            print(item)
+            # Make sure it's a DEFL
+            command = item[0:4].decode()
+            print(command)
+
+            if command not in ["DEFL", "UNCO"]:
+                raise Exception(f"Unknown command encountered {command}")
+            name_offset = int.from_bytes(item[4:8], 'big')
+            file_start = int.from_bytes(item[8:12], 'big')
+            file_end = int.from_bytes(item[12:16], 'big')
+
+            # read the name
+            file_name = ""
+            char = self.pak_data[name_offset]
+            while char != 0xFF:
+                file_name += chr(char)
+                name_offset += 1
+                char = self.pak_data[name_offset]
+            
+            print(file_name)
+            if file_name.endswith(".zobj"):
+                try:
+                    if command == "DEFL":
+                        # Read the data
+                        file_compressed = self.pak_data[file_start:file_end+1]
+
+                        decompressed = zlib.decompress(file_compressed)
+                    elif command == "UNCO":
+                        decompressed = self.pak_data[file_start:file_end+1]
+                    return decompressed
+                except Exception as e:
+                    continue
+        return None
+
     def read_all_sounds(self):
         header = self.pak_data[0:16]
 
