@@ -31,10 +31,10 @@ class ML64Pak:
         for i in range(0, num_items):
             item_offset = 0x10 + (i * 0x10)
             item = self.pak_data[item_offset:item_offset + 0x10]
-            print(item)
+            #print(item)
             # Make sure it's a DEFL
             command = item[0:4].decode()
-            print(command)
+            #print(command)
 
             if command not in ["DEFL", "UNCO"]:
                 raise Exception(f"Unknown command encountered {command}")
@@ -50,7 +50,7 @@ class ML64Pak:
                 name_offset += 1
                 char = self.pak_data[name_offset]
             
-            print(file_name)
+            #print(file_name)
             files[file_name] = (i, command, file_start, file_end)
         return files
 
@@ -64,10 +64,10 @@ class ML64Pak:
         for i in range(0, num_items):
             item_offset = 0x10 + (i * 0x10)
             item = self.pak_data[item_offset:item_offset + 0x10]
-            print(item)
+            #print(item)
             # Make sure it's a DEFL
             command = item[0:4].decode()
-            print(command)
+            #print(command)
 
             if command not in ["DEFL", "UNCO"]:
                 raise Exception(f"Unknown command encountered {command}")
@@ -83,7 +83,7 @@ class ML64Pak:
                 name_offset += 1
                 char = self.pak_data[name_offset]
             
-            print(file_name)
+            #print(file_name)
             if file_name.endswith(".zobj"):
                 try:
                     if command == "DEFL":
