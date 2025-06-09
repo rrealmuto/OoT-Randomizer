@@ -20,8 +20,18 @@ def get_model_choices(age: int) -> list[str]:
         path = data_path("Models/Child")
     if os.path.exists(path):
         for file in os.listdir(path):
-            if file.endswith(".zobj") or file.endswith(".pak"):
+            if file.endswith(".zobj"):
                 names.append(file)
+            if file.endswith(".pak"):
+                file_path = os.path.join(path, file)
+                with open(file_path, 'rb') as f:
+                    file_bytes = f.read()
+                    pak = ML64Pak(file_bytes)
+                    pak_files = pak.get_all_file_names()
+                    for pak_file in pak_files:
+                        if pak_file.endswith(".zobj"):
+                            names.append(f"{file}/{pak_file}")
+
     if len(names) > 2:
         # If more than 2 non-default model choices, add random option
         names.insert(1, "Random")
@@ -510,12 +520,17 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
         agestr = "child"
     # Read model data from file
     zobj = None
-    if model.endswith(".pak"):
+    if ".pak" in model:
+        # Split the model name into .pak + the .zobj
+        splitindex = model.index(".pak") + 4
+        
+        zobj_name = model[splitindex+1:]
+        model = model[0:splitindex]
         file = open(model, "rb")
         pak_bytes = file.read()
         file.close()
         pak = ML64Pak(pak_bytes)
-        zobj = pak.get_zobj()
+        zobj = pak.get_file(zobj_name)
         zobj = bytearray(zobj)
     else:
         file = open(model, "rb")
