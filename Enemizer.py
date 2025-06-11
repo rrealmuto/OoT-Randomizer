@@ -103,7 +103,7 @@ def _shuffle_enemies(world: World, enemy_list: dict[tuple[int,int,int,int], Enem
     # Remove broken actors if fix_broken_actors is off
     if not world.settings.fix_broken_actors:
         for enemy in enemy_list:
-            if to_shuffle[enemy].is_broken_actor:
+            if enemy in to_shuffle.keys() and to_shuffle[enemy].is_broken_actor:
                 del to_shuffle[enemy]
 
     if world.settings.enemizer == 'on':

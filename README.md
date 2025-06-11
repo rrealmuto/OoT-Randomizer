@@ -153,6 +153,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 8.3.12.Rob-7
+  * Fix enemy plando
+
 ### 8.3.12.Rob-6
   * Don't commit Debug mode
 
