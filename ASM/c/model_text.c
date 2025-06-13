@@ -111,7 +111,7 @@ Limb childSkeleton[] = {
 // Gets the model data
 z64_mem_obj_t FindModelData() {
     for (int i = 0; i < 19; i++) {
-        z64_mem_obj_t obj = z64_game.obj_ctxt.objects[i];
+        z64_mem_obj_t obj = z64_game.objectCtx.slots[i];
         // 0x14 = obj_link_boy, 0x15 = obj_link_child
         if (obj.id == 0x14) {
             return obj;
@@ -119,7 +119,7 @@ z64_mem_obj_t FindModelData() {
             return obj;
         }
     }
-    return z64_game.obj_ctxt.objects[0]; //Will be checked and rejected in calling function
+    return z64_game.objectCtx.slots[0]; //Will be checked and rejected in calling function
 }
 
 //Search the model for the playas footer to find its stopping point
@@ -246,7 +246,7 @@ void check_model_skeletons() {
     }
 
     // Get the maximum possible size of the object file by checking the object table
-    z64_object_table_t obj_file = z64_object_table[model.id];
+    ObjectTableEntry obj_file = gObjectTable[model.id];
     int maxsize = obj_file.vrom_end - obj_file.vrom_start;
 
     // Get the actual length of the model data by checking for the footer (or lack thereof)

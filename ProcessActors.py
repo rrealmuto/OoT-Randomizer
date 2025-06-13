@@ -1,4 +1,5 @@
 import sys
+from Objects import ObjectTable
 from Rom import *
 
 class Actor:
@@ -681,21 +682,21 @@ def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
 
 if __name__ == "__main__":
     #rom = Rom("ZOOTDEC.z64")
+    
     rom = Rom("ZOOTDEC.z64")
-    actors = get_grass(rom)
-
-    for actor in actors:
-        #print(str(actor) + ": " + str(actors[actor]))
-        scene, room,setup,actor_num, scene_name, data = actors[actor]
-        actor_num += 1
-        if data['type'] == "Scattered Bushes":
-            for i in range(1,12+1):
-                print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
-        else:
-            print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
-
-    #rom = Rom("../zeloot_mqdebug.z64")
-    #wonderitems = get_wonderitems(rom)
-
-    #for wonderitem in wonderitems:
-        #print(str(wonderitem) + ": " + str(wonderitems[wonderitem]))
+    object_table = ObjectTable(rom, 0xB6EF54)
+    scenes = process_scenes(rom)
+    scene_room_object_sizes = {}
+    for scene in scenes:
+        for room in scene.rooms:
+            for setup_id in room.setups:
+                roomsetup_object_size = object_table.objects[1].size
+                roomsetup_object_size += object_table.objects[scene.keep_id].size
+                setup = room.setups[setup_id]
+                for object_id in setup.objects:
+                    roomsetup_object_size += object_table.objects[object_id].size
+                setup.object_size = roomsetup_object_size
+                scene_room_object_sizes[(scene.id, setup_id, room.id)] = roomsetup_object_size
+    
+    for key in scene_room_object_sizes:
+        print(f"{key}: {scene_room_object_sizes[key]}")

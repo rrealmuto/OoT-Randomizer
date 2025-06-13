@@ -1302,24 +1302,21 @@ typedef struct {
 } z64_ctxt_t;
 
 typedef struct {
-  /* file loading params */
-  uint32_t      vrom_addr;
-  void         *dram_addr;
-  uint32_t      size;
-  /* unknown, seem to be unused */
-  void         *unk_00_;
-  uint32_t      unk_01_;
-  uint32_t      unk_02_;
-  /* completion notification params */
-  OSMesgQueue  *notify_queue;
-  OSMesg        notify_message;
-} z64_getfile_t;
+    /* 0x00 */ uintptr_t    vromAddr; // VROM address (source)
+    /* 0x04 */ void*        dramAddr; // DRAM address (destination)
+    /* 0x08 */ size_t       size;     // File Transfer size
+    /* 0x0C */ const char*  filename; // Filename for debugging
+    /* 0x10 */ int32_t          line;     // Line for debugging
+    /* 0x14 */ int32_t          unk_14;
+    /* 0x18 */ OSMesgQueue* notifyQueue; // Message queue for the notification message
+    /* 0x1C */ OSMesg       notifyMsg;   // Completion notification message
+} DmaRequest; // size = 0x20
 
 /* object structs */
 typedef struct {
   int16_t       id;
   void         *data;
-  z64_getfile_t getfile;
+  DmaRequest    dmaRequest;
   OSMesgQueue   load_mq;
   OSMesg        load_m;
 } z64_mem_obj_t;
@@ -1327,11 +1324,11 @@ typedef struct {
 typedef struct {
   void         *obj_space_start;
   void         *obj_space_end;
-  uint8_t       n_objects;
-  uint8_t       n_spawned_objects;
+  uint8_t       numEntries;
+  uint8_t       numPersistentEntries;
   uint8_t       keep_index;
   uint8_t       skeep_index;
-  z64_mem_obj_t objects[19];
+  z64_mem_obj_t slots[19];
 } z64_obj_ctxt_t;
 
 typedef struct {
@@ -1404,7 +1401,7 @@ typedef struct {
 typedef struct {
   uint32_t vrom_start;
   uint32_t vrom_end;
-} z64_object_table_t;
+} ObjectTableEntry;
 
 /* lighting structs */
 typedef struct {
@@ -1555,17 +1552,6 @@ typedef enum {
 } CameraModeType;
 
 typedef struct {
-    /* 0x00 */ uintptr_t    vromAddr; // VROM address (source)
-    /* 0x04 */ void*        dramAddr; // DRAM address (destination)
-    /* 0x08 */ size_t       size;     // File Transfer size
-    /* 0x0C */ const char*  filename; // Filename for debugging
-    /* 0x10 */ int32_t          line;     // Line for debugging
-    /* 0x14 */ int32_t          unk_14;
-    /* 0x18 */ OSMesgQueue* notifyQueue; // Message queue for the notification message
-    /* 0x1C */ OSMesg       notifyMsg;   // Completion notification message
-} DmaRequest; // size = 0x20
-
-typedef struct {
     /* 0x00 */ int8_t   num;
     /* 0x01 */ uint8_t   unk_01;
     /* 0x02 */ uint8_t   behaviorType2;
@@ -1690,7 +1676,7 @@ typedef struct z64_game_t {
   char             unk_14_[0x0002];        /* 0x1075E */
   z64_pause_ctxt_t pause_ctxt;             /* 0x10760 */
   char             unk_15_[0x0D90];        /* 0x10A14 */
-  z64_obj_ctxt_t   obj_ctxt;               /* 0x117A4 */
+  z64_obj_ctxt_t   objectCtx;               /* 0x117A4 */
   RoomContext      room_ctx;               /* 0x11CBC */
   char             unk_16_[0x14];          /* 0x11D34 */
   int32_t          (*startPlayerFishing)(struct z64_game_t* globalCtx); /* 0x11D48*/
@@ -2207,7 +2193,6 @@ typedef enum {
 #define z64_fog_state_addr                      0x800F1640
 #define z64_day_speed_addr                      0x800F1650
 #define z64_light_handlers_addr                 0x800F1B40
-#define z64_object_table_addr                   0x800F8FF8
 #define z64_entrance_table_addr                 0x800F9C90
 #define z64_scene_table_addr                    0x800FB4E0
 #define z64_scene_config_table_addr             0x800FBD18
@@ -2325,8 +2310,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_day_speed           (*(uint16_t*)         z64_day_speed_addr)
 #define z64_light_handlers      ( (z64_light_handler_t*)                      \
                                                       z64_light_handlers_addr)
-#define z64_object_table        ( (z64_object_table_t*)                      \
-                                                      z64_object_table_addr)
 #define z64_entrance_table      ( (z64_entrance_table_t*)                     \
                                    z64_entrance_table_addr)
 #define z64_scene_config_table  ( (z64_SceneConfig_proc*)                     \
@@ -2698,5 +2681,15 @@ extern int32_t z64_Flags_GetSwitch(z64_game_t* globalCtx, int32_t flag);
 extern void z64_Flags_SetTempClear(z64_game_t* globalCtx, int32_t flag);
 extern int32_t Flags_GetTempClear(z64_game_t* globalCtx, int32_t flag);
 void Actor_UpdateBgCheckInfo(z64_game_t* play, z64_actor_t* actor, float wallCheckHeight, float wallCheckRadius, float ceilingCheckHeight, int32_t flags);
+extern ObjectTableEntry gObjectTable[];
+extern void Actor_KillAllWithMissingObject(z64_game_t* play, z64_actor_ctxt_t* actorCtx);
+
+#define K0BASE      0x80000000
+#define NUM_SEGMENTS        (16)
+#define SEGMENT_OFFSET(a)   ((uint32_t)(a) & 0x00FFFFFF)
+#define SEGMENT_NUMBER(a)   (((uint32_t)(a) << 4) >> 28)
+#define SEGMENT_ADDR(num, off)  (((num) << 24) + (off))
+extern uintptr_t gSegments[NUM_SEGMENTS];
+#define SEGMENTED_TO_VIRTUAL(addr) (void*)(gSegments[SEGMENT_NUMBER(addr)] + SEGMENT_OFFSET(addr) + K0BASE)
 
 #endif

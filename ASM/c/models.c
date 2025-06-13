@@ -14,28 +14,28 @@
 #define num_vanilla_objects 0x192
 
 extern uint8_t SHUFFLE_CHEST_GAME;
-extern z64_object_table_t EXTENDED_OBJECT_TABLE[];
+extern ObjectTableEntry EXTENDED_OBJECT_TABLE[];
 extern EnItem00* collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
 
-z64_object_table_t* get_object_entry(uint32_t object_id) {
+ObjectTableEntry* get_object_entry(uint32_t object_id) {
     if (object_id <= num_vanilla_objects) {
-        return &(z64_object_table[object_id]);
+        return &(gObjectTable[object_id]);
     } else {
         return &EXTENDED_OBJECT_TABLE[object_id - num_vanilla_objects - 1];
     }
 }
 
 uint32_t get_object_size(uint32_t object_id) {
-    z64_object_table_t *entry = get_object_entry(object_id);
+    ObjectTableEntry *entry = get_object_entry(object_id);
     uint32_t vrom_start = entry->vrom_start;
     uint32_t size = entry->vrom_end - vrom_start;
     return size;
 }
 
 uint32_t load_object_file(uint32_t object_id, uint8_t* buf) {
-    z64_object_table_t *entry = get_object_entry(object_id);
+    ObjectTableEntry *entry = get_object_entry(object_id);
     uint32_t vrom_start = entry->vrom_start;
     uint32_t size = entry->vrom_end - vrom_start;
 
@@ -167,7 +167,7 @@ void shop_draw(z64_actor_t* actor, z64_game_t* game) {
         object ID for OBJECT_GI_SOLDOUT (0x148) before attempting to use
         the override model.
     */
-    if (override.key.all && this->getItemId && game->obj_ctxt.objects[this->objBankIndex].id != 0x148) {
+    if (override.key.all && this->getItemId && game->objectCtx.slots[this->objBankIndex].id != 0x148) {
         lookup_model_by_override(&model, override);
         if (model.object_id != 0x0000) {
             draw_model(model, actor, game, 0.0);

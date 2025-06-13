@@ -54,13 +54,66 @@ void extended_objects_reset() {
     gPrevRoom = -1;
 }
 
+typedef struct SCmdObjectList {
+    /* 0x00 */ uint8_t  code;
+    /* 0x01 */ uint8_t  length;
+    /* 0x04 */ int16_t* data;
+} SCmdObjectList;
+
+void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
+    int32_t i;
+    int32_t j;
+    int32_t k;
+    z64_mem_obj_t* entry;
+    z64_mem_obj_t* invalidatedEntry;
+    z64_mem_obj_t* entries;
+    int16_t* objectListEntry = SEGMENTED_TO_VIRTUAL(cmd->data);
+    void* nextPtr;
+
+    k = 0;
+    i = play->objectCtx.numPersistentEntries;
+    entries = play->objectCtx.slots;
+    entry = &play->objectCtx.slots[i];
+
+    while (i < play->objectCtx.numEntries) {
+        if (entry->id != *objectListEntry) {
+
+            invalidatedEntry = &play->objectCtx.slots[i];
+            for (j = i; j < play->objectCtx.numEntries; j++) {
+                invalidatedEntry->id = OBJECT_INVALID;
+                ZeldaArena_Free(invalidatedEntry->data);
+                invalidatedEntry++;
+            }
+
+            play->objectCtx.numEntries = i;
+            Actor_KillAllWithMissingObject(play, &play->actor_ctxt);
+
+            continue;
+        }
+
+        i++;
+        k++;
+        objectListEntry++;
+        entry++;
+    }
+
+    while (k < cmd->length) {
+        Object_HeapAlloc_New(&play->objectCtx, i, *objectListEntry);
+        i++;
+        k++;
+        objectListEntry++;
+    }
+
+    play->objectCtx.numEntries = i;
+}
+
 void Scene_CommandObjectList_Hook(z64_game_t* globalCtx, void* scene_command) {
-    Scene_CommandObjectList(globalCtx, scene_command);
+    Scene_CommandObjectList_New(globalCtx, scene_command);
     // Copy the original table into the extended one
     for(int i = 0; i < OBJECT_EXCHANGE_BANK_MAX; i++)
     {
-        extended_object_ctx.slots[i].id = globalCtx->obj_ctxt.objects[i].id;
-        extended_object_ctx.slots[i].data = globalCtx->obj_ctxt.objects[i].data;
+        extended_object_ctx.slots[i].id = globalCtx->objectCtx.slots[i].id;
+        extended_object_ctx.slots[i].data = globalCtx->objectCtx.slots[i].data;
     }
 }
 
@@ -157,6 +210,27 @@ int32_t Object_GetIndex_EnDog(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
     return Object_GetIndex(object_ctx, object_id);
 }
 
+// Hack in the function called in Scene_CommandObjectList that allocates memory for an object
+// We'll call that function Object_HeapAlloc. 
+// The original function returns the memory location after that which was allocated, and uses it to set the start address
+// for the next slot. We're not gonna do any of that and instead just allocate space on the main ZeldaArena heap
+// Original function address is 0x80081740 in decomp it was called func_800982FC
+void* Object_HeapAlloc_New(z64_obj_ctxt_t* objectCtx, int32_t slot, int32_t objectId) 
+{
+    z64_mem_obj_t* entry = &objectCtx->slots[slot];
+    ObjectTableEntry* objectFile = &gObjectTable[objectId];
+
+    entry->id = -objectId;
+    entry->dmaRequest.vromAddr = 0;
+
+    uint32_t size = objectFile->vrom_end - objectFile->vrom_start;
+
+    entry->data = ZeldaArena_Malloc(size);
+
+    return 0;
+}
+
+
 // Fix autocollect magic jar wonder items
 void enitem00_set_link_incoming_item_id(z64_actor_t* actor, z64_game_t* game, int32_t incoming_item_id) {
     EnItem00* this = (EnItem00*)actor;
@@ -199,7 +273,7 @@ void Actor_Draw_gSPSegment_Hack(z64_actor_t* actor) {
         gSPSegment(gfx->poly_xlu.p++, 0x06, extended_object_ctx.slots[actor->obj_bank_index].data);
     }
     else {
-        gSPSegment(gfx->poly_opa.p++, 0x06, z64_game.obj_ctxt.objects[actor->obj_bank_index].data);
-        gSPSegment(gfx->poly_xlu.p++, 0x06, z64_game.obj_ctxt.objects[actor->obj_bank_index].data);
+        gSPSegment(gfx->poly_opa.p++, 0x06, z64_game.objectCtx.slots[actor->obj_bank_index].data);
+        gSPSegment(gfx->poly_xlu.p++, 0x06, z64_game.objectCtx.slots[actor->obj_bank_index].data);
     }
 }
