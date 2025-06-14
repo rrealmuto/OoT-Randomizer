@@ -37,3 +37,19 @@ void enitem00_set_link_incoming_item_id(z64_actor_t* actor, z64_game_t* game, in
         }
     }
 }
+
+void* THA_AllocTailAlign16(TwoHeadArena* tha, size_t size);
+
+#define OBJECT_LINK_BOY_SIZE    0x37800
+#define OBJECT_LINK_CHILD_SIZE  0x2CF80
+
+uint32_t LinkObjectVanillaSizes[] = { OBJECT_LINK_BOY_SIZE, OBJECT_LINK_CHILD_SIZE };
+extern int16_t gLinkObjectIds[];
+
+void* Object_InitContext_AllocSpace(TwoHeadArena* tha, size_t size) {
+    // Resize for adult/child object size
+    size -= LinkObjectVanillaSizes[z64_file.link_age];
+    int16_t linkObjectId = gLinkObjectIds[z64_file.link_age];
+    size += z64_object_table[linkObjectId].vrom_end - z64_object_table[linkObjectId].vrom_start;
+    return THA_AllocTailAlign16(tha, size);
+}
