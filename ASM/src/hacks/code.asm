@@ -100,7 +100,7 @@ Scene_CommandObjectList_After:
 .org 0x800813F4
 ; Replaces:
 ;   a bunch of crap that checks which scene is being loaded
-    li      a3, 0xFA000
+    li      a3, 0x74000
     ; Figure out the current age
     ; play is in s0
     lw      a0, 0x04(s0) ; <- links age, 0 for adult 1 for child
