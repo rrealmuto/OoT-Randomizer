@@ -3,6 +3,7 @@
 #include "text.h"
 #include "enemy_spawn_shuffle.h"
 #include "ovl_kaleidoscope.h"
+#include "util.h"
 
 #define KaleidoScope_DrawWorldMap   0x8081CE54
 #define KaleidoScope_DrawDungeonMap 0x8081b660
@@ -243,4 +244,65 @@ void PauseMapMark_Draw_CallHook(z64_game_t* globalCtx) {
     pause_mapmark_draw_func handler = KaleidoManager_GetRamAddr((void*)PauseMapMark_Draw);
     if(menu_page == 0)
         handler(globalCtx);
+}
+
+int32_t KaleidoScope_AllocAndDmaRequest(void** ppRam, uintptr_t vrom, size_t size) {
+    // Allocate the space
+    *ppRam = ZeldaArena_Malloc(size);
+    DmaMgr_RequestSync(*ppRam, vrom, size);
+}
+
+int32_t KaleidoScope_AllocAndDmaRequestNameSegment(void** ppRam, uintptr_t vrom, size_t size) {
+    // Allocate size + 0x400
+    *ppRam = ZeldaArena_Malloc(size + 0x400);
+
+    // DMA to ppRam + 0x400
+    DmaMgr_RequestSync(*ppRam + 0x400, vrom, size);
+}
+
+extern void PreRender_SetValuesSave(void* this, uint32_t width, uint32_t height, void* fbuf, void* zbuf, void* cvg);
+
+void KaleidoScope_PreRender_SetValuesSave_Hook(void* this, uint32_t width, uint32_t height, void* fbuf, void* zbuf, void** pcvg) {
+    // Allocate space for the cvg
+    *pcvg = ZeldaArena_Malloc(8*width*height);
+    PreRender_SetValuesSave(this, width, height, fbuf, zbuf, *pcvg);
+}
+
+extern void Object_ReloadSlots(z64_obj_ctxt_t* objectCtx);
+
+extern void* OVL_KaleidoScope_sPreRenderCvg;
+
+void Object_ReloadSlots_Heap(z64_obj_ctxt_t* objectCtx) {
+    for(int i = 0; i < objectCtx->numEntries; i++) {
+        int16_t id = objectCtx->slots[i].id;
+        uint32_t size = gObjectTable[id].vrom_end - gObjectTable[id].vrom_start;
+        if( i >= 3) {
+            objectCtx->slots[i].data = ZeldaArena_Malloc(size);
+        }
+        DmaMgr_RequestSync(objectCtx->slots[i].data, gObjectTable[id].vrom_start, size);
+    }
+}
+
+void KaleidoScope_FreeMemAndReloadSlots(z64_game_t* play) {
+    ZeldaArena_Free(play->pause_ctxt.icon_item);
+    ZeldaArena_Free(play->pause_ctxt.icon_item_24);
+    ZeldaArena_Free(play->pause_ctxt.icon_item_s);
+    ZeldaArena_Free(play->pause_ctxt.icon_item_lang);
+    ZeldaArena_Free(play->pause_ctxt.name_texture);
+    //OVL_KaleidoScope_sPreRenderCvg
+    void** sPreRenderCvg = (void**)resolve_kaleido_ovl_addr(&OVL_KaleidoScope_sPreRenderCvg);
+    ZeldaArena_Free(*sPreRenderCvg);
+    Object_ReloadSlots(&play->objectCtx);
+}
+
+extern uint32_t Player_InitPauseDrawData(z64_game_t* play, uint8_t* segment, SkelAnime* skelAnime);
+
+uint32_t KaleidoScope_Player_InitPauseDrawData_Hook(z64_game_t* play, uint8_t* segment, SkelAnime* skelAnime) {
+    // Free objects in the main object context that are allocated on the heap
+    // main keep, subkeep, and player are in their original places
+    // They should always be index 0, 1, and 2
+    for(int i = 3; i < play->objectCtx.numEntries; i++) {
+        ZeldaArena_Free(play->objectCtx.slots[i].data);
+    }
+    return Player_InitPauseDrawData(play, segment, skelAnime);
 }

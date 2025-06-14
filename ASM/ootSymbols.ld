@@ -82,6 +82,9 @@ Collider_SetJntSph = 0x8004a874;
 CollisionCheck_SetAT = 0x8004bd50;
 CollisionCheck_SetAC = 0x8004bf40;
 CollisionCheck_SetOC = 0x8004c130;
+PreRender_SetValuesSave = 0x8009dca0;
+Object_ReloadSlots = 0x800816b8;
+Player_InitPauseDrawData = 0x8007c09c;
 
 Matrix_Push = 0x800aa6ec;
 Matrix_Pop = 0x800aa724;
@@ -107,6 +110,7 @@ OVL_gSlotAgeReqs = 0x80829D74;
 OVL_sEquipState = 0x80829710;
 OVL_sEquipAnimTimer = 0x80829714;
 OVL_sEquipMoveTimer = 0x80829718;
+OVL_KaleidoScope_sPreRenderCvg = 0x808301a8;
 
 
 /* Door_Shutter */
