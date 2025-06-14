@@ -3,6 +3,7 @@ import os
 import random
 from enum import IntEnum
 from typing import TYPE_CHECKING
+from bin.tools.ml64_unpak.ML64Unpack import ML64Pak
 
 from Utils import data_path
 
@@ -20,7 +21,17 @@ def get_model_choices(age: int) -> list[str]:
     if os.path.exists(path):
         for file in os.listdir(path):
             if file.endswith(".zobj"):
-                names.append(file[:-5])
+                names.append(file)
+            if file.endswith(".pak"):
+                file_path = os.path.join(path, file)
+                with open(file_path, 'rb') as f:
+                    file_bytes = f.read()
+                    pak = ML64Pak(file_bytes)
+                    pak_files = pak.get_all_file_names()
+                    for pak_file in pak_files:
+                        if pak_file.endswith(".zobj"):
+                            names.append(f"{file}/{pak_file}")
+
     if len(names) > 2:
         # If more than 2 non-default model choices, add random option
         names.insert(1, "Random")
@@ -490,6 +501,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
     linksize = ADULT_SIZE
     hierarchy = ADULT_HIERARCHY
     postconstantstart = ADULT_POST_START
+    obj_table_entry = ADULT_OBJ_TABLE_ENTRY
     pieces = AdultPieces
     path = data_path('Models/Adult')
     skips = adultSkips
@@ -500,18 +512,33 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
         linksize = CHILD_SIZE
         hierarchy = CHILD_HIERARCHY
         postconstantstart = CHILD_POST_START
+        obj_table_entry = CHILD_OBJ_TABLE_ENTRY
         pieces = ChildPieces
         path = data_path('Models/Child')
         skips = childSkips
         skeleton = childSkeleton
         agestr = "child"
     # Read model data from file
-    file = open(model, "rb")
-    zobj = file.read()
-    file.close()
-    zobj = bytearray(zobj)
-    if len(zobj) > linksize:
-        raise ModelDefinitionError("Model for " + agestr + " too large- It is " + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
+    zobj = None
+    if ".pak" in model:
+        # Split the model name into .pak + the .zobj
+        splitindex = model.index(".pak") + 4
+        
+        zobj_name = model[splitindex+1:]
+        model = model[0:splitindex]
+        file = open(model, "rb")
+        pak_bytes = file.read()
+        file.close()
+        pak = ML64Pak(pak_bytes)
+        zobj = pak.get_file(zobj_name)
+        zobj = bytearray(zobj)
+    else:
+        file = open(model, "rb")
+        zobj = file.read()
+        file.close()
+        zobj = bytearray(zobj)
+    #if len(zobj) > linksize:
+    #    raise ModelDefinitionError("Model for " + agestr + " too large- It is " + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
     # See if the string MODLOADER64 appears before the LUT- if so this is a PlayAs model and needs no further processing
     if scan(zobj, "MODLOADER64") == -1:
         # First, make sure all important bytes are zeroed out
@@ -545,9 +572,9 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
             for byte in vanillaZobj:
                 zobj.insert(startaddr + i, byte)
                 i += 1
-            if len(zobj) > linksize:
-                raise ModelDefinitionError("After processing, model for " + agestr + " too large- It is "
-                + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
+            #if len(zobj) > linksize:
+            #    raise ModelDefinitionError("After processing, model for " + agestr + " too large- It is "
+            #    + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
         # Now we have to set the lookup table for each item
         for (piece, offset) in DLOffsets.items():
             # Add the starting address to each offset so they're accurate to the updated zobj
@@ -597,7 +624,13 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
     # Correct skeleton if it should be corrected
     CorrectSkeleton(zobj, skeleton, agestr)
     # Write zobj to vanilla object (object_link_boy or object_link_child)
-    rom.write_bytes(linkstart, zobj)
+    # Relocate the object
+    linkstart_new = rom.dma.free_space(len(zobj))
+    rom.write_bytes(linkstart_new, zobj)
+    rom.update_dmadata_record_by_key(linkstart, linkstart_new, linkstart_new + len(zobj))
+    
+    rom.write_int32(obj_table_entry, linkstart_new)
+    rom.write_int32(obj_table_entry + 4, linkstart_new + len(zobj))
     # Finally, want to return an address with a DF instruction for use when writing the model data
     dfBytes = bytearray(b'\xDF\x00\x00\x00\x00\x00\x00\x00')
     return scan(zobj, dfBytes) - 8
@@ -615,7 +648,7 @@ def patch_model_adult(rom: Rom, settings: Settings, log: CosmeticsLog) -> None:
             choices.remove("Default")
             choices.remove("Random")
             model = random.choice(choices)
-        model = data_path(f'Models/Adult/{model}.zobj')
+        model = data_path(f'Models/Adult/{model}')
     pathsplit = os.path.basename(model)
     log.settings.model_adult = pathsplit.split('.')[0]
 
@@ -787,7 +820,7 @@ def patch_model_child(rom: Rom, settings: Settings, log: CosmeticsLog) -> None:
             choices.remove("Default")
             choices.remove("Random")
             model = random.choice(choices)
-        model = data_path(f'Models/Child/{model}.zobj')
+        model = data_path(f'Models/Child/{model}')
     pathsplit = os.path.basename(model)
     log.settings.model_child = pathsplit.split('.')[0]
 
@@ -1307,11 +1340,13 @@ ADULT_START: int         = 0x00F86000
 ADULT_SIZE: int          = 0x00037800
 ADULT_HIERARCHY: int     = 0x06005380
 ADULT_POST_START: int    = 0x00005238
+ADULT_OBJ_TABLE_ENTRY    = 0x00B6EFF8
 
 CHILD_START: int         = 0x00FBE000
 CHILD_SIZE: int          = 0x0002CF80
 CHILD_HIERARCHY: int     = 0x060053A8
 CHILD_POST_START: int    = 0x00005228
+CHILD_OBJ_TABLE_ENTRY    = 0x00B6F000
 
 # Parts of the rom to not overwrite when applying a patch file
 restrictiveBytes: list[tuple[int, int]] = [

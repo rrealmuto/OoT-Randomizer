@@ -10,6 +10,7 @@
 /testlogs
 __pycache__
 ARCHIVE.bin
+/.venv
 
 **/.DS_Store
 
@@ -29,8 +30,10 @@ common-key.bin
 
 data/Models/Adult/*.zobj
 data/Models/Adult/Pieces
+data/Models/Adult/*.pak
 data/Models/Child/*.zobj
 data/Models/Child/Pieces
+data/Models/Child/*.pak
 
 tests/Output
 !tests/*.sav

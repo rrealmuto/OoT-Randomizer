@@ -30,6 +30,7 @@ EffectSsKakera_Spawn = 0x8001d998;
 z64_Gfx_SetupDL_25Opa = 0x8007E298;
 z64_Gfx_SetupDL_42Opa = 0x8007E868;
 Audio_StopCurrentMusic = 0x800C7684;
+Audio_PlaySfxGeneral = 0x800C806C;
 sprintf = 0x800CE7b4;
 Fault_AddHungupAndCrashImpl = 0x800AF564;
 z64_ItemIcons = 0x800F8D2C;
@@ -77,6 +78,9 @@ Collider_SetJntSph = 0x8004a874;
 CollisionCheck_SetAT = 0x8004bd50;
 CollisionCheck_SetAC = 0x8004bf40;
 CollisionCheck_SetOC = 0x8004c130;
+z64_object_table = 0x800F8FF8;
+THA_AllocTailAlign16 = 0x800a01b8;
+gLinkObjectIds = 0x800f8ff0;
 
 Matrix_Push = 0x800aa6ec;
 Matrix_Pop = 0x800aa724;
