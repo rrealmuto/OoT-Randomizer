@@ -22,3 +22,6 @@ z64_sEquipAnimTimer = 0x8039EAB4;
 z64_sEquipMoveTimer = 0x8039EAB8;
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
+z64_object_table = 0x800F8FF8;
+THA_AllocTailAlign16 = 0x800a01b8;
+gLinkObjectIds = 0x800f8ff0;

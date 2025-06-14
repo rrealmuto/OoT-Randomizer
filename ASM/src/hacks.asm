@@ -4175,3 +4175,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_parameter.asm"
 .include "hacks/z_file_choose.asm"
 .include "hacks/ovl_player.asm"
+.include "hacks/objects.asm"
