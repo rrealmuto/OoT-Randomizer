@@ -19,7 +19,7 @@ from Hints import build_gossip_hints
 from HintList import clear_hint_exclusion_cache, misc_item_hint_table, misc_location_hint_table
 from ItemPool import generate_itempool
 from MBSDIFFPatch import apply_ootr_3_web_patch
-from Models import patch_model_adult, patch_model_child
+from Models import patch_misc_models, patch_model_adult, patch_model_child
 from N64Patch import create_patch_file, apply_patch_file
 from Patches import patch_rom
 from Rom import Rom
@@ -225,6 +225,7 @@ def prepare_rom(spoiler: Spoiler, world: World, rom: Rom, settings: Settings, rn
             patch_model_adult(rom, settings, cosmetics_log)
         if settings.model_child != "Default" or len(settings.model_child_filepicker) > 0:
             patch_model_child(rom, settings, cosmetics_log)
+        patch_misc_models(rom, settings, cosmetics_log)
     rom.update_header()
     return cosmetics_log
 

@@ -1,0 +1,20 @@
+{
+    "model": "MojoJojoDorf.zobj",
+    "replace_object": "object_ganon",
+    "patch_files": [
+        {
+            "file": "ovl_Boss_Ganon",
+            "patches": 
+            [
+                {
+                    "addr": 2550,
+                    "data": [6, 0]
+                },
+                {
+                    "addr": 2552,
+                    "data": [0, 0]
+                }
+            ]
+        }
+    ]
+}

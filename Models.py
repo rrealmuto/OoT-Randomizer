@@ -1,4 +1,5 @@
 from __future__ import annotations
+import json
 import os
 import random
 from enum import IntEnum
@@ -12,6 +13,33 @@ if TYPE_CHECKING:
     from Rom import Rom
     from Settings import Settings
 
+
+# Misc. constants
+CODE_START: int          = 0x00A87000
+PLAYER_START: int        = 0x00BCDB70
+HOOK_START: int          = 0x00CAD2C0
+SHIELD_START: int        = 0x00DB1F40
+STICK_START: int         = 0x00EAD0F0
+GRAVEYARD_KID_START: int = 0x00E60920
+GUARD_START: int         = 0x00D1A690
+RUNNING_MAN_START: int   = 0x00E50440
+
+BASE_OFFSET: int         = 0x06000000
+LUT_START: int           = 0x00005000
+LUT_END: int             = 0x00005800
+PRE_CONSTANT_START: int  = 0X0000500C
+
+ADULT_START: int         = 0x00F86000
+ADULT_SIZE: int          = 0x00037800
+ADULT_HIERARCHY: int     = 0x06005380
+ADULT_POST_START: int    = 0x00005238
+ADULT_OBJ_TABLE_ENTRY    = 0x00B6EFF8
+
+CHILD_START: int         = 0x00FBE000
+CHILD_SIZE: int          = 0x0002CF80
+CHILD_HIERARCHY: int     = 0x060053A8
+CHILD_POST_START: int    = 0x00005228
+CHILD_OBJ_TABLE_ENTRY    = 0x00B6F000
 
 def get_model_choices(age: int) -> list[str]:
     names = ["Default"]
@@ -48,11 +76,11 @@ class ModelDefinitionError(ModelError):
 
 # Used for writer model pointers to the rom in place of the vanilla pointers
 class ModelPointerWriter:
-    def __init__(self, rom: Rom) -> None:
+    def __init__(self, rom: Rom, base: int = CODE_START) -> None:
         self.rom: Rom = rom
         self.offset: int = 0
         self.advance: int = 4
-        self.base: int = CODE_START
+        self.base: int = base
 
     def SetBase(self, base: str) -> None:
         if base == 'Code':
@@ -627,6 +655,9 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
     # Relocate the object
     linkstart_new = rom.dma.free_space(len(zobj))
     rom.write_bytes(linkstart_new, zobj)
+
+    # Zeroize the original file
+    #rom.write_bytes(linkstart, [0]*linksize)
     rom.update_dmadata_record_by_key(linkstart, linkstart_new, linkstart_new + len(zobj))
     
     rom.write_int32(obj_table_entry, linkstart_new)
@@ -1321,33 +1352,6 @@ oldToNewPipeline = {
     "Limb 20": "Torso",
 }
 
-# Misc. constants
-CODE_START: int          = 0x00A87000
-PLAYER_START: int        = 0x00BCDB70
-HOOK_START: int          = 0x00CAD2C0
-SHIELD_START: int        = 0x00DB1F40
-STICK_START: int         = 0x00EAD0F0
-GRAVEYARD_KID_START: int = 0x00E60920
-GUARD_START: int         = 0x00D1A690
-RUNNING_MAN_START: int   = 0x00E50440
-
-BASE_OFFSET: int         = 0x06000000
-LUT_START: int           = 0x00005000
-LUT_END: int             = 0x00005800
-PRE_CONSTANT_START: int  = 0X0000500C
-
-ADULT_START: int         = 0x00F86000
-ADULT_SIZE: int          = 0x00037800
-ADULT_HIERARCHY: int     = 0x06005380
-ADULT_POST_START: int    = 0x00005238
-ADULT_OBJ_TABLE_ENTRY    = 0x00B6EFF8
-
-CHILD_START: int         = 0x00FBE000
-CHILD_SIZE: int          = 0x0002CF80
-CHILD_HIERARCHY: int     = 0x060053A8
-CHILD_POST_START: int    = 0x00005228
-CHILD_OBJ_TABLE_ENTRY    = 0x00B6F000
-
 # Parts of the rom to not overwrite when applying a patch file
 restrictiveBytes: list[tuple[int, int]] = [
     (ADULT_START, ADULT_SIZE),  # Ignore adult model
@@ -1403,3 +1407,79 @@ restrictiveBytes: list[tuple[int, int]] = [
     (RUNNING_MAN_START + 0x1146, 2),
     (CODE_START + 0xE65A4, 1 * 4),  # Writes 4-byte hierarchy pointer
 ]
+
+def read_object_manifest(manifest_path: str):
+    manifest = None
+    with open(manifest_path) as f:
+        manifest = json.loads(f.read())
+    
+    if manifest is None:
+        raise Exception(f"Could not load manifest {manifest_path}")
+    
+    model_file = manifest["model"]
+    replace_object = manifest["replace_object"]
+    patch_files = manifest["patch_files"]
+
+    return (model_file, replace_object, patch_files)
+
+file_list = {
+    'object_ganon': (0x015C9000, 0x015D9100),
+    'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660)
+}
+
+object_ids = {
+    'object_ganon': 0xE1
+}
+
+def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
+    misc_path = data_path("Models/misc")
+    subdirs = [dir for dir in os.listdir(misc_path) if os.path.isdir(os.path.join(misc_path,dir))]
+    
+    for dir in subdirs:
+        # Read the manifest
+        manifest_path = os.path.join(misc_path, dir, "manifest.json")
+        if os.path.exists(manifest_path):
+            model_file, replace_object, patch_files = read_object_manifest(manifest_path)
+        else:
+            continue
+        # Read the model data
+        model_file_path = os.path.join(misc_path, dir, model_file)
+        with open(model_file_path, 'rb') as f:
+            model_data = f.read()
+        
+        # Find the original model file info
+        orig_vrom_start, orig_vrom_end = file_list[replace_object]
+        orig_size = orig_vrom_end - orig_vrom_start
+
+        # Zeroize the original file
+        rom.write_bytes(orig_vrom_start, [0] * orig_size)
+
+        # Check if we're larger than the original file
+        model_start = orig_vrom_start
+        if len(model_data) > orig_size:
+            # Make a new file and update the dma and object table
+            model_start = rom.dma.free_space(len(model_data))
+                
+            # Write the new model data
+            rom.write_bytes(model_start, model_data)
+            rom.update_dmadata_record_by_key(orig_vrom_start, model_start, model_start + len(model_data))
+            # Update object table
+            object_table_entry_addr = 0xB6EF58 + object_ids[replace_object]*8
+            rom.write_int32(object_table_entry_addr, model_start)
+            rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
+        
+        else:
+            # Write the new model data
+            rom.write_bytes(model_start, model_data)
+
+        # Apply patches
+        for patch_file in patch_files:
+            file_name = patch_file["file"]
+            patches = patch_file["patches"]
+            patch_base, _ = file_list[file_name]
+            for patch in patches:
+                addr = patch["addr"]
+                data = patch["data"]
+
+                rom.write_bytes(patch_base + addr, data)
+
