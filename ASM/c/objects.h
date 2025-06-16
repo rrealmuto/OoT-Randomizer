@@ -33,6 +33,7 @@ void Object_HeapAllocNew(z64_obj_ctxt_t* objectCtx, int32_t slot, int16_t object
 void ObjectArena_Init(Arena* objectArena, void* spaceStart, size_t size);
 void* ObjectArena_Malloc(size_t size);
 void ObjectArena_Free(void* ptr);
+void* ExtendedObject_HeapAlloc(extended_object_ctx_t* objectCtx, int16_t objectId);
 
 extern Arena ObjectArena;
 extern extended_object_ctx_t extended_object_ctx;

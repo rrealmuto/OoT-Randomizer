@@ -37,7 +37,7 @@ void extended_objects_init() {
     gPrevRoom = -1;
 }
 
-void extended_objects_reset() {
+void extended_objects_reset(z64_game_t* play) {
     //extended_object_ctx.free = extended_object_ctx.heap;
     //extended_object_ctx.num = 0;
     //extended_object_ctx.holl_last_room = -1;
@@ -45,7 +45,7 @@ void extended_objects_reset() {
     for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         extended_object_ctx.slots[i].id = 0;
         if(extended_object_ctx.slots[i].data) {
-            ZeldaArena_Free(extended_object_ctx.slots[i].data);
+            Object_Free(&play->objectCtx, extended_object_ctx.slots[i].data);
         }
         extended_object_ctx.slots[i].is_active = 0;
         extended_object_ctx.slots[i].room = -1;
@@ -60,9 +60,24 @@ typedef struct SCmdObjectList {
     /* 0x04 */ int16_t* data;
 } SCmdObjectList;
 
+void* ExtendedObject_HeapAlloc(extended_object_ctx_t* objectCtx, int16_t objectId) {
+    ObjectTableEntry* objectFile = get_object_entry(objectId);
+    uint32_t size;
+    void* nextPtr;
+    
+    size = objectFile->vrom_end - objectFile->vrom_start;
+    // Try to allocate on the object heap
+    void* addr = ObjectArena_Malloc(size);
+    if (addr == NULL) {
+        // Not enough space in the main object space so allocate on zeldaarena
+        addr = ZeldaArena_Malloc(size);
+    }
+    return addr;
+}
+
 void Object_HeapAllocNew(z64_obj_ctxt_t* objectCtx, int32_t slot, int16_t objectId, bool deferLoad) {
     z64_mem_obj_t* entry = &objectCtx->slots[slot];
-    ObjectTableEntry* objectFile = &gObjectTable[objectId];
+    ObjectTableEntry* objectFile = get_object_entry(objectId);
     uint32_t size;
     void* nextPtr;
 
@@ -78,6 +93,15 @@ void Object_HeapAllocNew(z64_obj_ctxt_t* objectCtx, int32_t slot, int16_t object
     if (entry->data == NULL) {
         // Not enough space in the main object space so allocate on zeldaarena
         entry->data = ZeldaArena_Malloc(size);
+    }
+}
+
+void Object_Free(z64_obj_ctxt_t* objectCtx, void* addr) {
+    if((addr >= objectCtx->obj_space_start && addr < objectCtx->obj_space_end)) {
+        ObjectArena_Free(addr);
+    }
+    else {
+        ZeldaArena_Free(addr);
     }
 }
 
@@ -117,12 +141,7 @@ void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
             for (j = i; j < play->objectCtx.numEntries; j++) {
                 invalidatedEntry->id = OBJECT_INVALID;
                 // Check if this was spawned on the main ObjectArena
-                if((invalidatedEntry->data >= play->objectCtx.obj_space_start && invalidatedEntry->data < play->objectCtx.obj_space_end)) {
-                    ObjectArena_Free(invalidatedEntry->data);
-                }
-                else {
-                    ZeldaArena_Free(invalidatedEntry->data);
-                }
+                Object_Free(&play->objectCtx, invalidatedEntry->data);
                 invalidatedEntry++;
             }
 
@@ -190,7 +209,7 @@ void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
             }
             else if(slot->room != roomCtx->curRoom.num) { // Don't unload the object if it is for the current room.
                 // The slot is no longer active so free the slot and the data from the heap
-                ZeldaArena_Free(slot->data);
+                Object_Free(&globalCtx->objectCtx, slot->data);
                 slot->id = 0;
                 slot->room = -1;
                 slot->data = 0;
@@ -222,13 +241,12 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
         if (free_index >= 0) {
             // Spawn the object
             // Figure out how much space we need
-            uint32_t size = get_object_size(object_id);
             // Allocate space on our heap
-            extended_object_ctx.slots[free_index].data = ZeldaArena_Malloc(size);
+            extended_object_ctx.slots[free_index].data = ExtendedObject_HeapAlloc(&extended_object_ctx, object_id);
             //extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX + i].data = extended_object_ctx.free;
             
             // Load the object
-            size = load_object_file(object_id, extended_object_ctx.slots[free_index].data);
+            load_object_file(object_id, extended_object_ctx.slots[free_index].data);
             extended_object_ctx.slots[free_index].id = object_id;
 
             extended_object_ctx.slots[free_index].is_active = 1;

@@ -255,16 +255,17 @@ extern void* OVL_KaleidoScope_sPreRenderCvg;
 void Object_ReloadSlots_Heap(z64_obj_ctxt_t* objectCtx) {
     for(int i = 0; i < objectCtx->numEntries; i++) {
         int16_t id = objectCtx->slots[i].id;
-        uint32_t size = gObjectTable[id].vrom_end - gObjectTable[id].vrom_start;
+        ObjectTableEntry* entry = get_object_entry(id);
+        uint32_t size = entry->vrom_end - entry->vrom_start;
         Object_HeapAllocNew(objectCtx, i, id, false);
-        DmaMgr_RequestSync(objectCtx->slots[i].data, gObjectTable[id].vrom_start, size);
+        DmaMgr_RequestSync(objectCtx->slots[i].data, entry->vrom_start, size);
     }
     for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         int16_t id = extended_object_ctx.slots[i].id;
         if(extended_object_ctx.slots[i].id != 0) {
             ObjectTableEntry* entry = get_object_entry(id);
             uint32_t size = entry->vrom_end - entry->vrom_start;
-            extended_object_ctx.slots[i].data = ZeldaArena_Malloc(size);
+            extended_object_ctx.slots[i].data = ExtendedObject_HeapAlloc(&extended_object_ctx, id);
             DmaMgr_RequestSync(extended_object_ctx.slots[i].data, entry->vrom_start, size);
         }
     }
@@ -280,18 +281,12 @@ void KaleidoScope_ReloadObjects(z64_game_t* play) {
 extern uint32_t Player_InitPauseDrawData(z64_game_t* play, uint8_t* segment, SkelAnime* skelAnime);
 uint32_t KaleidoScope_Player_InitPauseDrawData_Hook(z64_game_t* play, uint8_t* segment, SkelAnime* skelAnime) {
     // Free objects in the main object context that are allocated on the heap
-    
     z64_mem_obj_t* slot = &play->objectCtx.slots[0];
-    for(int i = 0; i < play->objectCtx.numEntries; i++) {
-        if(!(slot->data >= play->objectCtx.obj_space_start && slot->data < play->objectCtx.obj_space_end))
-        {
-            ZeldaArena_Free(play->objectCtx.slots[i].data);
-        }
-    }
+
     // Free extended objects
     for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         if(extended_object_ctx.slots[i].data != NULL) {
-            ZeldaArena_Free(extended_object_ctx.slots[i].data);
+            Object_Free(&play->objectCtx, extended_object_ctx.slots[i].data);
         }
     }
     

@@ -37,7 +37,6 @@ void c_init() {
     models_reset();
     override_flags_init();
     reset_collectible_mutex();
-    extended_objects_reset();
     item_overrides_init();
     init_new_menus();
     extended_objects_init();
@@ -98,7 +97,7 @@ extern void Play_Init(z64_game_t*);
 // This is where we should reset heap because ZeldaArena is reinitialized every time
 void Play_Init_Hook(z64_game_t* this) {
 
-    extended_objects_reset();
+    extended_objects_reset(this);
     Play_Init(this);
 
 

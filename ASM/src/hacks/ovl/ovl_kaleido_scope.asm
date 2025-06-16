@@ -38,10 +38,10 @@
 
 ; Hack in KaleidoScope_Update to free the objects that are spawned on the heap
 ; Just hook the call to Player_InitPauseDrawData and free everything there
-;.org 0x808265AC
+.org 0x808265AC
 ; Replaces:
 ;   jal     Player_InitPauseDrawData
-;    jal     KaleidoScope_Player_InitPauseDrawData_Hook
+    jal     KaleidoScope_Player_InitPauseDrawData_Hook
 
 ; Hook the calls to the function that reloads all of the objects
 ; So that we can free anything that we allocated for KaleidoScope
