@@ -121,6 +121,13 @@ typedef struct Arena {
 
 #define GET_PLAYER(play) ((z64_link_t*)(play)->actor_list[ACTORCAT_PLAYER].first)
 
+typedef struct TwoHeadArena {
+    /* 0x00 */ size_t size;
+    /* 0x04 */ void* start;
+    /* 0x08 */ void* head;
+    /* 0x0C */ void* tail;
+} TwoHeadArena; // size = 0x10
+
 typedef struct {
   /* index of z64_col_type in scene file */
   uint16_t    type;

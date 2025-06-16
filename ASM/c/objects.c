@@ -60,6 +60,41 @@ typedef struct SCmdObjectList {
     /* 0x04 */ int16_t* data;
 } SCmdObjectList;
 
+void Object_HeapAllocNew(z64_obj_ctxt_t* objectCtx, int32_t slot, int16_t objectId, bool deferLoad) {
+    z64_mem_obj_t* entry = &objectCtx->slots[slot];
+    ObjectTableEntry* objectFile = &gObjectTable[objectId];
+    uint32_t size;
+    void* nextPtr;
+
+    if(deferLoad)
+        entry->id = -objectId;
+    else
+        entry->id = objectId;
+    entry->dmaRequest.vromAddr = 0;
+
+    size = objectFile->vrom_end - objectFile->vrom_start;
+    // Try to allocate on the object heap
+    entry->data = ObjectArena_Malloc(size);
+    if (entry->data == NULL) {
+        // Not enough space in the main object space so allocate on zeldaarena
+        entry->data = ZeldaArena_Malloc(size);
+    }
+}
+
+int32_t Object_SpawnPersistent_New(z64_obj_ctxt_t* objectCtx, int16_t objectId) {
+    objectCtx->slots[objectCtx->numEntries].id = objectId;
+    uint32_t size = gObjectTable[objectId].vrom_end - gObjectTable[objectId].vrom_start;
+
+    Object_HeapAllocNew(objectCtx, objectCtx->numEntries, objectId, false);
+
+    DmaMgr_RequestSync(objectCtx->slots[objectCtx->numEntries].data, gObjectTable[objectId].vrom_start, size);
+
+    objectCtx->numEntries++;
+    objectCtx->numPersistentEntries = objectCtx->numEntries;
+
+    return objectCtx->numEntries - 1;
+}
+
 void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
     int32_t i;
     int32_t j;
@@ -81,7 +116,13 @@ void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
             invalidatedEntry = &play->objectCtx.slots[i];
             for (j = i; j < play->objectCtx.numEntries; j++) {
                 invalidatedEntry->id = OBJECT_INVALID;
-                ZeldaArena_Free(invalidatedEntry->data);
+                // Check if this was spawned on the main ObjectArena
+                if((invalidatedEntry->data >= play->objectCtx.obj_space_start && invalidatedEntry->data < play->objectCtx.obj_space_end)) {
+                    ObjectArena_Free(invalidatedEntry->data);
+                }
+                else {
+                    ZeldaArena_Free(invalidatedEntry->data);
+                }
                 invalidatedEntry++;
             }
 
@@ -98,7 +139,7 @@ void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
     }
 
     while (k < cmd->length) {
-        Object_HeapAlloc_New(&play->objectCtx, i, *objectListEntry);
+        Object_HeapAllocNew(&play->objectCtx, i, *objectListEntry, true);
         i++;
         k++;
         objectListEntry++;
@@ -210,27 +251,6 @@ int32_t Object_GetIndex_EnDog(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
     return Object_GetIndex(object_ctx, object_id);
 }
 
-// Hack in the function called in Scene_CommandObjectList that allocates memory for an object
-// We'll call that function Object_HeapAlloc. 
-// The original function returns the memory location after that which was allocated, and uses it to set the start address
-// for the next slot. We're not gonna do any of that and instead just allocate space on the main ZeldaArena heap
-// Original function address is 0x80081740 in decomp it was called func_800982FC
-void* Object_HeapAlloc_New(z64_obj_ctxt_t* objectCtx, int32_t slot, int32_t objectId) 
-{
-    z64_mem_obj_t* entry = &objectCtx->slots[slot];
-    ObjectTableEntry* objectFile = &gObjectTable[objectId];
-
-    entry->id = -objectId;
-    entry->dmaRequest.vromAddr = 0;
-
-    uint32_t size = objectFile->vrom_end - objectFile->vrom_start;
-
-    entry->data = ZeldaArena_Malloc(size);
-
-    return 0;
-}
-
-
 // Fix autocollect magic jar wonder items
 void enitem00_set_link_incoming_item_id(z64_actor_t* actor, z64_game_t* game, int32_t incoming_item_id) {
     EnItem00* this = (EnItem00*)actor;
@@ -276,4 +296,38 @@ void Actor_Draw_gSPSegment_Hack(z64_actor_t* actor) {
         gSPSegment(gfx->poly_opa.p++, 0x06, z64_game.objectCtx.slots[actor->obj_bank_index].data);
         gSPSegment(gfx->poly_xlu.p++, 0x06, z64_game.objectCtx.slots[actor->obj_bank_index].data);
     }
+}
+
+void* THA_AllocTailAlign16(TwoHeadArena* tha, size_t size);
+
+#define OBJECT_LINK_BOY_SIZE    0x37800
+#define OBJECT_LINK_CHILD_SIZE  0x2CF80
+
+uint32_t LinkObjectVanillaSizes[] = { OBJECT_LINK_BOY_SIZE, OBJECT_LINK_CHILD_SIZE };
+extern int16_t gLinkObjectIds[];
+
+Arena ObjectArena;
+
+// Actually allocate an arena/heap
+void* Object_InitContext_AllocSpace(TwoHeadArena* tha, size_t size) {
+    // Resize for adult/child object size
+    size -= LinkObjectVanillaSizes[z64_file.link_age];
+    int16_t linkObjectId = gLinkObjectIds[z64_file.link_age];
+    size += gObjectTable[linkObjectId].vrom_end - gObjectTable[linkObjectId].vrom_start;
+    void* spaceStart = THA_AllocTailAlign16(tha, size);
+    // Initialize an actual arena to use for spawning objects
+    ObjectArena_Init(&ObjectArena, spaceStart, size);
+    return spaceStart;
+}
+
+void ObjectArena_Init(Arena* objectArena, void* spaceStart, size_t size) {
+    __osMallocInit(objectArena, spaceStart, size);
+}
+
+void* ObjectArena_Malloc(size_t size) {
+    return __osMalloc(&ObjectArena, size);
+}
+
+void ObjectArena_Free(void* ptr) {
+    __osFree(&ObjectArena, ptr);
 }

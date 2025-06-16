@@ -85,6 +85,8 @@ CollisionCheck_SetOC = 0x8004c130;
 PreRender_SetValuesSave = 0x8009dca0;
 Object_ReloadSlots = 0x800816b8;
 Player_InitPauseDrawData = 0x8007c09c;
+THA_AllocTailAlign16 = 0x800a01b8;
+gLinkObjectIds = 0x800f8ff0;
 
 Matrix_Push = 0x800aa6ec;
 Matrix_Pop = 0x800aa724;
