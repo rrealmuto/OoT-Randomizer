@@ -107,11 +107,12 @@ void Object_Free(z64_obj_ctxt_t* objectCtx, void* addr) {
 
 int32_t Object_SpawnPersistent_New(z64_obj_ctxt_t* objectCtx, int16_t objectId) {
     objectCtx->slots[objectCtx->numEntries].id = objectId;
-    uint32_t size = gObjectTable[objectId].vrom_end - gObjectTable[objectId].vrom_start;
+    ObjectTableEntry* entry = get_object_entry(objectId);
+    uint32_t size = entry->vrom_end - entry->vrom_start;
 
     Object_HeapAllocNew(objectCtx, objectCtx->numEntries, objectId, false);
 
-    DmaMgr_RequestSync(objectCtx->slots[objectCtx->numEntries].data, gObjectTable[objectId].vrom_start, size);
+    DmaMgr_RequestSync(objectCtx->slots[objectCtx->numEntries].data, entry->vrom_start, size);
 
     objectCtx->numEntries++;
     objectCtx->numPersistentEntries = objectCtx->numEntries;
