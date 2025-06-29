@@ -13,6 +13,8 @@ typedef struct extended_object {
     uint8_t is_active;
     uint8_t room;
     void*   data;
+    uint8_t numDependencies;
+    void*   pad;
 } extended_object_t;
 
 typedef struct extended_object_ctx {
@@ -27,6 +29,8 @@ typedef struct extended_object_ctx {
 
 void extended_objects_init();
 void extended_objects_reset();
+void reset_object_reference_count();
+void check_and_free_extended_objects();
 int32_t object_index_or_spawn(z64_obj_ctxt_t *object_ctx, int16_t object_id);
 void enitem00_set_link_incoming_item_id(z64_actor_t *actor, z64_game_t *game, int32_t getItemId);
 void Object_HeapAllocNew(z64_obj_ctxt_t* objectCtx, int32_t slot, int16_t objectId, bool deferLoad);

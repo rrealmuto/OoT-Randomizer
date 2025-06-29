@@ -260,6 +260,7 @@ void Object_ReloadSlots_Heap(z64_obj_ctxt_t* objectCtx) {
         Object_HeapAllocNew(objectCtx, i, id, false);
         DmaMgr_RequestSync(objectCtx->slots[i].data, entry->vrom_start, size);
     }
+    /*
     for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         int16_t id = extended_object_ctx.slots[i].id;
         if(extended_object_ctx.slots[i].id != 0) {
@@ -268,7 +269,7 @@ void Object_ReloadSlots_Heap(z64_obj_ctxt_t* objectCtx) {
             extended_object_ctx.slots[i].data = ExtendedObject_HeapAlloc(&extended_object_ctx, id);
             DmaMgr_RequestSync(extended_object_ctx.slots[i].data, entry->vrom_start, size);
         }
-    }
+    }*/
 }
 
 void KaleidoScope_ReloadObjects(z64_game_t* play) {
@@ -284,11 +285,11 @@ uint32_t KaleidoScope_Player_InitPauseDrawData_Hook(z64_game_t* play, uint8_t* s
     z64_mem_obj_t* slot = &play->objectCtx.slots[0];
 
     // Free extended objects
-    for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
+    /*for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         if(extended_object_ctx.slots[i].data != NULL) {
             Object_Free(&play->objectCtx, extended_object_ctx.slots[i].data);
         }
-    }
+    }*/
     
     return Player_InitPauseDrawData(play, segment, skelAnime);
 }

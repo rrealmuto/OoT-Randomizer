@@ -32,6 +32,7 @@ void extended_objects_init() {
         extended_object_ctx.slots[i].id = 0;
         extended_object_ctx.slots[i].is_active = 0;
         extended_object_ctx.slots[i].room = -1;
+        extended_object_ctx.slots[i].numDependencies = 0;
         extended_object_ctx.slots[i].data = NULL;
     }
     gPrevRoom = -1;
@@ -42,16 +43,23 @@ void extended_objects_reset(z64_game_t* play) {
     //extended_object_ctx.num = 0;
     //extended_object_ctx.holl_last_room = -1;
     //extended_object_ctx.inhibit_clear_flag = 0;
-    for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
+    for(int i = 3; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
         extended_object_ctx.slots[i].id = 0;
         if(extended_object_ctx.slots[i].data) {
             Object_Free(&play->objectCtx, extended_object_ctx.slots[i].data);
         }
         extended_object_ctx.slots[i].is_active = 0;
         extended_object_ctx.slots[i].room = -1;
+        extended_object_ctx.slots[i].numDependencies = 0;
         extended_object_ctx.slots[i].data = NULL;
     }
     gPrevRoom = -1;
+}
+
+void reset_object_reference_count() {
+    for(int i = 0; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
+        extended_object_ctx.slots[i].numDependencies = 0;
+    }
 }
 
 typedef struct SCmdObjectList {
@@ -140,16 +148,20 @@ void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
 
             invalidatedEntry = &play->objectCtx.slots[i];
             for (j = i; j < play->objectCtx.numEntries; j++) {
-                invalidatedEntry->id = OBJECT_INVALID;
-                // Check if this was spawned on the main ObjectArena
-                Object_Free(&play->objectCtx, invalidatedEntry->data);
+                // Check if this slot has any active actor references. If so don't delete it.
+                if(extended_object_ctx.slots[j].numDependencies == 0) {
+                    invalidatedEntry->id = OBJECT_INVALID;
+                    // Check if this was spawned on the main ObjectArena
+                    Object_Free(&play->objectCtx, invalidatedEntry->data);
+                    extended_object_ctx.slots[j].id = OBJECT_INVALID;
+                    extended_object_ctx.slots[j].data = 0;
+                }
                 invalidatedEntry++;
+                
             }
 
-            play->objectCtx.numEntries = i;
             Actor_KillAllWithMissingObject(play, &play->actor_ctxt);
-
-            continue;
+            break;
         }
 
         i++;
@@ -159,16 +171,29 @@ void Scene_CommandObjectList_New(z64_game_t* play, SCmdObjectList* cmd) {
     }
 
     while (k < cmd->length) {
-        Object_HeapAllocNew(&play->objectCtx, i, *objectListEntry, true);
-        i++;
-        k++;
-        objectListEntry++;
+        if(Object_GetIndex(&play->objectCtx, *objectListEntry) < 0)
+        {
+            if (extended_object_ctx.slots[i].id == 0) {
+                Object_HeapAllocNew(&play->objectCtx, i, *objectListEntry, true);
+                i++;
+                k++;
+                objectListEntry++;
+            }
+            else {
+                i++;
+            }
+        }
+        else {
+            k++;
+            objectListEntry++;
+        }
     }
 
     play->objectCtx.numEntries = i;
 }
 
 void Scene_CommandObjectList_Hook(z64_game_t* globalCtx, void* scene_command) {
+    
     Scene_CommandObjectList_New(globalCtx, scene_command);
     // Copy the original table into the extended one
     for(int i = 0; i < OBJECT_EXCHANGE_BANK_MAX; i++)
@@ -349,4 +374,35 @@ void* ObjectArena_Malloc(size_t size) {
 
 void ObjectArena_Free(void* ptr) {
     __osFree(&ObjectArena, ptr);
+}
+
+void check_and_free_extended_objects() {
+    reset_object_reference_count();
+    // Loop through every actor and update its object reference count
+    int actor_list_index = 0;
+    for (actor_list_index = 0; actor_list_index < 12; actor_list_index++) {
+        // Get the actor list for this actor
+        z64_actor_t* curr = z64_game.actor_list[actor_list_index].first;
+        while (curr != NULL) {
+            if (curr->obj_bank_index < OBJECT_EXCHANGE_BANK_EXTENDED_MAX)
+            {
+                extended_object_ctx.slots[curr->obj_bank_index].numDependencies++;
+            }
+            curr = curr->next;
+        }
+    }
+    //uint8_t numPersistent = z64_game.objectCtx.numPersistentEntries;
+    // Free extended object slots with no actor dependencies
+    extended_object_t* slot = &extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX];
+    for (int i = 0; i < OBJECT_EXCHANGE_BANK_EXTENDED_COUNT; i++) {
+        if (slot->numDependencies == 0 && (slot->id > 0) && slot->data) { 
+            // No dependencies
+            Object_Free(&z64_game.objectCtx, slot->data);
+            slot->data = NULL;
+            slot->id = 0;
+            slot->room = -1;
+            slot->is_active = 0;
+        }
+        slot++;
+    }
 }

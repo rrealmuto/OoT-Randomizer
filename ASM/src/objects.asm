@@ -36,7 +36,9 @@ Room_Change:
 Object_UpdateEntries_Extended:
     li      t3, extended_object_ctx
     addiu   t3, t3, 0x10
-    sll     t2, s2, 3
+    li      t2, 16 ; Make sure this always matches the size of extended_object_t from objects.h
+    mult    s2, t2
+    mflo    t2
     add     t3, t2, t3
     sh      t4, 0x0(t3)
     sh      t4, 0x0(s0) ; Replaced code

@@ -21,6 +21,7 @@
 #include "bg_check.h"
 #include "en_encount1.h"
 #include "debug.h"
+#include "objects.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;

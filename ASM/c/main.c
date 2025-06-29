@@ -55,6 +55,7 @@ void before_game_state_update() {
     manage_music_changes();
     manage_uninvert_yaxis();
     display_misc_messages();
+    check_and_free_extended_objects();
 }
 
 void after_game_state_update() {
