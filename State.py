@@ -22,11 +22,21 @@ Ocarina_C_up_Button: int = ItemInfo.solver_ids['Ocarina_C_up_Button']
 Ocarina_C_down_Button: int = ItemInfo.solver_ids['Ocarina_C_down_Button']
 Ocarina_C_right_Button: int = ItemInfo.solver_ids['Ocarina_C_right_Button']
 
+Megaton_Hammer: int = ItemInfo.solver_ids['Megaton_Hammer']
+Progressive_Strength_Upgrade: int = ItemInfo.solver_ids['Progressive_Strength_Upgrade']
+Bomb_Bag: int = ItemInfo.solver_ids['Bomb_Bag']
+Nayrus_Love: int = ItemInfo.solver_ids['Nayrus_Love']
+Magic_Meter: int = ItemInfo.solver_ids['Magic_Meter']
+
 class State:
     def __init__(self, parent: World) -> None:
         self.solv_items: list[int] = [0] * len(ItemInfo.solver_ids)
         self.world: World = parent
         self.search: Optional[Search] = None
+
+        self.can_blast_or_smash: AccessRule = self.world.parser.parse_rule("can_blast_or_smash")
+        self.Blue_Fire: AccessRule = self.world.parser.parse_rule("Blue_Fire")
+        self.Fairy: AccessRule = self.world.parser.parse_rule("Fairy")
 
     def copy(self, new_world: Optional[World] = None) -> State:
         new_world = new_world if new_world else self.world
@@ -130,14 +140,23 @@ class State:
             return False
 
     # Used for fall damage and other situations where damage is unavoidable
-    def can_live_dmg(self, hearts: int) -> bool:
+    def can_live_dmg(self, hearts: float, allow_revive: bool = True, allow_nayrus: bool = True, **kwargs) -> bool:
         mult = self.world.settings.damage_multiplier
-        if hearts*4 >= 3:
-            return mult != 'ohko' and mult != 'quadruple'
-        elif hearts*4 < 3:
-            return mult != 'ohko'
+        nl = self.has(Nayrus_Love) and self.has(Magic_Meter) and allow_nayrus
+        fairy = self.Fairy(self) and allow_revive
+        if mult == 'ohko': 
+            return fairy or nl
+        elif mult == 'quad':
+            return (hearts < 0.75) or fairy or nl
+        elif mult == 'double':
+            return (hearts < 1.5) or fairy or nl
+        elif mult == 'normal':
+            return (hearts < 3) or fairy or nl
+        elif mult == 'half':
+            return (hearts < 6) or fairy or nl
         else:
-            return True
+            False
+
 
     # Use the guarantee_hint rule defined in json.
     def guarantee_hint(self) -> bool:
@@ -176,6 +195,11 @@ class State:
 
     def region_has_shortcuts(self, region_name: str) -> bool:
         return self.world.region_has_shortcuts(region_name)
+    
+    # Glitch logic makes liberal use of this function as it was built with enemy souls in mind
+    # To avoid having to change logic, insert this pass function to be implemented properly later
+    def has_soul(self, enemy: str, **kwargs) -> bool:
+        return True
 
     def has_all_notes_for_song(self, song: str) -> bool:
         # Scarecrow needs 2 different notes

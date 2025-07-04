@@ -430,9 +430,8 @@ def set_entrances(worlds: list[World], savewarps_to_connect: list[tuple[Entrance
         savewarp.connect(savewarp.replaces.connected_region)
 
     for world in worlds:
-        if world.settings.logic_rules != 'glitched':
-            # Set entrance data for all entrances, even those we aren't shuffling
-            set_all_entrances_data(world)
+        # Set entrance data for all entrances, even those we aren't shuffling
+        set_all_entrances_data(world)
 
     if worlds[0].entrance_shuffle:
         shuffle_random_entrances(worlds)
@@ -933,6 +932,9 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
     if world.dungeon_mq['Forest Temple'] and 'Forest Temple' in world.settings.dungeon_shortcuts:
         CHILD_FORBIDDEN.append('Phantom Ganon Boss Room -> Forest Temple Before Boss')
         ADULT_FORBIDDEN.append('Phantom Ganon Boss Room -> Forest Temple Before Boss')
+
+    if world.settings.logic_rules != 'glitchless':
+        CHILD_FORBIDDEN.remove('GV Carpenter Tent -> GV Fortress Side')
 
     for entrance in world.get_shufflable_entrances():
         if entrance.shuffled:
