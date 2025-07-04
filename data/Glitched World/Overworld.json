@@ -183,14 +183,6 @@
             "KF Bean Platform Green Rupee 5": "is_adult and (here(can_plant_bean) or Hover_Boots or can_hover)",
             "KF Bean Platform Green Rupee 6": "is_adult and (here(can_plant_bean) or Hover_Boots or can_hover)",
             "KF Bean Platform Red Rupee": "is_adult and (here(can_plant_bean) or Hover_Boots or can_hover)",
-            "KF Adult Platforms Octorok": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "KF Adult Near Shop Octorok": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "KF Adult Near Midos House Scrub": "is_adult and can_kill_scrub",
-            "KF Adult Near Links House Scrub": "is_adult and can_kill_scrub",
-            "KF Adult Near Lost Woods Scrub": "is_adult and can_kill_scrub",
-            "KF Adult Near Field Deku Baba": "can_kill_deku_baba",
-            "KF Adult Inside Fence Deku Baba": "can_kill_deku_baba",
-            "KF Adult Near Links House Deku Baba": "can_kill_deku_baba",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -226,26 +218,13 @@
             "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Deku_Shield"
         },
         "locations": {
-            "KF Child Deku Tree Withered Deku Baba 1": "is_child and can_kill_withered_deku_baba",
-            "KF Child Deku Tree Withered Deku Baba 2": "is_child and can_kill_withered_deku_baba",
-            "KF Child Deku Tree Withered Deku Baba 3": "is_child and can_kill_withered_deku_baba",
-            "KF Child Deku Tree Withered Deku Baba 4": "is_child and can_kill_withered_deku_baba",
-            "KF Child Deku Tree Withered Deku Baba 5": "is_child and can_kill_withered_deku_baba",
-            "KF Adult Path To Deku Skulltula": "is_adult and can_kill_skulltula",
-            "KF Adult Near Path To Deku Tree Deku Baba": "can_kill_deku_baba",
-            "KF Adult Deku Tree Deku Baba 1": "can_kill_deku_baba",
-            "KF Adult Deku Tree Deku Baba 2": "can_kill_deku_baba",
-            "KF Adult Deku Tree Deku Baba 3": "can_kill_deku_baba",
-            "KF Adult Deku Tree Deku Baba 4": "can_kill_deku_baba",
-            "KF Adult Deku Tree Deku Baba 5": "can_kill_deku_baba",
-            "KF Adult Deku Tree Deku Baba 6": "can_kill_deku_baba",
             # The adult Babas despawn after Phantom Ganon is defeated, and so can't be relied on for repeatable drops.
             "Deku Baba Sticks": "
                 has_soul(Deku_Baba) and (
                     (is_child and (Kokiri_Sword or Boomerang))
-                    or (is_adult and shuffle_enemy_drops)
+                    or (is_adult)
                     )",
-            "Deku Baba Nuts": "has_soul(Deku_Baba) and is_adult and shuffle_enemy_drops",
+            "Deku Baba Nuts": "has_soul(Deku_Baba) and is_adult",
             "KF Deku Tree Gossip Stone (Left)": "True",
             "KF Deku Tree Gossip Stone (Right)": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
@@ -388,9 +367,6 @@
             "LW Near Ocarina Game Wonderitem 1": "is_child",
             "LW Near Ocarina Game Wonderitem 2": "is_child",
             "LW Near Ocarina Game Wonderitem 3": "is_child",
-            "LW Adult Sarias Friend Skullkid Enemy": "'Skull Kids Present'",
-            "LW Adult Ocarina Game Skullkid Enemy 1": "'Skull Kids Present'",
-            "LW Adult Ocarina Game Skullkid Enemy 2": "'Skull Kids Present'",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
@@ -480,8 +456,7 @@
         "scene": "Sacred Forest Meadow",
         "hint": "SACRED_FOREST_MEADOW",
         "locations": {
-            "SFM Near Lost Woods Wonderitem": "True",
-            "SFM Child Wolfos": "is_child and can_kill_wolfos"
+            "SFM Near Lost Woods Wonderitem": "True"
         },
         "exits": {
             "LW Beyond Mido": "True",
@@ -501,18 +476,6 @@
             "SFM Maze Wonderitem 3": "True",
             "SFM Maze Wonderitem 4": "True",
             "SFM Maze Wonderitem 5": "True",
-            "SFM Child Maze Scrub 1": "is_child and can_kill_scrub",
-            "SFM Child Maze Scrub 2": "is_child and can_kill_scrub",
-            "SFM Child Maze Scrub 3": "is_child and can_kill_scrub",
-            "SFM Child Maze Scrub 4": "is_child and can_kill_scrub",
-            "SFM Child Near Saria Scrub 1": "is_child and can_kill_scrub",
-            "SFM Child Near Saria Scrub 2": "is_child and can_kill_scrub",
-            "SFM Adult Maze Moblin 1": "is_adult and has_soul(Moblin)",
-            "SFM Adult Maze Moblin 2": "is_adult and has_soul(Moblin)",
-            "SFM Adult Maze Moblin 3": "is_adult and has_soul(Moblin)",
-            "SFM Adult Maze Moblin 4": "is_adult and has_soul(Moblin)",
-            "SFM Adult Maze Moblin 5": "is_adult and has_soul(Moblin)",
-            "SFM Adult Smashing Moblin": "is_adult and has_soul(Moblin)",
             "SFM GS": "is_adult and can_use(Hookshot) and at_night",
             "SFM Maze Gossip Stone (Lower)": "True",
             "SFM Maze Gossip Stone (Upper)": "True",
@@ -567,13 +530,6 @@
             "HF Child Above Drawbridge Wonderitem 1": "is_child",
             "HF Child Above Drawbridge Wonderitem 2": "is_child",
             "HF Child Above Drawbridge Wonderitem 3": "is_child",
-            "HF Child Near Fairy Grotto Peahat": "can_kill_peahat",
-            "HF Child Near Kokiri Forest Peahat": "can_kill_peahat",
-            "HF Child South Field Peahat 1": "can_kill_peahat",
-            "HF Child South Field Peahat 2": "can_kill_peahat",
-            "HF Child South Field Peahat 3": "can_kill_peahat",
-            "HF Child South Field Flying Peahat": "can_kill_flying_peahat",
-            "HF Child Near Valley Flying Peahat": "can_kill_flying_peahat",
             "Big Poe Kill": "can_ride_epona and Bow and has_bottle"
         },
         "exits": {
@@ -620,24 +576,6 @@
             "LH Underwater Green Rupee 2": "is_child and (
                 can_dive or (adv_wallwalking and Boomerang)
                 )",
-            "LH Child Near Lab Octorok": "is_child and can_kill_octorok_with_bombs",
-            "LH Child Bridge Octorok 1": "is_child and can_kill_octorok_with_bombs",
-            "LH Child Bridge Octorok 2": "is_child and can_kill_octorok_with_bombs",
-            "LH Child Tektite 1": "is_child and can_kill_tektite",
-            "LH Child Tektite 2": "is_child and can_kill_tektite",
-            "LH Child Tektite 3": "is_child and can_kill_tektite",
-            "LH Adult Guay 1": "is_adult and can_kill_guay",
-            "LH Adult Guay 2": "is_adult and can_kill_guay",
-            "LH Adult Guay 3": "is_adult and can_kill_guay",
-            "LH Adult Guay 4": "is_adult and can_kill_guay",
-            "LH Adult Tektite 1": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 2": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 3": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 4": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 5": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 6": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 7": "is_adult and can_kill_tektite",
-            "LH Adult Tektite 8": "is_adult and can_kill_tektite",
             "LH GS Bean Patch": "can_plant_bugs and can_child_attack",
             "LH GS Lab Wall": "
                 is_child and at_night and
@@ -795,9 +733,6 @@
             "GV Crate Near Cow": "is_child and can_break_crate",
             "GV Adult Upper Waterfall Wonderitem": "is_adult and (logic_valley_wonderitems or here(can_plant_bean))",
             "GV Adult Lower Waterfall Wonderitem": "is_adult and (logic_valley_wonderitems or here(can_plant_bean))",
-            "GV Adult Upper Octorok 1": "is_adult and can_kill_octorok_with_bombs",
-            "GV Adult Upper Octorok 2": "is_adult and can_kill_octorok_with_bombs",
-            "GV Adult Upper Octorok 3": "is_adult and can_kill_octorok_with_bombs",
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -813,9 +748,6 @@
         "hint": "GERUDO_VALLEY",
         "time_passes": true,
         "locations": {
-            "GV Adult Lower Octorok 1": "is_adult and has_soul(Octorok) and Iron_Boots and Hookshot",
-            "GV Adult Lower Octorok 2": "
-                is_adult and has_soul(Octorok) and Iron_Boots and (Hookshot or Hylian_Shield)"
         },
         "exits": {
             "Lake Hylia": "True"
@@ -1374,14 +1306,6 @@
             "Colossus Tree Wonderitem 3 Child": "is_child and can_use(Slingshot)",
             "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)",
-            "Colossus Child Guay 1": "is_child and can_kill_guay",
-            "Colossus Child Guay 2": "is_child and can_kill_guay",
-            "Colossus Child Guay 3": "is_child and can_kill_guay",
-            "Colossus Adult Guay 1": "is_adult and can_kill_guay",
-            "Colossus Adult Guay 2": "is_adult and can_kill_guay",
-            "Colossus Adult Guay 3": "is_adult and can_kill_guay",
-            "Colossus Adult Guay 4": "is_adult and can_kill_guay",
-            "Colossus Adult Guay 5": "is_adult and can_kill_guay",
             "Colossus GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Colossus GS Tree": "is_adult and can_use(Hookshot) and at_night",
             "Colossus GS Hill": "
@@ -1531,14 +1455,6 @@
         "scene": "Market",
         "hint": "MARKET",
         "locations": {
-            "Market Adult ReDead 1": "True",
-            "Market Adult ReDead 2": "True",
-            "Market Adult ReDead 3": "True",
-            "Market Adult ReDead 4": "True",
-            "Market Adult ReDead 5": "True",
-            "Market Adult ReDead 6": "True",
-            "Market Adult ReDead 7": "True",
-            "Market Adult ReDead 8": "True"
         }
     },
     {
@@ -2342,7 +2258,6 @@
         "scene": "Graveyard Heart Piece Grave",
         "locations": {
             "Graveyard Heart Piece Grave Chest": "can_play(Suns_Song)",
-            "Graveyard Heart Piece Grave ReDead": "can_kill_redead"
         },
         "exits": {
             "Graveyard": "True"
@@ -2366,13 +2281,6 @@
         "scene": "Graveyard Royal Familys Tomb",
         "locations": {
             "Song from Royal Familys Tomb": "True",
-            "Graveyard Royal Familys Tomb Keese 1": "True",
-            "Graveyard Royal Familys Tomb Keese 2": "True",
-            "Graveyard Royal Familys Tomb Keese 3": "True",
-            "Graveyard Royal Familys Tomb Keese 4": "True",
-            "Graveyard Royal Familys Tomb ReDead 1": "can_kill_redead",
-            "Graveyard Royal Familys Tomb ReDead 2": "can_kill_redead",
-            "Graveyard Royal Familys Tomb ReDead 3": "can_kill_redead"
         }
     },
     {
@@ -2414,10 +2322,6 @@
             "Graveyard Dampe Race Wonderitem 13": "True",
             "Graveyard Dampe Race Wonderitem 14": "True",
             "Graveyard Dampe Race Wonderitem 15": "True",
-            "Graveyard Dampe Race ReDead 1": "has_soul(Redead_and_Gibdo) and (is_adult or Sticks or Kokiri_Sword or can_use(Megaton_Hammer))",
-            "Graveyard Dampe Race ReDead 2": "has_soul(Redead_and_Gibdo) and (is_adult or Sticks or Kokiri_Sword or can_use(Megaton_Hammer))",
-            "Graveyard Dampe Race ReDead 3": "has_soul(Redead_and_Gibdo) and (is_adult or Sticks or Kokiri_Sword or can_use(Megaton_Hammer))",
-            "Graveyard Dampe Race ReDead 4": "has_soul(Redead_and_Gibdo) and (is_adult or Sticks or Kokiri_Sword or can_use(Megaton_Hammer))",
             "Nut Pot": "True"
         },
         "exits": {
@@ -2482,12 +2386,6 @@
                 is_child and (here(can_blast_or_smash) or (logic_boomerang_boulders and Boomerang))",
             "DMT Rock Blue Rupee": "
                 is_child and (can_blast_or_smash or (logic_boomerang_boulders and Boomerang))",
-            "DMT Adult First Tektite": "is_adult and can_kill_tektite",
-            "DMT Adult Second Tektite": "is_adult and can_kill_tektite",
-            "DMT Child First Tektite": "is_child and can_kill_tektite",
-            "DMT Child Second Tektite": "is_child and can_kill_tektite",
-            "DMT Child Third Tektite": "is_child and can_kill_tektite",
-            "DMT Child Near DC Tektite": "is_child and can_kill_tektite",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                 (has_explosives or Progressive_Strength_Upgrade or (logic_dmt_soil_gs and can_use(Boomerang)))",
@@ -2525,15 +2423,6 @@
             "DMT Trade Eyedrops": "
                 is_adult and (guarantee_trade_path or adult_trade_shuffle) and
                 (('Eyedrops Access' and not adult_trade_shuffle) or (Eyedrops and disable_trade_revert))",
-            "DMT Adult Summit Tektite": "is_adult and can_kill_tektite",
-            "DMT Adult Summit Skullwalltula Lower": "has_soul(Skullwalltula) and is_adult",
-            "DMT Adult Summit Skullwalltula Middle": "has_soul(Skullwalltula) and is_adult",
-            "DMT Adult Summit Skullwalltula Upper": "has_soul(Skullwalltula) and is_adult",
-            "DMT Child Summit Skullwalltula Lower": "has_soul(Skullwalltula) and can_child_attack",
-            "DMT Child Summit Skullwalltula Middle": "has_soul(Skullwalltula) and can_child_attack",
-            "DMT Child Summit Skullwalltula Upper": "
-                has_soul(Skullwalltula) and is_child and
-                (Slingshot or Boomerang or has_explosives or can_use(Dins_Fire) or can_use(Megaton_Hammer))",
             "DMT GS Falling Rocks Path": "is_adult and at_night and (Megaton_Hammer or logic_trail_gs_upper)",
             "DMT Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
@@ -2756,8 +2645,7 @@
             "DMC Adult Green Rupee 4": "is_adult",
             "DMC Adult Green Rupee 5": "is_adult",
             "DMC Adult Green Rupee 6": "is_adult",
-            "DMC Adult Red Rupee": "is_adult",
-            "DMC Pierre Platform Red Bubble": "has_soul(Bubble) and can_use(Goron_Tunic) and (Bow or Magic_Meter)"
+            "DMC Adult Red Rupee": "is_adult"
         }
     },
     {
@@ -2841,16 +2729,6 @@
             "DMC Child Blue Rupee 4": "is_child",
             "DMC Child Blue Rupee 5": "is_child",
             "DMC Child Blue Rupee 6": "is_child",
-            "DMC Red Bubble Below Bridge To Fire Temple": "
-               has_soul(Bubble) and is_adult and Longshot and
-               ((Goron_Tunic and Bow) or ((logic_fewer_tunic_requirements or Goron_Tunic) and Magic_Meter))",
-            "DMC First Plank Red Bubble": "has_soul(Bubble) and is_adult and Goron_Tunic and Bombs and Hover_Boots",
-            "DMC Second Plank Red Bubble 1": "
-               has_soul(Bubble) and is_adult and
-               ((Goron_Tunic and Bow) or ((logic_fewer_tunic_requirements or Goron_Tunic) and Magic_Meter))",
-            "DMC Second Plank Red Bubble 2": "
-               has_soul(Bubble) and is_adult and
-               ((Goron_Tunic and Bow) or ((logic_fewer_tunic_requirements or Goron_Tunic) and Magic_Meter))",
             "DMC GS Bean Patch": "(can_plant_bugs and can_child_attack) or 
                 at('DMC Upper Local', can_mega and can_live_dmg(0.5) and can_plant_bugs and can_child_attack) or 
                 at('DMC Lower Local', can_mega and can_plant_bugs and can_child_attack) ",
@@ -2968,18 +2846,6 @@
             "ZR Child River Wonderitem 25": "is_child",
             "ZR Child River Wonderitem 26": "is_child",
             "ZR Child River Wonderitem 27": "is_child",
-            "ZR Child Octorok Near Bean Salesman": "is_child and can_kill_octorok_with_bombs",
-            "ZR Child Octorok Near Bridge": "is_child and can_kill_octorok_with_bombs",
-            "ZR Child Near Frogs Tektite 1": "is_child and can_kill_tektite",
-            "ZR Child Near Frogs Tektite 2": "is_child and can_kill_tektite",
-            "ZR Adult Lower Octorok 1": "is_adult and can_kill_octorok_with_bombs_or_magic",
-            "ZR Adult Lower Octorok 2": "is_adult and can_kill_octorok_with_bombs_or_magic",
-            "ZR Adult Octorok 1": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "ZR Adult Octorok 2": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "ZR Adult Octorok 3": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "ZR Adult Octorok 4": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "ZR Adult Octorok 5": "is_adult and can_kill_octorok_with_explosives_or_magic",
-            "ZR Adult Octorok 6": "is_adult and can_kill_octorok_with_explosives_or_magic",
             "ZR GS Ladder": "is_child and at_night and can_child_attack",
             "ZR GS Near Raised Grottos": "is_adult and at_night and 
                 (can_use(Hookshot) or can_hover or 
@@ -3120,12 +2986,7 @@
             "ZF Near Jabu Pot 2": "is_child",
             "ZF Near Jabu Pot 3": "is_child",
             "ZF Near Jabu Pot 4": "is_child",
-#            "ZF Scarecrow Wonderitem": "can_use(Scarecrow)", # Only exists in version 1.2
-            "ZF Adult Octorok 1": "is_adult and can_kill_octorok_with_bombs",
-            "ZF Adult Octorok 2": "is_adult and can_kill_octorok_with_bombs",
-            "ZF Adult Near Circling Platforms Octorok 1": "is_adult and can_kill_octorok",
-            "ZF Adult Near Circling Platforms Octorok 2": "is_adult and can_kill_octorok",
-            "ZF Adult Tektite": "is_adult and can_kill_tektite",
+#           "ZF Scarecrow Wonderitem": "can_use(Scarecrow)", # Only exists in version 1.2
             "ZF GS Tree": "is_child and can_bonk",
             "ZF GS Above the Log": "is_child and at_night and (can_use(Boomerang) or
                 (glitch_zf_child_gs_hover and can_shield and Sticks)
@@ -3190,15 +3051,6 @@
             "ZF Hidden Cave Pot 1": "True",
             "ZF Hidden Cave Pot 2": "True",
             "ZF Hidden Cave Pot 3": "True",
-            "ZF Hidden Cave Invisible Skulltula 1": "
-                has_soul(Skulltula) and (logic_lens_overworld or can_use(Lens_of_Truth))",
-            "ZF Hidden Cave Invisible Skulltula 2": "
-                has_soul(Skulltula) and (logic_lens_overworld or can_use(Lens_of_Truth))",
-            "ZF Hidden Cave Invisible Skulltula 3": "
-                has_soul(Skulltula) and (logic_lens_overworld or can_use(Lens_of_Truth))",
-            "ZF Hidden Cave Invisible Skulltula 4": "
-                has_soul(Skulltula) and (logic_lens_overworld or can_use(Lens_of_Truth))",
-            "ZF Hidden Cave Visible Skulltula": "has_soul(Skulltula)",
             "ZF GS Hidden Cave": "Hookshot and at_night"
         }
     },
@@ -3263,21 +3115,6 @@
             "LLR Child Crate": "is_child and can_break_crate",
             "LLR Epona Hurdle Wonderitem 1": "can_ride_epona",
             "LLR Epona Hurdle Wonderitem 2": "can_ride_epona",
-            "LLR Child Night Guay 1": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 2": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 3": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 4": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 5": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 6": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 7": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 8": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 9": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 10": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 11": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 12": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 13": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 14": "is_child and at_night and can_kill_guay",
-            "LLR Child Night Guay 15": "is_child and at_night and can_kill_guay",
             "LLR GS Tree": "is_child and can_bonk",
             "LLR GS Rain Shed": "is_child and at_night",
             "LLR GS House Window": "is_child and (can_use(Boomerang) or can_hover) and at_night",
@@ -3434,9 +3271,7 @@
         "region_name": "SFM Wolfos Grotto",
         "scene": "SFM Wolfos Grotto",
         "locations": {
-            "SFM Wolfos Grotto Chest": "can_kill_wolfos",
-            "SFM Wolfos Grotto Wolfos 1": "can_kill_wolfos",
-            "SFM Wolfos Grotto Wolfos 2": "can_kill_wolfos"
+            "SFM Wolfos Grotto Chest": "can_kill_wolfos"
         },
         "exits": {
             "SFM Entryway": "True"
@@ -3511,8 +3346,6 @@
                 (glitch_hf_web_groundclip and is_adult and can_shield and can_live_dmg(0.5,False,False) and Bombs))",
             "HF Cow Grotto Pot 2": "(can_gdv_stick or has_fire_source or 
                 (glitch_hf_web_groundclip and is_adult and can_shield and can_live_dmg(0.5,False,False) and Bombs))",
-            "HF Cow Grotto Skulltula": "
-                has_soul(Skulltula) and (is_adult or Sticks or has_bombchus or Slingshot or can_use(Dins_Fire))",
             "HF GS Cow Grotto": "((can_gdv_stick or has_fire_source or 
                 (glitch_hf_web_groundclip and is_adult and can_shield and can_live_dmg(0.5,False,False) and Bombs)) and (can_use(Hookshot) or can_use(Boomerang)))
                 or (can_weirdshot and Longshot)",
@@ -3556,8 +3389,7 @@
         "region_name": "HF Near Kak Grotto",
         "scene": "HF Near Kak Grotto",
         "locations": {
-            "HF GS Near Kak Grotto": "can_use(Boomerang) or can_use(Hookshot)",
-            "HF Near Kak Grotto Skulltula": "can_kill_skulltula"
+            "HF GS Near Kak Grotto": "can_use(Boomerang) or can_use(Hookshot)"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -3568,8 +3400,7 @@
         "scene": "HF Tektite Grotto",
         "locations": {
             "HF Tektite Grotto Freestanding PoH": "(Progressive_Scale, 2) or can_use(Iron_Boots) or
-                (adv_tektite_hp_rang and can_use(Boomerang))",
-            "HF Tektite Grotto Tektite": "can_kill_tektite"
+                (adv_tektite_hp_rang and can_use(Boomerang))"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -3583,10 +3414,6 @@
             "HC Storms Grotto Pot 2": "can_break_mud_wall or can_gdv_stick",
             "HC Storms Grotto Pot 3": "can_break_mud_wall or can_gdv_stick",
             "HC Storms Grotto Pot 4": "can_break_mud_wall or can_gdv_stick",
-            "HC Storms Grotto Skullwalltula 1": "has_soul(Skullwalltula) and (can_break_mud_wall or can_use(Dins_Fire)
-                or is_adult or can_use(Sticks) or can_use(Slingshot) or can_use(Bow))",
-            "HC Storms Grotto Skullwalltula 2": "has_soul(Skullwalltula) and (can_break_mud_wall or can_use(Dins_Fire)
-                or is_adult or can_use(Sticks) or can_use(Slingshot) or can_use(Bow))",
             "HC GS Storms Grotto": "(logic_castle_storms_gs and can_use(Boomerang)) or (
                 (can_break_mud_wall or can_gdv_stick) and 
                 (can_use(Hookshot) or can_use(Boomerang) or can_hover)
@@ -3604,9 +3431,7 @@
         "region_name": "Kak ReDead Grotto",
         "scene": "Kak ReDead Grotto",
         "locations": {
-            "Kak ReDead Grotto Chest": "can_kill_redead",
-            "Kak ReDead Grotto ReDead Left": "can_kill_redead",
-            "Kak ReDead Grotto ReDead Right": "can_kill_redead"
+            "Kak ReDead Grotto Chest": "can_kill_redead"
         },
         "exits": {
             "Kakariko Village": "True"
@@ -3786,8 +3611,7 @@
             "GV Octorok Grotto Green Rupee 1": "True",
             "GV Octorok Grotto Green Rupee 2": "True",
             "GV Octorok Grotto Green Rupee 3": "True",
-            "GV Octorok Grotto Green Rupee 4": "True",
-            "GV Octorok Grotto Octorok": "has_soul(Octorok) and ((is_adult and Bombs) or can_kill_octorok)"
+            "GV Octorok Grotto Green Rupee 4": "True"
         },
         "exits": {
             "GV Grotto Ledge": "True"
