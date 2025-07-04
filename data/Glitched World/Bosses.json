@@ -165,15 +165,6 @@
             # Used for the "path to the tower" goal
             "Ganons Tower Access": "is_adult"
         },
-        "locations": {
-            "Ganons Tower Keese 1": "can_kill_keese",
-            "Ganons Tower Keese 2": "can_kill_keese",
-            "Ganons Tower Keese 3": "can_kill_keese",
-            "Ganons Tower Keese 4": "can_kill_keese",
-            "Ganons Tower Keese 5": "can_kill_keese",
-            "Ganons Tower Keese 6": "can_kill_keese",
-            "Ganons Tower Keese 7": "can_kill_keese"
-        },
         "exits": {
             "Ganons Castle Main": "True",
             "Ganons Castle Dinolfos": "can_kill_dinolfos",
@@ -183,10 +174,6 @@
     {
         "region_name": "Ganons Castle Dinolfos",
         "dungeon": "Ganons Castle",
-        "locations": {
-            "Ganons Tower Dinolfos 1": "True",
-            "Ganons Tower Dinolfos 2": "True"
-        },
         "exits": {
             "Ganons Castle Stalfos": "can_kill_stalfos"
         }
@@ -195,9 +182,7 @@
         "region_name": "Ganons Castle Stalfos",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Tower Boss Key Chest": "True",
-            "Ganons Tower Stalfos 1": "True",
-            "Ganons Tower Stalfos 2": "True"
+            "Ganons Tower Boss Key Chest": "True"
         },
         "exits": {
             "Ganons Castle Iron Knuckles": "can_kill_iron_knuckle"
@@ -206,10 +191,6 @@
     {
         "region_name": "Ganons Castle Iron Knuckles",
         "dungeon": "Ganons Castle",
-        "locations": {
-            "Ganons Tower White Knuckle": "True",
-            "Ganons Tower Black Knuckle": "True"
-        },
         "exits": {
             "Ganons Castle Tower Below Boss": "Boss_Key_Ganons_Castle or (shuffle_pots != 'off')"
         }
