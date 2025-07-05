@@ -65,10 +65,12 @@
                 or (is_adult and can_live_dmg(0.25,True,True))",
             "Spirit Temple MQ Child Recovery Heart 2": "Slingshot or can_use(Boomerang)
                 or (is_adult and can_live_dmg(0.25,True,True))",
-            "Spirit Temple MQ Child Torch Slugs Room Pot": "True"
+            "Spirit Temple MQ Child Torch Slugs Room Pot": "True",
+            "Spirit Temple MQ Child Torch Slugs Room Torch Slug 1": "can_kill_torch_slug",
+            "Spirit Temple MQ Child Torch Slugs Room Torch Slug 2": "can_kill_torch_slug"
         },
         "exits": {
-            "Child Spirit Lower Loop": "can_kill_torch_slug",
+            "Child Spirit Lower Loop": "can_kill_torch_slug and (not fix_broken_drops or has_soul(Keese))",
             "Spirit Temple Shared": "
                 (Small_Key_Spirit_Temple, 2) and
                 (has_bombchus or at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and
@@ -83,7 +85,24 @@
                 (can_use(Slingshot) or can_use(Bow))"
         },
         "locations": {
-            "Spirit Temple MQ Map Chest": "True"
+            "Spirit Temple MQ Map Chest": "True",
+            "Spirit Temple MQ Map Room Keese 1": "
+                has_soul(Keese) and
+                (Nuts or can_use(Slingshot) or can_use(Boomerang) or can_use(Bow) or can_use(Hookshot) or
+                    (can_use(Dins_Fire) and (is_adult or Kokiri_Sword or Sticks or (Nuts and has_explosives))))",
+            "Spirit Temple MQ Map Room Keese 2": "
+                has_soul(Keese) and (Nuts or can_use(Slingshot) or
+                    can_use(Bow) or can_use(Hookshot) or can_use(Boomerang) or Bombs or can_use(Dins_Fire))",
+            "Spirit Temple MQ Map Room Keese 3": "
+                has_soul(Keese) and
+                (can_use(Slingshot) or can_use(Boomerang) or can_use(Bow) or can_use(Hookshot) or
+                    (can_use(Dins_Fire) and (is_adult or Kokiri_Sword or Sticks or (Nuts and has_explosives))))",
+            "Spirit Temple MQ Map Room Keese 4": "has_soul(Keese)",
+            "Spirit Temple MQ Map Room Keese 5": "
+                has_soul(Keese) and (Nuts or can_use(Slingshot) or
+                    can_use(Bow) or can_use(Hookshot) or can_use(Boomerang) or Bombs or can_use(Dins_Fire))",
+            "Spirit Temple MQ Map Room Anubis": "has_soul(Anubis) and can_use(Dins_Fire)",
+            "Spirit Temple MQ Before Gate Gibdo": "can_kill_redead"
         },
         "exits": {
             "Child Spirit Beyond Metal Bridge": "
@@ -114,6 +133,9 @@
             "Spirit Temple MQ Child Stalfos Fight Pot 2": "(Kokiri_Sword or is_adult) and (has_soul(Stalfos) or can_use(Boomerang))",
             "Spirit Temple MQ Child Stalfos Fight Pot 3": "(Kokiri_Sword or is_adult) and (has_soul(Stalfos) or can_use(Boomerang))",
             "Spirit Temple MQ Child Stalfos Fight Pot 4": "(Kokiri_Sword or is_adult) and (has_soul(Stalfos) or can_use(Boomerang))",
+            "Spirit Temple MQ After Gate Gibdo 1": "True",
+            "Spirit Temple MQ After Gate Gibdo 2": "True",
+            "Spirit Temple MQ Child Stalfos Fight Stalfos": "can_kill_stalfos",
             "Fairy Pot": "has_bottle and (Kokiri_Sword or is_adult)"
         }
     },
@@ -123,7 +145,9 @@
         "locations": {
             "Spirit Temple MQ Child Climb South Chest": "(Small_Key_Spirit_Temple, 7) and has_explosives",
             "Spirit Temple MQ Statue Room Lullaby Chest": "can_play(Zeldas_Lullaby) and can_break_crate",
-            "Spirit Temple MQ Statue Room Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)"
+            "Spirit Temple MQ Statue Room Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)",
+            "Spirit Temple MQ Central Chamber Zeldas Lullaby Wallmaster": "
+                has_soul(Wallmaster) and can_play(Zeldas_Lullaby)"
         },
         "exits": {
             "Spirit Temple Shared": "True",
@@ -179,7 +203,21 @@
                 (Boomerang and (Kokiri_Sword or Sticks) and (Hover_Boots or logic_spirit_lobby_jump))",
             "Spirit Temple MQ Central Chamber Crate 1": "can_break_crate",
             "Spirit Temple MQ Central Chamber Crate 2": "can_break_crate",
-            "Spirit Temple MQ Central Chamber Small Wooden Crate": "True"
+            "Spirit Temple MQ Central Chamber Small Wooden Crate": "True",
+            "Spirit Temple MQ Child Climb Baby Dodongo 1": "(Small_Key_Spirit_Temple, 6) and has_soul(Baby_Dodongo)",
+            "Spirit Temple MQ Child Climb Baby Dodongo 2": "(Small_Key_Spirit_Temple, 6) and has_soul(Baby_Dodongo)",
+            "Spirit Temple MQ Child Climb Baby Dodongo 3": "(Small_Key_Spirit_Temple, 6) and has_soul(Baby_Dodongo)",
+            "Spirit Temple MQ Child Climb Baby Dodongo 4": "(Small_Key_Spirit_Temple, 6) and has_soul(Baby_Dodongo)",
+            "Spirit Temple MQ Child Climb Like Like": "(Small_Key_Spirit_Temple, 6) and has_soul(Like_Like)",
+            "Spirit Temple MQ Child Climb Beamos": "(Small_Key_Spirit_Temple, 6) and can_kill_beamos",
+            "Spirit Temple MQ Central Chamber Wallmaster": "has_soul(Wallmaster)",
+            "Spirit Temple MQ Central Chamber Floormaster": "has_soul(Floormaster)",
+            "Spirit Temple MQ Child Side Iron Knuckle": "
+                has_soul(Iron_Knuckle) and
+                (((Small_Key_Spirit_Temple, 7) and
+                        (can_play(Song_of_Time) or logic_spirit_mq_sun_block_sot or is_adult)) or
+                    ((Small_Key_Spirit_Temple, 4) and can_play(Song_of_Time) and (has_explosives or Nuts) and
+                        has_soul(Floormaster) and (logic_lens_spirit_mq or can_use(Lens_of_Truth))))"
         },
         "exits": {
             "Spirit Temple Sun Block Room": "
@@ -202,6 +240,12 @@
             "Spirit Temple MQ Sun Block Room Chest": "True",
             "Spirit Temple MQ Sun Block Room Pot 1": "True",
             "Spirit Temple MQ Sun Block Room Pot 2": "True",
+            "Spirit Temple MQ Sun Block Room Red Bubble 1": "has_soul(Bubble) and is_adult and Magic_Meter",
+            "Spirit Temple MQ Sun Block Room Red Bubble 2": "has_soul(Bubble) and is_adult and Magic_Meter",
+            "Spirit Temple MQ Sun Block Room Red Bubble 3": "has_soul(Bubble) and is_adult and Magic_Meter",
+            "Spirit Temple MQ Sun Block Room Wallmaster 1": "has_soul(Wallmaster)",
+            "Spirit Temple MQ Sun Block Room Wallmaster 2": "has_soul(Wallmaster)",
+            "Spirit Temple MQ Hall After Sun Block Room Skulltula": "has_soul(Skulltula)",
             "Spirit Temple MQ GS Sun Block Room": "
                 (logic_spirit_mq_sun_block_gs and Boomerang) or
                 is_adult"
@@ -211,6 +255,12 @@
         "region_name": "Adult Spirit Sunlight Room",
         "dungeon": "Spirit Temple",
         "locations": {
+            "Spirit Temple MQ 4 Wallmasters Wallmaster 1": "has_soul(Wallmaster)",
+            "Spirit Temple MQ 4 Wallmasters Wallmaster 2": "has_soul(Wallmaster) and Mirror_Shield",
+            "Spirit Temple MQ 4 Wallmasters Wallmaster 3": "has_soul(Wallmaster) and Mirror_Shield",
+            "Spirit Temple MQ 4 Wallmasters Wallmaster 4": "has_soul(Wallmaster) and Mirror_Shield",
+            "Spirit Temple MQ 4 Wallmasters Stalfos 1": "has_soul(Stalfos)",
+            "Spirit Temple MQ 4 Wallmasters Stalfos 2": "has_soul(Stalfos)"
         },
         "exits": {
             "Lower Adult Spirit Temple": "has_soul(Wallmaster) and has_soul(Stalfos) and Mirror_Shield"
@@ -236,6 +286,7 @@
                     or (can_superslide or can_hess or can_mega)
                     )
                 )",
+            "Spirit Temple MQ Symphony Room Moblin": "has_soul(Moblin) and (Small_Key_Spirit_Temple, 7)",
             "Spirit Temple MQ GS Leever Room": "True"
         },
         "exits": {
@@ -255,6 +306,16 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple MQ Symphony Room Chest": "True",
+            "Spirit Temple MQ Symphony Room Skulltula 1": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 2": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 3": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 4": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 5": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 6": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 7": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Skulltula 8": "has_soul(Skulltula)",
+            "Spirit Temple MQ Symphony Room Invisible Skulltula": "
+                has_soul(Skulltula) and (logic_lens_spirit_mq or can_use(Lens_of_Truth))",
             "Spirit Temple MQ GS Symphony Room": "True"
         }
     },
@@ -262,7 +323,11 @@
         "region_name": "Spirit Temple Beamos Room",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Beamos Room Chest": "can_kill_beamos"
+            "Spirit Temple MQ Beamos Room Chest": "can_kill_beamos",
+            "Spirit Temple MQ Beamos Room Beamos 1": "can_kill_beamos",
+            "Spirit Temple MQ Beamos Room Beamos 2": "can_kill_beamos",
+            "Spirit Temple MQ Beamos Room Beamos 3": "can_kill_beamos",
+            "Spirit Temple MQ Beamos Room Beamos 4": "can_kill_beamos"
         },
         "exits": {
             "Spirit Temple Beyond Beamos Room": "can_play(Song_of_Time) and (has_explosives or Nuts)",
@@ -277,7 +342,10 @@
             "Spirit Temple MQ Boss Key Chest": "Mirror_Shield",
             "Spirit Temple MQ Beamos Room Small Wooden Crate": "True",
             "Spirit Temple MQ Chest Switch Sword Wonderitem": "True",
-            "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer"
+            "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer",
+            "Spirit Temple MQ Chest Switch Dinolfos 1": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple MQ Chest Switch Dinolfos 2": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple MQ Boss Key Gibdo": "has_soul(Redead_and_Gibdo) and Mirror_Shield"
         },
         "exits": {
             "Spirit Temple Adult Knuckle Room": "
@@ -288,7 +356,9 @@
         "region_name": "Spirit Temple Adult Knuckle Room",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Mirror Shield Chest": "has_soul(Iron_Knuckle)"
+            "Spirit Temple Mirror Shield Chest": "has_soul(Iron_Knuckle)",
+            "Spirit Temple MQ Before Adult Knuckle Floormaster": "True",
+            "Spirit Temple MQ Adult Side Iron Knuckle": "has_soul(Iron_Knuckle)"
         }
     },
     {
@@ -301,7 +371,12 @@
             "Spirit Temple MQ Adult Climb Silver Rupee 2": "True",
             "Spirit Temple MQ Adult Climb Silver Rupee 3": "True",
             "Spirit Temple MQ Adult Climb Silver Rupee 4": "True",
-            "Spirit Temple MQ Adult Climb Silver Rupee 5": "True"
+            "Spirit Temple MQ Adult Climb Silver Rupee 5": "True",
+            "Spirit Temple MQ Shifting Wall Keese 1": "has_soul(Keese)",
+            "Spirit Temple MQ Shifting Wall Keese 2": "has_soul(Keese)",
+            "Spirit Temple MQ Shifting Wall Keese 3": "has_soul(Keese)",
+            "Spirit Temple MQ Shifting Wall Keese 4": "has_soul(Keese)",
+            "Spirit Temple MQ Shifting Wall Torch Slug": "has_soul(Torch_Slug)"
         },
         "exits": {
             "Spirit Temple After Shifting Wall": "(Silver_Rupee_Spirit_Temple_Adult_Climb, 5)"
@@ -341,7 +416,11 @@
         "region_name": "Spirit Temple Mirror Puzzle",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple MQ Mirror Puzzle Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)"
+            "Spirit Temple MQ Mirror Puzzle Invisible Chest": "logic_lens_spirit_mq or can_use(Lens_of_Truth)",
+            "Spirit Temple MQ Big Mirror Torch Slug": "has_soul(Torch_Slug)",
+            "Spirit Temple MQ Big Mirror Dinolfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple MQ Big Mirror Green Bubble 1": "has_soul(Bubble)",
+            "Spirit Temple MQ Big Mirror Green Bubble 2": "has_soul(Bubble)"
         },
         "exits": {
             "Spirit Temple Before Boss": "Mirror_Shield"
