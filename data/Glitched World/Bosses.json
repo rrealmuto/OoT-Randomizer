@@ -229,6 +229,15 @@
             # Used for the "path to the tower" goal
             "Ganons Tower Access": "is_adult"
         },
+        "locations": {
+            "Ganons Tower Keese 1": "can_kill_keese",
+            "Ganons Tower Keese 2": "can_kill_keese",
+            "Ganons Tower Keese 3": "can_kill_keese",
+            "Ganons Tower Keese 4": "can_kill_keese",
+            "Ganons Tower Keese 5": "can_kill_keese",
+            "Ganons Tower Keese 6": "can_kill_keese",
+            "Ganons Tower Keese 7": "can_kill_keese"
+        },
         "exits": {
             "Ganons Castle Main": "True",
             "Ganons Castle Dinolfos": "can_kill_dinolfos",

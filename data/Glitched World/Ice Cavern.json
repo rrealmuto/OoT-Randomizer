@@ -5,7 +5,11 @@
         "locations":{
             "Ice Cavern Frozen Blue Rupee": "
                 (Blue_Fire or (logic_ice_frozen_rupee and can_jumpslash)) or
-                (logic_boomerang_boulders and can_use(Boomerang))"
+                (logic_boomerang_boulders and can_use(Boomerang))",
+            "Ice Cavern Entryway Freezard 1": "can_kill_freezard",
+            "Ice Cavern Entryway Freezard 2": "can_kill_freezard",
+            "Ice Cavern Entryway Freezard 3": "can_kill_freezard",
+            "Ice Cavern Entryway Freezard 4": "can_kill_freezard"
         },
         "exits": {
             "ZF Ice Ledge": "True",
@@ -63,6 +67,13 @@
             "Ice Cavern Map Room Recovery Heart 2": "True",
             "Ice Cavern Map Room Recovery Heart 3": "True",
             "Ice Cavern Frozen Pot": "Blue_Fire or logic_ice_frozen_pot",
+            "Ice Cavern Sliding Spike Freezard": "has_soul(Freezard)",
+            "Ice Cavern Map Room Ice Keese 1": "can_kill_keese",
+            "Ice Cavern Map Room Ice Keese 2": "can_kill_keese",
+            "Ice Cavern Map Room Ice Keese 3": "can_kill_keese",
+            "Ice Cavern Map Room Freezard Ground": "has_soul(Freezard)",
+            "Ice Cavern Map Room Freezard Lower Platform": "has_soul(Freezard)",
+            "Ice Cavern Map Room Freezard Upper Platform": "has_soul(Freezard)",
             "Blue Fire": "has_bottle"
         }
     },
@@ -75,6 +86,9 @@
             "Ice Cavern Freestanding PoH": "Blue_Fire or (adv_ice_HP_no_bottle and
                     Bombs and can_shield and can_live_dmg(0.5,False) and is_adult)
                     or (logic_boomerang_boulders and can_use(Boomerang))",
+            "Ice Cavern Compass Room Keese 1": "can_kill_keese_stationary",
+            "Ice Cavern Compass Room Keese 2": "can_kill_keese_stationary",
+            "Ice Cavern Compass Room Keese 3": "can_kill_keese_stationary",
             "Ice Cavern GS Heart Piece Room": "can_use(Hookshot) or can_use(Boomerang)",
             "Blue Fire": "has_bottle"
         }
@@ -93,6 +107,9 @@
             "Ice Cavern Push Block Silver Rupee Red Ice": "Blue_Fire or 
                 (can_jumpslash and logic_ice_push_block_silver)",
             "Ice Cavern Push Block Silver Rupee Front Left": "True",
+            "Ice Cavern Block Push Ice Keese 1": "can_kill_keese",
+            "Ice Cavern Block Push Ice Keese 2": "can_kill_keese",
+            "Ice Cavern Block Push Ice Keese 3": "can_kill_keese",
             "Ice Cavern GS Push Block Room": "
                 can_use(Hookshot) or can_use(Boomerang) or
                 (logic_ice_block_gs and can_use(Hover_Boots)) or can_hover"
@@ -106,6 +123,8 @@
         "region_name": "Ice Cavern End Hallway",
         "dungeon": "Ice Cavern",
         "locations": {
+            "Ice Cavern Near End Freezard 1": "True",
+            "Ice Cavern Near End Freezard 2": "True",
             "Ice Cavern Near End Pot 1": "can_jumpslash or at('Ice Cavern End Room',True)",
             "Ice Cavern Near End Pot 2": "can_jumpslash or at('Ice Cavern End Room',True)"
         },
@@ -122,7 +141,8 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Iron Boots Chest": "can_kill_wolfos",
-            "Sheik in Ice Cavern": "can_kill_wolfos"
+            "Sheik in Ice Cavern": "can_kill_wolfos",
+            "Ice Cavern Wolfos": "can_kill_wolfos"
         },
         "exits": {
             "Ice Cavern End Hallway": "can_kill_wolfos and (
