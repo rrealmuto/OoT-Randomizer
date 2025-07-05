@@ -274,6 +274,7 @@
           "text": "Enable Tricks",
           "row_span": [8,10,10],
           "settings": [
+            "advanced_allowed_tricks",
             "allowed_tricks",
             "tricks_list_msg"
           ]

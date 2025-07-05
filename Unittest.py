@@ -209,7 +209,7 @@ class TestPlandomizer(unittest.TestCase):
         if not os.path.isfile('./ZOOTDEC.z64'):
             self.skipTest("Base ROM file not available.")
         filename = "plando-ammo-max-out-of-bounds"
-        logic_rules_settings = ['glitchless', 'glitched', 'none']
+        logic_rules_settings = ['glitchless', 'advanced', 'none']
         for logic_rules_setting in logic_rules_settings:
             with self.subTest(f"Logic Rules: {logic_rules_setting}"):
                 settings = Settings({
