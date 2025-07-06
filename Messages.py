@@ -298,7 +298,7 @@ ITEM_MESSAGES: list[tuple[int, str]] = [
     (0x9304, "\x08You found the \x05\x41Keese Souls\x05\x40!"),
     (0x9305, "\x08You found the \x05\x41Tektite Souls\x05\x40!"),
     (0x9306, "\x08You found the \x05\x41Peahat Souls\x05\x40!"),
-    (0x9307, "\x08You found the \x05\x41Lizalfos and Dinalfos Souls\x05\x40!"),
+    (0x9307, "\x08You found the \x05\x41Lizalfos and Dinolfos Souls\x05\x40!"),
     (0x9308, "\x08You found the \x05\x41Gohma Larvae Souls\x05\x40!"),
     (0x9309, "\x08You found the \x05\x41Shabom Souls\x05\x40!"),
     (0x930A, "\x08You found the \x05\x41Baby Dodongo Souls\x05\x40!"),

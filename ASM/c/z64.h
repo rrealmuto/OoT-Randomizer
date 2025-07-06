@@ -5,6 +5,7 @@
 #include "z64_math.h"
 #include "color.h"
 #include "z64collision_check.h"
+#include "bg_check.h"
 #include "save.h"
 
 #define Z64_OOT10             0x00
@@ -175,32 +176,6 @@ typedef struct {
   uint16_t unk_01_;
   uint32_t seg_params; /* segment address of z64_camera_params_t */
 } z64_camera_t;
-
-typedef struct {
-  z64_xyz_t     pos;
-  int16_t       width;
-  int16_t       depth;
-  struct {
-    uint32_t    unk_00_ : 12;
-    uint32_t    active  : 1;
-    uint32_t    group   : 6; /* ? */
-    uint32_t    unk_01_ : 5;
-    uint32_t    camera  : 8;
-  } flags;
-} z64_col_water_t;
-
-typedef struct {
-  z64_xyz_t         min;
-  z64_xyz_t         max;
-  uint16_t          n_vtx;
-  z64_xyz_t        *vtx;
-  uint16_t          n_poly;
-  z64_col_poly_t   *poly;
-  z64_col_type_t   *type;
-  z64_camera_t     *camera;
-  uint16_t          n_water;
-  z64_col_water_t  *water;
-} z64_col_hdr_t;
 
 typedef enum {
   Z64_ITEM_NULL = -1,
@@ -1116,6 +1091,30 @@ typedef struct {
     /* 0x1E */ int8_t numLoaded; // original name: "clients"
 } ActorOverlay; // size = 0x20
 
+typedef struct {
+    /* 0x00 */ void* loadedRamAddr;
+    /* 0x04 */ uintptr_t vromStart;
+    /* 0x08 */ uintptr_t vromEnd;
+    /* 0x0C */ void* vramStart;
+    /* 0x10 */ void* vramEnd;
+    /* 0x14 */ void* unk_14;
+    /* 0x18 */ void* ramFileName;
+} PausePlayerOverlay;
+
+typedef struct ActorShape {
+    /* 0x00 */ z64_xyz_t rot; // Current actor shape rotation
+    /* 0x06 */ int16_t face; // Used to index eyes and mouth textures. Only used by player
+    /* 0x08 */ float yOffset; // Model y axis offset. Represents model space units
+    /* 0x0C */ void* shadowDraw; // Shadow draw function
+    /* 0x10 */ float shadowScale; // Changes the size of the shadow
+    /* 0x14 */ uint8_t shadowAlpha; // Default is 255
+    /* 0x15 */ uint8_t feetFloorFlag; // 0 if actor or feet aren't on ground, or 1 or 2 depending on feet positions
+    /* 0x18 */ z64_xyzf_t feetPos[2]; // Update by using `Actor_SetFeetPos` in PostLimbDraw
+} ActorShape; // size = 0x30
+
+typedef struct z64_actor_s z64_actor_t;
+struct z64_game_t;
+
 struct z64_actor_s
 {
   int16_t         actor_id;         /* 0x0000 */
@@ -1125,7 +1124,7 @@ struct z64_actor_s
   z64_xyzf_t      pos_init;         /* 0x0008 */
   z64_rot_t       rot_init;         /* 0x0014 */
   char            unk_01_[0x0002];  /* 0x001A */
-  uint16_t        variable;         /* 0x001C */
+  int16_t        variable;          /* 0x001C */
   uint8_t         obj_bank_index;   /* 0x001E */
   char            navi_tgt_dist;    /* 0x001F */
   uint16_t        sound_effect;     /* 0x0020 */
@@ -1146,7 +1145,7 @@ struct z64_actor_s
   z64_col_poly_t* floor_poly;       /* 0x0078 */
   char            unk_09_[0x000C];  /* 0x007C */
   uint16_t        unk_flags_00;     /* 0x0088 */
-  int16_t         unk_roty;         /* 0x008A */
+  int16_t         yawTowardsPlayer; /* 0x008A */
   float           distsq_from_link; /* 0x008C */
   float           xzdist_from_link; /* 0x0090 */
   float           ydist_from_link;  /* 0x0094 */
@@ -1157,10 +1156,8 @@ struct z64_actor_s
   char            unk_0D_;          /* 0x00B0 */
   uint8_t         damage_effect;    /* 0x00B1 */
   char            unk_0E_[0x0002];  /* 0x00B2 */
-  z64_rot_t       rot_2;            /* 0x00B4 */
-  int16_t         face;             /* 0x00BA */
-  float           yOffset;          /* 0x00BC */
-  char            unk_0F_[0x0040];  /* 0x00C0 */
+  ActorShape      shape;            /* 0x00B4 */
+  char            unk_0F_[0x001C];  /* 0x00E4 */
   z64_xyzf_t      pos_4;            /* 0x0100 */
   uint16_t        unk_10_;          /* 0x010C */
   uint16_t        text_id;          /* 0x010E */
@@ -1230,6 +1227,44 @@ typedef struct DynaPolyActor {
   uint8_t      unk_160;  /* 0x160 */
   int16_t      unk_162;  /* 0x162 */
 } DynaPolyActor; // size = 0x164
+
+typedef struct SkelAnime {
+    /* 0x00 */ uint8_t limbCount; // Number of limbs in the skeleton
+    /* 0x01 */ uint8_t mode; // See `AnimationMode`
+    /* 0x02 */ uint8_t dListCount; // Number of display lists in a flexible skeleton
+    /* 0x03 */ int8_t taper; // Tapering to use when morphing between animations. Only used by Door_Warp1.
+    /* 0x04 */ void** skeleton; // An array of pointers to limbs. Can be StandardLimb, LodLimb, or SkinLimb.
+    /* 0x08 */ void* animation; // Can be an AnimationHeader or LinkAnimationHeader.
+    /* 0x0C */ float startFrame; // In mode ANIMMODE_LOOP_PARTIAL*, start of partial loop.
+    /* 0x10 */ float endFrame; // In mode ANIMMODE_ONCE*, Update returns true when curFrame is equal to this. In mode ANIMMODE_LOOP_PARTIAL*, end of partial loop.
+    /* 0x14 */ float animLength; // Total number of frames in the current animation.
+    /* 0x18 */ float curFrame; // Current frame in the animation
+    /* 0x1C */ float playSpeed; // Multiplied by R_UPDATE_RATE / 3 to get the animation's frame rate.
+    /* 0x20 */ z64_xyz_t* jointTable; // Current translation of model and rotations of all limbs
+    /* 0x24 */ z64_xyz_t* morphTable; // Table of values used to morph between animations
+    /* 0x28 */ float morphWeight; // Weight of the current animation morph as a fraction in [0,1]
+    /* 0x2C */ float morphRate; // Reciprocal of the number of frames in the morph
+    /* 0x30 */ union {
+        int32_t (*normal)(struct SkelAnime*); // Can be Loop, Partial loop, Play once, Morph, or Tapered morph
+        int32_t (*link)(struct z64_game_t*, struct SkelAnime*); // Can be Loop, Play once, or Morph
+    } update;
+    /* 0x34 */ int8_t initFlags; // Flags used when initializing Link's skeleton
+    /* 0x35 */ uint8_t moveFlags; // Flags used for animations that move the actor in worldspace.
+    /* 0x36 */ int16_t prevRot; // Previous rotation in worldspace.
+    /* 0x38 */ z64_xyz_t prevTransl; // Previous modelspace translation.
+    /* 0x3E */ z64_xyz_t baseTransl; // Base modelspace translation.
+} SkelAnime; // size = 0x44
+
+
+typedef struct BodyBreak {
+    /* 0x00 */ MtxF* matrices;
+    /* 0x04 */ int16_t* objectSlots;
+    /* 0x08 */ int16_t count;
+    /* 0x0C */ Gfx** dLists;
+    /* 0x10 */ int32_t val; // used for various purposes: both a status indicator and counter
+    /* 0x14 */ int32_t prevLimbIndex;
+} BodyBreak;
+
 
 typedef struct {
   z64_controller_t  raw;
@@ -1585,8 +1620,7 @@ typedef struct z64_game_t {
   char             unk_07_[0x0010];        /* 0x00798 */
   z64_lighting_t   lighting;               /* 0x007A8 */
   char             unk_08_[0x0008];        /* 0x007B8 */
-  z64_col_hdr_t   *col_hdr;                /* 0x007C0 */
-  char             unk_09_[0x1460];        /* 0x007C4 */
+  CollisionContext colChkCtx;                /* 0x007C0 */
   z64_actor_ctxt_t actor_ctxt;             /* 0x01C24 */
   uint8_t          n_actors_loaded;        /* 0x01C2C */
   char             unk_0A_[0x0003];        /* 0x01C2D */
@@ -2188,8 +2222,6 @@ typedef enum {
 #define z64_link_addr                           0x801DAA30
 #define z64_state_ovl_tab_addr                  0x800F1340
 #define z64_event_state_1_addr                  0x800EF1B0
-#define z64_LinkInvincibility_addr              0x8038E578
-#define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
 #define z64_ObjectIsLoaded_addr                 0x80081688
 #define z64_ActorOfferGetItem_addr              0x80022BD4
@@ -2256,10 +2288,7 @@ typedef void (*z64_DisplayTextbox_proc)   (z64_game_t* game, uint16_t text_id,
                                            z64_actor_t* unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t* game, uint8_t item);
 
-typedef void(*z64_LinkDamage_proc)        (z64_game_t* ctxt, z64_link_t* link,
-                                           uint8_t damage_type, float unk_00, uint32_t unk_01,
-                                           uint16_t unk_02);
-typedef void(*z64_LinkInvincibility_proc) (z64_link_t* link, uint8_t frames);
+
 typedef float* (*z64_GetMatrixStackTop_proc)();
 typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
 typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
@@ -2339,10 +2368,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_DisplayTextbox      ((z64_DisplayTextbox_proc)                    \
                                                       z64_DisplayTextbox_addr)
 #define z64_GiveItem            ((z64_GiveItem_proc)  z64_GiveItem_addr)
-
-#define z64_LinkDamage          ((z64_LinkDamage_proc)z64_LinkDamage_addr)
-#define z64_LinkInvincibility   ((z64_LinkInvincibility_proc)                 \
-                                                      z64_LinkInvincibility_addr)
 #define z64_GetMatrixStackTop   ((z64_GetMatrixStackTop_proc) \
                                                       z64_GetMatrixStackTop_addr)
 #define z64_RandSeed            ((z64_RandSeed_proc)z64_RandSeed_addr)
@@ -2639,6 +2664,9 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 
 extern void Fault_AddHungupAndCrashImpl(const char* msg1, const char* msg2);
 extern int32_t sprintf(char* dst, char* fmt, ...);
+// Functions defined in the base ROM but we use the linkscript to link them externally.
+
+extern PausePlayerOverlay gPausePlayerOverlayTable[];
 extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
 extern int32_t DmaMgr_RequestSync(void* ram, uint32_t* vrom, unsigned long size);
 extern void SkelAnime_DrawFlexOpa(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this);
@@ -2657,6 +2685,8 @@ extern void Room_Change(z64_game_t* globalCtx, void* roomCtx);
 extern void __osMallocInit(Arena* arena, void* start, uint32_t size);
 extern void __osFree(Arena* arena, void* ptr);
 extern void* __osMalloc(Arena* arena, uint32_t size);
+extern void* ZeldaArena_Malloc(uint32_t size);
+extern void ZeldaArena_Free(void* ptr);
 extern void z64_LoadRoom(z64_game_t *game, void *p_ctxt_room_index, uint8_t room_index);
 extern void z64_UnloadRoom(z64_game_t *game, void *p_ctxt_room_index);
 extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
@@ -2668,5 +2698,7 @@ extern int32_t z64_Flags_GetSwitch(z64_game_t* globalCtx, int32_t flag);
 extern void z64_Flags_SetTempClear(z64_game_t* globalCtx, int32_t flag);
 extern int32_t CutsceneFlags_Get(void* play, int16_t flag);
 extern int32_t DemoKankyo_CutsceneFlags_Get_Hook(void* play, int16_t flag);
+extern int32_t Flags_GetTempClear(z64_game_t* globalCtx, int32_t flag);
+void Actor_UpdateBgCheckInfo(z64_game_t* play, z64_actor_t* actor, float wallCheckHeight, float wallCheckRadius, float ceilingCheckHeight, int32_t flags);
 
 #endif

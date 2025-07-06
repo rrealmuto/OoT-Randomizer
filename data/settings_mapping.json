@@ -185,7 +185,8 @@
             "free_bombchu_drops",
             "plandomized_locations",
             "shuffle_boulders",
-            "golden_boulders"
+            "golden_boulders",
+            "enemizer"
           ]
         },
         {
@@ -400,6 +401,7 @@
             "ocarina_songs",
             "text_shuffle",
             "damage_multiplier",
+            "gloom",
             "deadly_bonks",
             "starting_tod",
             "blue_fire_arrows",

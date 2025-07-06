@@ -329,7 +329,7 @@ enemy_souls_core: list[str] = [
     'Keese Soul',
     'Tektite Soul',
     'Peahat Soul',
-    'Lizalfos and Dinalfos Soul',
+    'Lizalfos and Dinolfos Soul',
     'Gohma Larvae Soul',
     'Shabom Soul',
     'Baby Dodongo Soul',

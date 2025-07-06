@@ -11,6 +11,7 @@
 typedef struct extended_object {
     int16_t id;
     uint8_t is_active;
+    uint8_t room;
     void*   data;
 } extended_object_t;
 
@@ -19,8 +20,8 @@ typedef struct extended_object_ctx {
     uint8_t* free;
     uint32_t size;
     uint8_t num;
-    int8_t holl_last_room; // Used to keep track of loading plane transition rooms to prevent unloading objects if they're still being used.
-    uint8_t inhibit_clear_flag;
+    //int8_t holl_last_room; // Used to keep track of loading plane transition rooms to prevent unloading objects if they're still being used.
+    //uint8_t inhibit_clear_flag; 
     extended_object_t slots[OBJECT_EXCHANGE_BANK_EXTENDED_MAX];
 } extended_object_ctx_t;
 

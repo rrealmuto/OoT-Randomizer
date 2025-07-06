@@ -94,7 +94,7 @@
         },
         "exits": {
             "Dodongos Cavern Torch Room": "can_kill_lizalfos_with_bombs",
-            "Dodongos Cavern Lower Right Side": "has_soul(Lizalfos_and_Dinalfos)"
+            "Dodongos Cavern Lower Right Side": "has_soul(Lizalfos_and_Dinolfos)"
         }
     },
     {
@@ -216,7 +216,7 @@
             "Dodongos Cavern Upper Lizalfos 2": "can_kill_lizalfos"
         },
         "exits": {
-            "Dodongos Cavern Before Upper Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Dodongos Cavern Before Upper Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
             "Dodongos Cavern Far Bridge": "can_kill_lizalfos"
         }
     },

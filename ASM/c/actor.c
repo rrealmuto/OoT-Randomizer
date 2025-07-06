@@ -18,6 +18,9 @@
 #include "enemy_spawn_shuffle.h"
 #include "minimap.h"
 #include "bg_mori_bigst.h"
+#include "bg_check.h"
+#include "en_encount1.h"
+#include "debug.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -45,6 +48,8 @@ extern xflag_t* spawn_actor_with_flag;
 #define ACTOR_FISHING       0xFE // Fishing fish
 #define EN_GS               0x1B9   // Gossip Stone
 
+bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden);
+
 uint8_t actor_spawn_as_child_flag = 0;
 z64_actor_t* actor_spawn_as_child_parent = NULL;
 
@@ -54,9 +59,30 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
     return (ActorAdditionalData*)(((uint8_t*)actor) - 0x10);
 }
 
+void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
+    return (addr - actor->overlay_entry->vramStart + actor->overlay_entry->loadedRamAddr);
+}
+
+// Build an xflag from scene/room/setup/index/subflag
+void BuildFlag(z64_game_t* globalCtx, xflag_t* flag, uint8_t index, uint8_t subflag){
+    flag->scene = globalCtx->scene_index;
+    if (globalCtx->scene_index == 0x3E) {
+        flag->grotto.room = globalCtx->room_ctx.curRoom.num;
+        flag->grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
+        flag->grotto.flag = index;
+        flag->grotto.subflag = subflag;
+    } else {
+        flag->room = globalCtx->room_ctx.curRoom.num;
+        flag->setup = curr_scene_setup;
+        flag->flag = index;
+        flag->subflag = subflag;
+    }
+}
+
 // Build an xflag from actor ID and subflag
 // Store the flag using the pointer
 void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
+
     flag->scene = z64_game.scene_index;
     if (z64_game.scene_index == 0x3E) {
         flag->grotto.room = actor->room_index;
@@ -69,9 +95,6 @@ void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, ui
         flag->flag = actor_index;
         flag->subflag = subflag;
     }
-}
-void* Actor_ResolveOverlayAddr(z64_actor_t* actor, void* addr) {
-    return (addr - actor->overlay_entry->vramStart + actor->overlay_entry->loadedRamAddr);
 }
 
 // Called from Actor_UpdateAll when spawning the actors in the scene's/room's actor list to store flags in the new space that we added to the actors.
@@ -232,12 +255,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     if (continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
-    /*
+
     if(continue_spawn)
     {
         continue_spawn = spawn_override_enemizer(actorEntry, globalCtx, &overridden);
     }
-    */
+
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -377,8 +400,13 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
 
     continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
 
-    if(continue_spawn) {
-        z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
+    /*if(continue_spawn) {
+        bool overridden = false;
+        continue_spawn = spawn_override_enemizer(&entry, globalCtx, &overridden);
+    }*/
+
+    if (continue_spawn) {
+        z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, entry.id,posX, posY, posZ, entry.rot.x, entry.rot.y, entry.rot.z, entry.params);
         if (spawned) {
             if (spawn_actor_with_flag) {
                 Actor_StoreFlag(spawned, globalCtx, *spawn_actor_with_flag);
@@ -408,6 +436,181 @@ z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_g
     return spawned;
 }
 
+bool filter_skullwalltula(ActorEntry* actorEntry) {
+    // Filter gold skulltulas, type == 4 or type == 5
+    uint16_t type = (actorEntry->params & 0xE000) >> 13;
+    return !((type == 4) || (type == 5));
+}
+
+bool filter_armos(ActorEntry* actorEntry) {
+    // Filter armos, var == 0 is a pushable statue so we don't want to filter these
+    return actorEntry->params != 0;
+}
+
+bool filter_skullkids(ActorEntry* actorEntry) {
+    // Filter skull kids, type <= 6 are the ocarina game ones
+    uint16_t type = (actorEntry->params >> 0x0A) & 0x3F;
+    return type > 6;
+}
+
+bool filter_octoroks(ActorEntry* actorEntry) {
+    #ifdef DEBUG_MODE
+    return true;
+    #else
+    return false;
+    #endif
+}
+
+enemy_list_entry_t enemy_list[] = {
+    { ACTOR_EN_TEST, 0x0003, NULL }, //Stalfos, 0000 makes it invisible
+//    { ACTOR_EN_ANUBICE, NULL, 0x0000 }, // don't really work by themselves. maybe use spawner
+    { ACTOR_EN_ANUBICE_TAG, 0x0003, NULL},
+    { ACTOR_EN_BB, 0xFFFF, NULL }, // Probably make it so it can pick between green/white/blue/fire?
+    { ACTOR_EN_BILI, 0x0000, NULL },
+    { ACTOR_EN_VALI, 0x0000, NULL },
+    { ACTOR_EN_BUBBLE, 0x0000, NULL },
+    { ACTOR_EN_CROW, 0x0000, NULL },
+    { ACTOR_EN_DEKUBABA, 0x0000, NULL },
+    { ACTOR_EN_DODOJR, 0x0000, NULL },
+    { ACTOR_EN_DODONGO, 0x0000, NULL },
+    { ACTOR_EN_FIREFLY, 0x0000, NULL },
+    { ACTOR_EN_FIREFLY, 0x0002, NULL },
+    { ACTOR_EN_FIREFLY, 0x0004, NULL },
+    { ACTOR_EN_FLOORMAS, 0x0000, NULL },
+    { ACTOR_EN_WALLMAS, 0x0000, NULL },
+    { ACTOR_EN_PEEHAT, 0xFFFF, NULL },
+    { ACTOR_EN_MB, 0x0002, NULL },
+    { ACTOR_EN_MB, 0xFFFF, NULL },
+    { ACTOR_EN_IK, 0xFF82, NULL }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_IK, 0xFF83, NULL }, // Maybe random white/black. 0x0000 is nabooru which crashes
+    { ACTOR_EN_SKJ, 0xFFFF, filter_skullkids }, //Always backflips away
+    //{ ACTOR_EN_TUBO_TRAP, 0x0000, NULL },
+    { ACTOR_EN_GOMA, 0x0006, NULL},
+    { ACTOR_EN_POH, 0x0000, NULL },
+    { ACTOR_EN_TITE, 0x0000, NULL },
+    { ACTOR_EN_ZF, 0xFF80, NULL }, // maybe also pick dinalfos
+    { ACTOR_EN_ZF, 0xFFFE, NULL }, // maybe also pick dinalfos
+    { ACTOR_EN_TP, 0xFFFF, NULL }, // Crashes on death?? not really. Definitely screws up drawing.
+    { ACTOR_EN_ST, 0x0000, NULL },
+    { ACTOR_EN_BW, 0x0000, NULL },
+    { ACTOR_EN_AM, 0xFFFF, filter_armos },
+    { ACTOR_EN_DEKUNUTS, 0x0000, NULL },
+    { ACTOR_EN_VM, 0x0500, NULL },
+    { ACTOR_EN_RD, 0x7F02, NULL },
+    { ACTOR_EN_RD, 0x7FFE, NULL },
+    { ACTOR_EN_FD, 0x0000, NULL },
+    { ACTOR_EN_SB, 0x0000, NULL },
+    { ACTOR_EN_NY, 0x0000, NULL },
+    { ACTOR_EN_FZ, 0x0000, NULL },
+    { ACTOR_EN_EIYER, 0x000A, NULL }, // This is the ring of 4 from jabu. Maybe just use one.
+    { ACTOR_EN_WF, 0xFF00, NULL },
+    { ACTOR_EN_RR, 0x0000, NULL},
+    { ACTOR_EN_REEBA, 0x0000, NULL},
+    { ACTOR_EN_SKB, 0x0000, NULL},
+    { ACTOR_EN_SW, 0x0000, filter_skullwalltula },
+    { ACTOR_EN_OKUTA, 0x0000, filter_octoroks }
+};
+
+bool is_enemy(ActorEntry* actorEntry) {
+    for(int i = 0; i < array_size(enemy_list); i++) {
+        if(enemy_list[i].id == actorEntry->id) {
+            if (enemy_list[i].filter != NULL) {
+                return enemy_list[i].filter(actorEntry);
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+int enemy_spawn_index = 0;
+
+uint8_t CFG_RANDOM_ENEMY_SPAWNS = 0;
+uint8_t CFG_ENEMIZER = 0;
+
+bool check_enemizer_sequence(z64_game_t* globalCtx) {
+    return !(globalCtx->common.input[0].raw.pad.b &&
+                globalCtx->common.input[0].raw.pad.a &&
+                globalCtx->common.input[0].raw.pad.r &&
+                globalCtx->common.input[0].raw.pad.z);
+}
+
+
+#define NUM_SKIP_RAYCAST 50
+xflag_t SKIP_RAYCAST_TABLE[NUM_SKIP_RAYCAST];
+
+bool should_raycast(xflag_t* flag) {
+    for(int i = 0; i < NUM_SKIP_RAYCAST; i++) {
+        if(SKIP_RAYCAST_TABLE[i].all == 0) {
+            break;
+        }
+        if((SKIP_RAYCAST_TABLE[i].all == flag->all) && (SKIP_RAYCAST_TABLE[i].scene == flag->scene))
+            return false;
+    }
+    return true;
+}
+
+#ifdef DEBUG_MODE
+// Used by debug mode to spawn specific enemies
+bool debug_enemizer_spawns = false;
+uint16_t debug_spawn_actor_id = 0;
+uint16_t debug_spawn_actor_var = 0;
+
+#endif
+
+bool spawn_override_enemizer(ActorEntry *actorEntry, z64_game_t *globalCtx, bool* overridden) {
+    if(CFG_RANDOM_ENEMY_SPAWNS && is_enemy(actorEntry) && check_enemizer_sequence(globalCtx)) {
+        int16_t index = (int16_t)(z64_Rand_ZeroOne() * array_size(enemy_list));
+        //int index = (enemy_spawn_index++) % (array_size(enemy_list));
+        actorEntry->id = enemy_list[index].id;
+        actorEntry->params = enemy_list[index].var;
+        *overridden = true;
+    }
+    #ifdef DEBUG_MODE
+    if (debug_enemizer_spawns && is_enemy(actorEntry)) {
+        actorEntry->id = debug_spawn_actor_id;
+        actorEntry->params = debug_spawn_actor_var;
+        *overridden = true;
+    }
+    #endif
+
+    if(CFG_ENEMIZER && is_enemy(actorEntry)) {
+        xflag_t flag = {0};
+        BuildFlag(globalCtx, &flag, CURR_ACTOR_SPAWN_INDEX, 0);
+        if(should_raycast(&flag)) {
+            // Raycast Down enemies that need to spawn on the floor
+            CollisionPoly floorPoly;
+            CollisionPoly* pFloorPoly = &floorPoly;
+            z64_xyzf_t spawnPos = {
+                .x = (float)actorEntry->pos.x,
+                .y = (float)actorEntry->pos.y + 2.0, // Slight increment y for enemies that are already on the ground
+                .z = (float)actorEntry->pos.z
+            };
+            float floorY = BgCheck_EntityRaycastDown1(&globalCtx->colChkCtx, &pFloorPoly, &spawnPos);
+            float waterY = spawnPos.y;
+            WaterBox* waterBox;
+            // Check if the water surface is higher than the floor, and if the actor is not spawned inside the water
+            if(WaterBox_GetSurface1(globalCtx, &globalCtx->colChkCtx, spawnPos.x, spawnPos.z, &waterY, & waterBox) && (waterY > floorY) && (waterY <= spawnPos.y)) {
+                // Spawn the enemy on the water's surface
+                floorY = waterY;
+            }
+            if(floorY != BGCHECK_Y_MIN) {
+                actorEntry->pos.y = (int16_t)floorY;
+            }
+        }
+
+        // Hard-coded check for DC lizalfos fight
+        if((globalCtx->scene_index == 0x01) && (globalCtx->room_ctx.curRoom.num == 3)) {
+            // Check player height against this actor
+            z64_actor_t* player = globalCtx->actor_list[ACTORCAT_PLAYER].first;
+            if(ABS(player->pos_world.y - (float)actorEntry->pos.y) > 100.0) {
+                return false; // Don't continue spawning the enemy because it's from the other entrance
+            }
+        }
+    }
+    return true;
+}
+
 z64_actor_t* curr_updating_actor = NULL;
 
 void Actor_Update_Hook(z64_actor_t* actor, z64_game_t* globalCtx, ActorFunc updateFunc) {
@@ -415,20 +618,57 @@ void Actor_Update_Hook(z64_actor_t* actor, z64_game_t* globalCtx, ActorFunc upda
     updateFunc(actor, globalCtx);
     curr_updating_actor = NULL;
 }
-// Replaces the Actor_Kill function
-// Jumped to from the original
-void Actor_Kill_New(z64_actor_t* this) {
-    this->update = NULL;
-    this->draw = NULL;
-    this->flags &= ~(1 << 0);
 
-    // Hack for forest platform. Check if the actor has a parent BgMoriBigst
-    if(this->parent && this->parent->actor_id == 0x0086) { // BgMoriBigst
-        if(((BgMoriBigst*)(this->parent))->child1 == this) {
-            ((BgMoriBigst*)(this->parent))->child1 = NULL;
-        }
-        if(((BgMoriBigst*)(this->parent))->child2 == this) {
-            ((BgMoriBigst*)(this->parent))->child2 = NULL;
+#define NUM_KILL_SWITCH_FLAGS 10
+
+typedef struct {
+    xflag_t flag;
+    uint8_t switch_flag;
+} kill_switch_entry;
+
+kill_switch_entry KILL_SWITCH_TABLE[NUM_KILL_SWITCH_FLAGS];
+
+void Actor_Kill_UpdateSpawner(z64_actor_t* actor) {
+    // Check if this actor has a parent spawner
+    if (actor->parent != NULL && actor->parent->actor_id == ACTOR_EN_ENCOUNT1)
+    {
+        // Decrease the spawner counter
+        EnEncount1* spawner = (EnEncount1*)actor->parent;
+        if(spawner->actor.update != NULL) {
+            if(spawner->curNumSpawn > 0) {
+                spawner->curNumSpawn--;
+            }
         }
     }
+}
+
+// New Actor_Kill function to extend functionality
+void Actor_Kill_New(z64_actor_t* actor) {
+    // Set our kill switch flags
+
+    // Build an xflag for this actor
+    xflag_t flag = { 0 };
+    Actor_BuildFlag(actor, &flag, Actor_GetAdditionalData(actor)->actor_id, 0);
+    for(int i = 0; i < NUM_KILL_SWITCH_FLAGS; i++) {
+        if(KILL_SWITCH_TABLE[i].flag.scene == flag.scene && KILL_SWITCH_TABLE[i].flag.all && (flag.all == KILL_SWITCH_TABLE[i].flag.all)) {
+            z64_Flags_SetSwitch(&z64_game, KILL_SWITCH_TABLE[i].switch_flag);
+            break;
+        }
+    }
+
+    // Hack for forest platform. Check if the actor has a parent BgMoriBigst
+    if(actor->parent && actor->parent->actor_id == 0x0086) { // BgMoriBigst
+        if(((BgMoriBigst*)(actor->parent))->child1 == actor) {
+            ((BgMoriBigst*)(actor->parent))->child1 = NULL;
+        }
+        if(((BgMoriBigst*)(actor->parent))->child2 == actor) {
+            ((BgMoriBigst*)(actor->parent))->child2 = NULL;
+        }
+    }
+    //Actor_Kill_UpdateSpawner(actor);
+
+    // Do what the original function does
+    actor->draw = NULL;
+    actor->update = NULL;
+    actor->flags &= 1;
 }

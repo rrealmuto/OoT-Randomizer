@@ -16,7 +16,7 @@ void DemoEffect_DrawJewel_Hook(DemoEffect* this, z64_game_t* globalCtx) {
                 this->override = lookup_override_by_key(CFG_BIGOCTO_OVERRIDE_KEY);
             }
             if (this->override.key.all) {
-                this->actor.rot_2.x = 0;
+                this->actor.shape.rot.x = 0;
                 this->actor.scale = (z64_xyzf_t) { 0.02f, 0.02f, 0.02f };
             }
         }

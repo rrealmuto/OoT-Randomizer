@@ -25,6 +25,176 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * [Known Issues](#known-issues)
 * [Changelog](#changelog)
 
+# Enemy Shuffle Changelog
+### 8.3.17.Rob-E1
+  * Merge main dev
+  * Fix GTG boulder room door opening on room clear
+
+### 8.3.12.Rob-E8
+  * Add deku tree hint scrubs and fire temple floor tile to shuffled enemy locations. 
+  * Add white wolfos and large deku babas to enemy pool
+
+### 8.3.12.Rob-E7
+  * Fix enemy plando
+
+### 8.3.12.Rob-E6
+  * Don't commit Debug mode
+
+### 8.3.12.Rob-E5
+  * Forgot GTG
+
+### 8.3.12.Rob-E4
+  * Preliminary MQ Enemizer logic
+
+### 8.3.12.Rob-E3
+  * Fix Deku Theater misc. hints in enemizer
+
+### 8.3.12.Rob-E2
+  * Fix tailpasaran 0,0,0 bug.
+
+### v160
+  * Fix ganons tower access missing in enemizer
+
+### v159
+  * Disallow iron knuckles in DC lizalfos room
+
+### v158
+  * Fix actor glitch crashes
+
+### v157
+  * Fix Jabu Shabom Room patch being applied to MQ
+
+### v156
+  * Fix DMT summit boulder shuffle logic in enemizer
+
+### v155
+  * Improve enemizer logic processing
+  * Add location specific logic for enemies in water temple boulder room
+  * Improve skullwalltula behavior in enemizer :)
+
+### v154
+  * Fix generation error w/ boulder types in a list
+
+### v153
+  * Fix enemies shuffled onto Jabu pit room Baris
+
+### v152
+  * Fix Twinrova Iron Knuckle Logic
+
+### v151
+  * Make some iron knuckles not start moving immediately on spawn
+  * Improve logic for Shadow Trial
+  * Fix DMC bubble location specific logic for freezard
+
+### v150
+  * Fix spawning/reduce enemy restrictions in some locations
+
+### v149
+  * Fix generation error with no adult trade items selected
+
+### v148
+  * Fix redead infinite suns song loop when dying/unstunned while ToD changes after playing suns song
+
+### v147
+  * Fix Deku Tree baba logic
+
+### v146
+  * Golden Boulder setting
+
+### v145
+  * Fix Forest Temple Upper Stalfos spawning with soul shuffle + enemy shuffle
+  * Add Child KF and Deku Tree Enemies
+
+### v144
+  * Fix tailpasaran spawning underwater.
+  * Fix BOTW center room wallmaster.
+  * Fix Shadow temple huge pit bubble.
+  * Fix Fire temple stair case keese.
+  * Add green indicator to soul menu for current room's present and obtained souls.
+
+### v143
+  * Fix some Jabu enemizer logic
+
+### v142
+  * Correct spelling of Dinolfos throughout codebase.
+  * Fix water temple like like enemizer logic. 
+  * Add location specific enemy logic system and add logic for DMC bubbles
+
+### v141
+  * Various enemizer logic and enemy restriction fixes
+
+### v140
+  * "Temporary" address bump to fix audio issues
+
+### v139
+  * Fix raycast check
+
+### v138
+  * Update to main dev 8.2.37
+  * Additional enemy restrictions for some water-based locations
+  * Allow weapons in adult market in enemizer
+  * Add Blue Tektites
+  * Remove flare dancer BGM
+
+### v137
+  * Fix crash when burning deku shield
+
+### v136
+  * Fix skull kid needles so that they don't get culled
+
+### v135
+  * Fix skull kid spawns
+
+### v134
+  * Remove position rounding on actor spawns - Should fix chu clips
+
+### v133
+  * Add missing enemy logic
+
+### v132
+  * Fix room clear logic
+
+### v131
+  * Fix missing anubis logic
+
+### v130
+  * Fix spear moblin soul
+
+### v129
+  * Fix Anubis not included in enemy table
+  * Add Spear Moblins
+  * Make Hammer Moblins spawn better, rotate towards player
+  * Fix some enemies in MQ Child Spirit
+  * Fix redead/gibdo spawn params
+  * Restrict water stingers to water locations
+  * Add filter functions to dynamic enemizer/is_enemy checks
+  * Fix MQ Jabu falling like likes
+
+### v128
+  * Realign .rodata section to hopefully fix N64 console crashes
+
+### v127
+  * Prevent flare dancers from falling out of bounds all the time
+
+### v126
+  * Add separate drop logic to enemy list
+
+### v125
+  * Skip raycast down for certain locations
+
+### v124
+  * Make deku babas always attack
+
+### v123
+  * Force enemies to spawn on ground.
+  * Reenable Deku Babas
+  * Add outdoor requirement for flying peahats
+  * Add enemy probability weights
+  * Fix Dodongo's Cavern lizalfos room doors
+
+### v122
+  * Fix to prevent Bari from always falling through the floor
+
 ## RealRob Changelog
 ### 8.3.30.Rob-1
   * Update to latest main Dev

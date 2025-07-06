@@ -1,7 +1,20 @@
 #include "debug.h"
+#include "util.h"
 #include "objects.h"
 #include "item_effects.h"
 #include "actor.h"
+#include "player.h"
+
+extern void ArenaImpl_GetSizes(Arena* zrena, uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
+
+extern uint32_t zarena_maxFree;
+extern uint32_t zarena_free;
+extern uint32_t zarena_alloc;
+extern uint32_t randoarena_maxFree;
+extern uint32_t randoarena_free;
+extern uint32_t randoarena_alloc;
+extern Arena randoArena;
+
 
 const int8_t debug_text_width = 16;
 const int8_t debug_text_height = 16;
@@ -334,6 +347,15 @@ void debug_utilities(z64_disp_buf_t* db)
     if (z64_game.common.input[0].raw.pad.du || z64_game.common.input[0].raw.pad.l) {
         z64_link.common.vel_1.y = 6.34375f;
     }
+    ZeldaArena_GetSizes(&zarena_maxFree, &zarena_free, &zarena_alloc);
+    ArenaImpl_GetSizes(&randoArena, &randoarena_maxFree, &randoarena_free, &randoarena_alloc);
+    draw_debug_int(2, zarena_maxFree);
+    draw_debug_int(3, zarena_free);
+    draw_debug_int(4, zarena_alloc);
+    draw_debug_int(5, randoarena_maxFree);
+    draw_debug_int(6, randoarena_free);
+    draw_debug_int(7, randoarena_alloc);
+
 
     draw_debug_menu(db);
     draw_debug_numbers(db);
@@ -416,7 +438,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
             if (current_menu_indexes.main_index == 5) {
                 if (z64_game.common.input[0].pad_pressed.a) {
                     z64_GiveItem(&z64_game, Z64_ITEM_BUNNY_HOOD);
-                    z64_usebutton(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
+                    Player_UseItem(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
                 }
             }
             if (current_menu_indexes.main_index == 6) {

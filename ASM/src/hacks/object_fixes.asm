@@ -428,10 +428,10 @@ jal Object_GetIndex
 ; Hack in en_holl to prevent clearing the extended object table when transitioning into the same room.
 ; Replacing the call to the room clear function 0x80080c98
 .headersize(0x80895700 - 0x00C32FD0)
-.org 0x80895A28
+;.org 0x80895A28
 ; Replaces:
 ;   jal     0x80080c98
-    jal     EnHoll_Room_Change_Hook
+;    jal     EnHoll_Room_Change_Hook
 
 ; Hack in Player actor overlay for dogs that can follow through loading zones
 .headersize (0x808301c0 - 0xBCDB70)

@@ -10,6 +10,7 @@
 #include "z64_math.h"
 // From z64.h
 struct z64_actor_t;
+struct z64_game_t;
 
 typedef struct {
     /* 0x0000 */ int16_t radius;
@@ -143,17 +144,104 @@ typedef struct {
     /* 0x40 */ ColliderQuadDim dim;
 } ColliderQuad; // size = 0x80
 
+typedef struct ColliderElementDamageInfoAT {
+    /* 0x00 */ uint32_t dmgFlags; // Damage types dealt by this collider element as AT.
+    /* 0x04 */ uint8_t effect; // Damage Effect (Knockback, Fire, etc.)
+    /* 0x05 */ uint8_t damage; // Damage
+} ColliderElementDamageInfoAT; // size = 0x08
+
+typedef struct ColliderElementDamageInfoAC {
+    /* 0x00 */ uint32_t dmgFlags; // Damage types that may affect this collider element as AC.
+    /* 0x04 */ uint8_t effect;  // Damage Effect (Knockback, Fire, etc.)
+    /* 0x05 */ uint8_t defense; // Damage Resistance
+    /* 0x06 */ z64_xyz_t hitPos; // Point of contact
+} ColliderElementDamageInfoAC; // size = 0x0C
+
+typedef struct ColliderElement {
+    /* 0x00 */ ColliderElementDamageInfoAT atDmgInfo; // Damage properties when acting as an AT collider
+    /* 0x08 */ ColliderElementDamageInfoAC acDmgInfo; // Damage properties when acting as an AC collider
+    /* 0x14 */ uint8_t elemType; // Affects sfx reaction when attacked by Link and hookability. Full purpose unknown.
+    /* 0x15 */ uint8_t atElemFlags; // Information flags for AT collisions
+    /* 0x16 */ uint8_t acElemFlags; // Information flags for AC collisions
+    /* 0x17 */ uint8_t ocElemFlags; // Information flags for OC collisions
+    /* 0x18 */ Collider* atHit; // object touching this element's AT collider
+    /* 0x1C */ Collider* acHit; // object touching this element's AC collider
+    /* 0x20 */ struct ColliderElement* atHitElem; // element that hit the AT collider
+    /* 0x24 */ struct ColliderElement* acHitElem; // element that hit the AC collider
+} ColliderElement; // size = 0x28
+
+typedef struct ColliderTrisElement {
+    /* 0x00 */ ColliderElement base;
+    /* 0x28 */ TriNorm dim;
+} ColliderTrisElement; // size = 0x5C
+
+typedef struct ColliderTris {
+    /* 0x00 */ Collider base;
+    /* 0x18 */ int32_t count;
+    /* 0x1C */ ColliderTrisElement* elements;
+} ColliderTris; // size = 0x20
+
 typedef struct {
     /* 0x00 */ ColliderInit base;
     /* 0x08 */ ColliderInfoInit info;
     /* 0x20 */ ColliderQuadDimInit dim;
 } ColliderQuadInit; // size = 0x50
 
+typedef struct ColliderElementDamageInfoACInit {
+    /* 0x00 */ uint32_t dmgFlags; // Damage types that may affect this collider element as AC.
+    /* 0x04 */ uint8_t effect; // Damage Effect (Knockback, Fire, etc.)
+    /* 0x05 */ uint8_t defense; // Damage Resistance
+} ColliderElementDamageInfoACInit; // size = 0x08
+
+typedef struct ColliderElementInit {
+    /* 0x00 */ uint8_t elemMaterial; // Affects sfx when attacked by Player, and interaction with hookshot and arrows.
+    /* 0x04 */ ColliderElementDamageInfoAT atDmgInfo; // Damage properties when acting as an AT collider
+    /* 0x0C */ ColliderElementDamageInfoACInit acDmgInfo; // Damage properties when acting as an AC collider
+    /* 0x14 */ uint8_t atElemFlags; // Information flags for AT collisions
+    /* 0x15 */ uint8_t acElemFlags;  // Information flags for AC collisions
+    /* 0x16 */ uint8_t ocElemFlags; // Information flags for OC collisions
+} ColliderElementInit; // size = 0x18
+
 typedef struct {
     /* 0x00 */ ColliderInitType1 base;
     /* 0x08 */ ColliderInfoInit info;
     /* 0x20 */ ColliderQuadDimInit dim;
 } ColliderQuadInitType1; // size = 0x50
+
+typedef struct ColliderJntSphElementDim {
+    /* 0x00 */ Sphere16 modelSphere; // model space sphere
+    /* 0x08 */ Sphere16 worldSphere; // world space sphere
+    /* 0x10 */ float scale; // world space sphere = model * scale * 0.01
+    /* 0x14 */ uint8_t limb; // attached limb
+} ColliderJntSphElementDim; // size = 0x18
+
+typedef struct ColliderJntSphElement {
+    /* 0x00 */ ColliderElement base;
+    /* 0x28 */ ColliderJntSphElementDim dim;
+} ColliderJntSphElement; // size = 0x40
+
+typedef struct ColliderJntSph {
+    /* 0x00 */ Collider base;
+    /* 0x18 */ int32_t count;
+    /* 0x1C */ ColliderJntSphElement* elements;
+} ColliderJntSph; // size = 0x20
+
+typedef struct ColliderJntSphElementDimInit {
+    /* 0x00 */ uint8_t limb; // attached limb
+    /* 0x02 */ Sphere16 modelSphere; // model space sphere
+    /* 0x0A */ int16_t scale; // world space sphere = model * scale * 0.01
+} ColliderJntSphElementDimInit; // size = 0x0C
+
+typedef struct ColliderJntSphElementInit {
+    /* 0x00 */ ColliderElementInit base;
+    /* 0x18 */ ColliderJntSphElementDimInit dim;
+} ColliderJntSphElementInit; // size = 0x24
+
+typedef struct ColliderJntSphInit {
+    /* 0x00 */ ColliderInit base;
+    /* 0x08 */ int32_t count;
+    /* 0x0C */ ColliderJntSphElementInit* elements;
+} ColliderJntSphInit; // size = 0x10
 
 typedef enum {
     /* 0  */ COLTYPE_HIT0, // Blue blood, white hitmark
@@ -312,4 +400,6 @@ typedef enum {
 #define DMG_RANGED (DMG_ARROW | DMG_HOOKSHOT | DMG_SLINGSHOT)
 #define DMG_DEFAULT ~(DMG_SHIELD | DMG_MIR_RAY)
 
+void Collider_UpdateSpheres(int32_t limb, ColliderJntSph* jntSph);
+int32_t Collider_SetJntSph(struct z64_game_t* play, ColliderJntSph* dest, struct z64_actor_t* actor, ColliderJntSphInit* src, ColliderJntSphElement* jntSphElements);
 #endif

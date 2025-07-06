@@ -28,6 +28,7 @@ OnePointCutscene_Init = 0x8006b6fc;
 Player_InCsMode = 0x8007943c;
 EffectSsKakera_Spawn = 0x8001d998;
 CutsceneFlags_Get = 0x8005991C;
+z64_Gfx_SetupDL_25Opa = 0x8007E298;
 z64_Gfx_SetupDL_42Opa = 0x8007E868;
 Audio_StopCurrentMusic = 0x800C7684;
 sprintf = 0x800CE7b4;
@@ -36,18 +37,6 @@ z64_ItemIcons = 0x800F8D2C;
 z64_SfxDefaultPos = 0x80104394;
 z64_SfxDefaultFreqAndVolScale = 0x801043A0;
 z64_SfxDefaultReverb = 0x801043A8;
-KaleidoScope_DrawAmmoCount = 0x8038EA10;
-KaleidoScope_SetCursorVtx = 0x8038EF94;
-KaleidoScope_QuadTextureIA8 = 0x80394200;
-KaleidoScope_MoveCursorToSpecialPos = 0x80394524;
-KaleidoScope_DrawQuadTextureRGBA32 = 0x80394588;
-KaleidoScope_DrawCursor = 0x80394B00;
-z64_AmmoItems = 0x8039EAA0;
-z64_SlotAgeReqs = 0x8039F114;
-z64_sEquipState = 0x8039EAB0;
-z64_sEquipAnimTimer = 0x8039EAB4;
-z64_sEquipMoveTimer = 0x8039EAB8;
-gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
 ObjHana_Draw = 0x80abc1c8;
 SkelAnime_DrawFlexOpa = 0x80089d8c;
@@ -65,11 +54,89 @@ __osMalloc = 0x800CE060;
 z64_LoadRoom_addr = 0x80080A3C;
 z64_UnloadRoom = 0x80080C98;
 sSetupDL = 0x800f7d50;
+Actor_WorldDistXZToPoint = 0x80021528;
+BgCheck_EntityRaycastDown1 = 0x8002f3a4;
+BgCheck_EntityRaycastDown2 = 0x8002f400;
+BgCheck_EntityRaycastDown3 = 0x8002f454;
+BgCheck_EntityRaycastDown4 = 0x8002F4B8;
+BgCheck_EntityRaycastDown5 = 0x8002f520;
+BgCheck_AnyRaycastDown1 = 0x8002f644;
+WaterBox_GetSurface1 = 0x800347fc;
+Flags_GetTempClear = 0x80020694;
+Actor_UpdateBgCheckInfo = 0x80021e6c;
+gCullBackDList = 0x800f7a68;
+ZeldaArena_Malloc = 0x80066c10;
+ZeldaArena_Free = 0x80066c90;
+ZeldaArena_GetSizes = 0x80066d10;
+ArenaImpl_GetSizes = 0x800ce688;
+z64_LoadRoom_addr = 0x80080A3C;
+z64_UnloadRoom = 0x80080C98;
+gActorOverlayTable = 0x800E8530;
+gPausePlayerOverlayTable = 0x800FE480;
+Collider_UpdateSpheres = 0x80050CE4;
+Collider_SetJntSph = 0x8004a874;
+CollisionCheck_SetAT = 0x8004bd50;
+CollisionCheck_SetAC = 0x8004bf40;
+CollisionCheck_SetOC = 0x8004c130;
 
+Matrix_Push = 0x800aa6ec;
+Matrix_Pop = 0x800aa724;
+Matrix_SetTranslateRotateYXZ = 0x800ab510;
+Matrix_Scale = 0x800aa8fc;
+
+/* Overlay symbols */
+
+/* En_Ik (Iron Knuckle) */
+OVL_EnIk_SetupStandUp = 0x80a67348;
+OVL_EnIk_SetupWalkOrRun = 0x80a676e4;
+
+
+/* Kaleidoscope */
+OVL_KaleidoScope_DrawAmmoCount = 0x80819670;
+OVL_KaleidoScope_SetCursorVtx = 0x80819BF4;
+OVL_KaleidoScope_QuadTextureIA8 = 0x8081EE60;
+OVL_KaleidoScope_MoveCursorToSpecialPos = 0x8081F184;
+OVL_KaleidoScope_DrawQuadTextureRGBA32 = 0x8081F1E8;
+OVL_KaleidoScope_DrawCursor = 0x8081F760;
+OVL_gAmmoItems = 0x80829700;
+OVL_gSlotAgeReqs = 0x80829D74;
+OVL_sEquipState = 0x80829710;
+OVL_sEquipAnimTimer = 0x80829714;
+OVL_sEquipMoveTimer = 0x80829718;
+
+
+/* Door_Shutter */
+OVL_DoorShutter_BarAndWaitSwitchFlag = 0x808b8fe8;
+
+/* En_Dekubaba */
+OVL_EnDekubaba_SetupPrepareLunge = 0x808fbc50;
+OVL_EnDekubaba_SetupGrow = 0x808fb9e0;
+
+/* En_Fd */
+OVL_EnFd_Update = 0x80956378;
+
+/* En_Mb */
+OVL_EnMb_Init = 0x808e5d4c;
+OVL_EnMb_SetupClubWaitPlayerNear = 0x808e6590;
+OVL_EnMb_ClubWaitPlayerNear = 0x808e8a54;
+
+/* Player */
+OVL_Player_UseItem = 0x80834000;
+OVL_LinkInvincibility_addr = 0x80835BD8;
+OVL_LinkDamage_addr = 0x80835D08;
+
+/* Bg_Mori_Bigst */
 OVL_BgMoriBigst_SetupFall = 0x809273d4;
 OVL_BgMoriBigst_SetupDone = 0x809276c0;
 
+/* En_karebaba */
 OVL_EnKarebaba_SetupDeadItemDrop = 0x809ba560;
+
+/* En_Tp */
+OVL_EnTp_Update = 0x808c39c8;
+
+/* Obj_Roomtimer */
+OVL_ObjRoomtimer_MainAction = 0x80b25428;
 
 OVL_EnKusa_Draw = 0x80a80a50;
 OVL_EnOkarinaTag_Action2 = 0x80a872d0;
