@@ -204,7 +204,7 @@
         "scene": "Spirit Temple Boss",
         "is_boss_room": true,
         "events": {
-            "Defeat Twinrova": "has_soul(Twinrova) and has_soul(Iron_Knuckle) and can_use(Mirror_Shield)"
+            "Defeat Twinrova": "has_soul(Twinrova) and can_kill(23, 1, 0, 0) and can_use(Mirror_Shield)"
         },
         "locations": {
             "Spirit Temple Twinrova Heart": "'Defeat Twinrova'",
