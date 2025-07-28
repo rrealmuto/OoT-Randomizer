@@ -6,7 +6,7 @@ extern EnOkarinaTagActionFunc OVL_EnOkarinaTag_Action1;
 extern EnOkarinaTagActionFunc OVL_EnOkarinaTag_Action2;
 
 void EnOkarinaTag_ActionHook(EnOkarinaTag* this, z64_game_t* play) {
-    if(play->msgContext.ocarinaMode == 3 && this->type == 4 && !DemoKankyo_CutsceneFlags_Get_Hook(play, 2)) {
+    if(play->msgContext.ocarinaMode == 3 && this->type == 4 && !ShouldOpenDoorOfTime(play, 2)) {
         play->msgContext.ocarinaMode = 4;
         this->actionFunc = resolve_overlay_addr(&OVL_EnOkarinaTag_Action1, this->actor.actor_id);
         return;
