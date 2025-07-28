@@ -4162,3 +4162,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_title.asm"
 .include "hacks/z_file_choose.asm"
 .include "hacks/ovl_en_changer.asm"
+.include "hacks/ovl_en_okarina_tag.asm"
