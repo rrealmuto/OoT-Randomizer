@@ -430,8 +430,8 @@ jal Object_GetIndex
 .headersize(0x80895700 - 0x00C32FD0)
 ;.org 0x80895A28
 ; Replaces:
-;   jal     0x80080c98
-;    jal     EnHoll_Room_Change_Hook
+;   jal     Room_FinishRoomChange
+;    jal     EnHoll_FinishRoom_Change_Hook
 
 ; Hack in Player actor overlay for dogs that can follow through loading zones
 .headersize (0x808301c0 - 0xBCDB70)

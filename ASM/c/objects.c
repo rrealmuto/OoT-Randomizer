@@ -72,7 +72,7 @@ typedef struct EnHoll {
     /* 0x0140 */ void* actionFunc;
 } EnHoll; // size = 0x0144
 
-/*void EnHoll_Room_Change_Hack(z64_game_t* globalCtx, RoomContext* roomCtx, EnHoll* holl) {
+/*void EnHoll_FinishRoom_Change_Hooked(z64_game_t* globalCtx, RoomContext* roomCtx, EnHoll* holl) {
     if((holl->actor.room_index == extended_object_ctx.holl_last_room) || (holl->actor.room_index == roomCtx->curRoom.num)) {
         extended_object_ctx.inhibit_clear_flag = 1;
     }
@@ -81,14 +81,15 @@ typedef struct EnHoll {
     extended_object_ctx.inhibit_clear_flag = 0;
 }*/
 
-void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
+// Called when finishing a room change. Clean up our extended objects if they're no longer needed
+void Room_FinishRoomChange_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
     gPrevRoom = roomCtx->prevRoom.num;
-    Room_Change(globalCtx, roomCtx);
+    Room_FinishRoomChange(globalCtx, roomCtx);
     
     //if(extended_object_ctx.inhibit_clear_flag)
     //    return;
     
-    //if(prevRoom >= 0){
+    if(gPrevRoom >= 0 && gPrevRoom != roomCtx->curRoom.num) {
         extended_object_t* slot = &extended_object_ctx.slots[OBJECT_EXCHANGE_BANK_MAX];
         for(int i = OBJECT_EXCHANGE_BANK_MAX; i < OBJECT_EXCHANGE_BANK_EXTENDED_MAX; i++) {
             if(slot->data && slot->is_active) {
@@ -103,7 +104,7 @@ void Room_Change_Hook(z64_game_t* globalCtx, RoomContext* roomCtx) {
             }
             slot++;
         }
-    //}
+    }
 }
 
 int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
@@ -121,6 +122,7 @@ int32_t Object_GetIndex_Hook(z64_obj_ctxt_t *object_ctx, int16_t object_id) {
             }
             if (extended_object_ctx.slots[i].id == object_id) {
                 extended_object_ctx.slots[i].is_active = 1;
+                extended_object_ctx.slots[i].room = z64_game.room_ctx.curRoom.num; // Mark the object for the current room
                 return i;
             }
         }

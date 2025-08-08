@@ -23,9 +23,9 @@ Scene_CommandObjectList:
     sw      s8, 0x38(sp)
 
 ; Reentry point for original function
-Room_Change:
+Room_FinishRoomChange:
     addiu   sp, sp, -0x28
-    j       Room_Change_Continue
+    j       Room_FinishRoomChange_Continue
     sw      s0, 0x18(sp)
 
 ; Code to update the extended object table with the vanilla entries
@@ -45,6 +45,6 @@ Object_UpdateEntries_Extended:
 
 ; Hooking calling to unload room from EnHoll so we can pass the holl actor
 ; actor is in a3
-;EnHoll_Room_Change_Hook:
-;    j   EnHoll_Room_Change_Hack
+;EnHoll_FinishRoom_Change_Hook:
+;    j   EnHoll_FinishRoom_Change_Hooked
 ;    or  a2, r0, a3

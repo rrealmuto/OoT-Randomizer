@@ -100,14 +100,14 @@ Scene_CommandObjectList_After:
 jal     Object_UpdateEntries_Extended
 nop
 
-; Hack in the function that i think is what changes rooms to reset the extended table on room change
+; Hook Room_FinishRoomChange to reset the extended table on room change
 .org 0x80080C98
 ; Replaces:
 ;   addiu   sp, sp, -0x28
 ;   sw      s0, 0x18(sp)
-    j       Room_Change_Hook
+    j       Room_FinishRoomChange_Hook
     nop
-Room_Change_Continue:
+Room_FinishRoomChange_Continue:
 
 ; Hack in Actor_UpdateAll when calling actor->update()
 .org 0x800240d8

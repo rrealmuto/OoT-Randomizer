@@ -2681,7 +2681,7 @@ extern int32_t Object_IsLoaded(z64_obj_ctxt_t* objectCtx, int32_t bankIndex);
 extern int32_t Object_GetIndex(z64_obj_ctxt_t* objectCtx, int32_t object_id);
 extern void Actor_SetObjectDependency(z64_game_t* globalCtx, z64_actor_t* actor);
 extern void Scene_CommandObjectList(z64_game_t* globalCtx, void* scene_command);
-extern void Room_Change(z64_game_t* globalCtx, void* roomCtx);
+extern void Room_FinishRoomChange(z64_game_t* globalCtx, void* roomCtx);
 extern void __osMallocInit(Arena* arena, void* start, uint32_t size);
 extern void __osFree(Arena* arena, void* ptr);
 extern void* __osMalloc(Arena* arena, uint32_t size);
