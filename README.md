@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 8.3.17.Rob-E3
+  * Merge Dev-Rob to fix ice trap crash
+
 ### 8.3.17.Rob-E2
   * Fix DC Hallway crash in enemizer
 
