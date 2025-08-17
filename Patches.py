@@ -2291,6 +2291,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.revert_patch("ENSW_PATCH_3_ENEMIZER")
         rom.revert_patch("ENSW_PATCH_4_ENEMIZER")
         rom.revert_patch("ENSW_PATCH_5_ENEMIZER")
+        rom.revert_patch("EN_DEKUBABA_PATCH1_ENEMIZER")
+        rom.revert_patch("EN_DEKUBABA_PATCH2_ENEMIZER")
+        rom.revert_patch("EN_DEKUBABA_PATCH3_ENEMIZER")
 
     # Write numeric seed truncated to 32 bits for rng seeding
     # Overwritten with new seed every time a new rng value is generated
