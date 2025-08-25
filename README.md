@@ -26,6 +26,12 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 8.3.30.Rob-E2
+  * Fix new door of time logic in enemizer
+
+### 8.3.30.Rob-E1
+  * Merge main dev
+
 ### 8.3.17.Rob-E3
   * Merge Dev-Rob to fix ice trap crash
 
