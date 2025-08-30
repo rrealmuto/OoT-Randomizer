@@ -1424,11 +1424,14 @@ def read_object_manifest(manifest_path: str):
 
 file_list = {
     'object_ganon': (0x015C9000, 0x015D9100),
-    'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660)
+    'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660),
+    'object_fish': (0x01842000, 0x018575F0),
+    'ovl_Fishing': (0x00DBE030, 0x00DD1A00)
 }
 
 object_ids = {
-    'object_ganon': 0xE1
+    'object_ganon': 0xE1,
+    'object_fish': 0x015B,
 }
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
