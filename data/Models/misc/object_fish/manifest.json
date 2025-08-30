@@ -1,0 +1,29 @@
+{
+    "model": "fish_karp.zobj",
+    "replace_object": "object_fish",
+
+    "patch_files": [
+        {
+            "file": "ovl_Fishing",
+            "patches": 
+            [
+                {
+                    "addr": 4782,
+                    "data": [6, 2]
+                },
+                {
+                    "addr": 4786,
+                    "data": [212, 56]
+                },
+                {
+                    "addr": 45202,
+                    "data": [6, 2]
+                },
+                {
+                    "addr":45214,
+                    "data": [212,56]
+                }
+            ]
+        }
+    ]
+}

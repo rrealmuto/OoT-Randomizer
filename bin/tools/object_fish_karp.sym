@@ -1,0 +1,1598 @@
+
+object_fish.o:     file format elf32-bigmips
+
+SYMBOL TABLE:
+00000000 l    d  .data	0001d450 .data
+00000000         *UND*	00000000 __osHwIntTable
+00000000         *UND*	00000004 __libm_qnan_f
+00000000         *UND*	00000004 __osViCurr
+00000000         *UND*	00000004 __osViNext
+00000000         *UND*	00000004 __additional_scanline
+00000000         *UND*	00000001 __osContLastCmd
+00000000         *UND*	00000040 __osContPifRam
+00000000         *UND*	00000040 __osPfsPifRam
+00000000         *UND*	00000001 __osMaxControllers
+00000000         *UND*	00000004 __osPiTable
+00000000         *UND*	00000004 osRomType
+00000000         *UND*	00000004 osRomBase
+00000000         *UND*	00000004 osTvType
+00000000         *UND*	00000004 osResetType
+00000000         *UND*	00000004 osCicId
+00000000         *UND*	00000004 osVersion
+00000000         *UND*	00000004 osMemSize
+00000000         *UND*	00000040 osAppNMIBuffer
+00000000         *UND*	00000004 __OSGlobalIntMask
+00000000         *UND*	00000050 osViModeNtscLan1
+00000000         *UND*	00000050 osViModePalLan1
+00000000         *UND*	00000050 osViModeMpalLan1
+00000000         *UND*	00000050 osViModeFpalLan1
+00000000         *UND*	00000008 __osThreadTail
+00000000         *UND*	00000004 __osRunningThread
+00000000         *UND*	00000004 __osActiveQueue
+00000000         *UND*	00000004 __osFaultedThread
+00000000         *UND*	00000004 __osRunQueue
+00000000         *UND*	00000004 __osTimerList
+00000000         *UND*	00000004 __osBaseCounter
+00000000         *UND*	00000008 __osCurrentTime
+00000000         *UND*	00000004 __osViIntrCount
+00000000         *UND*	00000004 __osTimerCounter
+00000000         *UND*	00000004 __osShutdown
+00000000         *UND*	00000000 __osCurrentHandle
+00000000         *UND*	00000018 __osPiAccessQueue
+00000000         *UND*	00000004 __osPiAccessQueueEnabled
+00000000         *UND*	00000001 __osPfsInodeCacheBank
+00000000         *UND*	00000000 rspbootTextStart
+00000000         *UND*	00000000 rspbootTextEnd
+00000000         *UND*	00000000 cic6105TextStart
+00000000         *UND*	00000000 cic6105TextEnd
+00000000         *UND*	00000000 aspMainTextStart
+00000000         *UND*	00000000 aspMainTextEnd
+00000000         *UND*	00000000 aspMainDataStart
+00000000         *UND*	00000000 aspMainDataEnd
+00000000         *UND*	00000000 gspF3DZEX2_NoN_PosLight_fifoTextStart
+00000000         *UND*	00000000 gspF3DZEX2_NoN_PosLight_fifoTextEnd
+00000000         *UND*	00000000 gspF3DZEX2_NoN_PosLight_fifoDataStart
+00000000         *UND*	00000000 gspF3DZEX2_NoN_PosLight_fifoDataEnd
+00000000         *UND*	00000000 gspS2DEX2d_fifoTextStart
+00000000         *UND*	00000000 gspS2DEX2d_fifoTextEnd
+00000000         *UND*	00000000 gspS2DEX2d_fifoDataStart
+00000000         *UND*	00000000 gspS2DEX2d_fifoDataEnd
+00000000         *UND*	00000000 njpgdspMainTextStart
+00000000         *UND*	00000000 njpgdspMainTextEnd
+00000000         *UND*	00000000 njpgdspMainDataStart
+00000000         *UND*	00000000 njpgdspMainDataEnd
+00000000         *UND*	00000000 gDmaDataTable
+00000000         *UND*	00000004 gDmaMgrVerbose
+00000000         *UND*	00000004 gDmaMgrDmaBuffSize
+000155f0 g     O .data	00000020 gFishingFishSkel_Texture_0_ci4
+00015610 g     O .data	00000008 gFishingFishSkel_Texture_0_pal_rgba16
+00015618 g     O .data	00000800 gFishingFishSkel_Texture_6_ci8
+00015e18 g     O .data	00000048 gFishingFishSkel_Texture_6_pal_rgba16
+00015e60 g     O .data	00000800 gFishingFishSkel_Texture_2_ci8
+00016660 g     O .data	000000e8 gFishingFishSkel_Texture_2_pal_rgba16
+00016748 g     O .data	00000800 gFishingFishSkel_Texture_1_ci8
+00016f48 g     O .data	000000e8 gFishingFishSkel_Texture_1_pal_rgba16
+00017030 g     O .data	00000400 gFishingFishSkel_Texture_4_ci8
+00017430 g     O .data	00000028 gFishingFishSkel_Texture_4_pal_rgba16
+00017458 g     O .data	00000400 gFishingFishSkel_Texture_5_ci8
+00017858 g     O .data	000000b8 gFishingFishSkel_Texture_5_pal_rgba16
+00017910 g     O .data	00000800 gFishingFishSkel_Texture_3_ci8
+00018110 g     O .data	00000038 gFishingFishSkel_Texture_3_pal_rgba16
+00018148 g     O .data	00000080 gFishingFishSkel_Texture_15_ci8
+000181c8 g     O .data	00000028 gFishingFishSkel_Texture_15_pal_rgba16
+000181f0 g     O .data	00000020 gFishingFishSkel_Texture_9_ci4
+00018210 g     O .data	00000008 gFishingFishSkel_Texture_9_pal_rgba16
+00018218 g     O .data	00000800 gFishingFishSkel_Texture_8_ci8
+00018a18 g     O .data	000001c8 gFishingFishSkel_Texture_8_pal_rgba16
+00018be0 g     O .data	00000800 gFishingFishSkel_Texture_13_ci8
+000193e0 g     O .data	00000060 gFishingFishSkel_Texture_13_pal_rgba16
+00019440 g     O .data	00000800 gFishingFishSkel_Texture_14_ia8
+00019c40 g     O .data	00000800 gFishingFishSkel_Texture_10_ci8
+0001a440 g     O .data	00000050 gFishingFishSkel_Texture_10_pal_rgba16
+0001a490 g     O .data	00000800 gFishingFishSkel_Texture_11_ci8
+0001ac90 g     O .data	00000050 gFishingFishSkel_Texture_11_pal_rgba16
+0001ace0 g     O .data	00000080 gFishingFishSkel_Texture_7_ci8
+0001ad60 g     O .data	00000028 gFishingFishSkel_Texture_7_pal_rgba16
+0001ad88 g     O .data	00000100 gFishingFishSkel_Texture_12_ci8
+0001ae88 g     O .data	00000038 gFishingFishSkel_Texture_12_pal_rgba16
+0001aec0 g     O .data	00000290 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_0
+0001b150 g     O .data	000000b0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_0
+0001b200 g     O .data	00000090 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_1
+0001b290 g     O .data	00000030 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_1
+0001b2c0 g     O .data	00000100 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_2
+0001b3c0 g     O .data	00000048 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_2
+0001b408 g     O .data	00000100 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_3
+0001b508 g     O .data	00000048 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_3
+0001b550 g     O .data	00000060 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_4
+0001b5b0 g     O .data	00000020 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_4
+0001b5d0 g     O .data	00000090 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_5
+0001b660 g     O .data	00000028 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_5
+0001b688 g     O .data	000000a0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_6
+0001b728 g     O .data	00000038 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_6
+0001b760 g     O .data	000001e0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_7
+0001b940 g     O .data	000000d0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_7
+0001ba10 g     O .data	000002d0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_8
+0001bce0 g     O .data	000000c0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_8
+0001bda0 g     O .data	000000c0 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_vtx_9
+0001be60 g     O .data	00000030 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque_tri_9
+0001be90 g     O .data	00000120 gFishingFishSkel_bone006_gFishingFishLimb_002918_mesh_layer_Opaque_vtx_0
+0001bfb0 g     O .data	00000060 gFishingFishSkel_bone006_gFishingFishLimb_002918_mesh_layer_Opaque_tri_0
+0001c010 g     O .data	000000a0 gFishingFishSkel_bone006_gFishingFishLimb_002918_mesh_layer_Opaque_vtx_1
+0001c0b0 g     O .data	00000028 gFishingFishSkel_bone006_gFishingFishLimb_002918_mesh_layer_Opaque_tri_1
+0001c0d8 g     O .data	00000130 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_0
+0001c208 g     O .data	00000068 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_0
+0001c270 g     O .data	000000c0 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_1
+0001c330 g     O .data	00000040 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_1
+0001c370 g     O .data	00000060 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_2
+0001c3d0 g     O .data	00000020 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_2
+0001c3f0 g     O .data	00000120 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_3
+0001c510 g     O .data	00000060 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_3
+0001c570 g     O .data	00000050 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_4
+0001c5c0 g     O .data	00000030 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_4
+0001c5f0 g     O .data	00000060 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_5
+0001c650 g     O .data	00000030 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_5
+0001c680 g     O .data	00000110 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_vtx_6
+0001c790 g     O .data	00000070 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque_tri_6
+0001c800 g     O .data	00000080 mat_gFishingFishSkel_Texture_0_png_002_f3d_layerOpaque
+0001c880 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_0_png_002_f3d_layerOpaque
+0001c898 g     O .data	00000080 mat_gFishingFishSkel_Texture_6_png_002_f3d_layerOpaque
+0001c918 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_6_png_002_f3d_layerOpaque
+0001c930 g     O .data	00000080 mat_gFishingFishSkel_Texture_2_png_002_f3d_layerOpaque
+0001c9b0 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_2_png_002_f3d_layerOpaque
+0001c9c8 g     O .data	00000080 mat_gFishingFishSkel_Texture_1_png_002_f3d_layerOpaque
+0001ca48 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_1_png_002_f3d_layerOpaque
+0001ca60 g     O .data	00000080 mat_gFishingFishSkel_Texture_4_png_002_f3d_layerOpaque
+0001cae0 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_4_png_002_f3d_layerOpaque
+0001caf8 g     O .data	00000080 mat_gFishingFishSkel_Texture_5_png_002_f3d_layerOpaque
+0001cb78 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_5_png_002_f3d_layerOpaque
+0001cb90 g     O .data	00000080 mat_gFishingFishSkel_Texture_3_png_002_f3d_layerOpaque
+0001cc10 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_3_png_002_f3d_layerOpaque
+0001cc28 g     O .data	00000080 mat_gFishingFishSkel_Texture_15_png_002_f3d_layerOpaque
+0001cca8 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_15_png_002_f3d_layerOpaque
+0001ccc0 g     O .data	00000080 mat_gFishingFishSkel_Texture_9_png_002_f3d_layerOpaque
+0001cd40 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_9_png_002_f3d_layerOpaque
+0001cd58 g     O .data	00000080 mat_gFishingFishSkel_Texture_8_png_002_f3d_layerOpaque
+0001cdd8 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_8_png_002_f3d_layerOpaque
+0001cdf0 g     O .data	00000080 mat_gFishingFishSkel_Texture_13_png_002_f3d_layerOpaque
+0001ce70 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_13_png_002_f3d_layerOpaque
+0001ce88 g     O .data	00000068 mat_gFishingFishSkel_Texture_14_png_002_f3d_layerOpaque
+0001cef0 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_14_png_002_f3d_layerOpaque
+0001cf08 g     O .data	00000080 mat_gFishingFishSkel_Texture_10_png_002_f3d_layerOpaque
+0001cf88 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_10_png_002_f3d_layerOpaque
+0001cfa0 g     O .data	00000080 mat_gFishingFishSkel_Texture_11_png_002_f3d_layerOpaque
+0001d020 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_11_png_002_f3d_layerOpaque
+0001d038 g     O .data	00000080 mat_gFishingFishSkel_Texture_7_png_002_f3d_layerOpaque
+0001d0b8 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_7_png_002_f3d_layerOpaque
+0001d0d0 g     O .data	00000080 mat_gFishingFishSkel_Texture_12_png_002_f3d_layerOpaque
+0001d150 g     O .data	00000018 mat_revert_gFishingFishSkel_Texture_12_png_002_f3d_layerOpaque
+0001d168 g     O .data	000000f8 gFishingFishSkel_bone000_gFishingFishLimb_0028D0_mesh_layer_Opaque
+0001d260 g     O .data	00000038 gFishingFishSkel_bone006_gFishingFishLimb_002918_mesh_layer_Opaque
+0001d298 g     O .data	000000b0 gFishingFishSkel_bone009_gFishingFishLimb_00293C_mesh_layer_Opaque
+0001d438 g     O .data	0000000c gFishingFishSkel
+00000000 g     O .data	0000001c gFishingFishFrameData
+0000001c g     O .data	00000060 gFishingFishJointIndices
+0000007c g     O .data	00000010 gFishingFishAnim
+00000090 g     O .data	00000050 object_fish_Vtx_000090
+000000e0 g     O .data	000000b0 object_fish_Vtx_0000E0
+00000190 g     O .data	00000220 object_fish_Vtx_000190
+000003b0 g     O .data	00000030 object_fish_Vtx_0003B0
+000003e0 g     O .data	00000030 object_fish_Vtx_0003E0
+00000410 g     O .data	000001a0 object_fish_Vtx_000410
+000005b0 g     O .data	00000030 object_fish_Vtx_0005B0
+000005e0 g     O .data	00000030 object_fish_Vtx_0005E0
+00000610 g     O .data	000001e0 object_fish_Vtx_000610
+000007f0 g     O .data	000000f0 object_fish_Vtx_0007F0
+000008e0 g     O .data	00000030 object_fish_Vtx_0008E0
+00000910 g     O .data	00000030 object_fish_Vtx_000910
+00000940 g     O .data	000000a8 gFishingFishDL_000940
+000009e8 g     O .data	00000118 gFishingFishDL_0009E8
+00000b00 g     O .data	000000a0 gFishingFishDL_000B00
+00000ba0 g     O .data	000000a0 gFishingFishDL_000BA0
+00000c40 g     O .data	000001f0 gFishingFishDL_000C40
+00000e30 g     O .data	000000a0 gFishingFishDL_000E30
+00000ed0 g     O .data	000000a0 gFishingFishDL_000ED0
+00000f70 g     O .data	00000130 gFishingFishDL_000F70
+000010a0 g     O .data	000001c0 gFishingFishDL_0010A0
+00001260 g     O .data	000000a0 gFishingFishDL_001260
+00001300 g     O .data	000000a0 gFishingFishDL_001300
+000013a0 g     O .data	00000130 gFishingFishDL_0013A0
+000014d0 g     O .data	00000200 gFishingFishTex_0014D0
+000016d0 g     O .data	00000200 gFishingFishTex_0016D0
+000018d0 g     O .data	00000200 gFishingFishTex_0018D0
+00001ad0 g     O .data	00000800 gFishingFishTex_001AD0
+000022d0 g     O .data	00000200 gFishingFishTex_0022D0
+000024d0 g     O .data	00000200 gFishingFishTex_0024D0
+000026d0 g     O .data	00000200 gFishingFishTex_0026D0
+000028d0 g     O .data	0000000c gFishingFishLimb_0028D0
+000028dc g     O .data	0000000c gFishingFishLimb_0028DC
+000028e8 g     O .data	0000000c gFishingFishLimb_0028E8
+000028f4 g     O .data	0000000c gFishingFishLimb_0028F4
+00002900 g     O .data	0000000c gFishingFishLimb_002900
+0000290c g     O .data	0000000c gFishingFishLimb_00290C
+00002918 g     O .data	0000000c gFishingFishLimb_002918
+00002924 g     O .data	0000000c gFishingFishLimb_002924
+00002930 g     O .data	0000000c gFishingFishLimb_002930
+0000293c g     O .data	0000000c gFishingFishLimb_00293C
+00002948 g     O .data	0000000c gFishingFishLimb_002948
+00002954 g     O .data	0000000c gFishingFishLimb_002954
+00002960 g     O .data	0000000c gFishingFishLimb_002960
+0000296c g     O .data	0000000c gFishingFishLimb_00296C
+00002978 g     O .data	0000000c gFishingFishLimb_002978
+00002984 g     O .data	0000003c gFishingFishLimbs
+000029c0 g     O .data	0000000c gFishingFishSkel_OG
+000029d0 g     O .data	00000100 gFishingOldLureHookTex
+00002ad0 g     O .data	00000080 gFishingOldLureFloatTex
+00002b50 g     O .data	00000080 gFishingOldLureVtx
+00002bd0 g     O .data	00000108 gFishingOldLureDL
+00002ce0 g     O .data	00000400 gFishingStreamSplashTile1Tex
+000030e0 g     O .data	00000080 gFishingStreamSplashTile2Tex
+00003160 g     O .data	000000d0 gFishingStreamSplashVtx
+00003230 g     O .data	000000e8 gFishingStreamSplashDL
+00003320 g     O .data	00000100 gFishingBubbleTex
+00003420 g     O .data	00000040 gFishingBubbleModelVtx
+00003460 g     O .data	00000060 gFishingBubbleMaterialDL
+000034c0 g     O .data	00000018 gFishingBubbleModelDL
+000034e0 g     O .data	00000100 gFishingDustSplashTex
+000035e0 g     O .data	00000030 gFishingDustSplashModelVtx
+00003610 g     O .data	00000070 gFishingDustSplashMaterialDL
+00003680 g     O .data	00000018 gFishingDustSplashModelDL
+000036a0 g     O .data	00000040 gFishingLineModelVtx
+000036e0 g     O .data	00000030 gFishingUnusedMaterialDL
+00003710 g     O .data	00000020 gFishingLineModelDL
+00003730 g     O .data	00000030 gFishingRainDropModelVtx
+00003760 g     O .data	00000018 gFishingRainDropModelDL
+00003778 g     O .data	00000200 gFishingRainSplashTex
+00003978 g     O .data	00000030 gFishingRainSplashModelVtx
+000039a8 g     O .data	00000070 gFishingRainSplashMaterialDL
+00003a18 g     O .data	00000018 gFishingRainSplashModelDL
+00003a30 g     O .data	00000ad4 gFishingOwnerFrameData
+00004504 g     O .data	00000036 gFishingOwnerJointIndices
+0000453c g     O .data	00000010 gFishingOwnerAnim
+00004550 g     O .data	000009f0 object_fish_Vtx_004550
+00004f40 g     O .data	00000280 gFishingOwnerHatVtx
+000051c0 g     O .data	000006b0 gFishingOwnerHairVtx
+00005870 g     O .data	000004f0 object_fish_Vtx_005870
+00005d60 g     O .data	00000180 object_fish_Vtx_005D60
+00005ee0 g     O .data	00000280 object_fish_Vtx_005EE0
+00006160 g     O .data	000004f0 object_fish_Vtx_006160
+00006650 g     O .data	00000180 object_fish_Vtx_006650
+000067d0 g     O .data	00000280 object_fish_Vtx_0067D0
+00006a50 g     O .data	00000510 object_fish_Vtx_006A50
+00006f60 g     O .data	000003f0 gFishingOwnerDL_006F60
+00007350 g     O .data	00000178 gFishingOwnerHairDL
+000074c8 g     O .data	000001f0 gFishingOwnerHatDL
+000076b8 g     O .data	00000640 gFishingOwnerDL_0076B8
+00007cf8 g     O .data	00000150 gFishingOwnerDL_007CF8
+00007e48 g     O .data	00000130 gFishingOwnerDL_007E48
+00007f78 g     O .data	000001c0 gFishingOwnerDL_007F78
+00008138 g     O .data	00000150 gFishingOwnerDL_008138
+00008288 g     O .data	00000130 gFishingOwnerDL_008288
+000083b8 g     O .data	000001c0 gFishingOwnerDL_0083B8
+00008578 g     O .data	0000000c gFishingOwnerLimb_008578
+00008584 g     O .data	0000000c gFishingOwnerLimb_008584
+00008590 g     O .data	0000000c gFishingOwnerLimb_008590
+0000859c g     O .data	0000000c gFishingOwnerLimb_00859C
+000085a8 g     O .data	0000000c gFishingOwnerLimb_0085A8
+000085b4 g     O .data	0000000c gFishingOwnerLimb_0085B4
+000085c0 g     O .data	0000000c gFishingOwnerLimb_0085C0
+000085cc g     O .data	0000000c gFishingOwnerLimb_0085CC
+000085d8 g     O .data	00000020 gFishingOwnerLimbs
+000085f8 g     O .data	0000000c gFishingOwnerSkel
+00008610 g     O .data	00000068 gFishingRippleMaterialDL
+00008678 g     O .data	00000018 gFishingRippleModelDL
+00008690 g     O .data	00000200 gFishingWaterDustTex
+00008890 g     O .data	00000030 gFishingWaterDustModelVtx
+000088c0 g     O .data	000000b0 gFishingWaterDustMaterialDL
+00008970 g     O .data	00000020 gFishingWaterDustModelDL
+00008990 g     O .data	00000200 gFishingOwnerTLUT
+00008b90 g     O .data	00000040 gFishingOwnerSkinTex
+00008bd0 g     O .data	00000100 gFishingOwnerHairFullTex
+00008cd0 g     O .data	00000100 gFishingOwnerHairPartialTex
+00008dd0 g     O .data	00000040 gFishingOwnerHearTex
+00008e10 g     O .data	00000400 gFishingOwnerMouthTex
+00009210 g     O .data	00000040 gFishingOwnerNostrilTex
+00009250 g     O .data	00000400 gFishingOwnerEyeOpenTex
+00009650 g     O .data	00000400 gFishingOwnerEyeHalfTex
+00009a50 g     O .data	00000400 gFishingOwnerEyeClosedTex
+00009e50 g     O .data	00000800 gFishingOwnerHatTex
+0000a650 g     O .data	00000040 gFishingOwnerShirtTex
+0000a690 g     O .data	00000100 gFishingOwnerFingersTex
+0000a790 g     O .data	00000080 gFishingOwnerCollarTex
+0000a810 g     O .data	00000100 gFishingOwnerVestTex
+0000a910 g     O .data	00001000 gFishingSinkingLureSegmentTex
+0000b910 g     O .data	00000040 gFishingSinkingLureSegmentModelVtx
+0000b950 g     O .data	00000070 gFishingSinkingLureSegmentMaterialDL
+0000b9c0 g     O .data	00000018 gFishingSinkingLureSegmentModelDL
+0000b9e0 g     O .data	00000800 gFishingGroupFishTex
+0000c1e0 g     O .data	00000040 gFishingGroupFishModelVtx
+0000c220 g     O .data	00000078 gFishingGroupFishMaterialDL
+0000c298 g     O .data	00000018 gFishingGroupFishModelDL
+0000c2b0 g     O .data	000003a0 gFishingUnusedRockVtx
+0000c650 g     O .data	00000130 gFishingUnusedRockDL
+0000c780 g     O .data	00000800 gFishingUnusedRockTex
+0000cf80 g     O .data	00000018 gFishingLoachFrameData
+0000cf98 g     O .data	00000048 gFishingLoachJointIndices
+0000cfe0 g     O .data	00000010 gFishingLoachAnim
+0000cff0 g     O .data	000002f0 object_fish_Vtx_00CFF0
+0000d2e0 g     O .data	00000050 object_fish_Vtx_00D2E0
+0000d330 g     O .data	000003f0 object_fish_Vtx_00D330
+0000d720 g     O .data	00000030 object_fish_Vtx_00D720
+0000d750 g     O .data	00000390 object_fish_Vtx_00D750
+0000dae0 g     O .data	00000240 object_fish_Vtx_00DAE0
+0000dd20 g     O .data	00000030 object_fish_Vtx_00DD20
+0000dd50 g     O .data	00000030 object_fish_Vtx_00DD50
+0000dd80 g     O .data	00000030 object_fish_Vtx_00DD80
+0000ddb0 g     O .data	000000d0 object_fish_Vtx_00DDB0
+0000de80 g     O .data	00000050 object_fish_Vtx_00DE80
+0000ded0 g     O .data	000000d8 gFishingLoachDL_00DED0
+0000dfa8 g     O .data	000000a0 gFishingLoachDL_00DFA8
+0000e048 g     O .data	00000120 gFishingLoachDL_00E048
+0000e168 g     O .data	000002f8 gFishingLoachDL_00E168
+0000e460 g     O .data	000000a0 gFishingLoachDL_00E460
+0000e500 g     O .data	00000308 gFishingLoachDL_00E500
+0000e808 g     O .data	000000a8 gFishingLoachDL_00E808
+0000e8b0 g     O .data	00000278 gFishingLoachDL_00E8B0
+0000eb28 g     O .data	000000a0 gFishingLoachDL_00EB28
+0000ebc8 g     O .data	000000a0 gFishingLoachDL_00EBC8
+0000ec68 g     O .data	000000c0 gFishingLoachDL_00EC68
+0000ed28 g     O .data	00000800 gFishingLoachTex_00ED28
+0000f528 g     O .data	00000800 gFishingLoachTex_00F528
+0000fd28 g     O .data	00000800 gFishingLoachTex_00FD28
+00010528 g     O .data	00000800 gFishingLoachTex_010528
+00010d28 g     O .data	00000080 gFishingLoachTex_010D28
+00010da8 g     O .data	00000200 gFishingLoachTex_010DA8
+00010fa8 g     O .data	0000000c gFishingLoachLimb_010FA8
+00010fb4 g     O .data	0000000c gFishingLoachLimb_010FB4
+00010fc0 g     O .data	0000000c gFishingLoachLimb_010FC0
+00010fcc g     O .data	0000000c gFishingLoachLimb_010FCC
+00010fd8 g     O .data	0000000c gFishingLoachLimb_010FD8
+00010fe4 g     O .data	0000000c gFishingLoachLimb_010FE4
+00010ff0 g     O .data	0000000c gFishingLoachLimb_010FF0
+00010ffc g     O .data	0000000c gFishingLoachLimb_010FFC
+00011008 g     O .data	0000000c gFishingLoachLimb_011008
+00011014 g     O .data	0000000c gFishingLoachLimb_011014
+00011020 g     O .data	0000000c gFishingLoachLimb_011020
+0001102c g     O .data	0000002c gFishingLoachLimbs
+00011058 g     O .data	0000000c gFishingLoachSkel
+00011070 g     O .data	00000100 gFishingRodSegmentStripTex
+00011170 g     O .data	00000100 gFishingRodSegmentBlackTex
+00011270 g     O .data	00000100 gFishingRodSegmentWhiteTex
+00011370 g     O .data	00000060 gFishingRodSegmentVtx
+000113d0 g     O .data	00000040 gFishingRodMaterialDL
+00011410 g     O .data	00000028 gFishingRodSegmentDL
+00011440 g     O .data	00000800 gFishingLureHookTex
+00011c40 g     O .data	00000400 gFishingLureFloatTex
+00012040 g     O .data	00000040 gFishingLureHookVtx
+00012080 g     O .data	000000e0 gFishingLureFloatVtx
+00012160 g     O .data	00000090 gFishingLureHookDL
+000121f0 g     O .data	000000e8 gFishingLureFloatDL
+000122e0 g     O .data	00000800 gFishingLilyPadTex
+00012ae0 g     O .data	00000800 gFishingRockTex
+000132e0 g     O .data	00000050 gFishingLilyPadModelVtx
+00013330 g     O .data	00000080 gFishingLilyPadMaterialDL
+000133b0 g     O .data	00000020 gFishingLilyPadModelDL
+000133d0 g     O .data	000001c0 gFishingRockModelVtx
+00013590 g     O .data	00000080 gFishingRockMaterialDL
+00013610 g     O .data	00000050 gFishingRockModelDL
+00013660 g     O .data	00000800 gFishingWoodPostTex
+00013e60 g     O .data	000000f0 gFishingWoodPostModelVtx
+00013f50 g     O .data	00000080 gFishingWoodPostMaterialDL
+00013fd0 g     O .data	00000030 gFishingWoodPostModelDL
+00014000 g     O .data	00000030 gFishingReedModelVtx
+00014030 g     O .data	00000080 gFishingReedMaterialDL
+000140b0 g     O .data	00000018 gFishingReedModelDL
+000140d0 g     O .data	00000200 gFishingAquariumBottomTex
+000142d0 g     O .data	00000800 gFishingAquariumWaterTex
+00014ad0 g     O .data	00000400 gFishingAquariumGlassTex
+00014ed0 g     O .data	00000080 gFishingAquariumBottomVtx
+00014f50 g     O .data	00000480 gFishingAquariumContainerVtx
+000153d0 g     O .data	000000a0 gFishingAquariumBottomDL
+00015470 g     O .data	00000178 gFishingAquariumContainerDL
+00000000         *UND*	00000200 gHilite1Tex
+00000000         *UND*	00000200 gHilite2Tex
+00000000         *UND*	00001000 gHylianShieldDesignTex
+00000000         *UND*	00000400 gOcarinaofTimeDesignTex
+00000000         *UND*	00000200 gBottleGlassTex
+00000000         *UND*	00000040 gDekuStickTex
+00000000         *UND*	00000200 gLinkHairTex
+00000000         *UND*	00000100 gLinkTunic1Tex
+00000000         *UND*	00000200 gLinkTunic2Tex
+00000000         *UND*	00000100 gLinkTunic3Tex
+00000000         *UND*	00000000 gLinkPauseChildJointTable
+00000000         *UND*	00000000 gLinkPauseChildDekuShieldJointTable
+00000000         *UND*	00000000 gLinkPauseAdultBgsJointTable
+00000000         *UND*	00000000 gLinkPauseAdultJointTable
+00000000         *UND*	00000000 gLinkPauseAdultShieldJointTable
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_DDbox_open
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_Tbox_open
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_atozusari
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_bashi
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_doorA_link
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_doorB_link
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_futtobi
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_get1
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_get2
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_get3
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_goto_future
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_koutai
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_koutai_kennuki
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_koutai_wait
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_mimawasi
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_mimawasi_wait
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_miokuri
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_miokuri_wait
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_nozoki
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_return_to_future
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_standup
+00000000         *UND*	00000008 gPlayerAnim_clink_demo_standup_wait
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_endAL
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_endAR
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_endBL
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_endBR
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_startA
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_startB
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_upL
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_climb_upR
+00000000         *UND*	00000008 gPlayerAnim_clink_normal_defense_ALL
+00000000         *UND*	00000008 gPlayerAnim_clink_op3_negaeri
+00000000         *UND*	00000008 gPlayerAnim_clink_op3_okiagari
+00000000         *UND*	00000008 gPlayerAnim_clink_op3_tatiagari
+00000000         *UND*	00000008 gPlayerAnim_clink_op3_wait1
+00000000         *UND*	00000008 gPlayerAnim_clink_op3_wait2
+00000000         *UND*	00000008 gPlayerAnim_clink_op3_wait3
+00000000         *UND*	00000008 gPlayerAnim_d_link_imanodare
+00000000         *UND*	00000008 gPlayerAnim_d_link_orooro
+00000000         *UND*	00000008 gPlayerAnim_d_link_orowait
+00000000         *UND*	00000008 gPlayerAnim_demo_link_nwait
+00000000         *UND*	00000008 gPlayerAnim_demo_link_orosuu
+00000000         *UND*	00000008 gPlayerAnim_demo_link_tewatashi
+00000000         *UND*	00000008 gPlayerAnim_demo_link_twait
+00000000         *UND*	00000008 gPlayerAnim_kolink_odoroki_demo
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_LLside_kiru_endL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_LLside_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_LRside_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_LRside_kiru_finsh_endL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lnormal_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lnormal_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lpierce_kiru_endL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lpierce_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lrolling_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lside_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Lside_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Rside_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_Rside_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_anchor2fighter
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_back_brake
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_back_hitR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_back_walk
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_bom_side_walkL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_bom_side_walkR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_defense_hit
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_defense_long_hitL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_defense_long_hitR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_front_hitR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_jump_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_landingR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_normal_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_pierce_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_pierce_kiru_finsh_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_power_kiru_wait_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_rolling_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_side_walkL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_side_walkR
+00000000         *UND*	00000008 gPlayerAnim_002578
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitL2defense
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitL2defense_long
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitL
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitL_defense
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitL_defense_wait
+00000000         *UND*	00000008 gPlayerAnim_0025A8
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitL_pierce_kiru
+00000000         *UND*	00000008 gPlayerAnim_0025B8
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitR2defense
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitR2defense_long
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitR
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitR_defense
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitR_defense_wait
+00000000         *UND*	00000008 gPlayerAnim_0025E8
+00000000         *UND*	00000008 gPlayerAnim_link_anchor_waitR_pierce_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_boom_catch
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throwL
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throwR
+00000000         *UND*	00000008 gPlayerAnim_002610
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throw_side_walkL
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throw_side_walkR
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throw_wait2waitR
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throw_waitL
+00000000         *UND*	00000008 gPlayerAnim_link_boom_throw_waitR
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_bug_in
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_bug_miss
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_bug_out
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_drink_demo
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_drink_demo_end
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_drink_demo_start
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_drink_demo_wait
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_fish_in
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_fish_miss
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_fish_out
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_read
+00000000         *UND*	00000008 gPlayerAnim_link_bottle_read_end
+00000000         *UND*	00000008 gPlayerAnim_link_bow_bow_ready
+00000000         *UND*	00000008 gPlayerAnim_link_bow_bow_shoot
+00000000         *UND*	00000008 gPlayerAnim_link_bow_bow_shoot_end
+00000000         *UND*	00000008 gPlayerAnim_link_bow_bow_shoot_next
+00000000         *UND*	00000008 gPlayerAnim_link_bow_bow_wait
+00000000         *UND*	00000008 gPlayerAnim_link_bow_defense
+00000000         *UND*	00000008 gPlayerAnim_link_bow_defense_wait
+00000000         *UND*	00000008 gPlayerAnim_link_bow_side_runL
+00000000         *UND*	00000008 gPlayerAnim_link_bow_side_runR
+00000000         *UND*	00000008 gPlayerAnim_link_bow_side_walk
+00000000         *UND*	00000008 gPlayerAnim_link_bow_walk2ready
+00000000         *UND*	00000008 gPlayerAnim_link_child_tunnel_door
+00000000         *UND*	00000008 gPlayerAnim_link_child_tunnel_end
+00000000         *UND*	00000008 gPlayerAnim_link_child_tunnel_start
+00000000         *UND*	00000008 gPlayerAnim_link_demo_DDbox_open
+00000000         *UND*	00000008 gPlayerAnim_link_demo_Tbox_open
+00000000         *UND*	00000008 gPlayerAnim_link_demo_back_to_past
+00000000         *UND*	00000008 gPlayerAnim_link_demo_baru_op1
+00000000         *UND*	00000008 gPlayerAnim_link_demo_baru_op2
+00000000         *UND*	00000008 gPlayerAnim_link_demo_baru_op3
+00000000         *UND*	00000008 gPlayerAnim_link_demo_bikkuri
+00000000         *UND*	00000008 gPlayerAnim_link_demo_doorA_link
+00000000         *UND*	00000008 gPlayerAnim_link_demo_doorA_link_free
+00000000         *UND*	00000008 gPlayerAnim_link_demo_doorB_link
+00000000         *UND*	00000008 gPlayerAnim_link_demo_doorB_link_free
+00000000         *UND*	00000008 gPlayerAnim_link_demo_furimuki2
+00000000         *UND*	00000008 gPlayerAnim_link_demo_furimuki2_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_furimuki
+00000000         *UND*	00000008 gPlayerAnim_link_demo_get_itemA
+00000000         *UND*	00000008 gPlayerAnim_link_demo_get_itemB
+00000000         *UND*	00000008 gPlayerAnim_link_demo_goma_furimuki
+00000000         *UND*	00000008 gPlayerAnim_link_demo_gurad
+00000000         *UND*	00000008 gPlayerAnim_link_demo_gurad_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_jibunmiru
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kakeyori
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kakeyori_mimawasi
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kakeyori_miokuri
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kakeyori_miokuri_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kakeyori_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kaoage
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kaoage_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kenmiru1
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kenmiru1_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kenmiru2
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kenmiru2_modori
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kenmiru2_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_kousan
+00000000         *UND*	00000008 gPlayerAnim_link_demo_look_hand
+00000000         *UND*	00000008 gPlayerAnim_link_demo_look_hand_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_nozokikomi
+00000000         *UND*	00000008 gPlayerAnim_link_demo_nozokikomi_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_return_to_past
+00000000         *UND*	00000008 gPlayerAnim_002840
+00000000         *UND*	00000008 gPlayerAnim_link_demo_sita_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_ue
+00000000         *UND*	00000008 gPlayerAnim_link_demo_ue_wait
+00000000         *UND*	00000008 gPlayerAnim_link_demo_warp
+00000000         *UND*	00000008 gPlayerAnim_link_demo_zeldamiru
+00000000         *UND*	00000008 gPlayerAnim_link_demo_zeldamiru_wait
+00000000         *UND*	00000008 gPlayerAnim_link_derth_rebirth
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LLside_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LLside_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LLside_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LLside_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LRside_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LRside_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LRside_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_LRside_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lnormal_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lnormal_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lnormal_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lnormal_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpierce_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpierce_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpierce_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpierce_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_jump_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_jump_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_jump_kiru_hit
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_kiru_side_walk
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_kiru_start
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_kiru_wait
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_kiru_wait_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lpower_kiru_walk
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lrolling_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lrolling_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_jump
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_jump_endL
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_jump_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Lside_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_jump
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_jump_endR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_jump_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Rside_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Wrolling_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_Wrolling_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_backturn_jump
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_backturn_jump_endR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_backturn_jump_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_damage_run
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_damage_run_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_defense
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_defense_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_defense_long_hit
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_defense_long_wait
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_defense_wait
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_fighter2long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_front_jump
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_front_jump_endR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_front_jump_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_heavy_run_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_jump_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_jump_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_jump_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_jump_rollkiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_landing_roll_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_normal2fighter
+00000000         *UND*	00000008 gPlayerAnim_002A78
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_normal_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_normal_kiru_endR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_normal_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_normal_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_normal_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_pierce_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_pierce_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_pierce_kiru_finsh
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_pierce_kiru_finsh_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_jump_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_002AD0
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_kiru_side_walk
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_kiru_startL
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_kiru_start
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_kiru_wait
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_kiru_wait_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_power_kiru_walk
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_reboundR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_rebound
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_rebound_longR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_rebound_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_rolling_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_rolling_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_run
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_run_long
+00000000         *UND*	00000008 gPlayerAnim_002B48
+00000000         *UND*	00000008 gPlayerAnim_002B50
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_side_walkL_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_side_walkR_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_side_walk_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_turn_kiruL
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_turn_kiruL_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_turn_kiruR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_turn_kiruR_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_upper_kiruR
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_upper_pierce_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_upper_pierce_kiru_end
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_wait2waitL_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_wait2waitR_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_waitL2wait_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_waitL_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_waitR2wait_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_waitR_long
+00000000         *UND*	00000008 gPlayerAnim_002BD8
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_wait_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_walk_endL_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_walk_endR_long
+00000000         *UND*	00000008 gPlayerAnim_link_fighter_walk_long
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_fish_catch
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_fish_catch_end
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_reel_down
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_reel_left
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_reel_right
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_reel_up
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_throw
+00000000         *UND*	00000008 gPlayerAnim_link_fishing_wait
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_hit
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_hit_endR
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_hit_end
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_long2free
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_long2long
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_normal2long
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_side_hit
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_side_hit_endR
+00000000         *UND*	00000008 gPlayerAnim_link_hammer_side_hit_end
+00000000         *UND*	00000008 gPlayerAnim_link_hatto_demo
+00000000         *UND*	00000008 gPlayerAnim_link_hook_fly_start
+00000000         *UND*	00000008 gPlayerAnim_link_hook_fly_wait
+00000000         *UND*	00000008 gPlayerAnim_link_hook_shot_ready
+00000000         *UND*	00000008 gPlayerAnim_link_hook_side_runL
+00000000         *UND*	00000008 gPlayerAnim_link_hook_side_runR
+00000000         *UND*	00000008 gPlayerAnim_link_hook_side_walk
+00000000         *UND*	00000008 gPlayerAnim_link_hook_wait
+00000000         *UND*	00000008 gPlayerAnim_link_hook_walk2ready
+00000000         *UND*	00000008 gPlayerAnim_link_last_hit_motion1
+00000000         *UND*	00000008 gPlayerAnim_link_last_hit_motion2
+00000000         *UND*	00000008 gPlayerAnim_link_magic_honoo1
+00000000         *UND*	00000008 gPlayerAnim_link_magic_honoo2
+00000000         *UND*	00000008 gPlayerAnim_link_magic_honoo3
+00000000         *UND*	00000008 gPlayerAnim_link_magic_kaze1
+00000000         *UND*	00000008 gPlayerAnim_link_magic_kaze2
+00000000         *UND*	00000008 gPlayerAnim_link_magic_kaze3
+00000000         *UND*	00000008 gPlayerAnim_link_magic_tamashii1
+00000000         *UND*	00000008 gPlayerAnim_link_magic_tamashii2
+00000000         *UND*	00000008 gPlayerAnim_link_magic_tamashii3
+00000000         *UND*	00000008 gPlayerAnim_link_magic_tame
+00000000         *UND*	00000008 gPlayerAnim_link_magic_tame_kaijyo
+00000000         *UND*	00000008 gPlayerAnim_link_normal_100step_up
+00000000         *UND*	00000008 gPlayerAnim_link_normal_150step_up
+00000000         *UND*	00000008 gPlayerAnim_link_normal_250jump_start
+00000000         *UND*	00000008 gPlayerAnim_002D50
+00000000         *UND*	00000008 gPlayerAnim_link_normal_45_turn
+00000000         *UND*	00000008 gPlayerAnim_link_normal_45_turn_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_hold2upL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_sideL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_sideR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_startA
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_startB
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_upL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_Fclimb_upR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_brake
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_brake_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_downA
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_downB
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_down_wake
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_hit
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_run
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_shitR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_shit
+00000000         *UND*	00000008 gPlayerAnim_link_normal_back_walk
+00000000         *UND*	00000008 gPlayerAnim_link_normal_backspace
+00000000         *UND*	00000008 gPlayerAnim_link_normal_box_kick
+00000000         *UND*	00000008 gPlayerAnim_link_normal_carryB
+00000000         *UND*	00000008 gPlayerAnim_link_normal_carryB_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_carryB_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_check
+00000000         *UND*	00000008 gPlayerAnim_link_normal_check_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_check_end_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_check_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_check_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_check_wait_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_down
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_endAL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_endAR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_endBL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_endBR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_startA
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_startB
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_upL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_upR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_climb_up
+00000000         *UND*	00000008 gPlayerAnim_link_normal_damage_run_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_end_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_hit
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_kiru
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_defense_wait_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_down_slope_slip
+00000000         *UND*	00000008 gPlayerAnim_link_normal_down_slope_slip_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_down_slope_slip_end_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_down_slope_slip_end_long
+00000000         *UND*	00000008 gPlayerAnim_link_normal_electric_shock
+00000000         *UND*	00000008 gPlayerAnim_link_normal_electric_shock_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_fall
+00000000         *UND*	00000008 gPlayerAnim_link_normal_fall_up
+00000000         *UND*	00000008 gPlayerAnim_link_normal_fall_up_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_fall_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_fighter2free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_free2bom
+00000000         *UND*	00000008 gPlayerAnim_link_normal_free2fighter_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_free2freeB
+00000000         *UND*	00000008 gPlayerAnim_link_normal_free2free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_front_downA
+00000000         *UND*	00000008 gPlayerAnim_link_normal_front_downB
+00000000         *UND*	00000008 gPlayerAnim_link_normal_front_down_wake
+00000000         *UND*	00000008 gPlayerAnim_link_normal_front_hit
+00000000         *UND*	00000008 gPlayerAnim_link_normal_front_shitR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_front_shit
+00000000         *UND*	00000008 gPlayerAnim_link_normal_give_other
+00000000         *UND*	00000008 gPlayerAnim_link_normal_hang_up_down
+00000000         *UND*	00000008 gPlayerAnim_link_normal_heavy_carry
+00000000         *UND*	00000008 gPlayerAnim_link_normal_heavy_carry_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_heavy_run
+00000000         *UND*	00000008 gPlayerAnim_link_normal_heavy_run_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_hip_down
+00000000         *UND*	00000008 gPlayerAnim_link_normal_hip_down_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_hip_down_long
+00000000         *UND*	00000008 gPlayerAnim_link_normal_ice_down
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump2landing
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_climb_hold
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_climb_hold_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_climb_up
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_climb_up_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_climb_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_climb_wait_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_jump_up
+00000000         *UND*	00000008 gPlayerAnim_link_normal_landing
+00000000         *UND*	00000008 gPlayerAnim_link_normal_landing_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_landing_roll
+00000000         *UND*	00000008 gPlayerAnim_link_normal_landing_roll_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_landing_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_light_bom
+00000000         *UND*	00000008 gPlayerAnim_link_normal_light_bom_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_long2bom
+00000000         *UND*	00000008 gPlayerAnim_link_normal_nocarry_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_nocarry_free_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_nocarry_free_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_normal2bom
+00000000         *UND*	00000008 gPlayerAnim_link_normal_normal2fighter
+00000000         *UND*	00000008 gPlayerAnim_link_normal_normal2fighter_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_normal2free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_okarina_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_okarina_start
+00000000         *UND*	00000008 gPlayerAnim_link_normal_okarina_swing
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pull_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pull_end_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pull_start
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pull_start_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pulling
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pulling_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_push_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_push_fall
+00000000         *UND*	00000008 gPlayerAnim_link_normal_push_start
+00000000         *UND*	00000008 gPlayerAnim_link_normal_push_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_push_wait_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_pushing
+00000000         *UND*	00000008 gPlayerAnim_link_normal_put
+00000000         *UND*	00000008 gPlayerAnim_link_normal_put_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_re_dead_attack
+00000000         *UND*	00000008 gPlayerAnim_link_normal_re_dead_attack_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_rebound
+00000000         *UND*	00000008 gPlayerAnim_link_normal_run
+00000000         *UND*	00000008 gPlayerAnim_link_normal_run_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_run_jump
+00000000         *UND*	00000008 gPlayerAnim_link_normal_run_jump_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_run_jump_water_fall
+00000000         *UND*	00000008 gPlayerAnim_link_normal_run_jump_water_fall_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_short_landing
+00000000         *UND*	00000008 gPlayerAnim_link_normal_short_landing_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_side_walkL_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_side_walkR_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_side_walk
+00000000         *UND*	00000008 gPlayerAnim_link_normal_side_walk_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_take_out
+00000000         *UND*	00000008 gPlayerAnim_link_normal_talk_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_talk_free_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_talk_navi
+00000000         *UND*	00000008 gPlayerAnim_link_normal_talk_navi_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_throw
+00000000         *UND*	00000008 gPlayerAnim_link_normal_throw_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_up_slope_slip
+00000000         *UND*	00000008 gPlayerAnim_link_normal_up_slope_slip_end
+00000000         *UND*	00000008 gPlayerAnim_link_normal_up_slope_slip_end_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_up_slope_slip_end_long
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait2waitL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait2waitR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitF_typeA_20f
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitF_typeB_20f
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitF_typeC_20f
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitL2wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitL_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitR2wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_waitR_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait_typeA_20f
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait_typeB_20f
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wait_typeC_20f
+00000000         *UND*	00000008 gPlayerAnim_link_normal_wakeup
+00000000         *UND*	00000008 gPlayerAnim_link_normal_walk
+00000000         *UND*	00000008 gPlayerAnim_link_normal_walk_endL
+00000000         *UND*	00000008 gPlayerAnim_link_normal_walk_endL_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_walk_endR
+00000000         *UND*	00000008 gPlayerAnim_link_normal_walk_endR_free
+00000000         *UND*	00000008 gPlayerAnim_link_normal_walk_free
+00000000         *UND*	00000008 gPlayerAnim_link_okarina_warp_goal
+00000000         *UND*	00000008 gPlayerAnim_link_okiru_demo
+00000000         *UND*	00000008 gPlayerAnim_link_shagamu_demo
+00000000         *UND*	00000008 gPlayerAnim_link_silver_carry
+00000000         *UND*	00000008 gPlayerAnim_link_silver_throw
+00000000         *UND*	00000008 gPlayerAnim_link_silver_wait
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_Lside_swim
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_Rside_swim
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_back_swim
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_land2swim_wait
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_15step_up
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_dead
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_deep_end
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_deep_start
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_down
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_get
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_hit
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_swim_wait
+00000000         *UND*	00000008 gPlayerAnim_link_swimer_wait2swim_wait
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_fastrun
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_fastrun_muti
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_jump100
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_jump200
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_slowrun
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_slowrun_muti
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_stand
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_stop
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_walk2
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_walk
+00000000         *UND*	00000008 gPlayerAnim_link_uma_anim_walk_muti
+00000000         *UND*	00000008 gPlayerAnim_link_uma_left_down
+00000000         *UND*	00000008 gPlayerAnim_link_uma_left_up
+00000000         *UND*	00000008 gPlayerAnim_link_uma_right_down
+00000000         *UND*	00000008 gPlayerAnim_link_uma_right_up
+00000000         *UND*	00000008 gPlayerAnim_link_uma_stop_muti
+00000000         *UND*	00000008 gPlayerAnim_link_uma_wait_1
+00000000         *UND*	00000008 gPlayerAnim_link_uma_wait_2
+00000000         *UND*	00000008 gPlayerAnim_link_uma_wait_3
+00000000         *UND*	00000008 gPlayerAnim_link_waitF_heat1_20f
+00000000         *UND*	00000008 gPlayerAnim_link_waitF_heat2_20f
+00000000         *UND*	00000008 gPlayerAnim_link_waitF_itemA_20f
+00000000         *UND*	00000008 gPlayerAnim_link_waitF_itemB_20f
+00000000         *UND*	00000008 gPlayerAnim_link_waitF_typeD_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_heat1_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_heat2_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_itemA_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_itemB_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_itemC_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_itemD1_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_itemD2_20f
+00000000         *UND*	00000008 gPlayerAnim_link_wait_typeD_20f
+00000000         *UND*	00000008 gPlayerAnim_lkt_nwait
+00000000         *UND*	00000008 gPlayerAnim_nw_modoru
+00000000         *UND*	00000008 gPlayerAnim_o_get_ato
+00000000         *UND*	00000008 gPlayerAnim_o_get_mae
+00000000         *UND*	00000008 gPlayerAnim_om_get
+00000000         *UND*	00000008 gPlayerAnim_om_get_mae
+00000000         *UND*	00000008 gPlayerAnim_sude_nwait
+00000000         *UND*	00000008 gPlayerAnim_L_1kyoro
+00000000         *UND*	00000008 gPlayerAnim_L_2kyoro
+00000000         *UND*	00000008 gPlayerAnim_L_bouzen
+00000000         *UND*	00000008 gPlayerAnim_L_hajikareru
+00000000         *UND*	00000008 gPlayerAnim_L_kamaeru
+00000000         *UND*	00000008 gPlayerAnim_L_ken_miru
+00000000         *UND*	00000008 gPlayerAnim_L_kennasi_w
+00000000         *UND*	00000008 gPlayerAnim_L_kw
+00000000         *UND*	00000008 gPlayerAnim_L_mukinaoru
+00000000         *UND*	00000008 gPlayerAnim_L_okarina_get
+00000000         *UND*	00000008 gPlayerAnim_L_sagaru
+00000000         *UND*	00000008 gPlayerAnim_Link_ha
+00000000         *UND*	00000008 gPlayerAnim_Link_m_wait
+00000000         *UND*	00000008 gPlayerAnim_Link_miageru
+00000000         *UND*	00000008 gPlayerAnim_Link_muku
+00000000         *UND*	00000008 gPlayerAnim_Link_otituku_w
+00000000         *UND*	00000008 gPlayerAnim_Link_ue_wait
+00000000         *UND*	00000000 gDebugPyramidVtx
+00000000         *UND*	00000030 gDebugPyramidDL
+00000000         *UND*	00000100 gDebugCircleTex
+00000000         *UND*	00000100 gDebugBallTex
+00000000         *UND*	00000100 gDebugCursorTex
+00000000         *UND*	00000100 gDebugCrossTex
+00000000         *UND*	00000060 gDebugArrowDL
+00000000         *UND*	00000000 gDebugArrowVtx
+00000000         *UND*	00000078 gDebugCameraDL
+00000000         *UND*	00000000 gDebugCameraVtx
+00000000         *UND*	00000000 gDebugCheckeredFloorVtx
+00000000         *UND*	00000090 gDebugCheckeredFloorDL
+00000000         *UND*	00000200 gDebugCheckeredFloorTex
+00000000         *UND*	00000000 gDebugSpriteVtx
+00000000         *UND*	00000018 gDebugSpriteDL
+00000000         *UND*	00000000 gArrow1FrameData
+00000000         *UND*	00000000 gArrow1JointIndices
+00000000         *UND*	00000010 gArrow1Anim
+00000000         *UND*	00000000 gArrow2FrameData
+00000000         *UND*	00000000 gArrow2JointIndices
+00000000         *UND*	00000010 gArrow2Anim
+00000000         *UND*	00001000 gArrowShaftTex
+00000000         *UND*	00000400 gArrowFletchingTex
+00000000         *UND*	00000000 gArrowNearVtx
+00000000         *UND*	000001e0 gArrowNearDL
+00000000         *UND*	00000000 gArrowFarVtx
+00000000         *UND*	000001a0 gArrowFarDL
+00000000         *UND*	00000010 gameplay_keep_005FC0_Limb
+00000000         *UND*	00000010 gameplay_keep_005FD0_Limb
+00000000         *UND*	00000010 gameplay_keep_005FE0_Limb
+00000000         *UND*	00000010 gameplay_keep_005FF0_Limb
+00000000         *UND*	00000000 gArrowLimbs
+00000000         *UND*	00000008 gArrowSkel
+00000000         *UND*	00000800 gUnknownEffBlureTex
+00000000         *UND*	00001000 gBombBodyTex
+00000000         *UND*	00000000 gBombBodyVtx
+00000000         *UND*	00000088 gBombBodyDL
+00000000         *UND*	00000080 gBombCapTex
+00000000         *UND*	00000000 gBombCapVtx
+00000000         *UND*	000000c0 gBombCapDL
+00000000         *UND*	00000080 gBombchuBodyTex
+00000000         *UND*	00000000 gBombchuVtx
+00000000         *UND*	00000168 gBombchuDL
+00000000         *UND*	00000800 gEffBombExplosion1Tex
+00000000         *UND*	00000800 gEffBombExplosion2Tex
+00000000         *UND*	00000800 gEffBombExplosion3Tex
+00000000         *UND*	00000800 gEffBombExplosion4Tex
+00000000         *UND*	00000800 gEffBombExplosion5Tex
+00000000         *UND*	00000800 gEffBombExplosion6Tex
+00000000         *UND*	00000800 gEffBombExplosion7Tex
+00000000         *UND*	00000800 gEffBombExplosion8Tex
+00000000         *UND*	00000068 gEffBombExplosion1DL
+00000000         *UND*	00000058 gEffBombExplosion2DL
+00000000         *UND*	00000018 gEffBombExplosion3DL
+00000000         *UND*	00000000 gEffBombExplosionVtx
+00000000         *UND*	00000000 gEffFragments1Vtx
+00000000         *UND*	00000090 gEffFragments1DL
+00000000         *UND*	00000200 gWitheredLeafTex
+00000000         *UND*	00000000 gBoomerangVtx
+00000000         *UND*	00000008 gUnknownBlankDL
+00000000         *UND*	00000170 gBoomerangDL
+00000000         *UND*	00000010 gBoomerangRefDL
+00000000         *UND*	00000028 gCompassArrowDL
+00000000         *UND*	00000000 gCompassArrowVtx
+00000000         *UND*	00000000 gameplay_keep_Vtx_00C880
+00000000         *UND*	00000070 gGameplayKeepDL_C8B0
+00000000         *UND*	00000000 gLockOnArrowVtx
+00000000         *UND*	00000110 gLockOnArrowDL
+00000000         *UND*	00000040 gHilite3Tex
+00000000         *UND*	00000000 gEffFragments2Vtx
+00000000         *UND*	00000038 gEffFragments2DL
+00000000         *UND*	00000400 gGameplayKeepTex_CE60
+00000000         *UND*	00000080 gSelectionCursorTex
+00000000         *UND*	00000100 gControlStickTex
+00000000         *UND*	00000180 gArrowCursorTex
+00000000         *UND*	00000000 gUnusedRockFragmentVtx
+00000000         *UND*	00000100 gUnusedRockFragmentDL
+00000000         *UND*	000000d8 gBoulderFragmentsDL
+00000000         *UND*	00000000 gBoulderFragmentsVtx
+00000000         *UND*	00000800 gRockFragment1Tex
+00000000         *UND*	00000800 gRockFragment2Tex
+00000000         *UND*	00000000 gDoorChildOpeningLeftFrameData
+00000000         *UND*	00000000 gDoorChildOpeningLeftJointIndices
+00000000         *UND*	00000010 gDoorChildOpeningLeftAnim
+00000000         *UND*	00000000 gDoorChildOpeningRightFrameData
+00000000         *UND*	00000000 gDoorChildOpeningRightJointIndices
+00000000         *UND*	00000010 gDoorChildOpeningRightAnim
+00000000         *UND*	00000000 gDoorAdultOpeningLeftFrameData
+00000000         *UND*	00000000 gDoorAdultOpeningLeftJointIndices
+00000000         *UND*	00000010 gDoorAdultOpeningLeftAnim
+00000000         *UND*	00000000 gDoorLeftVtx
+00000000         *UND*	00000000 gDoorRightVtx
+00000000         *UND*	00000000 gDoorFrameVtx
+00000000         *UND*	00000088 gDoorFrameDL
+00000000         *UND*	00000148 gDoorLeftDL
+00000000         *UND*	00000138 gDoorRightDL
+00000000         *UND*	00001000 gWoodenDoorTex
+00000000         *UND*	0000000c gameplay_keep_0103D8_Limb
+00000000         *UND*	0000000c gameplay_keep_0103E4_Limb
+00000000         *UND*	0000000c gameplay_keep_0103F0_Limb
+00000000         *UND*	0000000c gameplay_keep_0103FC_Limb
+00000000         *UND*	00000000 gDoorLimbs
+00000000         *UND*	00000008 gDoorSkel
+00000000         *UND*	00000000 gDoorAdultOpeningRightFrameData
+00000000         *UND*	00000000 gDoorAdultOpeningRightJointIndices
+00000000         *UND*	00000010 gDoorAdultOpeningRightAnim
+00000000         *UND*	00000058 gEffDustDL
+00000000         *UND*	00000000 gEffDustVtx
+00000000         *UND*	00000000 gEffFlashVtx
+00000000         *UND*	00000078 gEffFlash1DL
+00000000         *UND*	00000080 gEffFlash2DL
+00000000         *UND*	00001000 gFlashTex
+00000000         *UND*	00000800 gTorchFlameTex
+00000000         *UND*	00000800 gEffUnknown1Tex
+00000000         *UND*	00000000 gSpinAttack1Vtx
+00000000         *UND*	00000000 gSpinAttack2Vtx
+00000000         *UND*	00000120 gSpinAttack1DL
+00000000         *UND*	00000120 gSpinAttack2DL
+00000000         *UND*	00000000 gSpinAttack3Vtx
+00000000         *UND*	00000000 gSpinAttack4Vtx
+00000000         *UND*	00000120 gSpinAttack3DL
+00000000         *UND*	00000120 gSpinAttack4DL
+00000000         *UND*	00000400 gFlameWall1Tex
+00000000         *UND*	00000400 gFlameWall2Tex
+00000000         *UND*	00000000 gSpinAttackChargingVtx
+00000000         *UND*	000000e8 gSpinAttackChargingDL
+00000000         *UND*	00000800 gEffUnknown2Tex
+00000000         *UND*	00000800 gEffUnknown3Tex
+00000000         *UND*	00000000 gUnusedBeamBladeVtx
+00000000         *UND*	00000128 gUnusedBeamBladeDL
+00000000         *UND*	00000000 gFairyFrameData
+00000000         *UND*	00000000 gFairyJointIndices
+00000000         *UND*	00000010 gFairyAnim
+00000000         *UND*	00000800 gFairyWingTex
+00000000         *UND*	00000000 gFairyWing1Vtx
+00000000         *UND*	00000088 gFairyWing1DL
+00000000         *UND*	00000000 gFairyWing2Vtx
+00000000         *UND*	00000088 gFairyWing2DL
+00000000         *UND*	00000000 gFairyWing3Vtx
+00000000         *UND*	00000088 gFairyWing3DL
+00000000         *UND*	00000000 gFairyWing4Vtx
+00000000         *UND*	00000088 gFairyWing4DL
+00000000         *UND*	00000000 gGlowCircleVtx
+00000000         *UND*	00000040 gGlowCircleTextureLoadDL
+00000000         *UND*	00000020 gGlowCircleDL
+00000000         *UND*	00000168 gGlowCircleSmallDL
+00000000         *UND*	00000000 gGlowCircleSmallVtx
+00000000         *UND*	00001000 gUnusedFairyWingTex
+00000000         *UND*	0000000c gameplay_keep_016E08_Limb
+00000000         *UND*	0000000c gameplay_keep_016E14_Limb
+00000000         *UND*	0000000c gameplay_keep_016E20_Limb
+00000000         *UND*	0000000c gameplay_keep_016E2C_Limb
+00000000         *UND*	0000000c gameplay_keep_016E38_Limb
+00000000         *UND*	0000000c gameplay_keep_016E44_Limb
+00000000         *UND*	0000000c gameplay_keep_016E50_Limb
+00000000         *UND*	0000000c gameplay_keep_016E5C_Limb
+00000000         *UND*	0000000c gameplay_keep_016E68_Limb
+00000000         *UND*	0000000c gameplay_keep_016E74_Limb
+00000000         *UND*	0000000c gameplay_keep_016E80_Limb
+00000000         *UND*	0000000c gameplay_keep_016E8C_Limb
+00000000         *UND*	0000000c gameplay_keep_016E98_Limb
+00000000         *UND*	0000000c gameplay_keep_016EA4_Limb
+00000000         *UND*	00000000 gFairyLimbs
+00000000         *UND*	00000008 gFairySkel
+00000000         *UND*	00000080 gUnknownCircle3Tex
+00000000         *UND*	00000100 gUnknownCircle4Tex
+00000000         *UND*	00000800 gHilite4Tex
+00000000         *UND*	00000800 gEffUnknown4Tex
+00000000         *UND*	00000800 gEffUnknown5Tex
+00000000         *UND*	00000000 gEffFireCircleVtx
+00000000         *UND*	000000f0 gEffFireCircleDL
+00000000         *UND*	00000000 gFishOutOfWaterFrameData
+00000000         *UND*	00000000 gFishOutOfWaterJointIndices
+00000000         *UND*	00000010 gFishOutOfWaterAnim
+00000000         *UND*	00000000 gameplay_keep_Vtx_018AB0
+00000000         *UND*	00000000 gameplay_keep_Vtx_018AF0
+00000000         *UND*	00000000 gameplay_keep_Vtx_018BF0
+00000000         *UND*	000000a0 gameplay_keep_018D50_DL
+00000000         *UND*	00000118 gameplay_keep_018DF0_DL
+00000000         *UND*	00000118 gameplay_keep_018F08_DL
+00000000         *UND*	00000200 gFishTailTex
+00000000         *UND*	00000200 gFishBodyTex
+00000000         *UND*	0000000c gameplay_keep_019420_Limb
+00000000         *UND*	0000000c gameplay_keep_01942C_Limb
+00000000         *UND*	0000000c gameplay_keep_019438_Limb
+00000000         *UND*	0000000c gameplay_keep_019444_Limb
+00000000         *UND*	0000000c gameplay_keep_019450_Limb
+00000000         *UND*	0000000c gameplay_keep_01945C_Limb
+00000000         *UND*	00000000 gFishLimbs
+00000000         *UND*	0000000c gFishSkel
+00000000         *UND*	00000000 gFishInWaterFrameData
+00000000         *UND*	00000000 gFishInWaterJointIndices
+00000000         *UND*	00000010 gFishInWaterAnim
+00000000       O *UND*	00001000 gEffShockwaveTex
+00000000         *UND*	00000070 gEffShockwaveDL
+00000000       O *UND*	00000000 gGameplayKeepVtx_01A120
+00000000         *UND*	00000078 gEffBubbleDL
+00000000         *UND*	00000000 gEffBubbleVtx
+00000000         *UND*	00000400 gEffFireFootprint1Tex
+00000000         *UND*	00000400 gEffFireFootprint2Tex
+00000000         *UND*	00000400 gEffFireFootprint3Tex
+00000000         *UND*	00000400 gEffFireFootprint4Tex
+00000000         *UND*	00000400 gEffFireFootprint5Tex
+00000000         *UND*	00000400 gEffFireFootprint6Tex
+00000000         *UND*	00000400 gEffFireFootprint7Tex
+00000000         *UND*	00000400 gEffFireFootprint8Tex
+00000000         *UND*	00000060 gEffFireFootprintDL
+00000000         *UND*	00000000 gEffFireFootprintVtx
+00000000         *UND*	00000400 gEffUnusedBubbles1Tex
+00000000         *UND*	00000400 gEffUnusedBubbles2Tex
+00000000         *UND*	00000400 gEffUnusedBubbles3Tex
+00000000         *UND*	00000400 gEffUnusedBubbles4Tex
+00000000         *UND*	00000400 gEffUnusedBubbles5Tex
+00000000         *UND*	00000400 gEffUnusedBubbles6Tex
+00000000         *UND*	00000400 gEffUnusedBubbles7Tex
+00000000         *UND*	00000400 gEffUnusedBubbles8Tex
+00000000         *UND*	00000070 gEffUnusedBubblesDL
+00000000         *UND*	00000000 gEffUnusedBubblesVtx
+00000000         *UND*	00001000 gLensOfTruthMaskTex
+00000000         *UND*	00000180 gEffHitMark1Tex
+00000000         *UND*	00000180 gEffHitMark2Tex
+00000000         *UND*	00000180 gEffHitMark3Tex
+00000000         *UND*	00000180 gEffHitMark4Tex
+00000000         *UND*	00000180 gEffHitMark5Tex
+00000000         *UND*	00000180 gEffHitMark6Tex
+00000000         *UND*	00000180 gEffHitMark7Tex
+00000000         *UND*	00000180 gEffHitMark8Tex
+00000000         *UND*	00000180 gEffHitMark9Tex
+00000000         *UND*	00000180 gEffHitMark10Tex
+00000000         *UND*	00000180 gEffHitMark11Tex
+00000000         *UND*	00000180 gEffHitMark12Tex
+00000000         *UND*	00000180 gEffHitMark13Tex
+00000000         *UND*	00000180 gEffHitMark14Tex
+00000000         *UND*	00000180 gEffHitMark15Tex
+00000000         *UND*	00000180 gEffHitMark16Tex
+00000000         *UND*	00000180 gEffHitMark17Tex
+00000000         *UND*	00000180 gEffHitMark18Tex
+00000000         *UND*	00000180 gEffHitMark19Tex
+00000000         *UND*	00000180 gEffHitMark20Tex
+00000000         *UND*	00000180 gEffHitMark21Tex
+00000000         *UND*	00000180 gEffHitMark22Tex
+00000000         *UND*	00000180 gEffHitMark23Tex
+00000000         *UND*	00000180 gEffHitMark24Tex
+00000000         *UND*	00000058 gEffHitMarkDL
+00000000         *UND*	00000000 gEffHitMarkVtx
+00000000         *UND*	00000800 gEffUnknown6Tex
+00000000         *UND*	00000800 gEffFleckTex
+00000000         *UND*	00001000 gEffUnknown8Tex
+00000000         *UND*	00000180 gEffMagmaBubble1Tex
+00000000         *UND*	00000180 gEffMagmaBubble2Tex
+00000000         *UND*	00000180 gEffMagmaBubble3Tex
+00000000         *UND*	00000180 gEffMagmaBubble4Tex
+00000000         *UND*	00000180 gEffMagmaBubble5Tex
+00000000         *UND*	00000180 gEffMagmaBubble6Tex
+00000000         *UND*	00000180 gEffMagmaBubble7Tex
+00000000         *UND*	00000180 gEffMagmaBubble8Tex
+00000000         *UND*	00000060 gEffMagmaBubbleDL
+00000000         *UND*	00000000 gEffMagmaBubbleVtx
+00000000         *UND*	00001000 gEffWaterRippleTex
+00000000         *UND*	00000060 gEffWaterRippleDL
+00000000         *UND*	00000000 gEffWaterRippleVtx
+00000000         *UND*	00000060 gEffSparkDL
+00000000         *UND*	00000000 gEffSparkVtx
+00000000         *UND*	00000500 gEffWaterSplash1Tex
+00000000         *UND*	00000500 gEffWaterSplash2Tex
+00000000         *UND*	00000500 gEffWaterSplash3Tex
+00000000         *UND*	00000500 gEffWaterSplash4Tex
+00000000         *UND*	00000500 gEffWaterSplash5Tex
+00000000         *UND*	00000500 gEffWaterSplash6Tex
+00000000         *UND*	00000500 gEffWaterSplash7Tex
+00000000         *UND*	00000500 gEffWaterSplash8Tex
+00000000         *UND*	00000060 gEffWaterSplashDL
+00000000         *UND*	00000000 gEffWaterSplashVtx
+00000000         *UND*	00000400 gUnknownEffStone1Tex
+00000000         *UND*	00000400 gUnknownEffStone2Tex
+00000000         *UND*	00000400 gUnknownEffStone3Tex
+00000000         *UND*	00000400 gUnknownEffStone4Tex
+00000000         *UND*	00000400 gUnknownEffStone5Tex
+00000000         *UND*	00000400 gUnknownEffStone6Tex
+00000000         *UND*	00000400 gUnknownEffStone7Tex
+00000000         *UND*	00000400 gUnknownEffStone8Tex
+00000000         *UND*	00000060 gUnknownEffStoneDL
+00000000         *UND*	00000000 gUnknownEffStoneVtx
+00000000         *UND*	00000600 gEffLightning1Tex
+00000000         *UND*	00000600 gEffLightning2Tex
+00000000         *UND*	00000600 gEffLightning3Tex
+00000000         *UND*	00000600 gEffLightning4Tex
+00000000         *UND*	00000600 gEffLightning5Tex
+00000000         *UND*	00000600 gEffLightning6Tex
+00000000         *UND*	00000600 gEffLightning7Tex
+00000000         *UND*	00000600 gEffLightning8Tex
+00000000         *UND*	00000068 gEffLightningDL
+00000000         *UND*	00000000 gEffLightningVtx
+00000000         *UND*	00000800 gEffEnemyDeathFlame1Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame2Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame3Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame4Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame5Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame6Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame7Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame8Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame9Tex
+00000000         *UND*	00000800 gEffEnemyDeathFlame10Tex
+00000000         *UND*	00000068 gEffEnemyDeathFlameDL
+00000000         *UND*	00000000 gEffEnemyDeathFlameVtx
+00000000         *UND*	00000400 gEffUnknown9Tex
+00000000         *UND*	00000400 gEffUnknown10Tex
+00000000         *UND*	00000400 gEffUnknown11Tex
+00000000         *UND*	00000400 gEffUnknown12Tex
+00000000         *UND*	00000400 gUnknownWoodBoardTex
+00000000         *UND*	00000000 gEffIceFragmentVtx
+00000000         *UND*	000000f8 gEffIceFragment1DL
+00000000         *UND*	000000f0 gEffIceFragment2DL
+00000000         *UND*	00000000 gEffIceFragment3Vtx
+00000000         *UND*	00000170 gEffIceFragment3DL
+00000000         *UND*	00000000 gBugCrawlFrameData
+00000000         *UND*	00000000 gBugCrawlJointIndices
+00000000         *UND*	00000010 gBugCrawlAnim
+00000000         *UND*	000000a0 gBugLimb1DL
+00000000         *UND*	00000010 gBugLimb1WrapperDL
+00000000         *UND*	00000010 gBugLimb1WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb1Vtx
+00000000         *UND*	000000a0 gBugLimb2DL
+00000000         *UND*	00000010 gBugLimb2WrapperDL
+00000000         *UND*	00000010 gBugLimb2WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb2Vtx
+00000000         *UND*	000000a0 gBugLimb3DL
+00000000         *UND*	00000010 gBugLimb3WrapperDL
+00000000         *UND*	00000010 gBugLimb3WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb3Vtx
+00000000         *UND*	000000a0 gBugLimb4DL
+00000000         *UND*	00000010 gBugLimb4WrapperDL
+00000000         *UND*	00000010 gBugLimb4WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb4Vtx
+00000000         *UND*	000000a0 gBugLimb5DL
+00000000         *UND*	00000010 gBugLimb5WrapperDL
+00000000         *UND*	00000010 gBugLimb5WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb5Vtx
+00000000         *UND*	000000a0 gBugLimb6DL
+00000000         *UND*	00000010 gBugLimb6WrapperDL
+00000000         *UND*	00000010 gBugLimb6WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb6Vtx
+00000000         *UND*	000000a0 gBugLimb7DL
+00000000         *UND*	00000010 gBugLimb7WrapperDL
+00000000         *UND*	00000010 gBugLimb7WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb7Vtx
+00000000         *UND*	000000a0 gBugLimb8DL
+00000000         *UND*	00000010 gBugLimb8WrapperDL
+00000000         *UND*	00000010 gBugLimb8WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb8Vtx
+00000000         *UND*	000000b0 gBugLimb9DL
+00000000         *UND*	00000010 gBugLimb9WrapperDL
+00000000         *UND*	00000010 gBugLimb9WrapperWrapperDL
+00000000         *UND*	00000000 gBugLimb9Vtx
+00000000         *UND*	00000800 gBugBodyTex
+00000000         *UND*	00000100 gBugLegTex
+00000000         *UND*	0000000c gameplay_keep_0358C0_Limb
+00000000         *UND*	0000000c gameplay_keep_0358CC_Limb
+00000000         *UND*	0000000c gameplay_keep_0358D8_Limb
+00000000         *UND*	0000000c gameplay_keep_0358E4_Limb
+00000000         *UND*	0000000c gameplay_keep_0358F0_Limb
+00000000         *UND*	0000000c gameplay_keep_0358FC_Limb
+00000000         *UND*	0000000c gameplay_keep_035908_Limb
+00000000         *UND*	0000000c gameplay_keep_035914_Limb
+00000000         *UND*	0000000c gameplay_keep_035920_Limb
+00000000         *UND*	0000000c gameplay_keep_03592C_Limb
+00000000         *UND*	0000000c gameplay_keep_035938_Limb
+00000000         *UND*	0000000c gameplay_keep_035944_Limb
+00000000         *UND*	0000000c gameplay_keep_035950_Limb
+00000000         *UND*	0000000c gameplay_keep_03595C_Limb
+00000000         *UND*	0000000c gameplay_keep_035968_Limb
+00000000         *UND*	0000000c gameplay_keep_035974_Limb
+00000000         *UND*	0000000c gameplay_keep_035980_Limb
+00000000         *UND*	0000000c gameplay_keep_03598C_Limb
+00000000         *UND*	0000000c gameplay_keep_035998_Limb
+00000000         *UND*	0000000c gameplay_keep_0359A4_Limb
+00000000         *UND*	0000000c gameplay_keep_0359B0_Limb
+00000000         *UND*	0000000c gameplay_keep_0359BC_Limb
+00000000         *UND*	0000000c gameplay_keep_0359C8_Limb
+00000000         *UND*	00000000 gBugLimbs
+00000000         *UND*	00000008 gBugSkel
+00000000         *UND*	00000000 gCuttableShrubStalkVtx
+00000000         *UND*	00000090 gCuttableShrubStalkDL
+00000000         *UND*	00000000 gCuttableShrubTipVtx
+00000000         *UND*	00000090 gCuttableShrubTipDL
+00000000         *UND*	00000800 gCuttableShrubLeafTFragmentTex
+00000000         *UND*	00000800 gCuttableShrubTex
+00000000         *UND*	00000800 gLensFlareCircleTex
+00000000         *UND*	00000800 gLensFlareRingTex
+00000000         *UND*	00000068 gLensFlareCircleDL
+00000000         *UND*	00000068 gLensFlareRingDL
+00000000         *UND*	00000000 gLensFlareVtx
+00000000         *UND*	00000000 gEffSparklesVtx
+00000000         *UND*	00000060 gEffSparklesDL
+00000000         *UND*	00000080 gEffSparklesTex
+00000000         *UND*	00000200 gEffUnknown13Tex
+00000000         *UND*	00000200 gEffUnknown14Tex
+00000000         *UND*	00000000 gHoverBootsCircleVtx
+00000000         *UND*	000000d0 gHoverBootsCircleDL
+00000000         *UND*	00001000 gMoonTex
+00000000         *UND*	00000070 gMoonDL
+00000000         *UND*	00000000 gMoonVtx
+00000000         *UND*	00000400 gUnknownCircle6Tex
+00000000         *UND*	00000000 gameplay_keep_Vtx_039850
+00000000         *UND*	000000d8 gGameplayKeepDL_39890
+00000000         *UND*	00000000 gameplay_keep_Vtx_039970
+00000000         *UND*	00000088 gGameplayKeepDL_399B0
+00000000         *UND*	00000000 gameplay_keep_Vtx_039A40
+00000000         *UND*	00000088 gGameplayKeepDL_39A80
+00000000         *UND*	00000000 gameplay_keep_Vtx_039B10
+00000000         *UND*	00000088 gGameplayKeepDL_39B50
+00000000         *UND*	00000000 gLargerCubeBgCamList
+00000000         *UND*	00000000 gLargerCubeSurfaceTypes
+00000000         *UND*	00000000 gLargerCubePolyList
+00000000         *UND*	00000000 gLargerCubeVtxList
+00000000         *UND*	0000002c gLargerCubeCol
+00000000         *UND*	00000000 gLiftableRockVtx
+00000000         *UND*	000000b0 gLiftableRockDL
+00000000         *UND*	00000000 gUnusedRockRectangularPrism1Vtx
+00000000         *UND*	000000b0 gUnusedRockRectangularPrism1DL
+00000000         *UND*	00000000 gWideTallBlockBgCamList
+00000000         *UND*	00000000 gWideTallBlockSurfaceTypes
+00000000         *UND*	00000000 gWideTallBlockPolyList
+00000000         *UND*	00000000 gWideTallBlockVtxList
+00000000         *UND*	0000002c gWideTallBlockCol
+00000000         *UND*	00000000 gFlatBlockVtx
+00000000         *UND*	000000b8 gFlatBlockDL
+00000000         *UND*	00000000 gTallBlockBgCamList
+00000000         *UND*	00000000 gTallBlockSurfaceTypes
+00000000         *UND*	00000000 gTallBlockPolyList
+00000000         *UND*	00000000 gTallBlockVtxList
+00000000         *UND*	0000002c gTallBlockCol
+00000000         *UND*	00000000 gUnusedRockRectangularPrism3Vtx
+00000000         *UND*	000000b0 gUnusedRockRectangularPrism3DL
+00000000         *UND*	00000000 gSmallerFlatBlockBgCamList
+00000000         *UND*	00000000 gSmallerFlatBlockSurfaceTypes
+00000000         *UND*	00000000 gSmallerFlatBlockPolyList
+00000000         *UND*	00000000 gSmallerFlatBlockVtxList
+00000000         *UND*	0000002c gSmallerFlatBlockCol
+00000000         *UND*	00000000 gFlatRotBlockVtx
+00000000         *UND*	000000b0 gFlatRotBlockDL
+00000000         *UND*	00000000 gLargerFlatBlockBgCamList
+00000000         *UND*	00000000 gLargerFlatBlockSurfaceTypes
+00000000         *UND*	00000000 gLargerFlatBlockPolyList
+00000000         *UND*	00000000 gLargerFlatBlockVtxList
+00000000         *UND*	0000002c gLargerFlatBlockCol
+00000000         *UND*	00000000 gSmallCubeVtx
+00000000         *UND*	000000b8 gSmallCubeDL
+00000000         *UND*	00000000 gSmallerCubeBgCamList
+00000000         *UND*	00000000 gSmallerCubeSurfaceTypes
+00000000         *UND*	00000000 gSmallerCubePolyList
+00000000         *UND*	00000000 gSmallerCubeVtxList
+00000000         *UND*	0000002c gSmallerCubeCol
+00000000         *UND*	00000000 gTreeStumpVtx
+00000000         *UND*	00000110 gTreeStumpDL
+00000000         *UND*	00000000 gGrassBladesVtx
+00000000         *UND*	000000a8 gGrassBladesDL
+00000000         *UND*	00000100 gHeartShapeTex
+00000000         *UND*	00000000 gHeartPieceInteriorVtx
+00000000         *UND*	000001a8 gHeartPieceInteriorDL
+00000000         *UND*	00000000 gHeartPieceExteriorVtx
+00000000         *UND*	00000000 gHeartContainerInteriorVtx
+00000000         *UND*	00000138 gHeartPieceExteriorDL
+00000000         *UND*	00000108 gHeartContainerInteriorDL
+00000000         *UND*	00000000 gameplay_keep_Vtx_03C610
+00000000         *UND*	00000000 gameplay_keep_Vtx_03CB10
+00000000         *UND*	00000138 gGameplayKeepDL_3CFD0
+00000000         *UND*	00000110 gGameplayKeepDL_3D108
+00000000         *UND*	00000000 gameplay_keep_Vtx_03D220
+00000000         *UND*	00000088 gGameplayKeepDL_3D260
+00000000         *UND*	00000000 gSignRectangularVtx
+00000000         *UND*	00000288 gSignRectangularDL
+00000000         *UND*	00000000 gSignDirectionalVtx
+00000000         *UND*	000002c0 gSignDirectionalDL
+00000000         *UND*	00000800 gDropArrows2Tex
+00000000         *UND*	00000800 gDropArrows1Tex
+00000000         *UND*	00000800 gDropArrows3Tex
+00000000         *UND*	00000800 gDropBombTex
+00000000         *UND*	00000800 gGameplayKeepTex_3FD80
+00000000         *UND*	00000800 gGameplayKeepTex_40580
+00000000         *UND*	00000800 gDropRecoveryHeartTex
+00000000         *UND*	00000800 gGameplayKeepTex_41580
+00000000         *UND*	00000088 gItemDropDL
+00000000         *UND*	00000000 gItemDropVtx
+00000000         *UND*	00000800 gDropKeySmallTex
+00000000         *UND*	00000800 gDropMagicSmallTex
+00000000         *UND*	00000800 gDropDekuNutTex
+00000000         *UND*	00000800 gDropDekuSeedsTex
+00000000         *UND*	00000800 gDropDekuStickTex
+00000000         *UND*	00000800 gDropMagicLargeTex
+00000000         *UND*	00000020 gRupeeGreenTex
+00000000         *UND*	00000020 gRupeeBlueTex
+00000000         *UND*	00000020 gRupeeRedTex
+00000000         *UND*	00000020 gRupeeOrangeTex
+00000000         *UND*	00000020 gRupeePinkTex
+00000000         *UND*	00000020 gRupeeSilverTex
+00000000         *UND*	00000000 gRupeeVtx
+00000000         *UND*	000000d0 gRupeeDL
+00000000         *UND*	00000800 gGameplayKeepTex_45220
+00000000         *UND*	00000800 gGameplayKeepTex_45A20
+00000000         *UND*	00000800 gGameplayKeepTex_46220
+00000000         *UND*	00000020 gRupeeLightRedTex
+00000000         *UND*	00000020 gGameplayKeepTex_46A40
+00000000         *UND*	00000800 gGameplayKeepTex_46A60
+00000000         *UND*	00000800 gGameplayKeepTex_47260
+00000000         *UND*	00000800 gUnknownStone1Tex
+00000000         *UND*	00000800 gUnknownStone2Tex
+00000000         *UND*	00000800 gUnusedTreeStumpTopTex
+00000000         *UND*	00000800 gUnusedTreeStumpBarkTex
+00000000         *UND*	00001000 gUnusedGrassBladesTex
+00000000         *UND*	00000800 gUnusedStoneHookshotTargetTex
+00000000         *UND*	00000800 gUnknownStone3Tex
+00000000         *UND*	00000400 gSignRectangularSideTex
+00000000         *UND*	00000400 gSignRectangularFrontTex
+00000000         *UND*	00000400 gSignPostWoodTex
+00000000         *UND*	00001000 gSignLetteringTex
+00000000         *UND*	00000000 gRaindropVtx
+00000000         *UND*	00000020 gRaindropDL
+00000000         *UND*	00000060 gFootShadowDL
+00000000         *UND*	00000000 gFootShadowVtx
+00000000         *UND*	00001000 gFootShadowTex
+00000000         *UND*	00000050 gCircleShadowDL
+00000000         *UND*	00000000 gCircleShadowVtx
+00000000         *UND*	00000800 gCircleShadowTex
+00000000         *UND*	00000000 gHorseShadowVtx
+00000000         *UND*	00000050 gHorseShadowDL
+00000000         *UND*	00000400 gHorseShadowTex
+00000000         *UND*	00000000 gDungeonDoorVtx
+00000000         *UND*	000000a8 gDungeonDoorDL
+00000000         *UND*	00001000 gDoorMetalBarsTex
+00000000         *UND*	00000000 gDoorMetalBarsVtx
+00000000         *UND*	00000090 gDoorMetalBarsDL
+00000000         *UND*	00001000 gGenericDungeonDoorTex
+00000000         *UND*	000003e0 gSun1Tex
+00000000         *UND*	00000200 gSun2Tex
+00000000         *UND*	00000200 gSun3Tex
+00000000         *UND*	000003e0 gSunEvening1Tex
+00000000         *UND*	00000200 gSunEvening2Tex
+00000000         *UND*	00000200 gSunEvening3Tex
+00000000         *UND*	00000048 gKokiriDustMoteMaterialDL
+00000000         *UND*	00000018 gKokiriDustMoteModelDL
+00000000         *UND*	00000188 gSunDL
+00000000         *UND*	00000000 gSunVtx
+00000000         *UND*	00000000 gKokiriDustMoteModelVtx
+00000000         *UND*	00000018 gLockOnReticleTriangleDL
+00000000         *UND*	00000000 gLockOnReticleTriangleVtx
+00000000         *UND*	00000000 gEffFireVtx
+00000000         *UND*	000000c0 gEffFire1DL
+00000000         *UND*	000000c0 gEffFire2DL
+00000000       O *UND*	00000800 gDecorativeFlameMaskTex
+00000000         *UND*	00000800 gDecorativeFlameTex
+00000000         *UND*	00000000 gUnusedUnknownShape1Vtx
+00000000         *UND*	00000380 gUnusedUnknownShape1DL
+00000000         *UND*	00000010 gUnusedUnknownShape1RefDL
+00000000         *UND*	00000000 gUnusedUnknownShape2Vtx
+00000000         *UND*	00000320 gUnusedUnknownShape2DL
+00000000         *UND*	00000010 gUnusedUnknownShape2RefDL
+00000000         *UND*	00000000 gUnusedUnknownShape3Vtx
+00000000         *UND*	00000318 gUnusedUnknownShape3DL
+00000000         *UND*	00000010 gUnusedUnknownShape3RefDL
+00000000         *UND*	00000800 gUnusedUpsideDownZeldaTex
+00000000         *UND*	00000400 gDust1Tex
+00000000         *UND*	00000400 gDust2Tex
+00000000         *UND*	00000400 gDust3Tex
+00000000         *UND*	00000400 gDust4Tex
+00000000         *UND*	00000400 gDust5Tex
+00000000         *UND*	00000400 gDust6Tex
+00000000         *UND*	00000400 gDust7Tex
+00000000         *UND*	00000400 gDust8Tex
+00000000         *UND*	00000800 gCircleGlowLTex
+00000000         *UND*	00000800 gCircleGlowRTex
+00000000         *UND*	00000800 gCircleGlowSLTex
+00000000         *UND*	00000800 gCircleGlowSRTex
+00000000         *UND*	00000100 gEffBubble1Tex
+00000000         *UND*	00000100 gEffBubble2Tex
+00000000         *UND*	00000200 gEffSpark1Tex
+00000000         *UND*	00000200 gEffSpark2Tex
+00000000         *UND*	00000200 gEffSpark3Tex
+00000000         *UND*	00000200 gEffSpark4Tex
+00000000         *UND*	00000004 gIrqMgrResetStatus
+00000000         *UND*	00000008 gIrqMgrRetraceTime
+00000000         *UND*	00000280 gIrqMgr
+00000000         *UND*	00000258 gScheduler
+00000000         *UND*	00000000 gEmptyDL
+00000000         *UND*	00000080 gMojiFontTLUTs
+00000000         *UND*	00000000 gMojiFontTex
+00000000         *UND*	00000040 gIdentityMtx
+00000000         *UND*	00000040 gIdentityMtxF
+0000008c g     O .data	00000004 object_fish_zeros_00008C
+000029cc g     O .data	00000004 object_fish_zeros_0029CC
+00002cd8 g     O .data	00000008 object_fish_zeros_002CD8
+00003318 g     O .data	00000008 object_fish_zeros_003318
+000034d8 g     O .data	00000008 object_fish_zeros_0034D8
+00003698 g     O .data	00000008 object_fish_zeros_003698
+0000454c g     O .data	00000004 object_fish_zeros_00454C
+00008604 g     O .data	0000000c object_fish_zeros_008604
+0000b9d8 g     O .data	00000008 object_fish_zeros_00B9D8
+00011064 g     O .data	0000000c object_fish_zeros_011064
+00011438 g     O .data	00000008 object_fish_zeros_011438
+000122d8 g     O .data	00000008 object_fish_zeros_0122D8
+000140c8 g     O .data	00000008 object_fish_zeros_0140C8
+000155e8 g     O .data	00000008 object_fish_zeros_0155E8
+0001d348 g     O .data	0000000c gFishingFishSkelLimb_000
+0001d354 g     O .data	0000000c gFishingFishSkelLimb_001
+0001d360 g     O .data	0000000c gFishingFishSkelLimb_002
+0001d36c g     O .data	0000000c gFishingFishSkelLimb_003
+0001d378 g     O .data	0000000c gFishingFishSkelLimb_004
+0001d384 g     O .data	0000000c gFishingFishSkelLimb_005
+0001d390 g     O .data	0000000c gFishingFishSkelLimb_006
+0001d39c g     O .data	0000000c gFishingFishSkelLimb_007
+0001d3a8 g     O .data	0000000c gFishingFishSkelLimb_008
+0001d3b4 g     O .data	0000000c gFishingFishSkelLimb_009
+0001d3c0 g     O .data	0000000c gFishingFishSkelLimb_010
+0001d3cc g     O .data	0000000c gFishingFishSkelLimb_011
+0001d3d8 g     O .data	0000000c gFishingFishSkelLimb_012
+0001d3e4 g     O .data	0000000c gFishingFishSkelLimb_013
+0001d3f0 g     O .data	0000000c gFishingFishSkelLimb_014
+0001d3fc g     O .data	0000003c gFishingFishSkelLimbs
+
+

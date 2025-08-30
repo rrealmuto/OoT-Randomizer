@@ -560,6 +560,9 @@ MISC_MESSAGES: list[tuple[int, tuple[str | bytearray, int]]] = [
     (0x045C, ("Come back when you have\x01your own bow and you'll get the\x01\x05\x41real prize\x05\x40!\x0E\x78", 0x00)),
     (0x045D, ("\x12\x68\x5F\x05\x44This game seems shady. Maybe\x01the \x05\x41eye of truth\x05\x44 will show the\x01way forward?\x0E\x78", 0x00)),
     (0x6013, ("Hey, newcomer!\x04Want me to throw you in jail?\x01\x01\x1B\x05\x42No\x01Yes\x05\x40", 0x00)),
+
+    (0x4083, ("Magikarp used Splash!\x01But nothing happened!\x01Also it weighs \x05A\x1d pounds\x05@!\x04Do you want to keep it?\x01\x01\x1b\x05BYes\x01No\x05@\x02\x00\x00\x00", 0x00)),
+    (0x4091, ("Magikarp used Splash!\x01But nothing happened!\x01Also it weighs \x05A\x1d pounds\x05@!\x04Do you want to keep it?\x01\x01\x1b\x05BYes\x01No\x05@\x02\x00\x00\x00", 0x00))
 ]
 
 
@@ -1182,6 +1185,12 @@ def read_messages(rom: Rom) -> list[Message]:
     messages.append(read_fffc_message(rom))
     return messages
 
+def search_messages(messages: list[Message], search_str: str):
+    found_messages: list[Message] = []
+    for message in messages:
+        if search_str in message.text:
+            found_messages.append(message)
+    return found_messages
 
 # The JP text table is the only source for ID 0xFFFC, which is used by the
 # title and file select screens. Preserve this table entry and text data when
