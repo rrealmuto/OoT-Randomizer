@@ -31,9 +31,8 @@ PRE_CONSTANT_START: int  = 0X0000500C
 
 ADULT_START: int         = 0x00F86000
 ADULT_SIZE: int          = 0x00037800
-ADULT_HIERARCHY: int     = 0x06005380
-ADULT_POST_START: int    = 0x00005238
 ADULT_OBJ_TABLE_ENTRY    = 0x00B6EFF8
+ADULT_POST_START: int    = 0x00005238
 
 CHILD_START: int         = 0x00FBE000
 CHILD_SIZE: int          = 0x0002CF80
@@ -523,11 +522,10 @@ def CorrectSkeleton(zobj: bytearray, skeleton: list[list[int]], agestr: str) -> 
 
 
 # Loads model from file and processes it by adding vanilla pieces and setting up the LUT if necessary.
-def LoadModel(rom: Rom, model: str, age: int) -> int:
+def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     # age 0 = adult, 1 = child
     linkstart = ADULT_START
     linksize = ADULT_SIZE
-    hierarchy = ADULT_HIERARCHY
     postconstantstart = ADULT_POST_START
     obj_table_entry = ADULT_OBJ_TABLE_ENTRY
     pieces = AdultPieces
@@ -538,7 +536,6 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
     if age == 1:
         linkstart = CHILD_START
         linksize = CHILD_SIZE
-        hierarchy = CHILD_HIERARCHY
         postconstantstart = CHILD_POST_START
         obj_table_entry = CHILD_OBJ_TABLE_ENTRY
         pieces = ChildPieces
@@ -568,7 +565,20 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
     #if len(zobj) > linksize:
     #    raise ModelDefinitionError("Model for " + agestr + " too large- It is " + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
     # See if the string MODLOADER64 appears before the LUT- if so this is a PlayAs model and needs no further processing
-    if scan(zobj, "MODLOADER64") == -1:
+    lut: LUT = LUT(0x06005090)
+    is_modloader64: bool = scan(zobj, "MODLOAD64") >= 0
+    is_fast64: bool = scan(zobj, "~FAST64~") >= 0
+    if is_fast64:
+        lut = LUT(0x06000000 | scan(zobj, "~FAST64~") + 8) 
+        hierarchy_pointer = lut.offset(Offsets.ADULT_HIERARCHY) & 0x00FFFFFF
+        hierarchy = int.from_bytes(zobj[hierarchy_pointer:hierarchy_pointer+4], 'big')
+    else:
+        hierarchy = lut.offset(Offsets.ADULT_HIERARCHY)
+        if age == 1:
+            hierarchy = CHILD_HIERARCHY
+
+    if not (is_modloader64 or is_fast64):
+        
         # First, make sure all important bytes are zeroed out
         for i in range(LUT_START, LUT_END):
             zobj[i] = 0x00
@@ -609,8 +619,8 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
             DLOffsets[piece] = offset + startaddr
         DLOffsets.update(present)
         for item in pieces:
-            lut = pieces[item][0] - BASE_OFFSET
-            entry = unwrap(zobj, lut)
+            lut_offset = lut.offset(pieces[item][0]) - BASE_OFFSET
+            entry = unwrap(zobj, lut_offset)
             zobj[entry] = 0xDE
             zobj[entry+1] = 0x01
             entry += 4
@@ -664,7 +674,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> int:
     rom.write_int32(obj_table_entry + 4, linkstart_new + len(zobj))
     # Finally, want to return an address with a DF instruction for use when writing the model data
     dfBytes = bytearray(b'\xDF\x00\x00\x00\x00\x00\x00\x00')
-    return scan(zobj, dfBytes) - 8
+    return scan(zobj, dfBytes) - 8, lut, hierarchy
 
 
 # Write in the adult model and repoint references to it
@@ -684,159 +694,159 @@ def patch_model_adult(rom: Rom, settings: Settings, log: CosmeticsLog) -> None:
     log.settings.model_adult = pathsplit.split('.')[0]
 
     # Load and process model
-    dfAddress = LoadModel(rom, model, 0)
+    dfAddress, lut, hierarchy = LoadModel(rom, model, 0)
     dfAddress = dfAddress | 0x06000000  # Add segment to DF address
 
     # Write adult Link pointer data
     writer = ModelPointerWriter(rom)
     writer.GoTo(0xE6718)
     writer.SetAdvance(8)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST))
     writer.WriteModelData(dfAddress)
     writer.WriteModelData(dfAddress)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_HYLIAN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_HYLIAN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_MIRROR)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_MIRROR)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_HYLIAN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_HYLIAN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_MIRROR))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_SHIELD_MIRROR))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED))
     writer.WriteModelData(dfAddress)
     writer.WriteModelData(dfAddress)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_HYLIAN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_HYLIAN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_MIRROR)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_MIRROR)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_HYLIAN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_HYLIAN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_MIRROR))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHIELD_MIRROR))
     writer.WriteModelData(0x00000000)
     writer.WriteModelData(0x00000000)
     writer.WriteModelData(0x00000000)
     writer.WriteModelData(0x00000000)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH))
     writer.WriteModelData(dfAddress)
     writer.WriteModelData(dfAddress)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SHEATH0_HYLIAN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SHEATH0_HYLIAN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SHEATH0_MIRROR)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SHEATH0_MIRROR)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SHEATH0_HYLIAN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SHEATH0_HYLIAN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SHEATH0_MIRROR))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SHEATH0_MIRROR))
     writer.WriteModelData(0x00000000)
     writer.WriteModelData(0x00000000)
     writer.WriteModelData(0x00000000)
     writer.WriteModelData(0x00000000)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD_BROKEN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD_BROKEN)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LHAND)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LHAND)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD_BROKEN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_LONGSWORD_BROKEN))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LHAND))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LHAND))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST))
     writer.WriteModelData(dfAddress)
     writer.WriteModelData(dfAddress)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_SWORD)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_SWORD)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RHAND)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RHAND)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_WAIST)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_WAIST)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_HOOKSHOT)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RFIST_HOOKSHOT)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_HAMMER)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LFIST_HAMMER)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_SWORD))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_SWORD))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RHAND))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RHAND))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATHED))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_WAIST))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_WAIST))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_BOW))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_HOOKSHOT))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RFIST_HOOKSHOT))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_HAMMER))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LFIST_HAMMER))
     writer.WriteModelData(dfAddress)
     writer.WriteModelData(dfAddress)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LHAND_BOTTLE)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_LHAND_BOTTLE)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_FPS_LFOREARM)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_FPS_LHAND)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_RSHOULDER)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_FPS_RFOREARM)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_FPS_RHAND_BOW)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LHAND_BOTTLE))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_LHAND_BOTTLE))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_FPS_LFOREARM))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_FPS_LHAND))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_RSHOULDER))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_FPS_RFOREARM))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_FPS_RHAND_BOW))
 
     writer.GoTo(0xE6A4C)
     writer.SetAdvance(4)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BOOT_LIRON)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BOOT_RIRON)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BOOT_LHOVER)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BOOT_RHOVER)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BOOT_LIRON))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BOOT_RIRON))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BOOT_LHOVER))
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BOOT_RHOVER))
 
     writer.GoTo(0xE6B28)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BOTTLE)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BOTTLE))
 
     writer.GoTo(0xE6B64)
     writer.SetAdvance(4)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BOW_STRING)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BOW_STRING))
     writer.WriteModelData(0x00000000)  # string anchor x: 0.0
     writer.WriteModelData(0xC3B43333)  # string anchor y: -360.4
 
     writer.GoTo(0x69112)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFOREARM)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFOREARM))
     writer.GoTo(0x69116)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFOREARM)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFOREARM))
     writer.GoTo(0x6912E)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFOREARM)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFOREARM))
     writer.GoTo(0x69132)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFOREARM)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFOREARM))
     writer.GoTo(0x6914E)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFIST)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFIST))
     writer.GoTo(0x69162)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFIST)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LFIST))
     writer.GoTo(0x69166)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LHAND)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LHAND))
     writer.GoTo(0x69172)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LHAND)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_LHAND))
     writer.GoTo(0x6919E)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFIST)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFIST))
     writer.GoTo(0x691A2)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFIST)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RFIST))
     writer.GoTo(0x691AE)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RHAND)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RHAND))
     writer.GoTo(0x691B2)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RHAND)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_UPGRADE_RHAND))
     writer.GoTo(0x69DEA)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_FPS_LHAND_HOOKSHOT)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_FPS_LHAND_HOOKSHOT))
     writer.GoTo(0x69DEE)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_FPS_LHAND_HOOKSHOT)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_FPS_LHAND_HOOKSHOT))
     writer.GoTo(0x6A666)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_AIM)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_AIM))
     writer.GoTo(0x6A66A)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_AIM)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_AIM))
 
     writer.SetBase('Hook')
     writer.GoTo(0xA72)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_HOOK)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_HOOK))
     writer.GoTo(0xA76)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_HOOK)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_HOOK))
     writer.GoTo(0xB66)
-    writer.WriteModelDataHi(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_CHAIN)
+    writer.WriteModelDataHi(lut.offset(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_CHAIN))
     writer.GoTo(0xB6A)
-    writer.WriteModelDataLo(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_CHAIN)
+    writer.WriteModelDataLo(lut.offset(Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_CHAIN))
     writer.GoTo(0xBA8)
     writer.WriteModelData16(0x0014)
 
     writer.SetBase('Stick')
     writer.GoTo(0x32C)
-    writer.WriteModelData(Offsets.ADULT_LINK_LUT_DL_BLADEBREAK)
+    writer.WriteModelData(lut.offset(Offsets.ADULT_LINK_LUT_DL_BLADEBREAK))
     writer.GoTo(0x328)
     writer.WriteModelData16(0x0014)
 
     writer.SetBase('Code')
     writer.GoTo(0xE65A0)
-    writer.WriteModelData(ADULT_HIERARCHY)  # Hierarchy pointer
+    writer.WriteModelData(hierarchy)  # Hierarchy pointer
 
 
 # Write in the child model and repoint references to it
@@ -1003,80 +1013,87 @@ def patch_model_child(rom: Rom, settings: Settings, log: CosmeticsLog) -> None:
     writer.GoTo(0xE65A4)
     writer.WriteModelData(CHILD_HIERARCHY)  # Hierarchy pointer
 
+class LUT:
+    def __init__(self, lut_base: int):
+        self.base = lut_base
+    
+    def offset(self, offset: int):
+        return self.base + offset
 
 # LUT offsets for adult and child
 class Offsets(IntEnum):
-    ADULT_LINK_LUT_DL_WAIST = 0x06005090
-    ADULT_LINK_LUT_DL_RTHIGH = 0x06005098
-    ADULT_LINK_LUT_DL_RSHIN = 0x060050A0
-    ADULT_LINK_LUT_DL_RFOOT = 0x060050A8
-    ADULT_LINK_LUT_DL_LTHIGH = 0x060050B0
-    ADULT_LINK_LUT_DL_LSHIN = 0x060050B8
-    ADULT_LINK_LUT_DL_LFOOT = 0x060050C0
-    ADULT_LINK_LUT_DL_HEAD = 0x060050C8
-    ADULT_LINK_LUT_DL_HAT = 0x060050D0
-    ADULT_LINK_LUT_DL_COLLAR = 0x060050D8
-    ADULT_LINK_LUT_DL_LSHOULDER = 0x060050E0
-    ADULT_LINK_LUT_DL_LFOREARM = 0x060050E8
-    ADULT_LINK_LUT_DL_RSHOULDER = 0x060050F0
-    ADULT_LINK_LUT_DL_RFOREARM = 0x060050F8
-    ADULT_LINK_LUT_DL_TORSO = 0x06005100
-    ADULT_LINK_LUT_DL_LHAND = 0x06005108
-    ADULT_LINK_LUT_DL_LFIST = 0x06005110
-    ADULT_LINK_LUT_DL_LHAND_BOTTLE = 0x06005118
-    ADULT_LINK_LUT_DL_RHAND = 0x06005120
-    ADULT_LINK_LUT_DL_RFIST = 0x06005128
-    ADULT_LINK_LUT_DL_SWORD_SHEATH = 0x06005130
-    ADULT_LINK_LUT_DL_SWORD_HILT = 0x06005138
-    ADULT_LINK_LUT_DL_SWORD_BLADE = 0x06005140
-    ADULT_LINK_LUT_DL_LONGSWORD_HILT = 0x06005148
-    ADULT_LINK_LUT_DL_LONGSWORD_BLADE = 0x06005150
-    ADULT_LINK_LUT_DL_LONGSWORD_BROKEN = 0x06005158
-    ADULT_LINK_LUT_DL_SHIELD_HYLIAN = 0x06005160
-    ADULT_LINK_LUT_DL_SHIELD_MIRROR = 0x06005168
-    ADULT_LINK_LUT_DL_HAMMER = 0x06005170
-    ADULT_LINK_LUT_DL_BOTTLE = 0x06005178
-    ADULT_LINK_LUT_DL_BOW = 0x06005180
-    ADULT_LINK_LUT_DL_OCARINA_TIME = 0x06005188
-    ADULT_LINK_LUT_DL_HOOKSHOT = 0x06005190
-    ADULT_LINK_LUT_DL_UPGRADE_LFOREARM = 0x06005198
-    ADULT_LINK_LUT_DL_UPGRADE_LHAND = 0x060051A0
-    ADULT_LINK_LUT_DL_UPGRADE_LFIST = 0x060051A8
-    ADULT_LINK_LUT_DL_UPGRADE_RFOREARM = 0x060051B0
-    ADULT_LINK_LUT_DL_UPGRADE_RHAND = 0x060051B8
-    ADULT_LINK_LUT_DL_UPGRADE_RFIST = 0x060051C0
-    ADULT_LINK_LUT_DL_BOOT_LIRON = 0x060051C8
-    ADULT_LINK_LUT_DL_BOOT_RIRON = 0x060051D0
-    ADULT_LINK_LUT_DL_BOOT_LHOVER = 0x060051D8
-    ADULT_LINK_LUT_DL_BOOT_RHOVER = 0x060051E0
-    ADULT_LINK_LUT_DL_FPS_LFOREARM = 0x060051E8
-    ADULT_LINK_LUT_DL_FPS_LHAND = 0x060051F0
-    ADULT_LINK_LUT_DL_FPS_RFOREARM = 0x060051F8
-    ADULT_LINK_LUT_DL_FPS_RHAND = 0x06005200
-    ADULT_LINK_LUT_DL_FPS_HOOKSHOT = 0x06005208
-    ADULT_LINK_LUT_DL_HOOKSHOT_CHAIN = 0x06005210
-    ADULT_LINK_LUT_DL_HOOKSHOT_HOOK = 0x06005218
-    ADULT_LINK_LUT_DL_HOOKSHOT_AIM = 0x06005220
-    ADULT_LINK_LUT_DL_BOW_STRING = 0x06005228
-    ADULT_LINK_LUT_DL_BLADEBREAK = 0x06005230
-    ADULT_LINK_LUT_DL_SWORD_SHEATHED = 0x06005238
-    ADULT_LINK_LUT_DL_SHIELD_HYLIAN_BACK = 0x06005258
-    ADULT_LINK_LUT_DL_SHIELD_MIRROR_BACK = 0x06005268
-    ADULT_LINK_LUT_DL_SWORD_SHIELD_HYLIAN = 0x06005278
-    ADULT_LINK_LUT_DL_SWORD_SHIELD_MIRROR = 0x06005288
-    ADULT_LINK_LUT_DL_SHEATH0_HYLIAN = 0x06005298
-    ADULT_LINK_LUT_DL_SHEATH0_MIRROR = 0x060052A8
-    ADULT_LINK_LUT_DL_LFIST_SWORD = 0x060052B8
-    ADULT_LINK_LUT_DL_LFIST_LONGSWORD = 0x060052D0
-    ADULT_LINK_LUT_DL_LFIST_LONGSWORD_BROKEN = 0x060052E8
-    ADULT_LINK_LUT_DL_LFIST_HAMMER = 0x06005300
-    ADULT_LINK_LUT_DL_RFIST_SHIELD_HYLIAN = 0x06005310
-    ADULT_LINK_LUT_DL_RFIST_SHIELD_MIRROR = 0x06005320
-    ADULT_LINK_LUT_DL_RFIST_BOW = 0x06005330
-    ADULT_LINK_LUT_DL_RFIST_HOOKSHOT = 0x06005340
-    ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME = 0x06005350
-    ADULT_LINK_LUT_DL_FPS_RHAND_BOW = 0x06005360
-    ADULT_LINK_LUT_DL_FPS_LHAND_HOOKSHOT = 0x06005370
+    ADULT_LINK_LUT_DL_WAIST = 0x0000
+    ADULT_LINK_LUT_DL_RTHIGH = 0x0008
+    ADULT_LINK_LUT_DL_RSHIN = 0x0010
+    ADULT_LINK_LUT_DL_RFOOT = 0x0018
+    ADULT_LINK_LUT_DL_LTHIGH = 0x0020
+    ADULT_LINK_LUT_DL_LSHIN = 0x0028
+    ADULT_LINK_LUT_DL_LFOOT = 0x0030
+    ADULT_LINK_LUT_DL_HEAD = 0x0038
+    ADULT_LINK_LUT_DL_HAT = 0x0040
+    ADULT_LINK_LUT_DL_COLLAR = 0x0048
+    ADULT_LINK_LUT_DL_LSHOULDER = 0x0050
+    ADULT_LINK_LUT_DL_LFOREARM = 0x0058
+    ADULT_LINK_LUT_DL_RSHOULDER = 0x0060
+    ADULT_LINK_LUT_DL_RFOREARM = 0x0068
+    ADULT_LINK_LUT_DL_TORSO = 0x0070
+    ADULT_LINK_LUT_DL_LHAND = 0x0078
+    ADULT_LINK_LUT_DL_LFIST = 0x0080
+    ADULT_LINK_LUT_DL_LHAND_BOTTLE = 0x0088
+    ADULT_LINK_LUT_DL_RHAND = 0x0090
+    ADULT_LINK_LUT_DL_RFIST = 0x0098
+    ADULT_LINK_LUT_DL_SWORD_SHEATH = 0x00A0
+    ADULT_LINK_LUT_DL_SWORD_HILT = 0x00A8
+    ADULT_LINK_LUT_DL_SWORD_BLADE = 0x00B0
+    ADULT_LINK_LUT_DL_LONGSWORD_HILT = 0x00B8
+    ADULT_LINK_LUT_DL_LONGSWORD_BLADE = 0x00C0
+    ADULT_LINK_LUT_DL_LONGSWORD_BROKEN = 0x00C8
+    ADULT_LINK_LUT_DL_SHIELD_HYLIAN = 0x00D0
+    ADULT_LINK_LUT_DL_SHIELD_MIRROR = 0x00D8
+    ADULT_LINK_LUT_DL_HAMMER = 0x00E0
+    ADULT_LINK_LUT_DL_BOTTLE = 0x00E8
+    ADULT_LINK_LUT_DL_BOW = 0x00F0
+    ADULT_LINK_LUT_DL_OCARINA_TIME = 0x00F8
+    ADULT_LINK_LUT_DL_HOOKSHOT = 0x0100
+    ADULT_LINK_LUT_DL_UPGRADE_LFOREARM = 0x0108
+    ADULT_LINK_LUT_DL_UPGRADE_LHAND = 0x0110
+    ADULT_LINK_LUT_DL_UPGRADE_LFIST = 0x0118
+    ADULT_LINK_LUT_DL_UPGRADE_RFOREARM = 0x0120
+    ADULT_LINK_LUT_DL_UPGRADE_RHAND = 0x0128
+    ADULT_LINK_LUT_DL_UPGRADE_RFIST = 0x0130
+    ADULT_LINK_LUT_DL_BOOT_LIRON = 0x0138
+    ADULT_LINK_LUT_DL_BOOT_RIRON = 0x0140
+    ADULT_LINK_LUT_DL_BOOT_LHOVER = 0x0148
+    ADULT_LINK_LUT_DL_BOOT_RHOVER = 0x0150
+    ADULT_LINK_LUT_DL_FPS_LFOREARM = 0x0158
+    ADULT_LINK_LUT_DL_FPS_LHAND = 0x0160
+    ADULT_LINK_LUT_DL_FPS_RFOREARM = 0x0168
+    ADULT_LINK_LUT_DL_FPS_RHAND = 0x0170
+    ADULT_LINK_LUT_DL_FPS_HOOKSHOT = 0x0178
+    ADULT_LINK_LUT_DL_HOOKSHOT_CHAIN = 0x0180
+    ADULT_LINK_LUT_DL_HOOKSHOT_HOOK = 0x0188
+    ADULT_LINK_LUT_DL_HOOKSHOT_AIM = 0x0190
+    ADULT_LINK_LUT_DL_BOW_STRING = 0x0198
+    ADULT_LINK_LUT_DL_BLADEBREAK = 0x01A0
+    ADULT_LINK_LUT_DL_SWORD_SHEATHED = 0x01A8
+    ADULT_LINK_LUT_DL_SHIELD_HYLIAN_BACK = 0x01C8
+    ADULT_LINK_LUT_DL_SHIELD_MIRROR_BACK = 0x01D8
+    ADULT_LINK_LUT_DL_SWORD_SHIELD_HYLIAN = 0x01E8
+    ADULT_LINK_LUT_DL_SWORD_SHIELD_MIRROR = 0x01F8
+    ADULT_LINK_LUT_DL_SHEATH0_HYLIAN = 0x0208
+    ADULT_LINK_LUT_DL_SHEATH0_MIRROR = 0x0218
+    ADULT_LINK_LUT_DL_LFIST_SWORD = 0x0228
+    ADULT_LINK_LUT_DL_LFIST_LONGSWORD = 0x0240
+    ADULT_LINK_LUT_DL_LFIST_LONGSWORD_BROKEN = 0x0258
+    ADULT_LINK_LUT_DL_LFIST_HAMMER = 0x0270
+    ADULT_LINK_LUT_DL_RFIST_SHIELD_HYLIAN = 0x0280
+    ADULT_LINK_LUT_DL_RFIST_SHIELD_MIRROR = 0x0290
+    ADULT_LINK_LUT_DL_RFIST_BOW = 0x02A0
+    ADULT_LINK_LUT_DL_RFIST_HOOKSHOT = 0x02B0
+    ADULT_LINK_LUT_DL_RHAND_OCARINA_TIME = 0x02C0
+    ADULT_LINK_LUT_DL_FPS_RHAND_BOW = 0x02D0
+    ADULT_LINK_LUT_DL_FPS_LHAND_HOOKSHOT = 0x02E0
+    ADULT_HIERARCHY = 0x02F0
 
     CHILD_LINK_LUT_DL_SHIELD_DEKU = 0x060050D0
     CHILD_LINK_LUT_DL_WAIST = 0x060050D8
