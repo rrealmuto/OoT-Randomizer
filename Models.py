@@ -404,10 +404,13 @@ def LoadVanilla(rom: Rom, missing: list[str], rebase: int, linkstart: int, links
     # Now add display lists which will reference the data from the beginning of the zobj
     # Display lists
     oldDL2New = {}
-    for data in displayLists.values():
+    pieceDLs = {}
+    for piece in displayLists:
+        data = displayLists[piece]
         dl = data[0]
         offset = data[1]
         oldDL2New[offset] = len(vanillaZobj)
+        pieceDLs[piece] = len(vanillaZobj)
         for i in range (0, len(dl), 8):
             op = dl[i]
             seg = dl[i+4]
@@ -433,7 +436,7 @@ def LoadVanilla(rom: Rom, missing: list[str], rebase: int, linkstart: int, links
     # Now find the relation of items to new offsets
     DLOffsets = {}
     for item in missing:
-        DLOffsets[item] = oldDL2New[pieces[item][1]]
+        DLOffsets[item] = pieceDLs[item]
     return vanillaZobj, DLOffsets
 
 
@@ -479,9 +482,10 @@ def CheckDiff(limb: int, skeleton: int) -> bool:
     return diff > TOLERANCE
 
 
-def CorrectSkeleton(zobj: bytearray, skeleton: list[list[int]], agestr: str) -> bool:
+def CorrectSkeleton(zobj: bytearray, skeleton: list[list[int]], agestr: str, hierarchy = None) -> bool:
     # Get the hierarchy pointer
-    hierarchy = FindHierarchy(zobj, agestr)
+    if not hierarchy:
+        hierarchy = FindHierarchy(zobj, agestr)
     # Get what the hierarchy pointer points to (pointer to limb 0)
     limbPointer = int.from_bytes(zobj[hierarchy+1:hierarchy+4], 'big')
     # Get the limb this points to
@@ -569,9 +573,29 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     is_modloader64: bool = scan(zobj, "MODLOAD64") >= 0
     is_fast64: bool = scan(zobj, "~FAST64~") >= 0
     if is_fast64:
-        lut = LUT(0x06000000 | scan(zobj, "~FAST64~") + 8) 
+        lut = LUT(0x06000000 | scan(zobj, "~FAST64~")) 
         hierarchy_pointer = lut.offset(Offsets.ADULT_HIERARCHY) & 0x00FFFFFF
         hierarchy = int.from_bytes(zobj[hierarchy_pointer:hierarchy_pointer+4], 'big')
+        # Find any parts in the LUT labelled "LOAD_VANILLA"
+        missing = []
+        for piece in pieces:
+            lut_offset, _ = pieces[piece]
+            lut_offset = lut.offset(lut_offset) & 0x00FFFFFF
+            lut_entry = int.from_bytes(zobj[lut_offset:lut_offset+4], 'big')
+            if lut_entry == 0xFFFFFFFF:
+                missing.append(piece)
+        
+        vanilla_dl_base = len(zobj)
+
+        (vanillaZobj, DLOffsets) = LoadVanilla(rom, missing, len(zobj), linkstart, linksize, pieces, skips)
+        # Add the parts to the end of the zobj and update the LUT
+        zobj.extend(vanillaZobj)
+        for missingPieceOffset in DLOffsets:
+            lut_offset, _ = pieces[missingPieceOffset]
+            lut_offset = lut.offset(lut_offset) & 0x00FFFFFF
+            lut_entry = vanilla_dl_base + DLOffsets[missingPieceOffset]
+            zobj[lut_offset:lut_offset+4] = b"\xDE\x01\x00\x00"
+            zobj[lut_offset+4:lut_offset+8] = (lut_entry | BASE_OFFSET).to_bytes(4, 'big') 
     else:
         hierarchy = lut.offset(Offsets.ADULT_HIERARCHY)
         if age == 1:
@@ -660,7 +684,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
         #with open(path + "/Test_Processed.zobj", "wb") as f:
         #    f.write(zobj)
     # Correct skeleton if it should be corrected
-    CorrectSkeleton(zobj, skeleton, agestr)
+    CorrectSkeleton(zobj, skeleton, agestr, hierarchy)
     # Write zobj to vanilla object (object_link_boy or object_link_child)
     # Relocate the object
     linkstart_new = rom.dma.free_space(len(zobj))
@@ -1174,7 +1198,7 @@ class Offsets(IntEnum):
 AdultPieces: dict[str, tuple[Offsets, int]] = {
     "Sheath": (Offsets.ADULT_LINK_LUT_DL_SWORD_SHEATH, 0x249D8),
     "FPS.Hookshot": (Offsets.ADULT_LINK_LUT_DL_FPS_HOOKSHOT, 0x2A738),
-    "Hilt.2": (Offsets.ADULT_LINK_LUT_DL_SWORD_HILT, 0x22060),  # 0x21F78 + 0xE8, skips blade
+    "Hilt.2": (Offsets.ADULT_LINK_LUT_DL_SWORD_HILT, 0x21F78),  # 0x21F78 + 0xE8, skips blade
     "Hilt.3": (Offsets.ADULT_LINK_LUT_DL_LONGSWORD_HILT, 0x238C8),
     "Blade.2": (Offsets.ADULT_LINK_LUT_DL_SWORD_BLADE, 0x21F78),
     "Hookshot.Spike": (Offsets.ADULT_LINK_LUT_DL_HOOKSHOT_HOOK, 0x2B288),
@@ -1233,7 +1257,7 @@ AdultPieces: dict[str, tuple[Offsets, int]] = {
 # increased by whatever amount of starting indices would be skipped.
 adultSkips: dict[str, list[tuple[int, int]]] = {
     "FPS.Hookshot":  [(0x2F0, 0x618)],
-    "Hilt.2": [(0x1E8, 0x430)],
+    "Hilt.2": [(0x068, 0x0E8),(0x2D0, 0x518)], # Need to bring in part of the beginning of this item which includes setup DLs
     "Hilt.3": [(0x160, 0x480)],
     "Blade.2": [(0xE8, 0x518)],
     "Hookshot": [(0x250, 0x4A0)],
