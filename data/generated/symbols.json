@@ -416,11 +416,19 @@
         "length": 1
     },
     "DPAD_RESOURCE": {
+<<<<<<< HEAD
         "address": "034A6818",
         "length": 0
     },
     "DPAD_RESOURCE_END": {
         "address": "034A7018",
+=======
+        "address": "034A4EA0",
+        "length": 0
+    },
+    "DPAD_RESOURCE_END": {
+        "address": "034A56A0",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 0
     },
     "DUNGEONS_SHUFFLED": {
@@ -468,6 +476,7 @@
         "length": 160
     },
     "FONT_CHAR_TEX_HEIGHT": {
+<<<<<<< HEAD
         "address": "034A65A0",
         "length": 4
     },
@@ -481,6 +490,21 @@
     },
     "FONT_RESOURCE_END": {
         "address": "034A84E0",
+=======
+        "address": "034A4C28",
+        "length": 4
+    },
+    "FONT_CHAR_TEX_WIDTH": {
+        "address": "034A4C2C",
+        "length": 4
+    },
+    "FONT_RESOURCE": {
+        "address": "034A56A0",
+        "length": 0
+    },
+    "FONT_RESOURCE_END": {
+        "address": "034A6B68",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 0
     },
     "FREE_BOMBCHU_DROPS": {
@@ -608,7 +632,11 @@
         "length": 1
     },
     "NUM_FONT_CHARS": {
+<<<<<<< HEAD
         "address": "034A659C",
+=======
+        "address": "034A4C24",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 4
     },
     "OCARINAS_SHUFFLED": {
@@ -704,7 +732,11 @@
         "length": 4
     },
     "REQUIRED_PENDING_FRAMES": {
+<<<<<<< HEAD
         "address": "034A61F8",
+=======
+        "address": "034A4880",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 1
     },
     "REWARDS_AS_ITEMS": {
@@ -816,11 +848,19 @@
         "length": 2
     },
     "TRIFORCE_SPRITE_RESOURCE": {
+<<<<<<< HEAD
         "address": "034A84E0",
         "length": 0
     },
     "TRIFORCE_SPRITE_RESOURCE_END": {
         "address": "034A94E0",
+=======
+        "address": "034A6B68",
+        "length": 0
+    },
+    "TRIFORCE_SPRITE_RESOURCE_END": {
+        "address": "034A7B68",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 0
     },
     "TWINROVA_ACTION_TIMER": {
@@ -1052,6 +1092,7 @@
         "length": 3
     },
     "debug_text_height": {
+<<<<<<< HEAD
         "address": "034A5FE0",
         "length": 1
     },
@@ -1065,6 +1106,21 @@
     },
     "defaultHeart": {
         "address": "034A6274",
+=======
+        "address": "034A4688",
+        "length": 1
+    },
+    "debug_text_width": {
+        "address": "034A4689",
+        "length": 1
+    },
+    "defaultDDHeart": {
+        "address": "034A48F4",
+        "length": 6
+    },
+    "defaultHeart": {
+        "address": "034A48FC",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 6
     },
     "deku_rooms": {
@@ -1132,7 +1188,11 @@
         "length": 312
     },
     "freecam_modes": {
+<<<<<<< HEAD
         "address": "034A60A0",
+=======
+        "address": "034A4728",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 66
     },
     "ganon_rooms": {
@@ -1168,7 +1228,11 @@
         "length": 260
     },
     "icon_sprites": {
+<<<<<<< HEAD
         "address": "034A6170",
+=======
+        "address": "034A47F8",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 12
     },
     "illegal_model": {
@@ -1180,11 +1244,19 @@
         "length": 2
     },
     "input_icon_height": {
+<<<<<<< HEAD
         "address": "034A6286",
         "length": 1
     },
     "input_icon_width": {
         "address": "034A6287",
+=======
+        "address": "034A490E",
+        "length": 1
+    },
+    "input_icon_width": {
+        "address": "034A490F",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 1
     },
     "input_local_copy": {
@@ -1192,11 +1264,19 @@
         "length": 24
     },
     "input_number_height": {
+<<<<<<< HEAD
         "address": "034A6284",
         "length": 1
     },
     "input_number_width": {
         "address": "034A6285",
+=======
+        "address": "034A490C",
+        "length": 1
+    },
+    "input_number_width": {
+        "address": "034A490D",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 1
     },
     "item_digit_sprite": {
@@ -1244,7 +1324,11 @@
         "length": 4
     },
     "left_alignment": {
+<<<<<<< HEAD
         "address": "034A6282",
+=======
+        "address": "034A490A",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 2
     },
     "linkhead_skull_sprite": {
@@ -1340,7 +1424,11 @@
         "length": 256
     },
     "rupee_colors": {
+<<<<<<< HEAD
         "address": "034A6260",
+=======
+        "address": "034A48E8",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 12
     },
     "rupee_digit_sprite": {
@@ -1416,11 +1504,19 @@
         "length": 4
     },
     "text_height": {
+<<<<<<< HEAD
         "address": "034A63E8",
         "length": 4
     },
     "text_width": {
         "address": "034A63EC",
+=======
+        "address": "034A4A70",
+        "length": 4
+    },
+    "text_width": {
+        "address": "034A4A74",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 4
     },
     "texture_table": {
@@ -1428,11 +1524,19 @@
         "length": 496
     },
     "top_alignment": {
+<<<<<<< HEAD
         "address": "034A6280",
         "length": 2
     },
     "trade_quest_items": {
         "address": "034A65B0",
+=======
+        "address": "034A4908",
+        "length": 2
+    },
+    "trade_quest_items": {
+        "address": "034A4C38",
+>>>>>>> e8f18ab7e (Remove additional player memory allocation)
         "length": 616
     },
     "treasure_chest_game_show_message": {
