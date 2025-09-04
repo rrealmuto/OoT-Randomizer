@@ -1157,7 +1157,8 @@ struct z64_actor_s
   uint8_t         damage_effect;    /* 0x00B1 */
   char            unk_0E_[0x0002];  /* 0x00B2 */
   ActorShape      shape;            /* 0x00B4 */
-  char            unk_0F_[0x001C];  /* 0x00E4 */
+  Vec3f           projectedPos;     /* 0x00E4 */
+  char            unk_0F_2[0x0010]; /* 0x00F0 */
   z64_xyzf_t      pos_4;            /* 0x0100 */
   uint16_t        unk_10_;          /* 0x010C */
   uint16_t        text_id;          /* 0x010E */
