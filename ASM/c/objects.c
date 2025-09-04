@@ -51,6 +51,5 @@ void* Object_InitContext_AllocSpace(TwoHeadArena* tha, size_t size) {
     size -= LinkObjectVanillaSizes[z64_file.link_age];
     int16_t linkObjectId = gLinkObjectIds[z64_file.link_age];
     size += z64_object_table[linkObjectId].vrom_end - z64_object_table[linkObjectId].vrom_start;
-    size += 0x30000;
     return THA_AllocTailAlign16(tha, size);
 }
