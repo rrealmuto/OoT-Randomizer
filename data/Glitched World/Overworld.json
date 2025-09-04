@@ -206,8 +206,7 @@
                 or can_mega or can_superslide or can_hess or can_hover",
             "Lost Woods": "True",
             "LW Bridge From Forest": "can_leave_forest",
-            "KF Storms Grotto": "can_open_storm_grotto",
-            "Deku Tree Lobby": "can_hover or (can_use(Hover_Boots) and (can_megajump or can_superslide or can_hess))"
+            "KF Storms Grotto": "can_open_storm_grotto"
         }
     },
     {
@@ -234,7 +233,8 @@
                 is_child
                 or (shuffle_dungeon_entrances and (open_forest == 'open' or 'Showed Mido Sword & Shield'))
                 or (glitch_moustache_clip)
-                or (can_hess and can_use(Hover_Boots))",
+                or (can_hess and can_use(Hover_Boots))
+                or at('Kokiri Forest', can_hover or (can_use(Hover_Boots) and (can_megajump or can_superslide or can_hess)))",
             "Kokiri Forest": "is_adult or open_forest == 'open' or 'Showed Mido Sword & Shield' or can_hess
                 or can_superslide or can_mega"
         }
@@ -868,7 +868,10 @@
                 or
                 (is_child and
                     (glitch_gtg_child_groundclip and can_jumpslash)
-                )",
+                )
+                or at('Gerudo Fortress Archery Range', adv_gf_unload)
+                or at('GF Kitchen Roof Access', glitch_ledge_clip and is_adult)
+                ",
             "GF Balcony": "can_use(Hookshot) and glitch_clipping",
             "GF Kitchen Roof Access": "can_use(Longshot) and can_weirdshot"
         }
@@ -911,7 +914,6 @@
         },
         "exits": {
             "GF Kitchen Roof Access": "can_use(Longshot) and Gerudo_Membership_Card",
-            "Gerudo Training Ground Lobby": "adv_gf_unload",
             "GF Outside Gate": "adv_gf_unload"
         }
     },
@@ -940,8 +942,7 @@
             # child can damage boost from the GS alcove, but it's really precise
             # got it once, will have to find a setup
             "GF Break Room Entrance": "can_hover or can_mega or (is_adult and (logic_gf_break_room_jump or Hover_Boots))",
-            "Gerudo Fortress Archery Range": "adv_gf_archery_no_card",
-            "Gerudo Training Ground Lobby": "glitch_ledge_clip and is_adult"
+            "Gerudo Fortress Archery Range": "adv_gf_archery_no_card"
         }
     },
     {
@@ -2237,8 +2238,6 @@
             "Graveyard Dampes House": "is_adult or at_dampe_time",
             "Kakariko Village": "True",
             "Graveyard Warp Pad Region": "(is_adult and glitch_graveyard_shadow_early_hookshot and Hookshot
-                and can_isg) or (glitch_graveyard_shadow_early_hover and can_hover)",
-            "Shadow Temple Entryway": "(is_adult and glitch_graveyard_shadow_early_hookshot and Hookshot
                 and can_isg) or (glitch_graveyard_shadow_early_hover and can_hover)"
         }
     },
@@ -2353,7 +2352,10 @@
             "Shadow Temple Entryway": "
                 can_use(Dins_Fire) or (logic_shadow_fire_arrow_entry and can_use(Fire_Arrows)) or
                 can_gdv or (is_adult and glitch_graveyard_shadow_early_bomb_push and Bombs and can_shield)
-                or (is_adult and glitch_ledge_clip)"
+                or (is_adult and glitch_ledge_clip)
+                or at('Graveyard', (is_adult and glitch_graveyard_shadow_early_hookshot and Hookshot
+                and can_isg) or (glitch_graveyard_shadow_early_hover and can_hover))
+                "
         }
     },
     {

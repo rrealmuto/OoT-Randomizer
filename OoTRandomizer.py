@@ -53,6 +53,8 @@ def start() -> None:
             for i in range(settings.count):
                 settings.update_seed(orig_seed + '-' + str(i))
                 main(settings)
+        else:
+            main(settings)
     except Exception as ex:
         logger.exception(ex)
         raise
