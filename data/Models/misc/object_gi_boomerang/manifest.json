@@ -1,0 +1,7 @@
+{
+    "model": "Boomerang.zobj",
+    "replace_object": "object_gi_boomerang",
+
+    "patch_files": [
+    ]
+}
