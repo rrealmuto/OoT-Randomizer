@@ -1,0 +1,29 @@
+{
+    "model": "Boomerang.zobj",
+    "replace_object": "new",
+    "vars" : [
+        {
+            "key": "$DisplayList",
+            "value": 100666888
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_boom",
+            "patches":[
+                {
+                    "addr": 1928,
+                    "data": "newObjectID"
+                },
+                {
+                    "addr": 1870,
+                    "data": "hi($DisplayList)"
+                },
+                {
+                    "addr": 1874,
+                    "data": "lo($DisplayList)"
+                }
+            ]
+        }
+    ]
+}

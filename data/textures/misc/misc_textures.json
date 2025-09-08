@@ -1,0 +1,38 @@
+[
+    {
+        "file": "luceBlehHC.png",
+        "type": "rgba16",
+        "target_file_id": 1362,
+        "target_file_offset": 29720
+    },
+    {
+        "file": "luceBrebHC.png",
+        "type": "rgba16",
+        "target_file_id": 1362,
+        "target_file_offset": 29208
+    },
+    {
+        "file": "luceGambaHC.png",
+        "type": "rgba16",
+        "target_file_id": 1362,
+        "target_file_offset": 30232
+    },
+    {
+        "file": "lucePowaHC.png",
+        "type": "rgba16",
+        "target_file_id": 1362,
+        "target_file_offset": 33304
+    },
+    {
+        "file": "luceWheezeHC.png",
+        "type": "rgba16",
+        "target_file_id": 1362,
+        "target_file_offset": 33816
+    },
+    {
+        "file": "Croissant_Icon.png",
+        "type": "rgba32",
+        "target_file_id": 8,
+        "target_file_offset": 57344
+    }
+]

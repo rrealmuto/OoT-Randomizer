@@ -1449,6 +1449,13 @@ restrictiveBytes: list[tuple[int, int]] = [
     (CODE_START + 0xE65A4, 1 * 4),  # Writes 4-byte hierarchy pointer
 ]
 
+def mips_hi_lo(value: int):
+    high_word = (value & 0xFFFF0000) >> 16
+    low_word = (value & 0x0000FFFF)
+    if low_word & 0x00008000:
+        high_word += 1
+    return (high_word, low_word)
+
 def read_object_manifest(manifest_path: str):
     manifest = None
     with open(manifest_path) as f:
@@ -1460,15 +1467,24 @@ def read_object_manifest(manifest_path: str):
     model_file = manifest["model"]
     replace_object = manifest["replace_object"]
     patch_files = manifest["patch_files"]
+    vars = {}
+    if "vars" in manifest.keys():
+        for var in manifest["vars"]:
+            val = var["value"]
+            val_hi, val_lo = mips_hi_lo(val)
+            vars[var["key"]] = val
+            vars[f"hi({var['key']})"] = val_hi
+            vars[f"lo({var['key']})"] = val_lo
 
-    return (model_file, replace_object, patch_files)
+    return (model_file, replace_object, patch_files, vars)
 
 file_list = {
     'object_ganon': (0x015C9000, 0x015D9100),
     'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660),
     'object_fish': (0x01842000, 0x018575F0),
     'ovl_Fishing': (0x00DBE030, 0x00DD1A00),
-    'object_gi_boomerang': (0x01604000, 0x01604DA0)
+    'object_gi_boomerang': (0x01604000, 0x01604DA0),
+    'ovl_en_boom': (0x00C5A8C0, 0x00C5B180)
 }
 
 object_ids = {
@@ -1485,7 +1501,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         # Read the manifest
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
         if os.path.exists(manifest_path):
-            model_file, replace_object, patch_files = read_object_manifest(manifest_path)
+            model_file, replace_object, patch_files, vars = read_object_manifest(manifest_path)
         else:
             continue
         # Read the model data
@@ -1493,30 +1509,39 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         with open(model_file_path, 'rb') as f:
             model_data = f.read()
         
-        # Find the original model file info
-        orig_vrom_start, orig_vrom_end = file_list[replace_object]
-        orig_size = orig_vrom_end - orig_vrom_start
-
-        # Zeroize the original file
-        rom.write_bytes(orig_vrom_start, [0] * orig_size)
-
-        # Check if we're larger than the original file
-        model_start = orig_vrom_start
-        if len(model_data) > orig_size:
-            # Make a new file and update the dma and object table
+        new_obj_id = None
+        if replace_object == "new":
+            # Add an entirely new object to the file system and object table
             model_start = rom.dma.free_space(len(model_data))
-                
-            # Write the new model data
+            model_end = model_start + len(model_data)
+            rom.update_dmadata_record_by_key(None, model_start, model_end)
+            new_obj_id = rom.add_extended_object(model_start, model_end)
             rom.write_bytes(model_start, model_data)
-            rom.update_dmadata_record_by_key(orig_vrom_start, model_start, model_start + len(model_data))
-            # Update object table
-            object_table_entry_addr = 0xB6EF58 + object_ids[replace_object]*8
-            rom.write_int32(object_table_entry_addr, model_start)
-            rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
-        
         else:
-            # Write the new model data
-            rom.write_bytes(model_start, model_data)
+            # Find the original model file info
+            orig_vrom_start, orig_vrom_end = file_list[replace_object]
+            orig_size = orig_vrom_end - orig_vrom_start
+
+            # Zeroize the original file
+            rom.write_bytes(orig_vrom_start, [0] * orig_size)
+
+            # Check if we're larger than the original file
+            model_start = orig_vrom_start
+            if len(model_data) > orig_size:
+                # Make a new file and update the dma and object table
+                model_start = rom.dma.free_space(len(model_data))
+                    
+                # Write the new model data
+                rom.write_bytes(model_start, model_data)
+                rom.update_dmadata_record_by_key(orig_vrom_start, model_start, model_start + len(model_data))
+                # Update object table
+                object_table_entry_addr = 0xB6EF58 + object_ids[replace_object]*8
+                rom.write_int32(object_table_entry_addr, model_start)
+                rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
+            
+            else:
+                # Write the new model data
+                rom.write_bytes(model_start, model_data)
 
         # Apply patches
         for patch_file in patch_files:
@@ -1526,6 +1551,14 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
             for patch in patches:
                 addr = patch["addr"]
                 data = patch["data"]
+                if type(data) == str:
+                    if data == "newObjectID":
+                        if new_obj_id:
+                            data = new_obj_id.to_bytes(2, 'big')
+                        else:
+                            raise Exception("Patch requires new object ID but none provided")
+                    elif data in vars:
+                        data = vars[data].to_bytes(2, 'big')
 
                 rom.write_bytes(patch_base + addr, data)
 
