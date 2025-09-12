@@ -1297,17 +1297,17 @@ adultSkeleton: list[list[int]] = [
 ChildPieces: dict[str, tuple[Offsets, int]] = {
     "Slingshot.String": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT_STRING, 0x221A8),
     "Sheath": (Offsets.CHILD_LINK_LUT_DL_SWORD_SHEATH, 0x15408),
-    "Blade.2": (Offsets.CHILD_LINK_LUT_DL_MASTER_SWORD, 0x15698),  # 0x15540 + 0x158, skips fist
-    "Blade.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_BLADE, 0x14110),  # 0x13F38 + 0x1D8, skips fist and hilt
+    "Blade.2": (Offsets.CHILD_LINK_LUT_DL_MASTER_SWORD, 0x15540),  # 0x15540 + 0x158, skips fist
+    "Blade.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_BLADE, 0x13F38),  # 0x13F38 + 0x1D8, skips fist and hilt
     "Boomerang": (Offsets.CHILD_LINK_LUT_DL_BOOMERANG, 0x14660),
     "Fist.L": (Offsets.CHILD_LINK_LUT_DL_LFIST, 0x13E18),
     "Fist.R": (Offsets.CHILD_LINK_LUT_DL_RFIST, 0x14320),
-    "Hilt.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_HILT, 0x14048),  # 0x13F38 + 0x110, skips fist
+    "Hilt.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_HILT, 0x13F38),  # 0x13F38 + 0x110, skips fist
     "Shield.1": (Offsets.CHILD_LINK_LUT_DL_SHIELD_DEKU, 0x14440),
-    "Slingshot": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT, 0x15F08),  # 0x15DF0 + 0x118, skips fist
+    "Slingshot": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT, 0x15DF0),  # 0x15DF0 + 0x118, skips fist
     "Ocarina.1": (Offsets.CHILD_LINK_LUT_DL_OCARINA_FAIRY, 0x15BA8),
     "Bottle": (Offsets.CHILD_LINK_LUT_DL_BOTTLE, 0x18478),
-    "Ocarina.2": (Offsets.CHILD_LINK_LUT_DL_OCARINA_TIME, 0x15AB8),  # 0x15958 + 0x160, skips hand
+    "Ocarina.2": (Offsets.CHILD_LINK_LUT_DL_OCARINA_TIME, 0x15958),  # 0x15958 + 0x160, skips hand
     "Bottle.Hand.L": (Offsets.CHILD_LINK_LUT_DL_LHAND_BOTTLE, 0x18478),  # Just the bottle, couldn't find one with hand and bottle
     "GoronBracelet": (Offsets.CHILD_LINK_LUT_DL_GORON_BRACELET, 0x16118),
     "Mask.Bunny": (Offsets.CHILD_LINK_LUT_DL_MASK_BUNNY, 0x2CA38),
@@ -1320,7 +1320,7 @@ ChildPieces: dict[str, tuple[Offsets, int]] = {
     "Mask.Zora": (Offsets.CHILD_LINK_LUT_DL_MASK_ZORA, 0x2B580),
     "FPS.Forearm.R": (Offsets.CHILD_LINK_LUT_DL_FPS_RIGHT_ARM, 0x18048),
     "DekuStick": (Offsets.CHILD_LINK_LUT_DL_DEKU_STICK, 0x6CC0),
-    "Shield.2": (Offsets.CHILD_LINK_LUT_DL_SHIELD_HYLIAN_BACK, 0x14C30),  # 0x14B40 + 0xF0, skips sheath
+    "Shield.2": (Offsets.CHILD_LINK_LUT_DL_SHIELD_HYLIAN_BACK, 0x14B40),  # 0x14B40 + 0xF0, skips sheath
     "Limb 1": (Offsets.CHILD_LINK_LUT_DL_WAIST, 0x202A8),
     "Limb 3": (Offsets.CHILD_LINK_LUT_DL_RTHIGH, 0x204F0),
     "Limb 4": (Offsets.CHILD_LINK_LUT_DL_RSHIN, 0x206E8),
@@ -1342,10 +1342,16 @@ ChildPieces: dict[str, tuple[Offsets, int]] = {
 
 
 childSkips: dict[str, list[tuple[int, int]]] = {
+    "Blade.1": [(0xA8, 0x1D8)],
+    "Blade.2": [(0xA8, 0x158)],
     "Boomerang": [(0x140, 0x240)],
-    "Hilt.1": [(0xC8, 0x170)],
+    "Slingshot": [(0xA8, 0x118)],
+    #"Hilt.1": [(0xC8, 0x170)],
+    "Hilt.1": [(0xA8, 0x110), (0x1D8, 0x280)],
     "Shield.1": [(0x140, 0x218)],
+    "Shield.2": [(0xA8, 0xF0)],
     "Ocarina.1": [(0x110, 0x240)],
+    "Ocarina.2": [(0xA8, 0x160)]
 }
 
 childSkeleton: list[list[int]] = [
