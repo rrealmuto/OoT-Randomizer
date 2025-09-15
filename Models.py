@@ -1490,13 +1490,16 @@ file_list = {
     'object_fish': (0x01842000, 0x018575F0),
     'ovl_Fishing': (0x00DBE030, 0x00DD1A00),
     'object_gi_boomerang': (0x01604000, 0x01604DA0),
-    'ovl_en_boom': (0x00C5A8C0, 0x00C5B180)
+    'ovl_en_boom': (0x00C5A8C0, 0x00C5B180),
+    'object_gs': (0x0194E000, 0x0194EA80),
+    'ovl_en_gs': (0x00EE7790, 0x00EE9630)
 }
 
 object_ids = {
     'object_ganon': 0xE1,
     'object_fish': 0x015B,
-    'object_gi_boomerang': 0x00E8
+    'object_gi_boomerang': 0x00E8,
+    'object_gs': 0x0188
 }
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):

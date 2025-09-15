@@ -1,0 +1,41 @@
+{
+    "model": "object_gs_pig.zobj",
+    "replace_object": "object_gs",
+    "vars" : [
+        {
+            "key": "$DisplayList",
+            "value": 100686864
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_gs",
+            "patches":[
+                {
+                    "addr": 6326,
+                    "data": "hi($DisplayList)"
+                },
+                {
+                    "addr": 6330,
+                    "data": "lo($DisplayList)"
+                },
+                {
+                    "addr": 6191,
+                    "data": [0]
+                },
+                {
+                    "addr": 6196,
+                    "data": [0,0,0,0,0,0,0,0]
+                },
+                {
+                    "addr": 6363,
+                    "data": [0]
+                },
+                {
+                    "addr": 6368,
+                    "data": [0,0,0,0,0,0,0,0]
+                }
+            ]
+        }
+    ]
+}

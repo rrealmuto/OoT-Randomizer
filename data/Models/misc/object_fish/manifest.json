@@ -1,7 +1,12 @@
 {
     "model": "fish_karp.zobj",
     "replace_object": "object_fish",
-
+    "vars" : [
+        {
+            "key": "$Skeleton",
+            "value": 100783160
+        }
+    ],
     "patch_files": [
         {
             "file": "ovl_Fishing",
@@ -9,19 +14,19 @@
             [
                 {
                     "addr": 4782,
-                    "data": [6, 2]
+                    "data": "hi($Skeleton)"
                 },
                 {
                     "addr": 4786,
-                    "data": [212, 56]
+                    "data": "lo($Skeleton)"
                 },
                 {
                     "addr": 45202,
-                    "data": [6, 2]
+                    "data": "hi($Skeleton)"
                 },
                 {
                     "addr":45214,
-                    "data": [212,56]
+                    "data": "lo($Skeleton)"
                 }
             ]
         }
