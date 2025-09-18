@@ -1462,7 +1462,7 @@ def mips_hi_lo(value: int):
         high_word += 1
     return (high_word, low_word)
 
-def read_object_manifest(manifest_path: str):
+def read_object_manifest(manifest_path: str) -> tuple[str, str, list[dict[str,object]], dict[str,object]]:
     manifest = None
     with open(manifest_path) as f:
         manifest = json.loads(f.read())
@@ -1472,7 +1472,8 @@ def read_object_manifest(manifest_path: str):
     
     model_file = manifest["model"]
     replace_object = manifest["replace_object"]
-    patch_files = manifest["patch_files"]
+    patch_files = manifest["patch_files"] if "patch_files" in manifest.keys() else []
+    patch_gi_draw_table = manifest["patch_gi_draw_table"] if "patch_gi_draw_table" in manifest.keys() else None
     vars = {}
     if "vars" in manifest.keys():
         for var in manifest["vars"]:
@@ -1482,7 +1483,7 @@ def read_object_manifest(manifest_path: str):
             vars[f"hi({var['key']})"] = val_hi
             vars[f"lo({var['key']})"] = val_lo
 
-    return (model_file, replace_object, patch_files, vars)
+    return (model_file, replace_object, patch_files, patch_gi_draw_table, vars)
 
 file_list = {
     'object_ganon': (0x015C9000, 0x015D9100),
@@ -1510,7 +1511,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         # Read the manifest
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
         if os.path.exists(manifest_path):
-            model_file, replace_object, patch_files, vars = read_object_manifest(manifest_path)
+            model_file, replace_object, patch_files, patch_gi_draw_table, vars = read_object_manifest(manifest_path)
         else:
             continue
         # Read the model data
@@ -1552,22 +1553,44 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
                 # Write the new model data
                 rom.write_bytes(model_start, model_data)
 
+        if patch_files is None:
+            patch_files = []
+
+        # Add item_draw_table patches to the main patch_files
+        if patch_gi_draw_table:
+            item_draw_table_base = rom.sym('item_draw_table')
+            payload_base = rom.sym('PAYLOAD_START')
+            item_draw_table_entry_size = 36
+            gi_draw_patch = {}
+            gi_draw_patch["file"] = "PAYLOAD"
+            gi_draw_patch["patches"] = []
+            for patch in patch_gi_draw_table["patches"]:
+                patch_fixed = {}
+                patch_fixed["addr"] = patch_gi_draw_table["index"]*item_draw_table_entry_size + item_draw_table_base - payload_base + patch["addr"] 
+                patch_fixed["data"] = patch["data"]
+                patch_fixed["size"] = patch["size"]
+                gi_draw_patch["patches"].append(patch_fixed)
+            patch_files.append(gi_draw_patch)
+
         # Apply patches
         for patch_file in patch_files:
             file_name = patch_file["file"]
             patches = patch_file["patches"]
-            patch_base, _ = file_list[file_name]
+            patch_base, _ = (rom.sym('PAYLOAD_START'), 0) if file_name == "PAYLOAD" else file_list[file_name]
             for patch in patches:
                 addr = patch["addr"]
                 data = patch["data"]
+                size = patch["size"] if "size" in patch.keys() else len(data)
                 if type(data) == str:
                     if data == "newObjectID":
                         if new_obj_id:
-                            data = new_obj_id.to_bytes(2, 'big')
+                            data = new_obj_id.to_bytes(size, 'big')
                         else:
                             raise Exception("Patch requires new object ID but none provided")
                     elif data in vars:
-                        data = vars[data].to_bytes(2, 'big')
+                        data = vars[data].to_bytes(size, 'big')
 
                 rom.write_bytes(patch_base + addr, data)
+        
+
 

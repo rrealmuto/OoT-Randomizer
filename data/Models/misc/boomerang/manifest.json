@@ -13,15 +13,18 @@
             "patches":[
                 {
                     "addr": 1928,
-                    "data": "newObjectID"
+                    "data": "newObjectID",
+                    "size": 2
                 },
                 {
                     "addr": 1870,
-                    "data": "hi($DisplayList)"
+                    "data": "hi($DisplayList)",
+                    "size": 2
                 },
                 {
                     "addr": 1874,
-                    "data": "lo($DisplayList)"
+                    "data": "lo($DisplayList)",
+                    "size": 2
                 }
             ]
         }

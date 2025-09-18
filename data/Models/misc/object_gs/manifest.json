@@ -13,11 +13,13 @@
             "patches":[
                 {
                     "addr": 6326,
-                    "data": "hi($DisplayList)"
+                    "data": "hi($DisplayList)",
+                    "size": 2
                 },
                 {
                     "addr": 6330,
-                    "data": "lo($DisplayList)"
+                    "data": "lo($DisplayList)",
+                    "size": 2
                 },
                 {
                     "addr": 6191,

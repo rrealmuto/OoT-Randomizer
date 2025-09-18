@@ -1,7 +1,22 @@
 {
     "model": "Boomerang.zobj",
     "replace_object": "object_gi_boomerang",
-
+    "vars" : [
+        {
+            "key": "$DisplayList",
+            "value": 100666888
+        }
+    ],
     "patch_files": [
-    ]
+    ],
+    "patch_gi_draw_table": {
+        "index": 51,
+        "patches": [
+            {
+                "addr": 4,
+                "data": "$DisplayList",
+                "size": 4
+            }
+        ]
+    }
 }

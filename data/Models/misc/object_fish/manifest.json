@@ -14,19 +14,23 @@
             [
                 {
                     "addr": 4782,
-                    "data": "hi($Skeleton)"
+                    "data": "hi($Skeleton)",
+                    "size": 2
                 },
                 {
                     "addr": 4786,
-                    "data": "lo($Skeleton)"
+                    "data": "lo($Skeleton)",
+                    "size": 2
                 },
                 {
                     "addr": 45202,
-                    "data": "hi($Skeleton)"
+                    "data": "hi($Skeleton)",
+                    "size": 2
                 },
                 {
                     "addr":45214,
-                    "data": "lo($Skeleton)"
+                    "data": "lo($Skeleton)",
+                    "size": 2
                 }
             ]
         }
