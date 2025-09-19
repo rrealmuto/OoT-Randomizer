@@ -1498,7 +1498,9 @@ file_list = {
     'object_gi_boomerang': (0x01604000, 0x01604DA0),
     'ovl_en_boom': (0x00C5A8C0, 0x00C5B180),
     'object_gs': (0x0194E000, 0x0194EA80),
-    'ovl_en_gs': (0x00EE7790, 0x00EE9630)
+    'ovl_en_gs': (0x00EE7790, 0x00EE9630),
+    'object_jj': (0x11BD000, 0x11C8AC0),
+    'ovl_en_jj': (0x00C9F330, 0x00CA0900),
 }
 
 object_ids = {
