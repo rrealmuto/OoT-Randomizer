@@ -1,0 +1,68 @@
+{
+    "model": "Diamond.zobj",
+    "replace_object": "new",
+    "vars" : [
+        {
+            "key": "$DisplayList",
+            "value": 100668712
+        }
+    ],
+    "symbols": [
+        "draw_gi_various_opa0"
+    ],
+    "patch_files": [],
+    "patch_gi_draw_table": [
+        {
+            "index": 163,
+            "patches": [
+                {
+                    "addr": 0,
+                    "data": "draw_gi_various_opa0",
+                    "size": 4
+                },
+                {
+                    "addr": 4,
+                    "data": "$DisplayList",
+                    "size": 4
+                }
+            ]
+        },
+        {
+            "index": 142,
+            "patches": [
+                {
+                    "addr": 0,
+                    "data": "draw_gi_various_opa0",
+                    "size": 4
+                },
+                {
+                    "addr": 4,
+                    "data": "$DisplayList",
+                    "size": 4
+                }
+            ]
+        }
+    ],
+    "patch_item_table": [
+        {
+            "index": 124,
+            "patches": [
+                {
+                    "addr": 4,
+                    "data": "newObjectID",
+                    "size": 2
+                }
+            ]
+        },
+        {
+            "index": 270,
+            "patches": [
+                {
+                    "addr": 4,
+                    "data": "newObjectID",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}

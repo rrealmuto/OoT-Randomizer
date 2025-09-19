@@ -1462,7 +1462,7 @@ def mips_hi_lo(value: int):
         high_word += 1
     return (high_word, low_word)
 
-def read_object_manifest(manifest_path: str) -> tuple[str, str, list[dict[str,object]], dict[str,object]]:
+def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[dict[str,object]], dict[str,object]]:
     manifest = None
     with open(manifest_path) as f:
         manifest = json.loads(f.read())
@@ -1474,6 +1474,7 @@ def read_object_manifest(manifest_path: str) -> tuple[str, str, list[dict[str,ob
     replace_object = manifest["replace_object"]
     patch_files = manifest["patch_files"] if "patch_files" in manifest.keys() else []
     patch_gi_draw_table = manifest["patch_gi_draw_table"] if "patch_gi_draw_table" in manifest.keys() else None
+    patch_item_table = manifest["patch_item_table"] if "patch_item_table" in manifest.keys() else None
     vars = {}
     if "vars" in manifest.keys():
         for var in manifest["vars"]:
@@ -1482,8 +1483,12 @@ def read_object_manifest(manifest_path: str) -> tuple[str, str, list[dict[str,ob
             vars[var["key"]] = val
             vars[f"hi({var['key']})"] = val_hi
             vars[f"lo({var['key']})"] = val_lo
+    
+    if "symbols" in manifest.keys():
+        for sym in manifest["symbols"]:
+            vars[sym] = rom.sym(sym)
 
-    return (model_file, replace_object, patch_files, patch_gi_draw_table, vars)
+    return (model_file, replace_object, patch_files, patch_gi_draw_table, patch_item_table, vars)
 
 file_list = {
     'object_ganon': (0x015C9000, 0x015D9100),
@@ -1511,7 +1516,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         # Read the manifest
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
         if os.path.exists(manifest_path):
-            model_file, replace_object, patch_files, patch_gi_draw_table, vars = read_object_manifest(manifest_path)
+            model_file, replace_object, patch_files, patches_gi_draw_table, patches_item_table, vars = read_object_manifest(rom, manifest_path)
         else:
             continue
         # Read the model data
@@ -1557,20 +1562,38 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
             patch_files = []
 
         # Add item_draw_table patches to the main patch_files
-        if patch_gi_draw_table:
-            item_draw_table_base = rom.sym('item_draw_table')
-            payload_base = rom.sym('PAYLOAD_START')
-            item_draw_table_entry_size = 36
-            gi_draw_patch = {}
-            gi_draw_patch["file"] = "PAYLOAD"
-            gi_draw_patch["patches"] = []
-            for patch in patch_gi_draw_table["patches"]:
-                patch_fixed = {}
-                patch_fixed["addr"] = patch_gi_draw_table["index"]*item_draw_table_entry_size + item_draw_table_base - payload_base + patch["addr"] 
-                patch_fixed["data"] = patch["data"]
-                patch_fixed["size"] = patch["size"]
-                gi_draw_patch["patches"].append(patch_fixed)
-            patch_files.append(gi_draw_patch)
+        if patches_gi_draw_table:
+            for patch_gi_draw_table in patches_gi_draw_table:
+                item_draw_table_base = rom.sym('item_draw_table')
+                payload_base = rom.sym('PAYLOAD_START')
+                item_draw_table_entry_size = 36
+                gi_draw_patch = {}
+                gi_draw_patch["file"] = "PAYLOAD"
+                gi_draw_patch["patches"] = []
+                for patch in patch_gi_draw_table["patches"]:
+                    patch_fixed = {}
+                    patch_fixed["addr"] = patch_gi_draw_table["index"]*item_draw_table_entry_size + item_draw_table_base - payload_base + patch["addr"] 
+                    patch_fixed["data"] = patch["data"]
+                    patch_fixed["size"] = patch["size"]
+                    gi_draw_patch["patches"].append(patch_fixed)
+                patch_files.append(gi_draw_patch)
+
+        # Add item_table patches to the main patch_files
+        if patches_item_table:
+            for patch_item_table in patches_item_table:
+                item_table_base = rom.sym('item_table')
+                payload_base = rom.sym('PAYLOAD_START')
+                item_table_entry_size = 28
+                item_table_patch = {}
+                item_table_patch["file"] = "PAYLOAD"
+                item_table_patch["patches"] = []
+                for patch in patch_item_table["patches"]:
+                    patch_fixed = {}
+                    patch_fixed["addr"] = patch_item_table["index"]*item_table_entry_size + item_table_base - payload_base + patch["addr"] 
+                    patch_fixed["data"] = patch["data"]
+                    patch_fixed["size"] = patch["size"]
+                    item_table_patch["patches"].append(patch_fixed)
+                patch_files.append(item_table_patch)
 
         # Apply patches
         for patch_file in patch_files:

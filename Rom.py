@@ -586,12 +586,17 @@ class Rom(BigStream):
         NUM_VANILLA_OBJECTS = 0x192
         extended_objects_size = int(extended_object_table_len/8)
 
+        found_free_object: bool = False
         for i in range(0, extended_objects_size):
             index = extended_object_table_start_addr + (i * 8)
             obj_start = self.read_int32(index)
             obj_end = self.read_int32(index + 4)
             if obj_start == 0:
+                found_free_object = True
                 break
+        
+        if not found_free_object:
+            raise Exception(f"No more extended object slots: {i}")
 
         self.write_int32(index, start_address)
         self.write_int32(index + 4, end_address)

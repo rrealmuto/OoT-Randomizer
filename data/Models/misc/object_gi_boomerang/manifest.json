@@ -9,7 +9,8 @@
     ],
     "patch_files": [
     ],
-    "patch_gi_draw_table": {
+    "patch_gi_draw_table": [
+        {
         "index": 51,
         "patches": [
             {
@@ -18,5 +19,6 @@
                 "size": 4
             }
         ]
-    }
+        }
+    ]
 }
