@@ -34,5 +34,17 @@
         "type": "rgba32",
         "target_file_id": 8,
         "target_file_offset": 57344
+    },
+    {
+        "file": "Ultra_Hammer_Icon.png",
+        "type": "rgba32",
+        "target_file_id": 8,
+        "target_file_offset": 69632
+    },
+    {
+        "file": "Lake_Lab_Shark.png",
+        "type":"rgba16",
+        "target_file_id": 1463,
+        "target_file_offset": 5264
     }
 ]

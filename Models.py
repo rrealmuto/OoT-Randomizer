@@ -1501,13 +1501,15 @@ file_list = {
     'ovl_en_gs': (0x00EE7790, 0x00EE9630),
     'object_jj': (0x11BD000, 0x11C8AC0),
     'ovl_en_jj': (0x00C9F330, 0x00CA0900),
+    'object_gi_hammer': (0x0163D000, 0x0163DCC0)
 }
 
 object_ids = {
     'object_ganon': 0xE1,
     'object_fish': 0x015B,
     'object_gi_boomerang': 0x00E8,
-    'object_gs': 0x0188
+    'object_gs': 0x0188,
+    'object_gi_hammer': 0x00F6
 }
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):

@@ -292,7 +292,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 texture_data = rgba32_from_png(rom, 0,0,0, texture_path)
             dma_entry = rom.dma[file_id]
             rom.write_bytes(dma_entry.start + offset, texture_data)
-    except Exception:
+    except Exception as e:
         pass
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.

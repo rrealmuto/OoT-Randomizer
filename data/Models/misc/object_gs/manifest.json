@@ -1,10 +1,10 @@
 {
-    "model": "object_gs_pig.zobj",
+    "model": "Gossip_Stone_Pig.zobj",
     "replace_object": "object_gs",
     "vars" : [
         {
             "key": "$DisplayList",
-            "value": 100686864
+            "value": 100666920
         }
     ],
     "patch_files": [

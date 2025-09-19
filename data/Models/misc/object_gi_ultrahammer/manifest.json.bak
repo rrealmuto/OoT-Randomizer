@@ -1,0 +1,24 @@
+{
+    "model": "Ultra_Hammer.zobj",
+    "replace_object": "object_gi_hammer",
+    "vars" : [
+        {
+            "key": "$DisplayList",
+            "value": 100671984
+        }
+    ],
+    "patch_files": [
+    ],
+    "patch_gi_draw_table": [
+        {
+        "index": 64,
+        "patches": [
+            {
+                "addr": 4,
+                "data": "$DisplayList",
+                "size": 4
+            }
+        ]
+        }
+    ]
+}
