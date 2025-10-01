@@ -35,7 +35,7 @@ from TextBox import line_wrap
 from Utils import data_path
 from World import World
 from ntype import BigStream
-from texture_util import ci4_rgba16patch_to_ci8, png_to_ci8, rgba16_from_png, rgba16_patch
+from texture_util import ci4_rgba16patch_to_ci8, png_to_ci8, rgba16_from_png, rgba16_patch, rgba32_from_png
 from version import __version__
 
 if sys.version_info >= (3, 10):
@@ -226,6 +226,28 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Add the extended objects data to the DMA table.
     rom.update_dmadata_record_by_key(None, extended_objects_start, end_address)
+
+    # Patch misc. textures
+    misc_texture_path = data_path("textures/misc/misc_textures.json")
+    try:
+        import json
+        f = open(misc_texture_path, 'r')
+        misc_json = f.read()
+        f.close()
+        misc_textures = json.loads(misc_json)
+        for texture in misc_textures:
+            texture_path = data_path(f"textures/misc/{texture['file']}")
+            texture_type = texture['type']
+            file_id = texture['target_file_id']
+            offset = texture['target_file_offset']
+            if texture_type == "rgba16":
+                texture_data = rgba16_from_png(rom, 0, 0, 0, texture_path)
+            elif texture_type == "rgba32":
+                texture_data = rgba32_from_png(rom, 0,0,0, texture_path)
+            dma_entry = rom.dma[file_id]
+            rom.write_bytes(dma_entry.start + offset, texture_data)
+    except Exception as e:
+        pass
 
     # Create the textures for pots/crates. Note: No copyrighted material can be distributed w/ the randomizer. Because of this, patch files are used to create the new textures from the original texture in ROM.
     # Apply patches for custom textures for pots and crates and add as new files in rom

@@ -163,6 +163,28 @@ def load_rgba16_from_png(pngfile: str) -> list[int]:
         rgba16_pixels.append(pixel16)
     return rgba16_pixels
 
+# Generate RGBA32 texture bytearray from pixels
+def rgba32_from_png(rom: Rom, base_texture_address:int, base_palette_address:int, size: int, pngfile:str) -> bytearray:
+    texture = load_rgba32_from_png(pngfile)
+    bytes = bytearray()
+    for pixel in texture:
+        r,g,b,a = pixel
+        bytes.extend(r.to_bytes(1, 'big'))
+        bytes.extend(g.to_bytes(1, 'big'))
+        bytes.extend(b.to_bytes(1, 'big'))
+        bytes.extend(a.to_bytes(1, 'big'))
+    return bytes
+
+# Read a png file into an RGBA32 texture 
+def load_rgba32_from_png(pngfile: str) -> list[int]:
+    image = Image.open(pngfile)
+    rgba32_pixels: list[tuple[int,int,int,int]] = []
+    pixel_data = image.getdata()
+    for pixel in pixel_data:
+        r,g,b,a = pixel
+        rgba32_pixels.append(pixel)
+    return rgba32_pixels
+
 # Create a new rgba16 texture from a original rgba16 texture and a rgba16 patch file
 # rom - Rom object to load the original texture from
 # base_texture_address - Address of the original rbga16 texture in ROM
