@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import os
 
 from Rom import Rom
-
+from PIL import Image
+from Utils import data_path
 
 # Read a ci4 texture from rom and convert to rgba16
 # rom - Rom
@@ -16,7 +18,6 @@ def ci4_to_rgba16(rom: Rom, address: int, length: int, palette: list[int]) -> li
         new_pixels.append(palette[(byte & 0xF0) >> 4])
         new_pixels.append(palette[byte & 0x0F])
     return new_pixels
-
 
 # Convert an rgba16 texture to ci8
 # rgba16_texture - texture to convert
@@ -131,6 +132,58 @@ def rgba16_from_file(rom: Rom, base_texture_address: int, base_palette_address: 
         bytes.extend(int.to_bytes(pixel, 2, 'big'))
     return bytes
 
+# Generate a rgba16 texture byte array from a png file. Use this if you want to create complete new textures using no copyrighted context (or for testing)
+# rom - Unused set to None
+# base_texture_address - Unusued set to None
+# base_palette_address - Unusued set to None
+# size - Unused set to None
+# pngfile - File containing the texture to load
+# returns - bytearray containing the new texture
+def rgba16_from_png(rom: Rom, base_texture_address:int, base_palette_address:int, size: int, pngfile: str) -> bytearray:
+    new_texture = load_rgba16_from_png(pngfile)
+    bytes = bytearray()
+    for pixel in new_texture:
+        bytes.extend(int.to_bytes(pixel,2,'big'))
+    return bytes
+
+# Read a png file into an RGBA16 texture
+# pngfile - File containing the texture
+# returns - list[int] containing each 16-bit RGBA16 pixel.
+def load_rgba16_from_png(pngfile: str) -> list[int]:
+    image = Image.open(pngfile)
+    rgba16_pixels: list[int] = []
+    pixel_data = image.getdata()
+    for pixel in pixel_data:
+        r,g,b,a = pixel
+        r16 = int((r/255) * 31)
+        g16 = int((g/255) * 31)
+        b16 = int((b/255) * 31)
+        a16 = int(a/255)
+        pixel16 = (r16 << 11) + (g16 << 6) + (b16 << 1) + a16
+        rgba16_pixels.append(pixel16)
+    return rgba16_pixels
+
+# Generate RGBA32 texture bytearray from pixels
+def rgba32_from_png(rom: Rom, base_texture_address:int, base_palette_address:int, size: int, pngfile:str) -> bytearray:
+    texture = load_rgba32_from_png(pngfile)
+    bytes = bytearray()
+    for pixel in texture:
+        r,g,b,a = pixel
+        bytes.extend(r.to_bytes(1, 'big'))
+        bytes.extend(g.to_bytes(1, 'big'))
+        bytes.extend(b.to_bytes(1, 'big'))
+        bytes.extend(a.to_bytes(1, 'big'))
+    return bytes
+
+# Read a png file into an RGBA32 texture 
+def load_rgba32_from_png(pngfile: str) -> list[int]:
+    image = Image.open(pngfile)
+    rgba32_pixels: list[tuple[int,int,int,int]] = []
+    pixel_data = image.getdata()
+    for pixel in pixel_data:
+        r,g,b,a = pixel
+        rgba32_pixels.append(pixel)
+    return rgba32_pixels
 
 # Create a new rgba16 texture from a original rgba16 texture and a rgba16 patch file
 # rom - Rom object to load the original texture from
@@ -174,6 +227,25 @@ def ci4_rgba16patch_to_ci8(rom: Rom, base_texture_address: int, base_palette_add
         bytes.extend(int.to_bytes(pixel, 1, 'big'))
     return bytes
 
+def png_to_ci8(rom: Rom, base_texture_address: int, base_paelette_address: int, size: int, pngfile: str) -> bytearray:
+    rgba16_texture = load_rgba16_from_png(pngfile)
+    ci8_texture, ci8_palette = rgba16_to_ci8(rgba16_texture)
+    # merge the palette and the texture
+    bytes = bytearray()
+    for pixel in ci8_palette:
+        bytes.extend(int.to_bytes(pixel, 2, 'big'))
+    for pixel in ci8_texture:
+        bytes.extend(int.to_bytes(pixel, 1, 'big'))
+    return bytes
+
+def get_texture_pack_choices():
+    path = data_path("textures/Custom")
+    # Get all of the folders in the custom textures directory and use those as the options
+    choices = ["Default"]
+    if os.path.exists(path):
+        folders = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path,f))]
+        choices.extend(folders)
+    return choices
 
 # Function to create rgba16 texture patches for crates
 def build_crate_ci8_patches() -> None:
