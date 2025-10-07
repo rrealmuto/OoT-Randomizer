@@ -4745,8 +4745,9 @@ class SettingInfos:
         shared         = False,
         cosmetic       = True,
         choices        = get_texture_pack_choices(),
-        default        = 'Default',
+        default        = 'spoopy',
         gui_params     = {
+            "optional": True,
             "hide_when_disabled": True,
             "dynamic":            True,
         },

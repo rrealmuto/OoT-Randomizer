@@ -1,0 +1,14 @@
+[
+    {
+        "file": "texture_pot_default.png",
+        "type": "rgba16",
+        "target_file_id": 775,
+        "target_file_offset": 0
+    },
+    {
+        "file": "texture_pot_default.png",
+        "type": "rgba16",
+        "target_file_id": 500,
+        "target_file_offset": 67744
+    }
+]
