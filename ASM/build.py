@@ -97,6 +97,9 @@ with open('build/asm_symbols.txt', 'r') as f:
         if sym_name[0] in ['.', '@']:
             continue
         sym_type = c_sym_types.get(sym_name) or ('data' if sym_name.isupper() else 'code')
+        if sym_type == 'code':
+            if ',' in sym_name:
+                sym_name = sym_name.split(',')[0]
         symbols[sym_name] = {
             'type': sym_type,
             'address': address,
@@ -136,6 +139,12 @@ for (name, sym) in symbols.items():
         }
         else:
             patch_symbols[name] = addr
+    elif sym['type'] == 'code':
+        addr = int(sym['address'], 16)
+        data_symbols[name] = {
+            'address': f'{addr:08X}',
+            'length': sym.get('length', 0),
+        }
 
 with open('../data/generated/symbols.json', 'w', newline='\n') as f:
     json.dump(data_symbols, f, indent=4, sort_keys=True)

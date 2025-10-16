@@ -23,7 +23,8 @@
             "Ganons Castle Shadow Trial": "True",
             "Ganons Castle Fire Trial": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
             "Ganons Castle Light Trial": "can_use(Golden_Gauntlets) or
-                (has_explosives and can_live_dmg(0.5,False) and is_adult)",
+                (is_adult and glitch_clipping and has_explosives and can_live_dmg(0.5,False))
+                or (glitch_clipping and can_superslide and Bombs)",
             "Ganons Castle Spirit Trial": "True",
             "Ganons Castle Deku Scrubs": "logic_lens_castle_mq or can_use(Lens_of_Truth)",
             "Ganons Castle Tower": "(glitch_igc_trials_skip and can_hover) or (

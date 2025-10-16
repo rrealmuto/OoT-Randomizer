@@ -4423,3 +4423,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/ovl_en_tp.asm"
 .include "hacks/ovl_obj_roomtimer.asm"
 .include "hacks/ovl_en_g_switch.asm"
+.include "hacks/objects.asm"
