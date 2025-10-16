@@ -227,12 +227,13 @@ def prepare_rom(spoiler: Spoiler, world: World, rom: Rom, settings: Settings, rn
         rom.restore()
     patch_rom(spoiler, world, rom)
     cosmetics_log = patch_cosmetics(settings, rom)
+    patch_misc_models(rom, settings, cosmetics_log)
     if not settings.generating_patch_file:
         if settings.model_adult != "Default" or len(settings.model_adult_filepicker) > 0:
             patch_model_adult(rom, settings, cosmetics_log)
         if settings.model_child != "Default" or len(settings.model_child_filepicker) > 0:
             patch_model_child(rom, settings, cosmetics_log)
-        patch_misc_models(rom, settings, cosmetics_log)
+
     rom.update_header()
     return cosmetics_log
 
