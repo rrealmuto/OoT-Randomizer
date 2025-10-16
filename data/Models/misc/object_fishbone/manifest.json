@@ -1,0 +1,38 @@
+{
+    "model": "object_fishbone.zobj",
+    "replace_object": "object_fish",
+    "vars" : [
+        {
+            "key": "$gFishingFishBoneSkel",
+            "value": "0x06017d50"
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_Fishing",
+            "patches": 
+            [
+                {
+                    "addr": 4782,
+                    "data": "hi($gFishingFishBoneSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 4786,
+                    "data": "lo($gFishingFishBoneSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 45202,
+                    "data": "hi($gFishingFishBoneSkel)",
+                    "size": 2
+                },
+                {
+                    "addr":45214,
+                    "data": "lo($gFishingFishBoneSkel)",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}

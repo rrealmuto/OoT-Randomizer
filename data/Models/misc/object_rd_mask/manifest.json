@@ -1,0 +1,391 @@
+{
+    "model": "object_rd_mask.zobj",
+    "replace_object": "object_rd",
+    "vars" : [
+        {
+            "key": "$gGibdoSkel",
+            "value": "0x0600c2c8"
+        },
+        {
+            "key": "$gRedeadSkel",
+            "value": "0x06016008"
+        },
+        {
+            "key": "$gGibdoRedeadIdleAnim",
+            "value": "0x060049ac"
+        },
+        {
+            "key": "$gGibdoRedeadSobbingAnim",
+            "value": "0x06001f84"
+        },
+        {
+            "key": "$gGibdoRedeadWipingTearsAnim",
+            "value": "0x0600199c"
+        },
+        {
+            "key": "$gGibdoRedeadWalkAnim",
+            "value": "0x06005208"
+        },
+        {
+            "key": "$gGibdoRedeadGrabStartAnim",
+            "value": "0x06000cdc"
+        },
+        {
+            "key": "$gGibdoRedeadGrabAttackAnim",
+            "value": "0x06000478"
+        },
+        {
+            "key": "$gGibdoRedeadGrabEndAnim",
+            "value": "0x06000900"
+        },
+        {
+            "key": "$gGibdoRedeadLookBackAnim",
+            "value": "0x06001190"
+        },
+        {
+            "key": "$gGibdoRedeadStandUpAnim",
+            "value": "0x0600421c"
+        },
+        {
+            "key": "$gGibdoRedeadDamageAnim",
+            "value": "0x060036cc"
+        },
+        {
+            "key": "$gGibdoRedeadDeathAnim",
+            "value": "0x0600306c"
+        }
+    ],
+    "symbols": [
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_rd",
+            "patches":[
+                {
+                    "addr": 246,
+                    "data": "hi($gGibdoSkel)",
+                    "size": 2,
+                    "comment": "Patch gGibdoSkel in SkelAnime_InitFlex (high)"
+                },
+                {
+                    "addr": 350,
+                    "data": "lo($gGibdoSkel)",
+                    "size": 2,
+                    "comment": "Patch gGibdoSkel in SkelAnime_InitFlex (low)"
+                },
+                {
+                    "addr": 254,
+                    "data": "hi($gRedeadSkel)",
+                    "size": 2,
+                    "comment": "Patch gRedeadSkel in SkelAnime_InitFlex (high)"
+                },
+                {
+                    "addr": 290,
+                    "data": "lo($gRedeadSkel)",
+                    "size": 2,
+                    "comment": "Patch gRedeadSkel in SkelAnime_InitFlex (low)"
+                },
+                {
+                    "addr": 318,
+                    "data": "hi($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in SkelAnime_InitFlex for Gibdo (high)"
+                },
+                {
+                    "addr": 346,
+                    "data": "lo($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in SkelAnime_InitFlex for Gibdo (low)"
+                },
+                {
+                    "addr": 258,
+                    "data": "hi($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in SkelAnime_InitFlex for Redead (high)"
+                },
+                {
+                    "addr": 286,
+                    "data": "lo($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in SkelAnime_InitFlex for Redead (low)"
+                },
+                {
+                    "addr": 718,
+                    "data": "hi($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in EnRd_SetupIdle (high)"
+                },
+                {
+                    "addr": 722,
+                    "data": "lo($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in EnRd_SetupIdle (low)"
+                },
+                {
+                    "addr": 1422,
+                    "data": "hi($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in En_SetupRiseFromCoffin in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 1430,
+                    "data": "lo($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in En_SetupRiseFromCoffin in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 1454,
+                    "data": "hi($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in En_SetupRiseFromCoffin in Animation_Change (high)"
+                },
+                {
+                    "addr": 1466,
+                    "data": "lo($gGibdoRedeadIdleAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadIdleAnim in En_SetupRiseFromCoffin in Animation_Change (low)"
+                },
+                {
+                    "addr": 714,
+                    "data": "hi($gGibdoRedeadSobbingAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadSobbingAnim in EnRd_SetupIdle in Animation_PlayLoop (high)"
+                },
+                {
+                    "addr": 750,
+                    "data": "lo($gGibdoRedeadSobbingAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadSobbingAnim in EnRd_SetupIdle in Animation_PlayLoop (low)"
+                },
+                {
+                    "addr": 1010,
+                    "data": "hi($gGibdoRedeadSobbingAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadSobbingAnim in EnRd_Idle in Animation_PlayLoop (high)"
+                },
+                {
+                    "addr": 1014,
+                    "data": "lo($gGibdoRedeadSobbingAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadSobbingAnim in EnRd_Idle in Animation_PlayLoop (low)"
+                },
+                {
+                    "addr": 990,
+                    "data": "hi($gGibdoRedeadWipingTearsAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWipingTearsAnim in EnRd_Idle in Animation_PlayLoop (high)"
+                },
+                {
+                    "addr": 1038,
+                    "data": "lo($gGibdoRedeadWipingTearsAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWipingTearsAnim in EnRd_Idle in Animation_PlayLoop (low)"
+                },
+                {
+                    "addr": 1966,
+                    "data": "hi($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToPlayer in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 1974,
+                    "data": "lo($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToPlayer in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 1998,
+                    "data": "hi($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToPlayer in AnimationChange (high)"
+                },
+                {
+                    "addr": 2010,
+                    "data": "lo($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToPlayer in AnimationChange (low)"
+                },
+                {
+                    "addr": 2926,
+                    "data": "hi($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetuPWalkToHome in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 2934,
+                    "data": "lo($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetuPWalkToHome in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 2958,
+                    "data": "hi($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetuPWalkToHome in Animation_Change (high)"
+                },
+                {
+                    "addr": 2970,
+                    "data": "lo($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToHome in Animation_Change (low)"
+                },
+                {
+                    "addr": 1790,
+                    "data": "hi($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToParent in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 1798,
+                    "data": "lo($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToParent in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 3614,
+                    "data": "hi($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToParent in Animation_Change (high)"
+                },
+                {
+                    "addr": 3626,
+                    "data": "lo($gGibdoRedeadWalkAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadWalkAnim in EnRd_SetupWalkToParent in Animation_Change (low)"
+                },
+                {
+                    "addr": 4118,
+                    "data": "hi($gGibdoRedeadGrabStartAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabStartAnim in EnRd_SetupGrab in Animation_PlayOnce (high)"
+                },
+                {
+                    "addr": 4122,
+                    "data": "lo($gGibdoRedeadGrabStartAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabStartAnim in EnRd_SetupGrab in Animation_PlayOnce (low)"
+                },
+                {
+                    "addr": 4306,
+                    "data": "hi($gGibdoRedeadGrabAttackAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabAttackAnim) in EnRd_Grab in Animation_PlayLoop (high)"
+                },
+                {
+                    "addr": 4310,
+                    "data": "lo($gGibdoRedeadGrabAttackAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabAttackAnim) in EnRd_Grab in Animation_PlayLoop (low)"
+                },
+                {
+                    "addr": 4442,
+                    "data": "hi($gGibdoRedeadGrabEndAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabEndAnim in EnRd_Grab in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 4470,
+                    "data": "lo($gGibdoRedeadGrabEndAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabEndAnim in EnRd_Grab in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 4482,
+                    "data": "hi($gGibdoRedeadGrabEndAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabEndAnim in EnRd_Grab in AnimationChange (high)"
+                },
+                {
+                    "addr": 4502,
+                    "data": "lo($gGibdoRedeadGrabEndAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadGrabEndAnim in EnRd_Grab in AnimationChange (low)"
+                },
+                {
+                    "addr": 5094,
+                    "data": "hi($gGibdoRedeadLookBackAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadLookBackAnim in EnRd_SetupAttemptPlayerFreeze in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 5102,
+                    "data": "lo($gGibdoRedeadLookBackAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadLookBackAnim in EnRd_SetupAttemptPlayerFreeze in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 5122,
+                    "data": "hi($gGibdoRedeadLookBackAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadLookBackAnim in EnRd_SetupAttemptPlayerFreeze in Animation_Change (high)"
+                },
+                {
+                    "addr": 5142,
+                    "data": "lo($gGibdoRedeadLookBackAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadLookBackAnim in EnRd_SetupAttemptPlayerFreeze in Animation_Change (low)"
+                },
+                {
+                    "addr": 5462,
+                    "data": "hi($gGibdoRedeadStandUpAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadStandUpAnim in EnRd_SetupStandUp in Animation_MorphToPlayOnce (high)"
+                },
+                {
+                    "addr": 5466,
+                    "data": "lo($gGibdoRedeadStandUpAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadStandUpAnim in EnRd_SetupStandUp in Animation_MorphToPlayOnce (low)"
+                },
+                {
+                    "addr": 5630,
+                    "data": "hi($gGibdoRedeadStandUpAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadStandUpAnim in EnRd_SetupCrouch in Animation_GetLastFrame (high)"
+                },
+                {
+                    "addr": 5638,
+                    "data": "lo($gGibdoRedeadStandUpAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadStandUpAnim in EnRd_SetupCrouch in Animation_GetLastFrame (low)"
+                },
+                {
+                    "addr": 5666,
+                    "data": "hi($gGibdoRedeadStandUpAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadStandUpAnim in EnRd_SetupCrouch in Animation_Change (high)"
+                },
+                {
+                    "addr": 5682,
+                    "data": "lo($gGibdoRedeadStandUpAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadStandUpAnim in EnRd_SetupCrouch in Animation_Change (low)"
+                },
+                {
+                    "addr": 5818,
+                    "data": "hi($gGibdoRedeadDamageAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadDamageAnim in EnRd_SetupDamage in Animation_MorphToPlayOnce (high)"
+                },
+                {
+                    "addr": 5822,
+                    "data": "lo($gGibdoRedeadDamageAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadDamageAnim in EnRd_SetupDamage in Animation_MorphToPlayOnce (low)"
+                },
+                {
+                    "addr": 6230,
+                    "data": "hi($gGibdoRedeadDeathAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadDeathAnim in EnRd_SetupDead in Animation_MorphToPlayOnce (high)"
+                },
+                {
+                    "addr": 6234,
+                    "data": "lo($gGibdoRedeadDeathAnim)",
+                    "size": 2,
+                    "comment": "Patch gGibdoRedeadDeathAnim in EnRd_SetupDead in Animation_MorphToPlayOnce (low)"
+                }
+            ]
+        }
+    ]
+}

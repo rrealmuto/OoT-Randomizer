@@ -1,0 +1,44 @@
+{
+    "model": "object_md.zobj",
+    "replace_object": "object_md",
+    "vars" : [
+        {
+            "key": "$gMidoSkelSkel",
+            "value": "0x06014438"
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_md",
+            "patches": 
+            [
+                {
+                    "addr": 5190,
+                    "data": "hi($gMidoSkelSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 5218,
+                    "data": "lo($gMidoSkelSkel)",
+                    "size": 2
+                }
+            ]
+        },
+        {
+            "file": "ovl_demo_ec",
+            "patches": 
+            [
+                {
+                    "addr": 8098,
+                    "data": "hi($gMidoSkelSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 8102,
+                    "data": "lo($gMidoSkelSkel)",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}

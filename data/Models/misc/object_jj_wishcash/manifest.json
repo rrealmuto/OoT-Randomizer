@@ -1,0 +1,79 @@
+{
+    "model": "object_jj_wishcash.zobj",
+    "replace_object": "object_jj",
+    "vars" : [
+        {
+            "key": "$gjabuJabuSkel",
+            "value": 100694272
+        },
+        {
+            "key": "$gJabuJabuAnim",
+            "value": 100671280
+        },
+        {
+            "key": "$gJabuJabuHeadCol",
+            "value": 100665876
+        },
+        {
+            "key": "$gJabuJabuBodyCol",
+            "value": 100669464
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_jj",
+            "patches":[
+                {
+                    "addr": 134,
+                    "data": "hi($gjabuJabuSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 170,
+                    "data": "lo($gjabuJabuSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 138,
+                    "data": "hi($gJabuJabuAnim)",
+                    "size": 2
+                },
+                {
+                    "addr": 182,
+                    "data": "hi($gJabuJabuAnim)",
+                    "size": 2
+                },
+                {
+                    "addr": 166,
+                    "data": "lo($gJabuJabuAnim)",
+                    "size": 2
+                },
+                {
+                    "addr": 186,
+                    "data": "lo($gJabuJabuAnim)",
+                    "size":2
+                },
+                {
+                    "addr": 370,
+                    "data": "hi($gJabuJabuHeadCol)",
+                    "size":2
+                },
+                {
+                    "addr": 374,
+                    "data": "lo($gJabuJabuHeadCol)",
+                    "size":2
+                },
+                {
+                    "addr": 470,
+                    "data": "hi($gJabuJabuBodyCol)",
+                    "size":2
+                },
+                {
+                    "addr": 474,
+                    "data": "lo($gJabuJabuBodyCol)",
+                    "size":2
+                }
+            ]
+        }
+    ]
+}
