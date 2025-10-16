@@ -1297,17 +1297,17 @@ adultSkeleton: list[list[int]] = [
 ChildPieces: dict[str, tuple[Offsets, int]] = {
     "Slingshot.String": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT_STRING, 0x221A8),
     "Sheath": (Offsets.CHILD_LINK_LUT_DL_SWORD_SHEATH, 0x15408),
-    "Blade.2": (Offsets.CHILD_LINK_LUT_DL_MASTER_SWORD, 0x15698),  # 0x15540 + 0x158, skips fist
-    "Blade.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_BLADE, 0x14110),  # 0x13F38 + 0x1D8, skips fist and hilt
+    "Blade.2": (Offsets.CHILD_LINK_LUT_DL_MASTER_SWORD, 0x15540),  # 0x15540 + 0x158, skips fist
+    "Blade.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_BLADE, 0x13F38),  # 0x13F38 + 0x1D8, skips fist and hilt
     "Boomerang": (Offsets.CHILD_LINK_LUT_DL_BOOMERANG, 0x14660),
     "Fist.L": (Offsets.CHILD_LINK_LUT_DL_LFIST, 0x13E18),
     "Fist.R": (Offsets.CHILD_LINK_LUT_DL_RFIST, 0x14320),
-    "Hilt.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_HILT, 0x14048),  # 0x13F38 + 0x110, skips fist
+    "Hilt.1": (Offsets.CHILD_LINK_LUT_DL_SWORD_HILT, 0x13F38),  # 0x13F38 + 0x110, skips fist
     "Shield.1": (Offsets.CHILD_LINK_LUT_DL_SHIELD_DEKU, 0x14440),
-    "Slingshot": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT, 0x15F08),  # 0x15DF0 + 0x118, skips fist
+    "Slingshot": (Offsets.CHILD_LINK_LUT_DL_SLINGSHOT, 0x15DF0),  # 0x15DF0 + 0x118, skips fist
     "Ocarina.1": (Offsets.CHILD_LINK_LUT_DL_OCARINA_FAIRY, 0x15BA8),
     "Bottle": (Offsets.CHILD_LINK_LUT_DL_BOTTLE, 0x18478),
-    "Ocarina.2": (Offsets.CHILD_LINK_LUT_DL_OCARINA_TIME, 0x15AB8),  # 0x15958 + 0x160, skips hand
+    "Ocarina.2": (Offsets.CHILD_LINK_LUT_DL_OCARINA_TIME, 0x15958),  # 0x15958 + 0x160, skips hand
     "Bottle.Hand.L": (Offsets.CHILD_LINK_LUT_DL_LHAND_BOTTLE, 0x18478),  # Just the bottle, couldn't find one with hand and bottle
     "GoronBracelet": (Offsets.CHILD_LINK_LUT_DL_GORON_BRACELET, 0x16118),
     "Mask.Bunny": (Offsets.CHILD_LINK_LUT_DL_MASK_BUNNY, 0x2CA38),
@@ -1320,7 +1320,7 @@ ChildPieces: dict[str, tuple[Offsets, int]] = {
     "Mask.Zora": (Offsets.CHILD_LINK_LUT_DL_MASK_ZORA, 0x2B580),
     "FPS.Forearm.R": (Offsets.CHILD_LINK_LUT_DL_FPS_RIGHT_ARM, 0x18048),
     "DekuStick": (Offsets.CHILD_LINK_LUT_DL_DEKU_STICK, 0x6CC0),
-    "Shield.2": (Offsets.CHILD_LINK_LUT_DL_SHIELD_HYLIAN_BACK, 0x14C30),  # 0x14B40 + 0xF0, skips sheath
+    "Shield.2": (Offsets.CHILD_LINK_LUT_DL_SHIELD_HYLIAN_BACK, 0x14B40),  # 0x14B40 + 0xF0, skips sheath
     "Limb 1": (Offsets.CHILD_LINK_LUT_DL_WAIST, 0x202A8),
     "Limb 3": (Offsets.CHILD_LINK_LUT_DL_RTHIGH, 0x204F0),
     "Limb 4": (Offsets.CHILD_LINK_LUT_DL_RSHIN, 0x206E8),
@@ -1342,10 +1342,16 @@ ChildPieces: dict[str, tuple[Offsets, int]] = {
 
 
 childSkips: dict[str, list[tuple[int, int]]] = {
+    "Blade.1": [(0xA8, 0x1D8)],
+    "Blade.2": [(0xA8, 0x158)],
     "Boomerang": [(0x140, 0x240)],
-    "Hilt.1": [(0xC8, 0x170)],
+    "Slingshot": [(0xA8, 0x118)],
+    #"Hilt.1": [(0xC8, 0x170)],
+    "Hilt.1": [(0xA8, 0x110), (0x1D8, 0x280)],
     "Shield.1": [(0x140, 0x218)],
+    "Shield.2": [(0xA8, 0xF0)],
     "Ocarina.1": [(0x110, 0x240)],
+    "Ocarina.2": [(0xA8, 0x160)]
 }
 
 childSkeleton: list[list[int]] = [
@@ -1449,7 +1455,14 @@ restrictiveBytes: list[tuple[int, int]] = [
     (CODE_START + 0xE65A4, 1 * 4),  # Writes 4-byte hierarchy pointer
 ]
 
-def read_object_manifest(manifest_path: str):
+def mips_hi_lo(value: int):
+    high_word = (value & 0xFFFF0000) >> 16
+    low_word = (value & 0x0000FFFF)
+    if low_word & 0x00008000:
+        high_word += 1
+    return (high_word, low_word)
+
+def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[dict[str,object]], dict[str,object]]:
     manifest = None
     with open(manifest_path) as f:
         manifest = json.loads(f.read())
@@ -1459,17 +1472,63 @@ def read_object_manifest(manifest_path: str):
     
     model_file = manifest["model"]
     replace_object = manifest["replace_object"]
-    patch_files = manifest["patch_files"]
+    patch_files = manifest["patch_files"] if "patch_files" in manifest.keys() else []
+    patch_gi_draw_table = manifest["patch_gi_draw_table"] if "patch_gi_draw_table" in manifest.keys() else None
+    patch_item_table = manifest["patch_item_table"] if "patch_item_table" in manifest.keys() else None
+    vars = {}
+    if "vars" in manifest.keys():
+        for var in manifest["vars"]:
+            val = var["value"]
+            if type(val) == str:
+                if val.startswith("0x"):
+                    val = int(val, 16)
 
-    return (model_file, replace_object, patch_files)
+            val_hi, val_lo = mips_hi_lo(val)
+            vars[var["key"]] = val
+            vars[f"hi({var['key']})"] = val_hi
+            vars[f"lo({var['key']})"] = val_lo
+    
+    if "symbols" in manifest.keys():
+        for sym in manifest["symbols"]:
+            vars[sym] = rom.sym(sym)
+
+    return (model_file, replace_object, patch_files, patch_gi_draw_table, patch_item_table, vars)
 
 file_list = {
     'object_ganon': (0x015C9000, 0x015D9100),
-    'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660)
+    'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660),
+    'object_fish': (0x01842000, 0x018575F0),
+    'ovl_Fishing': (0x00DBE030, 0x00DD1A00),
+    'object_gi_boomerang': (0x01604000, 0x01604DA0),
+    'ovl_en_boom': (0x00C5A8C0, 0x00C5B180),
+    'object_gs': (0x0194E000, 0x0194EA80),
+    'ovl_en_gs': (0x00EE7790, 0x00EE9630),
+    'object_jj': (0x11BD000, 0x11C8AC0),
+    'ovl_en_jj': (0x00C9F330, 0x00CA0900),
+    'object_gi_hammer': (0x0163D000, 0x0163DCC0),
+    'object_tsubo': (0x01738000, 0x017399F0),
+    'ovl_obj_tsubo': (0x00DE7C60, 0x00DE8C50),
+    'object_ane': (0x016C5000, 0x016CBFB0),
+    'ovl_en_niw_lady': (0x00E1DDC0,0x00E1F6A0),
+    'object_rd': (0x01396000, 0x013A4FF0),
+    'ovl_en_rd': (0x00CD71B0, 0x00CD9A60),
+    'ovl_en_tubo_trap': (0x00DFA470, 0x00DFB110),
+    'ovl_en_g_switch': (0x00DF3020, 0x00DF4850),
+    'object_md': (0x01643000, 0x0164D150),
+    'ovl_en_md': (0x00E61B50, 0x00E641C0),
+    'ovl_demo_ec': (0x00E9A590, 0x00E9DDF0)
 }
 
 object_ids = {
-    'object_ganon': 0xE1
+    'object_ganon': 0xE1,
+    'object_fish': 0x015B,
+    'object_gi_boomerang': 0x00E8,
+    'object_gs': 0x0188,
+    'object_gi_hammer': 0x00F6,
+    'object_tsubo': 0x012C,
+    'object_ane': 0x110,
+    'object_rd': 0x0098,
+    'object_md': 0x00FB
 }
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
@@ -1480,7 +1539,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         # Read the manifest
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
         if os.path.exists(manifest_path):
-            model_file, replace_object, patch_files = read_object_manifest(manifest_path)
+            model_file, replace_object, patch_files, patches_gi_draw_table, patches_item_table, vars = read_object_manifest(rom, manifest_path)
         else:
             continue
         # Read the model data
@@ -1488,39 +1547,100 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         with open(model_file_path, 'rb') as f:
             model_data = f.read()
         
-        # Find the original model file info
-        orig_vrom_start, orig_vrom_end = file_list[replace_object]
-        orig_size = orig_vrom_end - orig_vrom_start
-
-        # Zeroize the original file
-        rom.write_bytes(orig_vrom_start, [0] * orig_size)
-
-        # Check if we're larger than the original file
-        model_start = orig_vrom_start
-        if len(model_data) > orig_size:
-            # Make a new file and update the dma and object table
+        new_obj_id = None
+        if replace_object == "new":
+            # Add an entirely new object to the file system and object table
             model_start = rom.dma.free_space(len(model_data))
-                
-            # Write the new model data
+            model_end = model_start + len(model_data)
+            rom.update_dmadata_record_by_key(None, model_start, model_end)
+            new_obj_id = rom.add_extended_object(model_start, model_end)
             rom.write_bytes(model_start, model_data)
-            rom.update_dmadata_record_by_key(orig_vrom_start, model_start, model_start + len(model_data))
-            # Update object table
-            object_table_entry_addr = 0xB6EF58 + object_ids[replace_object]*8
-            rom.write_int32(object_table_entry_addr, model_start)
-            rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
-        
         else:
-            # Write the new model data
-            rom.write_bytes(model_start, model_data)
+            # Find the original model file info
+            orig_vrom_start, orig_vrom_end = file_list[replace_object]
+            orig_size = orig_vrom_end - orig_vrom_start
+
+            # Zeroize the original file
+            rom.write_bytes(orig_vrom_start, [0] * orig_size)
+
+            # Check if we're larger than the original file
+            model_start = orig_vrom_start
+            if len(model_data) > orig_size:
+                # Make a new file and update the dma and object table
+                model_start = rom.dma.free_space(len(model_data))
+                    
+                # Write the new model data
+                rom.write_bytes(model_start, model_data)
+                rom.update_dmadata_record_by_key(orig_vrom_start, model_start, model_start + len(model_data))
+                # Update object table
+                object_table_entry_addr = 0xB6EF58 + object_ids[replace_object]*8
+                rom.write_int32(object_table_entry_addr, model_start)
+                rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
+            
+            else:
+                # Write the new model data
+                rom.write_bytes(model_start, model_data)
+
+        if patch_files is None:
+            patch_files = []
+
+        # Add item_draw_table patches to the main patch_files
+        if patches_gi_draw_table:
+            for patch_gi_draw_table in patches_gi_draw_table:
+                item_draw_table_base = rom.sym('item_draw_table')
+                payload_base = rom.sym('PAYLOAD_START')
+                item_draw_table_entry_size = 36
+                gi_draw_patch = {}
+                gi_draw_patch["file"] = "PAYLOAD"
+                gi_draw_patch["patches"] = []
+                for patch in patch_gi_draw_table["patches"]:
+                    patch_fixed = {}
+                    patch_fixed["addr"] = patch_gi_draw_table["index"]*item_draw_table_entry_size + item_draw_table_base - payload_base + patch["addr"] 
+                    patch_fixed["data"] = patch["data"]
+                    patch_fixed["size"] = patch["size"]
+                    gi_draw_patch["patches"].append(patch_fixed)
+                patch_files.append(gi_draw_patch)
+
+        # Add item_table patches to the main patch_files
+        if patches_item_table:
+            for patch_item_table in patches_item_table:
+                item_table_base = rom.sym('item_table')
+                payload_base = rom.sym('PAYLOAD_START')
+                item_table_entry_size = 28
+                item_table_patch = {}
+                item_table_patch["file"] = "PAYLOAD"
+                item_table_patch["patches"] = []
+                for patch in patch_item_table["patches"]:
+                    patch_fixed = {}
+                    patch_fixed["addr"] = patch_item_table["index"]*item_table_entry_size + item_table_base - payload_base + patch["addr"] 
+                    patch_fixed["data"] = patch["data"]
+                    patch_fixed["size"] = patch["size"]
+                    item_table_patch["patches"].append(patch_fixed)
+                patch_files.append(item_table_patch)
 
         # Apply patches
         for patch_file in patch_files:
             file_name = patch_file["file"]
             patches = patch_file["patches"]
-            patch_base, _ = file_list[file_name]
+            patch_base, _ = (0,0) if file_name == "ROM" else (rom.sym('PAYLOAD_START'), 0) if file_name == "PAYLOAD" else file_list[file_name]
             for patch in patches:
                 addr = patch["addr"]
+                if type(addr) == str:
+                    addr = vars[addr]
                 data = patch["data"]
+                size = patch["size"] if "size" in patch.keys() else len(data)
+                if type(data) == str:
+                    if data == "newObjectID":
+                        if new_obj_id:
+                            data = new_obj_id.to_bytes(size, 'big')
+                        else:
+                            raise Exception("Patch requires new object ID but none provided")
+                    elif data in vars:
+                        data = vars[data].to_bytes(size, 'big')
+                elif type(data) == int:
+                    data = data.to_bytes(size, 'big')
 
                 rom.write_bytes(patch_base + addr, data)
+        
+
 

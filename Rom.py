@@ -279,6 +279,30 @@ class Rom(BigStream):
         if size < original_size:
             self.changed_address.update(zip(range(size, original_size-1), [0]*(original_size-size)))
 
+    # Add a new object to the extended object table. Return the object ID
+    def add_extended_object(self, start_address, end_address) -> int:
+        extended_object_table_start_addr = self.sym("EXTENDED_OBJECT_TABLE")
+        extended_object_table_len = self.sym_length("EXTENDED_OBJECT_TABLE")
+
+        NUM_VANILLA_OBJECTS = 0x192
+        extended_objects_size = int(extended_object_table_len/8)
+
+        found_free_object: bool = False
+        for i in range(0, extended_objects_size):
+            index = extended_object_table_start_addr + (i * 8)
+            obj_start = self.read_int32(index)
+            obj_end = self.read_int32(index + 4)
+            if obj_start == 0:
+                found_free_object = True
+                break
+        
+        if not found_free_object:
+            raise Exception(f"No more extended object slots: {i}")
+
+        self.write_int32(index, start_address)
+        self.write_int32(index + 4, end_address)
+        return i + NUM_VANILLA_OBJECTS + 1
+
 class DMAEntry:
     def __init__(self, rom: Rom, index: int) -> None:
         self.rom = rom
