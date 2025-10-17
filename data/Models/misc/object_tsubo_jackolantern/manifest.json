@@ -106,6 +106,12 @@
                     "comment": "Patch fragment DL in EnTuboTrap_SpawnEffectsOnLand (high)"
                 },
                 {
+                    "addr": 690,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch object ID in EffectSsKakera_Spawn call to object_tsubo"
+                },
+                {
                     "addr": 382,
                     "data": "lo($gPotJackOLanternFragmentDL)",
                     "size": 2,
@@ -122,6 +128,12 @@
                     "data": "lo($gPotJackOLanternFragmentDL)",
                     "size": 2,
                     "comment": "Patch fragment DL in EnTuboTrap_SpawnEffectsInWater (low)"
+                },
+                {
+                    "addr": 1370,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch object ID in EffectSsKakera_Spawn call to object_tsubo"
                 }
             ]
         },
