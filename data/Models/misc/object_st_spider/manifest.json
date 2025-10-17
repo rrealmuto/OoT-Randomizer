@@ -1,0 +1,44 @@
+{
+    "model": "object_st_spider.zobj",
+    "replace_object": "object_st",
+    "vars" : [
+        {
+            "key": "$object_st_spider",
+            "value": "0x06009300"
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_st",
+            "patches": 
+            [
+                {
+                    "addr": 6846,
+                    "data": "hi($object_st_spider)",
+                    "size": 2
+                },
+                {
+                    "addr": 6874,
+                    "data": "lo($object_st_spider)",
+                    "size": 2
+                }
+            ]
+        },
+        {
+            "file": "ovl_en_sw",
+            "patches": 
+            [
+                {
+                    "addr": 1950,
+                    "data": "hi($object_st_spider)",
+                    "size": 2
+                },
+                {
+                    "addr": 2166,
+                    "data": "lo($object_st_spider)",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}

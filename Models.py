@@ -1516,7 +1516,10 @@ file_list = {
     'ovl_en_g_switch': (0x00DF3020, 0x00DF4850),
     'object_md': (0x01643000, 0x0164D150),
     'ovl_en_md': (0x00E61B50, 0x00E641C0),
-    'ovl_demo_ec': (0x00E9A590, 0x00E9DDF0)
+    'ovl_demo_ec': (0x00E9A590, 0x00E9DDF0),
+    'object_st': (0x010F9000, 0x010FEBB0),
+    'ovl_en_st': (0x00C61A00, 0x00C64670),
+    'ovl_en_sw': (0x00CE2E80, 0x00CE65F0)
 }
 
 object_ids = {
@@ -1528,7 +1531,8 @@ object_ids = {
     'object_tsubo': 0x012C,
     'object_ane': 0x110,
     'object_rd': 0x0098,
-    'object_md': 0x00FB
+    'object_md': 0x00FB,
+    'object_st': 0x0024
 }
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
