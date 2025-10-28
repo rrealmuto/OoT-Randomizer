@@ -1,0 +1,67 @@
+{
+    "model": "object_wood02_spoopy.zobj",
+    "replace_object": "object_wood02",
+    "vars" : [
+        {
+            "key": "$Tree1",
+            "value": "0x0600b7e0"
+        },
+        {
+            "key": "$Tree2",
+            "value": "0x0600e508"
+        },
+        {
+            "key": "$Tree3",
+            "value": "0x06012078"
+        },
+        {
+            "key": "$gWood02BlankDL",
+            "value": "0x060120b8"
+        }
+    ],
+    "symbols": [
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_wood02",
+            "patches":[
+                {
+                    "addr": 4036,
+                    "data": "$Tree3",
+                    "size": 4,
+                    "comment": "Patch stem table @ 8091F964 item 0"
+                },
+                {
+                    "addr": 4040,
+                    "data": "$Tree2",
+                    "size": 4,
+                    "comment": "Patch stem table @ 8091F964 item 1"
+                },
+                {
+                    "addr": 4044,
+                    "data": "$Tree1",
+                    "size": 4,
+                    "comment": "Patch stem table @ 8091F964 item 2"
+                },
+                {
+                    "addr": 4064,
+                    "data": "$gWood02BlankDL",
+                    "size": 4,
+                    "comment": "Patch leave table @ 8091f980 with empty DL"
+                },
+                {
+                    "addr": 4068,
+                    "data": "$gWood02BlankDL",
+                    "size": 4,
+                    "comment": "Patch leave table @ 8091f980 with empty DL"
+                },
+                {
+                    "addr": 4072,
+                    "data": "$gWood02BlankDL",
+                    "size": 4,
+                    "comment": "Patch leave table @ 8091f980 with empty DL"
+                }
+            ]
+        }
+    ]
+}

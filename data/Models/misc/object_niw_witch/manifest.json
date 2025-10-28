@@ -1,0 +1,143 @@
+{
+    "model": "object_niw_witch.zobj",
+    "replace_object": "object_niw",
+    "vars" : [
+        {
+            "key": "$gCuccoSkel",
+            "value": "0x06003640"
+        },
+        {
+            "key": "$gCuccoEffectFeatherMaterialDL",
+            "value": "0x06000528"
+        },
+        {
+            "key": "$gCuccoEffectFeatherModelDL",
+            "value": "0x060005a0"
+        },
+        {
+            "key": "$gCuccoAnim",
+            "value": "0x060000e8",
+            "comment": "Note: this is the original address. If this changes, need to add additional patches"
+        }
+    ],
+    "symbols": [
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_en_niw",
+            "patches":[
+                {
+                    "addr": 214,
+                    "data": "hi($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoSkel (Upper half)"
+                },
+                {
+                    "addr": 250,
+                    "data": "lo($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoSkel (lower half)"
+                },
+                {
+                    "addr": 11358,
+                    "data": "hi($gCuccoEffectFeatherMaterialDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherMaterialDL reference in EnNiw_DrawEffects (upper half)"
+                },
+                {
+                    "addr": 11362,
+                    "data": "lo($gCuccoEffectFeatherMaterialDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherMaterialDL reference in EnNiw_DrawEffects (lower half)"
+                },
+                {
+                    "addr": 11326,
+                    "data": "hi($gCuccoEffectFeatherModelDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherModelDL reference in EnNiw_DrawEffects (upper half)"
+                },
+                {
+                    "addr": 11334,
+                    "data": "lo($gCuccoEffectFeatherModelDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherModelDL reference in EnNiw_DrawEffects (lower half)"
+                }
+            ]
+        },
+        {
+            "file": "ovl_demo_ec",
+            "patches":[
+                {
+                    "addr": 8758,
+                    "data": "hi($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch DemoEc_InitSkelAnime reference to gCuccoSkel in DemoEc_InitCucco"
+                },
+                {
+                    "addr": 8762,
+                    "data": "lo($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch DemoEc_InitSkelAnime reference to gCuccoSkel in DemoEc_InitCucco"
+                }
+            ]
+        },
+        {
+            "file": "ovl_en_attack_niw",
+            "patches":[
+                {
+                    "addr": 62,
+                    "data": "hi($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoSkel in EnAttackNiw_Init (upper half)"
+                },
+                {
+                    "addr": 98,
+                    "data": "lo($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoSkel in EnAttackNiw_Init (lower half)"
+                }
+            ]
+        },
+        {
+            "file": "ovl_en_syateki_niw",
+            "patches":[
+                {
+                    "addr": 78,
+                    "data": "hi($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoSkel in EnSyatekiNiw_Init (upper half)"
+                },
+                {
+                    "addr": 114,
+                    "data": "lo($gCuccoSkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoSkel in EnSyatekiNiw_Init (lower half)"
+                },
+                {
+                    "addr": 7162,
+                    "data": "hi($gCuccoEffectFeatherMaterialDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherMaterialDL reference in EnSyatekiNiw_DrawEffects (upper half)"
+                },
+                {
+                    "addr": 7166,
+                    "data": "lo($gCuccoEffectFeatherMaterialDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherMaterialDL reference in EnSyatekiNiw_DrawEffects (lower half)"
+                },
+                {
+                    "addr": 7130,
+                    "data": "hi($gCuccoEffectFeatherModelDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherModelDL reference in EnSyatekiNiw_DrawEffects (upper half)"
+                },
+                {
+                    "addr": 7138,
+                    "data": "lo($gCuccoEffectFeatherModelDL)",
+                    "size": 2,
+                    "comment": "Patch gCuccoEffectFeatherModelDL reference in EnNiw_DrawEffects (lower half)"
+                }
+            ]
+        }
+    ]
+}

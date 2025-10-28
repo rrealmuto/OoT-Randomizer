@@ -1519,7 +1519,13 @@ file_list = {
     'ovl_demo_ec': (0x00E9A590, 0x00E9DDF0),
     'object_st': (0x010F9000, 0x010FEBB0),
     'ovl_en_st': (0x00C61A00, 0x00C64670),
-    'ovl_en_sw': (0x00CE2E80, 0x00CE65F0)
+    'ovl_en_sw': (0x00CE2E80, 0x00CE65F0),
+    'object_niw': (0x01049000, 0x0104B540),
+    'ovl_en_niw': (0x00C27D90, 0x00C2B0C0),
+    'ovl_en_attack_niw': (0x00E275A0, 0x00E28800),
+    'ovl_en_syateki_niw': (0x00E25510, 0x00E275A0),
+    'ovl_en_wood02': (0x00CBC120, 0x00CBD2F0),
+    'object_wood02': (0x012DF000, 0x012E77D0)
 }
 
 object_ids = {
@@ -1532,7 +1538,9 @@ object_ids = {
     'object_ane': 0x110,
     'object_rd': 0x0098,
     'object_md': 0x00FB,
-    'object_st': 0x0024
+    'object_st': 0x0024,
+    'object_niw': 0x0013,
+    'object_wood02': 0x007C
 }
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):

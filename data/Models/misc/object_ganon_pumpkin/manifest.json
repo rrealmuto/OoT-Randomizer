@@ -1,0 +1,51 @@
+{
+    "model": "object_ganon_pumpkin.zobj",
+    "replace_object": "object_ganon",
+    "vars" : [
+        {
+            "key": "$gGanondorfSkelPumpkin",
+            "value": "0x0600d260"
+        },
+        {
+            "key": "$gGanondorfRightHandOpenDL",
+            "value": "0x0600eae8"
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_Boss_Ganon",
+            "patches": 
+            [
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Upper half",
+                    "addr": 2550,
+                    "data": "hi($gGanondorfSkelPumpkin)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Lower half",
+                    "addr": 2554,
+                    "data": "lo($gGanondorfSkelPumpkin)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch out the eyes",
+                    "addr": 33256,
+                    "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                },
+                {
+                    "comment": "Right hand open DL segment address in BossGanon_OverrideLimbDraw. Upper half",
+                    "addr": 32562,
+                    "data": "hi($gGanondorfRightHandOpenDL)",
+                    "size": 2
+                },
+                {
+                    "comment": "Right hand open DL segment address in BossGanon_OverrideLimbDraw. Lower half",
+                    "addr": 32566,
+                    "data": "lo($gGanondorfRightHandOpenDL)",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}
