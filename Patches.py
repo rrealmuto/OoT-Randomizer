@@ -36,10 +36,11 @@ from TextBox import line_wrap
 from Utils import data_path
 from World import World
 from ntype import BigStream
-from texture_util import ci4_rgba16patch_to_ci8, rgba16_from_file, png_to_ci8, rgba16_from_png, rgba16_patch, rgba32_from_png
+from texture_util import ci4_rgba16patch_to_ci8, load_rgba16_from_png, rgba16_from_file, png_to_ci8, rgba16_from_png, rgba16_patch, rgba16_to_bytes, rgba16_to_ci4, rgba32_from_png
 from version import __version__
 from Boulders import patch_boulders
 from ProcessActors import get_bad_actors, process_scenes
+import json
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -346,25 +347,29 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.texture_pack != 'Default':
         misc_texture_path_base = os.path.join(data_path("textures/Custom"), world.settings.texture_pack, "misc")
         misc_texture_path = os.path.join(misc_texture_path_base, "misc_textures.json")
-        try:
-            import json
-            f = open(misc_texture_path, 'r')
-            misc_json = f.read()
-            f.close()
-            misc_textures = json.loads(misc_json)
-            for texture in misc_textures:
-                texture_path = os.path.join(misc_texture_path_base, texture['file'])
-                texture_type = texture['type']
-                file_id = texture['target_file_id']
-                offset = texture['target_file_offset']
-                if texture_type == "rgba16":
-                    texture_data = rgba16_from_png(rom, 0, 0, 0, texture_path)
-                elif texture_type == "rgba32":
-                    texture_data = rgba32_from_png(rom, 0,0,0, texture_path)
-                dma_entry = rom.dma[file_id]
-                rom.write_bytes(dma_entry.start + offset, texture_data)
-        except Exception as e:
-            pass
+        f = open(misc_texture_path, 'r')
+        misc_json = f.read()
+        f.close()
+        misc_textures = json.loads(misc_json)
+        for texture in misc_textures:
+            palette = None
+            texture_path = os.path.join(misc_texture_path_base, texture['file'])
+            texture_type = texture['type']
+            file_id = texture['target_file_id']
+            offset = texture['target_file_offset']
+            if texture_type == "rgba16":
+                texture_data = rgba16_from_png(rom,0,0,0,texture_path)
+            elif texture_type == "rgba32":
+                texture_data = rgba16_from_png(rom,0,0,0,texture_path)
+            elif texture_type == "ci4":
+                texture_data = load_rgba16_from_png(texture_path)
+                texture_data, palette = rgba16_to_ci4(texture_data)
+                
+            dma_entry = rom.dma[file_id]
+            rom.write_bytes(dma_entry.start + offset, texture_data)
+            if palette:
+                palette_address = texture['palette_address']
+                rom.write_bytes(dma_entry.start + palette_address, rgba16_to_bytes(palette))
 
     save_context = SaveContext()
 

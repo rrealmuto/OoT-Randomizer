@@ -1,14 +1,63 @@
 [
     {
-        "file": "texture_pot_default.png",
+        "file": "spot00_scene_0001AB98_Tex.rgba16.png",
         "type": "rgba16",
-        "target_file_id": 775,
-        "target_file_offset": 0
+        "target_file_id": 1025,
+        "target_file_offset": 109464
     },
     {
-        "file": "texture_pot_default.png",
+        "file": "spot00_scene_0001B398_Tex.rgba16.png",
         "type": "rgba16",
-        "target_file_id": 500,
-        "target_file_offset": 67744
+        "target_file_id": 1025,
+        "target_file_offset": 111512
+    },
+    {
+        "file": "spot00_scene_0001D998_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 121240
+    },
+    {
+        "file": "spot00_scene_00013D98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 81304
+    },
+    {
+        "file": "spot00_scene_00015E98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 89752
+    },
+    {
+        "file": "spot00_scene_00016B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 93080
+    },
+    {
+        "file": "spot00_scene_00019B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 105368
+    },
+    {
+        "file": "spot00_scene_00023018_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 143384
+    },
+    {
+        "file": "spot00_scene_00025898_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 153752
+    },
+    {
+        "file": "spot00_scene_00024818_CITex.ci4_dark.png",
+        "type": "ci4",
+        "target_file_id": 1025,
+        "target_file_offset": 149528,
+        "palette_address": 81264
     }
 ]
