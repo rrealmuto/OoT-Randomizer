@@ -60,5 +60,8 @@ typedef struct Sphere16 {
     z64_xyz_t center;
     int16_t radius;
 } Sphere16; // size = 0x08
+typedef struct {
+    float x, y, z;
+} Vec3f; // move this if needed elsewhere
 
 #endif

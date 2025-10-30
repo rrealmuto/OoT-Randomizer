@@ -41,3 +41,11 @@ NNN_PATCH_3_END:
     andi    t8, t7, 0x0F
     jal     Player_CanLiftIshi
     lh      t7, 0x1c(t5)
+.headersize(0x808301C0 - 0xBCDB70)
+
+; Hack in Player_PlayVoiceSfx so we can adjust volume
+; Hack the call to Player_PlaySfx to call our own version
+.org 0x808306A8
+; Replaces:
+;   jal     Player_PlaySfx
+    jal     Player_PlaySfxWithVolume
