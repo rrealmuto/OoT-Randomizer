@@ -46,6 +46,29 @@
                     "size": 2
                 }
             ]
+        },
+        {
+            "file": "ovl_Boss_Ganon2",
+            "patches":
+            [
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Upper half",
+                    "addr": 1210,
+                    "data": "hi($gGanondorfSkelPumpkin)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Lower half",
+                    "addr": 1214,
+                    "data": "lo($gGanondorfSkelPumpkin)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch out the eyes",
+                    "addr": 33812,
+                    "data": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                }
+            ]
         }
     ]
 }

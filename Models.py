@@ -1525,7 +1525,8 @@ file_list = {
     'ovl_en_attack_niw': (0x00E275A0, 0x00E28800),
     'ovl_en_syateki_niw': (0x00E25510, 0x00E275A0),
     'ovl_en_wood02': (0x00CBC120, 0x00CBD2F0),
-    'object_wood02': (0x012DF000, 0x012E77D0)
+    'object_wood02': (0x012DF000, 0x012E77D0),
+    'ovl_Boss_Ganon2': (0x00E826C0, 0x00E939B0)
 }
 
 object_ids = {
