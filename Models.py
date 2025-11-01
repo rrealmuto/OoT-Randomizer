@@ -5,6 +5,7 @@ import random
 from enum import IntEnum
 from typing import TYPE_CHECKING
 from bin.tools.ml64_unpak.ML64Unpack import ML64Pak
+from FileList import file_list, object_list
 
 from Utils import data_path
 
@@ -1494,56 +1495,6 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
 
     return (model_file, replace_object, patch_files, patch_gi_draw_table, patch_item_table, vars)
 
-file_list = {
-    'object_ganon': (0x015C9000, 0x015D9100),
-    'ovl_Boss_Ganon': (0x00D7F3F0, 0x00DA1660),
-    'object_fish': (0x01842000, 0x018575F0),
-    'ovl_Fishing': (0x00DBE030, 0x00DD1A00),
-    'object_gi_boomerang': (0x01604000, 0x01604DA0),
-    'ovl_en_boom': (0x00C5A8C0, 0x00C5B180),
-    'object_gs': (0x0194E000, 0x0194EA80),
-    'ovl_en_gs': (0x00EE7790, 0x00EE9630),
-    'object_jj': (0x11BD000, 0x11C8AC0),
-    'ovl_en_jj': (0x00C9F330, 0x00CA0900),
-    'object_gi_hammer': (0x0163D000, 0x0163DCC0),
-    'object_tsubo': (0x01738000, 0x017399F0),
-    'ovl_obj_tsubo': (0x00DE7C60, 0x00DE8C50),
-    'object_ane': (0x016C5000, 0x016CBFB0),
-    'ovl_en_niw_lady': (0x00E1DDC0,0x00E1F6A0),
-    'object_rd': (0x01396000, 0x013A4FF0),
-    'ovl_en_rd': (0x00CD71B0, 0x00CD9A60),
-    'ovl_en_tubo_trap': (0x00DFA470, 0x00DFB110),
-    'ovl_en_g_switch': (0x00DF3020, 0x00DF4850),
-    'object_md': (0x01643000, 0x0164D150),
-    'ovl_en_md': (0x00E61B50, 0x00E641C0),
-    'ovl_demo_ec': (0x00E9A590, 0x00E9DDF0),
-    'object_st': (0x010F9000, 0x010FEBB0),
-    'ovl_en_st': (0x00C61A00, 0x00C64670),
-    'ovl_en_sw': (0x00CE2E80, 0x00CE65F0),
-    'object_niw': (0x01049000, 0x0104B540),
-    'ovl_en_niw': (0x00C27D90, 0x00C2B0C0),
-    'ovl_en_attack_niw': (0x00E275A0, 0x00E28800),
-    'ovl_en_syateki_niw': (0x00E25510, 0x00E275A0),
-    'ovl_en_wood02': (0x00CBC120, 0x00CBD2F0),
-    'object_wood02': (0x012DF000, 0x012E77D0),
-    'ovl_Boss_Ganon2': (0x00E826C0, 0x00E939B0)
-}
-
-object_ids = {
-    'object_ganon': 0xE1,
-    'object_fish': 0x015B,
-    'object_gi_boomerang': 0x00E8,
-    'object_gs': 0x0188,
-    'object_gi_hammer': 0x00F6,
-    'object_tsubo': 0x012C,
-    'object_ane': 0x110,
-    'object_rd': 0x0098,
-    'object_md': 0x00FB,
-    'object_st': 0x0024,
-    'object_niw': 0x0013,
-    'object_wood02': 0x007C
-}
-
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
     misc_path = data_path("Models/misc")
     subdirs = [dir for dir in os.listdir(misc_path) if os.path.isdir(os.path.join(misc_path,dir))]
@@ -1570,23 +1521,22 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
             rom.write_bytes(model_start, model_data)
         else:
             # Find the original model file info
-            orig_vrom_start, orig_vrom_end = file_list[replace_object]
-            orig_size = orig_vrom_end - orig_vrom_start
+            dma = rom.dma[file_list[replace_object]]
 
             # Zeroize the original file
-            rom.write_bytes(orig_vrom_start, [0] * orig_size)
+            rom.write_bytes(dma.start, [0] * dma.size)
 
             # Check if we're larger than the original file
-            model_start = orig_vrom_start
-            if len(model_data) > orig_size:
+            model_start = dma.start
+            if len(model_data) > dma.size:
                 # Make a new file and update the dma and object table
                 model_start = rom.dma.free_space(len(model_data))
                     
                 # Write the new model data
                 rom.write_bytes(model_start, model_data)
-                rom.update_dmadata_record_by_key(orig_vrom_start, model_start, model_start + len(model_data))
+                rom.update_dmadata_record_by_key(dma.start, model_start, model_start + len(model_data))
                 # Update object table
-                object_table_entry_addr = 0xB6EF58 + object_ids[replace_object]*8
+                object_table_entry_addr = 0xB6EF58 + object_list[replace_object]*8
                 rom.write_int32(object_table_entry_addr, model_start)
                 rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
             
@@ -1635,7 +1585,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         for patch_file in patch_files:
             file_name = patch_file["file"]
             patches = patch_file["patches"]
-            patch_base, _ = (0,0) if file_name == "ROM" else (rom.sym('PAYLOAD_START'), 0) if file_name == "PAYLOAD" else file_list[file_name]
+            patch_base = 0 if file_name == "ROM" else rom.sym('PAYLOAD_START') if file_name == "PAYLOAD" else rom.dma[file_list[file_name]].start
             for patch in patches:
                 addr = patch["addr"]
                 if type(addr) == str:

@@ -23,7 +23,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_wood02",
+            "file": "ovl_En_Wood02",
             "patches":[
                 {
                     "addr": 4036,

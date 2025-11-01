@@ -23,7 +23,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_niw_lady",
+            "file": "ovl_En_Niw_Lady",
             "patches":[
                 {
                     "addr": 846,
@@ -58,7 +58,7 @@
             ]
         },
         {
-            "file": "ovl_demo_ec",
+            "file": "ovl_Demo_Ec",
             "patches":[
                 {
                     "addr": 9074,

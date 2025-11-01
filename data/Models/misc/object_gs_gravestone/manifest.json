@@ -9,7 +9,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_gs",
+            "file": "ovl_En_Gs",
             "patches":[
                 {
                     "addr": 6326,

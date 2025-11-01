@@ -27,7 +27,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_obj_tsubo",
+            "file": "ovl_Obj_Tsubo",
             "patches":[
                 {
                     "addr": 3576,
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "file": "ovl_en_g_switch",
+            "file": "ovl_En_G_Switch",
             "patches": [
                 {
                     "addr": 3042,
@@ -91,7 +91,7 @@
             ]
         },
         {
-            "file": "ovl_en_tubo_trap",
+            "file": "ovl_En_Tubo_Trap",
             "patches": [
                 {
                     "addr": 3012,

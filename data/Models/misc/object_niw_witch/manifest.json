@@ -24,7 +24,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_niw",
+            "file": "ovl_En_Niw",
             "patches":[
                 {
                     "addr": 214,
@@ -65,7 +65,7 @@
             ]
         },
         {
-            "file": "ovl_demo_ec",
+            "file": "ovl_Demo_Ec",
             "patches":[
                 {
                     "addr": 8758,
@@ -82,7 +82,7 @@
             ]
         },
         {
-            "file": "ovl_en_attack_niw",
+            "file": "ovl_En_Attack_Niw",
             "patches":[
                 {
                     "addr": 62,
@@ -99,7 +99,7 @@
             ]
         },
         {
-            "file": "ovl_en_syateki_niw",
+            "file": "ovl_En_Syateki_Niw",
             "patches":[
                 {
                     "addr": 78,

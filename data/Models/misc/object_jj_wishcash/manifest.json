@@ -21,7 +21,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_jj",
+            "file": "ovl_En_Jj",
             "patches":[
                 {
                     "addr": 134,

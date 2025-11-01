@@ -9,7 +9,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_md",
+            "file": "ovl_En_Md",
             "patches": 
             [
                 {
@@ -25,7 +25,7 @@
             ]
         },
         {
-            "file": "ovl_demo_ec",
+            "file": "ovl_Demo_Ec",
             "patches": 
             [
                 {

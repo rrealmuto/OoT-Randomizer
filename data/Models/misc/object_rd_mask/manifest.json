@@ -59,7 +59,7 @@
     ],
     "patch_files": [
         {
-            "file": "ovl_en_rd",
+            "file": "ovl_En_Rd",
             "patches":[
                 {
                     "addr": 246,
