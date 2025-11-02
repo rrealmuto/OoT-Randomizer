@@ -226,12 +226,12 @@
                         ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
                     has_projectile(child) or can_use(Dins_Fire))",
             "Spirit Temple Child Climb Lizalfos 1": "
-                has_soul(Lizalfos_and_Dinalfos) and
+                has_soul(Lizalfos_and_Dinolfos) and
                     ((is_adult and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                     Kokiri_Sword or Sticks or Slingshot or (Bombs and Nuts))",
             "Spirit Temple Child Climb Lizalfos 2": "
-                has_soul(Lizalfos_and_Dinalfos) and
+                has_soul(Lizalfos_and_Dinolfos) and
                     ((is_adult and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
                     Kokiri_Sword or Sticks or Slingshot or (Bombs and Nuts))",
@@ -470,8 +470,8 @@
             "Spirit Temple Big Mirror White Bubble 1": "has_soul(Bubble)",
             "Spirit Temple Big Mirror White Bubble 2": "has_soul(Bubble)",
             "Spirit Temple Big Mirror White Bubble 3": "has_soul(Bubble)",
-            "Spirit Temple Big Mirror First Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
-            "Spirit Temple Big Mirror Second Lizalfos": "has_soul(Lizalfos_and_Dinalfos) and has_explosives"
+            "Spirit Temple Big Mirror First Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
+            "Spirit Temple Big Mirror Second Lizalfos": "has_soul(Lizalfos_and_Dinolfos) and has_explosives"
         },
         "exits": {
             "Spirit Temple Boss Key Chest Room": "can_play(Zeldas_Lullaby)",

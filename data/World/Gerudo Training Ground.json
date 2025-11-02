@@ -6,7 +6,7 @@
             "Gerudo Training Ground Lobby Left Chest": "can_use(Bow) or can_use(Slingshot)",
             "Gerudo Training Ground Lobby Right Chest": "can_use(Bow) or can_use(Slingshot)",
             "Gerudo Training Ground Beamos Chest": "
-                can_kill_beamos and has_soul(Lizalfos_and_Dinalfos) and (is_adult or Kokiri_Sword)",
+                can_kill_beamos and has_soul(Lizalfos_and_Dinolfos) and (is_adult or Kokiri_Sword)",
             "Gerudo Training Ground Hidden Ceiling Chest": "
                 (Small_Key_Gerudo_Training_Ground, 3) and (logic_lens_gtg or can_use(Lens_of_Truth))",
             "Gerudo Training Ground Maze Path First Chest": "(Small_Key_Gerudo_Training_Ground, 4)",
@@ -25,7 +25,7 @@
         "exits": {
             "Gerudo Fortress": "True",
             "Gerudo Training Ground Lava Room Front": "
-                can_kill_beamos and has_soul(Lizalfos_and_Dinalfos) and here(is_adult or Kokiri_Sword)",
+                can_kill_beamos and has_soul(Lizalfos_and_Dinolfos) and here(is_adult or Kokiri_Sword)",
             "Gerudo Training Ground Central Maze Right": "(Small_Key_Gerudo_Training_Ground, 9)",
             "Gerudo Training Ground Boulder Room": "can_kill_stalfos",
             "Farores Wind Warp": "can_use(Farores_Wind)"

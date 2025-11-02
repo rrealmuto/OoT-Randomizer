@@ -33,7 +33,7 @@ void ObjComb_Update(z64_actor_t* thisx, z64_game_t* game) {
     }
     this->unk_1B2 += 0x2EE0;
     this->actionFunc(this, game);
-    this->actor.rot_2.x = z64_Math_SinS(this->unk_1B2) * this->unk_1B0 + this->actor.rot_init.x;
+    this->actor.shape.rot.x = z64_Math_SinS(this->unk_1B2) * this->unk_1B0 + this->actor.rot_init.x;
 
     if (this->chest_type > 0) {
         if (this->unk_1B0 == 0 && this->actor.dropFlag == 0) {

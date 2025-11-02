@@ -568,7 +568,7 @@ hintTable: dict[str, tuple[list[str] | str, Optional[str], str | list[str]]] = {
     'Keese Soul': (["the souls of the Keese"], None, 'item'),
     'Tektite Soul': (["the souls of the Tektite"], None, 'item'),
     'Peahat Soul': (["the souls of the Peahat"], None, 'item'),
-    'Lizalfos and Dinalfos Soul': (["the souls of the Lizalfos and Dinalfos"], None, 'item'),
+    'Lizalfos and Dinolfos Soul': (["the souls of the Lizalfos and Dinolfos"], None, 'item'),
     'Gohma Larvae Soul': (["the souls of the Gohma Larvae"], None, 'item'),
     'Shabom Soul': (["the souls of the Shabom"], None, 'item'),
     'Baby Dodongo Soul': (["the souls of the Baby Dodongo"], None, 'item'),

@@ -1773,6 +1773,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree Lobby Vines Lowest Skullwalltula",                   ("EnemyDrop",    0x00,  (0, 0, 0x01), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Lobby Vines Left Lower Skullwalltula",               ("EnemyDrop",    0x00,  (0, 0, 0x02), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Lobby Vines Upper Skullwalltula",                    ("EnemyDrop",    0x00,  (0, 0, 0x03), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree Before Slingshot Hint Scrub",                        ("EnemyDrop",    0x00,  (1, 0, 0x01), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Compass Room Withered Deku Baba",                    ("EnemyDrop",    0x00,  (10,0, 0x01), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Compass Room Skulltula",                             ("EnemyDrop",    0x00,  (10,0, 0x02), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Compass Room Deku Baba",                             ("EnemyDrop",    0x00,  (10,0, 0x05), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
@@ -1783,6 +1784,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree Basement Upper Ledge Deku Baba 1",                   ("EnemyDrop",    0x00,  (3, 0, 0x04), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Basement Upper Ledge Deku Baba 2",                   ("EnemyDrop",    0x00,  (3, 0, 0x06), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Basement Upper Ledge Withered Deku Baba",            ("EnemyDrop",    0x00,  (3, 0, 0x01), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree Basement Eye Switch Room Hint Scrub",                ("EnemyDrop",    0x00,  (4, 0, 0x05), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Spinning Log Skulltula",                             ("EnemyDrop",    0x00,  (5, 0, 0x01), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Basement Torch Room Withered Deku Baba 1",           ("EnemyDrop",    0x00,  (6, 0, 0x01), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Basement Torch Room Withered Deku Baba 2",           ("EnemyDrop",    0x00,  (6, 0, 0x02), None,                      'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
@@ -1794,6 +1796,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree Basement Back Room Gohma Larva 2",                   ("EnemyDrop",    0x00,  (7, 0, 0x07), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Basement Back Room Gohma Larva 3",                   ("EnemyDrop",    0x00,  (7, 0, 0x08), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
     ("Deku Tree Basement Back Room Near GS Skulltula",               ("EnemyDrop",    0x00,  (8, 0, 0x01), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree Before Boss 3-2-1 Scrubs Left",                      ("EnemyDrop",    0x00,  (9, 0, 0x06), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree Before Boss 3-2-1 Scrubs Middle",                    ("EnemyDrop",    0x00,  (9, 0, 0x04), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree Before Boss 3-2-1 Scrubs Right",                     ("EnemyDrop",    0x00,  (9, 0, 0x05), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
 
     # Deku Tree MQ
     ("Deku Tree MQ Map Chest",                                       ("Chest",        0x00,  0x03, None,                            'Map (Deku Tree)',                       ("Deku Tree MQ", "Master Quest", "Chests",))),
@@ -1945,6 +1950,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Deku Tree MQ Basement Back Room Gohma Larva 2",                ("EnemyDrop",    0x00,  (8,0,9), None,                         'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Enemy Drops",))),
     ("Deku Tree MQ Basement Back Room Gohma Larva 3",                ("EnemyDrop",    0x00,  (8,0,10), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Enemy Drops",))),
     ("Deku Tree MQ Basement Back Room Gohma Larva 4",                ("EnemyDrop",    0x00,  (8,0,11), None,                        'Rupees (5)',                            ("Deku Tree MQ", "Master Quest", "Enemy Drops",))),
+    ("Deku Tree MQ Before Boss 3-2-1 Scrubs Left",                   ("EnemyDrop",    0x00,  (9, 0, 0x05), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree MQ Before Boss 3-2-1 Scrubs Middle",                 ("EnemyDrop",    0x00,  (9, 0, 0x06), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Deku Tree MQ Before Boss 3-2-1 Scrubs Right",                  ("EnemyDrop",    0x00,  (9, 0, 0x04), None,                   'Rupees (5)',                            ("Deku Tree", "Vanilla Dungeons", "Enemy Drops",))),
 
     # Deku Tree Shared
     ("Deku Tree Queen Gohma Heart",                                  ("BossHeart",    0x11,  0x4F, None,                            'Heart Container',                       ("Deku Tree", "Deku Tree MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -2875,6 +2883,14 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Big Lava Room Red Bubble 8",                       ("EnemyDrop",    0x04,  (1, 0, 17), None,               'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Big Lava Room Red Bubble 9",                       ("EnemyDrop",    0x04,  (1, 0, 23), None,               'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Song of Time Room Like Like",                      ("EnemyDrop",    0x04,  (19,0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 1",            ("EnemyDrop",    0x04,  (19,0, 2), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 2",            ("EnemyDrop",    0x04,  (19,0, 3), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 3",            ("EnemyDrop",    0x04,  (19,0, 4), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 4",            ("EnemyDrop",    0x04,  (19,0, 5), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 5",            ("EnemyDrop",    0x04,  (19,0, 6), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 6",            ("EnemyDrop",    0x04,  (19,0, 7), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 7",            ("EnemyDrop",    0x04,  (19,0, 8), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Song of Time Room Flying Floor Tile 8",            ("EnemyDrop",    0x04,  (19,0, 9), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Elevator Room Keese 1",                            ("EnemyDrop",    0x04,  (21,0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Elevator Room Keese 2",                            ("EnemyDrop",    0x04,  (21,0, 2), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Elevator Room Keese 3",                            ("EnemyDrop",    0x04,  (21,0, 4), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
@@ -2908,6 +2924,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple Before Lower Flare Dancer Torch Slug 3",           ("EnemyDrop",    0x04,  (15,0, 6), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Before Lower Flare Dancer Torch Slug 4",           ("EnemyDrop",    0x04,  (15,0, 8), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Before Lower Flare Dancer Like Like",              ("EnemyDrop",    0x04,  (18,0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Before Lower Flare Dancer Flying Floor Tile 1",    ("EnemyDrop",    0x04,  (18,0, 2), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Before Lower Flare Dancer Flying Floor Tile 2",    ("EnemyDrop",    0x04,  (18,0, 3), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Before Lower Flare Dancer Flying Floor Tile 3",    ("EnemyDrop",    0x04,  (18,0, 4), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Before Lower Flare Dancer Flying Floor Tile 4",    ("EnemyDrop",    0x04,  (18,0, 5), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
+    ("Fire Temple Before Lower Flare Dancer Flying Floor Tile 5",    ("EnemyDrop",    0x04,  (18,0, 6), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Fire Temple Lower Flare Dancer",                               ("EnemyDrop",    0x04,  (3, 0, 1), None,                'Rupees (5)',                                 ("Fire Temple", "Vanilla Dungeons", "Enemy Drops",))),
 
     # Fire Temple MQ
