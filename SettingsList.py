@@ -4286,83 +4286,15 @@ class SettingInfos:
         }
     )
 
-    # nnn_1 = Checkbutton(
-    #     gui_text      = 'Do not participate in No Deku Nut November',
-    #     gui_tooltip   = '''\
-    #         By enabling this you acknowledge that you are lame and are
-    #         declining to participate in No Deku Nut November.
-    #     ''',
-    #     shared        = True,
-    #     default       = False,
-    #     disable        = {
-    #         False:  {'settings': ['nnn_2', 'nnn_3', 'nnn_4', 'nnn_5']}
-    #     },
-    # )
-
-    # nnn_2 = Checkbutton (
-    #     gui_text      = 'Are you sure?',
-    #     gui_tooltip   = '''\
-    #         By enabling this you acknowledge that you are lame and are
-    #         declining to participate in No Deku Nut November.
-    # ''',
-    #     shared        = True,
-    #     default       = False,
-    #     disable        = {
-    #         False:  {'settings': ['nnn_3', 'nnn_4', 'nnn_5']}
-    #     },
-    #     gui_params     = {
-    #         "hide_when_disabled": True,
-    #     },
-    # )
-
-    # nnn_3 = Checkbutton (
-    #     gui_text      = 'Are you really sure?',
-    #     gui_tooltip   = '''\
-    #         By enabling this you acknowledge that you are lame and are
-    #         declining to participate in No Deku Nut November.
-    # ''',
-    #     shared        = True,
-    #     default       = False,
-    #     disable        = {
-    #         False:  {'settings': ['nnn_4', 'nnn_5']}
-    #     },
-    #     gui_params     = {
-    #         "hide_when_disabled": True,
-    #     },
-    # )
-
-    # nnn_4 = Checkbutton (
-    #     gui_text      = 'Last chance to change your mind',
-    #     gui_tooltip   = '''\
-    #         By disabling this you acknowledge that you are lame and are
-    #         declining to participate in No Deku Nut November.
-    # ''',
-    #     shared        = True,
-    #     default       = True,
-    #     disable        = {
-    #         True:  {'settings': ['nnn_5']}
-    #     },
-    #     gui_params     = {
-    #         "hide_when_disabled": True,
-    #     },
-    # )
-
-    # nnn_5 = Textinput(
-    #     gui_text       = "Enter confirmation string",
-    #     shared         = True,
-    #     gui_tooltip    = """\
-    #         To ensure that you want to decline participating in
-    #         No Deku Nut November, please type the following:
-
-    #         I am lame!
-    #     """,
-    #     default        = "",
-    #     gui_params     = {
-    #         "size":               "full",
-    #         "max_length":         20,
-    #         "hide_when_disabled": True,
-    #     },
-    # )
+    nnn_opt_out = Checkbutton(
+        gui_text      = 'Do not participate in No Deku Nut November',
+        gui_tooltip   = '''\
+            By enabling this you acknowledge that you are lame and are
+            declining to participate in No Deku Nut November.
+        ''',
+        shared        = True,
+        default       = False,
+    )
 
     tcg_requires_lens = Checkbutton(
         gui_text       = 'Require Lens of Truth for Treasure Chest Game',
