@@ -20,7 +20,7 @@ extern z64_disp_buf_t debug_db;
 #define OPEN_DISPS(gfxCtx)                  \
     {                                       \
         z64_gfx_t* __gfxCtx = gfxCtx; \
-        int32_t __dispPad
+        [[maybe_unused]] int32_t __dispPad
 
 #define CLOSE_DISPS(gfxCtx) \
     (void)0;                \

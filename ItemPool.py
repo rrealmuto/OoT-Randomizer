@@ -571,9 +571,8 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
             if 'Pocket Egg' in world.settings.adult_trade_start and 'Pocket Cucco' in world.settings.adult_trade_start:
                 pending_junk_pool.remove('Pocket Cucco')
         elif world.settings.adult_trade_start:
-            # With adult trade shuffle off, add a random extra adult trade item
-            item = random.choice(world.settings.adult_trade_start)
-            pending_junk_pool.append(item)
+            # With adult trade shuffle off, add another copy of the selected adult trade item
+            pending_junk_pool.append(world.selected_adult_trade_item)
         if world.settings.zora_fountain != 'open':
             ruto_bottles += 1
         if world.settings.shuffle_kokiri_sword:
@@ -1143,8 +1142,8 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         for ocarina_button in ocarina_buttons:
             world.state.collect(ItemFactory(ocarina_button, world))
 
-    for _ in range(world.settings.add_random_starting_items):
-        random_starting_items_pool = sorted({item for item in pool if item not in ItemInfo.junk_weight}) # give each item the same weight regardless of how many copies there are
+    for _ in range(world.settings.random_starting_items_count):
+        random_starting_items_pool = configure_random_starting_items_pool(world, pool)
         selected_item = random.choice(random_starting_items_pool)
         world.randomized_starting_items[selected_item] = world.randomized_starting_items.get(selected_item, 0) + 1
         pool.remove(selected_item)
@@ -1224,3 +1223,22 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
         world.distribution.distribution.search_groups['Junk'] = remove_junk_items
 
     return pool, placed_items
+
+
+def configure_random_starting_items_pool(world: World, pool: list[str]) -> list[str]:
+    exclude_list = []
+
+    if 'songs' in world.settings.random_starting_items_exclude:
+        exclude_list.extend(item_groups['Song'])
+    if 'bombchus' in world.settings.random_starting_items_exclude:
+        exclude_list.extend((item for item in pool if 'Bombchus' in item))
+    if 'shields' in world.settings.random_starting_items_exclude:
+        exclude_list.extend(item_groups['Shield'])
+    if 'deku_upgrades' in world.settings.random_starting_items_exclude:
+        exclude_list.extend(('Deku Stick Capacity', 'Deku Nut Capacity'))
+    if 'health_upgrades' in world.settings.random_starting_items_exclude:
+        exclude_list.extend(item_groups['HealthUpgrade'])
+    if 'junk' in world.settings.random_starting_items_exclude:
+        exclude_list.extend(ItemInfo.junk_weight)
+
+    return sorted({item for item in pool if item not in exclude_list}) # give each item the same weight regardless of how many copies there are

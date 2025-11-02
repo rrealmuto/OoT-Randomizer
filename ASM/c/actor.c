@@ -196,7 +196,6 @@ void Actor_StoreChestType(z64_actor_t* actor, z64_game_t* game) {
         if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_UNCHECKED && override.key.all > 0) { // For "unchecked" PTMC setting: Check if we have an override which means it wasn't collected.
             *pChestType = GILDED_CHEST;
         } else if (POTCRATE_TEXTURES_MATCH_CONTENTS == PTMC_CONTENTS) {
-            uint16_t item_id = resolve_upgrades(override);
             item_row_t* row = get_item_row(override.value.looks_like_item_id);
             if (row == NULL) {
                 row = get_item_row(override.value.base.item_id);
@@ -377,7 +376,7 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
 
     continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
 
-    if(continue_spawn) {
+    if (continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
         if (spawned) {
             if (spawn_actor_with_flag) {

@@ -826,10 +826,7 @@ class TestValidSpoilers(unittest.TestCase):
                     if settings.logic_rules == 'advanced' and logic_rules_setting == 'advanced':
                         continue
                     settings.logic_rules = logic_rules_setting
-                    try:
-                        main(settings)
-                    except EntranceShuffleError:
-                        self.skipTest("Entrance shuffle error, see https://github.com/OoTRandomizer/OoT-Randomizer/issues/2181 for a potential fix.")
+                    main(settings)
                     # settings.output_file contains the first part of the filename
                     spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
                     self.verify_woth(spoiler)
@@ -867,10 +864,7 @@ class TestValidSpoilers(unittest.TestCase):
                 test_name = 'Glitched logic with entrances and all advanced tricks'
                 settings.advanced_allowed_tricks = [trick['name'] for trick in advanced_logic_tricks.values()]
             with self.subTest(test_name, filename=filename):
-                try:
-                    main(settings)
-                except EntranceShuffleError:
-                    self.skipTest("Entrance shuffle error, see https://github.com/OoTRandomizer/OoT-Randomizer/issues/2181 for a potential fix.")
+                main(settings)
                 # settings.output_file contains the first part of the filename
                 spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
                 self.verify_woth(spoiler)
@@ -890,7 +884,10 @@ class TestValidSpoilers(unittest.TestCase):
                     try:
                         main(settings)
                     except EntranceShuffleError:
-                        self.skipTest("Entrance shuffle error, see https://github.com/OoTRandomizer/OoT-Randomizer/issues/2181 for a potential fix.")
+                        if 'hell' in settings_dict.get('aliases', []):
+                            self.skipTest("Entrance shuffle error, see https://github.com/OoTRandomizer/OoT-Randomizer/issues/2181 for a potential fix.")
+                        else:
+                            raise
                     spoiler = load_spoiler('%s_Spoiler.json' % settings.output_file)
                     self.verify_woth(spoiler)
                     self.verify_playthrough(spoiler)

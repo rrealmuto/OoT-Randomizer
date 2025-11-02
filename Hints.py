@@ -308,7 +308,7 @@ def can_reach_hint(worlds: list[World], hint_location: Location, location: Locat
 
     old_item = location.item
     location.item = None
-    search = Search.max_explore([world.state for world in worlds])
+    search = Search.max_explore([world.state for world in worlds], collect_pseudo_starting_items=True)
     location.item = old_item
 
     return (search.spot_access(hint_location)
@@ -1142,16 +1142,23 @@ def get_junk_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
 
 def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
     top_level_locations = []
+    empty_dungeons = [dungeon for dungeon in world.precompleted_dungeons if world.precompleted_dungeons[dungeon]]
     for location in world.get_filled_locations():
-        if (HintArea.at(location).text(world.settings.clearer_hints) not in top_level_locations
-                and (HintArea.at(location).text(world.settings.clearer_hints) + ' Important Check') not in checked
-                and HintArea.at(location) != HintArea.ROOT):
-            top_level_locations.append(HintArea.at(location).text(world.settings.clearer_hints))
-    hint_loc = random.choice(top_level_locations)
+        hint_area = HintArea.at(location)
+        if (
+            hint_area not in top_level_locations
+            and hint_area not in checked
+            and hint_area != HintArea.ROOT
+            and hint_area.dungeon_name not in empty_dungeons # prevent pre-completed dungeons from being hinted
+            and not location.locked # prevent areas with unshuffled checks from being hinted
+        ):
+            top_level_locations.append(hint_area)
+    if not top_level_locations:
+        return None
+    hint_area = random.choice(top_level_locations)
     item_count = 0
     for location in world.get_filled_locations():
-        region = HintArea.at(location).text(world.settings.clearer_hints)
-        if region == hint_loc:
+        if HintArea.at(location) == hint_area:
             if (location.item.majoritem
                 # exclude locked items
                 and not location.locked
@@ -1169,7 +1176,7 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
                     or world.settings.shuffle_ganon_bosskey == 'dungeons' or world.settings.shuffle_ganon_bosskey == 'tokens'))):
                 item_count = item_count + 1
 
-    checked.add(hint_loc + ' Important Check')
+    checked.add(hint_area)
 
     if item_count == 0:
         numcolor = 'Red'
@@ -1182,7 +1189,7 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
     else:
         numcolor = 'Green'
 
-    return GossipText('#%s# has #%d# major item%s.' % (hint_loc, item_count, "s" if item_count != 1 else ""), ['Green', numcolor]), None
+    return GossipText('%s has #%d# major item%s.' % (hint_area.text(world.settings.clearer_hints), item_count, "s" if item_count != 1 else ""), ['Green', numcolor]), None
 
 
 hint_func: dict[str, HintFunc | BarrenFunc] = {
@@ -1644,7 +1651,10 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
                 else:
                     logging.getLogger('').debug('Placed %s hint for %s.', hint_type, ', '.join([location.name for location in locations]))
             if not place_ok and custom_fixed:
-                logging.getLogger('').debug('Failed to place %s fixed hint for %s.', hint_type, ', '.join([location.name for location in locations]))
+                if locations is None:
+                    logging.getLogger('').debug('Failed to place %s fixed hint.', hint_type)
+                else:
+                    logging.getLogger('').debug('Failed to place %s fixed hint for %s.', hint_type, ', '.join([location.name for location in locations]))
                 fixed_hint_types.insert(0, hint_type)
 
 

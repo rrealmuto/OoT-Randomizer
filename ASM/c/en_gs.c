@@ -29,7 +29,7 @@ void En_Gs_Update_Hack(EnGs* this, z64_game_t* globalCtx) {
                         {
                             xflag_t* flag = &(Actor_GetAdditionalData(&this->actor)->flag);
                             drop_collectible_override_flag = *flag;
-                            EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &(this->actor.pos_world), ITEM00_RUPEE_GREEN);
+                            z64_Item_DropCollectible(globalCtx, &(this->actor.pos_world), ITEM00_RUPEE_GREEN);
                             z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
                         }
                         else

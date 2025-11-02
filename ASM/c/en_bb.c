@@ -3,8 +3,8 @@
 #include "en_bb.h"
 #include "actor.h"
 
-static colorRGBA8_t sEffectPrimColor = { 255, 255, 127, 0 };
-static colorRGBA8_t sEffectEnvColor = { 255, 255, 255, 0 };
+static colorRGBA8_t sEffectPrimColor = { {{255, 255, 127}}, 0 };
+static colorRGBA8_t sEffectEnvColor = { {{255, 255, 255}}, 0 };
 static z64_xyzf_t sEffectVelocity = { 0.0f, 0.1f, 0.0f };
 static z64_xyzf_t sEffectAccel = { 0.0f, 0.01f, 0.0f };
 

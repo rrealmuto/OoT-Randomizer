@@ -1231,11 +1231,12 @@ class SettingInfos:
             required to access the Deku Tree. Items needed for this will be
             guaranteed inside the forest area. This setting is incompatible
             with starting as adult, and so Starting Age will be locked to Child.
-            With either "Shuffle Interior Entrances" set to "All", "Shuffle
-            Overworld Entrances" on, "Randomize Warp Song Destinations" on
-            or "Randomize Overworld Spawns" on, Closed Forest will instead
-            be treated as Closed Deku with starting age Child and WILL NOT
-            guarantee that these items are available in the forest area.
+            With any of "Shuffle Interior Entrances" set to "All", "Shuffle
+            Overworld Entrances" on, "Randomize Warp Song Destinations" on,
+            "Randomize Overworld Spawns" on, or "Shuffle Grottos" in Advanced
+            Logic, Closed Forest will instead be treated as Closed Deku with
+            starting age Child and WILL NOT guarantee that these items are
+            available in the forest area.
         ''',
         shared         = True,
         disable        = {
@@ -3446,11 +3447,40 @@ class SettingInfos:
         ''',
     )
 
-    add_random_starting_items = Scale(
+    add_random_starting_items = Checkbutton(
         gui_text         = 'Additional Random Starting Items',
-        gui_tooltip    = '''\
-            Begin the game with this many randomly selected items in
+        gui_tooltip      = '''\
+            Begin the game with a configurable amount of randomly selected items in
             addition to your selections from the tables.
+        ''',
+        disable          = {
+            False: {'settings': ['random_starting_items_exclude', 'random_starting_items_count']}
+        },
+        shared           = True,
+    )
+
+    random_starting_items_exclude = MultipleSelect(
+        gui_text         = 'Exclude Item Types',
+        gui_tooltip      = '''\
+            Selections here will be excluded from the random starting item pool.
+        ''',
+        choices          = {
+            'songs':           'Songs',
+            'bombchus':        'Bombchus',
+            'shields':         'Deku/Hylian Shields',
+            'deku_upgrades':   'Deku Stick/Nut Upgrades',
+            'health_upgrades': 'Health Upgrades',
+            'junk':            'Junk Items',
+        },
+        default          = [],
+        disabled_default = [],
+        shared           = True,
+    )
+
+    random_starting_items_count = Scale(
+        gui_text         = 'Amount of Items',
+        gui_tooltip      = '''\
+            Configure the amount of random items to start with.
         ''',
         default          = 0,
         minimum          = 0,

@@ -266,7 +266,7 @@ void close_rando_display_buffer() {
 #endif
 
     if (((int) rando_overlay_db.p - (int) rando_overlay_db.buf) > rando_overlay_db.size) {
-        sprintf(error_msg, "size = %x\nmax = %x\np = %p\nbuf = %p\nd = %p", ((int) rando_overlay_db.p - (int) rando_overlay_db.buf),
+        sprintf(error_msg, "size = %x\nmax = %lx\np = %p\nbuf = %p\nd = %p", ((int) rando_overlay_db.p - (int) rando_overlay_db.buf),
                 rando_overlay_db.size, rando_overlay_db.p, rando_overlay_db.buf, rando_overlay_db.d);
         Fault_AddHungupAndCrashImpl("Randomizer display buffer exceeded!", error_msg);
     }

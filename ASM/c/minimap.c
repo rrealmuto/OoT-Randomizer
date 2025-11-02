@@ -32,12 +32,12 @@ void MiniMap_Draw_Hack(z64_game_t* globalCtx)
         //int32_t minimap_center_z = 0;
 
         // Get the minimap scale/offset parameters. What if the room doesn't have a minimap, ex. grottos?
-        uint16_t x_scale = *((uint16_t*)(0x801C6E90 + 0xF30));
-        uint16_t y_scale = *((uint16_t*)(0x801C6E90 + 0xF32));
-        int16_t x_compass_offset = *((uint16_t*)(0x801C6E90 + 0xF34));
-        int16_t y_compass_offset = *((uint16_t*)(0x801C6E90 + 0xF36));
-        int16_t x_offset = *((uint16_t*)(0x801C6E90 + 0xDCE));
-        int16_t y_offset = *((uint16_t*)(0x801C6E90 + 0xDD0));
+        //uint16_t x_scale = *((uint16_t*)(0x801C6E90 + 0xF30));
+        //uint16_t y_scale = *((uint16_t*)(0x801C6E90 + 0xF32));
+        //int16_t x_compass_offset = *((uint16_t*)(0x801C6E90 + 0xF34));
+        //int16_t y_compass_offset = *((uint16_t*)(0x801C6E90 + 0xF36));
+        //int16_t x_offset = *((uint16_t*)(0x801C6E90 + 0xDCE));
+        //int16_t y_offset = *((uint16_t*)(0x801C6E90 + 0xDD0));
         //gSPTextureRectangle(db->p++, minimap_center_x << 2, minimap_center_z << 2, (minimap_center_x + 2) << 2,
         //                (minimap_center_z + 2) << 2, G_TX_RENDERTILE, 0, 0, 0, 0);
 

@@ -37,8 +37,8 @@ static int get_top(tile_position pos) {
 }
 
 
-static const colorRGBA8_t WHITE = {0xFF, 0xFF, 0xFF, 0xFF};
-static const colorRGBA8_t DIM   = {0x40, 0x40, 0x40, 0x90};
+static const colorRGBA8_t WHITE = {{{0xFF, 0xFF, 0xFF}}, 0xFF};
+static const colorRGBA8_t DIM   = {{{0x40, 0x40, 0x40}}, 0x90};
 static int hasTriforceGoalBeenReached = 0;
 
 // Approximate product of two colors. Result is within 1 of true product.
@@ -482,7 +482,6 @@ static void draw_fixed(z64_disp_buf_t* db, const fixed_tile_info_t* info, uint8_
             uint32_t word = info->bits[i];
             for (int j = 0; j < FIXED_BITS_PER_WORD; ++j) {
                 if (data->size > 0 && (word & 0x1) == enabled) {
-                    sprite_t* sprite = icon_sprites[data->sprite];
                     draw_square_sprite(db, icon_sprites[data->sprite], data->tile_index, data->pos, data->size);
                 }
                 word >>= 1;
@@ -509,7 +508,6 @@ static void draw_variable(z64_disp_buf_t* db, const variable_tile_info_t* info, 
         const variable_tile_data_t* data = variable_tile_positions;
         while (data != variable_tile_positions + NUM_VARIABLE) {
             if (tile->enabled == enabled) {
-                sprite_t* sprite = icon_sprites[data->sprite];
                 draw_square_sprite(db, icon_sprites[data->sprite], tile->tile_index, data->pos, ICON_SIZE);
             }
             ++tile;
@@ -531,7 +529,7 @@ static void draw_songs(z64_disp_buf_t* db, const music_tile_info_t* songs, uint8
     uint8_t bright_alpha = color_product(WHITE.a, alpha);
     uint8_t dim_alpha = color_product(DIM.a, alpha);
 
-    colorRGBA8_t last_color = {0x00, 0x00, 0x00, 0x00};
+    colorRGBA8_t last_color = {{{0x00, 0x00, 0x00}}, 0x00};
     while (data != song_note_data + NUM_SONGS) {
         colorRGBA8_t color;
         color.color = data->color;
@@ -564,7 +562,7 @@ static void draw_buttons(z64_disp_buf_t* db, const button_tile_info_t* buttons, 
     uint8_t bright_alpha = color_product(WHITE.a, alpha);
     uint8_t dim_alpha = color_product(DIM.a, alpha);
 
-    colorRGBA8_t last_color = {0x00, 0x00, 0x00, 0x00};
+    colorRGBA8_t last_color = {{{0x00, 0x00, 0x00}}, 0x00};
     uint8_t button_index = 0;
     while (data != button_note_data + NUM_BUTTONS) {
         colorRGBA8_t color;
@@ -861,7 +859,6 @@ static void populate_child_trade(const z64_file_t* file, variable_tile_t* tile) 
     uint8_t item_child = file->items[Z64_SLOT_CHILD_TRADE];
     uint16_t mask_bits = (file->item_get_inf[2] >> 3) & 0x8F;
     uint16_t itemdata3 = file->item_get_inf[3];
-    uint16_t infdata7 = file->inf_table[7];
     if (itemdata3 & 0x8000 || mask_bits > 0x0F) {
         tile->tile_index = Z64_ITEM_MASK_OF_TRUTH;
         tile->enabled = 1;

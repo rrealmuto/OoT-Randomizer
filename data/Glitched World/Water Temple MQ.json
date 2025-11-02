@@ -97,7 +97,6 @@
         "locations": {},
         "exits": {
             "Water Temple East Column": "True",
-            "Water Temple Storage Room": "True",
             "Water Temple South Basement": "glitch_water_south_basement_clip or (Zora_Tunic and Iron_Boots)",
             "Water Temple North Basement": "
                 (glitch_water_bk_area_antigrav and can_live_dmg(0.5))
@@ -369,7 +368,7 @@
             "Water Temple Bottom Gates Switch": "can_use(Iron_Boots) and Hookshot",
             "Water Temple Boss Key Spout": "can_weirdshot or can_gdv or has_fire_source",
             "Water Temple Dragon Head Room": "can_weirdshot or
-                ((can_gdv or has_fire_source) and (can_use(Hover_Boots) or has_projectile_adult)
+                ((can_gdv or has_fire_source) and (can_use(Hover_Boots) or has_projectile(adult))
                 )"
         }
     },

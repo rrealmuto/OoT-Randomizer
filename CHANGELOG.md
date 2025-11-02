@@ -16,11 +16,21 @@
 * For consistency with other location types, excluded pot/crate/beehive/wonderitem/etc. locations no longer behave as if their shuffle setting was off.
 * The Triforce Piece counter display has been moved to a CRT-safe position.
 * Fix Complete Mask Quest not working if Zelda's Letter is found in Kakariko.
+* Fix a bug where some custom hint distributions could cause the generator to fail with a `TypeError`.
+* Limit length of plandomized text boxes to 1200 characters to prevent buffer overflow bugs.
+* Fix Blue Fire Arrows being logically treated as Ice Arrows when selected as a starting item.
+* Fix a bug where it was possible to buy the item from Granny's Potion Shop without turning in the Odd Mushroom in some cases.
+* Fix two different trade items being shuffled with plentiful item pool and no adult trade shuffle, which could lead to softlocks due to inconsistent game state.
+* Fix the code that checks whether a hint is reachable not taking effective starting items (e.g. the rewards of precompleted dungeons) into account.
+* Pause menu has been modified to more closely align equip swap behavior with the vanilla game, while also removing some cursor movement restrictions.
+* Fix the texture of the rotated Forest Temple boss key chest when `Chest Appearance Matches Content` is off.
 
 ## Other changes
 * Big poe souls can now be collected while riding Epona.
 * Ice traps have a new item model that's displayed instead of nothing after being picked up.
 * The professor in the lakeside lab now only takes 1 second instead of 6 to prepare the eyeball frog.
+* The text box that appears when collecting a gold skulltula token is no longer shuffled when `Text Shuffle` is set to `Shuffled except Important Text`.
+* Important Check hints no longer generate for areas with no shuffled locations, areas hinted as Barren, or precompleted dungeons.
 
 # 8.3
 

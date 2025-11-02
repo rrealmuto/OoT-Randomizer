@@ -299,7 +299,7 @@
           "name": "starting_equipment_section",
           "text": "Starting Equipment",
           "col_span": 2,
-          "row_span": [2,2,2],
+          "row_span": [3,3,3],
           "settings": [
             "starting_equipment"
           ]
@@ -326,9 +326,11 @@
           "name": "starting_other_section",
           "text": "Other",
           "col_span": 2,
-          "row_span": [1,1,1],
+          "row_span": [2,2,2],
           "settings": [
             "add_random_starting_items",
+            "random_starting_items_exclude",
+            "random_starting_items_count",
             "start_with_consumables",
             "start_with_rupees",
             "starting_hearts"

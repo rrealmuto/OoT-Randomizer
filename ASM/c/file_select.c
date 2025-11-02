@@ -114,7 +114,7 @@ void manage_password(z64_disp_buf_t* db, z64_menudata_t* menu_data) {
 
         gDPPipeSync(db->p++);
         if (cooldown > 0) {
-            colorRGBA8_t color = {0xFF, 0xFF, 0xFF, 0xFF};
+            colorRGBA8_t color = {{{0xFF, 0xFF, 0xFF}}, 0xFF};
             draw_int_size(db, 1 + cooldown / 60, left - 2 * padding, top, color, 6, 12);
         }
         gDPPipeSync(db->p++);

@@ -92,6 +92,7 @@ override_key_t get_override_search_key_by_newflag(xflag_t* flag) {
         };
         return resolve_alternative_override(key);
     }
+    return (override_key_t){ 0 };
 }
 
 override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_t item_id) {
@@ -150,14 +151,13 @@ override_key_t get_override_search_key(z64_actor_t *actor, uint8_t scene, uint8_
             .pad = 0,
             .flag = item_id,
         };
-    } else {
-        return (override_key_t) {
-            .scene = scene,
-            .type = OVR_BASE_ITEM,
-            .pad = 0,
-            .flag = item_id,
-        };
     }
+    return (override_key_t) {
+        .scene = scene,
+        .type = OVR_BASE_ITEM,
+        .pad = 0,
+        .flag = item_id,
+    };
 }
 
 override_t lookup_override_by_key(override_key_t key) {
@@ -453,7 +453,7 @@ void get_item(z64_actor_t* from_actor, z64_link_t* link, int8_t incoming_item_id
     override_t override = { 0 };
     int incoming_negative = incoming_item_id < 0;
     int8_t item_id = 0;
-    item_row_t* row;
+    item_row_t* row = NULL;
 
     if (from_actor && incoming_item_id != 0) {
         item_id = incoming_negative ? -incoming_item_id : incoming_item_id;
@@ -797,6 +797,8 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t* actor) {
         z64_ActorKill(actor);
         return 1;
     }
+
+    return 0;
 }
 
 // Check ammo counts for bombs/chus and drop correspondingly.
@@ -1035,14 +1037,11 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
 
 void get_skulltula_token(z64_actor_t* token_actor) {
     override_t override = lookup_override(token_actor, 0, 0);
-    uint16_t item_id;
     uint8_t player;
     if (override.key.all == 0) {
         // Give a skulltula token if there is no override
-        item_id = GI_SKULL_TOKEN;
         player = PLAYER_ID;
     } else {
-        item_id = override.value.base.item_id;
         player = override.value.base.player;
     }
 

@@ -10,23 +10,25 @@
 
 int dungeon_count = 13;
 
+static int show_dungeon_info = 0;
+
 dungeon_entry_t dungeons[] = {
-    {  0, 0, 0, 0, 1, 0x0F, "Deku",      {-1, -1, -1, -1}, {-1, -1, -1, -1} },
-    {  1, 0, 0, 0, 1, 0x1F, "Dodongo",   {-1, -1, -1, -1}, { 0, -1, -1, -1} },
-    {  2, 0, 0, 0, 1, 0x0F, "Jabu",      {-1, -1, -1, -1}, {-1, -1, -1, -1} },
+    {  0, {0, 0, 0, 1}, 0x0F, "Deku",      {-1, -1, -1, -1}, {-1, -1, -1, -1} },
+    {  1, {0, 0, 0, 1}, 0x1F, "Dodongo",   {-1, -1, -1, -1}, { 0, -1, -1, -1} },
+    {  2, {0, 0, 0, 1}, 0x0F, "Jabu",      {-1, -1, -1, -1}, {-1, -1, -1, -1} },
 
-    {  3, 1, 1, 0, 1, 0x1F, "Forest",    {-1, -1, -1, -1}, {-1, -1, -1, -1} },
-    {  4, 1, 1, 0, 1, 0x1F, "Fire",      {-1, -1, -1, -1}, {-1, -1, -1, -1} },
-    {  5, 1, 1, 0, 1, 0x1F, "Water",     {-1, -1, -1, -1}, {-1, -1, -1, -1} },
-    {  7, 1, 1, 0, 1, 0x1F, "Shadow",    { 4,  6,  7, -1}, { 4,  5,  6,  7} },
-    {  6, 1, 1, 0, 1, 0x1F, "Spirit",    {11, 14, 12, -1}, {13, 15, -1, -1} },
+    {  3, {1, 1, 0, 1}, 0x1F, "Forest",    {-1, -1, -1, -1}, {-1, -1, -1, -1} },
+    {  4, {1, 1, 0, 1}, 0x1F, "Fire",      {-1, -1, -1, -1}, {-1, -1, -1, -1} },
+    {  5, {1, 1, 0, 1}, 0x1F, "Water",     {-1, -1, -1, -1}, {-1, -1, -1, -1} },
+    {  7, {1, 1, 0, 1}, 0x1F, "Shadow",    { 4,  6,  7, -1}, { 4,  5,  6,  7} },
+    {  6, {1, 1, 0, 1}, 0x1F, "Spirit",    {11, 14, 12, -1}, {13, 15, -1, -1} },
 
-    {  8, 1, 0, 0, 1, 0x07, "BotW",      { 3, -1, -1, -1}, {-1, -1, -1, -1} },
-    {  9, 0, 0, 0, 1, 0x07, "Ice",       { 1,  2, -1, -1}, {-1, -1, -1, -1} },
-    { 12, 1, 0, 1, 0, 0x00, "Hideout",   {-1, -1, -1, -1}, {-1, -1, -1, -1} },
-    { 11, 1, 0, 0, 0, 0x00, "GTG",       { 8,  9, 10, -1}, { 8,  9, 10, -1} },
-    { 13, 1, 1, 0, 0, 0x00, "Ganon",     {16, 17, 18, 21}, {18, 19, 20, -1} },
-    { 16, 1, 0, 0, 0, 0x00, "Chest Game",{-1, -1, -1, -1}, {-1, -1, -1, -1 }},
+    {  8, {1, 0, 0, 1}, 0x07, "BotW",      { 3, -1, -1, -1}, {-1, -1, -1, -1} },
+    {  9, {0, 0, 0, 1}, 0x07, "Ice",       { 1,  2, -1, -1}, {-1, -1, -1, -1} },
+    { 12, {1, 0, 1, 0}, 0x00, "Hideout",   {-1, -1, -1, -1}, {-1, -1, -1, -1} },
+    { 11, {1, 0, 0, 0}, 0x00, "GTG",       { 8,  9, 10, -1}, { 8,  9, 10, -1} },
+    { 13, {1, 1, 0, 0}, 0x00, "Ganon",     {16, 17, 18, 21}, {18, 19, 20, -1} },
+    { 16, {1, 0, 0, 0}, 0x00, "Chest Game",{-1, -1, -1, -1}, {-1, -1, -1, -1 }},
 };
 
 typedef struct {
@@ -125,7 +127,7 @@ void draw_silver_rupee_count(z64_game_t* globalCtx, z64_disp_buf_t* db) {
                 gDPPipeSync(db->p++);
 
                 // Draw the count white if we have less than the required amount
-                colorRGBA8_t color = { 0xFF, 0xFF, 0xFF, globalCtx->hud_alpha_channels.rupees_keys_magic};
+                colorRGBA8_t color = { {{0xFF, 0xFF, 0xFF}}, globalCtx->hud_alpha_channels.rupees_keys_magic};
 
                 // Draw the count green (same color as max rupees) if we have the required amount
                 if (count >= silver_rupee_info.needed_count) {
@@ -260,7 +262,7 @@ void draw_dungeon_info(z64_disp_buf_t* db) {
                     reward_index = 5;
                 } else if (reward == 4) {
                     reward_index = 4;
-                } else if (reward == 5) {
+                } else /*if (reward == 5)*/ {
                     reward_index = 0;
                 }
                 medal_t* c = &(medals[reward_index]);

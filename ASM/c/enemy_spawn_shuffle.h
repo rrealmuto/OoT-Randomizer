@@ -90,9 +90,9 @@ bool spawn_check_big_octo(ActorEntry *actorEntry, z64_game_t *globalCtx);
 bool spawn_check_armos(ActorEntry *actorEntry, z64_game_t *globalCtx);
 bool spawn_check_skullkid(ActorEntry *actorEntry, z64_game_t *globalCtx);
 bool flags_getsoul(int table_index);
-bool flags_setsoul(int table_index);
+void flags_setsoul(int table_index);
 bool get_soul_enabled(int table_index);
-bool toggle_soul_enabled(int table_index);
+void toggle_soul_enabled(int table_index);
 
 typedef enum SPAWN_FLAGS {
     SPAWN_FLAGS_SPAWNENTRY = 1 << 0,

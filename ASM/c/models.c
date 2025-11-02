@@ -189,8 +189,6 @@ void heart_piece_draw(z64_actor_t* actor, z64_game_t* game) {
 
 // collectible draw function for common items (sticks, nuts, arrows/seeds/etc. and keys)
 void collectible_draw_other(z64_actor_t* actor, z64_game_t* game) {
-    EnItem00* this = (EnItem00*)actor;
-
     model_t model = {
         .object_id = 0x0000,
         .graphic_id = 0x00,

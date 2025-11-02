@@ -10,12 +10,12 @@ const int16_t left_alignment = Z64_SCREEN_WIDTH / 12;
 const int16_t top_alignment = 11 * Z64_SCREEN_HEIGHT / 12 + 2;
 
 void draw_x_stick(z64_disp_buf_t* db) {
-    colorRGBA8_t color = {0xF4, 0xEC, 0x30, 0xFF};
+    colorRGBA8_t color = {{{0xF4, 0xEC, 0x30}}, 0xFF};
     draw_int_size(db, z64_game.common.input[0].raw.x, left_alignment, top_alignment, color, input_number_width, input_number_height);
 }
 
 void draw_y_stick(z64_disp_buf_t* db) {
-    colorRGBA8_t color = {0xF4, 0xEC, 0x30, 0xFF};
+    colorRGBA8_t color = {{{0xF4, 0xEC, 0x30}}, 0xFF};
     int8_t xy_stick_length = 3 * rupee_digit_sprite.tile_w + font_sprite.tile_w;
     draw_int_size(db, z64_game.common.input[0].raw.y, left_alignment + xy_stick_length, top_alignment, color, input_number_width, input_number_height);
 }

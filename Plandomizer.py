@@ -1049,6 +1049,8 @@ class WorldDistribution:
                     stone_id = int(match[1], base=16)
                 else:
                     raise RuntimeError('Gossip stone unknown or already assigned in world %d: %r. %s' % (self.id + 1, name, build_close_match(name, 'stone')))
+            if len(record.text) > 1200:
+                raise ValueError(f'Text length for gossip stone {name!r} ({len(record.text)} characters) exceeds maximum safe length (1200 characters)')
             spoiler.hints[self.id][stone_id] = GossipText(text=record.text, colors=record.colors, prefix='')
 
     def give_items(self, world: World, save_context: SaveContext) -> None:
@@ -1283,18 +1285,14 @@ class Distribution:
         for itemsetting in starting_items:
             if itemsetting in StartingItems.everything:
                 item = StartingItems.everything[itemsetting]
-                item_name = item.item_name
-                if(item_name == "Ice Arrows" and self.settings.blue_fire_arrows):
-                    item_name = "Blue Fire Arrows"
-                if not item.special:
-                    add_starting_item_with_ammo(data, item_name)
+                if self.settings.blue_fire_arrows and item.item_name == 'Ice Arrows':
+                    add_starting_item_with_ammo(data, 'Blue Fire Arrows')
+                elif item.item_name == 'Rutos Letter' and self.settings.zora_fountain != 'open':
+                    data['Rutos Letter'].count += 1
+                elif item.item_name in ('Bottle', 'Rutos Letter'):
+                    data['Bottle'].count += 1
                 else:
-                    if item_name == 'Rutos Letter' and self.settings.zora_fountain != 'open':
-                        data['Rutos Letter'].count += 1
-                    elif item_name in ('Bottle', 'Rutos Letter'):
-                        data['Bottle'].count += 1
-                    else:
-                        raise KeyError("invalid special item: {}".format(item_name))
+                    add_starting_item_with_ammo(data, item.item_name)
             else:
                 raise KeyError("invalid starting item: {}".format(itemsetting))
         self.settings.starting_equipment = []

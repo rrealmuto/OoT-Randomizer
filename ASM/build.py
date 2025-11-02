@@ -17,12 +17,14 @@ parser.add_argument('--compile-c', action='store_true', help="Recompile C module
 parser.add_argument('--no-compile-c', action='store_true', help="Do not recompile C modules")
 parser.add_argument('--dump-obj', action='store_true', help="Dumps extra object info for debugging purposes. Does nothing with --no-compile-c")
 parser.add_argument('--diff-only', action='store_true', help="Creates diff output without running armips")
+parser.add_argument('--mips-binutils-prefix', type=str, default="mips64-", help="Use a different prefix for N64 toolchain")
 
 args = parser.parse_args()
 pj64_sym_path = args.pj64sym
 compile_c = not args.no_compile_c
 dump_obj = args.dump_obj
 diff_only = args.diff_only
+mips_binutils_prefix = args.mips_binutils_prefix
 
 root_dir = os.path.dirname(os.path.realpath(__file__))
 tools_dir = os.path.join(root_dir, 'tools')
@@ -44,6 +46,7 @@ if base_rom_size != 0x400_0000:
 
 if compile_c:
     clist = ['make']
+    clist.append(f'MIPS_BINUTILS_PREFIX={mips_binutils_prefix}')
     if dump_obj:
         clist.append('RUN_OBJDUMP=1')
     call(clist)

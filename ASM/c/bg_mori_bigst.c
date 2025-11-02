@@ -28,8 +28,6 @@ z64_actor_t * BgMoriBigst_SpawnStalfosPair2(void* actorCtx, z64_actor_t* parent,
 }
 
 void BgMoriBigst_StalfosFight_new(BgMoriBigst* this, z64_game_t* globalCtx) {
-    z64_link_t* player = GET_PLAYER(globalCtx);
-
     if ((!curr_room_enemies_inhibited && !this->child1) &&
         ((this->dyna.actor.pos_init.y - 5.0f) <= GET_PLAYER(globalCtx)->common.pos_world.y)) {
         BgMoriBigstActionFunc BgMoriBigst_SetupFall = (BgMoriBigstActionFunc)resolve_overlay_addr(&OVL_BgMoriBigst_SetupFall, this->dyna.actor.actor_id);

@@ -12,7 +12,7 @@ void EnKarebaba_SetupDeadItemDropHack(z64_actor_t* this, z64_game_t* globalCtx) 
     xflag_t* flag = &Actor_GetAdditionalData(this)->flag;
     if (flag->all && !Get_NewFlag(flag)) {
         drop_collectible_override_flag = *flag;
-        EnItem00* spawned = z64_Item_DropCollectible(globalCtx, &GET_PLAYER(globalCtx)->common.pos_world, 0);
+        z64_Item_DropCollectible(globalCtx, &GET_PLAYER(globalCtx)->common.pos_world, 0);
         z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
         z64_ActorKill(this);
         return;

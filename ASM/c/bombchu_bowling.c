@@ -17,7 +17,7 @@ uint32_t EXTRA_BOWLING_SHUFFLE = 0;
 */
 
 int16_t select_bombchu_bowling_prize(int16_t prizeSelect) {
-    int16_t prizeTemp;
+    int16_t prizeTemp = EXITEM_PURPLE_RUPEE_BOWLING;
 
     uint32_t prizeFlag = (1 << prizeSelect);
 
@@ -43,43 +43,36 @@ int16_t select_bombchu_bowling_prize(int16_t prizeSelect) {
             case 3:
                 // Prevent giving the player a bomb if a bomb bag has not
                 // been found yet.
-                if (!EXTRA_BOWLING_SHUFFLE && !z64_file.bomb_bag) {
-                    prizeTemp = EXITEM_PURPLE_RUPEE_BOWLING;
-                } else {
+                if (EXTRA_BOWLING_SHUFFLE || z64_file.bomb_bag) {
                     prizeTemp = EXITEM_BOMBS_BOWLING;
                 }
                 break;
             case 4:
+            default:
                 // Kept here in case this is shuffled in the future,
                 // currently functionally redundant when the flag is set.
                 prizeTemp = EXITEM_PURPLE_RUPEE_BOWLING;
                 break;
         }
-    } else {
-        // maintain renewable bombchus/bombs if extra shuffle is disabled
-        if (!EXTRA_BOWLING_SHUFFLE) {
-            switch(prizeSelect) {
-                case 2:
-                    if (z64_file.items[Z64_SLOT_BOMBCHU] == ITEM_NONE && FREE_BOMBCHU_DROPS) {
-                        prizeTemp = z64_file.bomb_bag ? EXITEM_BOMBS_BOWLING : EXITEM_PURPLE_RUPEE_BOWLING;
-                    } else {
-                        prizeTemp = EXITEM_BOMBCHUS_BOWLING;
-                    }
-                    break;
-                case 3:
-                    if (!z64_file.bomb_bag) {
-                        prizeTemp = EXITEM_PURPLE_RUPEE_BOWLING;
-                    } else {
-                        prizeTemp = EXITEM_BOMBS_BOWLING;
-                    }
-                    break;
-                default:
-                    prizeTemp = EXITEM_PURPLE_RUPEE_BOWLING;
-                    break;
-            }
-        } else {
-            prizeTemp = EXITEM_PURPLE_RUPEE_BOWLING;
+    // maintain renewable bombchus/bombs if extra shuffle is disabled
+    } else if (!EXTRA_BOWLING_SHUFFLE) {
+        switch(prizeSelect) {
+            case 2:
+                if (z64_file.items[Z64_SLOT_BOMBCHU] == ITEM_NONE && FREE_BOMBCHU_DROPS) {
+                    prizeTemp = z64_file.bomb_bag ? EXITEM_BOMBS_BOWLING : EXITEM_PURPLE_RUPEE_BOWLING;
+                } else {
+                    prizeTemp = EXITEM_BOMBCHUS_BOWLING;
+                }
+                break;
+            case 3:
+                if (z64_file.bomb_bag) {
+                    prizeTemp = EXITEM_BOMBS_BOWLING;
+                }
+                break;
+            default:
+                break;
         }
+
     }
 
     return prizeTemp;

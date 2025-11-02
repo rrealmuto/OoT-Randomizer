@@ -217,7 +217,7 @@ bool flags_getsoul(int table_index) {
     return (extended_savectx.enemy_spawn_flags[table_index/8] & (1 << (table_index % 8))) > 0;
 }
 
-bool flags_setsoul(int table_index) {
+void flags_setsoul(int table_index) {
     extended_savectx.enemy_spawn_flags[table_index/8] |= 1 << (table_index % 8);
     extended_savectx.soul_enable_flags[table_index/8] |= 1 << (table_index % 8);
 }
@@ -226,7 +226,7 @@ bool get_soul_enabled(int table_index) {
     return (extended_savectx.soul_enable_flags[table_index/8] & (1 << (table_index % 8))) > 0;
 }
 
-bool toggle_soul_enabled(int table_index) {
+void toggle_soul_enabled(int table_index) {
     uint8_t flags = extended_savectx.soul_enable_flags[table_index/8];
     uint8_t mask = (1 << (table_index % 8));
     extended_savectx.soul_enable_flags[table_index/8] = flags ^ mask;
