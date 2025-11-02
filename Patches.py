@@ -10,6 +10,7 @@ from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
 from Cutscenes import patch_cutscenes, patch_wondertalk2
+from Enemizer import shuffle_enemies, get_rom_enemies, patch_enemies, enemy_actor_types, build_enemylist, enemizer_patches
 from Entrance import Entrance
 from HintList import get_hint
 from Hints import GossipText, HintArea, write_gossip_stone_hints, build_altar_hints, \
@@ -1410,6 +1411,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.damage_multiplier == 'ohko':
         rom.write_byte(rom.sym('CFG_DAMAGE_MULTIPLYER'), 3)
 
+    # Gloom mode
+    if world.settings.gloom:
+        rom.write_byte(rom.sym('CFG_GLOOM'), 1)
+
     if world.settings.deadly_bonks != 'none':
         rom.write_int32(rom.sym('CFG_DEADLY_BONKS'), 1)
         if world.settings.deadly_bonks == 'half':
@@ -2226,6 +2231,33 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.revert_patch("TCG_SHUFFLE_PATCH_5")
         rom.revert_patch("TCG_SHUFFLE_PATCH_6")
         rom.revert_patch("TCG_SHUFFLE_PATCH_7")
+
+    # Enemizer
+    if world.settings.enemizer != 'off':
+        scene_data = process_scenes(rom)
+        rom_enemies = get_rom_enemies(scene_data, rom)
+        #for enemy in rom_enemies:
+        #    print(f"{enemy}: {rom_enemies[enemy].id}, # {enemy_actor_typesrom_enemies[enemy].id].name}")
+
+        patch_enemies(world,rom_enemies, world.shuffled_enemies, rom, scene_data, world.settings.enemizer == 'on')
+        for patch_func in enemizer_patches:
+            patch_func(rom, world, scene_data)
+        rom.write_byte(rom.sym('CFG_PREVENT_GUAY_RESPAWNS'), 1)
+        rom.write_byte(rom.sym('CFG_ENEMIZER'), 1)
+    if world.settings.enemizer == 'change':
+        rom.write_byte(rom.sym('CFG_RANDOM_ENEMY_SPAWNS'), 1)
+
+    # Revert Enemizer Patches if it's not enabled
+    if world.settings.enemizer == 'off':
+        rom.revert_patch("ENFD_PATCH_BGM_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_1_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_2_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_3_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_4_ENEMIZER")
+        rom.revert_patch("ENSW_PATCH_5_ENEMIZER")
+        rom.revert_patch("EN_DEKUBABA_PATCH1_ENEMIZER")
+        rom.revert_patch("EN_DEKUBABA_PATCH2_ENEMIZER")
+        rom.revert_patch("EN_DEKUBABA_PATCH3_ENEMIZER")
 
     # Write numeric seed truncated to 32 bits for rng seeding
     # Overwritten with new seed every time a new rng value is generated
