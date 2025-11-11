@@ -35,8 +35,9 @@ from TextBox import line_wrap
 from Utils import data_path
 from World import World
 from ntype import BigStream
-from texture_util import ci4_rgba16patch_to_ci8, png_to_ci8, rgba16_from_png, rgba16_patch, rgba32_from_png
+from texture_util import ci4_rgba16patch_to_ci8, load_rgba16_from_png, rgba16_from_file, png_to_ci8, rgba16_from_png, rgba16_patch, rgba16_to_bytes, rgba16_to_ci4, rgba32_from_png
 from version import __version__
+import json
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -233,52 +234,40 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # Pot textures are rgba16
 
     # texture list. See textures.h for texture IDs
-    #   ID, texture_name,                                  Rom Address    CI4 Pallet Addr  Size    Patching function       PNG Function           Patch file (None for default)
+    #   ID, texture_name,                                  Rom Address    CI4 Pallet Addr  Size    Patching function     Patch file (None for default)
     crate_textures = [
-        (1, 'pot/texture_pot_gold',               0x01738000,    None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/pot/pot_gold_rgba16_patch.bin'),
-        (2, 'pot/texture_pot_key',                0x01738000,    None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/pot/pot_key_rgba16_patch.bin'),
-        (3, 'pot/texture_pot_bosskey',            0x01738000,    None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/pot/pot_bosskey_rgba16_patch.bin'),
-        (4, 'pot/texture_pot_skull',              0x01738000,    None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/pot/pot_skull_rgba16_patch.bin'),
-        (5, 'crate/texture_crate_default',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8, None,             None),
-        (6, 'crate/texture_crate_gold',           0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8, png_to_ci8,             'textures/crate/crate_gold_rgba16_patch.bin'),
-        (7, 'crate/texture_crate_key',            0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8, png_to_ci8,             'textures/crate/crate_key_rgba16_patch.bin'),
-        (8, 'crate/texture_crate_skull',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8, png_to_ci8,             'textures/crate/crate_skull_rgba16_patch.bin'),
-        (9, 'crate/texture_crate_bosskey',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8, png_to_ci8,             'textures/crate/crate_bosskey_rgba16_patch.bin'),
-        (10, 'crate/texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
-        (11, 'crate/texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/crate/smallcrate_key_rgba16_patch.bin'),
-        (12, 'crate/texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/crate/smallcrate_skull_rgba16_patch.bin'),
-        (13, 'crate/texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
-
-        (18, "chest/texture_chest_front_gilded",  0xFEC798,      None,            4096,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_front_gilded_rgba16_patch.bin'),
-        (19, "chest/texture_chest_base_gilded",   0xFED798,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_base_gilded_rgba16_patch.bin'),
-        (20, "chest/texture_chest_front_silver",  0xFEC798,      None,            4096,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_front_silver_rgba16_patch.bin'),
-        (21, "chest/texture_chest_base_silver",   0xFED798,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_base_silver_rgba16_patch.bin'),
-        (22, "chest/texture_chest_front_skull",   0xFEC798,      None,            4096,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_front_skull_rgba16_patch.bin'),
-        (23, "chest/texture_chest_base_skull",    0xFED798,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_base_skull_rgba16_patch.bin'),
-
-        (24, "chest/texture_chest_front_heart",   0xFEC798,      None,            4096,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_front_heart_rgba16_patch.bin'),
-        (25, "chest/texture_chest_base_heart",    0xFED798,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/chest/chest_base_heart_rgba16_patch.bin'),
-        (26, 'pot/texture_pot_side_heart',        0x01738000,    None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/pot/pot_side_heart_rgba16_patch.bin'),
-        (27, 'pot/texture_pot_top_heart',         0x01739000,    None,            256,    rgba16_patch,           rgba16_from_png,       'textures/pot/pot_top_heart_rgba16_patch.bin'),
-        (28, 'crate/texture_crate_heart',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8, png_to_ci8,            'textures/crate/crate_heart_rgba16_patch.bin'),
-        (29, 'crate/texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,           rgba16_from_png,       'textures/crate/smallcrate_heart_rgba16_patch.bin'),
+        (1, 'pot/texture_pot_gold',               0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_gold_rgba16_patch.bin'),
+        (2, 'pot/texture_pot_key',                0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_key_rgba16_patch.bin'),
+        (3, 'pot/texture_pot_bosskey',            0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_bosskey_rgba16_patch.bin'),
+        (4, 'pot/texture_pot_skull',              0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_skull_rgba16_patch.bin'),
+        (5, 'crate/texture_crate_default',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        None),
+        (6, 'crate/texture_crate_gold',           0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_gold_rgba16_patch.bin'),
+        (7, 'crate/texture_crate_key',            0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_key_rgba16_patch.bin'),
+        (8, 'crate/texture_crate_skull',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_skull_rgba16_patch.bin'),
+        (9, 'crate/texture_crate_bosskey',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_bosskey_rgba16_patch.bin'),
+        (10, 'crate/texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
+        (11, 'crate/texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_key_rgba16_patch.bin'),
+        (12, 'crate/texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_skull_rgba16_patch.bin'),
+        (13, 'crate/texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
+        (18, "chest/texture_chest_front_gilded",  0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_gilded_rgba16_patch.bin'),
+        (19, "chest/texture_chest_base_gilded",   0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_gilded_rgba16_patch.bin'),
+        (20, "chest/texture_chest_front_silver",  0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_silver_rgba16_patch.bin'),
+        (21, "chest/texture_chest_base_silver",   0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_silver_rgba16_patch.bin'),
+        (22, "chest/texture_chest_front_skull",   0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_skull_rgba16_patch.bin'),
+        (23, "chest/texture_chest_base_skull",    0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_skull_rgba16_patch.bin'),
+        (24, "chest/texture_chest_front_heart",   0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_heart_rgba16_patch.bin'),
+        (25, "chest/texture_chest_base_heart",    0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_heart_rgba16_patch.bin'),
+        (26, 'pot/texture_pot_side_heart',        0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_side_heart_rgba16_patch.bin'),
+        (27, 'pot/texture_pot_top_heart',         0x01739000,    None,            256,    rgba16_patch,                  'textures/pot/pot_top_heart_rgba16_patch.bin'),
+        (28, 'crate/texture_crate_heart',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_heart_rgba16_patch.bin'),
+        (29, 'crate/texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_heart_rgba16_patch.bin'),
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
     extended_textures_start = start_address = rom.dma.free_space()
-    for texture_id, texture_name, rom_address_base, rom_address_palette, size, func, png_func, patch_file in crate_textures:
-        # Figure out which texture to use
-        # Check texture pack setting
-        if world.settings.texture_pack == 'Default':
-            texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patch_file) if patch_file else None)
-        else:
-            # Check if the texture pack containsa png file for this texture and use that instead. png file path uses the texture name from the table
-            texture_png = os.path.join(data_path("textures/Custom"), world.settings.texture_pack, texture_name + ".png")
-            if png_func and os.path.exists(data_path(texture_png)):
-                texture_data = png_func(None, None, None, None, data_path(texture_png))
-            else:
-                # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
-                texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patch_file) if patch_file else None)
+    for texture_id, texture_name, rom_address_base, rom_address_palette, size, func, patch_file in crate_textures:
+        # Apply the texture patch. Resulting texture will be stored in texture_data as a bytearray
+        texture_data = func(rom, rom_address_base, rom_address_palette, size, data_path(patch_file) if patch_file else None)
         
         rom.write_bytes(start_address, texture_data)  # write the bytes to our new file
         end_address = ((start_address + len(texture_data) + 0x0F) >> 4) << 4
@@ -292,30 +281,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Add the extended texture data to the DMA table.
     rom.update_dmadata_record_by_key(None, extended_textures_start, end_address)
-
-    # Patch misc. textures
-    if world.settings.texture_pack != 'Default':
-        misc_texture_path_base = os.path.join(data_path("textures/Custom"), world.settings.texture_pack, "misc")
-        misc_texture_path = os.path.join(misc_texture_path_base, "misc_textures.json")
-        try:
-            import json
-            f = open(misc_texture_path, 'r')
-            misc_json = f.read()
-            f.close()
-            misc_textures = json.loads(misc_json)
-            for texture in misc_textures:
-                texture_path = os.path.join(misc_texture_path_base, texture['file'])
-                texture_type = texture['type']
-                file_id = texture['target_file_id']
-                offset = texture['target_file_offset']
-                if texture_type == "rgba16":
-                    texture_data = rgba16_from_png(rom, 0, 0, 0, texture_path)
-                elif texture_type == "rgba32":
-                    texture_data = rgba32_from_png(rom, 0,0,0, texture_path)
-                dma_entry = rom.dma[file_id]
-                rom.write_bytes(dma_entry.start + offset, texture_data)
-        except Exception as e:
-            pass
 
     save_context = SaveContext()
 
@@ -2142,12 +2107,14 @@ def write_rom_item(rom: Rom, item_id: int, item: dict[str, Any]) -> None:
     rom.write_bytes(addr, row_bytes)
 
 
-texture_struct = struct.Struct('>HBxxxxxII')  # Match texture_t in textures.c
+texture_struct = struct.Struct('>IIII')  # Match texture_t in textures.c
 texture_fields: list[str] = ['texture_id', 'file_buf', 'file_vrom_start', 'file_size']
 
 
-def read_rom_texture(rom: Rom, texture_id: int) -> dict[str, Any]:
-    addr = rom.sym('texture_table') + (texture_id * texture_struct.size)
+def read_rom_texture(rom: Rom, texture_id: int, texture_table = None) -> dict[str, Any]:
+    if not texture_table:
+        texture_table = rom.sym('texture_table')
+    addr = texture_table + (texture_id * texture_struct.size)
     row_bytes = rom.read_bytes(addr, texture_struct.size)
     row = texture_struct.unpack(row_bytes)
     return {texture_fields[i]: row[i] for i in range(len(texture_fields))}

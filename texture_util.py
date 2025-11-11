@@ -37,6 +37,31 @@ def rgba16_to_ci8(rgba16_texture: list[int]) -> tuple[list[int], list[int]]:
             ci8_texture.append(palette.index(pixel))
     return ci8_texture, palette
 
+# Convert an rgba16 texture to ci4
+# rgba16_texture - texture to convert
+# returns - tuple (ci4_texture, palette)
+def rgba16_to_ci4(rgba16_texture: list[int]) -> tuple[list[int], list[int]]:
+    ci4_texture = []
+    palette = get_colors_from_rgba16(rgba16_texture)  # Get all the colors in the texture
+    if len(palette) > 0x10:  # Make sure there are <= 256 colors. Could probably do some fancy stuff to convert, but nah.
+        raise(Exception("RGB Texture exceeds maximum of 256 colors"))
+    if len(palette) < 0x10:  # Pad the palette with 0x0001 #Pad the palette with 0001s to take up the full 16 colors
+        for i in range(0, 0x10 - len(palette)):
+            palette.append(0x0001)
+
+    # Create the new ci4 texture (list of bytes) by locating the index of each color from the rgba16 texture in the color palette.
+    full_byte = 0
+    i = 0
+    for pixel in rgba16_texture:
+        if pixel in palette:
+            full_byte |= (palette.index(pixel) & 0xF) << (4*(1-i))
+            if i == 1:
+                ci4_texture.append(full_byte)
+                full_byte = 0
+                i = 0
+            else:
+                i+=1
+    return ci4_texture, palette
 
 # Load a palette (essentially just an rgba16 texture) from rom
 def load_palette(rom: Rom, address: int, length: int) -> list[int]:
@@ -76,12 +101,15 @@ def apply_rgba16_patch(rgba16_texture: list[int], rgba16_patch: list[int]) -> li
 # Save a rgba16 texture to a file
 def save_rgba16_texture(rgba16_texture: list[int], filename: str) -> None:
     file = open(filename, 'wb')
-    bytes = bytearray()
-    for pixel in rgba16_texture:
-        bytes.extend(pixel.to_bytes(2, 'big'))
+    bytes = rgba16_to_bytes(rgba16_texture)
     file.write(bytes)
     file.close()
 
+def rgba16_to_bytes(rgba16_texture: list[int]) -> bytearray:
+    bytes = bytearray()
+    for pixel in rgba16_texture:
+        bytes.extend(pixel.to_bytes(2, 'big'))
+    return bytes
 
 # Save a ci8 texture to a file
 def save_ci8_texture(ci8_texture: list[int], filename: str) -> None:
