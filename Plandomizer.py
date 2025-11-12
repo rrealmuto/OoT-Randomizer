@@ -336,7 +336,7 @@ class WorldDistribution:
             ':goal_locations': self.goal_locations,
             ':barren_regions': self.barren_regions,
             'gossip_stones': SortedDict({name: [rec.to_json() for rec in record] if is_pattern(name) else record.to_json() for (name, record) in self.gossip_stones.items()}),
-            'boulders': {boulder:str(self.boulders[boulder]) for boulder in self.boulders}
+            'boulders': {boulder:self.boulders[boulder].name for boulder in self.boulders}
         }
 
     def __str__(self) -> str:
