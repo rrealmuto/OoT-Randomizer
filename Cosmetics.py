@@ -6,6 +6,7 @@ import random
 from collections.abc import Iterable, Callable
 from itertools import chain
 from typing import TYPE_CHECKING, Optional, Any
+from Audiobank import SFX
 
 import Colors
 import IconManip
@@ -15,7 +16,8 @@ from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
 from version import __version__
-
+from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
+from Rom import AUDIOBANK_INDEX_ADDR
 if TYPE_CHECKING:
     from Rom import Rom
     from Settings import Settings
@@ -44,14 +46,11 @@ def patch_dpad_info(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: di
     else:
         rom.write_byte(symbols['CFG_DPAD_DUNGEON_INFO_ENABLE'], 0x00)
 
-
 def patch_music(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
     # patch music
     if settings.background_music != 'normal' or settings.fanfares != 'normal' or log.src_dict.get('bgm', {}):
-        Music.restore_music(rom)
         Music.randomize_music(rom, settings, log, symbols)
-    else:
-        Music.restore_music(rom)
+
     # Remove battle music
     if settings.disable_battle_music:
         rom.write_byte(0xBE447F, 0x00)
@@ -901,7 +900,7 @@ def read_default_voice_data(rom: Rom) -> dict[str, dict[str, int]]:
     return soundbank_entries
 
 
-def patch_silent_voice(rom: Rom, sfxidlist: Iterable[int], soundbank_entries: dict[str, dict[str, int]], log: CosmeticsLog) -> None:
+def patch_silent_voice(rom: Rom, age: VOICE_PACK_AGE, log: CosmeticsLog) -> None:
     binsfxfilename = os.path.join(data_path('Voices'), 'SilentVoiceSFX.bin')
     if not os.path.isfile(binsfxfilename):
         log.errors.append(f"Could not find silent voice sfx at {binsfxfilename}. Skipping voice patching")
@@ -911,13 +910,13 @@ def patch_silent_voice(rom: Rom, sfxidlist: Iterable[int], soundbank_entries: di
     with open(binsfxfilename, 'rb') as binsfxin:
         binsfx = bytearray() + binsfxin.read(-1)
 
-    # Pad it to length and patch it into every id in sfxidlist
-    for decid in sfxidlist:
-        sfxid = f"00-00{decid:02x}"
-        injectme = binsfx.ljust(soundbank_entries[sfxid]["length"], b'\0')
-        # Write the binary sfx to the rom
-        rom.write_bytes(soundbank_entries[sfxid]["romoffset"], injectme)
+    sfxlist = adult_link_sfx if age == VOICE_PACK_AGE.ADULT else child_link_sfx
 
+    # Pad it to length and patch it into every id in sfxidlist
+    for _, sfxid in sfxlist:
+        sfx: SFX = rom.audiobanks[0].SFX[sfxid]
+        injectme = binsfx.ljust(sfx.sample.size)
+        sfx.sample.data = injectme
 
 def apply_voice_patch(rom: Rom, voice_path: str, soundbank_entries: dict[str, dict[str, int]]) -> None:
     if not os.path.exists(voice_path):
@@ -982,6 +981,21 @@ def patch_voices(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[
 
         # Write the setting to the log
         log.sfx[log_key] = voice_setting
+
+def patch_voice_packs(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]):
+    if settings.sfx_link_adult == 'Silent':
+        patch_silent_voice(rom, VOICE_PACK_AGE.ADULT, log)
+    elif settings.sfx_link_adult != 'Default':
+        patch_voice_pack(rom, VOICE_PACK_AGE.ADULT, settings.sfx_link_adult, settings)
+
+    if settings.sfx_link_child == 'Silent':
+        patch_silent_voice(rom, VOICE_PACK_AGE.ADULT, log)
+    elif settings.sfx_link_child != 'Default':
+        patch_voice_pack(rom, VOICE_PACK_AGE.CHILD, settings.sfx_link_child, settings)
+
+def patch_voice_volume(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]):
+    rom.write_f32(symbols["CFG_ADULT_VOLUME"], settings.sfx_link_adult_volume / 100.0)
+    rom.write_f32(symbols["CFG_CHILD_VOLUME"], settings.sfx_link_child_volume / 100.0)
 
 
 def patch_music_changes(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
@@ -1065,9 +1079,9 @@ global_patch_sets: list[Callable[[Rom, Settings, CosmeticsLog, dict[str, int]], 
     patch_gauntlet_colors,
     patch_shield_frame_colors,
     patch_extra_equip_colors,
-    patch_voices,
     patch_sfx,
     patch_instrument,
+    patch_voice_packs
 ]
 
 # 3.14.1
@@ -1269,6 +1283,18 @@ patch_sets[0x1F073FE2] = {
     }
 }
 
+# 8.2.22
+patch_sets[0x1F073FE3] = {
+    "patches": patch_sets[0x1F073FE2]["patches"] + [
+        patch_voice_volume
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FE2]["symbols"],
+        "CFG_ADULT_VOLUME": 0x0AC8,
+        "CFG_CHILD_VOLUME": 0x0ACC,
+    }
+}
+
 def patch_cosmetics(settings: Settings, rom: Rom) -> CosmeticsLog:
     # re-seed for aesthetic effects. They shouldn't be affected by the generation seed
     random.seed()
@@ -1281,8 +1307,9 @@ def patch_cosmetics(settings: Settings, rom: Rom) -> CosmeticsLog:
     cosmetic_version = None
     versioned_patch_set = None
     cosmetic_context = rom.read_int32(rom.sym('RANDO_CONTEXT') + 4)
+    ram_base = cosmetic_context & 0xFFFF0000
     if 0x80000000 <= cosmetic_context <= 0x80F7FFFC:
-        cosmetic_context = (cosmetic_context - 0x80400000) + 0x3480000 # convert from RAM to ROM address
+        cosmetic_context = (cosmetic_context - ram_base) + 0x3480000 # convert from RAM to ROM address
         cosmetic_version = rom.read_int32(cosmetic_context)
         versioned_patch_set = patch_sets.get(cosmetic_version)
     else:
@@ -1294,6 +1321,9 @@ def patch_cosmetics(settings: Settings, rom: Rom) -> CosmeticsLog:
             if cosmetic_version in patch_sets:
                 versioned_patch_set = patch_sets[cosmetic_version]
                 break
+
+    # Restore vanilla audio sequence data
+    Music.restore_music(rom)
 
     # patch version specific patches
     if versioned_patch_set:
@@ -1313,6 +1343,16 @@ def patch_cosmetics(settings: Settings, rom: Rom) -> CosmeticsLog:
 
         for patch_func in versioned_patch_set['patches']:
             patch_func(rom, settings, log, cosmetic_context_symbols)
+
+        if not settings.generating_patch_file:
+            bank_index_base = AUDIOBANK_INDEX_ADDR
+            if "CFG_AUDIOBANK_TABLE_EXTENDED_ADDR" in cosmetic_context_symbols.keys():
+                bank_index_base = rom.read_int32(cosmetic_context_symbols['CFG_AUDIOBANK_TABLE_EXTENDED_ADDR'])
+                ram_base = bank_index_base & 0xFFFF0000
+                bank_index_base = (bank_index_base - ram_base) + 0x3480000
+            rom.rebuild_audio_data(bank_index_base)
+
+            log.symbols = cosmetic_context_symbols
     else:
         # patch cosmetics that use vanilla oot data, and always compatible
         for patch_func in global_patch_sets:
@@ -1320,6 +1360,7 @@ def patch_cosmetics(settings: Settings, rom: Rom) -> CosmeticsLog:
 
         # Unknown patch format
         log.errors.append("Unable to patch some cosmetics. ROM uses unknown cosmetic patch format.")
+
 
     return log
 
@@ -1334,7 +1375,7 @@ class CosmeticsLog:
         self.sfx: dict[str, str] = {}
         self.bgm: dict[str, str] = {}
         self.bgm_groups: dict[str, list | dict] = {}
-
+        self.symbols: dict[str, int] = {}
         self.src_dict: dict = {}
         self.errors: list[str] = []
 
@@ -1393,6 +1434,7 @@ class CosmeticsLog:
             'sfx': self.sfx,
             'bgm_groups': self.bgm_groups,
             'bgm': self.bgm,
+            'symbols': self.symbols
         }
 
         if not self.settings.enable_cosmetic_file:

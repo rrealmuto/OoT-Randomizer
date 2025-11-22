@@ -1,7 +1,10 @@
+const os = require('os')
 const fs = require('fs');
+const { resolve } = require('path');
 const EventEmitter = require('events').EventEmitter;
 const spawn = require('child_process').spawn;
 const treeKill = require('tree-kill');
+const path = require('node:path')
 
 //Rom Building global vars
 var romBuildingGenerator = null;
@@ -226,6 +229,40 @@ function cancelRomBuilding() {
   }
 }
 
+// Create a python virtual environment in the main python source directory
+function createPythonVirtualEnvironment(pythonPath, pythonSourceDirectory, progress) {
+  return new Promise(function (resolve, reject) {
+      let venv_directory = path.join(pythonSourceDirectory, ".venv")
+      console.log(venv_directory)
+      let pythonExec = spawn(pythonPath, ["-m", "venv", `"${venv_directory}"` ], { shell: true }).on('error', err => {
+        reject({'error': err });
+    }).on('exit', (code, signal) => {
+      if (code == 0) {
+        pip_path = "bin/pip";
+        if (os.platform() == "win32") {
+          pip_path = "Scripts/pip.exe";
+        }
+        let pip_exec = spawn('"' + path.join(venv_directory, pip_path + '"'), ["install", "-r", `"${path.join(pythonSourceDirectory, "requirements.txt")}"`], { shell: true })
+        pip_exec.stderr.setEncoding("utf8");
+        pip_exec.stdout.setEncoding("utf8");
+        pip_exec.stdout.on('data', progress);
+        pip_exec.on('exit', (code, signal) => {
+          if (code == 0) {
+            resolve(venv_directory);
+          }
+          else {
+            reject("Error install python dependencies" + "\n" + pip_exec.stderr.read() + "\n" + pip_exec.stdout.read());
+          }
+        });
+      }
+      else {
+        pythonExec.stderr.setEncoding("utf8")
+        reject("Error creating python virtual envrionment" + "\n" + pythonExec.stderr.read());
+      }
+    });
+  });
+}
+
 function testPythonPath(pythonPath) {
 
   return new Promise(function (resolve, reject) {
@@ -398,3 +435,4 @@ module.exports.romBuilding = romBuilding;
 module.exports.cancelRomBuilding = cancelRomBuilding;
 module.exports.testPythonPath = testPythonPath;
 module.exports.getUpdatedDynamicSetting = getUpdatedDynamicSetting;
+module.exports.createPythonVirtualEnvironment = createPythonVirtualEnvironment;
