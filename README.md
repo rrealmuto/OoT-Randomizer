@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 8.3.56.Rob-E6
+  * Remove no deku nut november
+
 ### 8.3.56.Rob-E5
   * Fix skull kid needles not being despawned
 
