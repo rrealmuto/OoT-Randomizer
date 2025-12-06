@@ -75,3 +75,6 @@ OVL_EnKarebaba_SetupDeadItemDrop = 0x809ba560;
 OVL_EnKusa_Draw = 0x80a80a50;
 OVL_EnOkarinaTag_Action2 = 0x80a872d0;
 OVL_EnOkarinaTag_Action1 = 0x80a87088;
+z64_object_table = 0x800F8FF8;
+THA_AllocTailAlign16 = 0x800a01b8;
+gLinkObjectIds = 0x800f8ff0;

@@ -120,6 +120,13 @@ typedef struct Arena {
 
 #define GET_PLAYER(play) ((z64_link_t*)(play)->actor_list[ACTORCAT_PLAYER].first)
 
+typedef struct TwoHeadArena {
+    /* 0x00 */ size_t size;
+    /* 0x04 */ void* start;
+    /* 0x08 */ void* head;
+    /* 0x0C */ void* tail;
+} TwoHeadArena; // size = 0x10
+
 typedef struct {
   /* index of z64_col_type in scene file */
   uint16_t    type;
@@ -2175,7 +2182,7 @@ typedef enum {
 #define z64_fog_state_addr                      0x800F1640
 #define z64_day_speed_addr                      0x800F1650
 #define z64_light_handlers_addr                 0x800F1B40
-#define z64_object_table_addr                   0x800F8FF8
+
 #define z64_entrance_table_addr                 0x800F9C90
 #define z64_scene_table_addr                    0x800FB4E0
 #define z64_scene_config_table_addr             0x800FBD18
@@ -2298,8 +2305,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_day_speed           (*(uint16_t*)         z64_day_speed_addr)
 #define z64_light_handlers      ( (z64_light_handler_t*)                      \
                                                       z64_light_handlers_addr)
-#define z64_object_table        ( (z64_object_table_t*)                      \
-                                                      z64_object_table_addr)
 #define z64_entrance_table      ( (z64_entrance_table_t*)                     \
                                    z64_entrance_table_addr)
 #define z64_scene_config_table  ( (z64_SceneConfig_proc*)                     \
@@ -2670,5 +2675,6 @@ extern int32_t z64_Flags_GetSwitch(z64_game_t* globalCtx, int32_t flag);
 extern void z64_Flags_SetTempClear(z64_game_t* globalCtx, int32_t flag);
 extern int32_t CutsceneFlags_Get(void* play, int16_t flag);
 extern int32_t DemoKankyo_CutsceneFlags_Get_Hook(void* play, int16_t flag);
+extern z64_object_table_t z64_object_table[];
 
 #endif
