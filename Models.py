@@ -1497,7 +1497,9 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
 
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
     misc_path = data_path("Models/misc")
-    subdirs = [dir for dir in os.listdir(misc_path) if os.path.isdir(os.path.join(misc_path,dir))]
+    subdirs = []
+    if os.path.exists(misc_path):
+        subdirs = [dir for dir in os.listdir(misc_path) if os.path.isdir(os.path.join(misc_path,dir))]
     
     for dir in subdirs:
         # Read the manifest
