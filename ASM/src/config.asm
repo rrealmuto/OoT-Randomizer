@@ -111,10 +111,13 @@ CFG_CHILD_VOLUME:
 .word 0
 
 ; End Cosmetics Context
+CFG_TEXTURE_TABLE_ADDR:
+.word texture_table - PAYLOAD_START + 0x3480000
+
+COSMETIC_CONTEXT_END:
 
 CFG_SHOW_SETTING_INFO:
 .byte 0x00
-
 .area 0x20, 0
 CFG_CUSTOM_MESSAGE_1:
 .endarea
