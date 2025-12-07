@@ -1,0 +1,70 @@
+{
+    "model": "object_box_present.zobj",
+    "replace_object": "object_box",
+    "vars" : [
+        {
+            "key": "$gTreasureChestSkel",
+            "value": "0x060047d8"
+        },
+        {
+            "key": "$BaseDisplayList",
+            "value": "0x06007668"
+        },
+        {
+            "key": "$LidDisplayList",
+            "value": "0x06009978"
+        }
+    ],
+    "symbols": [
+        "gTreasureChestChestFrontDL",
+        "gTreasureChestChestSideAndLidDL"
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_En_Box",
+            "patches":[
+                {
+                    "addr": 5522,
+                    "data": "hi($BaseDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestFrontDL (hi)"
+                },
+                {
+                    "addr": 5526,
+                    "data": "lo($BaseDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestFrontDL (lo)"
+                },
+                {
+                    "addr": 5682,
+                    "data": "hi($LidDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestSideAndLidDL (hi)"
+                },
+                {
+                    "addr": 5686,
+                    "data": "lo($LidDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestSideAndLidDL (lo)"
+                }
+            ]
+        },
+        {
+            "file": "ROM",
+            "patches": [
+                {
+                    "addr": "gTreasureChestChestFrontDL",
+                    "data": "$BaseDisplayList",
+                    "size": 4,
+                    "comment": "Patch DLs used by PTMC"
+                },
+                {
+                    "addr": "gTreasureChestChestSideAndLidDL",
+                    "data": "$LidDisplayList",
+                    "size": 4,
+                    "comment": "Patch DLs used by PTMC"
+                }
+            ]
+        }
+    ]
+}
