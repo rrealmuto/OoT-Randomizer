@@ -177,6 +177,7 @@ def rgba16_from_png(rom: Rom, base_texture_address:int, base_palette_address:int
 # pngfile - File containing the texture
 # returns - list[int] containing each 16-bit RGBA16 pixel.
 def load_rgba16_from_png(pngfile: str) -> list[int]:
+    from PIL import Image
     image = Image.open(pngfile)
     rgba16_pixels: list[int] = []
     pixel_data = image.getdata()

@@ -1,0 +1,99 @@
+[
+    {
+        "file": "spot00/spot00_scene_0001AB98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 109464
+    },
+    {
+        "file": "spot00/spot00_scene_0001B398_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 111512
+    },
+    {
+        "file": "spot00/spot00_scene_0001D198_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 119192
+    },
+    {
+        "file": "spot00/spot00_scene_0001D998_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 121240
+    },
+    {
+        "file": "spot00/spot00_scene_0001F818_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 129048
+    },
+    {
+        "file": "spot00/spot00_scene_00013D98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 81304
+    },
+    {
+        "file": "spot00/spot00_scene_00015E98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 89752
+    },
+    {
+        "file": "spot00/spot00_scene_00016B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 93080
+    },
+    {
+        "file": "spot00/spot00_scene_00017B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 97176
+    },
+    {
+        "file": "spot00/spot00_scene_00018B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 101272
+    },
+    {
+        "file": "spot00/spot00_scene_00019B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 105368
+    },
+    {
+        "file": "spot00/spot00_scene_00017398_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 95128
+    },
+    {
+        "file": "spot00/spot00_scene_00021818_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 137240
+    },
+    {
+        "file": "spot00/spot00_scene_00023018_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 143384
+    },
+    {
+        "file": "spot00/spot00_scene_00025898_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 153752
+    },
+    {
+        "file": "spot00/spot00_scene_00024818_CITex.ci4.png",
+        "type": "ci4",
+        "target_file_id": 1025,
+        "target_file_offset": 149528,
+        "palette_address": 81264
+    }
+]
