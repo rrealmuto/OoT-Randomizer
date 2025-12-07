@@ -1,0 +1,96 @@
+{
+    "model": "object_ane_xmas.zobj",
+    "replace_object": "object_ane",
+    "vars" : [
+        {
+            "key": "$gCuccoLadySkel",
+            "value": "0x06007940"
+        },
+        {
+            "key": "$gCuccoLadyEyeOpenTex",
+            "value": "0x06007950"
+        },
+        {
+            "key": "$gCuccoLadyEyeClosedTex",
+            "value": "0x06008950"
+        },
+        {
+            "key": "$gCuccoLadyEyeHalfTex",
+            "value": "0x06008150"
+        }
+    ],
+    "symbols": [
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_En_Niw_Lady",
+            "patches":[
+                {
+                    "addr": 846,
+                    "data": "hi($gCuccoLadySkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoLadySkel (Upper half)"
+                },
+                {
+                    "addr": 886,
+                    "data": "lo($gCuccoLadySkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoLadySkel (Lower half)"
+                },
+                {
+                    "addr": 5736,
+                    "data": "$gCuccoLadyEyeOpenTex",
+                    "size": 4,
+                    "comment": "sEyeTextures gCuccoLadyEyeOpenTex"
+                },
+                {
+                    "addr": 5740,
+                    "data": "$gCuccoLadyEyeHalfTex",
+                    "size": 4,
+                    "comment": "sEyeTextures gCuccoLadyEyeHalfTex"
+                },
+                {
+                    "addr": 5744,
+                    "data": "$gCuccoLadyEyeClosedTex",
+                    "size": 4,
+                    "comment": "sEyeTextures gCuccoLadyEyeClosedTex"
+                }
+            ]
+        },
+        {
+            "file": "ovl_Demo_Ec",
+            "patches":[
+                {
+                    "addr": 9074,
+                    "data": "hi($gCuccoLadySkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoLadySkel (Upper half)"
+                },
+                {
+                    "addr": 9078,
+                    "data": "lo($gCuccoLadySkel)",
+                    "size": 2,
+                    "comment": "Patch SkelAnime_InitFlex reference to gCuccoLadySkel (Lower half)"
+                },
+                {
+                    "addr": 12216,
+                    "data": "$gCuccoLadyEyeOpenTex",
+                    "size": 4,
+                    "comment": "sEyeTextures gCuccoLadyEyeOpenTex"
+                },
+                {
+                    "addr": 12220,
+                    "data": "$gCuccoLadyEyeHalfTex",
+                    "size": 4,
+                    "comment": "sEyeTextures gCuccoLadyEyeHalfTex"
+                },
+                {
+                    "addr": 12224,
+                    "data": "$gCuccoLadyEyeClosedTex",
+                    "size": 4,
+                    "comment": "sEyeTextures gCuccoLadyEyeClosedTex"
+                }
+            ]
+        }
+    ]
+}
