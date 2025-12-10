@@ -135,5 +135,30 @@
         "file": "chest/present_lid_key.png",
         "type": "rgba16",
         "target_texture_id": 23
+    },
+    {
+        "file": "pot/pot_gilded.png",
+        "type": "rgba16",
+        "target_texture_id": 1
+    },
+    {
+        "file": "pot/pot_key.png",
+        "type": "rgba16",
+        "target_texture_id": 2
+    },
+    {
+        "file": "pot/pot_bosskey_2.png",
+        "type": "rgba16",
+        "target_texture_id": 3
+    },
+    {
+        "file": "pot/pot_web_3.png",
+        "type": "rgba16",
+        "target_texture_id": 4
+    },
+    {
+        "file": "pot/pot_heart.png",
+        "type": "rgba16",
+        "target_texture_id": 26
     }
 ]

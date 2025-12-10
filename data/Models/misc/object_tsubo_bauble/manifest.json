@@ -4,15 +4,15 @@
     "vars" : [
         {
             "key": "$gPotJackOLanternDL",
-            "value": 100666552
+            "value": "0x06001020"
         },
         {
             "key": "$gPotJackOLanternFragmentDL",
-            "value": 100667400
+            "value": "0x06001360"
         },
         {
             "key": "$gPotJackOLanternDL_object_tsubo_pumpkin_rgba16",
-            "value": 100663296
+            "value": "0x06000000"
         },
         {
             "key": "$object_tsubo_id",
