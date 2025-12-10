@@ -1476,6 +1476,7 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
     patch_files = manifest["patch_files"] if "patch_files" in manifest.keys() else []
     patch_gi_draw_table = manifest["patch_gi_draw_table"] if "patch_gi_draw_table" in manifest.keys() else None
     patch_item_table = manifest["patch_item_table"] if "patch_item_table" in manifest.keys() else None
+    append_files = manifest["append_files"] if "append_files" in manifest.keys() else None
     vars = {}
     if "vars" in manifest.keys():
         for var in manifest["vars"]:
@@ -1493,26 +1494,46 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
         for sym in manifest["symbols"]:
             vars[sym] = rom.sym(sym)
 
-    return (model_file, replace_object, patch_files, patch_gi_draw_table, patch_item_table, vars)
+    return (model_file, append_files, replace_object, patch_files, patch_gi_draw_table, patch_item_table, vars)
 
-def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
+def patch_misc_models(rom: Rom, settings: Settings):
     misc_path = data_path("Models/misc")
     subdirs = []
+    model_data: bytearray = None
     if os.path.exists(misc_path):
         subdirs = [dir for dir in os.listdir(misc_path) if os.path.isdir(os.path.join(misc_path,dir))]
     
     for dir in subdirs:
         # Read the manifest
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
+        this_dir = os.path.join(misc_path, dir)
         if os.path.exists(manifest_path):
-            model_file, replace_object, patch_files, patches_gi_draw_table, patches_item_table, vars = read_object_manifest(rom, manifest_path)
+            model_file, append_files, replace_object, patch_files, patches_gi_draw_table, patches_item_table, vars = read_object_manifest(rom, manifest_path)
         else:
             continue
         # Read the model data
         model_file_path = os.path.join(misc_path, dir, model_file)
         with open(model_file_path, 'rb') as f:
-            model_data = f.read()
+            model_data: bytearray = bytearray(f.read())
         
+        # Append data specified in the manifest
+        if append_files:
+            for append_file in append_files:
+                append_file_type = append_file["type"]
+                append_file_var = append_file["varname"]
+                append_file_filename = append_file["file_name"]
+                vars[append_file_var] = 0x06000000 | len(model_data)
+                if(append_file_type.startswith("texture")):
+                    # Convert texture
+                    from texture_util import rgba16_from_png
+                    model_data.extend(rgba16_from_png(rom, None, None, None, os.path.join(this_dir, append_file_filename)))
+                    
+                elif append_file_type == "bin":
+                    # Read the file to append
+                    with open(os.path.join(this_dir, append_file_filename)) as f:
+                        file_data = f.read()
+                        model_data.extend(file_data)
+
         new_obj_id = None
         if replace_object == "new":
             # Add an entirely new object to the file system and object table
@@ -1521,6 +1542,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
             rom.update_dmadata_record_by_key(None, model_start, model_end)
             new_obj_id = rom.add_extended_object(model_start, model_end)
             rom.write_bytes(model_start, model_data)
+
         else:
             # Find the original model file info
             dma = rom.dma[file_list[replace_object]]
@@ -1592,6 +1614,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
                 addr = patch["addr"]
                 if type(addr) == str:
                     addr = vars[addr]
+                addr += patch["addr_offset"] if "addr_offset" in patch.keys() else 0
                 data = patch["data"]
                 size = patch["size"] if "size" in patch.keys() else len(data)
                 if type(data) == str:

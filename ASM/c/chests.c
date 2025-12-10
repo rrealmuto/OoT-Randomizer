@@ -67,16 +67,27 @@ void get_chest_override(z64_actor_t* actor) {
 uint8_t get_chest_type(z64_actor_t* actor) {
     uint8_t chest_type = ((Chest*)actor)->color;
     if (CHEST_SIZE_MATCH_CONTENTS && chest_type == SILVER_CHEST) {
-        chest_type = GOLD_CHEST;
+        chest_type = BOSSKEY_CHEST;
     }
 
     return chest_type;
 }
 
+
+Gfx* gTreasureChestChestFrontDL = 0x060006F0;
+Gfx* gTreasureChestBossKeyChestFrontDL = 0x06000AE8;
+Gfx* gTreasureChestChestSideAndLidDL = 0x060010C0;
+Gfx* gTreasureChestBossKeyChestSideAndTopDL = 0x06001678;
+Gfx* gTreasureChestBaseTexture = BROWN_BASE_TEXTURE;
+Gfx* gTreasureChestFrontTexture = BROWN_FRONT_TEXTURE;
+Gfx* gTreasureChestBossKeyChestFrontTexture = GOLD_FRONT_TEXTURE;
+Gfx* gTreasureChestBossKeyChestBaseTexture = GOLD_BASE_TEXTURE;
+
+
 void set_chest_texture(z64_gfx_t* gfx, uint8_t chest_type, Gfx** opa_ptr) {
     //set texture type
-    void* frontTexture = (void*)BROWN_FRONT_TEXTURE;
-    void* baseTexture = (void*)BROWN_BASE_TEXTURE;
+    void* frontTexture = (void*)gTreasureChestFrontTexture;
+    void* baseTexture = (void*)gTreasureChestBaseTexture;
 
     if (CHEST_SIZE_TEXTURE || CHEST_TEXTURE_MATCH_CONTENTS) {
         if (!SOA_UNLOCKS_CHEST_TEXTURE || z64_file.stone_of_agony != 0) {
@@ -87,7 +98,12 @@ void set_chest_texture(z64_gfx_t* gfx, uint8_t chest_type, Gfx** opa_ptr) {
                         baseTexture = get_texture(TEXTURE_ID_CHEST_BASE_GILDED);
                     }
                     break;
-
+                case BOSSKEY_CHEST:
+                    if (CHEST_GOLD_TEXTURE) {
+                        frontTexture = gTreasureChestBossKeyChestFrontTexture;
+                        baseTexture = gTreasureChestBossKeyChestBaseTexture;
+                    }
+                    break;
                 case SILVER_CHEST:
                     if (CHEST_SILVER_TEXTURE) {
                         frontTexture = get_texture(TEXTURE_ID_CHEST_FRONT_SILVER);
@@ -119,6 +135,8 @@ void set_chest_texture(z64_gfx_t* gfx, uint8_t chest_type, Gfx** opa_ptr) {
 
     //the brown chest's base and lid dlist has been modified to jump to
     //segment 09 in order to dynamically set the chest front and base textures
+
+    
     gfx->poly_opa.d -= 4;
     gDPSetTextureImage(gfx->poly_opa.d, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, frontTexture);
     gSPEndDisplayList(gfx->poly_opa.d + 1);
@@ -129,35 +147,20 @@ void set_chest_texture(z64_gfx_t* gfx, uint8_t chest_type, Gfx** opa_ptr) {
     gSPSegment((*opa_ptr)++, 0x09, gfx->poly_opa.d);
 }
 
-Gfx* gTreasureChestChestFrontDL = 0x060006F0;
-Gfx* gTreasureChestBossKeyChestFrontDL = 0x06000AE8;
-Gfx* gTreasureChestChestSideAndLidDL = 0x060010C0;
-Gfx* gTreasureChestBossKeyChestSideAndTopDL = 0x06001678;
-
 void draw_chest_base(z64_game_t* game, z64_actor_t* actor, Gfx** opa_ptr) {
     z64_gfx_t* gfx = game->common.gfx;
     uint8_t chest_type = get_chest_type(actor);
     gSPMatrix((*opa_ptr)++, write_matrix_stack_top(gfx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    if (chest_type != GOLD_CHEST || !CHEST_GOLD_TEXTURE ||
-        (SOA_UNLOCKS_CHEST_TEXTURE && z64_file.stone_of_agony == 0)) {
-        set_chest_texture(gfx, chest_type, opa_ptr);
-        gSPDisplayList((*opa_ptr)++, gTreasureChestChestFrontDL);
-    } else {
-        gSPDisplayList((*opa_ptr)++, gTreasureChestBossKeyChestFrontDL);
-    }
+    set_chest_texture(gfx, chest_type, opa_ptr);
+    gSPDisplayList((*opa_ptr)++, gTreasureChestChestFrontDL);
 }
 
 void draw_chest_lid(z64_game_t* game, z64_actor_t* actor, Gfx** opa_ptr) {
     z64_gfx_t* gfx = game->common.gfx;
     uint8_t chest_type = get_chest_type(actor);
     gSPMatrix((*opa_ptr)++, write_matrix_stack_top(gfx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    if (chest_type != GOLD_CHEST || !CHEST_GOLD_TEXTURE ||
-        (SOA_UNLOCKS_CHEST_TEXTURE && z64_file.stone_of_agony == 0)) {
-        set_chest_texture(gfx, chest_type, opa_ptr);
-        gSPDisplayList((*opa_ptr)++, gTreasureChestChestSideAndLidDL);
-    } else {
-        gSPDisplayList((*opa_ptr)++, gTreasureChestBossKeyChestSideAndTopDL);
-    }
+    set_chest_texture(gfx, chest_type, opa_ptr);
+    gSPDisplayList((*opa_ptr)++, gTreasureChestChestSideAndLidDL);
 }
 
 void draw_chest(z64_game_t* game, int32_t part, void* unk, void* unk2, z64_actor_t* actor, Gfx** opa_ptr) {
@@ -186,7 +189,7 @@ void get_dummy_chest(Chest* dummy_chest) {
     dummy_actor.variable = 0x27EE;
     dummy_chest->en_box.dyna.actor = dummy_actor;
     // Init the type at gold, this way it will keep its vanilla appearance if we do not override it later in get_chest_override.
-    dummy_chest->en_box.type = GOLD_CHEST;
+    dummy_chest->en_box.type = BOSSKEY_CHEST;
 }
 
 void draw_forest_hallway_chest_base() {

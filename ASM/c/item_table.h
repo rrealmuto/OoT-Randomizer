@@ -430,7 +430,7 @@ _Static_assert(GI_RANDO_MAX == 0x024D, "Remember to update the comment and the a
 typedef enum {
     /*  0 */ BROWN_CHEST,            // big default chest
     /*  1 */ BIG_ROOM_CLEAR_CHEST,   // appear on room clear, store temp clear as permanent clear
-    /*  2 */ GOLD_CHEST,             // boss key chest, different look, same as BROWN_CHEST otherwise
+    /*  2 */ BOSSKEY_CHEST,             // boss key chest, different look, same as BROWN_CHEST otherwise
     /*  3 */ BIG_FALLING_CHEST,      // falling, appear on switch flag set
     /*  4 */ TYPE_4_CHEST,           // big, drawn differently
     /*  5 */ SMALL_CHEST,            // same as BROWN_CHEST but small

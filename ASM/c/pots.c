@@ -61,7 +61,7 @@ void draw_pot(z64_actor_t* actor, z64_game_t* game) {
                 }
                 break;
 
-            case GOLD_CHEST:
+            case BOSSKEY_CHEST:
                 if (POTCRATE_GOLD_TEXTURE) {
                     side_texture = get_texture(TEXTURE_ID_POT_BOSSKEY);
                 }

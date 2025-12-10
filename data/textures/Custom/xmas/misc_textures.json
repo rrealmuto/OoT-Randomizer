@@ -95,5 +95,45 @@
         "target_file_id": 1025,
         "target_file_offset": 149528,
         "palette_address": 81264
+    },
+    {
+        "file": "chest/present_base_gold.png",
+        "type": "rgba16",
+        "target_texture_id": 18
+    },
+    {
+        "file": "chest/present_lid_gold.png",
+        "type": "rgba16",
+        "target_texture_id": 19
+    },
+    {
+        "file": "chest/present_base_heart.png",
+        "type": "rgba16",
+        "target_texture_id": 24 
+    },
+    {
+        "file": "chest/present_lid_heart.png",
+        "type": "rgba16",
+        "target_texture_id": 25
+    },
+    {
+        "file": "chest/present_base_key.png",
+        "type": "rgba16",
+        "target_texture_id": 20
+    },
+    {
+        "file": "chest/present_lid_key.png",
+        "type": "rgba16",
+        "target_texture_id": 21
+    },
+    {
+        "file": "chest/present_base_skull.png",
+        "type": "rgba16",
+        "target_texture_id": 22
+    },
+    {
+        "file": "chest/present_lid_key.png",
+        "type": "rgba16",
+        "target_texture_id": 23
     }
 ]
