@@ -71,8 +71,9 @@ def load_palette(rom: Rom, address: int, length: int) -> list[int]:
 
 
 # Get a list of unique colors (palette) from an rgba16 texture
-def get_colors_from_rgba16(rgba16_texture: list[int]) -> list[int]:
-    colors = []
+def get_colors_from_rgba16(rgba16_texture: list[int], colors = None) -> list[int]:
+    if colors is None:
+        colors = []
     for pixel in rgba16_texture:
         if pixel not in colors:
             colors.append(pixel)
@@ -200,6 +201,35 @@ def load_rgba16_from_png(pngfile: str) -> list[int]:
         pixel16 = (r16 << 11) + (g16 << 6) + (b16 << 1) + a16
         rgba16_pixels.append(pixel16)
     return rgba16_pixels
+
+def ci8_shared_from_pngs(png_files: list[str]):
+    # Build list of rgba16 textures from pngs
+    rgba16_textures: list[list[int]] = []
+    for file in png_files:
+        texture = load_rgba16_from_png(file)
+        rgba16_textures.append(texture)
+    
+    return build_ci8_shared(rgba16_textures)
+
+def build_ci8_shared(rgba16_textures: list[list[int]]) -> tuple[list[list[int]], list[int]]:
+    # Get a shared palette for all of the textures
+    palette = build_shared_palette(rgba16_textures)
+    
+    ci8_textures = []
+    for rgba16_texture in rgba16_textures:
+        ci8_texture = []
+        for pixel in rgba16_texture:
+            if pixel in palette:
+                ci8_texture.append(palette.index(pixel))
+        ci8_textures.append(ci8_texture)
+    return ci8_textures, palette
+
+# Build a shared palette from a list of textures
+def build_shared_palette(rgba16_textures: list[list[int]]):
+    colors = []
+    for texture in rgba16_textures:
+        colors = get_colors_from_rgba16(texture, colors)
+    return colors
 
 # Generate RGBA32 texture bytearray from pixels
 def rgba32_from_png(rom: Rom, base_texture_address:int, base_palette_address:int, size: int, pngfile:str) -> bytearray:

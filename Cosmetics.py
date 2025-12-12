@@ -16,7 +16,7 @@ import Sounds
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
-from texture_util import load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
+from texture_util import ci8_shared_from_pngs, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
 from version import __version__
 from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
 from Rom import AUDIOBANK_INDEX_ADDR
@@ -891,7 +891,8 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
         misc_textures: list[dict[str, Any]] = json.loads(misc_json)
         for texture in misc_textures:
             palette = None
-            texture_path = os.path.join(misc_texture_path_base, texture['file'])
+            if 'file' in texture.keys():
+                texture_path = os.path.join(misc_texture_path_base, texture['file'])
             texture_type = texture['type']
             texture_id = None
             file_id = None
@@ -903,12 +904,19 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 raise Exception(f"No idea how to handle texture: {texture_path}")
 
             if texture_type == "rgba16":
-                texture_data = rgba16_from_png(rom,0,0,0,texture_path)
+                texture_data = [rgba16_from_png(rom,0,0,0,texture_path)]
             elif texture_type == "rgba32":
-                texture_data = rgba16_from_png(rom,0,0,0,texture_path)
+                texture_data = [rgba16_from_png(rom,0,0,0,texture_path)]
             elif texture_type == "ci4":
                 texture_data = load_rgba16_from_png(texture_path)
                 texture_data, palette = rgba16_to_ci4(texture_data)
+                texture_data = [texture_data]
+            elif texture_type == "texture_group_ci8":
+                texture_files = texture["files"]
+                texture_paths = []
+                for file in texture_files:
+                    texture_paths.append(os.path.join(misc_texture_path_base, file))
+                texture_data, palette = ci8_shared_from_pngs(texture_paths)
             
             texture_start: int = 0
             palette_address: int = 0
@@ -920,19 +928,30 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 
                 # Read the texture table entry to get the texture's VROM address
                 rom_texture = read_rom_texture(rom, texture_id, texture_table_addr)
-                texture_start = rom_texture['file_vrom_start']
+                texture_starts = [rom_texture['file_vrom_start']]
                 if palette:
                     # If a palette is specified it is with respect to the start of the texture. Just used for crate textures
                     palette_address = texture_start + texture['palette_address']
             else:
                 # Patching a vanilla texture
                 # Get the dma entry from the file ID
-                dma_entry = rom.dma[file_id]
-                offset = texture['target_file_offset']
-                texture_start = dma_entry.start + offset
+                
+                if type(texture['target_file_offset']) == list:
+                    # Calculate offsets for each
+                    # Need to calculate texture starts for multiple files so assume file_id is a list too
+                    texture_starts = []
+                    for i in range(0, len(texture['target_file_offset'])):
+                        texture_starts.append(rom.dma[file_id[i]].start + texture['target_file_offset'][i])
+                else:
+                    
+                    dma_entry = rom.dma[file_id]
+                    offset = texture['target_file_offset']
+                    texture_starts = [dma_entry.start + offset]
                 if palette:
-                    palette_address = dma_entry.start + texture['palette_address']
-            rom.write_bytes(texture_start, texture_data)
+                    palette_dma_entry = rom.dma[texture['palette_file_id']] if 'palette_file_id' in texture.keys() else dma_entry
+                    palette_address =  palette_dma_entry.start + texture['palette_address']
+            for texture_start, data in zip(texture_starts, texture_data):
+                rom.write_bytes(texture_start, data)
             if palette:
                 rom.write_bytes(palette_address, rgba16_to_bytes(palette))
 
