@@ -17,6 +17,10 @@
         {
             "key": "$gCuccoLadyEyeHalfTex",
             "value": "0x06008150"
+        },
+        {
+            "key": "$anim",
+            "value": "0x0600a630"
         }
     ],
     "symbols": [
@@ -54,6 +58,82 @@
                     "data": "$gCuccoLadyEyeClosedTex",
                     "size": 4,
                     "comment": "sEyeTextures gCuccoLadyEyeClosedTex"
+                },
+
+
+                {
+                    "addr": 1094,
+                    "data": "hi($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 1394,
+                    "data": "hi($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 1118,
+                    "data": "hi($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 1262,
+                    "data": "hi($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 418,
+                    "data": "hi($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 450,
+                    "data": "hi($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+
+
+                {
+                    "addr": 1250,
+                    "data": "lo($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 1274,
+                    "data": "lo($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 1382,
+                    "data": "lo($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 1406,
+                    "data": "lo($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 426,
+                    "data": "lo($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
+                },
+                {
+                    "addr": 454,
+                    "data": "lo($anim)",
+                    "size": 2,
+                    "comment": "Patch out adult anju animation"
                 }
             ]
         },
