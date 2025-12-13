@@ -4704,11 +4704,12 @@ class SettingInfos:
             See data/textures/README.md for details
             on how to add a texture pack.
         ''',
-        shared         = False,
+        shared         = True,
         cosmetic       = True,
         choices        = get_texture_pack_choices(),
-        default        = 'Default',
+        default        = 'xmas',
         gui_params     = {
+            "optional": True,
             "hide_when_disabled": True,
             "dynamic":            True,
         },
