@@ -189,7 +189,7 @@ def get_rgba_pixel(pixel):
 # returns - list[int] containing each 16-bit RGBA16 pixel.
 def load_rgba16_from_png(pngfile: str) -> list[int]:
     from PIL import Image
-    image = Image.open(pngfile)
+    image = Image.open(pngfile).convert("RGBA")
     rgba16_pixels: list[int] = []
     pixel_data = image.getdata()
     for pixel in pixel_data:

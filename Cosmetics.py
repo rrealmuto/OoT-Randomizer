@@ -917,6 +917,8 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 for file in texture_files:
                     texture_paths.append(os.path.join(misc_texture_path_base, file))
                 texture_data, palette = ci8_shared_from_pngs(texture_paths)
+            elif texture_type == "patch_bytes":
+                texture_data = texture['data']
             
             texture_start: int = 0
             palette_address: int = 0
@@ -950,8 +952,11 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 if palette:
                     palette_dma_entry = rom.dma[texture['palette_file_id']] if 'palette_file_id' in texture.keys() else dma_entry
                     palette_address =  palette_dma_entry.start + texture['palette_address']
-            for texture_start, data in zip(texture_starts, texture_data):
-                rom.write_bytes(texture_start, data)
+            if texture_type == "patch_bytes":
+                rom.write_bytes(texture_starts[0], texture_data)
+            else:
+                for texture_start, data in zip(texture_starts, texture_data):
+                    rom.write_bytes(texture_start, data)
             if palette:
                 rom.write_bytes(palette_address, rgba16_to_bytes(palette))
 

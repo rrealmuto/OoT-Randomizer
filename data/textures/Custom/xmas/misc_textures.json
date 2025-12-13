@@ -97,6 +97,34 @@
         "palette_address": 81264
     },
     {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 78572,
+        "data": [200,200,200],
+        "comment": "Patch the patch in HF"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 80452,
+        "data": [200,200,200],
+        "comment": "Patch the patch in HF"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 78568,
+        "data": [200,200,200],
+        "comment": "Patch the patch in HF"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 83044,
+        "data": [200,200,200],
+        "comment": "Patch the patch in HF"
+    },
+    {
         "file": "spot01/spot01_scene_00019350_Tex.rgba16.png",
         "type": "rgba16",
         "target_file_id": 1027,
@@ -115,24 +143,52 @@
         "target_file_offset": 101200
     },
     {
-        "file": "spot01/spot01_scene_00019B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
-        "type": "ci8",
-        "target_file_id": 1027,
-        "target_file_offset": 105296,
-        "palette_address": 43120
-    },
-    {
-        "file": "spot01/spot01_scene_00014B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
-        "type": "ci8",
-        "target_file_id": 1027,
-        "target_file_offset": 84816,
-        "palette_address": 43120
-    },
-    {
-        "file": "spot01/spot01_scene_00014F50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
-        "type": "ci8",
-        "target_file_id": 1027,
-        "target_file_offset": 85840,
+        "type": "texture_group_ci8",
+        "files": [
+            "spot01/spot01_scene_00019B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00014B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00014F50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000C950_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000C750_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000B750_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0001BF50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00017B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00012950_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000B250_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000B350_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000CD50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000E550_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png"
+        ],
+        "target_file_offset": [
+            105296,
+            84816,
+            85840,
+            51536,
+            51024,
+            46928,
+            114512,
+            97104,
+            76112,
+            45648,
+            45904,
+            52560,
+            58704
+        ],
+        "target_file_id": [
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027
+        ],
         "palette_address": 43120
     },
     {
@@ -148,31 +204,17 @@
         "target_file_offset": 63824
     },
     {
-        "file": "spot01/spot01_scene_0000C950_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
-        "type": "ci8",
-        "target_file_id": 1027,
-        "target_file_offset": 51536,
-        "palette_address": 43120
-    },
-    {
-        "file": "spot01/spot01_scene_0000C750_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
-        "type": "ci8",
-        "target_file_id": 1027,
-        "target_file_offset": 51024,
-        "palette_address": 43120
-    },
-    {
-        "file": "spot01/spot01_scene_0000B750_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
-        "type": "ci8",
-        "target_file_id": 1027,
-        "target_file_offset": 46928,
-        "palette_address": 43120
-    },
-    {
         "file": "spot01/spot01_scene_0000AA50_Tex.rgba16.png",
         "type": "rgba16",
         "target_file_id": 1027,
         "target_file_offset": 43600
+    },
+    {
+        "file": "spot01/spot01_scene_0000ED50_CITex.ci4.png",
+        "type": "ci4",
+        "target_file_id": 1027,
+        "target_file_offset": 60752,
+        "palette_address": 43560
     },
     {
         "file": "chest/present_base_gold.png",
