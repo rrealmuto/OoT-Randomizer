@@ -355,7 +355,7 @@ void* threadFunc(void* null)
 
             /* If uncompressed is the same as archive, just copy/paste the compressed */
             /* Otherwise, compress it manually */
-            if((archive != NULL) && (memcmp(src, archive->ref[nextArchive], archive->refSize[nextArchive]) == 0))
+            if((archive != NULL) && (srcSize == archive->refSize[nextArchive]) && (memcmp(src, archive->ref[nextArchive], archive->refSize[nextArchive]) == 0))
             {
                 out[i].comp = 1;
                 size = archive->srcSize[nextArchive];
