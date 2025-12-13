@@ -17,6 +17,7 @@ from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
 from texture_util import ci8_shared_from_pngs, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
+from FileList import file_list
 from version import __version__
 from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
 from Rom import AUDIOBANK_INDEX_ADDR
@@ -900,6 +901,8 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 texture_id = texture['target_texture_id']
             elif 'target_file_id' in texture.keys():
                 file_id = texture['target_file_id']
+                if type(file_id) == str:
+                    file_id = file_list[file_id]
             else:
                 raise Exception(f"No idea how to handle texture: {texture_path}")
 
