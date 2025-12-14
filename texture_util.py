@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import io
 import os
 
 from Rom import Rom
@@ -253,6 +254,15 @@ def load_rgba32_from_png(pngfile: str) -> list[int]:
         r,g,b,a = get_rgba_pixel(pixel)
         rgba32_pixels.append(pixel)
     return rgba32_pixels
+
+def jfif_from_image(imagefile:str) -> list[int]:
+    from PIL import Image
+    image = Image.open(imagefile)
+    img_buffer = io.BytesIO()
+    image.save(img_buffer, format="JPEG", quality=95)
+    image.close()
+    return img_buffer.getvalue()
+    
 
 # Create a new rgba16 texture from a original rgba16 texture and a rgba16 patch file
 # rom - Rom object to load the original texture from

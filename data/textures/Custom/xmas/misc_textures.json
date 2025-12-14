@@ -485,7 +485,42 @@
         "data": [200,200,200],
         "comment": "Patch the path in KF Room 2"
     },
-
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_room_0",
+        "target_file_offset": 185072,
+        "file": "shrine/shrine_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_0302D2F0_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_room_0",
+        "target_file_offset": 31472,
+        "file": "shrine/shrine_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_03007AF0_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_n_room_0",
+        "target_file_offset": 185104,
+        "file": "shrine/shrine_n_room_0_030000C0_RoomShapeImageMulti_030000D0_RoomShapeImageMultiBgEntries_0302D310_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_n_room_0",
+        "target_file_offset": 31504,
+        "file": "shrine/shrine_n_room_0_030000C0_RoomShapeImageMulti_030000D0_RoomShapeImageMultiBgEntries_03007B10_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_r_room_0",
+        "target_file_offset": 185072,
+        "file": "shrine/shrine_r_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_0302D2F0_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_r_room_0",
+        "target_file_offset": 31472,
+        "file": "shrine/shrine_r_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_03007AF0_JFIF.jpg"
+    },
     {
         "file": "chest/present_base_gold.png",
         "type": "rgba16",

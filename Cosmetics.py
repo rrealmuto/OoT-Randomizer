@@ -16,7 +16,7 @@ import Sounds
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
-from texture_util import ci8_shared_from_pngs, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
+from texture_util import ci8_shared_from_pngs, jfif_from_image, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
 from FileList import file_list
 from version import __version__
 from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
@@ -920,6 +920,8 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 for file in texture_files:
                     texture_paths.append(os.path.join(misc_texture_path_base, file))
                 texture_data, palette = ci8_shared_from_pngs(texture_paths)
+            elif texture_type == "jfif":
+                texture_data = [jfif_from_image(texture_path)]
             elif texture_type == "patch_bytes":
                 texture_data = texture['data']
             
