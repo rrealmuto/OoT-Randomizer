@@ -6,13 +6,13 @@
 #include "get_items.h"
 #include "actor.h"
 
-#define DUNGEON_POT_SIDE_TEXTURE (uint8_t*)0x050108A0
-#define DUNGEON_POT_TOP_TEXTURE (uint8_t*)0x050118A0
-#define DUNGEON_POT_DLIST (z64_gfx_t*)0x05017870
+z64_gfx_t* DUNGEON_POT_SIDE_TEXTURE = (z64_gfx_t*)0x050108A0;
+z64_gfx_t* DUNGEON_POT_TOP_TEXTURE = (z64_gfx_t*)0x050118A0;
+z64_gfx_t* DUNGEON_POT_DLIST = (z64_gfx_t*)0x05017870;
 
-#define POT_SIDE_TEXTURE (uint8_t*)0x06000000
-#define POT_TOP_TEXTURE (uint8_t*)0x06001000
-#define POT_DLIST (z64_gfx_t*)0x060017C0
+z64_gfx_t* POT_SIDE_TEXTURE = (z64_gfx_t*)0x06000000;
+z64_gfx_t* POT_TOP_TEXTURE = (z64_gfx_t*)0x06001000;
+z64_gfx_t* POT_DLIST = (z64_gfx_t*)0x060017C0;
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint8_t POTCRATE_GOLD_TEXTURE;
@@ -21,6 +21,8 @@ extern uint8_t POTCRATE_SILVER_TEXTURE;
 extern uint8_t POTCRATE_SKULL_TEXTURE;
 extern uint8_t POTCRATE_HEART_TEXTURE;
 extern uint8_t SOA_UNLOCKS_POTCRATE_TEXTURE;
+
+
 
 void draw_pot(z64_actor_t* actor, z64_game_t* game) {
     // get original dlist and texture

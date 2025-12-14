@@ -21,6 +21,7 @@ from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_i
 from LocationList import location_is_viewable
 from Main import main, resolve_settings, build_world_graphs
 from Messages import Message, read_messages, shuffle_messages
+from Models import patch_misc_models
 from Settings import Settings, get_preset_files
 from SettingsList import logic_tricks, advanced_logic_tricks
 from Spoiler import Spoiler
@@ -986,3 +987,8 @@ class TestCustomAudio(unittest.TestCase):
         self.assertEqual(num_banks, 0x26)
         self.assertEqual(audiobanks[0x25].bank_offset, 0x19110)
         self.assertEqual(audiobanks[0x25].size, 0x3940)
+
+class TestMiscModels(unittest.TestCase):
+    def test_miscmodels(self):
+        rom: Rom = Rom("ZOOTDEC.z64")
+        patch_misc_models(rom, None, None)

@@ -1,0 +1,36 @@
+diff --git a/EntranceShuffle.py b/EntranceShuffle.py
+index bba17f841..059bbc71d 100644
+--- a/EntranceShuffle.py
++++ b/EntranceShuffle.py
+@@ -932,8 +932,8 @@ def check_entrances_compatibility(entrance: Entrance, target: Entrance, rollback
+     if placed_one_way_entrances is None:
+         placed_one_way_entrances = []
+     # An entrance shouldn't be connected to its own scene, so we fail in that situation
+-    if entrance.parent_region.get_scene() and entrance.parent_region.get_scene() == target.connected_region.get_scene():
+-        raise EntranceShuffleError('Self scene connections are forbidden')
++    #if entrance.parent_region.get_scene() and entrance.parent_region.get_scene() == target.connected_region.get_scene():
++    #    raise EntranceShuffleError('Self scene connections are forbidden')
+ 
+     # One way entrances shouldn't lead to the same hint area as other already chosen one way entrances
+     if entrance.type in ('OverworldOneWay', 'OwlDrop', 'Spawn', 'WarpSong'):
+@@ -1133,7 +1133,7 @@ def get_entrance_replacing(region: Region, entrance_name: str) -> Optional[Entra
+ def change_connections(entrance: Entrance, target_entrance: Entrance) -> None:
+     entrance.connect(target_entrance.disconnect())
+     entrance.replaces = target_entrance.replaces
+-    if entrance.reverse:
++    if entrance.reverse and entrance.reverse.assumed.connected_region:
+         target_entrance.replaces.reverse.connect(entrance.reverse.assumed.disconnect())
+         target_entrance.replaces.reverse.replaces = entrance.reverse
+ 
+diff --git a/Plandomizer.py b/Plandomizer.py
+index 14538af93..256c37f43 100644
+--- a/Plandomizer.py
++++ b/Plandomizer.py
+@@ -685,6 +685,7 @@ class WorldDistribution:
+                 matched_targets_to_region = list(filter(lambda target: target.connected_region and target.connected_region.name == target_region,
+                                                         target_entrance_pools[pool_type]))
+                 if not matched_targets_to_region:
++                    continue
+                     raise RuntimeError('No entrance found to replace with %s that leads to %s in world %d' %
+                                                 (matched_entrance, target_region, self.id + 1))
+ 

@@ -1,54 +1,278 @@
 {
     "ADULT_ANJU_ITEM_DIALOG": {
-        "address": "03486798",
+        "address": "034867E8",
         "length": 4
     },
     "ADULT_INIT_ITEMS": {
-        "address": "03483368",
+        "address": "034833B8",
         "length": 1
     },
     "ADULT_VALID_ITEMS": {
-        "address": "03483370",
+        "address": "034833C0",
         "length": 1
     },
     "APPLY_BONK_DAMAGE": {
-        "address": "0348477C",
+        "address": "034847CC",
         "length": 0
     },
     "AUDIOBANK_TABLE_EXTENDED": {
-        "address": "03485110",
+        "address": "03485160",
         "length": 2560
     },
     "AUDIO_THREAD_INFO": {
-        "address": "034850E8",
+        "address": "03485138",
         "length": 24
     },
     "AUDIO_THREAD_INFO_MEM_SIZE": {
-        "address": "03485104",
+        "address": "03485154",
         "length": 4
     },
     "AUDIO_THREAD_INFO_MEM_START": {
-        "address": "03485100",
+        "address": "03485150",
         "length": 4
     },
     "AUDIO_THREAD_MEM_START": {
-        "address": "034E12F0",
+        "address": "034E1400",
         "length": 0
     },
     "AUTO_TRACKER_CONTEXT": {
-        "address": "03481E58",
+        "address": "03481EA8",
         "length": 4
     },
     "AUTO_TRACKER_VERSION": {
-        "address": "03481E58",
+        "address": "03481EA8",
         "length": 4
     },
+    "Actor_After_UpdateAll_Hack": {
+        "address": "80688350",
+        "length": 0
+    },
+    "Actor_BuildFlag": {
+        "address": "80687E90",
+        "length": 0
+    },
+    "Actor_Draw_gSPSegment_Hack": {
+        "address": "806A552C",
+        "length": 0
+    },
+    "Actor_GetAdditionalData": {
+        "address": "80687DB0",
+        "length": 0
+    },
+    "Actor_Kill_New": {
+        "address": "80688F6C",
+        "length": 0
+    },
+    "Actor_Kill_UpdateSpawner": {
+        "address": "80688F30",
+        "length": 0
+    },
+    "Actor_OfferGetItem": {
+        "address": "80022BD4",
+        "length": 0
+    },
+    "Actor_OfferTalk": {
+        "address": "80022A68",
+        "length": 0
+    },
+    "Actor_RemoveFromCategory_SetTempClear_Hack": {
+        "address": "8069349C",
+        "length": 0
+    },
+    "Actor_ResolveOverlayAddr": {
+        "address": "80687DB8",
+        "length": 0
+    },
+    "Actor_SetColorFilter": {
+        "address": "80027090",
+        "length": 0
+    },
+    "Actor_SetObjectDependency": {
+        "address": "80687B1C",
+        "length": 0
+    },
+    "Actor_SetObjectDependency_After": {
+        "address": "80020FAC",
+        "length": 0
+    },
+    "Actor_SetObjectDependency_Hook": {
+        "address": "806A54D8",
+        "length": 0
+    },
+    "Actor_SpawnAsChild": {
+        "address": "806870A4",
+        "length": 0
+    },
+    "Actor_SpawnAsChildWithSubflag": {
+        "address": "80688900",
+        "length": 0
+    },
+    "Actor_SpawnAsChild_Continue_Jump_Point": {
+        "address": "800253F8",
+        "length": 0
+    },
+    "Actor_SpawnAsChild_Hook": {
+        "address": "80688884",
+        "length": 0
+    },
+    "Actor_SpawnEntry_Hack": {
+        "address": "80688DB8",
+        "length": 0
+    },
+    "Actor_Spawn_Clear_Check_Hack": {
+        "address": "80688578",
+        "length": 0
+    },
+    "Actor_Spawn_Continue": {
+        "address": "80687098",
+        "length": 0
+    },
+    "Actor_Spawn_Continue_Jump_Point": {
+        "address": "80025118",
+        "length": 0
+    },
+    "Actor_Spawn_Hook": {
+        "address": "80688750",
+        "length": 0
+    },
+    "Actor_Spawn_Malloc_Hack": {
+        "address": "80686FE0",
+        "length": 0
+    },
+    "Actor_Spawn_Shift": {
+        "address": "80687014",
+        "length": 0
+    },
+    "Actor_StoreChestType": {
+        "address": "806881D8",
+        "length": 0
+    },
+    "Actor_StoreFlag": {
+        "address": "80687F4C",
+        "length": 0
+    },
+    "Actor_StoreFlagByIndex": {
+        "address": "806880F8",
+        "length": 0
+    },
+    "Actor_TalkOfferAccepted": {
+        "address": "80022930",
+        "length": 0
+    },
+    "Actor_UpdateAll_ClearRoomEnemyInhibit": {
+        "address": "80687A8C",
+        "length": 0
+    },
+    "Actor_UpdateAll_Hook": {
+        "address": "80686F54",
+        "length": 0
+    },
+    "Actor_UpdateBgCheckInfo": {
+        "address": "80021E6C",
+        "length": 0
+    },
+    "Actor_Update_Hook": {
+        "address": "80688F04",
+        "length": 0
+    },
+    "Actor_WorldDistXZToPoint": {
+        "address": "80021528",
+        "length": 0
+    },
+    "Apply_Damage_Multiplier": {
+        "address": "80684630",
+        "length": 0
+    },
+    "ArenaImpl_GetSizes": {
+        "address": "800CE688",
+        "length": 0
+    },
+    "AudioLoad_SyncLoadFont_StatusHack": {
+        "address": "80685C00",
+        "length": 0
+    },
+    "Audio_PlaySfxGeneral": {
+        "address": "800C806C",
+        "length": 0
+    },
+    "Audio_StopCurrentMusic": {
+        "address": "800C7684",
+        "length": 0
+    },
     "BONK_LAST_FRAME": {
-        "address": "034846C8",
+        "address": "03484718",
+        "length": 0
+    },
+    "BgCheck_AnyRaycastDown1": {
+        "address": "8002F644",
+        "length": 0
+    },
+    "BgCheck_EntityRaycastDown1": {
+        "address": "8002F3A4",
+        "length": 0
+    },
+    "BgCheck_EntityRaycastDown2": {
+        "address": "8002F400",
+        "length": 0
+    },
+    "BgCheck_EntityRaycastDown3": {
+        "address": "8002F454",
+        "length": 0
+    },
+    "BgCheck_EntityRaycastDown4": {
+        "address": "8002F4B8",
+        "length": 0
+    },
+    "BgCheck_EntityRaycastDown4_Raised": {
+        "address": "80689414",
+        "length": 0
+    },
+    "BgCheck_EntityRaycastDown5": {
+        "address": "8002F520",
+        "length": 0
+    },
+    "BgHakaTubo_DropCollectible_Hack": {
+        "address": "806A5718",
+        "length": 0
+    },
+    "BgMoriBigst_SpawnSingleStalfos": {
+        "address": "80689464",
+        "length": 0
+    },
+    "BgMoriBigst_SpawnStalfosPair1": {
+        "address": "806894CC",
+        "length": 0
+    },
+    "BgMoriBigst_SpawnStalfosPair2": {
+        "address": "80689534",
+        "length": 0
+    },
+    "BgMoriBigst_StalfosFight_new": {
+        "address": "8068959C",
+        "length": 0
+    },
+    "BgMoriBigst_StalfosPairFight_new": {
+        "address": "80689644",
+        "length": 0
+    },
+    "BgSpot18Basket_BombDropHook": {
+        "address": "806A5824",
+        "length": 0
+    },
+    "BgSpot18Basket_Heartpiecerupee_DropHook": {
+        "address": "806A5A18",
+        "length": 0
+    },
+    "BgSpot18Basket_RupeeDropHook": {
+        "address": "806A5920",
+        "length": 0
+    },
+    "BuildFlag": {
+        "address": "80687DD0",
         "length": 0
     },
     "CFG_ADULT_TRADE_SHUFFLE": {
-        "address": "03481F7B",
+        "address": "03481FCB",
         "length": 1
     },
     "CFG_ADULT_VOLUME": {
@@ -68,7 +292,7 @@
         "length": 6
     },
     "CFG_BIGOCTO_OVERRIDE_KEY": {
-        "address": "03481E38",
+        "address": "03481E88",
         "length": 4
     },
     "CFG_BOMBCHU_TRAIL_INNER_COLOR": {
@@ -80,7 +304,7 @@
         "length": 3
     },
     "CFG_BONK_DAMAGE": {
-        "address": "034846C0",
+        "address": "03484710",
         "length": 2
     },
     "CFG_BOOM_TRAIL_INNER_COLOR": {
@@ -92,7 +316,7 @@
         "length": 3
     },
     "CFG_BOULDER_SHUFFLE": {
-        "address": "03481E56",
+        "address": "03481EA6",
         "length": 1
     },
     "CFG_B_BUTTON_COLOR": {
@@ -100,7 +324,7 @@
         "length": 6
     },
     "CFG_CHILD_TRADE_SHUFFLE": {
-        "address": "03481F7C",
+        "address": "03481FCC",
         "length": 1
     },
     "CFG_CHILD_VOLUME": {
@@ -128,11 +352,11 @@
         "length": 6
     },
     "CFG_DAMAGE_MULTIPLYER": {
-        "address": "034845DC",
+        "address": "0348462C",
         "length": 1
     },
     "CFG_DEADLY_BONKS": {
-        "address": "034846BC",
+        "address": "0348470C",
         "length": 4
     },
     "CFG_DISPLAY_DPAD": {
@@ -148,67 +372,67 @@
         "length": 1
     },
     "CFG_DUNGEON_INFO_ENABLE": {
-        "address": "03481E5C",
+        "address": "03481EAC",
         "length": 4
     },
     "CFG_DUNGEON_INFO_MQ_ENABLE": {
-        "address": "03481E60",
+        "address": "03481EB0",
         "length": 4
     },
     "CFG_DUNGEON_INFO_MQ_NEED_MAP": {
-        "address": "03481E64",
+        "address": "03481EB4",
         "length": 4
     },
     "CFG_DUNGEON_INFO_REWARD_ENABLE": {
-        "address": "03481E68",
+        "address": "03481EB8",
         "length": 4
     },
     "CFG_DUNGEON_INFO_REWARD_NEED_ALTAR": {
-        "address": "03481E70",
+        "address": "03481EC0",
         "length": 4
     },
     "CFG_DUNGEON_INFO_REWARD_NEED_COMPASS": {
-        "address": "03481E6C",
+        "address": "03481EBC",
         "length": 4
     },
     "CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE": {
-        "address": "03481E74",
+        "address": "03481EC4",
         "length": 4
     },
     "CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE": {
-        "address": "03481E28",
+        "address": "03481E78",
         "length": 1
     },
     "CFG_DUNGEON_INFO_SILVER_RUPEES": {
-        "address": "03481E15",
+        "address": "03481E65",
         "length": 1
     },
     "CFG_DUNGEON_IS_MQ": {
-        "address": "03481E86",
+        "address": "03481ED6",
         "length": 14
     },
     "CFG_DUNGEON_PRECOMPLETED": {
-        "address": "03481E47",
+        "address": "03481E97",
         "length": 14
     },
     "CFG_DUNGEON_REWARDS": {
-        "address": "03481E78",
+        "address": "03481EC8",
         "length": 14
     },
     "CFG_DUNGEON_REWARD_AREAS": {
-        "address": "03481EAC",
+        "address": "03481EFC",
         "length": 207
     },
     "CFG_DUNGEON_REWARD_WORLDS": {
-        "address": "03481E29",
+        "address": "03481E79",
         "length": 9
     },
     "CFG_ENEMIZER": {
-        "address": "034B5C94",
+        "address": "034B5DA4",
         "length": 1
     },
     "CFG_ENEMY_SPAWN_SHUFFLE": {
-        "address": "034B5DA2",
+        "address": "034B5EB2",
         "length": 1
     },
     "CFG_FILE_SELECT_HASH": {
@@ -216,7 +440,7 @@
         "length": 5
     },
     "CFG_GLOOM": {
-        "address": "034845DD",
+        "address": "0348462D",
         "length": 1
     },
     "CFG_HEART_COLOR": {
@@ -232,23 +456,23 @@
         "length": 6
     },
     "CFG_MASK_AUTOEQUIP": {
-        "address": "034875BC",
+        "address": "0348760C",
         "length": 1
     },
     "CFG_MASK_SHOP_HINT": {
-        "address": "03482C3C",
+        "address": "03482C8C",
         "length": 4
     },
     "CFG_MINIMAP_ENEMY_TRACKER": {
-        "address": "03481E1B",
+        "address": "03481E6B",
         "length": 1
     },
     "CFG_OBJECT_SYSTEM": {
-        "address": "03481E0E",
+        "address": "03481E5E",
         "length": 1
     },
     "CFG_PREVENT_GUAY_RESPAWNS": {
-        "address": "03481E1A",
+        "address": "03481E6A",
         "length": 1
     },
     "CFG_RAINBOW_BOMBCHU_TRAIL_INNER_ENABLED": {
@@ -312,7 +536,7 @@
         "length": 1
     },
     "CFG_RANDOM_ENEMY_SPAWNS": {
-        "address": "034B5C95",
+        "address": "034B5DA5",
         "length": 1
     },
     "CFG_SHOP_CURSOR_COLOR": {
@@ -356,55 +580,55 @@
         "length": 1
     },
     "CHAIN_HBA_REWARDS": {
-        "address": "03486590",
+        "address": "034865E0",
         "length": 1
     },
     "CHECK_FOR_BONK_CANCEL": {
-        "address": "0348472C",
+        "address": "0348477C",
         "length": 0
     },
     "CHECK_ROOM_MESH_TYPE": {
-        "address": "0348485C",
+        "address": "034848AC",
         "length": 0
     },
     "CHEST_GILDED_TEXTURE": {
-        "address": "03481E1D",
+        "address": "03481E6D",
         "length": 1
     },
     "CHEST_GOLD_TEXTURE": {
-        "address": "03481E1C",
+        "address": "03481E6C",
         "length": 1
     },
     "CHEST_HEART_TEXTURE": {
-        "address": "03481E20",
+        "address": "03481E70",
         "length": 1
     },
     "CHEST_LENS_ONLY": {
-        "address": "03483EC8",
+        "address": "03483F18",
         "length": 4
     },
     "CHEST_SILVER_TEXTURE": {
-        "address": "03481E1E",
+        "address": "03481E6E",
         "length": 1
     },
     "CHEST_SIZE_MATCH_CONTENTS": {
-        "address": "034B5CAC",
+        "address": "034B5DBC",
         "length": 4
     },
     "CHEST_SIZE_TEXTURE": {
-        "address": "034B5CA8",
+        "address": "034B5DB8",
         "length": 4
     },
     "CHEST_SKULL_TEXTURE": {
-        "address": "03481E1F",
+        "address": "03481E6F",
         "length": 1
     },
     "CHEST_TEXTURE_MATCH_CONTENTS": {
-        "address": "034B5CB0",
+        "address": "034B5DC0",
         "length": 4
     },
     "COMPLETE_MASK_QUEST": {
-        "address": "034CDBA0",
+        "address": "034CDCB0",
         "length": 1
     },
     "COOP_CONTEXT": {
@@ -428,47 +652,195 @@
         "length": 4
     },
     "CURRENT_GROTTO_ID": {
-        "address": "03484E22",
+        "address": "03484E72",
         "length": 1
     },
     "CURR_ACTOR_SPAWN_INDEX": {
-        "address": "03486F00",
+        "address": "03486F50",
         "length": 2
     },
     "CUSTOM_KEY_MODELS": {
-        "address": "03481E16",
+        "address": "03481E66",
         "length": 1
     },
+    "CanBuy_RightSideMask": {
+        "address": "806A8E04",
+        "length": 0
+    },
+    "Check_Fill_Lake": {
+        "address": "8068441C",
+        "length": 0
+    },
+    "Check_Has_Epona_Song": {
+        "address": "80683468",
+        "length": 0
+    },
+    "Collectible_WaitForMessageBox": {
+        "address": "806964C8",
+        "length": 0
+    },
+    "Collider_SetCylinder": {
+        "address": "80687B04",
+        "length": 0
+    },
+    "Collider_SetCylinder_AfterHook": {
+        "address": "8004ACF4",
+        "length": 0
+    },
+    "Collider_SetCylinder_Hook": {
+        "address": "8068A364",
+        "length": 0
+    },
+    "Collider_SetJntSph": {
+        "address": "8004A874",
+        "length": 0
+    },
+    "Collider_SetJntSph_ToActorWorld": {
+        "address": "8068A2B0",
+        "length": 0
+    },
+    "Collider_UpdateSpheres": {
+        "address": "80050CE4",
+        "length": 0
+    },
+    "CollisionCheck_SetAC": {
+        "address": "8004BF40",
+        "length": 0
+    },
+    "CollisionCheck_SetAT": {
+        "address": "8004BD50",
+        "length": 0
+    },
+    "CollisionCheck_SetOC": {
+        "address": "8004C130",
+        "length": 0
+    },
+    "CutsceneFlags_Get": {
+        "address": "8005991C",
+        "length": 0
+    },
     "DEBUG_OFFSET": {
-        "address": "0348419C",
+        "address": "034841EC",
         "length": 4
     },
     "DISABLE_TIMERS": {
-        "address": "03481E09",
+        "address": "03481E59",
         "length": 1
     },
     "DOT_CONDITION": {
-        "address": "03481E57",
+        "address": "03481EA7",
         "length": 1
     },
     "DPAD_RESOURCE": {
-        "address": "034AA558",
+        "address": "034AA640",
         "length": 0
     },
     "DPAD_RESOURCE_END": {
-        "address": "034AAD58",
+        "address": "034AAE40",
         "length": 0
     },
     "DUNGEONS_SHUFFLED": {
-        "address": "03481E0A",
+        "address": "03481E5A",
         "length": 1
     },
+    "DUNGEON_POT_DLIST": {
+        "address": "034B592C",
+        "length": 4
+    },
+    "DUNGEON_POT_SIDE_TEXTURE": {
+        "address": "034B5934",
+        "length": 4
+    },
+    "DUNGEON_POT_TOP_TEXTURE": {
+        "address": "034B5930",
+        "length": 4
+    },
+    "Deku_Check_Sold_Out": {
+        "address": "80682EA4",
+        "length": 0
+    },
+    "Deku_Set_Sold_Out": {
+        "address": "80682EF8",
+        "length": 0
+    },
+    "DemoEffect_DrawJewel": {
+        "address": "80682C58",
+        "length": 0
+    },
+    "DemoEffect_DrawJewel_AfterHook": {
+        "address": "8092E400",
+        "length": 0
+    },
+    "DemoEffect_DrawJewel_Hook": {
+        "address": "8068D15C",
+        "length": 0
+    },
+    "DemoKankyo_CutsceneFlags_Get_Hook": {
+        "address": "8068D32C",
+        "length": 0
+    },
+    "DmaMgr_RequestSync": {
+        "address": "80000DF0",
+        "length": 0
+    },
+    "DoorShutter_BarAndWaitSwitchFlag_Override": {
+        "address": "8068D3A0",
+        "length": 0
+    },
+    "DoorWarp1_FireMedallion_Overwrite": {
+        "address": "806898F4",
+        "length": 0
+    },
+    "DoorWarp1_ForestMedallion_Overwrite": {
+        "address": "806898EC",
+        "length": 0
+    },
+    "DoorWarp1_GoronRuby_Overwrite": {
+        "address": "806898DC",
+        "length": 0
+    },
+    "DoorWarp1_IsShadowRewardObtained": {
+        "address": "806898C8",
+        "length": 0
+    },
+    "DoorWarp1_IsSpiritRewardObtained": {
+        "address": "806898BC",
+        "length": 0
+    },
+    "DoorWarp1_KokiriEmerald_Overwrite": {
+        "address": "806898D4",
+        "length": 0
+    },
+    "DoorWarp1_PlayerInRange": {
+        "address": "806896D8",
+        "length": 0
+    },
+    "DoorWarp1_PlayerInRange_Overwrite": {
+        "address": "80689750",
+        "length": 0
+    },
+    "DoorWarp1_ShadowMedallion_Overwrite": {
+        "address": "80689930",
+        "length": 0
+    },
+    "DoorWarp1_SpiritMedallion_Overwrite": {
+        "address": "80689928",
+        "length": 0
+    },
+    "DoorWarp1_WaterMedallion_Overwrite": {
+        "address": "80689910",
+        "length": 0
+    },
+    "DoorWarp1_ZoraSapphire_Overwrite": {
+        "address": "806898E4",
+        "length": 0
+    },
     "ENEMY_DROP_SHUFFLE": {
-        "address": "03481E11",
+        "address": "03481E61",
         "length": 1
     },
     "EPONAS_SONG_NOTES": {
-        "address": "03481E18",
+        "address": "03481E68",
         "length": 2
     },
     "EXTENDED_INITIAL_SAVE_DATA": {
@@ -477,66 +849,342 @@
     },
     "EXTENDED_OBJECT_TABLE": {
         "address": "03481CC4",
-        "length": 304
+        "length": 384
     },
     "EXTERN_DAMAGE_MULTIPLYER": {
-        "address": "034845DE",
+        "address": "0348462E",
         "length": 1
     },
     "EXTRA_BOWLING_SHUFFLE": {
-        "address": "034B5CA4",
+        "address": "034B5DB4",
         "length": 4
     },
+    "EffectSsKakera_Spawn": {
+        "address": "8001D998",
+        "length": 0
+    },
+    "EnAnubiceTag_SpawnChild": {
+        "address": "80691A48",
+        "length": 0
+    },
+    "EnDns_TakePayment": {
+        "address": "80687A44",
+        "length": 0
+    },
+    "EnFd_Update_Hook": {
+        "address": "80691BAC",
+        "length": 0
+    },
+    "EnIk_InitSetup_Hack": {
+        "address": "80691E6C",
+        "length": 0
+    },
+    "EnIk_Params_Hack": {
+        "address": "80687C5C",
+        "length": 0
+    },
+    "EnIshi_OfferGetItem_Hook": {
+        "address": "80691EE8",
+        "length": 0
+    },
+    "EnIshi_SetKakeraColorIndex": {
+        "address": "80687BE8",
+        "length": 0
+    },
+    "EnIshi_SetPrimColor": {
+        "address": "80687BC0",
+        "length": 0
+    },
+    "EnItem00_Draw": {
+        "address": "806878BC",
+        "length": 0
+    },
+    "EnItem00_Draw_Continue": {
+        "address": "80012FC0",
+        "length": 0
+    },
+    "EnItem00_Draw_Hook": {
+        "address": "806921A8",
+        "length": 0
+    },
+    "EnItem00_DropCollectibleFallAction_Hack": {
+        "address": "806822B8",
+        "length": 0
+    },
+    "EnItem00_Init": {
+        "address": "806878C8",
+        "length": 0
+    },
+    "EnItem00_Init_Continue": {
+        "address": "80011B54",
+        "length": 0
+    },
+    "EnItem00_Init_Hook": {
+        "address": "8069207C",
+        "length": 0
+    },
+    "EnItem00_OutgoingAction": {
+        "address": "80691F2C",
+        "length": 0
+    },
+    "EnItem00_ProximityCheck_Hack": {
+        "address": "80691FF4",
+        "length": 0
+    },
+    "EnItem00_ProximityCheck_Hook": {
+        "address": "80687860",
+        "length": 0
+    },
+    "EnKarebaba_SetupDeadItemDropHack": {
+        "address": "80692210",
+        "length": 0
+    },
+    "EnKusa_Draw_Hack": {
+        "address": "80692374",
+        "length": 0
+    },
+    "EnKz_SpawnRedIce_Hook": {
+        "address": "80692668",
+        "length": 0
+    },
+    "EnKz_Update_Hook": {
+        "address": "806928A8",
+        "length": 0
+    },
+    "EnMb_ClubWaitPlayerNearAndRotate": {
+        "address": "80692928",
+        "length": 0
+    },
+    "EnMb_Init_Hooked": {
+        "address": "806929B8",
+        "length": 0
+    },
+    "EnMb_SetupClubWaitPlayerNear_Hooked": {
+        "address": "80692A50",
+        "length": 0
+    },
+    "EnOkarinaTag_ActionHook": {
+        "address": "80692AA4",
+        "length": 0
+    },
+    "EnRd_DestroyCheckSunsSong": {
+        "address": "80687C94",
+        "length": 0
+    },
+    "EnRd_SetSunsSongState": {
+        "address": "80687C70",
+        "length": 0
+    },
+    "EnRd_UpdateCheckSunsSong": {
+        "address": "80687C88",
+        "length": 0
+    },
+    "EnTuboTrap_DropCollectible_Hack": {
+        "address": "806A6900",
+        "length": 0
+    },
+    "EnWonderItem_DropCollectible_Hack": {
+        "address": "80692D04",
+        "length": 0
+    },
+    "EnWonderItem_Kill_Hack": {
+        "address": "80692FB0",
+        "length": 0
+    },
+    "EnWonderItem_MultitagOrdered_DrawHook": {
+        "address": "80687284",
+        "length": 0
+    },
+    "EnWonderItem_Multitag_DrawHack": {
+        "address": "80692C60",
+        "length": 0
+    },
+    "EnWonderItem_Multitag_DrawHook": {
+        "address": "806871E8",
+        "length": 0
+    },
+    "EnWonderItem_Update_Hack": {
+        "address": "80692F18",
+        "length": 0
+    },
+    "EnWonderItem_Update_Hook": {
+        "address": "80687324",
+        "length": 0
+    },
+    "EnWonderitem_AfterInitHack": {
+        "address": "80692BF0",
+        "length": 0
+    },
+    "En_Blkobj_Actor_Find_Hook": {
+        "address": "80687CA0",
+        "length": 0
+    },
+    "En_Gs_Update_Hack": {
+        "address": "80691C18",
+        "length": 0
+    },
     "FAST_BUNNY_HOOD_ENABLED": {
-        "address": "03481E0D",
+        "address": "03481E5D",
         "length": 1
     },
     "FAST_CHESTS": {
-        "address": "03481E03",
+        "address": "03481E53",
         "length": 1
     },
     "FILENAME_ENCODING": {
-        "address": "034B5454",
+        "address": "034B5544",
         "length": 256
     },
     "FONTLOADSTATUS_EXTENDED": {
-        "address": "03485B10",
+        "address": "03485B60",
         "length": 160
     },
     "FONT_CHAR_TEX_HEIGHT": {
-        "address": "034AA268",
+        "address": "034AA350",
         "length": 4
     },
     "FONT_CHAR_TEX_WIDTH": {
-        "address": "034AA26C",
+        "address": "034AA354",
         "length": 4
     },
     "FONT_RESOURCE": {
-        "address": "034AAD58",
+        "address": "034AAE40",
         "length": 0
     },
     "FONT_RESOURCE_END": {
-        "address": "034AC220",
+        "address": "034AC308",
         "length": 0
     },
     "FREE_BOMBCHU_DROPS": {
-        "address": "03481DF4",
+        "address": "03481E44",
         "length": 4
     },
     "FREE_SCARECROW_ENABLED": {
-        "address": "03481DFC",
+        "address": "03481E4C",
         "length": 4
     },
+    "Fault_AddHungupAndCrashImpl": {
+        "address": "800AF564",
+        "length": 0
+    },
+    "Fill_Lake": {
+        "address": "80684498",
+        "length": 0
+    },
+    "Fill_Lake_Destroy": {
+        "address": "80684428",
+        "length": 0
+    },
+    "FindHierarchy": {
+        "address": "806A2EDC",
+        "length": 0
+    },
+    "FindModelData": {
+        "address": "806A2CF8",
+        "length": 0
+    },
+    "FindSize": {
+        "address": "806A2E68",
+        "length": 0
+    },
+    "Fish_Caught_Hook": {
+        "address": "80683724",
+        "length": 0
+    },
+    "Fishing_Actor_Spawn_Hook": {
+        "address": "80695BDC",
+        "length": 0
+    },
+    "Fishing_CaughtFish_Textbox": {
+        "address": "80695ECC",
+        "length": 0
+    },
+    "Fishing_GiveOverride_Kill": {
+        "address": "80695E4C",
+        "length": 0
+    },
+    "Fishing_HandleOwnerDialog_Hook": {
+        "address": "80695FE0",
+        "length": 0
+    },
+    "Fishing_SkeletonDraw_Hook": {
+        "address": "80695D8C",
+        "length": 0
+    },
+    "Flags_GetClear": {
+        "address": "80020640",
+        "length": 0
+    },
+    "Flags_GetCollectible": {
+        "address": "800206E8",
+        "length": 0
+    },
+    "Flags_GetSwitch": {
+        "address": "8002049C",
+        "length": 0
+    },
+    "Flags_GetTempClear": {
+        "address": "80020694",
+        "length": 0
+    },
+    "Flags_GetTreasure": {
+        "address": "8002060C",
+        "length": 0
+    },
+    "Flags_GetUnknown": {
+        "address": "80020554",
+        "length": 0
+    },
+    "Flags_SetClear": {
+        "address": "80020658",
+        "length": 0
+    },
+    "Flags_SetCollectible": {
+        "address": "8002071C",
+        "length": 0
+    },
+    "Flags_SetSwitch": {
+        "address": "800204D0",
+        "length": 0
+    },
+    "Flags_SetTempClear": {
+        "address": "800206AC",
+        "length": 0
+    },
+    "Flags_SetTreasure": {
+        "address": "80020624",
+        "length": 0
+    },
+    "Flags_SetUnknown": {
+        "address": "80020588",
+        "length": 0
+    },
+    "Flags_UnsetClear": {
+        "address": "80020674",
+        "length": 0
+    },
+    "Flags_UnsetSwitch": {
+        "address": "80020510",
+        "length": 0
+    },
+    "Flags_UnsetTempClear": {
+        "address": "800206C8",
+        "length": 0
+    },
+    "Flags_UnsetUnknown": {
+        "address": "800205C8",
+        "length": 0
+    },
     "GANON_BOSS_KEY_CONDITION": {
-        "address": "034E0E26",
+        "address": "034E0F36",
         "length": 1
     },
     "GANON_BOSS_KEY_CONDITION_COUNT": {
-        "address": "034E0E24",
+        "address": "034E0F34",
         "length": 2
     },
     "GET_CHEST_OVERRIDE_WRAPPER": {
-        "address": "03483ECC",
+        "address": "03483F1C",
         "length": 0
     },
     "GET_ITEM_SEQ_ID": {
@@ -544,31 +1192,83 @@
         "length": 2
     },
     "GET_ITEM_TRIGGERED": {
-        "address": "03482868",
+        "address": "034828B8",
         "length": 1
     },
     "GOSSIP_HINT_CONDITION": {
-        "address": "03481DF8",
+        "address": "03481E48",
         "length": 4
     },
     "GROTTO_EXIT_LIST": {
-        "address": "03484DE0",
+        "address": "03484E30",
         "length": 66
     },
     "GROTTO_LOAD_TABLE": {
-        "address": "0348493C",
+        "address": "0348498C",
         "length": 132
     },
     "GROTTO_RETURN_TABLE": {
-        "address": "034849C0",
+        "address": "03484A10",
         "length": 1056
     },
+    "Gameplay_InitSkybox": {
+        "address": "8009CDA0",
+        "length": 0
+    },
+    "GetTradeItemByAP": {
+        "address": "806A816C",
+        "length": 0
+    },
+    "GetTradeItemIndex": {
+        "address": "806A814C",
+        "length": 0
+    },
+    "GetTradeItemMax": {
+        "address": "806A820C",
+        "length": 0
+    },
+    "GetTradeItemMin": {
+        "address": "806A81F4",
+        "length": 0
+    },
+    "GetTradeSlot": {
+        "address": "806A81B8",
+        "length": 0
+    },
+    "Get_NewFlag": {
+        "address": "80697A20",
+        "length": 0
+    },
+    "Gossip_Actor": {
+        "address": "806843A4",
+        "length": 0
+    },
     "HIDEOUT_SHUFFLED": {
-        "address": "03481E0C",
+        "address": "03481E5C",
         "length": 1
     },
     "HIDE_CHEST_WITH_INVERTED_LENS": {
-        "address": "03483F14",
+        "address": "03483F64",
+        "length": 0
+    },
+    "Health_ChangeBy": {
+        "address": "80684698",
+        "length": 0
+    },
+    "Health_ChangeBy_Continue": {
+        "address": "800720C4",
+        "length": 0
+    },
+    "Health_ChangeBy_Hooked": {
+        "address": "806995AC",
+        "length": 0
+    },
+    "Health_IsCritical": {
+        "address": "806A3FE0",
+        "length": 0
+    },
+    "Hit_Gossip_Stone": {
+        "address": "806843B4",
         "length": 0
     },
     "INCOMING_ITEM": {
@@ -583,52 +1283,128 @@
         "address": "034817C4",
         "length": 1024
     },
+    "Inventory_ReplaceItem_Override": {
+        "address": "806A8854",
+        "length": 0
+    },
+    "IsAdultTradeItem": {
+        "address": "806A8250",
+        "length": 0
+    },
+    "IsClaimCheckTraded": {
+        "address": "806A87C8",
+        "length": 0
+    },
+    "IsCuccoGivenToCuccoLady": {
+        "address": "806A8A60",
+        "length": 0
+    },
+    "IsTradeItem": {
+        "address": "806A8224",
+        "length": 0
+    },
+    "IsTradeItemTraded": {
+        "address": "806A87E4",
+        "length": 0
+    },
+    "Item00_KillActorIfFlagIsSet": {
+        "address": "80697BAC",
+        "length": 0
+    },
+    "ItemShield_Draw_Setup": {
+        "address": "8069F6F4",
+        "length": 0
+    },
+    "Item_DropCollectible2_End_Hack": {
+        "address": "80682298",
+        "length": 0
+    },
+    "Item_DropCollectible_End_Hack": {
+        "address": "80682278",
+        "length": 0
+    },
+    "Item_DropCollectible_Random_Before": {
+        "address": "80698148",
+        "length": 0
+    },
+    "Item_DropCollectible_Room_Hack": {
+        "address": "80697ADC",
+        "length": 0
+    },
     "JABU_ELEVATOR_ENABLE": {
-        "address": "03481E00",
+        "address": "03481E50",
         "length": 1
     },
     "KAKARIKO_WEATHER_FORECAST": {
-        "address": "034E0EE0",
+        "address": "034E0FF0",
         "length": 1
     },
     "KEYRING_BOSSKEY_CONDITION": {
-        "address": "03481E13",
+        "address": "03481E63",
         "length": 1
     },
     "KILL_SWITCH_TABLE": {
-        "address": "034B5A80",
+        "address": "034B5B90",
         "length": 120
     },
     "KING_DODONGO_BONKS": {
-        "address": "03484828",
+        "address": "03484878",
         "length": 0
     },
     "KZ_BOULDER_TYPE": {
-        "address": "034B5DA0",
+        "address": "034B5EB0",
         "length": 1
     },
+    "KaleidoManager_GetRamAddr": {
+        "address": "80099DBC",
+        "length": 0
+    },
+    "KaleidoScope_DrawDungeonMap_Callhook": {
+        "address": "806A63F0",
+        "length": 0
+    },
+    "KaleidoScope_DrawItemSelect": {
+        "address": "806A029C",
+        "length": 0
+    },
+    "KaleidoScope_DrawNewMap": {
+        "address": "806A62F4",
+        "length": 0
+    },
+    "KaleidoScope_DrawWorldMap_Callhook": {
+        "address": "806A63D0",
+        "length": 0
+    },
+    "KaleidoScope_Update_Respawn_Health_Hack": {
+        "address": "806846E8",
+        "length": 0
+    },
     "LACS_CONDITION": {
-        "address": "03481E98",
+        "address": "03481EE8",
         "length": 4
     },
     "LACS_CONDITION_COUNT": {
-        "address": "03481E9E",
+        "address": "03481EEE",
         "length": 2
     },
+    "LinkObjectVanillaSizes": {
+        "address": "034B58FC",
+        "length": 8
+    },
     "MALON_GAVE_ICETRAP": {
-        "address": "034862CC",
+        "address": "0348631C",
         "length": 1
     },
     "MALON_TEXT_ID": {
-        "address": "03481E08",
+        "address": "03481E58",
         "length": 1
     },
     "MAX_RUPEES": {
-        "address": "034CDBA2",
+        "address": "034CDCB2",
         "length": 1
     },
     "MOVED_ADULT_KING_ZORA": {
-        "address": "03485BE0",
+        "address": "03485C30",
         "length": 1
     },
     "MW_PROGRESSIVE_ITEMS_ENABLE": {
@@ -643,24 +1419,92 @@
         "address": "0348002A",
         "length": 1
     },
+    "Matrix_Pop": {
+        "address": "800AA724",
+        "length": 0
+    },
+    "Matrix_Push": {
+        "address": "800AA6EC",
+        "length": 0
+    },
+    "Matrix_Scale": {
+        "address": "800AA8FC",
+        "length": 0
+    },
+    "Matrix_SetTranslateRotateYXZ": {
+        "address": "800AB510",
+        "length": 0
+    },
+    "Message_AddCharacter": {
+        "address": "806A1420",
+        "length": 0
+    },
+    "Message_AddFileName": {
+        "address": "806A1624",
+        "length": 0
+    },
+    "Message_AddInteger": {
+        "address": "806A14B0",
+        "length": 0
+    },
+    "Message_AddString": {
+        "address": "806A15A0",
+        "length": 0
+    },
+    "Message_CloseTextbox": {
+        "address": "800D6218",
+        "length": 0
+    },
+    "Message_ContinueTextbox": {
+        "address": "800DCE80",
+        "length": 0
+    },
+    "Message_Decode_Additional_Control_Codes": {
+        "address": "806A170C",
+        "length": 0
+    },
+    "Message_Decode_Control_Code_Hook": {
+        "address": "80687548",
+        "length": 0
+    },
+    "Message_Decode_reset_msgCtx.textPosX": {
+        "address": "806875F8",
+        "length": 0
+    },
+    "Message_GetState": {
+        "address": "800DD464",
+        "length": 0
+    },
+    "Message_ShouldAdvance": {
+        "address": "800D6110",
+        "length": 0
+    },
+    "MiniMap_Draw_Hack": {
+        "address": "806A1D38",
+        "length": 0
+    },
+    "MiniMap_Draw_Hook": {
+        "address": "80687ADC",
+        "length": 0
+    },
     "NO_COLLECTIBLE_HEARTS": {
-        "address": "03481E02",
+        "address": "03481E52",
         "length": 1
     },
     "NO_ESCAPE_SEQUENCE": {
-        "address": "034B5DF0",
+        "address": "034B5F00",
         "length": 1
     },
     "NUM_FONT_CHARS": {
-        "address": "034AA264",
+        "address": "034AA34C",
         "length": 4
     },
     "OCARINAS_SHUFFLED": {
-        "address": "03481E01",
+        "address": "03481E51",
         "length": 1
     },
     "OPEN_KAKARIKO": {
-        "address": "034CDBA1",
+        "address": "034CDCB1",
         "length": 1
     },
     "OUTGOING_ITEM": {
@@ -676,11 +1520,223 @@
         "length": 2
     },
     "OVERWORLD_SHUFFLED": {
-        "address": "03481E0B",
+        "address": "03481E5B",
         "length": 1
     },
+    "OVL_BgMoriBigst_SetupDone": {
+        "address": "809276C0",
+        "length": 0
+    },
+    "OVL_BgMoriBigst_SetupFall": {
+        "address": "809273D4",
+        "length": 0
+    },
+    "OVL_DoorShutter_BarAndWaitSwitchFlag": {
+        "address": "808B8FE8",
+        "length": 0
+    },
+    "OVL_EnDekubaba_SetupGrow": {
+        "address": "808FB9E0",
+        "length": 0
+    },
+    "OVL_EnDekubaba_SetupPrepareLunge": {
+        "address": "808FBC50",
+        "length": 0
+    },
+    "OVL_EnFd_Update": {
+        "address": "80956378",
+        "length": 0
+    },
+    "OVL_EnIk_SetupStandUp": {
+        "address": "80A67348",
+        "length": 0
+    },
+    "OVL_EnIk_SetupWalkOrRun": {
+        "address": "80A676E4",
+        "length": 0
+    },
+    "OVL_EnKarebaba_SetupDeadItemDrop": {
+        "address": "809BA560",
+        "length": 0
+    },
+    "OVL_EnKusa_Draw": {
+        "address": "80A80A50",
+        "length": 0
+    },
+    "OVL_EnMb_ClubWaitPlayerNear": {
+        "address": "808E8A54",
+        "length": 0
+    },
+    "OVL_EnMb_Init": {
+        "address": "808E5D4C",
+        "length": 0
+    },
+    "OVL_EnMb_SetupClubWaitPlayerNear": {
+        "address": "808E6590",
+        "length": 0
+    },
+    "OVL_EnOkarinaTag_Action1": {
+        "address": "80A87088",
+        "length": 0
+    },
+    "OVL_EnOkarinaTag_Action2": {
+        "address": "80A872D0",
+        "length": 0
+    },
+    "OVL_EnTp_Update": {
+        "address": "808C39C8",
+        "length": 0
+    },
+    "OVL_KaleidoScope_DrawAmmoCount": {
+        "address": "80819670",
+        "length": 0
+    },
+    "OVL_KaleidoScope_DrawCursor": {
+        "address": "8081F760",
+        "length": 0
+    },
+    "OVL_KaleidoScope_DrawQuadTextureRGBA32": {
+        "address": "8081F1E8",
+        "length": 0
+    },
+    "OVL_KaleidoScope_MoveCursorToSpecialPos": {
+        "address": "8081F184",
+        "length": 0
+    },
+    "OVL_KaleidoScope_QuadTextureIA8": {
+        "address": "8081EE60",
+        "length": 0
+    },
+    "OVL_KaleidoScope_SetCursorVtx": {
+        "address": "80819BF4",
+        "length": 0
+    },
+    "OVL_LinkDamage_addr": {
+        "address": "80835D08",
+        "length": 0
+    },
+    "OVL_LinkInvincibility_addr": {
+        "address": "80835BD8",
+        "length": 0
+    },
+    "OVL_ObjRoomtimer_MainAction": {
+        "address": "80B25428",
+        "length": 0
+    },
+    "OVL_Player_UseItem": {
+        "address": "80834000",
+        "length": 0
+    },
+    "OVL_gAmmoItems": {
+        "address": "80829700",
+        "length": 0
+    },
+    "OVL_gSlotAgeReqs": {
+        "address": "80829D74",
+        "length": 0
+    },
+    "OVL_sEquipAnimTimer": {
+        "address": "80829714",
+        "length": 0
+    },
+    "OVL_sEquipMoveTimer": {
+        "address": "80829718",
+        "length": 0
+    },
+    "OVL_sEquipState": {
+        "address": "80829710",
+        "length": 0
+    },
+    "ObjComb_Update": {
+        "address": "806A47C0",
+        "length": 0
+    },
+    "ObjHana_Draw": {
+        "address": "80ABC1C8",
+        "length": 0
+    },
+    "ObjHana_Draw_Hack": {
+        "address": "806A4880",
+        "length": 0
+    },
+    "ObjKibako2_Draw": {
+        "address": "806A4CAC",
+        "length": 0
+    },
+    "ObjKibako2_SpawnCollectible_Hack": {
+        "address": "806A4BD0",
+        "length": 0
+    },
+    "ObjKibako_Draw": {
+        "address": "806A4948",
+        "length": 0
+    },
+    "ObjKibako_SpawnCollectible_Hack": {
+        "address": "806A4AFC",
+        "length": 0
+    },
+    "ObjMure2_Actor_Spawn_Hack": {
+        "address": "806A4E70",
+        "length": 0
+    },
+    "ObjMure2_Actor_Spawn_Hook": {
+        "address": "806874B0",
+        "length": 0
+    },
+    "ObjRoomTimer_ConditionCheckHack": {
+        "address": "806A5064",
+        "length": 0
+    },
+    "ObjTsubo_SpawnCollectible_Hack": {
+        "address": "806A6834",
+        "length": 0
+    },
+    "Obj_Mure3_RupeeCircle_DropRupee": {
+        "address": "806A4F58",
+        "length": 0
+    },
+    "Object_GetIndex": {
+        "address": "80687B28",
+        "length": 0
+    },
+    "Object_GetIndex_After": {
+        "address": "80081630",
+        "length": 0
+    },
+    "Object_GetIndex_EnDog": {
+        "address": "806A53A8",
+        "length": 0
+    },
+    "Object_GetIndex_Hook": {
+        "address": "806A5280",
+        "length": 0
+    },
+    "Object_InitContext_AllocSpace": {
+        "address": "806A5618",
+        "length": 0
+    },
+    "Object_IsLoaded": {
+        "address": "80687B10",
+        "length": 0
+    },
+    "Object_IsLoaded_After": {
+        "address": "80081690",
+        "length": 0
+    },
+    "Object_IsLoaded_Hook": {
+        "address": "806A5494",
+        "length": 0
+    },
+    "Object_UpdateEntries_Extended": {
+        "address": "80687B4C",
+        "length": 0
+    },
+    "OnePointCutscene_Init": {
+        "address": "8006B6FC",
+        "length": 0
+    },
     "PASSWORD": {
-        "address": "03481E40",
+        "address": "03481E90",
         "length": 6
     },
     "PAYLOAD_START": {
@@ -688,11 +1744,11 @@
         "length": 4
     },
     "PLANDOMIZER_USED": {
-        "address": "03481E10",
+        "address": "03481E60",
         "length": 1
     },
     "PLAYED_WARP_SONG": {
-        "address": "03482644",
+        "address": "03482694",
         "length": 1
     },
     "PLAYER_ID": {
@@ -708,39 +1764,87 @@
         "length": 1
     },
     "POTCRATE_GILDED_TEXTURE": {
-        "address": "03481E22",
+        "address": "03481E72",
         "length": 1
     },
     "POTCRATE_GOLD_TEXTURE": {
-        "address": "03481E21",
+        "address": "03481E71",
         "length": 1
     },
     "POTCRATE_HEART_TEXTURE": {
-        "address": "03481E25",
+        "address": "03481E75",
         "length": 1
     },
     "POTCRATE_SILVER_TEXTURE": {
-        "address": "03481E23",
+        "address": "03481E73",
         "length": 1
     },
     "POTCRATE_SKULL_TEXTURE": {
-        "address": "03481E24",
+        "address": "03481E74",
         "length": 1
     },
     "POTCRATE_TEXTURES_MATCH_CONTENTS": {
-        "address": "03481E12",
+        "address": "03481E62",
         "length": 1
     },
+    "POT_DLIST": {
+        "address": "034B5920",
+        "length": 4
+    },
+    "POT_SIDE_TEXTURE": {
+        "address": "034B5928",
+        "length": 4
+    },
+    "POT_TOP_TEXTURE": {
+        "address": "034B5924",
+        "length": 4
+    },
+    "PauseMapMark_Draw_CallHook": {
+        "address": "806A6410",
+        "length": 0
+    },
+    "Play_Init": {
+        "address": "80682014",
+        "length": 0
+    },
+    "Play_Init_Hook": {
+        "address": "806A12F4",
+        "length": 0
+    },
+    "Play_Init_Hook_Continue": {
+        "address": "8009A758",
+        "length": 0
+    },
+    "Player_CanLiftIshi": {
+        "address": "80687B70",
+        "length": 0
+    },
+    "Player_InCsMode": {
+        "address": "8007943C",
+        "length": 0
+    },
+    "Player_PlaySfxWithVolume": {
+        "address": "806A7D74",
+        "length": 0
+    },
+    "Player_SpawnEntry_Hack": {
+        "address": "806884C0",
+        "length": 0
+    },
+    "Player_UseItem": {
+        "address": "806A650C",
+        "length": 0
+    },
     "RAINBOW_BRIDGE_CONDITION": {
-        "address": "03481E94",
+        "address": "03481EE4",
         "length": 4
     },
     "RAINBOW_BRIDGE_COUNT": {
-        "address": "03481E9C",
+        "address": "03481EEC",
         "length": 2
     },
     "RANDOMIZER_RNG_SEED": {
-        "address": "034E0E20",
+        "address": "034E0F30",
         "length": 4
     },
     "RANDO_CONTEXT": {
@@ -748,232 +1852,416 @@
         "length": 4
     },
     "REGIONAL_SOUL_MENU_NAMES": {
-        "address": "034AF390",
+        "address": "034AF480",
         "length": 264
     },
     "REQUIRED_PENDING_FRAMES": {
-        "address": "034A9E90",
+        "address": "034A9F78",
         "length": 1
     },
     "REWARDS_AS_ITEMS": {
-        "address": "03481E46",
+        "address": "03481E96",
         "length": 1
     },
     "RNG_SEED_INT": {
-        "address": "034B5828",
+        "address": "034B5938",
         "length": 4
     },
+    "Room_Change_Actor_Kill_Hack": {
+        "address": "80697B50",
+        "length": 0
+    },
+    "Room_FinishRoomChange": {
+        "address": "80687B40",
+        "length": 0
+    },
+    "Room_FinishRoomChange_Continue": {
+        "address": "80080CA0",
+        "length": 0
+    },
+    "Room_FinishRoomChange_Hook": {
+        "address": "806A51C4",
+        "length": 0
+    },
     "SCENE_GROUP_BOTW": {
-        "address": "034AF36C",
+        "address": "034AF45C",
         "length": 1
     },
     "SCENE_GROUP_DEKU_TREE": {
-        "address": "034AF38C",
+        "address": "034AF47C",
         "length": 2
     },
     "SCENE_GROUP_DODONGOS_CAVERN": {
-        "address": "034AF388",
+        "address": "034AF478",
         "length": 2
     },
     "SCENE_GROUP_FIRE_TEMPLE": {
-        "address": "034AF37C",
+        "address": "034AF46C",
         "length": 2
     },
     "SCENE_GROUP_FOREST_AREA": {
-        "address": "034AF350",
+        "address": "034AF440",
         "length": 9
     },
     "SCENE_GROUP_FOREST_TEMPLE": {
-        "address": "034AF380",
+        "address": "034AF470",
         "length": 2
     },
     "SCENE_GROUP_GANONS_CASTLE": {
-        "address": "034AF35C",
+        "address": "034AF44C",
         "length": 7
     },
     "SCENE_GROUP_GERUDO_AREA": {
-        "address": "034AF340",
+        "address": "034AF430",
         "length": 5
     },
     "SCENE_GROUP_GORON_AREA": {
-        "address": "034AF314",
+        "address": "034AF404",
         "length": 4
     },
     "SCENE_GROUP_GROTTOS": {
-        "address": "034AF308",
+        "address": "034AF3F8",
         "length": 2
     },
     "SCENE_GROUP_GTG": {
-        "address": "034AF364",
+        "address": "034AF454",
         "length": 1
     },
     "SCENE_GROUP_HYRULE_FIELD": {
-        "address": "034AF34C",
+        "address": "034AF43C",
         "length": 1
     },
     "SCENE_GROUP_ICE_CAVERN": {
-        "address": "034AF368",
+        "address": "034AF458",
         "length": 1
     },
     "SCENE_GROUP_JABU": {
-        "address": "034AF384",
+        "address": "034AF474",
         "length": 2
     },
     "SCENE_GROUP_KAKARIKO_AREA": {
-        "address": "034AF318",
+        "address": "034AF408",
         "length": 10
     },
     "SCENE_GROUP_LAKE_HYLIA": {
-        "address": "034AF348",
+        "address": "034AF438",
         "length": 3
     },
     "SCENE_GROUP_LLR": {
-        "address": "034AF30C",
+        "address": "034AF3FC",
         "length": 4
     },
     "SCENE_GROUP_MARKET_AREA": {
-        "address": "034AF324",
+        "address": "034AF414",
         "length": 26
     },
     "SCENE_GROUP_SHADOW_TEMPLE": {
-        "address": "034AF370",
+        "address": "034AF460",
         "length": 2
     },
     "SCENE_GROUP_SPIRIT_TEMPLE": {
-        "address": "034AF374",
+        "address": "034AF464",
         "length": 2
     },
     "SCENE_GROUP_WATER_TEMPLE": {
-        "address": "034AF378",
+        "address": "034AF468",
         "length": 2
     },
     "SCENE_GROUP_ZORA_AREA": {
-        "address": "034AF310",
+        "address": "034AF400",
         "length": 4
     },
     "SET_BONK_FLAG": {
-        "address": "03484700",
+        "address": "03484750",
         "length": 0
     },
     "SHOW_CHEST_WITH_INVERTED_LENS": {
-        "address": "03483F8C",
+        "address": "03483FDC",
         "length": 0
     },
     "SHUFFLE_BEANS": {
-        "address": "03484898",
+        "address": "034848E8",
         "length": 1
     },
     "SHUFFLE_CARPET_SALESMAN": {
-        "address": "03486648",
+        "address": "03486698",
         "length": 1
     },
     "SHUFFLE_CHEST_GAME": {
-        "address": "0348765C",
+        "address": "034876AC",
         "length": 1
     },
     "SHUFFLE_COWS": {
-        "address": "03481E04",
+        "address": "03481E54",
         "length": 1
     },
     "SHUFFLE_FISHIES": {
-        "address": "03481E55",
+        "address": "03481EA5",
         "length": 1
     },
     "SHUFFLE_GRANNYS_POTION_SHOP": {
-        "address": "03483D20",
+        "address": "03483D70",
         "length": 1
     },
     "SHUFFLE_MEDIGORON": {
-        "address": "034866A4",
+        "address": "034866F4",
         "length": 1
     },
     "SHUFFLE_OCARINA_BUTTONS": {
-        "address": "03481E17",
+        "address": "03481E67",
         "length": 1
     },
     "SHUFFLE_SILVER_RUPEES": {
-        "address": "03481E14",
+        "address": "03481E64",
         "length": 1
     },
     "SKIP_N64_LOGO": {
-        "address": "03482C18",
+        "address": "03482C68",
         "length": 1
     },
     "SKIP_RAYCAST_TABLE": {
-        "address": "034B5B04",
+        "address": "034B5C14",
         "length": 400
     },
     "SOA_UNLOCKS_CHEST_TEXTURE": {
-        "address": "03481E26",
+        "address": "03481E76",
         "length": 1
     },
     "SOA_UNLOCKS_POTCRATE_TEXTURE": {
-        "address": "03481E27",
+        "address": "03481E77",
         "length": 1
     },
     "SONGS_AS_ITEMS": {
-        "address": "03481E05",
+        "address": "03481E55",
         "length": 1
     },
     "SOS_ITEM_GIVEN": {
-        "address": "03482934",
+        "address": "03482984",
         "length": 1
     },
     "SOUL_MENU_NAMES": {
-        "address": "034AF498",
+        "address": "034AF588",
         "length": 564
     },
     "SPECIAL_DEAL_COUNTS": {
-        "address": "03481EA4",
+        "address": "03481EF4",
         "length": 8
     },
     "SPEED_MULTIPLIER": {
-        "address": "0348404C",
+        "address": "0348409C",
         "length": 4
     },
     "SPOILER_AVAILABLE": {
-        "address": "03481E0F",
+        "address": "03481E5F",
         "length": 1
     },
     "START_TWINROVA_FIGHT": {
-        "address": "03485C98",
+        "address": "03485CE8",
         "length": 1
+    },
+    "SaveFile_MaskIsPaid": {
+        "address": "806A84F4",
+        "length": 0
+    },
+    "SaveFile_NextOwnedTradeItem": {
+        "address": "806A8530",
+        "length": 0
+    },
+    "SaveFile_PrevOwnedTradeItem": {
+        "address": "806A85DC",
+        "length": 0
+    },
+    "SaveFile_SetMaskAsPaid": {
+        "address": "806A84B8",
+        "length": 0
+    },
+    "SaveFile_SetTradeItemAsOwned": {
+        "address": "806A8274",
+        "length": 0
+    },
+    "SaveFile_SetTradeItemAsTraded": {
+        "address": "806A83B8",
+        "length": 0
+    },
+    "SaveFile_TradeItemIsOwned": {
+        "address": "806A82E8",
+        "length": 0
+    },
+    "SaveFile_TradeItemIsTraded": {
+        "address": "806A842C",
+        "length": 0
+    },
+    "SaveFile_UnsetTradeItemAsOwned": {
+        "address": "806A82AC",
+        "length": 0
+    },
+    "SaveFile_UnsetTradeItemAsTraded": {
+        "address": "806A83F0",
+        "length": 0
+    },
+    "SaveFile_UpdateShiftableItem": {
+        "address": "806A8320",
+        "length": 0
+    },
+    "Save_Init_Write_Hook": {
+        "address": "806A7B44",
+        "length": 0
+    },
+    "Save_Open": {
+        "address": "806A6F2C",
+        "length": 0
+    },
+    "Save_Write_Hook": {
+        "address": "806A7AD0",
+        "length": 0
+    },
+    "Scene_CommandObjectList": {
+        "address": "80687B34",
+        "length": 0
+    },
+    "Scene_CommandObjectList_After": {
+        "address": "80081CE0",
+        "length": 0
+    },
+    "Scene_CommandObjectList_Hook": {
+        "address": "806A5168",
+        "length": 0
+    },
+    "Seeded_Rand_Centered": {
+        "address": "806A6CC0",
+        "length": 0
+    },
+    "Seeded_Rand_Next": {
+        "address": "806A6C2C",
+        "length": 0
+    },
+    "Seeded_Rand_Seed": {
+        "address": "806A6C58",
+        "length": 0
+    },
+    "Seeded_Rand_ZeroOne": {
+        "address": "806A6C78",
+        "length": 0
+    },
+    "Seeded_Reset": {
+        "address": "806A6C64",
+        "length": 0
+    },
+    "SetBiggoronAnimationState": {
+        "address": "806A897C",
+        "length": 0
+    },
+    "Set_NewFlag": {
+        "address": "80697A8C",
+        "length": 0
+    },
+    "SetupMaskShopHelloDialogOverride": {
+        "address": "806A8A78",
+        "length": 0
+    },
+    "Shop_Check_Sold_Out": {
+        "address": "80682C90",
+        "length": 0
+    },
+    "Shop_Keeper_Init_ID": {
+        "address": "80682D24",
+        "length": 0
+    },
+    "Shop_Keeper_Update_ID": {
+        "address": "80682D80",
+        "length": 0
+    },
+    "Shop_Set_Sold_Out": {
+        "address": "80682CE4",
+        "length": 0
+    },
+    "ShouldSkullKidSpawn": {
+        "address": "806A89E4",
+        "length": 0
+    },
+    "SkelAnime_DrawFlexOpa": {
+        "address": "80089D8C",
+        "length": 0
+    },
+    "Sram_CopySave": {
+        "address": "806A7828",
+        "length": 0
+    },
+    "Sram_EraseSave": {
+        "address": "806A79F8",
+        "length": 0
     },
     "Sram_InitNewSave": {
-        "address": "034B586C",
+        "address": "034B597C",
         "length": 4
     },
+    "Sram_OpenSave_Health_Hack": {
+        "address": "806846A4",
+        "length": 0
+    },
+    "Sram_VerifyAndLoadAllSaves": {
+        "address": "806A7230",
+        "length": 0
+    },
+    "Sram_WriteSave": {
+        "address": "806A700C",
+        "length": 0
+    },
+    "SsSram_ReadWrite_Safe": {
+        "address": "806A6FDC",
+        "length": 0
+    },
+    "Static_ctxt_Init": {
+        "address": "80682004",
+        "length": 0
+    },
     "TCG_REQUIRES_LENS": {
-        "address": "0348765D",
+        "address": "034876AD",
         "length": 1
+    },
+    "THA_AllocTailAlign16": {
+        "address": "800A01B8",
+        "length": 0
     },
     "TIME_STRING_TXT": {
         "address": "03481790",
         "length": 36
     },
     "TIME_TRAVEL_SAVED_EQUIPS": {
-        "address": "0348308C",
+        "address": "034830DC",
         "length": 4
     },
     "TRIFORCE_HUNT_ENABLED": {
-        "address": "03481EA0",
+        "address": "03481EF0",
         "length": 2
     },
     "TRIFORCE_PIECES_REQUIRED": {
-        "address": "03481EA2",
+        "address": "03481EF2",
         "length": 2
     },
     "TRIFORCE_SPRITE_RESOURCE": {
-        "address": "034AC220",
+        "address": "034AC308",
         "length": 0
     },
     "TRIFORCE_SPRITE_RESOURCE_END": {
-        "address": "034AD220",
-        "length": 360
+        "address": "034AD308",
+        "length": 0
     },
     "TWINROVA_ACTION_TIMER": {
-        "address": "03485C9C",
+        "address": "03485CEC",
         "length": 4
+    },
+    "TryPaybackMaskOverride": {
+        "address": "806A8BCC",
+        "length": 0
+    },
+    "TurnInTradeItem": {
+        "address": "806A8784",
+        "length": 0
+    },
+    "UpdateTradeEquips": {
+        "address": "806A8688",
+        "length": 0
     },
     "VERSION_STRING_TXT": {
         "address": "0348175C",
@@ -984,763 +2272,3223 @@
         "length": 16
     },
     "WINDMILL_SONG_ID": {
-        "address": "03481E06",
+        "address": "03481E56",
         "length": 1
     },
     "WINDMILL_TEXT_ID": {
-        "address": "03481E07",
+        "address": "03481E57",
         "length": 1
     },
     "WORLD_STRING_TXT": {
         "address": "03481780",
         "length": 16
     },
+    "WaterBox_GetSurface1": {
+        "address": "800347FC",
+        "length": 0
+    },
+    "ZeldaArena_Free": {
+        "address": "80066C90",
+        "length": 0
+    },
+    "ZeldaArena_GetSizes": {
+        "address": "80066D10",
+        "length": 0
+    },
+    "ZeldaArena_Malloc": {
+        "address": "80066C10",
+        "length": 0
+    },
+    "__osFree": {
+        "address": "800CE2B4",
+        "length": 0
+    },
+    "__osMalloc": {
+        "address": "800CE060",
+        "length": 0
+    },
+    "__osMallocInit": {
+        "address": "800CDD90",
+        "length": 0
+    },
     "a_button": {
-        "address": "034AF9E8",
+        "address": "034AFAD8",
         "length": 4
     },
     "a_note_b": {
-        "address": "034AF9D4",
+        "address": "034AFAC4",
         "length": 4
     },
     "a_note_font_glow_base": {
-        "address": "034AF9BC",
+        "address": "034AFAAC",
         "length": 4
     },
     "a_note_font_glow_max": {
-        "address": "034AF9B8",
+        "address": "034AFAA8",
         "length": 4
     },
     "a_note_g": {
-        "address": "034AF9D8",
+        "address": "034AFAC8",
         "length": 4
     },
     "a_note_glow_base": {
-        "address": "034AF9C4",
+        "address": "034AFAB4",
         "length": 4
     },
     "a_note_glow_max": {
-        "address": "034AF9C0",
+        "address": "034AFAB0",
         "length": 4
     },
     "a_note_r": {
-        "address": "034AF9DC",
+        "address": "034AFACC",
         "length": 4
     },
+    "activate_override": {
+        "address": "80696A54",
+        "length": 0
+    },
     "active_item_action_id": {
-        "address": "034B914C",
+        "address": "034B925C",
         "length": 4
     },
     "active_item_fast_chest": {
-        "address": "034B913C",
+        "address": "034B924C",
         "length": 4
     },
     "active_item_graphic_id": {
-        "address": "034B9140",
+        "address": "034B9250",
         "length": 4
     },
     "active_item_object_id": {
-        "address": "034B9144",
+        "address": "034B9254",
         "length": 4
     },
     "active_item_row": {
-        "address": "034B9150",
+        "address": "034B9260",
         "length": 4
     },
     "active_item_text_id": {
-        "address": "034B9148",
+        "address": "034B9258",
         "length": 4
     },
     "active_override": {
-        "address": "034B9158",
+        "address": "034B9268",
         "length": 16
     },
     "active_override_is_outgoing": {
-        "address": "034B9154",
+        "address": "034B9264",
         "length": 4
     },
     "actor_categories": {
-        "address": "034AD3EC",
+        "address": "034AD4DC",
         "length": 192
     },
     "actor_spawn_as_child_flag": {
-        "address": "034B5CA0",
+        "address": "034B5DB0",
         "length": 1
     },
     "actor_spawn_as_child_parent": {
-        "address": "034B5C9C",
+        "address": "034B5DAC",
         "length": 4
     },
+    "actor_spawn_clear_check_hook": {
+        "address": "80687364",
+        "length": 0
+    },
+    "adapt_scarecrow": {
+        "address": "806834E8",
+        "length": 0
+    },
     "adultSkeleton": {
-        "address": "034B5654",
+        "address": "034B5744",
         "length": 252
     },
     "adult_safe": {
-        "address": "034CDBB2",
+        "address": "034CDCC2",
         "length": 1
     },
+    "after_game_state_update": {
+        "address": "806A11E0",
+        "length": 0
+    },
+    "after_going_back": {
+        "address": "80683264",
+        "length": 0
+    },
+    "after_going_forward": {
+        "address": "80683218",
+        "length": 0
+    },
+    "after_item_received": {
+        "address": "80696FC8",
+        "length": 0
+    },
+    "after_key_received": {
+        "address": "80696EDC",
+        "length": 0
+    },
+    "after_scene_init": {
+        "address": "806A12A8",
+        "length": 0
+    },
+    "after_spawn_override_silver_rupee": {
+        "address": "80687D58",
+        "length": 0
+    },
+    "after_time_travel": {
+        "address": "80683170",
+        "length": 0
+    },
+    "agony_distance_hook": {
+        "address": "80686500",
+        "length": 0
+    },
+    "agony_inside_radius_setup": {
+        "address": "8068907C",
+        "length": 0
+    },
+    "agony_outside_radius_setup": {
+        "address": "80689084",
+        "length": 0
+    },
+    "agony_post_hook": {
+        "address": "806865C8",
+        "length": 0
+    },
+    "agony_vibrate_hook": {
+        "address": "80686568",
+        "length": 0
+    },
+    "agony_vibrate_setup": {
+        "address": "806890B0",
+        "length": 0
+    },
     "alt_overrides": {
-        "address": "034B5F98",
+        "address": "034B60A8",
         "length": 8000
     },
+    "apply_color_delta": {
+        "address": "806841C4",
+        "length": 0
+    },
+    "arrows_to_rupee": {
+        "address": "8069FF10",
+        "length": 0
+    },
     "b_button": {
-        "address": "034AF9E4",
+        "address": "034AFAD4",
         "length": 4
     },
     "background_vertices": {
-        "address": "034E0DE0",
+        "address": "034E0EF0",
         "length": 64
     },
+    "base_draw_gi_model": {
+        "address": "8069EE6C",
+        "length": 0
+    },
+    "bb_after_init_hack": {
+        "address": "80691B34",
+        "length": 0
+    },
+    "bb_red_wait_hack": {
+        "address": "80691A9C",
+        "length": 0
+    },
+    "bb_red_wait_hook": {
+        "address": "806873B8",
+        "length": 0
+    },
+    "bean_buy_item_hook": {
+        "address": "80684964",
+        "length": 0
+    },
+    "bean_enough_rupees_check": {
+        "address": "80684924",
+        "length": 0
+    },
+    "bean_initial_check": {
+        "address": "806848EC",
+        "length": 0
+    },
+    "bean_rupees_taken": {
+        "address": "80684944",
+        "length": 0
+    },
     "beating_dd": {
-        "address": "034AF9F0",
+        "address": "034AFAE0",
         "length": 4
     },
     "beating_no_dd": {
-        "address": "034AF9F8",
+        "address": "034AFAE8",
         "length": 4
     },
+    "before_game_state_update": {
+        "address": "806A1184",
+        "length": 0
+    },
+    "before_game_state_update_hook": {
+        "address": "80682FE4",
+        "length": 0
+    },
+    "before_skybox_init": {
+        "address": "806A126C",
+        "length": 0
+    },
+    "before_time_travel": {
+        "address": "80683100",
+        "length": 0
+    },
+    "bg_gate_shutter_open_hack": {
+        "address": "80687A78",
+        "length": 0
+    },
+    "bg_haka_tubo_drop_params_hack": {
+        "address": "806870E0",
+        "length": 0
+    },
+    "bg_spot18_basket_bombs_end": {
+        "address": "8068710C",
+        "length": 0
+    },
+    "bg_spot18_basket_bombs_hack": {
+        "address": "806870F0",
+        "length": 0
+    },
+    "bg_spot18_basket_bombs_loopstart": {
+        "address": "80AC7DD0",
+        "length": 0
+    },
+    "bg_spot18_basket_drop_heartpiece_bluerupee": {
+        "address": "8068718C",
+        "length": 0
+    },
+    "bg_spot18_basket_drop_heartpiece_bluerupee_end": {
+        "address": "806871A8",
+        "length": 0
+    },
+    "bg_spot18_basket_drop_heartpiece_redrupee_end": {
+        "address": "80687170",
+        "length": 0
+    },
+    "bg_spot18_basket_drop_heartpiece_rupees": {
+        "address": "80687144",
+        "length": 0
+    },
+    "bg_spot18_basket_drop_heartpiece_rupees_end": {
+        "address": "806871C4",
+        "length": 0
+    },
+    "bg_spot18_basket_rupees_end": {
+        "address": "80687138",
+        "length": 0
+    },
+    "bg_spot18_basket_rupees_hack": {
+        "address": "80687114",
+        "length": 0
+    },
+    "bg_spot18_basket_rupees_loopstart": {
+        "address": "80AC7E2C",
+        "length": 0
+    },
     "bgm_sequence_ids": {
-        "address": "034B5750",
+        "address": "034B5840",
         "length": 188
     },
+    "bgs_fix": {
+        "address": "8068373C",
+        "length": 0
+    },
+    "big_poe_soul_collision": {
+        "address": "80687C0C",
+        "length": 0
+    },
     "bk_display": {
-        "address": "034B5D98",
+        "address": "034B5EA8",
         "length": 1
     },
     "blank_texture": {
-        "address": "034B5554",
+        "address": "034B5644",
         "length": 4
     },
+    "blue_fire_arrows": {
+        "address": "80686DE4",
+        "length": 0
+    },
+    "bomb_bag_upgrade": {
+        "address": "8069FB34",
+        "length": 0
+    },
+    "bombchu_back_color": {
+        "address": "80686768",
+        "length": 0
+    },
+    "bombchu_upgrade": {
+        "address": "8069FE68",
+        "length": 0
+    },
+    "bombchus_to_bag": {
+        "address": "806A0120",
+        "length": 0
+    },
+    "bombs_to_rupee": {
+        "address": "8069FF80",
+        "length": 0
+    },
     "bosses_warps": {
-        "address": "034AD8CC",
+        "address": "034AD9BC",
         "length": 340
     },
     "botw_rooms": {
-        "address": "034AE210",
+        "address": "034AE300",
         "length": 156
     },
+    "bow_upgrade": {
+        "address": "8069FBA4",
+        "length": 0
+    },
+    "bowling_bomb_bag_draw": {
+        "address": "806A3DE0",
+        "length": 0
+    },
+    "bowling_heart_piece_draw": {
+        "address": "806A3F24",
+        "length": 0
+    },
     "buffer_password": {
-        "address": "034B5DDC",
+        "address": "034B5EEC",
         "length": 6
     },
+    "bunny_hood": {
+        "address": "806840A0",
+        "length": 0
+    },
+    "burning_kak": {
+        "address": "80682788",
+        "length": 0
+    },
     "buttons_sprite": {
-        "address": "034AF878",
+        "address": "034AF968",
         "length": 16
     },
+    "c_block_ocarina": {
+        "address": "806A5688",
+        "length": 0
+    },
     "c_button": {
-        "address": "034AF9E0",
+        "address": "034AFAD0",
         "length": 4
     },
+    "c_equipment_menu_slot_filled": {
+        "address": "806A1320",
+        "length": 0
+    },
+    "c_init": {
+        "address": "806A1120",
+        "length": 0
+    },
     "c_note_b": {
-        "address": "034AF9C8",
+        "address": "034AFAB8",
         "length": 4
     },
     "c_note_font_glow_base": {
-        "address": "034AF9AC",
+        "address": "034AFA9C",
         "length": 4
     },
     "c_note_font_glow_max": {
-        "address": "034AF9A8",
+        "address": "034AFA98",
         "length": 4
     },
     "c_note_g": {
-        "address": "034AF9CC",
+        "address": "034AFABC",
         "length": 4
     },
     "c_note_glow_base": {
-        "address": "034AF9B4",
+        "address": "034AFAA4",
         "length": 4
     },
     "c_note_glow_max": {
-        "address": "034AF9B0",
+        "address": "034AFAA0",
         "length": 4
     },
     "c_note_r": {
-        "address": "034AF9D0",
+        "address": "034AFAC0",
         "length": 4
     },
+    "call_effect_function": {
+        "address": "8069FA24",
+        "length": 0
+    },
+    "camera_init": {
+        "address": "8068769C",
+        "length": 0
+    },
+    "can_spawn_epona": {
+        "address": "806A56D4",
+        "length": 0
+    },
+    "carpet_buy_item_hook": {
+        "address": "806866CC",
+        "length": 0
+    },
+    "carpet_inital_message": {
+        "address": "8068669C",
+        "length": 0
+    },
+    "cast_fishing_rod_if_equipped": {
+        "address": "8068362C",
+        "length": 0
+    },
     "caught_fish": {
-        "address": "034B5DEC",
+        "address": "034B5EFC",
         "length": 4
     },
     "cfg_item_overrides": {
-        "address": "034B92B8",
+        "address": "034B93C8",
         "length": 43200
     },
+    "check_claim_check_traded": {
+        "address": "806869EC",
+        "length": 0
+    },
+    "check_cucco_lady_exchange_id_hook": {
+        "address": "80686BE8",
+        "length": 0
+    },
+    "check_cucco_lady_flag_hook": {
+        "address": "80686C14",
+        "length": 0
+    },
+    "check_cucco_lady_talk_exch_hook": {
+        "address": "80686B80",
+        "length": 0
+    },
+    "check_cucco_lady_talk_none_hook": {
+        "address": "80686BB4",
+        "length": 0
+    },
+    "check_enemizer_sequence": {
+        "address": "80688A3C",
+        "length": 0
+    },
+    "check_fado_spawn_flags": {
+        "address": "806867EC",
+        "length": 0
+    },
+    "check_ganon_entry": {
+        "address": "80696480",
+        "length": 0
+    },
+    "check_grog_spawn_flags": {
+        "address": "8068685C",
+        "length": 0
+    },
+    "check_if_biggoron_should_cry": {
+        "address": "806869A0",
+        "length": 0
+    },
+    "check_if_biggoron_should_cry_anim_hook": {
+        "address": "80686918",
+        "length": 0
+    },
+    "check_if_biggoron_should_cry_eye_hook": {
+        "address": "806868E0",
+        "length": 0
+    },
+    "check_if_biggoron_should_cry_sfx_hook": {
+        "address": "80686958",
+        "length": 0
+    },
+    "check_if_mask_sells_out": {
+        "address": "80686B50",
+        "length": 0
+    },
+    "check_kill_demoeffect": {
+        "address": "80686494",
+        "length": 0
+    },
+    "check_model_skeletons": {
+        "address": "806A30A8",
+        "length": 0
+    },
+    "check_skeleton": {
+        "address": "806A2FBC",
+        "length": 0
+    },
+    "check_skull_kid_spawn_flags": {
+        "address": "80686898",
+        "length": 0
+    },
+    "check_trade_item_traded": {
+        "address": "80686A4C",
+        "length": 0
+    },
+    "check_zelda_cutscene_watched": {
+        "address": "80686D64",
+        "length": 0
+    },
+    "chestgame_buy_item_hook": {
+        "address": "806876B0",
+        "length": 0
+    },
+    "chestgame_force_game_loss_left": {
+        "address": "80687774",
+        "length": 0
+    },
+    "chestgame_force_game_loss_right": {
+        "address": "806877D4",
+        "length": 0
+    },
+    "chestgame_initial_message": {
+        "address": "806876D8",
+        "length": 0
+    },
+    "chestgame_no_reset_flag": {
+        "address": "8068770C",
+        "length": 0
+    },
+    "chestgame_no_reset_keys": {
+        "address": "8068772C",
+        "length": 0
+    },
+    "chestgame_remove_chest_rng": {
+        "address": "8068774C",
+        "length": 0
+    },
+    "chestgame_warn_player_of_rigged_game": {
+        "address": "80687834",
+        "length": 0
+    },
     "childSkeleton": {
-        "address": "034B5558",
+        "address": "034B5648",
         "length": 252
     },
     "child_safe": {
-        "address": "034CDBB1",
+        "address": "034CDCC1",
         "length": 1
     },
+    "chu_drop_draw": {
+        "address": "8068389C",
+        "length": 0
+    },
+    "clear_boomerang_pointer": {
+        "address": "80685F88",
+        "length": 0
+    },
+    "clear_excess_hearts": {
+        "address": "8069F4DC",
+        "length": 0
+    },
+    "clear_override": {
+        "address": "80696B90",
+        "length": 0
+    },
+    "clear_twinrova_vars": {
+        "address": "806A9314",
+        "length": 0
+    },
+    "close_rando_display_buffer": {
+        "address": "806992A0",
+        "length": 0
+    },
+    "collectible_draw_other": {
+        "address": "806A3930",
+        "length": 0
+    },
     "collectible_mutex": {
-        "address": "034B5F08",
+        "address": "034B6018",
         "length": 4
     },
     "collectible_override": {
-        "address": "034B5EF8",
+        "address": "034B6008",
         "length": 16
     },
     "collectible_override_flags": {
-        "address": "034B5F90",
+        "address": "034B60A0",
         "length": 4
     },
     "collidercylinder_override_table": {
-        "address": "034B5CB4",
+        "address": "034B5DC4",
         "length": 120
     },
     "cooldown": {
-        "address": "034B5DE2",
+        "address": "034B5EF2",
         "length": 2
     },
+    "countSetBitsRec": {
+        "address": "806A6D08",
+        "length": 0
+    },
+    "cow_after_init": {
+        "address": "80684388",
+        "length": 0
+    },
+    "cow_bottle_check": {
+        "address": "80684328",
+        "length": 0
+    },
+    "cow_item_hook": {
+        "address": "806842E0",
+        "length": 0
+    },
     "curr_drawn_actor": {
-        "address": "034CDBB8",
+        "address": "034CDCC8",
         "length": 4
     },
     "curr_room_enemies_inhibited": {
-        "address": "034B5DA1",
+        "address": "034B5EB1",
         "length": 1
     },
     "curr_scene_setup": {
-        "address": "034E0E90",
+        "address": "034E0FA0",
         "length": 1
     },
     "curr_updating_actor": {
-        "address": "034B5AF8",
+        "address": "034B5C08",
         "length": 4
     },
+    "d_right_dungeon_idx": {
+        "address": "8068EF58",
+        "length": 0
+    },
+    "dampe_fix": {
+        "address": "80683EB0",
+        "length": 0
+    },
     "dc_rooms": {
-        "address": "034AE9C8",
+        "address": "034AEAB8",
         "length": 208
     },
     "debug_enemizer_spawns": {
-        "address": "034B5B00",
+        "address": "034B5C10",
         "length": 1
     },
+    "debug_menu_is_drawn": {
+        "address": "8068A940",
+        "length": 0
+    },
     "debug_spawn_actor_id": {
-        "address": "034B5AFE",
+        "address": "034B5C0E",
         "length": 2
     },
     "debug_spawn_actor_var": {
-        "address": "034B5AFC",
+        "address": "034B5C0C",
         "length": 2
     },
     "debug_text_color": {
-        "address": "034AEE30",
+        "address": "034AEF20",
         "length": 3
     },
     "debug_text_height": {
-        "address": "034A9864",
+        "address": "034A994C",
         "length": 1
     },
     "debug_text_width": {
-        "address": "034A9865",
+        "address": "034A994D",
         "length": 1
     },
+    "debug_utilities": {
+        "address": "8068D02C",
+        "length": 0
+    },
+    "decimal_to_hex": {
+        "address": "8068A94C",
+        "length": 0
+    },
     "defaultDDHeart": {
-        "address": "034A9F04",
+        "address": "034A9FEC",
         "length": 6
     },
     "defaultHeart": {
-        "address": "034A9F0C",
+        "address": "034A9FF4",
         "length": 6
     },
+    "deku_mouth_condition": {
+        "address": "806850F4",
+        "length": 0
+    },
     "deku_rooms": {
-        "address": "034AEA98",
+        "address": "034AEB88",
         "length": 312
     },
+    "disable_trade_timers": {
+        "address": "806845B0",
+        "length": 0
+    },
+    "dispatch_item": {
+        "address": "8069809C",
+        "length": 0
+    },
+    "display_controls_texture": {
+        "address": "80686140",
+        "length": 0
+    },
+    "display_misc_messages": {
+        "address": "806A1CA0",
+        "length": 0
+    },
+    "display_song_name": {
+        "address": "806A41B4",
+        "length": 0
+    },
+    "display_song_name_on_file_select": {
+        "address": "806A4584",
+        "length": 0
+    },
+    "dpad_draw": {
+        "address": "80683EF4",
+        "length": 0
+    },
     "dpad_sprite": {
-        "address": "034AF908",
+        "address": "034AF9F8",
         "length": 16
     },
+    "draw_a": {
+        "address": "80699B58",
+        "length": 0
+    },
+    "draw_agony": {
+        "address": "8068923C",
+        "length": 0
+    },
+    "draw_agony_graphic": {
+        "address": "806890E4",
+        "length": 0
+    },
+    "draw_b": {
+        "address": "80699C28",
+        "length": 0
+    },
+    "draw_background": {
+        "address": "8068EE30",
+        "length": 0
+    },
+    "draw_boss_key": {
+        "address": "8068F360",
+        "length": 0
+    },
+    "draw_cdown": {
+        "address": "80699DA4",
+        "length": 0
+    },
+    "draw_chest": {
+        "address": "8068A058",
+        "length": 0
+    },
+    "draw_chest_base": {
+        "address": "80689E60",
+        "length": 0
+    },
+    "draw_chest_lid": {
+        "address": "80689F5C",
+        "length": 0
+    },
+    "draw_cleft": {
+        "address": "80699F4C",
+        "length": 0
+    },
+    "draw_cright": {
+        "address": "8069A020",
+        "length": 0
+    },
+    "draw_cup": {
+        "address": "80699E78",
+        "length": 0
+    },
+    "draw_ddown": {
+        "address": "8069A2E0",
+        "length": 0
+    },
+    "draw_debug_float": {
+        "address": "8068A52C",
+        "length": 0
+    },
+    "draw_debug_int": {
+        "address": "8068A4F4",
+        "length": 0
+    },
+    "draw_debug_menu": {
+        "address": "8068A9EC",
+        "length": 0
+    },
+    "draw_debug_numbers": {
+        "address": "8068CC8C",
+        "length": 0
+    },
+    "draw_dleft": {
+        "address": "8069A428",
+        "length": 0
+    },
+    "draw_dpad_and_menu_utilities": {
+        "address": "8068DB78",
+        "length": 0
+    },
+    "draw_dright": {
+        "address": "8069A4CC",
+        "length": 0
+    },
+    "draw_dungeon_info": {
+        "address": "8068F45C",
+        "length": 0
+    },
+    "draw_dup": {
+        "address": "8069A384",
+        "length": 0
+    },
+    "draw_file_icons": {
+        "address": "80693E9C",
+        "length": 0
+    },
+    "draw_file_message": {
+        "address": "80694D8C",
+        "length": 0
+    },
+    "draw_file_select_hash": {
+        "address": "80695980",
+        "length": 0
+    },
+    "draw_flying_pot_hack": {
+        "address": "806A6818",
+        "length": 0
+    },
+    "draw_forest_hallway_chest_base": {
+        "address": "8068A158",
+        "length": 0
+    },
+    "draw_forest_hallway_chest_lid": {
+        "address": "8068A1D4",
+        "length": 0
+    },
+    "draw_gi_a_button": {
+        "address": "8069DC28",
+        "length": 0
+    },
+    "draw_gi_blue_fire_candle": {
+        "address": "8069C454",
+        "length": 0
+    },
+    "draw_gi_bombchu_and_masks": {
+        "address": "8069A6D4",
+        "length": 0
+    },
+    "draw_gi_boss_altered": {
+        "address": "8069D3A8",
+        "length": 0
+    },
+    "draw_gi_boss_altflip": {
+        "address": "8069D67C",
+        "length": 0
+    },
+    "draw_gi_boss_keys": {
+        "address": "8069D0D4",
+        "length": 0
+    },
+    "draw_gi_bullet_bags": {
+        "address": "8069B59C",
+        "length": 0
+    },
+    "draw_gi_c_button_horizontal": {
+        "address": "8069DEF0",
+        "length": 0
+    },
+    "draw_gi_c_button_vertical": {
+        "address": "8069DD60",
+        "length": 0
+    },
+    "draw_gi_chubag": {
+        "address": "8069D950",
+        "length": 0
+    },
+    "draw_gi_coins_and_cuccos": {
+        "address": "8069B1FC",
+        "length": 0
+    },
+    "draw_gi_compass": {
+        "address": "8069A8D4",
+        "length": 0
+    },
+    "draw_gi_deku_nut": {
+        "address": "8069B960",
+        "length": 0
+    },
+    "draw_gi_deku_nut_with_flame": {
+        "address": "8069EA98",
+        "length": 0
+    },
+    "draw_gi_eggs_and_medallions": {
+        "address": "8069A770",
+        "length": 0
+    },
+    "draw_gi_fairy": {
+        "address": "8069C810",
+        "length": 0
+    },
+    "draw_gi_fairy_lantern": {
+        "address": "8069C624",
+        "length": 0
+    },
+    "draw_gi_fish_bottle": {
+        "address": "8069BB8C",
+        "length": 0
+    },
+    "draw_gi_flame": {
+        "address": "8069E458",
+        "length": 0
+    },
+    "draw_gi_goron_swords": {
+        "address": "8069B858",
+        "length": 0
+    },
+    "draw_gi_gs_token": {
+        "address": "8069C2C8",
+        "length": 0
+    },
+    "draw_gi_magic_arrows": {
+        "address": "8069B32C",
+        "length": 0
+    },
+    "draw_gi_magic_meter": {
+        "address": "8069E65C",
+        "length": 0
+    },
+    "draw_gi_magic_spells": {
+        "address": "8069BC94",
+        "length": 0
+    },
+    "draw_gi_medallions": {
+        "address": "8069E088",
+        "length": 0
+    },
+    "draw_gi_mirror_shield": {
+        "address": "8069C124",
+        "length": 0
+    },
+    "draw_gi_nothing": {
+        "address": "8069E080",
+        "length": 0
+    },
+    "draw_gi_opa_with_flame": {
+        "address": "8069EB38",
+        "length": 0
+    },
+    "draw_gi_opa_with_rainbow_flame": {
+        "address": "8069EC08",
+        "length": 0
+    },
+    "draw_gi_poe_bottles": {
+        "address": "8069C9E8",
+        "length": 0
+    },
+    "draw_gi_potions": {
+        "address": "8069BF54",
+        "length": 0
+    },
+    "draw_gi_recovery_heart": {
+        "address": "8069BA74",
+        "length": 0
+    },
+    "draw_gi_scales": {
+        "address": "8069BDE8",
+        "length": 0
+    },
+    "draw_gi_shrink_keys": {
+        "address": "8069CEF8",
+        "length": 0
+    },
+    "draw_gi_silver_rupee_pouch": {
+        "address": "8069ACD0",
+        "length": 0
+    },
+    "draw_gi_small_keys": {
+        "address": "8069CD2C",
+        "length": 0
+    },
+    "draw_gi_small_rupees": {
+        "address": "8069B6F8",
+        "length": 0
+    },
+    "draw_gi_sold_out": {
+        "address": "8069A830",
+        "length": 0
+    },
+    "draw_gi_song_notes": {
+        "address": "8069CBF0",
+        "length": 0
+    },
+    "draw_gi_stones": {
+        "address": "8069E16C",
+        "length": 0
+    },
+    "draw_gi_various_opa0": {
+        "address": "8069A9F4",
+        "length": 0
+    },
+    "draw_gi_various_opa0_xlu1": {
+        "address": "8069AFB8",
+        "length": 0
+    },
+    "draw_gi_various_opa1023": {
+        "address": "8069AA90",
+        "length": 0
+    },
+    "draw_gi_various_opa10_xlu32": {
+        "address": "8069B458",
+        "length": 0
+    },
+    "draw_gi_various_xlu0": {
+        "address": "8069AE5C",
+        "length": 0
+    },
+    "draw_gi_various_xlu01": {
+        "address": "8069AEF8",
+        "length": 0
+    },
+    "draw_gi_wallets": {
+        "address": "8069AB80",
+        "length": 0
+    },
+    "draw_gi_xlu_with_flame": {
+        "address": "8069E9FC",
+        "length": 0
+    },
+    "draw_hba_pot_hack": {
+        "address": "806A67E8",
+        "length": 0
+    },
+    "draw_ice_trap": {
+        "address": "8069ECD4",
+        "length": 0
+    },
+    "draw_illegal_model_text": {
+        "address": "806A2AF4",
+        "length": 0
+    },
+    "draw_input_viewer": {
+        "address": "8069A570",
+        "length": 0
+    },
+    "draw_int": {
+        "address": "806A80B0",
+        "length": 0
+    },
+    "draw_int_size": {
+        "address": "806A7EE0",
+        "length": 0
+    },
+    "draw_l": {
+        "address": "8069A198",
+        "length": 0
+    },
+    "draw_map_background": {
+        "address": "806A5BCC",
+        "length": 0
+    },
+    "draw_model": {
+        "address": "806A3604",
+        "length": 0
+    },
+    "draw_model_low_level": {
+        "address": "806A352C",
+        "length": 0
+    },
+    "draw_new_menus": {
+        "address": "806A61BC",
+        "length": 0
+    },
+    "draw_pot": {
+        "address": "806A6570",
+        "length": 0
+    },
+    "draw_pot_hack": {
+        "address": "806A67CC",
+        "length": 0
+    },
+    "draw_r": {
+        "address": "8069A23C",
+        "length": 0
+    },
+    "draw_rutos_letter": {
+        "address": "8069B0D0",
+        "length": 0
+    },
+    "draw_silver_rupee_count": {
+        "address": "8068EFB4",
+        "length": 0
+    },
+    "draw_soul_menu": {
+        "address": "806A5F0C",
+        "length": 0
+    },
+    "draw_start": {
+        "address": "80699CFC",
+        "length": 0
+    },
+    "draw_timeofday": {
+        "address": "8068A564",
+        "length": 0
+    },
+    "draw_triforce_count": {
+        "address": "806A8E6C",
+        "length": 0
+    },
+    "draw_x_stick": {
+        "address": "80699A9C",
+        "length": 0
+    },
+    "draw_y_stick": {
+        "address": "80699AE4",
+        "length": 0
+    },
+    "draw_z": {
+        "address": "8069A0F4",
+        "length": 0
+    },
+    "drop_bombs_or_chus": {
+        "address": "80697DA8",
+        "length": 0
+    },
     "drop_collectible_override_flag": {
-        "address": "034B916C",
+        "address": "034B927C",
         "length": 8
     },
+    "drop_collectible_random_hook": {
+        "address": "806822D0",
+        "length": 0
+    },
+    "drop_collectible_room_hook": {
+        "address": "80682254",
+        "length": 0
+    },
+    "drop_ruto": {
+        "address": "80686400",
+        "length": 0
+    },
     "dummy_actor": {
-        "address": "034B9174",
+        "address": "034B9284",
         "length": 316
     },
     "dungeon_count": {
-        "address": "034AEF8C",
+        "address": "034AF07C",
         "length": 4
     },
+    "dungeon_info_is_drawn": {
+        "address": "80691A3C",
+        "length": 0
+    },
     "dungeon_rooms": {
-        "address": "034ADD30",
+        "address": "034ADE20",
         "length": 104
     },
     "dungeon_warps": {
-        "address": "034AEBD0",
+        "address": "034AECC0",
         "length": 442
     },
     "dungeons": {
-        "address": "034AEE58",
+        "address": "034AEF48",
         "length": 308
     },
+    "easier_fishing": {
+        "address": "806835D4",
+        "length": 0
+    },
+    "empty_bomb": {
+        "address": "80683570",
+        "length": 0
+    },
     "empty_dlist": {
-        "address": "034AF968",
+        "address": "034AFA58",
         "length": 8
     },
+    "en_am_calculation_1": {
+        "address": "8068793C",
+        "length": 0
+    },
+    "en_am_calculation_2": {
+        "address": "80687950",
+        "length": 0
+    },
+    "en_crow_respawn_hack": {
+        "address": "806873EC",
+        "length": 0
+    },
+    "en_item00_update": {
+        "address": "806878B0",
+        "length": 0
+    },
+    "en_item00_update_continue": {
+        "address": "80012940",
+        "length": 0
+    },
+    "en_item00_update_hook": {
+        "address": "806920D8",
+        "length": 0
+    },
+    "en_skj_drop_collectible_hack": {
+        "address": "80692B48",
+        "length": 0
+    },
+    "en_skj_drop_collectible_hook": {
+        "address": "80687450",
+        "length": 0
+    },
     "enemy_list": {
-        "address": "034AD220",
+        "address": "034AD310",
         "length": 360
     },
     "enemy_spawn_index": {
-        "address": "034B5C98",
+        "address": "034B5DA8",
         "length": 4
     },
     "enemy_spawn_table": {
-        "address": "034AEFE8",
+        "address": "034AF0D8",
         "length": 624
     },
+    "enitem00_set_link_incoming_item_id": {
+        "address": "806A53E8",
+        "length": 0
+    },
+    "enkusa_dropcollectible_hack": {
+        "address": "806922D8",
+        "length": 0
+    },
+    "enkusa_dropcollectible_hook": {
+        "address": "8068745C",
+        "length": 0
+    },
+    "equipment_menu_fix": {
+        "address": "806830C4",
+        "length": 0
+    },
+    "equipment_menu_prevent_empty_equip": {
+        "address": "80683008",
+        "length": 0
+    },
+    "equipment_menu_slot_filled": {
+        "address": "80683098",
+        "length": 0
+    },
+    "ev0_return": {
+        "address": "803089C0",
+        "length": 0
+    },
+    "exit_func": {
+        "address": "80682394",
+        "length": 0
+    },
     "extended_object_ctx": {
-        "address": "034CDC90",
+        "address": "034CDDA0",
         "length": 408
     },
+    "extended_object_lookup_GI": {
+        "address": "806841F0",
+        "length": 0
+    },
+    "extended_object_lookup_load": {
+        "address": "80684218",
+        "length": 0
+    },
+    "extended_object_lookup_objectspawn": {
+        "address": "80684244",
+        "length": 0
+    },
+    "extended_object_lookup_shop": {
+        "address": "80684270",
+        "length": 0
+    },
+    "extended_object_lookup_shop_unpause": {
+        "address": "806842A8",
+        "length": 0
+    },
+    "extended_objects_init": {
+        "address": "806A50A8",
+        "length": 0
+    },
+    "extended_objects_reset": {
+        "address": "806A50E8",
+        "length": 0
+    },
     "extended_savectx": {
-        "address": "034E0E28",
+        "address": "034E0F38",
         "length": 104
     },
     "extern_ctxt": {
-        "address": "034AF6CC",
+        "address": "034AF7BC",
         "length": 20
     },
+    "extern_scene_init": {
+        "address": "80693534",
+        "length": 0
+    },
+    "fairy_ocarina_getitem": {
+        "address": "806986E4",
+        "length": 0
+    },
+    "fairy_ocarina_getitem_override": {
+        "address": "80687A20",
+        "length": 0
+    },
+    "file_init": {
+        "address": "806A951C",
+        "length": 0
+    },
+    "fill_wallet_upgrade": {
+        "address": "8069F4B0",
+        "length": 0
+    },
+    "filter_armos": {
+        "address": "80687D8C",
+        "length": 0
+    },
+    "filter_octoroks": {
+        "address": "80687DA8",
+        "length": 0
+    },
+    "filter_skullkids": {
+        "address": "80687D98",
+        "length": 0
+    },
+    "filter_skullwalltula": {
+        "address": "80687D70",
+        "length": 0
+    },
+    "fire_pos": {
+        "address": "80685F78",
+        "length": 0
+    },
     "fire_rooms": {
-        "address": "034AE688",
+        "address": "034AE778",
         "length": 364
     },
+    "fishing_bite_when_stable": {
+        "address": "80683654",
+        "length": 0
+    },
+    "fishing_draw": {
+        "address": "806A3F88",
+        "length": 0
+    },
     "fishing_get_item_id": {
-        "address": "034B5DE8",
+        "address": "034B5EF8",
         "length": 4
     },
     "flag_categories": {
-        "address": "034AD38C",
+        "address": "034AD47C",
         "length": 96
     },
+    "flags_getsoul": {
+        "address": "806930A4",
+        "length": 0
+    },
+    "flags_setsoul": {
+        "address": "806930DC",
+        "length": 0
+    },
     "float_precision": {
-        "address": "034AEE2D",
+        "address": "034AEF1D",
         "length": 1
     },
     "font_sprite": {
-        "address": "034AF918",
+        "address": "034AFA08",
         "length": 16
     },
     "font_textures": {
-        "address": "034DDE50",
+        "address": "034DDF60",
         "length": 12160
     },
     "forest_rooms": {
-        "address": "034AE7F4",
+        "address": "034AE8E4",
         "length": 312
     },
+    "fountain_set_posrot": {
+        "address": "806828BC",
+        "length": 0
+    },
     "freecam_modes": {
-        "address": "034A9D08",
+        "address": "034A9DF0",
         "length": 66
     },
+    "full_heal": {
+        "address": "8069EEAC",
+        "length": 0
+    },
+    "gActorOverlayTable": {
+        "address": "800E8530",
+        "length": 0
+    },
+    "gCullBackDList": {
+        "address": "800F7A68",
+        "length": 0
+    },
+    "gLinkObjectIds": {
+        "address": "800F8FF0",
+        "length": 0
+    },
+    "gPausePlayerOverlayTable": {
+        "address": "800FE480",
+        "length": 0
+    },
     "gPrevRoom": {
-        "address": "034CDC8C",
+        "address": "034CDD9C",
         "length": 1
     },
     "ganon_rooms": {
-        "address": "034ADD98",
+        "address": "034ADE88",
         "length": 364
     },
+    "gerudo_caught_entrance": {
+        "address": "80682830",
+        "length": 0
+    },
+    "get_audio_pointers": {
+        "address": "80685C14",
+        "length": 0
+    },
+    "get_bombchu_back_color": {
+        "address": "806A2564",
+        "length": 0
+    },
+    "get_chest_override": {
+        "address": "80689AD0",
+        "length": 0
+    },
+    "get_chest_type": {
+        "address": "80689C18",
+        "length": 0
+    },
+    "get_current_scene_setup_number": {
+        "address": "806A7CAC",
+        "length": 0
+    },
+    "get_dummy_chest": {
+        "address": "8068A13C",
+        "length": 0
+    },
+    "get_flag": {
+        "address": "8068A894",
+        "length": 0
+    },
+    "get_item": {
+        "address": "80697410",
+        "length": 0
+    },
+    "get_item_hook": {
+        "address": "80682210",
+        "length": 0
+    },
+    "get_item_row": {
+        "address": "8069F964",
+        "length": 0
+    },
+    "get_newflag_override": {
+        "address": "8068814C",
+        "length": 0
+    },
+    "get_object": {
+        "address": "806A3418",
+        "length": 0
+    },
+    "get_object_entry": {
+        "address": "806A32E0",
+        "length": 0
+    },
+    "get_object_size": {
+        "address": "806A3314",
+        "length": 0
+    },
+    "get_override_drop_id": {
+        "address": "80697E2C",
+        "length": 0
+    },
+    "get_override_search_key": {
+        "address": "80696630",
+        "length": 0
+    },
+    "get_override_search_key_by_newflag": {
+        "address": "80696940",
+        "length": 0
+    },
+    "get_rainbow_color": {
+        "address": "806A69D8",
+        "length": 0
+    },
+    "get_skulltula_token": {
+        "address": "80698594",
+        "length": 0
+    },
+    "get_soul_enabled": {
+        "address": "80693124",
+        "length": 0
+    },
+    "get_soul_status": {
+        "address": "80693194",
+        "length": 0
+    },
+    "get_texture": {
+        "address": "806A80E0",
+        "length": 0
+    },
+    "get_xflag_bit_offset": {
+        "address": "806976B8",
+        "length": 0
+    },
+    "gfx_init": {
+        "address": "8069936C",
+        "length": 0
+    },
+    "give_bean_pack": {
+        "address": "8069F498",
+        "length": 0
+    },
+    "give_biggoron_sword": {
+        "address": "8069EFAC",
+        "length": 0
+    },
+    "give_bombchus": {
+        "address": "8069F60C",
+        "length": 0
+    },
+    "give_bottle": {
+        "address": "8069EFB8",
+        "length": 0
+    },
+    "give_defense": {
+        "address": "8069F3FC",
+        "length": 0
+    },
+    "give_double_magic": {
+        "address": "8069F434",
+        "length": 0
+    },
+    "give_dungeon_item": {
+        "address": "8069EFF0",
+        "length": 0
+    },
+    "give_enemy_soul": {
+        "address": "8069F6BC",
+        "length": 0
+    },
+    "give_fairy_ocarina": {
+        "address": "8069F458",
+        "length": 0
+    },
+    "give_fish": {
+        "address": "8069F014",
+        "length": 0
+    },
+    "give_fishing_rod": {
+        "address": "8069F004",
+        "length": 0
+    },
+    "give_ice_trap": {
+        "address": "80699A28",
+        "length": 0
+    },
+    "give_loach_reward": {
+        "address": "80683680",
+        "length": 0
+    },
+    "give_magic": {
+        "address": "8069F418",
+        "length": 0
+    },
+    "give_master_sword": {
+        "address": "806830E8",
+        "length": 0
+    },
+    "give_quest_item": {
+        "address": "8069F464",
+        "length": 0
+    },
+    "give_regional_enemy_soul": {
+        "address": "8069F6D8",
+        "length": 0
+    },
+    "give_sage_gifts": {
+        "address": "806A6D5C",
+        "length": 0
+    },
+    "give_sarias_gift": {
+        "address": "80698674",
+        "length": 0
+    },
+    "give_silver_rupee": {
+        "address": "8069F2A8",
+        "length": 0
+    },
+    "give_silver_rupee_pouch": {
+        "address": "8069F338",
+        "length": 0
+    },
+    "give_small_key": {
+        "address": "8069F05C",
+        "length": 0
+    },
+    "give_small_key_ring": {
+        "address": "8069F0F0",
+        "length": 0
+    },
+    "give_triforce_piece": {
+        "address": "8069EEB8",
+        "length": 0
+    },
+    "give_tycoon_wallet": {
+        "address": "8069EF74",
+        "length": 0
+    },
+    "gohma_climb": {
+        "address": "8068768C",
+        "length": 0
+    },
+    "gossip_hints": {
+        "address": "80683CCC",
+        "length": 0
+    },
+    "grotto_entrance": {
+        "address": "80684EE8",
+        "length": 0
+    },
     "gtg_rooms": {
-        "address": "034ADF04",
+        "address": "034ADFF4",
         "length": 312
     },
+    "guard_catch": {
+        "address": "80682764",
+        "length": 0
+    },
+    "handle_child_zelda_savewarp": {
+        "address": "80686D18",
+        "length": 0
+    },
+    "handle_dpad": {
+        "address": "8068D4A0",
+        "length": 0
+    },
+    "handle_hba_rewards_chain": {
+        "address": "806865E4",
+        "length": 0
+    },
+    "handle_pending_items": {
+        "address": "80697230",
+        "length": 0
+    },
+    "has_items_for_door_of_time": {
+        "address": "8068D290",
+        "length": 0
+    },
     "hash_sprites": {
-        "address": "034AF84C",
+        "address": "034AF93C",
         "length": 8
     },
     "hash_symbols": {
-        "address": "034AF80C",
+        "address": "034AF8FC",
         "length": 64
     },
+    "health_and_magic_refill": {
+        "address": "806A6C04",
+        "length": 0
+    },
+    "health_upgrade_cap": {
+        "address": "806A00E4",
+        "length": 0
+    },
+    "heap_alloc": {
+        "address": "806A9410",
+        "length": 0
+    },
+    "heap_free": {
+        "address": "806A94F8",
+        "length": 0
+    },
+    "heap_init": {
+        "address": "806A93C8",
+        "length": 0
+    },
     "heap_next": {
-        "address": "034E0E9C",
+        "address": "034E0FAC",
         "length": 4
     },
+    "heart_container_draw": {
+        "address": "806A39B4",
+        "length": 0
+    },
+    "heart_piece_draw": {
+        "address": "806A38CC",
+        "length": 0
+    },
     "heart_sprite": {
-        "address": "034AF898",
+        "address": "034AF988",
         "length": 16
     },
+    "heavy_block_posrot": {
+        "address": "80682BB0",
+        "length": 0
+    },
+    "heavy_block_set_link_action": {
+        "address": "80682BD0",
+        "length": 0
+    },
+    "heavy_block_set_switch": {
+        "address": "80682B80",
+        "length": 0
+    },
+    "heavy_block_shorten_anim": {
+        "address": "80682BF4",
+        "length": 0
+    },
     "hideout_rooms": {
-        "address": "034AE03C",
+        "address": "034AE12C",
         "length": 208
     },
+    "hookshot_upgrade": {
+        "address": "8069FA60",
+        "length": 0
+    },
+    "ice_pos": {
+        "address": "80685F68",
+        "length": 0
+    },
     "ice_rooms": {
-        "address": "034AE10C",
+        "address": "034AE1FC",
         "length": 260
     },
+    "ice_trap_effect": {
+        "address": "8069F47C",
+        "length": 0
+    },
+    "ice_trap_is_pending": {
+        "address": "806999FC",
+        "length": 0
+    },
     "icon_sprites": {
-        "address": "034A9DD8",
+        "address": "034A9EC0",
         "length": 12
     },
     "illegal_model": {
-        "address": "034CDBB4",
+        "address": "034CDCC4",
         "length": 2
     },
     "incoming_junk": {
-        "address": "034B9138",
+        "address": "034B9248",
         "length": 2
     },
+    "increment_sSinkingLureLocation": {
+        "address": "806836A8",
+        "length": 0
+    },
+    "ingo_race_win": {
+        "address": "80682804",
+        "length": 0
+    },
+    "init": {
+        "address": "80681FD0",
+        "length": 0
+    },
+    "init_adult_button": {
+        "address": "80683318",
+        "length": 0
+    },
+    "init_new_menus": {
+        "address": "806A5B18",
+        "length": 0
+    },
+    "init_textures": {
+        "address": "806A80F8",
+        "length": 0
+    },
+    "initialize_adult": {
+        "address": "806832B0",
+        "length": 0
+    },
     "input_icon_height": {
-        "address": "034A9F1E",
+        "address": "034AA006",
         "length": 1
     },
     "input_icon_width": {
-        "address": "034A9F1F",
+        "address": "034AA007",
         "length": 1
     },
     "input_number_height": {
-        "address": "034A9F1C",
+        "address": "034AA004",
         "length": 1
     },
     "input_number_width": {
-        "address": "034A9F1D",
+        "address": "034AA005",
         "length": 1
     },
+    "interpolate": {
+        "address": "806934D0",
+        "length": 0
+    },
+    "inventory_check": {
+        "address": "80682020",
+        "length": 0
+    },
+    "is_bk_displayed": {
+        "address": "8068F2DC",
+        "length": 0
+    },
+    "is_buffer_password_clear": {
+        "address": "80695104",
+        "length": 0
+    },
+    "is_enemy": {
+        "address": "806889CC",
+        "length": 0
+    },
+    "is_hook_static": {
+        "address": "8069A654",
+        "length": 0
+    },
+    "is_saved_password_clear": {
+        "address": "80695078",
+        "length": 0
+    },
     "item_digit_sprite": {
-        "address": "034AF8B8",
+        "address": "034AF9A8",
         "length": 16
     },
     "item_draw_table": {
-        "address": "034AF9FC",
+        "address": "034AFAEC",
         "length": 6336
     },
+    "item_etcetera_draw": {
+        "address": "806A3AE0",
+        "length": 0
+    },
+    "item_give_collectible": {
+        "address": "806982B4",
+        "length": 0
+    },
+    "item_give_hook": {
+        "address": "8068231C",
+        "length": 0
+    },
     "item_overrides_count": {
-        "address": "034B92B0",
+        "address": "034B93C0",
         "length": 4
     },
+    "item_overrides_init": {
+        "address": "806965C0",
+        "length": 0
+    },
     "item_table": {
-        "address": "034B13E8",
+        "address": "034B14D8",
         "length": 16492
     },
     "items": {
-        "address": "034AF85C",
+        "address": "034AF94C",
         "length": 21
     },
     "items_debug": {
-        "address": "034AD4AC",
+        "address": "034AD59C",
         "length": 1054
     },
     "items_sprite": {
-        "address": "034AF938",
+        "address": "034AFA28",
         "length": 16
     },
+    "jabu_elevator": {
+        "address": "80683E40",
+        "length": 0
+    },
     "jabu_rooms": {
-        "address": "034AE92C",
+        "address": "034AEA1C",
         "length": 156
     },
+    "keep_fishing_rod_equipped": {
+        "address": "8068360C",
+        "length": 0
+    },
     "key_counts": {
-        "address": "034B13C4",
+        "address": "034B14B4",
         "length": 34
     },
     "key_rupee_clock_sprite": {
-        "address": "034AF8D8",
+        "address": "034AF9C8",
         "length": 16
     },
+    "kill_door_of_time_col": {
+        "address": "80686790",
+        "length": 0
+    },
+    "kz_moved_check": {
+        "address": "80685C34",
+        "length": 0
+    },
+    "kz_no_timer": {
+        "address": "80685C70",
+        "length": 0
+    },
+    "kz_reset_trade_flag": {
+        "address": "80685C9C",
+        "length": 0
+    },
+    "kz_store_is_trading": {
+        "address": "80685C8C",
+        "length": 0
+    },
+    "lacs_condition_check": {
+        "address": "80683AD0",
+        "length": 0
+    },
     "lastAllocSize": {
-        "address": "034E0EA0",
+        "address": "034E0FB0",
         "length": 4
     },
     "last_fog_distance": {
-        "address": "034AF6E0",
+        "address": "034AF7D0",
         "length": 4
     },
     "left_alignment": {
-        "address": "034A9F1A",
+        "address": "034AA002",
         "length": 2
     },
+    "letter_to_bottle": {
+        "address": "806A0068",
+        "length": 0
+    },
     "linkhead_skull_sprite": {
-        "address": "034AF8A8",
+        "address": "034AF998",
         "length": 16
     },
+    "load_correct_message_segment": {
+        "address": "80687510",
+        "length": 0
+    },
+    "load_object": {
+        "address": "806A33C8",
+        "length": 0
+    },
+    "load_object_file": {
+        "address": "806A3354",
+        "length": 0
+    },
     "loaded_room_bit_offset": {
-        "address": "034AF854",
+        "address": "034AF944",
         "length": 2
     },
     "loaded_scene_room_setup": {
-        "address": "034AF858",
+        "address": "034AF948",
         "length": 4
     },
+    "logic_chus__bowling_lady_1": {
+        "address": "8068374C",
+        "length": 0
+    },
+    "logic_chus__bowling_lady_2": {
+        "address": "80683788",
+        "length": 0
+    },
+    "logic_chus__carpet_dude_1": {
+        "address": "80683810",
+        "length": 0
+    },
+    "logic_chus__carpet_dude_2": {
+        "address": "80683848",
+        "length": 0
+    },
+    "logic_chus__shopkeeper": {
+        "address": "806837C4",
+        "length": 0
+    },
+    "lookup_model": {
+        "address": "806A3788",
+        "length": 0
+    },
+    "lookup_model_by_override": {
+        "address": "806A36FC",
+        "length": 0
+    },
+    "lookup_override": {
+        "address": "80696878",
+        "length": 0
+    },
+    "lookup_override_by_key": {
+        "address": "80696788",
+        "length": 0
+    },
+    "lookup_override_by_newflag": {
+        "address": "8069699C",
+        "length": 0
+    },
+    "magic_colors": {
+        "address": "8068412C",
+        "length": 0
+    },
+    "magic_upgrade": {
+        "address": "8069FE14",
+        "length": 0
+    },
+    "make_loach_follow_lure": {
+        "address": "806836D8",
+        "length": 0
+    },
+    "malon_check_give_item": {
+        "address": "80686288",
+        "length": 0
+    },
+    "malon_goto_item": {
+        "address": "80686208",
+        "length": 0
+    },
+    "malon_handle_staff": {
+        "address": "80686228",
+        "length": 0
+    },
+    "malon_ra_displaced": {
+        "address": "80686254",
+        "length": 0
+    },
+    "malon_reload": {
+        "address": "80686320",
+        "length": 0
+    },
+    "malon_show_text": {
+        "address": "806862C0",
+        "length": 0
+    },
+    "malon_songs_as_items": {
+        "address": "80686264",
+        "length": 0
+    },
+    "manage_music_changes": {
+        "address": "806A403C",
+        "length": 0
+    },
+    "manage_password": {
+        "address": "80695190",
+        "length": 0
+    },
+    "manage_uninvert_yaxis": {
+        "address": "806A9328",
+        "length": 0
+    },
+    "mask_check_trade_slot": {
+        "address": "806867B8",
+        "length": 0
+    },
+    "mask_shop_display": {
+        "address": "80682DDC",
+        "length": 0
+    },
+    "masks_as_adult": {
+        "address": "80686670",
+        "length": 0
+    },
     "medals": {
-        "address": "034AEE40",
+        "address": "034AEF30",
         "length": 24
     },
     "medals_sprite": {
-        "address": "034AF948",
+        "address": "034AFA38",
         "length": 16
     },
+    "medigoron_buy_item_hook": {
+        "address": "80686740",
+        "length": 0
+    },
+    "medigoron_inital_check": {
+        "address": "806866F8",
+        "length": 0
+    },
     "menu_categories": {
-        "address": "034AED8C",
+        "address": "034AEE7C",
         "length": 160
     },
     "menu_cooldown": {
-        "address": "034AEE2C",
+        "address": "034AEF1C",
         "length": 1
     },
     "menu_count": {
-        "address": "034B580C",
+        "address": "034B5904",
         "length": 4
     },
     "menu_dl": {
-        "address": "034CDE34",
+        "address": "034CDF44",
         "length": 16
     },
     "menu_dl_buffer": {
-        "address": "034CDE50",
+        "address": "034CDF60",
         "length": 65536
     },
     "menu_dl_index": {
-        "address": "034CDE30",
+        "address": "034CDF40",
         "length": 1
     },
     "menu_page": {
-        "address": "034E0DDC",
+        "address": "034E0EEC",
         "length": 4
     },
+    "menu_use_blank_description": {
+        "address": "8068303C",
+        "length": 0
+    },
     "menus": {
-        "address": "034E0DD0",
+        "address": "034E0EE0",
         "length": 12
     },
     "missing_dlist": {
-        "address": "034CDBB0",
+        "address": "034CDCC0",
         "length": 1
     },
+    "models_reset": {
+        "address": "806A36AC",
+        "length": 0
+    },
+    "move_file_3": {
+        "address": "80686128",
+        "length": 0
+    },
+    "move_key_counter": {
+        "address": "80687918",
+        "length": 0
+    },
+    "move_key_icon": {
+        "address": "806878F4",
+        "length": 0
+    },
+    "move_outgoing_queue": {
+        "address": "80696CAC",
+        "length": 0
+    },
+    "move_royal_tombstone": {
+        "address": "80682B68",
+        "length": 0
+    },
+    "no_effect": {
+        "address": "8069EEA4",
+        "length": 0
+    },
+    "no_upgrade": {
+        "address": "8069FA50",
+        "length": 0
+    },
     "normal_dd": {
-        "address": "034AF9EC",
+        "address": "034AFADC",
         "length": 4
     },
     "normal_no_dd": {
-        "address": "034AF9F4",
+        "address": "034AFAE4",
         "length": 4
     },
     "num_grotto_override_flags": {
-        "address": "034B5F94",
+        "address": "034B60A4",
         "length": 2
     },
     "num_override_flags": {
-        "address": "034B5F96",
+        "address": "034B60A6",
         "length": 2
     },
     "num_to_bits": {
-        "address": "034B582C",
+        "address": "034B593C",
         "length": 64
     },
+    "nut_upgrade": {
+        "address": "8069FD5C",
+        "length": 0
+    },
+    "obj_comb_drop_collectible": {
+        "address": "806A46E4",
+        "length": 0
+    },
+    "obj_comb_hook": {
+        "address": "806871D0",
+        "length": 0
+    },
+    "obj_mure3_drop_params_hack": {
+        "address": "806870B0",
+        "length": 0
+    },
+    "obj_mure3_redrupee_hack": {
+        "address": "806870BC",
+        "length": 0
+    },
+    "obj_mure3_redrupee_hack_end": {
+        "address": "806870D8",
+        "length": 0
+    },
     "object_slots": {
-        "address": "034CDBBC",
+        "address": "034CDCCC",
         "length": 192
     },
     "ocarina_button_sprite": {
-        "address": "034AF888",
+        "address": "034AF978",
         "length": 16
     },
+    "ocarina_buttons": {
+        "address": "80687964",
+        "length": 0
+    },
+    "ocarina_of_time_draw": {
+        "address": "806A3A7C",
+        "length": 0
+    },
+    "ocarina_upgrade": {
+        "address": "8069FEA0",
+        "length": 0
+    },
+    "offer_jail_hook": {
+        "address": "80686E00",
+        "length": 0
+    },
+    "offer_jail_normal_white_guard": {
+        "address": "80686E18",
+        "length": 0
+    },
+    "open_gate_and_mask_shop": {
+        "address": "8069F4F8",
+        "length": 0
+    },
+    "open_save_hook": {
+        "address": "80686EE0",
+        "length": 0
+    },
     "outgoing_queue": {
-        "address": "034B5F10",
+        "address": "034B6020",
         "length": 128
     },
+    "override_action": {
+        "address": "806821A8",
+        "length": 0
+    },
+    "override_changelinkanimdefaultstop": {
+        "address": "80686194",
+        "length": 0
+    },
+    "override_chest_speed": {
+        "address": "8068210C",
+        "length": 0
+    },
+    "override_epona_song": {
+        "address": "806824E0",
+        "length": 0
+    },
+    "override_flags_init": {
+        "address": "80696594",
+        "length": 0
+    },
+    "override_graphic": {
+        "address": "806820D4",
+        "length": 0
+    },
+    "override_great_fairy_cutscene": {
+        "address": "806823E0",
+        "length": 0
+    },
+    "override_object": {
+        "address": "806820AC",
+        "length": 0
+    },
+    "override_object_chest": {
+        "address": "806820A0",
+        "length": 0
+    },
+    "override_object_npc": {
+        "address": "80682094",
+        "length": 0
+    },
+    "override_ocarina_songs": {
+        "address": "80682494",
+        "length": 0
+    },
+    "override_requiem_song": {
+        "address": "806824B4",
+        "length": 0
+    },
+    "override_saria_song_check": {
+        "address": "80682590",
+        "length": 0
+    },
+    "override_song_of_time": {
+        "address": "80682558",
+        "length": 0
+    },
+    "override_special_grotto_entrances": {
+        "address": "80684FC4",
+        "length": 0
+    },
+    "override_special_grotto_entrances_1": {
+        "address": "80684F0C",
+        "length": 0
+    },
+    "override_special_grotto_entrances_2": {
+        "address": "80684F2C",
+        "length": 0
+    },
+    "override_special_grotto_entrances_3": {
+        "address": "80684F4C",
+        "length": 0
+    },
+    "override_special_grotto_entrances_4": {
+        "address": "80684F6C",
+        "length": 0
+    },
+    "override_special_grotto_entrances_5": {
+        "address": "80684F8C",
+        "length": 0
+    },
+    "override_suns_song": {
+        "address": "80682520",
+        "length": 0
+    },
+    "override_text": {
+        "address": "8068217C",
+        "length": 0
+    },
+    "override_weather_state": {
+        "address": "806A9608",
+        "length": 0
+    },
     "overworld_warps": {
-        "address": "034ADA20",
+        "address": "034ADB10",
         "length": 782
     },
     "password_index": {
-        "address": "034AF808",
+        "address": "034AF8F8",
         "length": 1
     },
+    "player_restore_mask": {
+        "address": "8068763C",
+        "length": 0
+    },
+    "player_save_mask": {
+        "address": "80687610",
+        "length": 0
+    },
+    "pop_ice_trap": {
+        "address": "80696F4C",
+        "length": 0
+    },
+    "pop_pending_item": {
+        "address": "80696E80",
+        "length": 0
+    },
+    "potion_shop_buy_hook": {
+        "address": "80683DE4",
+        "length": 0
+    },
+    "potion_shop_check_empty_bottle": {
+        "address": "80683E14",
+        "length": 0
+    },
+    "potion_shop_fix": {
+        "address": "80683D74",
+        "length": 0
+    },
+    "prevent_carpenter_boss_softlock": {
+        "address": "80685CA8",
+        "length": 0
+    },
+    "print_char": {
+        "address": "806A7DD8",
+        "length": 0
+    },
+    "process_extern_ctxt": {
+        "address": "8069354C",
+        "length": 0
+    },
+    "push_coop_item": {
+        "address": "80696DD0",
+        "length": 0
+    },
+    "push_delayed_item": {
+        "address": "80696E34",
+        "length": 0
+    },
+    "push_outgoing_override": {
+        "address": "80696BE4",
+        "length": 0
+    },
+    "push_pending_ice_trap": {
+        "address": "80699A10",
+        "length": 0
+    },
+    "push_pending_item": {
+        "address": "80696D48",
+        "length": 0
+    },
     "quest_items_sprite": {
-        "address": "034AF928",
+        "address": "034AFA18",
         "length": 16
     },
+    "rainbow_bridge": {
+        "address": "806838C0",
+        "length": 0
+    },
+    "rand_seed_truth_spinner": {
+        "address": "806874BC",
+        "length": 0
+    },
     "randoArena": {
-        "address": "034E0EBC",
+        "address": "034E0FCC",
         "length": 36
     },
     "randoGfxPoolIndex": {
-        "address": "034C3B80",
+        "address": "034C3C90",
         "length": 1
     },
     "randoGfxPools": {
-        "address": "034C3B88",
+        "address": "034C3C98",
         "length": 40960
     },
+    "rando_display_buffer_init": {
+        "address": "80699254",
+        "length": 0
+    },
+    "rando_display_buffer_reset": {
+        "address": "80699260",
+        "length": 0
+    },
     "rando_overlay_db": {
-        "address": "034CDB90",
+        "address": "034CDCA0",
         "length": 16
     },
     "randoarena_alloc": {
-        "address": "034E0EA4",
+        "address": "034E0FB4",
         "length": 4
     },
     "randoarena_free": {
-        "address": "034E0EA8",
+        "address": "034E0FB8",
         "length": 4
     },
     "randoarena_maxFree": {
-        "address": "034E0EAC",
+        "address": "034E0FBC",
         "length": 4
     },
+    "read_file_data": {
+        "address": "8069394C",
+        "length": 0
+    },
+    "red_ice_alpha": {
+        "address": "80684054",
+        "length": 0
+    },
     "regional_enemy_spawn_table": {
-        "address": "034AF258",
+        "address": "034AF348",
         "length": 176
     },
     "regional_soul_menu_ctx": {
-        "address": "034B5810",
+        "address": "034B5908",
         "length": 12
     },
+    "reset_buffer": {
+        "address": "80695144",
+        "length": 0
+    },
+    "reset_collectible_mutex": {
+        "address": "806976AC",
+        "length": 0
+    },
+    "reset_souls_inhibited": {
+        "address": "806931AC",
+        "length": 0
+    },
+    "resolve_actor_overlay_addr": {
+        "address": "806A9560",
+        "length": 0
+    },
+    "resolve_alternative_flag": {
+        "address": "806969F8",
+        "length": 0
+    },
+    "resolve_alternative_override": {
+        "address": "806968D4",
+        "length": 0
+    },
+    "resolve_item_text_id": {
+        "address": "8069F9A0",
+        "length": 0
+    },
+    "resolve_kaleido_ovl_addr": {
+        "address": "806A95E4",
+        "length": 0
+    },
+    "resolve_overlay_addr": {
+        "address": "806A9584",
+        "length": 0
+    },
+    "resolve_player_ovl_addr": {
+        "address": "806A95C0",
+        "length": 0
+    },
+    "resolve_text_keyrings": {
+        "address": "8069F928",
+        "length": 0
+    },
+    "resolve_text_silver_rupee_pouches": {
+        "address": "8069F7E0",
+        "length": 0
+    },
+    "resolve_text_silver_rupees": {
+        "address": "8069F730",
+        "length": 0
+    },
+    "resolve_text_small_keys": {
+        "address": "8069F86C",
+        "length": 0
+    },
+    "resolve_text_small_keys_cmg": {
+        "address": "8069F8F4",
+        "length": 0
+    },
+    "resolve_upgrades": {
+        "address": "8069F9D0",
+        "length": 0
+    },
+    "return_from_the_other_function": {
+        "address": "80308234",
+        "length": 0
+    },
+    "return_to_func": {
+        "address": "80682360",
+        "length": 0
+    },
+    "return_to_func_near_end": {
+        "address": "806823D0",
+        "length": 0
+    },
     "reward_rows": {
-        "address": "034AEE34",
+        "address": "034AEF24",
         "length": 9
     },
     "room_flags": {
-        "address": "034B5DF8",
+        "address": "034B5F08",
         "length": 256
     },
+    "rova_check_pos": {
+        "address": "80685CF0",
+        "length": 0
+    },
+    "rova_portal": {
+        "address": "80685D60",
+        "length": 0
+    },
     "rupee_colors": {
-        "address": "034A9EF8",
+        "address": "034A9FE0",
         "length": 12
     },
     "rupee_digit_sprite": {
-        "address": "034AF8C8",
+        "address": "034AF9B8",
         "length": 16
     },
+    "rupee_hud_color": {
+        "address": "806999B0",
+        "length": 0
+    },
     "sEffectSsKakera_Colors": {
-        "address": "034AEF90",
+        "address": "034AF080",
         "length": 9
     },
+    "sSetupDL": {
+        "address": "800F7D50",
+        "length": 0
+    },
     "satisfied_pending_frames": {
-        "address": "034B9136",
+        "address": "034B9246",
         "length": 1
     },
+    "save_scarecrow_song": {
+        "address": "8068351C",
+        "length": 0
+    },
+    "scale_factor": {
+        "address": "806A35B0",
+        "length": 0
+    },
+    "scale_top_matrix": {
+        "address": "806A34C4",
+        "length": 0
+    },
+    "scale_upgrade": {
+        "address": "8069FD00",
+        "length": 0
+    },
+    "scene_exit_hook": {
+        "address": "80684E74",
+        "length": 0
+    },
     "scene_fog_distance": {
-        "address": "034AF6E4",
+        "address": "034AF7D4",
         "length": 4
     },
+    "seeds_to_rupee": {
+        "address": "8069FFF0",
+        "length": 0
+    },
+    "select_bombchu_bowling_prize": {
+        "address": "80689938",
+        "length": 0
+    },
+    "set_bombchu_bowling_prize_flag": {
+        "address": "80689AA4",
+        "length": 0
+    },
+    "set_bunny_hood_traded_flag": {
+        "address": "80686CE4",
+        "length": 0
+    },
+    "set_chest_texture": {
+        "address": "80689C3C",
+        "length": 0
+    },
+    "set_dungeon_knowledge": {
+        "address": "806825D4",
+        "length": 0
+    },
+    "set_ev1": {
+        "address": "80308858",
+        "length": 0
+    },
+    "set_fade_in": {
+        "address": "80682728",
+        "length": 0
+    },
+    "set_keaton_mask_traded_flag": {
+        "address": "80686C44",
+        "length": 0
+    },
+    "set_mask_sold_out": {
+        "address": "80682F98",
+        "length": 0
+    },
+    "set_mask_text_hook": {
+        "address": "80682F50",
+        "length": 0
+    },
+    "set_message_file_to_search": {
+        "address": "806874E0",
+        "length": 0
+    },
+    "set_object_segment": {
+        "address": "806A3478",
+        "length": 0
+    },
+    "set_saria_song_flag": {
+        "address": "806825B4",
+        "length": 0
+    },
+    "set_silver_rupee_flags": {
+        "address": "8069F1B8",
+        "length": 0
+    },
+    "set_skull_mask_traded_flag": {
+        "address": "80686C7C",
+        "length": 0
+    },
+    "set_spooky_mask_traded_flag": {
+        "address": "80686CB0",
+        "length": 0
+    },
+    "set_triforce_render": {
+        "address": "806A8E44",
+        "length": 0
+    },
     "setup_db": {
-        "address": "034AF970",
+        "address": "034AFA60",
         "length": 40
     },
     "shadow_rooms": {
-        "address": "034AE3E4",
+        "address": "034AE4D4",
         "length": 364
     },
+    "shooting_gallery_init": {
+        "address": "806845E8",
+        "length": 0
+    },
+    "shooting_gallery_message": {
+        "address": "806A1C20",
+        "length": 0
+    },
+    "shooting_gallery_no_bow": {
+        "address": "806875CC",
+        "length": 0
+    },
     "shooting_gallery_show_message": {
-        "address": "034CDBA4",
+        "address": "034CDCB4",
         "length": 1
     },
+    "shop_cursor_colors": {
+        "address": "8068415C",
+        "length": 0
+    },
+    "shop_draw": {
+        "address": "806A37D8",
+        "length": 0
+    },
+    "shop_draw_hook": {
+        "address": "80682E8C",
+        "length": 0
+    },
+    "should_draw_forest_hallway_chest": {
+        "address": "8068A0A0",
+        "length": 0
+    },
+    "should_raycast": {
+        "address": "80688A58",
+        "length": 0
+    },
     "show_clock": {
-        "address": "034B5D2C",
+        "address": "034B5E3C",
         "length": 1
     },
     "silver_rupee_vars": {
-        "address": "034B12BC",
+        "address": "034B13AC",
         "length": 264
     },
+    "skip_3_down_copy_from": {
+        "address": "80686020",
+        "length": 0
+    },
+    "skip_3_down_copy_to": {
+        "address": "80686078",
+        "length": 0
+    },
+    "skip_3_down_copy_to_2": {
+        "address": "806860A4",
+        "length": 0
+    },
+    "skip_3_down_erase": {
+        "address": "806860FC",
+        "length": 0
+    },
+    "skip_3_down_main": {
+        "address": "80685FC8",
+        "length": 0
+    },
+    "skip_3_up_copy_from": {
+        "address": "80685FF4",
+        "length": 0
+    },
+    "skip_3_up_copy_to": {
+        "address": "8068604C",
+        "length": 0
+    },
+    "skip_3_up_erase": {
+        "address": "806860D0",
+        "length": 0
+    },
+    "skip_3_up_main": {
+        "address": "80685F9C",
+        "length": 0
+    },
+    "skip_nintendo_logo": {
+        "address": "80682C6C",
+        "length": 0
+    },
+    "skip_steal_tunic": {
+        "address": "802FEA30",
+        "length": 0
+    },
+    "skull_token_draw": {
+        "address": "806A3A18",
+        "length": 0
+    },
+    "slingshot_upgrade": {
+        "address": "8069FC10",
+        "length": 0
+    },
     "song_note_sprite": {
-        "address": "034AF8E8",
+        "address": "034AF9D8",
         "length": 16
+    },
+    "sos_handle_item": {
+        "address": "80682A10",
+        "length": 0
+    },
+    "sos_handle_staff": {
+        "address": "806829A8",
+        "length": 0
+    },
+    "sos_skip_demo": {
+        "address": "80682988",
+        "length": 0
+    },
+    "sos_talk_prevention": {
+        "address": "80682B2C",
+        "length": 0
     },
     "soul_menu_ctx": {
-        "address": "034B581C",
+        "address": "034B5914",
         "length": 12
     },
+    "soul_menu_handler": {
+        "address": "806A6170",
+        "length": 0
+    },
     "spawn_actor_with_flag": {
-        "address": "034B9168",
+        "address": "034B9278",
         "length": 4
     },
+    "spawn_check_armos": {
+        "address": "8069307C",
+        "length": 0
+    },
+    "spawn_check_big_octo": {
+        "address": "80693088",
+        "length": 0
+    },
+    "spawn_check_gs": {
+        "address": "80693060",
+        "length": 0
+    },
+    "spawn_check_skullkid": {
+        "address": "80693094",
+        "length": 0
+    },
+    "spawn_override_enemizer": {
+        "address": "80688ACC",
+        "length": 0
+    },
+    "spawn_override_enemy_spawn_shuffle": {
+        "address": "80693214",
+        "length": 0
+    },
+    "spawn_override_silver_rupee": {
+        "address": "806883B8",
+        "length": 0
+    },
     "spirit_rooms": {
-        "address": "034AE2AC",
+        "address": "034AE39C",
         "length": 312
     },
+    "sprintf": {
+        "address": "800CE7B4",
+        "length": 0
+    },
+    "sprite_bytes": {
+        "address": "80698804",
+        "length": 0
+    },
+    "sprite_bytes_per_tile": {
+        "address": "806987A0",
+        "length": 0
+    },
+    "sprite_draw": {
+        "address": "8069915C",
+        "length": 0
+    },
+    "sprite_load": {
+        "address": "80698834",
+        "length": 0
+    },
+    "sprite_texture": {
+        "address": "80698AFC",
+        "length": 0
+    },
+    "sprite_texture_4b": {
+        "address": "80698E44",
+        "length": 0
+    },
+    "stick_as_adult": {
+        "address": "80686648",
+        "length": 0
+    },
+    "stick_upgrade": {
+        "address": "8069FDB8",
+        "length": 0
+    },
     "stones_sprite": {
-        "address": "034AF958",
+        "address": "034AFA48",
         "length": 16
     },
+    "store_scarecrow_fix": {
+        "address": "806A7C64",
+        "length": 0
+    },
+    "strength_upgrade": {
+        "address": "8069FAC4",
+        "length": 0
+    },
+    "suns_song_fix_event": {
+        "address": "806833D8",
+        "length": 0
+    },
+    "talon_break_free": {
+        "address": "80682618",
+        "length": 0
+    },
     "tempX": {
-        "address": "034CDBA8",
+        "address": "034CDCB8",
         "length": 2
     },
     "tempZ": {
-        "address": "034CDBA6",
+        "address": "034CDCB6",
         "length": 2
     },
     "tentatives": {
-        "address": "034B5DE4",
+        "address": "034B5EF4",
         "length": 2
     },
+    "test_sym": {
+        "address": "806A9848",
+        "length": 0
+    },
     "text_cursor_border_base": {
-        "address": "034AF99C",
+        "address": "034AFA8C",
         "length": 4
     },
     "text_cursor_border_max": {
-        "address": "034AF998",
+        "address": "034AFA88",
         "length": 4
     },
     "text_cursor_inner_base": {
-        "address": "034AF9A4",
+        "address": "034AFA94",
         "length": 4
     },
     "text_cursor_inner_max": {
-        "address": "034AF9A0",
+        "address": "034AFA90",
         "length": 4
     },
     "text_height": {
-        "address": "034AA09C",
+        "address": "034AA184",
         "length": 4
     },
+    "text_print": {
+        "address": "806A7EB0",
+        "length": 0
+    },
+    "text_print_size": {
+        "address": "806A7E20",
+        "length": 0
+    },
     "text_width": {
-        "address": "034AA0A0",
+        "address": "034AA188",
         "length": 4
     },
     "texture_table": {
-        "address": "034B5870",
+        "address": "034B5980",
         "length": 528
     },
+    "toggle_soul_enabled": {
+        "address": "8069315C",
+        "length": 0
+    },
     "top_alignment": {
-        "address": "034A9F18",
+        "address": "034AA000",
         "length": 2
     },
     "trade_quest_items": {
-        "address": "034AA278",
+        "address": "034AA360",
         "length": 616
     },
+    "trade_quest_upgrade": {
+        "address": "8069F624",
+        "length": 0
+    },
+    "treasure_chest_game_message": {
+        "address": "806A1C64",
+        "length": 0
+    },
     "treasure_chest_game_show_message": {
-        "address": "034CDBA3",
+        "address": "034CDCB3",
         "length": 1
     },
     "triforce_sprite": {
-        "address": "034AF8F8",
+        "address": "034AF9E8",
         "length": 16
     },
+    "try_pending_item": {
+        "address": "80697064",
+        "length": 0
+    },
+    "twinrova_displaced": {
+        "address": "80685D40",
+        "length": 0
+    },
+    "twinrova_rise": {
+        "address": "80685E80",
+        "length": 0
+    },
+    "twinrova_set_action_fire": {
+        "address": "80685E48",
+        "length": 0
+    },
+    "twinrova_set_action_ice": {
+        "address": "80685E10",
+        "length": 0
+    },
+    "unlock_ocarina_note": {
+        "address": "8069F640",
+        "length": 0
+    },
+    "update_bombchu_trail_colors": {
+        "address": "806A22F0",
+        "length": 0
+    },
+    "update_boomerang_trail_colors": {
+        "address": "806A214C",
+        "length": 0
+    },
+    "update_c_button": {
+        "address": "806831E4",
+        "length": 0
+    },
+    "update_hud_colors": {
+        "address": "80699614",
+        "length": 0
+    },
+    "update_misc_colors": {
+        "address": "806A2AAC",
+        "length": 0
+    },
+    "update_navi_colors": {
+        "address": "806A27D8",
+        "length": 0
+    },
+    "update_shiftable_trade_item_egg_hook": {
+        "address": "80686AB8",
+        "length": 0
+    },
+    "update_shiftable_trade_item_save_hook": {
+        "address": "80686AD4",
+        "length": 0
+    },
+    "update_soul_menu": {
+        "address": "806A5D38",
+        "length": 0
+    },
+    "update_sword_trail_colors": {
+        "address": "806A20A8",
+        "length": 0
+    },
+    "update_tunic_colors": {
+        "address": "806A29FC",
+        "length": 0
+    },
+    "upgrade_key_model": {
+        "address": "806A01C4",
+        "length": 0
+    },
+    "volvagia_flying_hitbox": {
+        "address": "806878D4",
+        "length": 0
+    },
+    "wallet_upgrade": {
+        "address": "8069FC88",
+        "length": 0
+    },
+    "warp_song_fix": {
+        "address": "80683424",
+        "length": 0
+    },
+    "warp_speedup": {
+        "address": "80682698",
+        "length": 0
+    },
     "water_rooms": {
-        "address": "034AE550",
+        "address": "034AE640",
         "length": 312
     },
+    "write_initial_save": {
+        "address": "80683588",
+        "length": 0
+    },
     "xflag_room_blob": {
-        "address": "034B7ED8",
+        "address": "034B7FE8",
         "length": 3500
     },
     "xflag_room_table": {
-        "address": "034B8C84",
+        "address": "034B8D94",
         "length": 1000
     },
     "xflag_scene_table": {
-        "address": "034B906C",
+        "address": "034B917C",
         "length": 202
     },
+    "z64_ActorFind": {
+        "address": "80025B0C",
+        "length": 0
+    },
+    "z64_Flags_GetClear": {
+        "address": "80020640",
+        "length": 0
+    },
+    "z64_Flags_GetSwitch": {
+        "address": "8002049C",
+        "length": 0
+    },
+    "z64_Flags_SetSwitch": {
+        "address": "800204D0",
+        "length": 0
+    },
+    "z64_Flags_SetTempClear": {
+        "address": "800206AC",
+        "length": 0
+    },
+    "z64_Gfx_SetupDL_25Opa": {
+        "address": "8007E298",
+        "length": 0
+    },
+    "z64_Gfx_SetupDL_42Opa": {
+        "address": "8007E868",
+        "length": 0
+    },
+    "z64_ItemIcons": {
+        "address": "800F8D2C",
+        "length": 0
+    },
+    "z64_Item_DropCollectible": {
+        "address": "80013678",
+        "length": 0
+    },
+    "z64_Item_DropCollectible2": {
+        "address": "800138B0",
+        "length": 0
+    },
+    "z64_Item_DropCollectibleRandom": {
+        "address": "80013A84",
+        "length": 0
+    },
+    "z64_LinkDamage": {
+        "address": "806A6498",
+        "length": 0
+    },
+    "z64_LinkInvincibility": {
+        "address": "806A6454",
+        "length": 0
+    },
+    "z64_LoadRoom_addr": {
+        "address": "80080A3C",
+        "length": 0
+    },
+    "z64_SfxDefaultFreqAndVolScale": {
+        "address": "801043A0",
+        "length": 0
+    },
+    "z64_SfxDefaultPos": {
+        "address": "80104394",
+        "length": 0
+    },
+    "z64_SfxDefaultReverb": {
+        "address": "801043A8",
+        "length": 0
+    },
+    "z64_UnloadRoom": {
+        "address": "80080C98",
+        "length": 0
+    },
+    "z64_object_table": {
+        "address": "800F8FF8",
+        "length": 0
+    },
+    "z64_segments": {
+        "address": "80120C38",
+        "length": 0
+    },
     "zarena_alloc": {
-        "address": "034E0EB0",
+        "address": "034E0FC0",
         "length": 4
     },
     "zarena_free": {
-        "address": "034E0EB4",
+        "address": "034E0FC4",
         "length": 4
     },
     "zarena_maxFree": {
-        "address": "034E0EB8",
+        "address": "034E0FC8",
         "length": 4
+    },
+    "zelda_check_anim": {
+        "address": "80686164",
+        "length": 0
     }
 }
