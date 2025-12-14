@@ -1,0 +1,589 @@
+[
+    {
+        "file": "spot00/spot00_scene_0001AB98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 109464
+    },
+    {
+        "file": "spot00/spot00_scene_0001B398_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 111512
+    },
+    {
+        "file": "spot00/spot00_scene_0001D198_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 119192
+    },
+    {
+        "file": "spot00/spot00_scene_0001D998_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 121240
+    },
+    {
+        "file": "spot00/spot00_scene_0001F818_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 129048
+    },
+    {
+        "file": "spot00/spot00_scene_00013D98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 81304
+    },
+    {
+        "file": "spot00/spot00_scene_00015E98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 89752
+    },
+    {
+        "file": "spot00/spot00_scene_00016B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 93080
+    },
+    {
+        "file": "spot00/spot00_scene_00017B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 97176
+    },
+    {
+        "file": "spot00/spot00_scene_00018B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 101272
+    },
+    {
+        "file": "spot00/spot00_scene_00019B98_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 105368
+    },
+    {
+        "file": "spot00/spot00_scene_00017398_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 95128
+    },
+    {
+        "file": "spot00/spot00_scene_00021818_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 137240
+    },
+    {
+        "file": "spot00/spot00_scene_00023018_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 143384
+    },
+    {
+        "file": "spot00/spot00_scene_00025898_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1025,
+        "target_file_offset": 153752
+    },
+    {
+        "file": "spot00/spot00_scene_00024818_CITex.ci4.png",
+        "type": "ci4",
+        "target_file_id": 1025,
+        "target_file_offset": 149528,
+        "palette_address": 81264
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 78572,
+        "data": [200,200,200],
+        "comment": "Patch the path in HF"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 80452,
+        "data": [200,200,200],
+        "comment": "Patch the path in HF"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 78568,
+        "data": [200,200,200],
+        "comment": "Patch the path in HF"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": 1026,
+        "target_file_offset": 83044,
+        "data": [200,200,200],
+        "comment": "Patch the patch in HF"
+    },
+    {
+        "file": "spot01/spot01_scene_00019350_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1027,
+        "target_file_offset": 103248
+    },
+    {
+        "file": "spot01/spot01_scene_00019F50_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1027,
+        "target_file_offset": 106320
+    },
+    {
+        "file": "spot01/spot01_scene_00018B50_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1027,
+        "target_file_offset": 101200
+    },
+    {
+        "type": "texture_group_ci8",
+        "files": [
+            "spot01/spot01_scene_00019B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00014B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00014F50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000C950_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000C750_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000B750_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0001BF50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00017B50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_00012950_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000B250_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000B350_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000CD50_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png",
+            "spot01/spot01_scene_0000E550_CITex.ci8.tlut_spot01_scene_0000A870_TLUT.png"
+        ],
+        "target_file_offset": [
+            105296,
+            84816,
+            85840,
+            51536,
+            51024,
+            46928,
+            114512,
+            97104,
+            76112,
+            45648,
+            45904,
+            52560,
+            58704
+        ],
+        "target_file_id": [
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027,
+            1027
+        ],
+        "palette_address": 43120
+    },
+    {
+        "file": "spot01/spot01_scene_0001B750_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1027,
+        "target_file_offset": 112464
+    },
+    {
+        "file": "spot01/spot01_scene_0000F950_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1027,
+        "target_file_offset": 63824
+    },
+    {
+        "file": "spot01/spot01_scene_0000AA50_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1027,
+        "target_file_offset": 43600
+    },
+    {
+        "file": "spot01/spot01_scene_0000ED50_CITex.ci4.png",
+        "type": "ci4",
+        "target_file_id": 1027,
+        "target_file_offset": 60752,
+        "palette_address": 43560
+    },
+    {
+        "type": "texture_group_ci8",
+        "files": [
+            "spot04/spot04_room_0_0000CDF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_0000D1F8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_0000D2F8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_00011BF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_00012DF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_00012FF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_00013DF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_000159F8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_00015BF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_00015FF8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_000163F8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_0_000167F8_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_2_00002B98_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_2_00002D98_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_2_00002F98_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_room_2_00004398_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png",
+            "spot04/spot04_scene_0000FA18_CITex.ci8.tlut_spot04_scene_0000E010_TLUT.png"
+        ],
+        "target_file_offset": [
+            52728,
+            53752,
+            54008,
+            72696,
+            77304,
+            77816,
+            81400,
+            88568,
+            89080,
+            90104,
+            91128,
+            92152,
+            11160,
+            11672,
+            12184,
+            17304,
+            64024
+        ],
+        "target_file_id": [
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1036,
+            1038,
+            1038,
+            1038,
+            1038,
+            1035
+        ],
+        "palette_address": 57360,
+        "palette_file_id": 1035
+    },
+    {
+    "file": "spot04/spot04_room_0_0000BDF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 48632
+    },
+    {
+    "file": "spot04/spot04_room_0_0000C5F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 50680
+    },
+    {
+    "file": "spot04/spot04_room_0_0000C9F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 51704
+    },
+    {
+    "file": "spot04/spot04_room_0_0000D3F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 54264
+    },
+    {
+    "file": "spot04/spot04_room_0_0000D7F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 55288
+    },
+    {
+    "file": "spot04/spot04_room_0_0000DFF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 57336
+    },
+    {
+    "file": "spot04/spot04_room_0_0000E7F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 59384
+    },
+    {
+    "file": "spot04/spot04_room_0_0000EFF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 61432
+    },
+    {
+    "file": "spot04/spot04_room_0_0000F3F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 62456
+    },
+    {
+    "file": "spot04/spot04_room_0_0000FBF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 64504
+    },
+    {
+    "file": "spot04/spot04_room_0_00010BF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 68600
+    },
+    {
+    "file": "spot04/spot04_room_0_00011DF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 73208
+    },
+    {
+    "file": "spot04/spot04_room_0_000131F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 78328
+    },
+    {
+    "file": "spot04/spot04_room_0_000135F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 79352
+    },
+    {
+    "file": "spot04/spot04_room_0_000141F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 82424
+    },
+    {
+    "file": "spot04/spot04_room_0_000149F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 84472
+    },
+    {
+    "file": "spot04/spot04_room_0_000151F8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 86520
+    },
+    {
+    "file": "spot04/spot04_room_0_00016BF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 93176
+    },
+    {
+    "file": "spot04/spot04_room_0_00016FF8_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 94200
+    },
+    {
+    "file": "spot04/spot04_room_0_0001AF80_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_0",
+    "target_file_offset": 110464
+    },
+    {
+    "file": "spot04/spot04_room_1_00004E88_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_1",
+    "target_file_offset": 20104
+    },
+    {
+    "file": "spot04/spot04_room_1_00005288_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_1",
+    "target_file_offset": 21128
+    },
+    {
+    "file": "spot04/spot04_room_1_00005688_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_1",
+    "target_file_offset": 22152
+    },
+    {
+    "file": "spot04/spot04_room_1_00006688_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_1",
+    "target_file_offset": 26248
+    },
+    {
+    "file": "spot04/spot04_room_1_00006E88_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_1",
+    "target_file_offset": 28296
+    },
+    {
+    "file": "spot04/spot04_room_2_00003398_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_2",
+    "target_file_offset": 13208
+    },
+    {
+    "file": "spot04/spot04_room_2_00003B98_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_2",
+    "target_file_offset": 15256
+    },
+    {
+    "file": "spot04/spot04_room_2_00004598_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_room_2",
+    "target_file_offset": 17816
+    },
+    {
+    "file": "spot04/spot04_scene_0000E218_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_scene",
+    "target_file_offset": 57880
+    },
+    {
+    "file": "spot04/spot04_scene_0000FE18_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_scene",
+    "target_file_offset": 65048
+    },
+    {
+    "file": "spot04/spot04_scene_00010618_Tex.rgba16.png",
+    "type": "rgba16",
+    "target_file_id": "spot04_scene",
+    "target_file_offset": 67096
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot04_room_0",
+        "target_file_offset": 98268,
+        "data": [200,200,200],
+        "comment": "Patch the path in KF Room 0"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot04_room_1",
+        "target_file_offset": 30868,
+        "data": [200,200,200],
+        "comment": "Patch the path in KF Room 1"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot04_room_2",
+        "target_file_offset": 20420,
+        "data": [200,200,200],
+        "comment": "Patch the path in KF Room 2"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_room_0",
+        "target_file_offset": 185072,
+        "file": "shrine/shrine_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_0302D2F0_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_room_0",
+        "target_file_offset": 31472,
+        "file": "shrine/shrine_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_03007AF0_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_n_room_0",
+        "target_file_offset": 185104,
+        "file": "shrine/shrine_n_room_0_030000C0_RoomShapeImageMulti_030000D0_RoomShapeImageMultiBgEntries_0302D310_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_n_room_0",
+        "target_file_offset": 31504,
+        "file": "shrine/shrine_n_room_0_030000C0_RoomShapeImageMulti_030000D0_RoomShapeImageMultiBgEntries_03007B10_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_r_room_0",
+        "target_file_offset": 185072,
+        "file": "shrine/shrine_r_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_0302D2F0_JFIF.jpg"
+    },
+    {
+        "type": "jfif",
+        "target_file_id": "shrine_r_room_0",
+        "target_file_offset": 31472,
+        "file": "shrine/shrine_r_room_0_030000A0_RoomShapeImageMulti_030000B0_RoomShapeImageMultiBgEntries_03007AF0_JFIF.jpg"
+    },
+    {
+        "file": "chest/present_base_gold.png",
+        "type": "rgba16",
+        "target_texture_id": 18
+    },
+    {
+        "file": "chest/present_lid_gold.png",
+        "type": "rgba16",
+        "target_texture_id": 19
+    },
+    {
+        "file": "chest/present_base_heart.png",
+        "type": "rgba16",
+        "target_texture_id": 24 
+    },
+    {
+        "file": "chest/present_lid_heart.png",
+        "type": "rgba16",
+        "target_texture_id": 25
+    },
+    {
+        "file": "chest/present_base_key.png",
+        "type": "rgba16",
+        "target_texture_id": 20
+    },
+    {
+        "file": "chest/present_lid_key.png",
+        "type": "rgba16",
+        "target_texture_id": 21
+    },
+    {
+        "file": "chest/present_base_skull.png",
+        "type": "rgba16",
+        "target_texture_id": 22
+    },
+    {
+        "file": "chest/present_lid_key.png",
+        "type": "rgba16",
+        "target_texture_id": 23
+    },
+    {
+        "file": "pot/pot_gilded.png",
+        "type": "rgba16",
+        "target_texture_id": 1
+    },
+    {
+        "file": "pot/pot_key.png",
+        "type": "rgba16",
+        "target_texture_id": 2
+    },
+    {
+        "file": "pot/pot_bosskey_2.png",
+        "type": "rgba16",
+        "target_texture_id": 3
+    },
+    {
+        "file": "pot/pot_web_3.png",
+        "type": "rgba16",
+        "target_texture_id": 4
+    },
+    {
+        "file": "pot/pot_heart.png",
+        "type": "rgba16",
+        "target_texture_id": 26
+    }
+]

@@ -1,0 +1,43 @@
+{
+    "model": "snowman.zobj",
+    "replace_object": "object_gs",
+    "vars" : [
+        {
+            "key": "$DisplayList",
+            "value": 100670960
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_En_Gs",
+            "patches":[
+                {
+                    "addr": 6326,
+                    "data": "hi($DisplayList)",
+                    "size": 2
+                },
+                {
+                    "addr": 6330,
+                    "data": "lo($DisplayList)",
+                    "size": 2
+                },
+                {
+                    "addr": 6191,
+                    "data": [0]
+                },
+                {
+                    "addr": 6196,
+                    "data": [0,0,0,0,0,0,0,0]
+                },
+                {
+                    "addr": 6363,
+                    "data": [0]
+                },
+                {
+                    "addr": 6368,
+                    "data": [0,0,0,0,0,0,0,0]
+                }
+            ]
+        }
+    ]
+}

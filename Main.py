@@ -226,13 +226,14 @@ def prepare_rom(spoiler: Spoiler, world: World, rom: Rom, settings: Settings, rn
     if restore:
         rom.restore()
     patch_rom(spoiler, world, rom)
+    patch_misc_models(rom, settings)
     cosmetics_log = patch_cosmetics(settings, rom)
     if not settings.generating_patch_file:
         if settings.model_adult != "Default" or len(settings.model_adult_filepicker) > 0:
             patch_model_adult(rom, settings, cosmetics_log)
         if settings.model_child != "Default" or len(settings.model_child_filepicker) > 0:
             patch_model_child(rom, settings, cosmetics_log)
-        patch_misc_models(rom, settings, cosmetics_log)
+
     rom.update_header()
     return cosmetics_log
 
@@ -242,23 +243,27 @@ def compress_rom(input_file: str, output_file: str, delete_input: bool = False) 
     compressor_path = "./" if is_bundled() else "bin/Compress/"
     if platform.system() == 'Windows':
         if platform.machine() == 'AMD64':
-            compressor_path += "Compress.exe"
+            compressor_path += "compress_windows_amd64.exe"
+        elif platform.machine() == 'i386':
+            compressor_path += "compress_windows_i386.exe"
         elif platform.machine() == 'ARM64':
-            compressor_path += "Compress_ARM64.exe"
+            compressor_path += "compress_windows_arm64.exe"
         else:
-            compressor_path += "Compress32.exe"
+            compressor_path += "compress_win32.exe"
     elif platform.system() == 'Linux':
         if platform.machine() in ('arm64', 'aarch64', 'aarch64_be', 'armv8b', 'armv8l'):
-            compressor_path += "Compress_ARM64"
+            compressor_path += "compress_linux_arm64"
         elif platform.machine() in ('arm', 'armv7l', 'armhf'):
-            compressor_path += "Compress_ARM32"
+            compressor_path += "compress_linux_arm32"
+        elif platform.machine() == 'AMD64':
+            compressor_path += "compress_linux_amd64"
         else:
-            compressor_path += "Compress"
+            compressor_path += "compress_linux_i386"
     elif platform.system() == 'Darwin':
         if platform.machine() == 'arm64':
-            compressor_path += "Compress_ARM64.out"
+            compressor_path += "compress_darwin"
         else:
-            compressor_path += "Compress.out"
+            compressor_path += "compress_darwin"
     else:
         logger.info("OS not supported for ROM compression.")
         raise Exception("This operating system does not support ROM compression. You may only output patch files or uncompressed ROMs.")

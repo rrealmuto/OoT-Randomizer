@@ -27,6 +27,7 @@ from Messages import read_messages, find_message_index, update_message_by_id, re
         get_message_by_id, TextCode, new_messages, COLOR_MAP
 from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
+from ProcessActors import get_bad_actors, process_scenes
 from Rom import Rom
 from SaveContext import SaveContext, Scenes, FlagType, write_settings_dependent_save_context_flags
 from SceneFlags import build_xflag_tables, build_xflags_from_world, get_alt_list_bytes
@@ -280,7 +281,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     # texture list. See textures.h for texture IDs
     #   ID, texture_name,                                  Rom Address    CI4 Pallet Addr  Size    Patching function     Patch file (None for default)
     crate_textures = [
-<<<<<<< HEAD
         ( 1, 'texture_pot_gold',            0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_gold_rgba16_patch.bin'),
         ( 2, 'texture_pot_key',             0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_key_rgba16_patch.bin'),
         ( 3, 'texture_pot_bosskey',         0x01738000,    None,            2048,   rgba16_patch,               'textures/pot/pot_bosskey_rgba16_patch.bin'),
@@ -311,33 +311,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         (31, 'texture_grass_custom',        0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_texture_gray_rgba16.bin'),
         (32, 'texture_grass_small_custom',  0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_small_texture_gray_rgba16.bin'),
 
-=======
-        (1, 'pot/texture_pot_gold',               0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_gold_rgba16_patch.bin'),
-        (2, 'pot/texture_pot_key',                0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_key_rgba16_patch.bin'),
-        (3, 'pot/texture_pot_bosskey',            0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_bosskey_rgba16_patch.bin'),
-        (4, 'pot/texture_pot_skull',              0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_skull_rgba16_patch.bin'),
-        (5, 'crate/texture_crate_default',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        None),
-        (6, 'crate/texture_crate_gold',           0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_gold_rgba16_patch.bin'),
-        (7, 'crate/texture_crate_key',            0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_key_rgba16_patch.bin'),
-        (8, 'crate/texture_crate_skull',          0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_skull_rgba16_patch.bin'),
-        (9, 'crate/texture_crate_bosskey',        0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_bosskey_rgba16_patch.bin'),
-        (10, 'crate/texture_smallcrate_gold',     0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_gold_rgba16_patch.bin' ),
-        (11, 'crate/texture_smallcrate_key',      0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_key_rgba16_patch.bin'),
-        (12, 'crate/texture_smallcrate_skull',    0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_skull_rgba16_patch.bin'),
-        (13, 'crate/texture_smallcrate_bosskey',  0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_bosskey_rgba16_patch.bin'),
-        (18, "chest/texture_chest_front_gilded",  0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_gilded_rgba16_patch.bin'),
-        (19, "chest/texture_chest_base_gilded",   0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_gilded_rgba16_patch.bin'),
-        (20, "chest/texture_chest_front_silver",  0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_silver_rgba16_patch.bin'),
-        (21, "chest/texture_chest_base_silver",   0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_silver_rgba16_patch.bin'),
-        (22, "chest/texture_chest_front_skull",   0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_skull_rgba16_patch.bin'),
-        (23, "chest/texture_chest_base_skull",    0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_skull_rgba16_patch.bin'),
-        (24, "chest/texture_chest_front_heart",   0xFEC798,      None,            4096,   rgba16_patch,                  'textures/chest/chest_front_heart_rgba16_patch.bin'),
-        (25, "chest/texture_chest_base_heart",    0xFED798,      None,            2048,   rgba16_patch,                  'textures/chest/chest_base_heart_rgba16_patch.bin'),
-        (26, 'pot/texture_pot_side_heart',        0x01738000,    None,            2048,   rgba16_patch,                  'textures/pot/pot_side_heart_rgba16_patch.bin'),
-        (27, 'pot/texture_pot_top_heart',         0x01739000,    None,            256,    rgba16_patch,                  'textures/pot/pot_top_heart_rgba16_patch.bin'),
-        (28, 'crate/texture_crate_heart',         0x18B6020,     0x018B6000,      4096,   ci4_rgba16patch_to_ci8,        'textures/crate/crate_heart_rgba16_patch.bin'),
-        (29, 'crate/texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,                  'textures/crate/smallcrate_heart_rgba16_patch.bin'),
->>>>>>> new_textures
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.

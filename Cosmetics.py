@@ -16,7 +16,8 @@ import Sounds
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
-from texture_util import ci8_shared_from_pngs, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
+from texture_util import ci8_shared_from_pngs, jfif_from_image, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
+from FileList import file_list
 from version import __version__
 from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
 from Rom import AUDIOBANK_INDEX_ADDR
@@ -900,6 +901,8 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 texture_id = texture['target_texture_id']
             elif 'target_file_id' in texture.keys():
                 file_id = texture['target_file_id']
+                if type(file_id) == str:
+                    file_id = file_list[file_id]
             else:
                 raise Exception(f"No idea how to handle texture: {texture_path}")
 
@@ -917,6 +920,10 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 for file in texture_files:
                     texture_paths.append(os.path.join(misc_texture_path_base, file))
                 texture_data, palette = ci8_shared_from_pngs(texture_paths)
+            elif texture_type == "jfif":
+                texture_data = [jfif_from_image(texture_path)]
+            elif texture_type == "patch_bytes":
+                texture_data = texture['data']
             
             texture_start: int = 0
             palette_address: int = 0
@@ -950,8 +957,11 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 if palette:
                     palette_dma_entry = rom.dma[texture['palette_file_id']] if 'palette_file_id' in texture.keys() else dma_entry
                     palette_address =  palette_dma_entry.start + texture['palette_address']
-            for texture_start, data in zip(texture_starts, texture_data):
-                rom.write_bytes(texture_start, data)
+            if texture_type == "patch_bytes":
+                rom.write_bytes(texture_starts[0], texture_data)
+            else:
+                for texture_start, data in zip(texture_starts, texture_data):
+                    rom.write_bytes(texture_start, data)
             if palette:
                 rom.write_bytes(palette_address, rgba16_to_bytes(palette))
 

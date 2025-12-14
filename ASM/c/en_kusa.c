@@ -58,7 +58,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Check CTMC
     if (!SOA_UNLOCKS_POTCRATE_TEXTURE || z64_file.stone_of_agony != 0) {
         switch (this->chest_type) {
-            case GILDED_CHEST:
+            case BOSSKEY_CHEST:
                 if (POTCRATE_GILDED_TEXTURE) {
                     texture = custom_textures[actor->variable & 0x03];
                     color.r = 255;
@@ -76,7 +76,7 @@ void EnKusa_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
                 }
                 break;
 
-            case GOLD_CHEST:
+            case GILDED_CHEST:
                 if (POTCRATE_GOLD_TEXTURE) {
                     texture = custom_textures[actor->variable & 0x03];
                     color.r = 0;

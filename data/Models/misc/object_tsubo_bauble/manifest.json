@@ -1,0 +1,170 @@
+{
+    "model": "object_tsubo_bauble.zobj",
+    "replace_object": "object_tsubo",
+    "vars" : [
+        {
+            "key": "$gPotJackOLanternDL",
+            "value": "0x06001020"
+        },
+        {
+            "key": "$gPotJackOLanternFragmentDL",
+            "value": "0x06001360"
+        },
+        {
+            "key": "$gPotJackOLanternDL_object_tsubo_pumpkin_rgba16",
+            "value": "0x06000000"
+        },
+        {
+            "key": "$object_tsubo_id",
+            "value": 300
+        }
+    ],
+    "symbols": [
+        "DUNGEON_POT_DLIST",
+        "POT_DLIST",
+        "DUNGEON_POT_SIDE_TEXTURE",
+        "POT_SIDE_TEXTURE"
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_Obj_Tsubo",
+            "patches":[
+                {
+                    "addr": 3576,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch object ID in obj_tsubo init vars"
+                },
+                {
+                    "addr": 3600,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch sObjectIds in obj_tsubo to always use 300"
+                },
+                {
+                    "addr": 3602,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch sObjectIds in obj_tsubo to always use 300"
+                },
+                {
+                    "addr": 3604,
+                    "data": "$gPotJackOLanternDL",
+                    "size": 4,
+                    "comment": "Patch DL array to always use gPotJackOLanternDL"
+                },
+                {
+                    "addr": 3608,
+                    "data": "$gPotJackOLanternDL",
+                    "size": 4,
+                    "comment": "Patch DL array to always use gPotJackOLanternDL"
+                },
+                {
+                    "addr": 3612,
+                    "data": "$gPotJackOLanternFragmentDL",
+                    "size": 4,
+                    "comment": "Patch fragment DL array to always use gPotJackOLanternFragmentDL"
+                },
+                {
+                    "addr": 3616,
+                    "data": "$gPotJackOLanternFragmentDL",
+                    "size": 4,
+                    "comment": "Patch fragment DL array to always use gPotJackOLanternFragmentDL"
+                }
+            ]
+        },
+        {
+            "file": "ovl_En_G_Switch",
+            "patches": [
+                {
+                    "addr": 3042,
+                    "data": "hi($gPotJackOLanternFragmentDL)",
+                    "size": 2,
+                    "comment": "Patch fragment DL in HBA Pot EffectSsKakera_Spawn"
+                },
+                {
+                    "addr": 3050,
+                    "data": "lo($gPotJackOLanternFragmentDL)",
+                    "size": 2,
+                    "comment": "Patch fragment DL in HBA Pot EffectSsKakera_Spawn"
+                }
+            ]
+        },
+        {
+            "file": "ovl_En_Tubo_Trap",
+            "patches": [
+                {
+                    "addr": 3012,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch en_tubo_trap init vars to use object_tsubo"
+                },
+                {
+                    "addr": 374,
+                    "data": "hi($gPotJackOLanternFragmentDL)",
+                    "size": 2,
+                    "comment": "Patch fragment DL in EnTuboTrap_SpawnEffectsOnLand (high)"
+                },
+                {
+                    "addr": 690,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch object ID in EffectSsKakera_Spawn call to object_tsubo"
+                },
+                {
+                    "addr": 382,
+                    "data": "lo($gPotJackOLanternFragmentDL)",
+                    "size": 2,
+                    "comment": "Patch fragment DL in EnTuboTrap_SpawnEffectsOnLand (low)"
+                },
+                {
+                    "addr": 1086,
+                    "data": "hi($gPotJackOLanternFragmentDL)",
+                    "size": 2,
+                    "comment": "Patch fragment DL in EnTuboTrap_SpawnEffectsInWater (high)"
+                },
+                {
+                    "addr": 1094,
+                    "data": "lo($gPotJackOLanternFragmentDL)",
+                    "size": 2,
+                    "comment": "Patch fragment DL in EnTuboTrap_SpawnEffectsInWater (low)"
+                },
+                {
+                    "addr": 1370,
+                    "data": "$object_tsubo_id",
+                    "size": 2,
+                    "comment": "Patch object ID in EffectSsKakera_Spawn call to object_tsubo"
+                }
+            ]
+        },
+        {
+            "file": "ROM",
+            "patches": [
+                {
+                    "addr": "DUNGEON_POT_DLIST",
+                    "data": "$gPotJackOLanternDL",
+                    "size": 4,
+                    "comment": "Patch DLs used by PTMC"
+                },
+                {
+                    "addr": "POT_DLIST",
+                    "data": "$gPotJackOLanternDL",
+                    "size": 4,
+                    "comment": "Patch DLs used by PTMC"
+                },
+                {
+                    "addr": "DUNGEON_POT_SIDE_TEXTURE",
+                    "data": "$gPotJackOLanternDL_object_tsubo_pumpkin_rgba16",
+                    "size": 4,
+                    "comment": "Patch texture used by PTMC"
+                },
+                {
+                    "addr": "POT_SIDE_TEXTURE",
+                    "data": "$gPotJackOLanternDL_object_tsubo_pumpkin_rgba16",
+                    "size": 4,
+                    "comment": "Patch texture used by PTMC"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,115 @@
+{
+    "model": "object_box_present.zobj",
+    "replace_object": "object_box",
+    "vars" : [
+        {
+            "key": "$gTreasureChestSkel",
+            "value": "0x060047d8"
+        },
+        {
+            "key": "$BaseDisplayList",
+            "value": "0x06009148"
+        },
+        {
+            "key": "$LidDisplayList",
+            "value": "0x0600a370"
+        },
+        {
+            "key": "$BaseTexture",
+            "value": "0x06006000"
+        },
+        {
+            "key": "$LidTexture",
+            "value": "0x06008000"
+        }
+    ],
+    "symbols": [
+        "gTreasureChestChestFrontDL",
+        "gTreasureChestChestSideAndLidDL",
+        "gTreasureChestBossKeyChestFrontTexture",
+        "gTreasureChestBossKeyChestBaseTexture",
+        "gTreasureChestBaseTexture",
+        "gTreasureChestFrontTexture",
+        "texture_table"
+    ],
+    "append_files": [
+        {
+            "varname": "$BossKeyBaseTexture",
+            "file_name": "present_base_bosskey.png",
+            "type": "texture_rgba16"
+        },
+        {
+            "varname": "$BossKeyLidTexture",
+            "file_name": "present_lid_bosskey.png",
+            "type": "texture_rgba16"
+        }
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_En_Box",
+            "patches":[
+                {
+                    "addr": 5522,
+                    "data": "hi($BaseDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestFrontDL (hi)"
+                },
+                {
+                    "addr": 5526,
+                    "data": "lo($BaseDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestFrontDL (lo)"
+                },
+                {
+                    "addr": 5682,
+                    "data": "hi($LidDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestSideAndLidDL (hi)"
+                },
+                {
+                    "addr": 5686,
+                    "data": "lo($LidDisplayList)",
+                    "size": 2,
+                    "comment": "Patch in EnBox_PostLimbDraw gTreasureChestChestSideAndLidDL (lo)"
+                }
+            ]
+        },
+        {
+            "file": "ROM",
+            "patches": [
+                {
+                    "addr": "gTreasureChestChestFrontDL",
+                    "data": "$BaseDisplayList",
+                    "size": 4,
+                    "comment": "Patch DLs used by PTMC"
+                },
+                {
+                    "addr": "gTreasureChestChestSideAndLidDL",
+                    "data": "$LidDisplayList",
+                    "size": 4,
+                    "comment": "Patch DLs used by PTMC"
+                },
+                {
+                    "addr": "gTreasureChestFrontTexture",
+                    "data": "$BaseTexture",
+                    "size": 4
+                },
+                {
+                    "addr": "gTreasureChestBaseTexture",
+                    "data": "$LidTexture",
+                    "size": 4
+                },
+                {
+                    "addr": "gTreasureChestBossKeyChestFrontTexture",
+                    "data": "$BossKeyBaseTexture",
+                    "size": 4
+                },
+                {
+                    "addr": "gTreasureChestBossKeyChestBaseTexture",
+                    "data": "$BossKeyLidTexture",
+                    "size": 4
+                }
+            ]
+        }
+    ]
+}

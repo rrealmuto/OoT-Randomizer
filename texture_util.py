@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import io
 import os
 
 from Rom import Rom
-from PIL import Image
 from Utils import data_path
 
 # Read a ci4 texture from rom and convert to rgba16
@@ -175,15 +175,26 @@ def rgba16_from_png(rom: Rom, base_texture_address:int, base_palette_address:int
         bytes.extend(int.to_bytes(pixel,2,'big'))
     return bytes
 
+def get_rgba_pixel(pixel):
+    if len(pixel) == 3:
+        r,g,b = pixel
+        a = 255
+    elif len(pixel) == 4:
+        r,g,b,a = pixel
+    else:
+        raise Exception("idk how to handle this pixel")
+    return r,g,b,a
+    
 # Read a png file into an RGBA16 texture
 # pngfile - File containing the texture
 # returns - list[int] containing each 16-bit RGBA16 pixel.
 def load_rgba16_from_png(pngfile: str) -> list[int]:
-    image = Image.open(pngfile)
+    from PIL import Image
+    image = Image.open(pngfile).convert("RGBA")
     rgba16_pixels: list[int] = []
     pixel_data = image.getdata()
     for pixel in pixel_data:
-        r,g,b,a = pixel
+        r,g,b,a = get_rgba_pixel(pixel)
         r16 = int((r/255) * 31)
         g16 = int((g/255) * 31)
         b16 = int((b/255) * 31)
@@ -226,7 +237,7 @@ def rgba32_from_png(rom: Rom, base_texture_address:int, base_palette_address:int
     texture = load_rgba32_from_png(pngfile)
     bytes = bytearray()
     for pixel in texture:
-        r,g,b,a = pixel
+        r,g,b,a = get_rgba_pixel(pixel)
         bytes.extend(r.to_bytes(1, 'big'))
         bytes.extend(g.to_bytes(1, 'big'))
         bytes.extend(b.to_bytes(1, 'big'))
@@ -235,13 +246,23 @@ def rgba32_from_png(rom: Rom, base_texture_address:int, base_palette_address:int
 
 # Read a png file into an RGBA32 texture 
 def load_rgba32_from_png(pngfile: str) -> list[int]:
+    from PIL import Image
     image = Image.open(pngfile)
     rgba32_pixels: list[tuple[int,int,int,int]] = []
     pixel_data = image.getdata()
     for pixel in pixel_data:
-        r,g,b,a = pixel
+        r,g,b,a = get_rgba_pixel(pixel)
         rgba32_pixels.append(pixel)
     return rgba32_pixels
+
+def jfif_from_image(imagefile:str) -> list[int]:
+    from PIL import Image
+    image = Image.open(imagefile)
+    img_buffer = io.BytesIO()
+    image.save(img_buffer, format="JPEG", quality=95)
+    image.close()
+    return img_buffer.getvalue()
+    
 
 # Create a new rgba16 texture from a original rgba16 texture and a rgba16 patch file
 # rom - Rom object to load the original texture from
