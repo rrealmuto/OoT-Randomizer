@@ -11,10 +11,12 @@ from Audiobank import SFX
 import Colors
 import IconManip
 import Music
+from Patches import read_rom_texture
 import Sounds
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
+from texture_util import ci8_shared_from_pngs, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
 from version import __version__
 from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
 from Rom import AUDIOBANK_INDEX_ADDR
@@ -878,6 +880,80 @@ def patch_instrument(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: d
     rom.write_byte(0x00B4BF6F, instruments[choice]) # For Lost Woods Skull Kids' minigame in Lost Woods
     log.sfx['Ocarina'] = ocarina_options[choice]
 
+def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbols: dict[str, int]) -> None:
+    # Patch custom texture pack
+    if settings.texture_pack != 'Default':
+        misc_texture_path_base = os.path.join(data_path("textures/Custom"), settings.texture_pack)
+        misc_texture_path = os.path.join(misc_texture_path_base, "misc_textures.json")
+        f = open(misc_texture_path, 'r')
+        misc_json = f.read()
+        f.close()
+        misc_textures: list[dict[str, Any]] = json.loads(misc_json)
+        for texture in misc_textures:
+            palette = None
+            if 'file' in texture.keys():
+                texture_path = os.path.join(misc_texture_path_base, texture['file'])
+            texture_type = texture['type']
+            texture_id = None
+            file_id = None
+            if 'target_texture_id' in texture.keys():
+                texture_id = texture['target_texture_id']
+            elif 'target_file_id' in texture.keys():
+                file_id = texture['target_file_id']
+            else:
+                raise Exception(f"No idea how to handle texture: {texture_path}")
+
+            if texture_type == "rgba16":
+                texture_data = [rgba16_from_png(rom,0,0,0,texture_path)]
+            elif texture_type == "rgba32":
+                texture_data = [rgba16_from_png(rom,0,0,0,texture_path)]
+            elif texture_type == "ci4":
+                texture_data = load_rgba16_from_png(texture_path)
+                texture_data, palette = rgba16_to_ci4(texture_data)
+                texture_data = [texture_data]
+            elif texture_type == "texture_group_ci8":
+                texture_files = texture["files"]
+                texture_paths = []
+                for file in texture_files:
+                    texture_paths.append(os.path.join(misc_texture_path_base, file))
+                texture_data, palette = ci8_shared_from_pngs(texture_paths)
+            
+            texture_start: int = 0
+            palette_address: int = 0
+            if texture_id:
+                # Patching one of the custom pot/crate/etc. textures in texture_table from textures.c
+                # Index the texture_table to read the ROM address of the texture that was created in Patches.py
+                # Get the texture table address from the cosmetics symbols
+                texture_table_addr = rom.read_int32(symbols['CFG_TEXTURE_TABLE_ADDR'])
+                
+                # Read the texture table entry to get the texture's VROM address
+                rom_texture = read_rom_texture(rom, texture_id, texture_table_addr)
+                texture_starts = [rom_texture['file_vrom_start']]
+                if palette:
+                    # If a palette is specified it is with respect to the start of the texture. Just used for crate textures
+                    palette_address = texture_start + texture['palette_address']
+            else:
+                # Patching a vanilla texture
+                # Get the dma entry from the file ID
+                
+                if type(texture['target_file_offset']) == list:
+                    # Calculate offsets for each
+                    # Need to calculate texture starts for multiple files so assume file_id is a list too
+                    texture_starts = []
+                    for i in range(0, len(texture['target_file_offset'])):
+                        texture_starts.append(rom.dma[file_id[i]].start + texture['target_file_offset'][i])
+                else:
+                    
+                    dma_entry = rom.dma[file_id]
+                    offset = texture['target_file_offset']
+                    texture_starts = [dma_entry.start + offset]
+                if palette:
+                    palette_dma_entry = rom.dma[texture['palette_file_id']] if 'palette_file_id' in texture.keys() else dma_entry
+                    palette_address =  palette_dma_entry.start + texture['palette_address']
+            for texture_start, data in zip(texture_starts, texture_data):
+                rom.write_bytes(texture_start, data)
+            if palette:
+                rom.write_bytes(palette_address, rgba16_to_bytes(palette))
 
 def read_default_voice_data(rom: Rom) -> dict[str, dict[str, int]]:
     audiobank = 0xD390
@@ -1292,6 +1368,17 @@ patch_sets[0x1F073FE3] = {
         **patch_sets[0x1F073FE2]["symbols"],
         "CFG_ADULT_VOLUME": 0x0AC8,
         "CFG_CHILD_VOLUME": 0x0ACC,
+    }
+}
+
+# 8.whatever
+patch_sets[0x1F073FE4] = {
+    "patches": patch_sets[0x1F073FE3]["patches"] + [
+        patch_custom_textures,
+    ],
+    "symbols": {
+        **patch_sets[0x1F073FE3]["symbols"],
+        "CFG_TEXTURE_TABLE_ADDR": 0xAD0,
     }
 }
 

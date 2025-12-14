@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import os
 
 from Rom import Rom
-
+from PIL import Image
+from Utils import data_path
 
 # Read a ci4 texture from rom and convert to rgba16
 # rom - Rom
@@ -16,7 +18,6 @@ def ci4_to_rgba16(rom: Rom, address: int, length: int, palette: list[int]) -> li
         new_pixels.append(palette[(byte & 0xF0) >> 4])
         new_pixels.append(palette[byte & 0x0F])
     return new_pixels
-
 
 # Convert an rgba16 texture to ci8
 # rgba16_texture - texture to convert
@@ -36,6 +37,31 @@ def rgba16_to_ci8(rgba16_texture: list[int]) -> tuple[list[int], list[int]]:
             ci8_texture.append(palette.index(pixel))
     return ci8_texture, palette
 
+# Convert an rgba16 texture to ci4
+# rgba16_texture - texture to convert
+# returns - tuple (ci4_texture, palette)
+def rgba16_to_ci4(rgba16_texture: list[int]) -> tuple[list[int], list[int]]:
+    ci4_texture = []
+    palette = get_colors_from_rgba16(rgba16_texture)  # Get all the colors in the texture
+    if len(palette) > 0x10:  # Make sure there are <= 256 colors. Could probably do some fancy stuff to convert, but nah.
+        raise(Exception("RGB Texture exceeds maximum of 256 colors"))
+    if len(palette) < 0x10:  # Pad the palette with 0x0001 #Pad the palette with 0001s to take up the full 16 colors
+        for i in range(0, 0x10 - len(palette)):
+            palette.append(0x0001)
+
+    # Create the new ci4 texture (list of bytes) by locating the index of each color from the rgba16 texture in the color palette.
+    full_byte = 0
+    i = 0
+    for pixel in rgba16_texture:
+        if pixel in palette:
+            full_byte |= (palette.index(pixel) & 0xF) << (4*(1-i))
+            if i == 1:
+                ci4_texture.append(full_byte)
+                full_byte = 0
+                i = 0
+            else:
+                i+=1
+    return ci4_texture, palette
 
 # Load a palette (essentially just an rgba16 texture) from rom
 def load_palette(rom: Rom, address: int, length: int) -> list[int]:
@@ -46,8 +72,9 @@ def load_palette(rom: Rom, address: int, length: int) -> list[int]:
 
 
 # Get a list of unique colors (palette) from an rgba16 texture
-def get_colors_from_rgba16(rgba16_texture: list[int]) -> list[int]:
-    colors = []
+def get_colors_from_rgba16(rgba16_texture: list[int], colors = None) -> list[int]:
+    if colors is None:
+        colors = []
     for pixel in rgba16_texture:
         if pixel not in colors:
             colors.append(pixel)
@@ -75,12 +102,15 @@ def apply_rgba16_patch(rgba16_texture: list[int], rgba16_patch: list[int]) -> li
 # Save a rgba16 texture to a file
 def save_rgba16_texture(rgba16_texture: list[int], filename: str) -> None:
     file = open(filename, 'wb')
-    bytes = bytearray()
-    for pixel in rgba16_texture:
-        bytes.extend(pixel.to_bytes(2, 'big'))
+    bytes = rgba16_to_bytes(rgba16_texture)
     file.write(bytes)
     file.close()
 
+def rgba16_to_bytes(rgba16_texture: list[int]) -> bytearray:
+    bytes = bytearray()
+    for pixel in rgba16_texture:
+        bytes.extend(pixel.to_bytes(2, 'big'))
+    return bytes
 
 # Save a ci8 texture to a file
 def save_ci8_texture(ci8_texture: list[int], filename: str) -> None:
@@ -131,6 +161,87 @@ def rgba16_from_file(rom: Rom, base_texture_address: int, base_palette_address: 
         bytes.extend(int.to_bytes(pixel, 2, 'big'))
     return bytes
 
+# Generate a rgba16 texture byte array from a png file. Use this if you want to create complete new textures using no copyrighted context (or for testing)
+# rom - Unused set to None
+# base_texture_address - Unusued set to None
+# base_palette_address - Unusued set to None
+# size - Unused set to None
+# pngfile - File containing the texture to load
+# returns - bytearray containing the new texture
+def rgba16_from_png(rom: Rom, base_texture_address:int, base_palette_address:int, size: int, pngfile: str) -> bytearray:
+    new_texture = load_rgba16_from_png(pngfile)
+    bytes = bytearray()
+    for pixel in new_texture:
+        bytes.extend(int.to_bytes(pixel,2,'big'))
+    return bytes
+
+# Read a png file into an RGBA16 texture
+# pngfile - File containing the texture
+# returns - list[int] containing each 16-bit RGBA16 pixel.
+def load_rgba16_from_png(pngfile: str) -> list[int]:
+    image = Image.open(pngfile)
+    rgba16_pixels: list[int] = []
+    pixel_data = image.getdata()
+    for pixel in pixel_data:
+        r,g,b,a = pixel
+        r16 = int((r/255) * 31)
+        g16 = int((g/255) * 31)
+        b16 = int((b/255) * 31)
+        a16 = int(a/255)
+        pixel16 = (r16 << 11) + (g16 << 6) + (b16 << 1) + a16
+        rgba16_pixels.append(pixel16)
+    return rgba16_pixels
+
+def ci8_shared_from_pngs(png_files: list[str]):
+    # Build list of rgba16 textures from pngs
+    rgba16_textures: list[list[int]] = []
+    for file in png_files:
+        texture = load_rgba16_from_png(file)
+        rgba16_textures.append(texture)
+    
+    return build_ci8_shared(rgba16_textures)
+
+def build_ci8_shared(rgba16_textures: list[list[int]]) -> tuple[list[list[int]], list[int]]:
+    # Get a shared palette for all of the textures
+    palette = build_shared_palette(rgba16_textures)
+    
+    ci8_textures = []
+    for rgba16_texture in rgba16_textures:
+        ci8_texture = []
+        for pixel in rgba16_texture:
+            if pixel in palette:
+                ci8_texture.append(palette.index(pixel))
+        ci8_textures.append(ci8_texture)
+    return ci8_textures, palette
+
+# Build a shared palette from a list of textures
+def build_shared_palette(rgba16_textures: list[list[int]]):
+    colors = []
+    for texture in rgba16_textures:
+        colors = get_colors_from_rgba16(texture, colors)
+    return colors
+
+# Generate RGBA32 texture bytearray from pixels
+def rgba32_from_png(rom: Rom, base_texture_address:int, base_palette_address:int, size: int, pngfile:str) -> bytearray:
+    texture = load_rgba32_from_png(pngfile)
+    bytes = bytearray()
+    for pixel in texture:
+        r,g,b,a = pixel
+        bytes.extend(r.to_bytes(1, 'big'))
+        bytes.extend(g.to_bytes(1, 'big'))
+        bytes.extend(b.to_bytes(1, 'big'))
+        bytes.extend(a.to_bytes(1, 'big'))
+    return bytes
+
+# Read a png file into an RGBA32 texture 
+def load_rgba32_from_png(pngfile: str) -> list[int]:
+    image = Image.open(pngfile)
+    rgba32_pixels: list[tuple[int,int,int,int]] = []
+    pixel_data = image.getdata()
+    for pixel in pixel_data:
+        r,g,b,a = pixel
+        rgba32_pixels.append(pixel)
+    return rgba32_pixels
 
 # Create a new rgba16 texture from a original rgba16 texture and a rgba16 patch file
 # rom - Rom object to load the original texture from
@@ -174,6 +285,25 @@ def ci4_rgba16patch_to_ci8(rom: Rom, base_texture_address: int, base_palette_add
         bytes.extend(int.to_bytes(pixel, 1, 'big'))
     return bytes
 
+def png_to_ci8(rom: Rom, base_texture_address: int, base_paelette_address: int, size: int, pngfile: str) -> bytearray:
+    rgba16_texture = load_rgba16_from_png(pngfile)
+    ci8_texture, ci8_palette = rgba16_to_ci8(rgba16_texture)
+    # merge the palette and the texture
+    bytes = bytearray()
+    for pixel in ci8_palette:
+        bytes.extend(int.to_bytes(pixel, 2, 'big'))
+    for pixel in ci8_texture:
+        bytes.extend(int.to_bytes(pixel, 1, 'big'))
+    return bytes
+
+def get_texture_pack_choices():
+    path = data_path("textures/Custom")
+    # Get all of the folders in the custom textures directory and use those as the options
+    choices = ["Default"]
+    if os.path.exists(path):
+        folders = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path,f))]
+        choices.extend(folders)
+    return choices
 
 # Function to create rgba16 texture patches for crates
 def build_crate_ci8_patches() -> None:
