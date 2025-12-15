@@ -10,6 +10,7 @@ import zlib
 from collections.abc import Callable, Iterable
 from typing import Optional, Any
 
+from Boulders import patch_boulders
 from Cutscenes import patch_cutscenes, patch_wondertalk2
 from Enemizer import shuffle_enemies, get_rom_enemies, patch_enemies, enemy_actor_types, build_enemylist, enemizer_patches
 from Entrance import Entrance
