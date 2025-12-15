@@ -4326,15 +4326,15 @@ class SettingInfos:
         }
     )
 
-    nnn_opt_out = Checkbutton(
-        gui_text      = 'Do not participate in No Deku Nut November',
-        gui_tooltip   = '''\
-            By enabling this you acknowledge that you are lame and are
-            declining to participate in No Deku Nut November.
-        ''',
-        shared        = True,
-        default       = False,
-    )
+    #nnn_opt_out = Checkbutton(
+    #    gui_text      = 'Do not participate in No Deku Nut November',
+    #    gui_tooltip   = '''\
+    #        By enabling this you acknowledge that you are lame and are
+    #        declining to participate in No Deku Nut November.
+    #    ''',
+    #    shared        = True,
+    #    default       = False,
+    #)
 
     tcg_requires_lens = Checkbutton(
         gui_text       = 'Require Lens of Truth for Treasure Chest Game',
