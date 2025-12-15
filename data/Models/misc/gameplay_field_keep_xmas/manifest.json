@@ -1,4 +1,12 @@
 {
     "model": "gameplay_field_keep_xmas.zobj",
-    "replace_object": "gameplay_field_keep"
+    "replace_object": "gameplay_field_keep",
+    "copy_original": true,
+    "original_skips": [
+        {
+            "start": 18808,
+            "end": 19272,
+            "comment": "Skip for en_kusa (large grass) because we hacked the DL in ASM"
+        }
+    ]
 }

@@ -1477,6 +1477,13 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
     patch_gi_draw_table = manifest["patch_gi_draw_table"] if "patch_gi_draw_table" in manifest.keys() else None
     patch_item_table = manifest["patch_item_table"] if "patch_item_table" in manifest.keys() else None
     append_files = manifest["append_files"] if "append_files" in manifest.keys() else None
+    copy_original = manifest["copy_original"] if "copy_original" in manifest.keys() else False
+    original_skips = []
+
+    if "original_skips" in manifest.keys():
+        for skip_dict in manifest["original_skips"]:
+            original_skips.append((skip_dict["start"], skip_dict["end"]))
+
     vars = {}
     if "vars" in manifest.keys():
         for var in manifest["vars"]:
@@ -1494,7 +1501,7 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
         for sym in manifest["symbols"]:
             vars[sym] = rom.sym(sym)
 
-    return (model_file, append_files, replace_object, patch_files, patch_gi_draw_table, patch_item_table, vars)
+    return (model_file, append_files, replace_object, copy_original, original_skips, patch_files, patch_gi_draw_table, patch_item_table, vars)
 
 def patch_misc_models(rom: Rom, settings: Settings):
     misc_path = data_path("Models/misc")
@@ -1508,7 +1515,7 @@ def patch_misc_models(rom: Rom, settings: Settings):
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
         this_dir = os.path.join(misc_path, dir)
         if os.path.exists(manifest_path):
-            model_file, append_files, replace_object, patch_files, patches_gi_draw_table, patches_item_table, vars = read_object_manifest(rom, manifest_path)
+            model_file, append_files, replace_object, copy_original, original_skips, patch_files, patches_gi_draw_table, patches_item_table, vars = read_object_manifest(rom, manifest_path)
         else:
             continue
         # Read the model data
@@ -1547,8 +1554,20 @@ def patch_misc_models(rom: Rom, settings: Settings):
             # Find the original model file info
             dma = rom.dma[file_list[replace_object]]
 
+            # Copy the original file if told to
+            if copy_original:
+                for i in range(0, dma.size):
+                    should_skip = False
+                    for start, end in original_skips:
+                        if i >= start and i < end:
+                            should_skip = True
+                            break
+                    if not should_skip:
+                        model_data[i] = rom.read_byte(dma.start + i)
+
             # Zeroize the original file
             rom.write_bytes(dma.start, [0] * dma.size)
+
 
             # Check if we're larger than the original file
             model_start = dma.start
