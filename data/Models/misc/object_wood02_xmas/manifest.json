@@ -1,0 +1,59 @@
+{
+    "model": "object_wood02_xmas.zobj",
+    "replace_object": "object_wood02",
+    "vars" : [
+        {
+            "key": "$CandyCane",
+            "value": "0x060098f8"
+        },
+        {
+            "key": "$gWood02BlankDL",
+            "value": "0x06009930"
+        }
+    ],
+    "symbols": [
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_En_Wood02",
+            "patches":[
+                {
+                    "addr": 4036,
+                    "data": "$CandyCane",
+                    "size": 4,
+                    "comment": "Patch stem table @ 8091F964 item 0"
+                },
+                {
+                    "addr": 4040,
+                    "data": "$CandyCane",
+                    "size": 4,
+                    "comment": "Patch stem table @ 8091F964 item 1"
+                },
+                {
+                    "addr": 4044,
+                    "data": "$CandyCane",
+                    "size": 4,
+                    "comment": "Patch stem table @ 8091F964 item 2"
+                },
+                {
+                    "addr": 4064,
+                    "data": "$gWood02BlankDL",
+                    "size": 4,
+                    "comment": "Patch leave table @ 8091f980 with empty DL"
+                },
+                {
+                    "addr": 4068,
+                    "data": "$gWood02BlankDL",
+                    "size": 4,
+                    "comment": "Patch leave table @ 8091f980 with empty DL"
+                },
+                {
+                    "addr": 4072,
+                    "data": "$gWood02BlankDL",
+                    "size": 4,
+                    "comment": "Patch leave table @ 8091f980 with empty DL"
+                }
+            ]
+        }
+    ]
+}
