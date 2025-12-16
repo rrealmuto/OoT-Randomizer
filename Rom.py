@@ -13,6 +13,7 @@ from crc import calculate_crc
 from ntype import BigStream
 from version import base_version, branch_identifier, supplementary_version
 from Audiobank import AudioBank, Envelope, Sample, RomSequence
+from FileList import file_list
 
 DMADATA_START: int = 0x7430  # NTSC 1.0/1.1: 0x7430, NTSC 1.2: 0x7960, Debug: 0x012F70
 OVERLAY_TABLE_START: int = 0xB5E490 # NTSC 1.0
@@ -34,7 +35,7 @@ AUDIOSEQ_INDEX_ADDR = 0x00B89AD0
 AUDIOSEQ_FONT_INDEX_ADDR = 0x00B89910
 
 class Rom(BigStream):
-    def __init__(self, file: Optional[str] = None) -> None:
+    def __init__(self, file: Optional[str] = None, vanilla=True) -> None:
         super().__init__(bytearray())
 
         self.original: Rom = self
@@ -55,14 +56,14 @@ class Rom(BigStream):
         if file is None:
             return
 
-        decompressed_file: str = local_path('ZOOTDEC.z64')
+        decompressed_file: str = local_path(file)
 
         os.chdir(local_path())
 
         if os.path.isfile(decompressed_file):
             # Try to read from previously decompressed rom if one exists.
             try:
-                self.read_rom(decompressed_file)
+                self.read_rom(decompressed_file, verify_crc=vanilla)
             except (FileNotFoundError, RuntimeError):
                 # Decompress the provided file.
                 if not file:
@@ -79,6 +80,9 @@ class Rom(BigStream):
         self.overlay_table: list[OverlayEntry] = OverlayTable.read_overlay_table(self, OVERLAY_TABLE_START, OVERLAY_TABLE_OFFSET, OVERLAY_TABLE_ENTRY_SIZE, NUM_OVERLAY_ENTRIES) + OverlayTable.read_overlay_table(self, PAUSE_PLAYER_OVERLAY_TABLE_START, PAUSE_PLAYER_OVERLAY_TABLE_OFFSET, PAUSE_PLAYER_OVERLAY_TABLE_ENTRY_SIZE, NUM_PAUSE_PLAYER_OVERLAY_ENTRIES)
         # Add version number to header.
         self.write_version_bytes()
+
+        if not vanilla:
+            return
 
         bank_index_header: bytearray = self.read_bytes(AUDIOBANK_INDEX_ADDR, 0x10)
         bank_index_length = int.from_bytes(bank_index_header[0:2], 'big')
@@ -609,6 +613,20 @@ class Rom(BigStream):
         self.write_int32(index, start_address)
         self.write_int32(index + 4, end_address)
         return i + NUM_VANILLA_OBJECTS + 1
+    
+    def save_file(self, file: int | str, to_file):
+        if type(file) == str:
+            file = file_list[file]
+        
+        f = to_file
+        if not hasattr(to_file, 'write'):
+            f = open(to_file, 'wb')
+        
+        dma_entry = self.dma[file]
+        file_bytes = self.read_bytes(dma_entry.start, dma_entry.size)
+
+        f.write(file_bytes)
+        f.close()
 
 class DMAEntry:
     def __init__(self, rom: Rom, index: int) -> None:

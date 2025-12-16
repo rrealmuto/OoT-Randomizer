@@ -258,6 +258,7 @@ def load_rgba32_from_png(pngfile: str) -> list[int]:
 def jfif_from_image(imagefile:str) -> list[int]:
     from PIL import Image
     image = Image.open(imagefile)
+    image = image.convert("RGB")
     img_buffer = io.BytesIO()
     image.save(img_buffer, format="JPEG", quality=95)
     image.close()
