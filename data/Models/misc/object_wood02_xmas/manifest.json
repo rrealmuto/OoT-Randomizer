@@ -1,16 +1,10 @@
 {
     "model": "object_wood02_xmas.zobj",
     "replace_object": "object_wood02",
-    "vars" : [
-        {
-            "key": "$CandyCane",
-            "value": "0x060098f8"
-        },
-        {
-            "key": "$gWood02BlankDL",
-            "value": "0x06009930"
-        }
-    ],
+    "vars" : {
+        "$CandyCane": "0x060098f8",
+        "$gWood02BlankDL": "0x06009930"
+    },
     "symbols": [
     ],
     "patch_files": [

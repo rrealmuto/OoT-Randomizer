@@ -1,28 +1,13 @@
 {
     "model": "object_box_present.zobj",
     "replace_object": "object_box",
-    "vars" : [
-        {
-            "key": "$gTreasureChestSkel",
-            "value": "0x060047d8"
-        },
-        {
-            "key": "$BaseDisplayList",
-            "value": "0x06009148"
-        },
-        {
-            "key": "$LidDisplayList",
-            "value": "0x0600a370"
-        },
-        {
-            "key": "$BaseTexture",
-            "value": "0x06006000"
-        },
-        {
-            "key": "$LidTexture",
-            "value": "0x06008000"
-        }
-    ],
+    "vars" : {
+        "$gTreasureChestSkel": "0x060047d8",
+        "$BaseDisplayList": "0x06009148",
+        "$LidDisplayList": "0x0600a370",
+        "$BaseTexture": "0x06006000",
+        "$LidTexture": "0x06008000"
+    },
     "symbols": [
         "gTreasureChestChestFrontDL",
         "gTreasureChestChestSideAndLidDL",

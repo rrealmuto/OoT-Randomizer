@@ -1,25 +1,12 @@
 {
     "model": "object_niw_xmas.zobj",
     "replace_object": "object_niw",
-    "vars" : [
-        {
-            "key": "$gCuccoSkel",
-            "value": "0x06003240"
-        },
-        {
-            "key": "$gCuccoEffectFeatherMaterialDL",
-            "value": "0x06000528"
-        },
-        {
-            "key": "$gCuccoEffectFeatherModelDL",
-            "value": "0x060005a0"
-        },
-        {
-            "key": "$gCuccoAnim",
-            "value": "0x060000e8",
-            "comment": "Note: this is the original address. If this changes, need to add additional patches"
-        }
-    ],
+    "vars" : {
+        "$gCuccoSkel": "0x06003240",
+        "$gCuccoEffectFeatherMaterialDL": "0x06000528",
+        "$gCuccoEffectFeatherModelDL": "0x060005a0",
+        "$gCuccoAnim": "0x060000e8"
+    },
     "symbols": [
     ],
     "patch_files": [

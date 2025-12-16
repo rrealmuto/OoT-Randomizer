@@ -1,28 +1,13 @@
 {
     "model": "object_ane_xmas.zobj",
     "replace_object": "object_ane",
-    "vars" : [
-        {
-            "key": "$gCuccoLadySkel",
-            "value": "0x06007940"
-        },
-        {
-            "key": "$gCuccoLadyEyeOpenTex",
-            "value": "0x06007950"
-        },
-        {
-            "key": "$gCuccoLadyEyeClosedTex",
-            "value": "0x06008950"
-        },
-        {
-            "key": "$gCuccoLadyEyeHalfTex",
-            "value": "0x06008150"
-        },
-        {
-            "key": "$anim",
-            "value": "0x0600a630"
-        }
-    ],
+    "vars" : {
+        "$gCuccoLadySkel": "0x06007940",
+        "$gCuccoLadyEyeOpenTex": "0x06007950",
+        "$gCuccoLadyEyeClosedTex": "0x06008950",
+        "$gCuccoLadyEyeHalfTex": "0x06008150",
+        "$anim": "0x0600a630"
+    },
     "symbols": [
     ],
     "patch_files": [

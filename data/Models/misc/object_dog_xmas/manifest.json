@@ -1,0 +1,24 @@
+{
+    "model": "object_dog_xmas.zobj",
+    "replace_object": "object_dog",
+    "vars": {
+        "$gDogSkel": "0x060095f0"
+    },
+    "patch_files":[
+        {
+            "file": "ovl_En_Dog",
+            "patches": [
+                {
+                    "addr": 1234,
+                    "data": "lo($gDogSkel)",
+                    "size": 2
+                },
+                {
+                    "addr": 1206,
+                    "data": "hi($gDogSkel)",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}

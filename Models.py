@@ -1486,16 +1486,17 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
 
     vars = {}
     if "vars" in manifest.keys():
-        for var in manifest["vars"]:
-            val = var["value"]
+        manifest_vars = manifest["vars"]
+        for var in manifest_vars.keys():
+            val = manifest_vars[var]
             if type(val) == str:
                 if val.startswith("0x"):
                     val = int(val, 16)
 
             val_hi, val_lo = mips_hi_lo(val)
-            vars[var["key"]] = val
-            vars[f"hi({var['key']})"] = val_hi
-            vars[f"lo({var['key']})"] = val_lo
+            vars[var] = val
+            vars[f"hi({var})"] = val_hi
+            vars[f"lo({var})"] = val_lo
     
     if "symbols" in manifest.keys():
         for sym in manifest["symbols"]:

@@ -1,24 +1,12 @@
 {
     "model": "object_tsubo_bauble.zobj",
     "replace_object": "object_tsubo",
-    "vars" : [
-        {
-            "key": "$gPotJackOLanternDL",
-            "value": "0x06001020"
-        },
-        {
-            "key": "$gPotJackOLanternFragmentDL",
-            "value": "0x06001360"
-        },
-        {
-            "key": "$gPotJackOLanternDL_object_tsubo_pumpkin_rgba16",
-            "value": "0x06000000"
-        },
-        {
-            "key": "$object_tsubo_id",
-            "value": 300
-        }
-    ],
+    "vars" : {
+        "$gPotJackOLanternDL": "0x06001020",
+        "$gPotJackOLanternFragmentDL": "0x06001360",
+        "$gPotJackOLanternDL_object_tsubo_pumpkin_rgba16": "0x06000000",
+        "$object_tsubo_id": 300
+    },
     "symbols": [
         "DUNGEON_POT_DLIST",
         "POT_DLIST",
