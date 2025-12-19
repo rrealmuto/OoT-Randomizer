@@ -1,0 +1,93 @@
+{
+    "model": "object_kz_xmas.zobj",
+    "replace_object": "object_kz",
+    "vars" : {
+        "$gKzSkel": "0x0600ae08",
+        "$gKzEyeOpenTex": "0x06002098",
+        "$gKzEyeHalfTex": "0x06002498",
+        "$gKzEyeClosedTex": "0x06002898",
+        "$gKzEyeOpen2Tex": "0x06000770"
+    },
+    "symbols": [
+    ],
+    "patch_files": [
+        {
+            "file": "ovl_En_Kz",
+            "patches":[
+                {
+                    "comment": "Patch gKzSkel in SkelAnime_InitFlex in EnKzInit",
+                    "addr": 2418,
+                    "data": "hi($gKzSkel)",
+                    "size": 2
+
+                },
+                {
+                    "comment": "Patch gKzSkel in SkelAnime_InitFlex in EnKzInit",
+                    "addr": 2446,
+                    "data": "lo($gKzSkel)",
+                    "size": 2
+
+                },
+                {
+                    "addr": 4980,
+                    "data": "$gKzEyeOpenTex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeOpenTex in sEyeSegments"
+                },
+                {
+                    "addr": 4984,
+                    "data": "$gKzEyeHalfTex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeHalfTex in sEyeSegments"
+                },
+                {
+                    "addr": 4988,
+                    "data": "$gKzEyeClosedTex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeClosedTex in sEyeSegments"
+                }
+            ]
+        },
+        {
+            "file": "ovl_Demo_Ec",
+            "patches":[
+                {
+                    "addr": 7266,
+                    "data": "hi($gKzSkel)",
+                    "size": 2,
+                    "comment": "Patch DemoEc_InitSkelAnime reference to gKzSkel in DemoEc_InitKingZora"
+                },
+                {
+                    "addr": 7270,
+                    "data": "lo($gKzSkel)",
+                    "size": 2,
+                    "comment": "Patch DemoEc_InitSkelAnime reference to gKzSkel in DemoEc_InitKingZora"
+                },
+                {
+                    "addr": 12184,
+                    "data": "$gKzEyeOpenTex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeOpenTex in eyeTextures"
+                },
+                {
+                    "addr": 12188,
+                    "data": "$gKzEyeHalfTex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeHalfTex in eyeTextures"
+                },
+                {
+                    "addr": 12192,
+                    "data": "$gKzEyeClosedTex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeClosedTex in eyeTextures"
+                },
+                {
+                    "addr": 12196,
+                    "data": "$gKzEyeOpen2Tex",
+                    "size": 4,
+                    "comment": "Patch gKzEyeOpen2Tex in eyeTextures"
+                }
+            ]
+        }
+    ]
+}
