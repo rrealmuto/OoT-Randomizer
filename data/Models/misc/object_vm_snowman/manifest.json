@@ -1,0 +1,52 @@
+{
+    "model": "object_vm_snowman.zobj",
+    "replace_object": "object_vm",
+    "vars" : {
+        "$gBeamosSkel": "0x06003b40",
+        "$gBeamosLaserDL": "0x06000100",
+        "$gBeamosAnim": "0x06000068"
+    },
+    "patch_files": [
+        {
+            "file": "ovl_En_Vm",
+            "patches": [
+                {
+                    "addr": 5386,
+                    "data": "hi($gBeamosLaserDL)",
+                    "size": 2,
+                    "comment": "Patch gBeamosLaserDL in EnVm_Draw"
+                },
+                {
+                    "addr": 5390,
+                    "data": "lo($gBeamosLaserDL)",
+                    "size": 2,
+                    "comment": "Patch gBeamosLaserDL in EnVm_Draw"
+                },
+                {
+                    "comment": "Patch gBeamosSkel in EnVm_Init",
+                    "data": "hi($gBeamosSkel)",
+                    "addr": 38,
+                    "size": 2
+                },
+                {
+                    "comment": "Patch gBeamosSkel in EnVm_Init",
+                    "data": "lo($gBeamosSkel)",
+                    "addr": 74,
+                    "size": 2
+                },
+                {
+                    "comment": "Patch gBeamosAnim in EnVm_Init",
+                    "data": "hi($gBeamosAnim)",
+                    "addr": 42,
+                    "size": 2
+                },
+                {
+                    "comment": "Patch gBeamosAnim in EnVm_Init",
+                    "data": "lo($gBeamosAnim)",
+                    "addr": 70,
+                    "size": 2
+                }
+            ]
+        }  
+    ]
+}
