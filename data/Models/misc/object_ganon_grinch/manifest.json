@@ -1,0 +1,111 @@
+{
+    "model": "object_ganon_grinch.zobj",
+    "replace_object": "object_ganon",
+    "vars" : {
+        "$gGanondorfSkel": "0x0600a7f0",
+        "$gGanondorfRightHandOpenDL": "0x0600c538",
+        "$gGanondorfEyesDL": "0x0600ce70",
+        "$gGanondorfNormalEyeTex": "0x060011f8",
+        "$gGanondorfEmptyEyeTex": "0x0600c9d0"
+    },
+    "patch_files": [
+        {
+            "file": "ovl_Boss_Ganon",
+            "patches": 
+            [
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Upper half",
+                    "addr": 2550,
+                    "data": "hi($gGanondorfSkel)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Lower half",
+                    "addr": 2554,
+                    "data": "lo($gGanondorfSkel)",
+                    "size": 2
+                },
+                {
+                    "comment": "Right hand open DL segment address in BossGanon_OverrideLimbDraw. Upper half",
+                    "addr": 32562,
+                    "data": "hi($gGanondorfRightHandOpenDL)",
+                    "size": 2
+                },
+                {
+                    "comment": "Right hand open DL segment address in BossGanon_OverrideLimbDraw. Lower half",
+                    "addr": 32566,
+                    "data": "lo($gGanondorfRightHandOpenDL)",
+                    "size": 2
+                },
+                {
+                    "comment": "Eyes DL segment address in BossGanon_OverrideLimbDraw",
+                    "addr": 33342,
+                    "data": "hi($gGanondorfEyesDL)",
+                    "size": 2
+                },
+                {
+                    "comment": "Eyes DL segment address in BossGanon_OverrideLimbDraw",
+                    "addr": 33346,
+                    "data": "lo($gGanondorfEyesDL)",
+                    "size": 2
+                },
+                {
+                    "comment": "Eyes texture address in BossGanon_Draw",
+                    "addr": 41762,
+                    "data": "hi($gGanondorfNormalEyeTex)",
+                    "size": 2
+                },
+                {
+                    "comment": "Eyes texture address in BossGanon_Draw",
+                    "addr": 41766,
+                    "data": "lo($gGanondorfNormalEyeTex)",
+                    "size": 2
+                }
+                
+            ]
+        },
+        {
+            "file": "ovl_Boss_Ganon2",
+            "patches":
+            [
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Upper half",
+                    "addr": 1210,
+                    "data": "hi($gGanondorfSkel)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch the skeleton segment address in SkelAnime_InitFlex. Lower half",
+                    "addr": 1214,
+                    "data": "lo($gGanondorfSkel)",
+                    "size": 2
+                },
+                {
+                    "comment": "gGanondorfEmptyEyeTex address in BossGanon2 Draw",
+                    "addr": 34730,
+                    "data": "hi($gGanondorfEmptyEyeTex)",
+                    "size": 2
+                },
+                {
+                    "comment": "gGanondorfEmptyEyeTex address in BossGanon2 Draw",
+                    "addr": 34734,
+                    "data": "lo($gGanondorfEmptyEyeTex)",
+                    "size": 2
+                },
+                {
+                    "comment": "gGanondorfEyesDL address in BosSGanon2_PostLimbDraw2",
+                    "addr": 33886,
+                    "data": "hi($gGanondorfEyesDL)",
+                    "size": 2
+                }
+                ,
+                {
+                    "comment": "gGanondorfEyesDL address in BosSGanon2_PostLimbDraw2",
+                    "addr": 33890,
+                    "data": "lo($gGanondorfEyesDL)",
+                    "size": 2
+                }
+            ]
+        }
+    ]
+}
