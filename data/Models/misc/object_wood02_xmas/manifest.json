@@ -2,8 +2,8 @@
     "model": "object_wood02_xmas.zobj",
     "replace_object": "object_wood02",
     "vars" : {
-        "$CandyCane": "0x060098f8",
-        "$gWood02BlankDL": "0x06009930"
+        "$CandyCane": "0x06009420",
+        "$gWood02BlankDL": "0x06009458"
     },
     "symbols": [
     ],
