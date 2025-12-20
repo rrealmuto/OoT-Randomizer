@@ -222,6 +222,215 @@
         "target_file_offset": 60752,
         "palette_address": 43560
     },
+
+
+    {
+      "file": "spot02/spot02_room_1_0000AFD8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 45016
+    },
+    {
+      "file": "spot02/spot02_scene_00008680_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1029,
+      "target_file_offset": 34432
+    },
+    {
+      "file": "spot02/spot02_room_1_0000BFD8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 49112
+    },
+    {
+      "file": "spot02/spot02_room_1_0000C3D8_CITex.ci4.png",
+      "type": "ci4",
+      "target_file_id": 1031,
+      "target_file_offset": 50136,
+      "palette_address": 36232
+    },
+    {
+      "file": "spot02/spot02_room_1_0000CBD8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 52184
+    },
+    {
+      "file": "spot02/spot02_room_1_0000E1D8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 57816
+    },
+    {
+      "file": "spot02/spot02_room_1_00008DD8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 36312
+    },
+    {
+      "file": "spot02/spot02_room_1_00010BD8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 68568
+    },
+    {
+      "file": "spot02/spot02_room_1_00012BD8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 76760
+    },
+    {
+      "file": "spot02/spot02_room_1_00016C58_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 93272
+    },
+    {
+      "file": "spot02/spot02_room_1_000123D8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 74712
+    },
+    {
+      "file": "spot02/spot02_room_1_000133D8_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 78808
+    },
+    {
+      "file": "spot02/spot02_room_1_000143D8_CITex.ci4.png",
+      "type": "ci4",
+      "target_file_id": 1031,
+      "target_file_offset": 82904,
+      "palette_address": 36272
+    },
+    {
+      "file": "spot02/spot02_room_1_00017458_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 95320
+    },
+    {
+      "file": "spot02/spot02_room_1_00018858_Tex.rgba16.png",
+      "type": "rgba16",
+      "target_file_id": 1031,
+      "target_file_offset": 100440
+    },
+
+    {
+        "type": "texture_group_ci8",
+        "files": [
+            "spot03/spot03_room_0_0000BBB0_CITex.ci8.tlut_spot03_scene_00006B28_TLUT.png",
+            "spot03/spot03_room_0_0000BFB0_CITex.ci8.tlut_spot03_scene_00006B28_TLUT.png",
+            "spot03/spot03_room_0_00009BB0_CITex.ci8.tlut_spot03_scene_00006B28_TLUT.png",
+            "spot03/spot03_room_0_000097B0_CITex.ci8.tlut_spot03_scene_00006B28_TLUT.png",
+            "spot03/spot03_scene_00007958_CITex.ci8.tlut_spot03_scene_00006B28_TLUT.png",
+            "spot03/spot03_scene_00008558_CITex.ci8.tlut_spot03_scene_00006B28_TLUT.png"
+
+        ],
+        "target_file_offset": [
+            48048,
+            49072,
+            39856,
+            38832,
+            31064,
+            34136
+        ],
+        "target_file_id": [
+            1033,
+            1033,
+            1033,
+            1033,
+            1032,
+            1032
+        ],
+        "palette_address": 27432,
+        "palette_file_id": 1032
+    },
+    {
+        "type": "texture_group_ci8",
+        "files": [
+            "spot03/spot03_room_1_00005CD8_CITex.ci8.tlut_spot03_scene_00006920_TLUT.png",
+            "spot03/spot03_room_1_00005ED8_CITex.ci8.tlut_spot03_scene_00006920_TLUT.png",
+            "spot03/spot03_room_1_000050D8_CITex.ci8.tlut_spot03_scene_00006920_TLUT.png",
+            "spot03/spot03_room_1_000058D8_CITex.ci8.tlut_spot03_scene_00006920_TLUT.png",
+            "spot03/spot03_room_1_000062D8_CITex.ci8.tlut_spot03_scene_00006920_TLUT.png",
+            "spot03/spot03_scene_00006D58_CITex.ci8.tlut_spot03_scene_00006920_TLUT.png"
+        ],
+        "target_file_offset": [
+            23768,
+            24280,
+            20696,
+            22744,
+            25304,
+            27992
+        ],
+        "target_file_id": [
+            1034,
+            1034,
+            1034,
+            1034,
+            1034,
+            1032
+        ],
+        "palette_address": 26912,
+        "palette_file_id": 1032
+    },
+
+    {
+        "file": "spot03/spot03_room_0_0000ABB0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1033,
+        "target_file_offset": 43952
+      },
+      {
+        "file": "spot03/spot03_scene_00009558_CITex.ci4.png",
+        "type": "ci4",
+        "target_file_id": 1032,
+        "target_file_offset": 38232,
+        "palette_address": 27952
+      },
+      
+      
+      {
+        "file": "spot03/spot03_scene_0000A558_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1032,
+        "target_file_offset": 42328
+      },
+      
+      {
+        "file": "spot03/spot03_scene_00007D58_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1032,
+        "target_file_offset": 32088
+      },
+      {
+        "file": "spot03/spot03_scene_00009D58_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1032,
+        "target_file_offset": 40280
+      },
+      {
+        "file": "spot03/spot03_scene_00007158_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1032,
+        "target_file_offset": 29016
+      },
+      {
+        "file": "spot03/spot03_scene_00007558_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1032,
+        "target_file_offset": 30040
+      },
+      {
+        "type": "patch_bytes",
+        "target_file_id": 1033,
+        "target_file_offset": 50508,
+        "data": [200,200,200],
+        "comment": "Patch the path in Zoras River"
+    },
+      
     {
         "type": "texture_group_ci8",
         "files": [
@@ -491,6 +700,511 @@
         "data": [200,200,200],
         "comment": "Patch the path in KF Room 2"
     },
+
+    {
+        "file": "spot05/spot05_scene_0000B160_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 45408
+      },
+      {
+        "file": "spot05/spot05_scene_00014360_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 82784
+      },
+      {
+        "file": "spot05/spot05_scene_0000CB60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 52064
+      },
+      {
+        "file": "spot05/spot05_scene_0000DB60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 56160
+      },
+      {
+        "file": "spot05/spot05_scene_0000EB60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 60256
+      },
+      {
+        "file": "spot05/spot05_scene_00006D60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 28000
+      },
+      {
+        "file": "spot05/spot05_scene_00007D60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 32096
+      },
+      {
+        "file": "spot05/spot05_scene_00008D60_CITex.ci8.tlut_spot05_scene_00006BC0_TLUT.png",
+        "type": "ci8",
+        "target_file_id": 1039,
+        "target_file_offset": 36192,
+        "palette_address": 27584
+      },
+      {
+        "file": "spot05/spot05_scene_00010B60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 68448
+      },
+      {
+        "file": "spot05/spot05_scene_00012B60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 76640
+      },
+      {
+        "file": "spot05/spot05_scene_00013B60_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 80736
+      },
+      {
+        "file": "spot05/spot05_scene_00011360_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 70496
+      },
+      {
+        "file": "spot05/spot05_scene_00012360_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 74592
+      },
+      {
+        "file": "spot05/spot05_scene_00013360_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1039,
+        "target_file_offset": 78688
+      },
+
+      {
+        "file": "spot06/spot06_scene_0000AAB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 43704
+      },
+      {
+        "file": "spot06/spot06_scene_00009838_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 38968
+      },
+      {
+        "file": "spot06/spot06_scene_0000AEB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 44728
+      },
+      {
+        "file": "spot06/spot06_scene_0000BEB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 48824
+      },
+      {
+        "file": "spot06/spot06_scene_0000C2B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 49848
+      },
+      {
+        "file": "spot06/spot06_scene_0000C4B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 50360
+      },
+      {
+        "file": "spot06/spot06_scene_0000FEB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 65208
+      },
+      {
+        "file": "spot06/spot06_scene_0001ACB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 109752
+      },
+      {
+        "file": "spot06/spot06_scene_00007C38_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 31800
+      },
+      {
+        "file": "spot06/spot06_scene_00009AB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 39608
+      },
+      {
+        "file": "spot06/spot06_scene_00011EB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 73400
+      },
+      {
+        "file": "spot06/spot06_scene_00012EB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 77496
+      },
+      {
+        "file": "spot06/spot06_scene_00016CB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 93368
+      },
+      {
+        "file": "spot06/spot06_scene_00017CB8_CITex.ci4.png",
+        "type": "ci4",
+        "target_file_id": 1041,
+        "target_file_offset": 97464,
+        "palette_address": 31760
+      },
+      {
+        "file": "spot06/spot06_scene_00018CB8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 101560
+      },
+      {
+        "file": "spot06/spot06_scene_000098B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 39096
+      },
+      {
+        "file": "spot06/spot06_scene_000116B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 71352
+      },
+      {
+        "file": "spot06/spot06_scene_000122B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 74424
+      },
+      {
+        "file": "spot06/spot06_scene_000130B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 78008
+      },
+      {
+        "file": "spot06/spot06_scene_000154B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 87224
+      },
+      {
+        "file": "spot06/spot06_scene_000164B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 91320
+      },
+      {
+        "file": "spot06/spot06_scene_000184B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 99512
+      },
+      {
+        "file": "spot06/spot06_scene_000194B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 103608
+      },
+      {
+        "file": "spot06/spot06_scene_00008038_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 32824
+      },
+      {
+        "file": "spot06/spot06_scene_000140B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 82104
+      },
+      {
+        "file": "spot06/spot06_scene_00008438_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 33848
+      },
+      {
+        "file": "spot06/spot06_scene_000178B8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1041,
+        "target_file_offset": 96440
+      },
+
+      {
+        "file": "spot10/spot10_room_1_00003FA0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1052,
+        "target_file_offset": 16288
+      },
+      {
+        "file": "spot10/spot10_scene_0000FC30_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 64560
+      },
+      {
+        "file": "spot10/spot10_room_1_00004FA0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1052,
+        "target_file_offset": 20384
+      },
+      {
+        "file": "spot10/spot10_room_1_00005FA0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1052,
+        "target_file_offset": 24480
+      },
+      {
+        "file": "spot10/spot10_room_1_00006FA0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1052,
+        "target_file_offset": 28576
+      },
+      {
+        "file": "spot10/spot10_room_1_000047A0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1052,
+        "target_file_offset": 18336
+      },
+      {
+        "file": "spot10/spot10_room_1_000067A0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1052,
+        "target_file_offset": 26528
+      },
+      {
+        "file": "spot10/spot10_room_5_000047F0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1056,
+        "target_file_offset": 18416
+      },
+      {
+        "file": "spot10/spot10_room_5_000057F0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1056,
+        "target_file_offset": 22512
+      },
+      {
+        "file": "spot10/spot10_room_5_000067F0_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1056,
+        "target_file_offset": 26608
+      },
+      {
+        "file": "spot10/spot10_room_6_00002AE8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1057,
+        "target_file_offset": 10984
+      },
+      {
+        "file": "spot10/spot10_room_6_000022E8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1057,
+        "target_file_offset": 8936
+      },
+      {
+        "file": "spot10/spot10_room_6_000032E8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1057,
+        "target_file_offset": 13032
+      },
+      {
+        "file": "spot10/spot10_room_9_00001EF8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1060,
+        "target_file_offset": 7928
+      },
+      {
+        "file": "spot10/spot10_room_9_000026F8_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1060,
+        "target_file_offset": 9976
+      },
+      {
+        "file": "spot10/spot10_scene_0000C230_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 49712
+      },
+      {
+        "file": "spot10/spot10_scene_0000CA30_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 51760
+      },
+      {
+        "file": "spot10/spot10_scene_0000DA30_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 55856
+      },
+      {
+        "file": "spot10/spot10_scene_0000EA30_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 59952
+      },
+      {
+        "file": "spot10/spot10_scene_0000F230_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 62000
+      },
+      {
+        "file": "spot10/spot10_scene_0000F430_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1050,
+        "target_file_offset": 62512
+      },
+      {
+        "file": "spot15/spot15_scene_0000A900_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 43264
+      },
+      {
+        "file": "spot15/spot15_scene_00016600_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 91648
+      },
+      {
+        "file": "spot15/spot15_scene_0000BA00_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 47616
+      },
+      {
+        "file": "spot15/spot15_scene_0000CA00_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 51712
+      },
+      {
+        "file": "spot15/spot15_scene_0000FC00_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 64512
+      },
+      {
+        "file": "spot15/spot15_scene_00004C00_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 19456
+      },
+      {
+        "file": "spot15/spot15_scene_00004100_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 16640
+      },
+      {
+        "file": "spot15/spot15_scene_00005400_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 21504
+      },
+      {
+        "file": "spot15/spot15_scene_00012400_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 74752
+      },
+      {
+        "file": "spot15/spot15_scene_00013400_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 78848
+      },
+      {
+        "file": "spot15/spot15_scene_00014400_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1069,
+        "target_file_offset": 82944
+      },
+      {
+        "type": "patch_bytes",
+        "target_file_id": "spot15_room_0",
+        "target_file_offset": 51172,
+        "data": [200,200,200],
+        "comment": "Patch the path in Hyrule Castle (child)"
+    },
+    {
+    "file": "spot20/spot20_scene_0000C180_CITex.ci4.png",
+    "type": "ci4",
+    "target_file_id": 1268,
+    "target_file_offset": 49536,
+    "palette_address": 24408
+    },
+    {
+        "file": "spot20/spot20_scene_0000D180_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1268,
+        "target_file_offset": 53632
+    },
+    {
+        "file": "spot20/spot20_scene_0000D980_Tex.rgba16.png",
+        "type": "rgba16",
+        "target_file_id": 1268,
+        "target_file_offset": 55680
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot20_room_0",
+        "target_file_offset": 13452,
+        "data": [200,200,200],
+        "comment": "Patch the path in LLR"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot20_room_0",
+        "target_file_offset": 17716,
+        "data": [200,200,200],
+        "comment": "Patch the path in LLR"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot20_room_0",
+        "target_file_offset": 18332,
+        "data": [200,200,200],
+        "comment": "Patch the path in LLR"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot20_room_0",
+        "target_file_offset": 25452,
+        "data": [200,200,200],
+        "comment": "Patch the path in LLR"
+    },
+    {
+        "type": "patch_bytes",
+        "target_file_id": "spot20_room_0",
+        "target_file_offset": 26252,
+        "data": [200,200,200],
+        "comment": "Patch the path in LLR"
+    },
+
     {
         "type": "jfif",
         "target_file_id": "shrine_room_0",
