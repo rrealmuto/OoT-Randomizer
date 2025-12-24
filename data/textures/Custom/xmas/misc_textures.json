@@ -1319,5 +1319,11 @@
         "file": "pot/pot_heart.png",
         "type": "rgba16",
         "target_texture_id": 26
+    },
+    {
+        "file": "title_patch.bin",
+        "type": "patch_xor_bytes_gzip",
+        "target_file_id": "object_mag",
+        "target_file_offset": 768
     }
 ]

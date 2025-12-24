@@ -6,7 +6,9 @@
         "$gGanondorfRightHandOpenDL": "0x0600c538",
         "$gGanondorfEyesDL": "0x0600ce70",
         "$gGanondorfNormalEyeTex": "0x060011f8",
-        "$gGanondorfEmptyEyeTex": "0x0600c9d0"
+        "$gGanondorfEmptyEyeTex": "0x0600c9d0",
+        "$gGanondorfEndingFloatAnim": "0x0600ff6c",
+        "$gGanondorfTitleCardTex": "0x0600d6d0"
     },
     "patch_files": [
         {
@@ -60,8 +62,19 @@
                     "addr": 41766,
                     "data": "lo($gGanondorfNormalEyeTex)",
                     "size": 2
+                },
+                {
+                    "comment": "Patch gGanondorfTitleCardTex in BossGanon_IntroCutscene call to TitleCard_InitBossName",
+                    "addr": 9136,
+                    "data": "hi($gGanondorfTitleCardTex)",
+                    "size": 2
+                },
+                {
+                    "comment": "Patch gGanondorfTitleCardTex in BossGanon_IntroCutscene call to TitleCard_InitBossName",
+                    "addr": 9140,
+                    "data": "lo($gGanondorfTitleCardTex)",
+                    "size": 2
                 }
-                
             ]
         },
         {
@@ -97,8 +110,7 @@
                     "addr": 33886,
                     "data": "hi($gGanondorfEyesDL)",
                     "size": 2
-                }
-                ,
+                },
                 {
                     "comment": "gGanondorfEyesDL address in BosSGanon2_PostLimbDraw2",
                     "addr": 33890,
@@ -106,6 +118,24 @@
                     "size": 2
                 }
             ]
+        },
+        {
+            "file": "ovl_En_Viewer",
+            "patches": [
+                {
+                    "comment": "Patch gGanondorfSkel reference in sInitData in en_viewer",
+                    "addr": 11336,
+                    "data": "$gGanondorfSkel",
+                    "size": 4
+                },
+                {
+                    "comment": "patch gGanondorfEndingFloatAnim reference in sInitData in en_viewer",
+                    "addr": 11340,
+                    "data": "$gGanondorfEndingFloatAnim",
+                    "size": 4
+                }
+            ]
         }
+        
     ]
 }

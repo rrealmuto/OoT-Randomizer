@@ -6,6 +6,7 @@ import random
 from collections.abc import Iterable, Callable
 from itertools import chain
 from typing import TYPE_CHECKING, Optional, Any
+import zlib
 from Audiobank import SFX
 
 import Colors
@@ -16,7 +17,7 @@ import Sounds
 from JSONDump import dump_obj, CollapseList, CollapseDict, AlignedDict
 from Plandomizer import InvalidFileException
 from Utils import data_path
-from texture_util import ci8_shared_from_pngs, jfif_from_image, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4
+from texture_util import ci8_shared_from_pngs, jfif_from_image, load_rgba16_from_png, rgba16_from_png, rgba16_to_bytes, rgba16_to_ci4, rgba32_from_png
 from FileList import file_list
 from version import __version__
 from Voices import VOICE_PACK_AGE, patch_voice_pack, child_link_sfx, adult_link_sfx
@@ -909,7 +910,7 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
             if texture_type == "rgba16":
                 texture_data = [rgba16_from_png(rom,0,0,0,texture_path)]
             elif texture_type == "rgba32":
-                texture_data = [rgba16_from_png(rom,0,0,0,texture_path)]
+                texture_data = [rgba32_from_png(rom,0,0,0,texture_path)]
             elif texture_type == "ci4":
                 texture_data = load_rgba16_from_png(texture_path)
                 texture_data, palette = rgba16_to_ci4(texture_data)
@@ -924,6 +925,18 @@ def patch_custom_textures(rom: Rom, settings: Settings, log: CosmeticsLog, symbo
                 texture_data = [jfif_from_image(texture_path)]
             elif texture_type == "patch_bytes":
                 texture_data = texture['data']
+            elif texture_type == "patch_xor_bytes_gzip":
+                # Read the patch file
+                with open(texture_path, 'rb') as f:
+                    patch_bytes_gz = f.read()
+                # Decompress patch
+                patch_bytes = zlib.decompress(patch_bytes_gz)
+                # Read the vanilla texture data
+                dma_entry = rom.dma[file_id]
+
+                vanilla_bytes = rom.read_bytes(dma_entry.start + texture["target_file_offset"], len(patch_bytes))
+                texture_data = [a ^ b for (a,b) in zip(patch_bytes, vanilla_bytes)]
+                texture_data = [texture_data]
             
             texture_start: int = 0
             palette_address: int = 0

@@ -251,7 +251,6 @@ def load_rgba32_from_png(pngfile: str) -> list[int]:
     rgba32_pixels: list[tuple[int,int,int,int]] = []
     pixel_data = image.getdata()
     for pixel in pixel_data:
-        r,g,b,a = get_rgba_pixel(pixel)
         rgba32_pixels.append(pixel)
     return rgba32_pixels
 
