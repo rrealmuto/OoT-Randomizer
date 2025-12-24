@@ -12,6 +12,8 @@
                 or (can_isg and (can_gdv_stick or ('Jabu Jabus Belly MQ Map Chest' and can_gdv_empty)))",
             "Jabu Jabus Belly MQ Entryway Right Cow Wonderitem": "can_use(Slingshot)
                 or (can_isg and (can_gdv_stick or ('Jabu Jabus Belly MQ Map Chest' and can_gdv_empty)))",
+            "Jabu Jabus Belly MQ First Room Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ First Room Grass 2": "can_mow_the_lawn",
             "Nut Pot": "True"
         },
         "exits": {
@@ -67,8 +69,16 @@
             "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 1": "can_use(Slingshot) or (can_gdv and can_isg)",
             "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 2": "can_use(Slingshot) or (can_gdv and can_isg)",
             "Jabu Jabus Belly MQ Basement Left Cow Wonderitem 3": "can_use(Slingshot) or (can_gdv and can_isg)",
+            "Jabu Jabus Belly MQ Basement Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Basement Grass 2": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Basement Grass 3": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Basement Boomerang Room Grass": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
-                can_play(Song_of_Time) or (logic_jabu_mq_sot_gs and can_use(Boomerang)) or can_use(Hookshot)"
+                can_play(Song_of_Time) or (logic_jabu_mq_sot_gs and can_use(Boomerang)) or can_use(Hookshot)",
+            "Jabu Jabus Belly MQ Pit Room Grass 1": "is_adult 
+                or (is_child and (Kokiri_Sword or (Sticks and can_shield) or can_use(Megaton_Hammer) or (Boomerang and logic_boomerang_boulders) or has_explosives)",
+            "Jabu Jabus Belly MQ Pit Room Grass 2": "is_adult 
+                or (is_child and (Kokiri_Sword or (Sticks and can_shield) or can_use(Megaton_Hammer) or (Boomerang and logic_boomerang_boulders) or has_explosives)",
         },
         "exits": {
             "Jabu Jabus Belly Depths": "(can_use(Boomerang) or can_gdv) and can_use(Slingshot)",
@@ -132,7 +142,10 @@
             "Jabu Jabus Belly MQ After Big Octo Cow Wonderitem": "True",
             "Jabu Jabus Belly MQ Wiggler Platforms Cow Wonderitem": "True",
             "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
-            "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True"
+            "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True",
+            "Jabu Jabus Belly MQ After Big Octo Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ After Big Octo Grass 2": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Wiggler Platforms Grass": "can_mow_the_lawn"
         }
     },
     {
@@ -161,6 +174,8 @@
             "Jabu Jabus Belly MQ Near Boss Pot": "True",
             "Jabu Jabus Belly MQ GS Near Boss": "
                 can_use(Boomerang) or (logic_jabu_near_boss_ranged and can_use(Hookshot))",
+            "Jabu Jabus Belly MQ Before Boss Grass 1": "can_mow_the_lawn",
+            "Jabu Jabus Belly MQ Before Boss Grass 2": "can_mow_the_lawn",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

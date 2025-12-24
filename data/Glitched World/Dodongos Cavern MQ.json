@@ -111,7 +111,11 @@
         "region_name": "Dodongos Cavern Compass Chest Room",
         "dungeon": "Dodongos Cavern",
         "locations": {
-            "Dodongos Cavern MQ Compass Chest": "can_kill_dodongo_with_bomb_flower"
+            "Dodongos Cavern MQ Compass Chest": "can_kill_dodongo_with_bomb_flower",
+            "Dodongos Cavern Compass Room Grass 1": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 2": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 3": "can_mow_the_lawn",
+            "Dodongos Cavern Compass Room Grass 4": "can_mow_the_lawn"
         },
         "exits": {
             "Dodongos Cavern Torch Puzzle Lower": "can_kill_dodongo_with_bomb_flower",
@@ -266,11 +270,7 @@
             "Dodongos Cavern MQ Poes Room Crate 6": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate 7": "can_break_crate or Progressive_Strength_Upgrade",
             "Dodongos Cavern MQ Poes Room Crate Near Bomb Flower": "
-                can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire) or can_gdv",
-            "Dodongos Cavern MQ GS Scrub Room": "
-                (here(can_use(Bow)) or Progressive_Strength_Upgrade or
-                    can_use(Dins_Fire) or has_explosives or can_gdv) and
-                (can_use(Hookshot) or can_use(Boomerang))"
+                can_break_crate or Progressive_Strength_Upgrade or can_use(Bow) or can_use(Dins_Fire) or can_gdv"
         },
         "exits": {
             "Dodongos Cavern Hall Before Lower Lizalfos": "can_kill_lizalfos", # Reverse access to the lower right side
@@ -282,7 +282,12 @@
     },
     {
         "region_name": "Dodongos Cavern Lower Scrubs Room",
-        "dungeon": "Dodongos Cavern"
+        "dungeon": "Dodongos Cavern",
+        "locations": {
+            "Dodongos Cavern Scrub Room Grass 1": "can_mow_the_lawn",
+            "Dodongos Cavern Scrub Room Grass 2": "can_mow_the_lawn",
+            "Dodongos Cavern MQ GS Scrub Room": "can_use(Hookshot) or can_use(Boomerang)"
+        }
     },
     {
         "region_name": "Dodongos Cavern Mouth",
