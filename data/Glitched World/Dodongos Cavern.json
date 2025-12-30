@@ -15,6 +15,8 @@
         "locations": {
             "Dodongos Cavern Map Chest": "can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade",
             "Dodongos Cavern Deku Scrub Lobby": "can_stun_deku or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Gossip Stone Drop": "can_play(Song_of_Time) and
+                here(can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade)",
             "Dodongos Cavern Gossip Stone": "here(can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade) and
@@ -120,7 +122,7 @@
             "Dodongos Cavern Staircase Pot 4": "True",
 
             "Dodongos Cavern First Bridge Grass": "can_mow_the_lawn",
-            
+
 
             "Dodongos Cavern Blade Room Behind Block Recovery Heart": "True",
             "Dodongos Cavern Bomb Flower Platform Chest": "True",
@@ -201,7 +203,7 @@
             "Dodongos Cavern Lobby": "True",
             "Dodongos Cavern Back Side Room": "can_break_mud_wall or can_gdv",
             "Dodongos Cavern Before Boss": "True"
-            
+
         }
     },
     {
