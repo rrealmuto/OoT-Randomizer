@@ -119,7 +119,7 @@
     {
         "type": "patch_bytes",
         "target_file_id": 1026,
-        "target_file_offset": 78568,
+        "target_file_offset": 78572,
         "data": [200,200,200],
         "comment": "Patch the path in HF"
     },
