@@ -192,6 +192,7 @@ bool check_skeleton(z64_mem_obj_t model, int hierarchy, Limb* skeleton) {
     // Get the limb this points to
     int limb = *(int*)(data + limbPointer) & 0x00FFFFFF;
     // Go through each limb in the table
+    bool hasVanillaSkeleton = true;
     for (int i = 1; i < 21; i++) {
         int offset = limb + i * 0x10;
         // X, Y, Z components are 2 bytes each

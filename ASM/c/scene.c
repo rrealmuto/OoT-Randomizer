@@ -27,6 +27,8 @@ void get_current_scene_setup_number() {
         }
 
         if (cmd->code == 0x18) { //Alternate header command
+            // Get segment number from alternate header command
+            uint8_t segment = (cmd->data2 << 4) >> 28;
             // Get segment offset from alternate header command
             uint32_t segment_offset = (cmd->data2 & 0x00FFFFFF);
             // Get a pointer to the alternate header list

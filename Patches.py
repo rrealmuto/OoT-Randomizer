@@ -22,7 +22,7 @@ from LocationList import business_scrubs
 from Messages import read_messages, find_message_index, update_message_by_id, read_shop_items, update_warp_song_text, \
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
-        get_message_by_id, TextCode, new_messages, COLOR_MAP
+        get_message_by_id, TextCode, new_messages, COLOR_MAP, update_map_compass_messages
 from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from Rom import Rom
@@ -496,7 +496,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         world.settings.shuffle_song_items != 'song'
         or world.distribution.songs_as_items
         or any(name in song_list and record.count for name, record in world.settings.starting_items.items())
-        or any(name in song_list and count for name, count in world.randomized_starting_items.items())
+        or (world.settings.random_starting_items_count > 0 and 'songs' not in world.settings.random_starting_items_exclude)
         or world.settings.shuffle_individual_ocarina_notes
     )
     if songs_as_items:
@@ -1885,55 +1885,13 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # give dungeon items the correct messages
     add_item_messages(messages, shop_items, world)
-    if world.settings.enhance_map_compass and world.settings.shuffle_mapcompass != 'remove' and world.settings.world_count == 1:
-        dungeon_list = {
-            #                      dungeon name                      compass map
-            'Deku Tree':          ("the \x05\x42Deku Tree",          0x62, 0x88),
-            'Dodongos Cavern':    ("\x05\x41Dodongo\'s Cavern",      0x63, 0x89),
-            'Jabu Jabus Belly':   ("\x05\x43Jabu Jabu\'s Belly",     0x64, 0x8a),
-            'Forest Temple':      ("the \x05\x42Forest Temple",      0x65, 0x8b),
-            'Fire Temple':        ("the \x05\x41Fire Temple",        0x7c, 0x8c),
-            'Water Temple':       ("the \x05\x43Water Temple",       0x7d, 0x8e),
-            'Spirit Temple':      ("the \x05\x46Spirit Temple",      0x7e, 0x8f),
-            'Ice Cavern':         ("the \x05\x44Ice Cavern",         0x87, 0x92),
-            'Bottom of the Well': ("the \x05\x45Bottom of the Well", 0xa2, 0xa5),
-            'Shadow Temple':      ("the \x05\x45Shadow Temple",      0x7f, 0xa3),
-        }
-        for dungeon in world.dungeons:
-            if dungeon.name in ('Gerudo Training Ground', 'Ganons Castle'):
-                pass
-            elif dungeon.name in ('Bottom of the Well', 'Ice Cavern'):
-                dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
-                map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
-
-                if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
-                    update_message_by_id(messages, map_id, map_message, allow_duplicates=True)
-            else:
-                dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
-                if world.entrance_rando_reward_hints:
-                    vanilla_reward = world.get_location(dungeon.vanilla_boss_name).vanilla_item
-                    vanilla_reward_location = world.hinted_dungeon_reward_locations[vanilla_reward]
-                    if vanilla_reward_location is None:
-                        area = HintArea.ROOT
-                    else:
-                        area = HintArea.at(vanilla_reward_location)
-                    area = GossipText(area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [area.color], prefix='', capitalize=False)
-                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
-                else:
-                    boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))
-                    dungeon_reward = boss_location.item.name
-                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01It holds the \x05{COLOR_MAP[REWARD_COLORS[dungeon_reward]]}{dungeon_reward}\x05\x40!\x09"
-                if world.settings.shuffle_dungeon_rewards != 'dungeon':
-                    update_message_by_id(messages, compass_id, compass_message, allow_duplicates=True)
-                if world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12:
-                    map_message = f"\x13\x76\x08You found the \x05\x41Dungeon Map\x05\x40\x01for {dungeon_name}\x05\x40!\x01It\'s {'masterful' if world.dungeon_mq[dungeon.name] else 'ordinary'}!\x09"
-                    update_message_by_id(messages, map_id, map_message, allow_duplicates=True)
+    update_map_compass_messages(messages, world)
 
     # Set hints on the altar inside ToT
     rom.write_int16(0xE2ADB2, 0x707A)
     rom.write_int16(0xE2ADB6, 0x7057)
     build_altar_hints(world, messages,
-                      include_rewards='altar' in world.settings.misc_hints and not world.settings.enhance_map_compass,
+                      include_rewards='altar' in world.settings.misc_hints and 'compass_reward' not in world.settings.enhance_map_compass,
                       include_wincons='altar' in world.settings.misc_hints)
 
     if world.settings.tokensanity == 'off':
@@ -1946,13 +1904,16 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
 
     # Fix Dead Hand spawn coordinates in vanilla shadow temple and bottom of the well to be the exact centre of the room
     # This prevents the extremely small possibility of Dead Hand spawning outside of collision
+    # He can still spawn outside of the room if the xz spawn rolls in the specific corner of the room where there is rubble, so
+    # also elevate its y coordinate. This way, Dead Hand will correctly be projected down at the ground for all possible values.
     if not world.dungeon_mq['Shadow Temple']:
-        rom.write_int16(0x27DC0AE, 0xF67E) # x-coordinate spawn in shadow temple
-        rom.write_int16(0x27DC0B2, 0xFE6B) # z-coordinate spawn in shadow temple
+        rom.write_int16(0x27DC0AE, 0xF67E) # x-coordinate spawn in shadow temple, original value is -2424
+        rom.write_int16(0x27DC0B0, 0x0003) # y-coordinate spawn in shadow temple, original value is -63
+        rom.write_int16(0x27DC0B2, 0xFE6B) # z-coordinate spawn in shadow temple, original value is -413
     if not world.dungeon_mq['Bottom of the Well']:
-        rom.write_int16(0x32FB08E, 0x0500) # x-coordinate spawn in bottom of the well
-        rom.write_int16(0x32FB092, 0x00D2) # z-coordinate spawn in bottom of the well
-
+        rom.write_int16(0x32FB08E, 0x0500) # x-coordinate spawn in bottom of the well, original value is 1276
+        rom.write_int16(0x32FB090, 0x0032) # y-coordinate spawn in bottom of the well, original value is -16
+        rom.write_int16(0x32FB092, 0x00D2) # z-coordinate spawn in bottom of the well, original value is 209
     # update happy mask shop to use new SOLD OUT text id
     rom.write_int16(shop_item_file.start + 0x1726, shop_items[0x26].description_message)
 
@@ -2757,7 +2718,7 @@ def boss_reward_index(item: Item) -> int:
 
 def configure_dungeon_info(rom: Rom, world: World) -> None:
     mq_enable = (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12)
-    enhance_map_compass = world.settings.enhance_map_compass
+    enhance_map_mq = 'map_mq' in world.settings.enhance_map_compass
 
     codes = ['Deku Tree', 'Dodongos Cavern', 'Jabu Jabus Belly', 'Forest Temple',
              'Fire Temple', 'Water Temple', 'Spirit Temple', 'Shadow Temple',
@@ -2782,12 +2743,123 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
     dungeon_is_mq = [int(world.dungeon_mq.get(c, False)) for c in codes]
     dungeon_precompleted = [int(world.precompleted_dungeons.get(c, False)) for c in codes]
 
+    dungeon_entrances_list = ['KF Outside Deku Tree -> Deku Tree Lobby', 'Death Mountain -> Dodongos Cavern Beginning', 'Zoras Fountain -> Jabu Jabus Belly Beginning',
+                              'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby', 'DMC Fire Temple Entrance -> Fire Temple Lower', 'Lake Hylia -> Water Temple Lobby',
+                              'Graveyard Warp Pad Region -> Shadow Temple Entryway', 'Desert Colossus -> Spirit Temple Lobby', 'Kakariko Village -> Bottom of the Well',
+                              'ZF Ice Ledge -> Ice Cavern Beginning', 'Gerudo Fortress -> Gerudo Training Ground Lobby', 'Ganons Castle Ledge -> Ganons Castle Lobby']
+
+    dungeon_names_list = ["Deku Tree", "Dodongo's Cavern", "Jabu Jabu's Belly",
+                          "Forest Temple", "Fire Temple", "Water Temple",
+                          "Shadow Temple", "Spirit Temple", "Inside Ganon's Castle"]
+
+    dungeon_info = []
+    dungeon_entrances = bytearray()
+    boss_index = []
+    if 'map_dungeon_location' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_entrances != 'off':
+        dungeon_info.append(1)
+        for dungeon_entrance in dungeon_entrances_list:
+            connected_region = world.get_entrance(dungeon_entrance).connected_region
+            area = HintArea.at(connected_region)
+            dungeon_entrances += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
+            if (area in [HintArea.GERUDO_TRAINING_GROUND, HintArea.ICE_CAVERN, HintArea.BOTTOM_OF_THE_WELL]):
+                boss_index.append(-1)
+            else:
+                boss_index.append(dungeon_names_list.index(area.short_name))
+    else:
+        dungeon_info.append(0)
+        boss_index = [0, 1, 2, 3, 4, 5, 6, 7, -1, -1, -1, 8]
+
+    bosses_entrances_list = ['Deku Tree Before Boss -> Queen Gohma Boss Room', 'Dodongos Cavern Before Boss -> King Dodongo Boss Room', 'Jabu Jabus Belly Before Boss -> Barinade Boss Room',
+                              'Forest Temple Before Boss -> Phantom Ganon Boss Room', 'Fire Temple Before Boss -> Volvagia Boss Room', 'Water Temple Before Boss -> Morpha Boss Room',
+                              'Shadow Temple Before Boss -> Bongo Bongo Boss Room', 'Spirit Temple Before Boss -> Twinrova Boss Room', 'Ganons Castle Main -> Ganons Castle Tower']
+
+    boss_short_names = {'Queen Gohma Boss Room': 'Gohma',
+                        'King Dodongo Boss Room': 'KD',
+                        'Barinade Boss Room': 'Bari',
+                        'Phantom Ganon Boss Room': 'PG',
+                        'Volvagia Boss Room': 'Volv',
+                        'Morpha Boss Room': 'Morpha',
+                        'Bongo Bongo Boss Room': 'Bongo',
+                        'Twinrova Boss Room': 'Twin',
+                        'Ganons Castle Tower': 'Ganon'}
+
+    boss_lobby_list = ['Queen Gohma Boss Room', 'King Dodongo Boss Room', 'Barinade Boss Room',
+                       'Phantom Ganon Boss Room', 'Volvagia Boss Room', 'Morpha Boss Room',
+                       'Bongo Bongo Boss Room', 'Twinrova Boss Room', 'Ganons Castle Tower']
+
+    bosses = bytearray()
+    if 'compass_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
+        dungeon_info.append(1)
+        # For the Dpad left menu, we want each boss on the same line as the corresponding dungeon.
+        for index in boss_index:
+            if index < 0:
+                bosses += "-".encode('ascii').ljust(0x8) + b'\0'
+            else:
+                connected_region = world.get_entrance(bosses_entrances_list[index]).connected_region
+                bosses += boss_short_names[connected_region.name].encode('ascii').ljust(0x8) + b'\0'
+        # But on Dpad right, we just list by the dungeons in their usual order.
+        for boss_entrance in bosses_entrances_list:
+            connected_region = world.get_entrance(boss_entrance).connected_region
+            bosses += boss_short_names[connected_region.name].encode('ascii').ljust(0x8) + b'\0'
+    else:
+        dungeon_info.append(0)
+
+    dungeon_map_index = {'Deku': 0,
+                        'DC': 1,
+                        'Jabu': 2,
+                        'Forest': 3,
+                        'Fire': 4,
+                        'Water': 5,
+                        'Shadow': 7,
+                        'Spirit': 6,
+                        'BotW': 8,
+                        'Ice': 9,
+                        'GTG': 64, #Fake value to indicate no map
+                        'Ganon': 64}
+
+    for dungeon_entrance in dungeon_entrances_list:
+        connected_region = world.get_entrance(dungeon_entrance).connected_region
+        area = HintArea.at(connected_region)
+        dungeon_info.append(dungeon_map_index[area.shorter_name])
+
+    # Mixed pools
+    # In this case, the dungeon location should point to the world area instead.
+    #dungeon_entrances_reverse_list = ['Deku Tree Lobby -> KF Outside Deku Tree', 'Dodongos Cavern Beginning -> Death Mountain', 'Jabu Jabus Belly Beginning -> Zoras Fountain',
+    #                                'Forest Temple Lobby -> SFM Forest Temple Entrance Ledge', 'Fire Temple Lower -> DMC Fire Temple Entrance', 'Water Temple Lobby -> Lake Hylia',
+    #                                'Shadow Temple Entryway -> Graveyard Warp Pad Region', 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby', 'Bottom of the Well -> Kakariko Village',
+    #                                'Ice Cavern Beginning -> ZF Ice Ledge', 'Gerudo Training Ground Lobby -> Gerudo Fortress', 'Ganons Castle Lobby -> Castle Grounds From Ganons Castle']
+    #if 'map_dungeon_location' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_entrances != 'off':
+    #    dungeon_info.append(2)
+    #    areas = []
+        # This won't work for Decoupled.
+    #    for dungeon_entrance_reverse in dungeon_entrances_reverse_list:
+    #        connected_region = world.get_entrance(dungeon_entrance_reverse).connected_region
+    #        area = HintArea.at(connected_region)
+    #        areas.append(area)
+    #        # Every area probably needs a shorter name.
+    #        dungeon_entrances += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
+    #else:
+    #    dungeon_info.append(0)
+
+    #boss_lobby_list = ['Queen Gohma Boss Room', 'King Dodongo Boss Room', 'Barinade Boss Room',
+    #                   'Phantom Ganon Boss Room', 'Volvagia Boss Room', 'Morpha Boss Room',
+    #                   'Bongo Bongo Boss Room', 'Twinrova Boss Room', 'Ganons Castle Tower']
+
+    # Same for bosses
+    #if 'map_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
+    #    dungeon_info.append(2)
+    #    for boss_region in boss_lobby_list:
+    #        area = HintArea.at(world.get_region(boss_region))
+    #        bosses += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
+    #else:
+    #    dungeon_info.append(0)
+
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_ENABLE'), 2)
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_ENABLE'), int(mq_enable))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_NEED_MAP'), int(enhance_map_compass))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or enhance_map_compass))
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if world.entrance_rando_reward_hints else 1) if enhance_map_compass and world.settings.shuffle_dungeon_rewards != 'dungeon' else 0)
-    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not enhance_map_compass and world.settings.shuffle_dungeon_rewards != 'dungeon'))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_MQ_NEED_MAP'), int(enhance_map_mq))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_ENABLE'), int('altar' in world.settings.misc_hints or 'compass_reward' in world.settings.enhance_map_compass))
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_COMPASS'), (2 if world.entrance_rando_reward_hints else 1) if 'compass_reward' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_rewards != 'dungeon' else 0)
+    rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_NEED_ALTAR'), int(not 'compass_reward' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_rewards != 'dungeon'))
     rom.write_int32(rom.sym('CFG_DUNGEON_INFO_REWARD_SUMMARY_ENABLE'), int(not world.entrance_rando_reward_hints))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARDS'), dungeon_rewards)
     rom.write_bytes(rom.sym('CFG_DUNGEON_IS_MQ'), dungeon_is_mq)
@@ -2795,6 +2867,9 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
     rom.write_byte(rom.sym('CFG_DUNGEON_INFO_REWARD_WORLDS_ENABLE'), int(world.settings.world_count > 1 and world.settings.shuffle_dungeon_rewards in ('regional', 'overworld', 'any_dungeon', 'anywhere')))
     rom.write_bytes(rom.sym('CFG_DUNGEON_REWARD_WORLDS'), dungeon_reward_worlds)
     rom.write_bytes(rom.sym('CFG_DUNGEON_PRECOMPLETED'), dungeon_precompleted)
+    rom.write_bytes(rom.sym('CFG_DUNGEON_BOSS_INFO'), dungeon_info)
+    rom.write_bytes(rom.sym('CFG_DUNGEON_ENTRANCES'), dungeon_entrances)
+    rom.write_bytes(rom.sym('CFG_BOSSES'), bosses)
 
 
 # Patch rupee towers (circular patterns of rupees) to include their flag in their actor initialization data z rotation.

@@ -91,7 +91,7 @@
                 (((Small_Key_Shadow_Temple, 2) and not (shadow_temple_shortcuts or glitch_clipping)) or
                     (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Boat Dock": "shadow_temple_shortcuts or glitch_clipping",
-            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and glitch_clipipng and (
+            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and glitch_clipping and (
                     (is_adult and can_live_dmg(0.5,False,False) and has_bombchus) or
                     (is_adult and glitch_shadow_boat_skull_adult_nothing and can_shield)
                 )"

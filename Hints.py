@@ -1,4 +1,5 @@
 from __future__ import annotations
+import copy
 import itertools
 import json
 import logging
@@ -8,7 +9,7 @@ import sys
 import urllib.request
 from collections import OrderedDict, defaultdict
 from collections.abc import Callable, Iterable
-from enum import Enum
+from enum import Enum, auto
 from typing import TYPE_CHECKING, Optional
 from urllib.error import URLError, HTTPError
 
@@ -375,46 +376,46 @@ class HintAreaNotFound(RuntimeError):
     pass
 
 class HintArea(Enum):
-    # internal name          prepositions        display name                  short name                color         internal dungeon name
+    # internal name          prepositions        display name                  short name                color         internal dungeon name          shorter name
     #                        vague     clear
-    ROOT                   = 'in',     'in',     "Link's pocket",              'Free',                   'White',      None
-    HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Hyrule Field',           'Light Blue', None
-    LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Lon Lon Ranch',          'Light Blue', None
-    MARKET                 = 'in',     'in',     'the Market',                 'Market',                 'Light Blue', None
-    TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Temple of Time',         'Light Blue', None
-    CASTLE_GROUNDS         = 'on',     'on',     'the Castle Grounds',         None,                     'Light Blue', None # required for warp songs
-    HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Hyrule Castle',          'Light Blue', None
-    OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     "Outside Ganon's Castle", 'Light Blue', None
-    INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      "Inside Ganon's Castle",  'Light Blue', 'Ganons Castle'
-    GANONDORFS_CHAMBER     = 'in',     'in',     "Ganondorf's Chamber",        "Ganondorf's Chamber",    'Light Blue', None
-    KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              "Kokiri Forest",          'Green',      None
-    DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              "Deku Tree",              'Green',      'Deku Tree'
-    LOST_WOODS             = 'in',     'in',     'the Lost Woods',             "Lost Woods",             'Green',      None
-    SACRED_FOREST_MEADOW   = 'at',     'at',     'the Sacred Forest Meadow',   "Sacred Forest Meadow",   'Green',      None
-    FOREST_TEMPLE          = 'in',     'in',     'the Forest Temple',          "Forest Temple",          'Green',      'Forest Temple'
-    DEATH_MOUNTAIN_TRAIL   = 'on',     'on',     'the Death Mountain Trail',   "Death Mountain Trail",   'Red',        None
-    DODONGOS_CAVERN        = 'within', 'in',     "Dodongo's Cavern",           "Dodongo's Cavern",       'Red',        'Dodongos Cavern'
-    GORON_CITY             = 'in',     'in',     'Goron City',                 "Goron City",             'Red',        None
-    DEATH_MOUNTAIN_CRATER  = 'in',     'in',     'the Death Mountain Crater',  "Death Mountain Crater",  'Red',        None
-    FIRE_TEMPLE            = 'on',     'in',     'the Fire Temple',            "Fire Temple",            'Red',        'Fire Temple'
-    ZORA_RIVER             = 'at',     'at',     "Zora's River",               "Zora's River",           'Blue',       None
-    ZORAS_DOMAIN           = 'at',     'at',     "Zora's Domain",              "Zora's Domain",          'Blue',       None
-    ZORAS_FOUNTAIN         = 'at',     'at',     "Zora's Fountain",            "Zora's Fountain",        'Blue',       None
-    JABU_JABUS_BELLY       = 'in',     'inside', "Jabu Jabu's Belly",          "Jabu Jabu's Belly",      'Blue',       'Jabu Jabus Belly'
-    ICE_CAVERN             = 'inside', 'in'    , 'the Ice Cavern',             "Ice Cavern",             'Blue',       'Ice Cavern'
-    LAKE_HYLIA             = 'at',     'at',     'Lake Hylia',                 "Lake Hylia",             'Blue',       None
-    WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           "Water Temple",           'Blue',       'Water Temple'
-    KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           "Kakariko Village",       'Pink',       None
-    BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     "Bottom of the Well",     'Pink',       'Bottom of the Well'
-    GRAVEYARD              = 'in',     'in',     'the Graveyard',              "Graveyard",              'Pink',       None
-    SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          "Shadow Temple",          'Pink',       'Shadow Temple'
-    GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              "Gerudo Valley",          'Yellow',     None
-    GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          "Gerudo's Fortress",      'Yellow',     None
-    THIEVES_HIDEOUT        = 'in',     'in',     "the Thieves' Hideout",       "Thieves' Hideout",       'Yellow',     None
-    GERUDO_TRAINING_GROUND = 'within', 'on',     'the Gerudo Training Ground', "Gerudo Training Ground", 'Yellow',     'Gerudo Training Ground'
-    HAUNTED_WASTELAND      = 'in',     'in',     'the Haunted Wasteland',      "Haunted Wasteland",      'Yellow',     None
-    DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        "Desert Colossus",        'Yellow',     None
-    SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          "Spirit Temple",          'Yellow',     'Spirit Temple'
+    ROOT                   = 'in',     'in',     "Link's pocket",              'Free',                   'White',      None,                          None
+    HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Hyrule Field',           'Light Blue', None,                          'Field'
+    LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Lon Lon Ranch',          'Light Blue', None,                          'Ranch'
+    MARKET                 = 'in',     'in',     'the Market',                 'Market',                 'Light Blue', None,                          'Market'
+    TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Temple of Time',         'Light Blue', None,                          'ToT'
+    CASTLE_GROUNDS         = 'on',     'on',     'the Castle Grounds',         None,                     'Light Blue', None,                          'Castle' # required for warp songs
+    HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Hyrule Castle',          'Light Blue', None,                          'HC'
+    OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     "Outside Ganon's Castle", 'Light Blue', None,                          'OGC'
+    INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      "Inside Ganon's Castle",  'Light Blue', 'Ganons Castle',               'Ganon'
+    GANONDORFS_CHAMBER     = 'in',     'in',     "Ganondorf's Chamber",        "Ganondorf's Chamber",    'Light Blue', None,                          None
+    KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              "Kokiri Forest",          'Green',      None,                          'Kokiri'
+    DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              "Deku Tree",              'Green',      'Deku Tree',                   'Deku'
+    LOST_WOODS             = 'in',     'in',     'the Lost Woods',             "Lost Woods",             'Green',      None,                          'Woods'
+    SACRED_FOREST_MEADOW   = 'at',     'at',     'the Sacred Forest Meadow',   "Sacred Forest Meadow",   'Green',      None,                          'Meadow'
+    FOREST_TEMPLE          = 'in',     'in',     'the Forest Temple',          "Forest Temple",          'Green',      'Forest Temple',               'Forest'
+    DEATH_MOUNTAIN_TRAIL   = 'on',     'on',     'the Death Mountain Trail',   "Death Mountain Trail",   'Red',        None,                          'Trail'
+    DODONGOS_CAVERN        = 'within', 'in',     "Dodongo's Cavern",           "Dodongo's Cavern",       'Red',        'Dodongos Cavern',             'DC'
+    GORON_CITY             = 'in',     'in',     'Goron City',                 "Goron City",             'Red',        None,                          'Goron'
+    DEATH_MOUNTAIN_CRATER  = 'in',     'in',     'the Death Mountain Crater',  "Death Mountain Crater",  'Red',        None,                          'Crater'
+    FIRE_TEMPLE            = 'on',     'in',     'the Fire Temple',            "Fire Temple",            'Red',        'Fire Temple',                 'Fire'
+    ZORA_RIVER             = 'at',     'at',     "Zora's River",               "Zora's River",           'Blue',       None,                          'River'
+    ZORAS_DOMAIN           = 'at',     'at',     "Zora's Domain",              "Zora's Domain",          'Blue',       None,                          'Domain'
+    ZORAS_FOUNTAIN         = 'at',     'at',     "Zora's Fountain",            "Zora's Fountain",        'Blue',       None,                          'Fountain'
+    JABU_JABUS_BELLY       = 'in',     'inside', "Jabu Jabu's Belly",          "Jabu Jabu's Belly",      'Blue',       'Jabu Jabus Belly',            'Jabu'
+    ICE_CAVERN             = 'inside', 'in'    , 'the Ice Cavern',             "Ice Cavern",             'Blue',       'Ice Cavern',                  'Ice'
+    LAKE_HYLIA             = 'at',     'at',     'Lake Hylia',                 "Lake Hylia",             'Blue',       None,                          'Lake'
+    WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           "Water Temple",           'Blue',       'Water Temple',                'Water'
+    KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           "Kakariko Village",       'Pink',       None,                          'Kakariko'
+    BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     "Bottom of the Well",     'Pink',       'Bottom of the Well',          'BotW'
+    GRAVEYARD              = 'in',     'in',     'the Graveyard',              "Graveyard",              'Pink',       None,                          'GY'
+    SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          "Shadow Temple",          'Pink',       'Shadow Temple',               'Shadow'
+    GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              "Gerudo Valley",          'Yellow',     None,                          'Valley'
+    GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          "Gerudo's Fortress",      'Yellow',     None,                          'Fortress'
+    THIEVES_HIDEOUT        = 'in',     'in',     "the Thieves' Hideout",       "Thieves' Hideout",       'Yellow',     None,                          'Hideout'
+    GERUDO_TRAINING_GROUND = 'within', 'on',     'the Gerudo Training Ground', "Gerudo Training Ground", 'Yellow',     'Gerudo Training Ground',      'GTG'
+    HAUNTED_WASTELAND      = 'in',     'in',     'the Haunted Wasteland',      "Haunted Wasteland",      'Yellow',     None,                          'Wasteland'
+    DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        "Desert Colossus",        'Yellow',     None,                          'Colossus'
+    SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          "Spirit Temple",          'Yellow',     'Spirit Temple',               'Spirit'
 
     # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
@@ -496,6 +497,10 @@ class HintArea(Enum):
         return self.value[5]
 
     @property
+    def shorter_name(self) -> Optional[str]:
+        return self.value[6]
+
+    @property
     def is_dungeon(self) -> bool:
         return self.dungeon_name is not None
 
@@ -541,7 +546,14 @@ class HintArea(Enum):
             text = f'{self.preposition(clearer_hints)} {text}'
         return text
 
-def get_woth_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+
+class CheckedKind(Enum):
+    IMPORTANT_CHECK = auto()
+    ALWAYS = auto()
+    OTHER = auto()
+
+
+def get_woth_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     locations = spoiler.required_locations[world.id]
     locations = list(filter(lambda location:
         location.name not in checked
@@ -556,7 +568,7 @@ def get_woth_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
         return None
 
     location = random.choice(locations)
-    checked.add(location.name)
+    mark_checked(checked, location.name)
 
     hint_area = HintArea.at(location)
     if hint_area.is_dungeon:
@@ -564,20 +576,6 @@ def get_woth_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
     location_text = hint_area.text(world.settings.clearer_hints)
 
     return GossipText('%s is on the way of the hero.' % location_text, ['Light Blue'], [location.name], [location.item.name]), [location]
-
-
-def get_checked_areas(world: World, checked: set[str]) -> set[HintArea | str]:
-    def get_area_from_name(check: str) -> HintArea | str:
-        try:
-            location = world.get_location(check)
-        except Exception:
-            return check
-        # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
-        if location.type == 'Boss' and world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
-            return None
-        return HintArea.at(location)
-
-    return set(get_area_from_name(check) for check in checked)
 
 
 def get_goal_category(spoiler: Spoiler, world: World, goal_categories: dict[str, GoalCategory]) -> GoalCategory:
@@ -615,7 +613,7 @@ def get_goal_category(spoiler: Spoiler, world: World, goal_categories: dict[str,
     return goal_category
 
 
-def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_goal_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     goal_category = get_goal_category(spoiler, world, world.goal_categories)
 
     # check if no goals were generated (and thus no categories available)
@@ -667,7 +665,7 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
 
     location, goal_list = random.choice(list(required_location_reverse_map.items()))
     goal, world_id = random.choice(goal_list)
-    checked.add(location.name)
+    mark_checked(checked, location.name)
 
     # Make sure this wasn't the last hintable location for other goals.
     # If so, set weights to zero. This is important for one-hint-per-goal.
@@ -705,18 +703,29 @@ def get_goal_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintRetu
     return GossipText('%s is on %s %s.' % (location_text, player_text, goal_text), ['Light Blue', goal.color], [location.name], [location.item.name]), [location]
 
 
-def get_barren_hint(spoiler: Spoiler, world: World, checked: set[str], all_checked: set[str]) -> HintReturn:
+def get_barren_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     if not hasattr(world, 'get_barren_hint_prev'):
         world.get_barren_hint_prev = RegionRestriction.NONE
 
-    checked_areas = get_checked_areas(world, checked)
+    def get_area_from_name(check: HintArea | str) -> HintArea | str:
+        try:
+            location = world.get_location(check)
+        except Exception:
+            return check
+        # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
+        if location.type == 'Boss' and world.settings.shuffle_dungeon_rewards in ('vanilla', 'reward'):
+            return None
+        return HintArea.at(location)
+
+    checked_areas = {get_area_from_name(check) for check, kinds in checked.items() if any(kind is not CheckedKind.ALWAYS for kind in kinds)}
+
     areas = list(filter(lambda area:
         area not in checked_areas
         and str(area) not in world.hint_type_overrides['barren']
         and not world.precompleted_dungeons.get(area.dungeon_name, False)
         and not (world.barren_dungeon >= world.hint_dist_user['dungeons_barren_limit'] and world.empty_areas[area]['dungeon'])
         and any(
-            location.name not in all_checked
+            location.name not in checked
             and location.name not in world.hint_exclusions
             and location.name not in hint_exclusions(world)
             and HintArea.at(location) == area
@@ -760,17 +769,17 @@ def get_barren_hint(spoiler: Spoiler, world: World, checked: set[str], all_check
     if world.empty_areas[area]['dungeon']:
         world.barren_dungeon += 1
 
-    checked.add(area)
+    mark_checked(checked, area)
 
     return GossipText("plundering %s is a foolish choice." % area.text(world.settings.clearer_hints), ['Pink']), None
 
 
-def is_checked(locations: Iterable[Location], checked: set[HintArea | str]) -> bool:
+def is_checked(locations: Iterable[Location], checked: dict[HintArea | str, set[CheckedKind]], *, ignore: Iterable[CheckedKind] = ()) -> bool:
     for location in locations:
-        if location.name in checked:
+        if any(kind not in ignore for kind in checked.get(location.name, set())):
             return True
         hint_area = HintArea.at(location)
-        if hint_area in checked:
+        if any(kind not in ignore for kind in checked.get(hint_area, set())):
             return True
         if location.world.precompleted_dungeons.get(hint_area.dungeon_name, False):
             # don't hint locations in precompleted dungeons
@@ -778,7 +787,11 @@ def is_checked(locations: Iterable[Location], checked: set[HintArea | str]) -> b
     return False
 
 
-def get_good_item_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def mark_checked(checked: dict[HintArea | str, set[CheckedKind]], check: HintArea | str, kind: CheckedKind = CheckedKind.OTHER) -> None:
+    checked.setdefault(check, set()).add(kind)
+
+
+def get_good_item_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     locations = list(filter(lambda location:
         not is_checked([location], checked)
         and ((location.item.majoritem
@@ -794,7 +807,7 @@ def get_good_item_hint(spoiler: Spoiler, world: World, checked: set[str]) -> Hin
         return None
 
     location = random.choice(locations)
-    checked.add(location.name)
+    mark_checked(checked, location.name)
 
     item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
     hint_area = HintArea.at(location)
@@ -806,7 +819,7 @@ def get_good_item_hint(spoiler: Spoiler, world: World, checked: set[str]) -> Hin
         return GossipText('#%s# can be found %s.' % (item_text, location_text), ['Green', 'Red'], [location.name], [location.item.name]), [location]
 
 
-def get_specific_item_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_specific_item_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     if len(world.named_item_pool) == 0:
         logger = logging.getLogger('')
         logger.info("Named item hint requested, but pool is empty.")
@@ -847,7 +860,7 @@ def get_specific_item_hint(spoiler: Spoiler, world: World, checked: set[str]) ->
                 return None
 
         location = random.choice(locations)
-        checked.add(location.name)
+        mark_checked(checked, location.name)
         item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
 
         hint_area = HintArea.at(location)
@@ -928,7 +941,7 @@ def get_specific_item_hint(spoiler: Spoiler, world: World, checked: set[str]) ->
                 return None
 
         location = random.choice(locations)
-        checked.add(location.name)
+        mark_checked(checked, location.name)
         item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
 
         hint_area = HintArea.at(location)
@@ -943,7 +956,7 @@ def get_specific_item_hint(spoiler: Spoiler, world: World, checked: set[str]) ->
             return GossipText('#%s# can be found %s.' % (item_text, location_text), ['Green', 'Red'], [location.name], [location.item.name]), [location]
 
 
-def get_random_location_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_random_location_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     locations = list(filter(lambda location:
         not is_checked([location], checked)
         and location.item.type not in ('Drop', 'Event', 'Shop')
@@ -957,7 +970,7 @@ def get_random_location_hint(spoiler: Spoiler, world: World, checked: set[str]) 
         return None
 
     location = random.choice(locations)
-    checked.add(location.name)
+    mark_checked(checked, location.name)
     item_text = get_hint(get_item_generic_name(location.item), world.settings.clearer_hints).text
 
     hint_area = HintArea.at(location)
@@ -969,9 +982,9 @@ def get_random_location_hint(spoiler: Spoiler, world: World, checked: set[str]) 
         return GossipText('#%s# can be found %s.' % (item_text, location_text), ['Green', 'Red'], [location.name], [location.item.name]), [location]
 
 
-def get_specific_hint(spoiler: Spoiler, world: World, checked: set[str], hint_type: str) -> HintReturn:
+def get_specific_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]], hint_type: str) -> HintReturn:
     hint_group = get_hint_group(hint_type, world)
-    hint_group = list(filter(lambda hint: not is_checked([world.get_location(hint.name)], checked), hint_group))
+    hint_group = list(filter(lambda hint: not is_checked([world.get_location(hint.name)], checked, ignore={CheckedKind.IMPORTANT_CHECK}), hint_group))
     if not hint_group:
         return None
 
@@ -980,7 +993,7 @@ def get_specific_hint(spoiler: Spoiler, world: World, checked: set[str], hint_ty
     if world.hint_dist_user['upgrade_hints'] in ('on', 'limited'):
         upgrade_list = get_upgrade_hint_list(world, [hint.name])
         upgrade_list = list(filter(
-            lambda upgrade: not is_checked([world.get_location(location) for location in get_multi(upgrade.name).locations], checked),
+            lambda upgrade: not is_checked([world.get_location(location) for location in get_multi(upgrade.name).locations], checked, ignore={CheckedKind.IMPORTANT_CHECK}),
             upgrade_list,
         ))
 
@@ -998,7 +1011,7 @@ def get_specific_hint(spoiler: Spoiler, world: World, checked: set[str], hint_ty
                 return get_specific_multi_hint(spoiler, world, checked, hint)
 
     location = world.get_location(hint.name)
-    checked.add(location.name)
+    mark_checked(checked, location.name)
 
     if location.name in world.hint_text_overrides:
         location_text = world.hint_text_overrides[location.name]
@@ -1011,26 +1024,26 @@ def get_specific_hint(spoiler: Spoiler, world: World, checked: set[str], hint_ty
     return GossipText('%s #%s#.' % (location_text, item_text), ['Red', 'Green'], [location.name], [location.item.name]), [location]
 
 
-def get_sometimes_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_sometimes_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     return get_specific_hint(spoiler, world, checked, 'sometimes')
 
 
-def get_song_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_song_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     return get_specific_hint(spoiler, world, checked, 'song')
 
 
-def get_overworld_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_overworld_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     return get_specific_hint(spoiler, world, checked, 'overworld')
 
 
-def get_dungeon_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_dungeon_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     return get_specific_hint(spoiler, world, checked, 'dungeon')
 
 
-def get_random_multi_hint(spoiler: Spoiler, world: World, checked: set[str], hint_type: str) -> HintReturn:
+def get_random_multi_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]], hint_type: str) -> HintReturn:
     hint_group = get_hint_group(hint_type, world)
     multi_hints = list(filter(
-        lambda hint: not is_checked([world.get_location(location) for location in get_multi(hint.name).locations], checked),
+        lambda hint: not is_checked([world.get_location(location) for location in get_multi(hint.name).locations], checked, ignore={CheckedKind.IMPORTANT_CHECK}),
         hint_group,
     ))
 
@@ -1044,7 +1057,7 @@ def get_random_multi_hint(spoiler: Spoiler, world: World, checked: set[str], hin
 
         upgrade_list = get_upgrade_hint_list(world, multi.locations)
         upgrade_list = list(filter(
-            lambda upgrade: not is_checked([world.get_location(location) for location in get_multi(upgrade.name).locations], checked),
+            lambda upgrade: not is_checked([world.get_location(location) for location in get_multi(upgrade.name).locations], checked, ignore={CheckedKind.IMPORTANT_CHECK}),
             upgrade_list,
         ))
 
@@ -1059,12 +1072,12 @@ def get_random_multi_hint(spoiler: Spoiler, world: World, checked: set[str], hin
     return get_specific_multi_hint(spoiler, world, checked, hint)
 
 
-def get_specific_multi_hint(spoiler: Spoiler, world: World, checked: set[str], hint: Hint) -> HintReturn:
+def get_specific_multi_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]], hint: Hint) -> HintReturn:
     multi = get_multi(hint.name)
     locations = [world.get_location(location) for location in multi.locations]
 
     for location in locations:
-        checked.add(location.name)
+        mark_checked(checked, location.name)
 
     if hint.name in world.hint_text_overrides:
         multi_text = world.hint_text_overrides[hint.name]
@@ -1088,11 +1101,11 @@ def get_specific_multi_hint(spoiler: Spoiler, world: World, checked: set[str], h
     return GossipText(gossip_string % tuple(text_segments), colors, [location.name for location in locations], [item.name for item in items]), locations
 
 
-def get_dual_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_dual_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     return get_random_multi_hint(spoiler, world, checked, 'dual')
 
 
-def get_entrance_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_entrance_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     if not world.entrance_shuffle:
         return None
 
@@ -1109,7 +1122,7 @@ def get_entrance_hint(spoiler: Spoiler, world: World, checked: set[str]) -> Hint
 
     entrance_hint = random.choice(valid_entrance_hints)
     entrance = world.get_entrance(entrance_hint.name)
-    checked.add(entrance.name)
+    mark_checked(checked, entrance.name)
 
     entrance_text = entrance_hint.text
 
@@ -1128,19 +1141,19 @@ def get_entrance_hint(spoiler: Spoiler, world: World, checked: set[str]) -> Hint
     return GossipText('%s %s.' % (entrance_text, region_text), ['Green', 'Light Blue']), None
 
 
-def get_junk_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_junk_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     hints = get_hint_group('junk', world)
     hints = list(filter(lambda hint: hint.name not in checked, hints))
     if not hints:
         return None
 
     hint = random.choice(hints)
-    checked.add(hint.name)
+    mark_checked(checked, hint.name)
 
     return GossipText(hint.text, prefix=''), None
 
 
-def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) -> HintReturn:
+def get_important_check_hint(spoiler: Spoiler, world: World, checked: dict[HintArea | str, set[CheckedKind]]) -> HintReturn:
     top_level_locations = []
     empty_dungeons = [dungeon for dungeon in world.precompleted_dungeons if world.precompleted_dungeons[dungeon]]
     for location in world.get_filled_locations():
@@ -1165,6 +1178,8 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
                 # exclude triforce pieces as it defeats the idea of a triforce hunt
                 and not location.item.name == 'Triforce Piece'
                 and not (location.name == 'Song from Impa' and 'Zeldas Letter' in world.settings.starting_items and 'Zeldas Letter' not in world.settings.shuffle_child_trade)
+                # Special cases where the item is only considered major for important checks hints
+                or location.item.name == 'Double Defense'
                 # Handle make keys not in own dungeon major items
                 or (location.item.type in ('SmallKey', 'SmallKeyRing') and not (world.settings.shuffle_smallkeys == 'dungeon' or world.settings.shuffle_smallkeys == 'vanilla'))
                 or (location.item.type in ('HideoutSmallKey', 'HideoutSmallKeyRing') and not world.settings.shuffle_hideoutkeys == 'vanilla')
@@ -1176,7 +1191,7 @@ def get_important_check_hint(spoiler: Spoiler, world: World, checked: set[str]) 
                     or world.settings.shuffle_ganon_bosskey == 'dungeons' or world.settings.shuffle_ganon_bosskey == 'tokens'))):
                 item_count = item_count + 1
 
-    checked.add(hint_area)
+    mark_checked(checked, hint_area, CheckedKind.IMPORTANT_CHECK)
 
     if item_count == 0:
         numcolor = 'Red'
@@ -1260,27 +1275,17 @@ def build_bingo_hint_list(board_url: str) -> list[str]:
     return hints
 
 
-def always_named_item(world: World, locations: Iterable[Location]):
-    for location in locations:
-        if location.item.name in bingoBottlesForHints and world.settings.hint_dist == 'bingo':
-            always_item = 'Bottle'
-        else:
-            always_item = location.item.name
-        if always_item in world.named_item_pool and world.settings.world_count == 1:
-            world.named_item_pool.remove(always_item)
-
-
 def build_gossip_hints(spoiler: Spoiler, worlds: list[World]) -> None:
     from Dungeon import Dungeon
 
-    checked_locations = dict()
+    checked_locations = {}
     # Add misc. item hint locations to "checked" locations if the respective hint is reachable without the hinted item.
     for world in worlds:
         for location in world.hinted_dungeon_reward_locations.values():
             if location is None:
                 # ignore starting items
                 continue
-            if world.settings.enhance_map_compass:
+            if 'compass_reward' in world.settings.enhance_map_compass:
                 if world.entrance_rando_reward_hints:
                     # In these settings, there is not necessarily one dungeon reward in each dungeon,
                     # so we instead have each compass hint the area of its dungeon's vanilla reward.
@@ -1310,37 +1315,37 @@ def build_gossip_hints(spoiler: Spoiler, worlds: list[World]) -> None:
                     if can_reach_hint(worlds, compass_location, location):
                         item_world = location.world
                         if item_world.id not in checked_locations:
-                            checked_locations[item_world.id] = set()
-                        checked_locations[item_world.id].add(location.name)
+                            checked_locations[item_world.id] = {}
+                        mark_checked(checked_locations[item_world.id], location.name)
                         break
             else:
                 if 'altar' in world.settings.misc_hints and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
                     item_world = location.world
                     if item_world.id not in checked_locations:
-                        checked_locations[item_world.id] = set()
-                    checked_locations[item_world.id].add(location.name)
+                        checked_locations[item_world.id] = {}
+                    mark_checked(checked_locations[item_world.id], location.name)
         for hint_type, location in world.misc_hint_item_locations.items():
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_item_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
                 if item_world.id not in checked_locations:
-                    checked_locations[item_world.id] = set()
-                checked_locations[item_world.id].add(location.name)
+                    checked_locations[item_world.id] = {}
+                mark_checked(checked_locations[item_world.id], location.name)
         for hint_type in world.misc_hint_location_items.keys():
             location = world.get_location(misc_location_hint_table[hint_type]['item_location'])
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_location_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
                 if item_world.id not in checked_locations:
-                    checked_locations[item_world.id] = set()
-                checked_locations[item_world.id].add(location.name)
+                    checked_locations[item_world.id] = {}
+                mark_checked(checked_locations[item_world.id], location.name, CheckedKind.ALWAYS)
 
     # Build all the hints.
     for world in worlds:
         world.update_useless_areas(spoiler)
-        build_world_gossip_hints(spoiler, world, checked_locations.pop(world.id, None))
+        build_world_gossip_hints(spoiler, world, checked_locations.pop(world.id, {}))
 
 
 # builds out general hints based on location and whether an item is required or not
-def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: Optional[set[str]] = None) -> None:
+def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: dict[HintArea | str, set[CheckedKind]]) -> None:
     world.barren_dungeon = 0
     world.woth_dungeon = 0
 
@@ -1349,10 +1354,6 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
         stone.reachable = (
             search.spot_access(world.get_location(stone.location))
             and search.state_list[world.id].guarantee_hint())
-
-    if checked_locations is None:
-        checked_locations = set()
-    checked_always_locations = set()
 
     stone_ids = list(gossipLocations.keys())
 
@@ -1471,10 +1472,8 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
             multi = get_multi(hint.name)
             first_location = world.get_location(multi.locations[0])
             second_location = world.get_location(multi.locations[1])
-            checked_always_locations.add(first_location.name)
-            checked_always_locations.add(second_location.name)
-
-            always_named_item(world, [first_location, second_location])
+            mark_checked(checked_locations, first_location.name, CheckedKind.ALWAYS)
+            mark_checked(checked_locations, second_location.name, CheckedKind.ALWAYS)
 
             if hint.name in world.hint_text_overrides:
                 location_text = world.hint_text_overrides[hint.name]
@@ -1490,14 +1489,12 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
     # Add required location hints, only if hint copies > 0
     if hint_dist['always'][1] > 0:
         always_locations = list(filter(
-            lambda hint: not is_checked([world.get_location(hint.name)], checked_always_locations),
+            lambda hint: not is_checked([world.get_location(hint.name)], checked_locations, ignore={CheckedKind.ALWAYS, CheckedKind.OTHER}),
             get_hint_group('always', world),
         ))
         for hint in always_locations:
             location = world.get_location(hint.name)
-            checked_always_locations.add(hint.name)
-
-            always_named_item(world, [location])
+            mark_checked(checked_locations, hint.name, CheckedKind.ALWAYS)
 
             if location.name in world.hint_text_overrides:
                 location_text = world.hint_text_overrides[location.name]
@@ -1517,7 +1514,7 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
             connected_region = entrance.connected_region
             if entrance.shuffled and (connected_region.dungeon or any(hint.name == connected_region.name for hint in
                                                                       get_hint_group('region', world))):
-                checked_always_locations.add(entrance.name)
+                mark_checked(checked_locations, entrance.name, CheckedKind.ALWAYS)
 
                 entrance_text = entrance_hint.text
                 if '#' not in entrance_text:
@@ -1555,6 +1552,18 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
 
     # Add user-specified hinted item locations if using a built-in hint distribution
     # Raise error if hint copies is zero
+    for location_name, kinds in checked_locations.items():
+        if CheckedKind.ALWAYS in kinds:
+            try:
+                location = world.get_location(location_name)
+            except KeyError:
+                continue
+            if location.item.name in bingoBottlesForHints and world.settings.hint_dist == 'bingo':
+                always_item = 'Bottle'
+            else:
+                always_item = location.item.name
+            if always_item in world.named_item_pool and world.settings.world_count == 1:
+                world.named_item_pool.remove(always_item)
     if len(world.named_item_pool) > 0 and world.hint_dist_user['named_items_required']:
         if hint_dist['named-item'][1] == 0:
             raise Exception('User-provided item hints were requested, but copies per named-item hint is zero')
@@ -1562,17 +1571,17 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
             # Prevent conflict between Ganondorf Light Arrows hint and required named item hints.
             # Assumes that a "wasted" hint is desired since Light Arrows have to be added
             # explicitly to the list for named item hints.
-            filtered_checked = set(checked_locations | checked_always_locations)
-            for location in (checked_locations | checked_always_locations):
+            filtered_checked = copy.copy(checked_locations)
+            for location in checked_locations:
                 try:
                     if world.get_location(location).item.name == 'Light Arrows':
-                        filtered_checked.remove(location)
+                        del filtered_checked[location]
                 except KeyError:
-                    pass  # checked_always_locations can also contain entrances from entrance_always hints, ignore those here
+                    pass  # checked_locations can also contain entrances from entrance_always hints, ignore those here
             for i in range(0, len(world.named_item_pool)):
                 hint = get_specific_item_hint(spoiler, world, filtered_checked)
                 if hint:
-                    checked_locations.update(filtered_checked - checked_always_locations)
+                    checked_locations.update(filtered_checked)
                     gossip_text, location = hint
                     place_ok = add_hint(spoiler, world, stone_groups, gossip_text, hint_dist['named-item'][1], location, hint_type='named-item')
                     if not place_ok:
@@ -1628,12 +1637,7 @@ def build_world_gossip_hints(spoiler: Spoiler, world: World, checked_locations: 
             except IndexError:
                 raise Exception('Not enough valid hints to fill gossip stone locations.')
 
-        all_checked_locations = checked_locations | checked_always_locations
-        if hint_type == 'barren':
-            hint = hint_func[hint_type](spoiler, world, checked_locations, all_checked_locations)
-        else:
-            hint = hint_func[hint_type](spoiler, world, all_checked_locations)
-            checked_locations.update(all_checked_locations - checked_always_locations)
+        hint = hint_func[hint_type](spoiler, world, checked_locations)
 
         if hint is None:
             index = hint_types.index(hint_type)

@@ -5,11 +5,15 @@
 #include "actor.h"
 #include "scene.h"
 
-static colorRGBA8_t sEffectPrimColorRed = { {{255, 0, 0}}, 0 };
-static colorRGBA8_t sEffectPrimColorBlue = { {{0, 0, 255}}, 0 };
-static colorRGBA8_t sEffectPrimColorYellow = { {{255, 255, 0}}, 0 };
-static colorRGBA8_t sEffectPrimColorCyan = {{{0, 255, 255}}, 0 };
-static colorRGBA8_t sEffectEnvColor = { {{255, 255, 255}}, 0 };
+static colorRGBA8_t sEffectPrimColorRed = { 255, 0, 0, 0 };
+static colorRGBA8_t sEffectPrimColorGreen = { 0, 255, 0, 0 };
+static colorRGBA8_t sEffectPrimColorBlue = { 0, 0, 255, 0 };
+static colorRGBA8_t sEffectPrimColorYellow = { 255, 255, 0, 0 };
+static colorRGBA8_t sEffectPrimColoMagenta = { 255, 0, 255, 0 };
+static colorRGBA8_t sEffectPrimColorCyan = {0, 255, 255, 0 };
+static colorRGBA8_t sEffectEnvColor = { 255, 255, 255, 0 };
+//static z64_xyzf_t sEffectVelocity = { 0.0f, 0.1f, 0.0f };
+//static z64_xyzf_t sEffectAccel = { 0.0f, 0.01f, 0.0f };
 static z64_xyzf_t sEffectVelocity = { 0.0f, 0.5f, 0.0f };
 static z64_xyzf_t sEffectAccel = { 0.0f, 0.5f, 0.0f };
 

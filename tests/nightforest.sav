@@ -38,7 +38,7 @@
 "shuffle_mapcompass": "keysanity",
 "shuffle_smallkeys": "keysanity",
 "shuffle_bosskeys": "keysanity",
-"enhance_map_compass": false,
+"enhance_map_compass": [],
 "shuffle_ganon_bosskey": "keysanity",
 "mq_dungeons_mode": "vanilla",
 "starting_equipment": ["deku_shield"],

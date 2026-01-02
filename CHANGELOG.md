@@ -1,4 +1,4 @@
-# Dev
+# 9.0
 
 ## New Settings and Options
 * New settings for more control over special deal prices.
@@ -10,6 +10,7 @@
 * A slew of advanced tricks and glitches have been added for the new `Advanced` logic setting.
 * The `Open Door of Time` setting has been renamed to `Door of Time`, with new options to require the Spiritual Stones and/or the Ocarina of Time.
 * New `Additional Random Starting Items` setting.
+* `Maps and Compasses Give Information` has been extended with options to give dungeon and boss entrance locations.
 
 ## Bug fixes
 * The Deku Shield pot in the Spirit Temple is no longer shuffled when both `Fix Broken Drops` and `Include Empty Pots` are off.
@@ -24,6 +25,10 @@
 * Fix the code that checks whether a hint is reachable not taking effective starting items (e.g. the rewards of precompleted dungeons) into account.
 * Pause menu has been modified to more closely align equip swap behavior with the vanilla game, while also removing some cursor movement restrictions.
 * Fix the texture of the rotated Forest Temple boss key chest when `Chest Appearance Matches Content` is off.
+* Misc. location hints no longer prevent their area from being hinted as Barren.
+* Fix a generator failure when a `named_items_required` Named Item hint conflicts with a misc. location hint.
+* Prevent another case of Dead Hand spawning outside the room collision.
+* Fix a bug where the ROM compressor may rarely produce corrupted ROMs.
 
 ## Other changes
 * Big poe souls can now be collected while riding Epona.
@@ -31,6 +36,7 @@
 * The professor in the lakeside lab now only takes 1 second instead of 6 to prepare the eyeball frog.
 * The text box that appears when collecting a gold skulltula token is no longer shuffled when `Text Shuffle` is set to `Shuffled except Important Text`.
 * Important Check hints no longer generate for areas with no shuffled locations, areas hinted as Barren, or precompleted dungeons.
+* Python 3.8 is no longer supported.
 
 # 8.3
 

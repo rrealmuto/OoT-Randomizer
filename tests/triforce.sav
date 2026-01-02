@@ -39,7 +39,7 @@
 "shuffle_mapcompass": "startwith",
 "shuffle_smallkeys": "dungeon",
 "shuffle_bosskeys": "dungeon",
-"enhance_map_compass": false,
+"enhance_map_compass": [],
 "mq_dungeons_mode": "vanilla",
 "disabled_locations": [
   "Deku Theater Mask of Truth"

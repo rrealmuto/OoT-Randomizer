@@ -28,7 +28,7 @@
     "shuffle_silver_rupees":                   "anywhere",
     "silver_rupee_pouches_choice":             "off",
     "shuffle_mapcompass":                      "startwith",
-    "enhance_map_compass":                     false,
+    "enhance_map_compass":                     [],
     "open_forest":                             "closed_deku",
     "open_kakariko":                           "open",
     "open_door_of_time":                       "sot",

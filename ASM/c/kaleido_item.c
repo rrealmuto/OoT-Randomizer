@@ -9,7 +9,7 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
     uint16_t i;
     uint16_t j;
     uint16_t cursor_item;
-    uint16_t cursor_slot = 0;
+    uint16_t cursor_slot;
     uint16_t index;
     int16_t cursor_point;
     int16_t cursor_x;

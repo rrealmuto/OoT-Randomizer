@@ -80,6 +80,12 @@ typedef enum
   DEBUG_NUMBER_FLOAT,
 } debug_number_type;
 
+static uint8_t debugNumberIsInUsage[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static int32_t debugNumbers[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static float debugNumbersFloat[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+static menu_index_t current_menu_indexes = {0, 0, 0, 0, 0, 0, 0, 0};
+static uint8_t show_warp_menu = 0;
+
 typedef void(*usebutton_t)(z64_game_t *game, z64_link_t *link, uint8_t item, uint8_t button);
 #define z64_usebutton ((usebutton_t)    0x8038C9A0)
 

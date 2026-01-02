@@ -155,6 +155,7 @@ void display_song_name_on_file_select(z64_disp_buf_t* db) {
         uint8_t top = 220;
         uint8_t left = 7;
         uint8_t alpha = 255;
+        uint8_t bgm_fileselect = 11;  // ("Fairy Fountain", 0x28)
         char subStringName[50];
         uint8_t subStringNameLength = 0;
         for (uint8_t j = 0; j < 50; j++) {

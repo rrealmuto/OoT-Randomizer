@@ -64,7 +64,7 @@
     "shuffle_ganon_bosskey":                   "medallions",
     "ganon_bosskey_medallions":                6,
     "lacs_condition":                          "vanilla",
-    "enhance_map_compass":                     false,
+    "enhance_map_compass":                     [],
     "mq_dungeons_mode":                        "vanilla",
     "disabled_locations":                      [
       "Deku Theater Mask of Truth"

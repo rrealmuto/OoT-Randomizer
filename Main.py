@@ -247,10 +247,7 @@ def compress_rom(input_file: str, output_file: str, delete_input: bool = False) 
         else:
             compressor_path += "Compress"
     elif platform.system() == 'Darwin':
-        if platform.machine() == 'arm64':
-            compressor_path += "Compress_ARM64.out"
-        else:
-            compressor_path += "Compress.out"
+        compressor_path += "Compress.out"
     else:
         logger.info("OS not supported for ROM compression.")
         raise Exception("This operating system does not support ROM compression. You may only output patch files or uncompressed ROMs.")

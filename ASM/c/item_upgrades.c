@@ -174,9 +174,10 @@ uint16_t bombchus_to_bag(z64_file_t* save, override_t override) {
             case GI_BOMBCHUS_5: return GI_BOMBCHU_BAG_5; // 5 pack
             case GI_BOMBCHUS_20: return GI_BOMBCHU_BAG_20; // 20 pack
         }
+    } else {
+        // Subsequent chu packs stay as chu packs
+        return override.value.base.item_id;
     }
-    // Subsequent chu packs stay as chu packs
-    return override.value.base.item_id;
 }
 
 uint16_t upgrade_key_model(z64_file_t* save, override_t override) {

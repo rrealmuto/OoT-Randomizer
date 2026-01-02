@@ -91,6 +91,7 @@ room_t water_rooms[] = {
 
 room_t shadow_rooms[] = {
     {  0x37, 2, { -254, -63, 594 }, 32768, "Entrance"},
+    {  0x37, 4, { -2141, -63, -394 }, 49152, "Dead Hand"},
     {  0x37, 8, { 4164, -983, 1366 }, 49152, "Before huge room"},
     {  0x37, 16, { 4677, -1143, 2474 }, 32768, "Invisible scythes"},
     {  0x37, 10, { 1227, -1343, 3853 }, 49152, "Stone umbrella"},
@@ -110,6 +111,7 @@ room_t spirit_rooms[] = {
 
 room_t botw_rooms[] = {
     {  0x98, 0, { 0, -12, 117 }, 32768, "Main room Entrance"},
+    {  0x98, 4, { 991, -20, 207 }, 16384, "Dead Hand"},
     {  0x98, 2, { -1650, 0, -739 }, 49152, "Coffin room"},
     {  0x98, 3, { 1140, 0, -1339 }, 0, "Beamos room"},
 };
@@ -151,7 +153,7 @@ room_t ganon_rooms[] = {
 rooms_t dungeon_rooms[13] = {
                             {6, deku_rooms}, {4, dc_rooms}, {3, jabu_rooms},
                             {6, forest_rooms}, {7, fire_rooms}, {6, water_rooms},
-                            {7, shadow_rooms}, {6, spirit_rooms}, {3, botw_rooms},
+                            {8, shadow_rooms}, {6, spirit_rooms}, {4, botw_rooms},
                             {5, ice_rooms}, {4, hideout_rooms}, {6, gtg_rooms}, {7, ganon_rooms},
                         };
 
@@ -252,12 +254,6 @@ menu_category_t flag_categories[] = {
     {  5, "Collectible"},
 };
 
-static uint8_t debugNumberIsInUsage[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-static int32_t debugNumbers[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-static float debugNumbersFloat[10] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-static menu_index_t current_menu_indexes = {0, 0, 0, 0, 0, 0, 0, 0};
-static uint8_t show_warp_menu = 0;
-
 void draw_debug_int(int whichNumber, int numberToShow) {
     if (whichNumber < 0 || whichNumber > 9) {
         return;
@@ -295,7 +291,7 @@ void draw_timeofday(z64_disp_buf_t* db) {
         digits[3] -= 10;
     }
     int16_t hours = digits[0] * 10 + digits[1];
-    colorRGBA8_t color = { {{0xFF, 0xFF, 0xFF}}, 0xFF};
+    colorRGBA8_t color = { 0xFF, 0xFF, 0xFF, 0xFF};
     int total_w = 4 * rupee_digit_sprite.tile_w + font_sprite.tile_w;
     int draw_x = Z64_SCREEN_WIDTH / 2 - total_w / 2;
     int draw_y_text = Z64_SCREEN_HEIGHT - (rupee_digit_sprite.tile_h * 1.5) + 1;
@@ -329,7 +325,6 @@ bool get_flag(uint8_t flagtype, uint8_t flag) {
         case 4:
             return Flags_GetTempClear(&z64_game, flag);
         case 5:
-        default:
             return Flags_GetCollectible(&z64_game, flag);
     }
 }
@@ -609,7 +604,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                     break;
                 case 8: // Overlay
                     if (current_menu_indexes.sub_menu_index == 1) {
-                        uint8_t nbOverlays = 0;
+                        uint8_t nbOverlays, currentOverlayTabIndex = 0;
                         for (int overlay_id = 0; overlay_id < 0x0192; overlay_id++) {
                             ActorOverlay overlay = gActorOverlayTable[overlay_id];
                              if (overlay.loadedRamAddr) {
@@ -905,7 +900,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                     break;
                 case 7: // Actor table
                     gDPSetPrimColor(db->p++, 0, 0, 255, 255, 255, 255);
-                    colorRGBA8_t color = { {{0xFF, 0xFF, 0xFF}}, 0xFF};
+                    colorRGBA8_t color = { 0xFF, 0xFF, 0xFF, 0xFF};
                     if (current_menu_indexes.sub_menu_index == 1) {
                         for (int i = 0; i < ACTORTYPE_CHEST + 1; i++) {
                             menu_category_t* d = &(actor_categories[i]);
@@ -957,8 +952,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                     if (current_menu_indexes.sub_menu_index == 1) {
                         uint8_t currentOverlayTab = current_menu_indexes.overlay_index / 12;
                         // Display overlay list in 12 by 12 pages.
-                        uint8_t nbOverlays = 0;
-                        uint8_t currentOverlayTabIndex = 0;
+                        uint8_t nbOverlays, currentOverlayTabIndex = 0;
                         for (int overlay_id = 0; overlay_id < 0x0192; overlay_id++) {
                             ActorOverlay overlay = gActorOverlayTable[overlay_id];
                              if (overlay.loadedRamAddr) {
@@ -1056,7 +1050,7 @@ void draw_debug_numbers(z64_disp_buf_t* db) {
         if (z64_file.energy_capacity > 10 * 0x10)
             height += rupee_digit_sprite.tile_h * 0.8;
 
-        colorRGBA8_t color = { {{debug_text_color.r, debug_text_color.g, debug_text_color.b}}, 0xFF};
+        colorRGBA8_t color = { debug_text_color.r, debug_text_color.g, debug_text_color.b, 0xFF};
         draw_int(db, numberToShow, debug_text_x_placement, height + offsetY, color);
     }
 
@@ -1091,7 +1085,7 @@ void draw_debug_numbers(z64_disp_buf_t* db) {
         if (z64_file.energy_capacity > 10 * 0x10)
             height += rupee_digit_sprite.tile_h * 0.8;
 
-        colorRGBA8_t color = { {{debug_text_color.r, debug_text_color.g, debug_text_color.b}}, 0xFF};
+        colorRGBA8_t color = { debug_text_color.r, debug_text_color.g, debug_text_color.b, 0xFF};
         int numberDigit = draw_int(db, entireValue, debug_text_x_placement, height + offsetY, color);
         text_print_size(db, ".", debug_text_x_placement + numberDigit * rupee_digit_sprite.tile_w, height + offsetY, rupee_digit_sprite.tile_w, rupee_digit_sprite.tile_h);
         draw_int(db, decimalValue, debug_text_x_placement + numberDigit * rupee_digit_sprite.tile_w + font_sprite.tile_w,

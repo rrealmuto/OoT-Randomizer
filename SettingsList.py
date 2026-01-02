@@ -3301,13 +3301,25 @@ class SettingInfos:
         shared          = True,
     )
 
-    enhance_map_compass = Checkbutton(
+    enhance_map_compass = MultipleSelect(
         gui_text       = 'Maps and Compasses Give Information',
+        choices        = {
+            'map_mq':                'Map gives MQ info',
+            'map_dungeon_location':  'Map gives dungeon location',
+            'compass_boss_location': 'Compass gives boss location',
+            'compass_reward':        'Compass gives reward info',
+        },
+        default         = [],
         gui_tooltip    = '''\
             Gives the Map and Compass extra functionality.
-            Map will tell if a dungeon is vanilla or Master Quest.
-            Compass will tell what medallion or stone is within.
-            The Temple of Time Altar will no longer provide
+
+            Map can be enhanced to tell if a dungeon is vanilla or Master Quest,
+            and to give dungeon locations if Dungeon entrance shuffle is enabled.
+
+            Compass can be enhanced to reveal which boss is in the corresponding dungeon
+            if Boss entrance shuffle is enabled,
+            or to tell what medallion or stone is within.
+            If compass is enabled, the Temple of Time Altar will no longer provide
             information on the location of medallions and stones.
 
             'Maps/Compasses: Remove': The dungeon information is
@@ -3316,7 +3328,6 @@ class SettingInfos:
             'Maps/Compasses: Start With': The dungeon information
             is available immediately from the dungeon menu.
         ''',
-        default        = False,
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',

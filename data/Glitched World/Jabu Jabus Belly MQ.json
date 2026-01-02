@@ -5,19 +5,19 @@
         "locations": {
             "Jabu Jabus Belly MQ Map Chest": "can_blast_or_smash",
             "Jabu Jabus Belly MQ First Room Side Chest": "can_use(Slingshot)
-                or (can_isg and (can_gdv_stick or ('Jabu Jabus Belly MQ Map Chest' and can_gdv_empty)))",
+                or (can_isg and (can_gdv_stick or (can_blast_or_smash and can_gdv_empty)))",
             "Jabu Jabus Belly MQ First Room Pot 1": "True",
             "Jabu Jabus Belly MQ First Room Pot 2": "True",
             "Jabu Jabus Belly MQ Entryway Left Cow Wonderitem": "can_use(Slingshot)
-                or (can_isg and (can_gdv_stick or ('Jabu Jabus Belly MQ Map Chest' and can_gdv_empty)))",
+                or (can_isg and (can_gdv_stick or (can_blast_or_smash and can_gdv_empty)))",
             "Jabu Jabus Belly MQ Entryway Right Cow Wonderitem": "can_use(Slingshot)
-                or (can_isg and (can_gdv_stick or ('Jabu Jabus Belly MQ Map Chest' and can_gdv_empty)))",
+                or (can_isg and (can_gdv_stick or (can_blast_or_smash and can_gdv_empty)))",
             "Nut Pot": "True"
         },
         "exits": {
             "Zoras Fountain": "True",
             "Jabu Jabus Belly Elevator Room": "jabu_shortcuts or here(can_use(Slingshot)
-                or (can_isg and (can_gdv_stick or ('Jabu Jabus Belly MQ Map Chest' and can_gdv_empty))))",
+                or (can_isg and (can_gdv_stick or (can_blast_or_smash and can_gdv_empty))))",
             "Farores Wind Warp": "can_use(Farores_Wind)"
         }
     },
