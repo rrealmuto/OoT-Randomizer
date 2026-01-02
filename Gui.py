@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import platform
 import sys
 if sys.version_info < (3, 9):
     print("OoT Randomizer requires Python version 3.9 or newer and you are using %s" % '.'.join([str(i) for i in sys.version_info[0:3]]))
@@ -13,12 +14,20 @@ if sys.version_info < (3, 9):
 import shutil
 import subprocess
 import webbrowser
+import os
+import venv
+
 
 from SettingsToJson import create_settings_list_json
 from Utils import local_path, data_path, compare_version, VersionError
 
 
 def gui_main() -> None:
+
+    python_path = sys.executable
+    # Get python virtual environment
+    # Make it if it doesn't exist
+
     try:
         version_check("Node", "14.15.0", "https://nodejs.org/en/download/")
         version_check("NPM", "6.12.0", "https://nodejs.org/en/download/")
@@ -34,9 +43,10 @@ def gui_main() -> None:
     if web_version:
         args = ["node", "run.js", "web"]
     else:
-        args = ["node", "run.js", "release", "python", sys.executable]
+        args = ["node", "run.js", "release", "python", python_path]
+        if '--debug' in sys.argv:
+            args.append("debug")
     subprocess.run(args, shell=False, cwd=local_path("GUI"), check=True)
-
 
 def version_check(name: str, version: str, url: str) -> None:
     try:

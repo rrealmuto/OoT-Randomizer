@@ -2,9 +2,12 @@ import { Injectable, HostBinding, EventEmitter, Output, Directive, OnDestroy } f
 import { HttpClient } from '@angular/common/http';
 
 import { ProgressWindowComponent } from '../pages/generator/progressWindow/progressWindow.component';
+import { DialogWindowComponent } from '../pages/generator/dialogWindow/dialogWindow.component';
 
 import * as post from 'post-robot';
 import {GuiEvent} from './GuiEvent';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { ErrorDetailsWindowComponent } from '../pages/generator/errorDetailsWindow/errorDetailsWindow.component';
 
 @Directive()
 @Injectable()
@@ -18,7 +21,7 @@ export class GUIGlobal implements OnDestroy {
   public generator_customColorMap: Object = {};
 
   public generator_presets: Object = {};
-
+  
   globalVars: Map<string, any>;
   electronEvents: Array<any> = [];
 
@@ -26,9 +29,10 @@ export class GUIGlobal implements OnDestroy {
 
   @Output() globalEmitter: EventEmitter<GuiEvent> = new EventEmitter();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dialogService: NbDialogService) {
     this.globalVars = new Map<string, any>([
       ["appReady", false],
+      ["initFail", null],
       ["appType", null],
       ["electronAvailable", false],
       ["webSourceVersion", ""],
@@ -169,13 +173,62 @@ export class GUIGlobal implements OnDestroy {
     });
   }
 
-  electronInit() {
-    this.electronLoadGeneratorGUISettings().then(() => {
-      this.setGlobalVar("appReady", true);
-      this.globalEmitter.emit({ name: "init_finished" });
-    }).catch(err => {
-      console.error("exit due error:", err);
+  async electronInit() {
+    let progressDialog = null;
+    try {
+      console.log("Creating python virtual environment");
+      
+      await this.createPythonVenv((progress) => 
+        { 
+          if(!progressDialog) {
+            progressDialog = this.dialogService.open(DialogWindowComponent, {
+            autoFocus: true, closeOnBackdropClick: false, closeOnEsc: false, hasBackdrop: true, hasScroll: false, context: { dialogHeader: "Creating python virtual environment", dialogMessage: progress.data
+            }
+            });
+          }
+          else {
+            // Update the dialog's component instance message and trigger change detection.
+            try {
+              // Prefer the ComponentRef instance when available
+              if (progressDialog && (progressDialog as any).componentRef && (progressDialog as any).componentRef.instance) {
+                const inst: any = (progressDialog as any).componentRef.instance;
+                inst.dialogMessage = (inst.dialogMessage || "") + progress.data;
+                // Try to force Angular to detect changes for the dialog
+                try { (progressDialog as any).componentRef.changeDetectorRef.detectChanges(); } catch (e) {}
+              }
+              else if (progressDialog && (progressDialog as any).content) {
+                // Fallback for older API
+                (progressDialog as any).content.dialogMessage += progress.data;
+              }
+            } catch (e) {
+              console.error('Failed to update progress dialog message', e);
+            }
+          }
+      console.log(progress.data)
     });
+      if(progressDialog) {
+        progressDialog.close();
+      }
+      console.log("Loading settings");
+      await this.electronLoadGeneratorGUISettings();
+      this.setGlobalVar("appReady", true);
+    }
+    catch(err)
+    {
+      console.error("[createPythonVenv] Error: ", err)
+      console.error("exit due error:", err);
+
+      // Show an error dialog so user is notified of initialization failures
+      try {
+        const message = (err && err.message) ? err.message : (err && err.data) ? err.data : String(err);
+        this.setGlobalVar("appReady", false);
+        this.setGlobalVar("initFail", message);
+        
+      } catch (dialogErr) {
+        console.error("Failed to show error dialog:", dialogErr);
+      }
+    }
+    this.globalEmitter.emit({ name: "init_finished" });
   }
 
   webInit() {
@@ -1197,6 +1250,24 @@ export class GUIGlobal implements OnDestroy {
           reject(err);
         });
       }
+    });
+  }
+
+  createPythonVenv(progress) {
+    return new Promise(function (resolve, reject) {
+      post.send(window, 'createPythonVirtualEnvironment').then(res => {
+        var listenerProgress = post.on('createPythonVirtualEnvironmentProgress', progress)
+        var listenerSuccess = post.once('createPythonVirtualEnvironmentSuccess', function (event) {
+          listenerError.cancel();
+          listenerProgress.cancel();
+          resolve(true);
+        });
+        var listenerError = post.once('createPythonVirtualEnvironmentError', function (event) {
+          listenerSuccess.cancel();
+          listenerProgress.cancel();
+          reject(event);
+        })
+      });
     });
   }
 
