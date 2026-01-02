@@ -193,7 +193,7 @@ class Rom(BigStream):
                 sample.bank_offset = -1
                 sample.book.bank_offset = -1
                 sample.placed_address = -1
-            
+
             for envelope in envelopes_to_add:
                 envelope.bank_offset = -1
 

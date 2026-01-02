@@ -26,6 +26,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-1
+  * Update to main dev 9.0.2
+  * Add custom voice pack support
+
 ### 8.3.56.Rob-4
   * Ok you can nut again
 

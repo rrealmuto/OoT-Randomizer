@@ -3064,7 +3064,7 @@
         "shuffle_silver_rupees": "vanilla",
         "silver_rupee_pouches_choice": "off",
         "silver_rupee_pouches": [],
-        "enhance_map_compass": false,
+        "enhance_map_compass": [],
         "logic_no_night_tokens_without_suns_song": false,
         "disabled_locations": [],
         "allowed_tricks": [
@@ -3098,7 +3098,9 @@
             "serenade",
             "prelude"
         ],
-        "add_random_starting_items": 0,
+        "add_random_starting_items": false,
+        "random_starting_items_exclude": [],
+        "random_starting_items_count": 0,
         "start_with_consumables": true,
         "start_with_rupees": true,
         "starting_hearts": 3,
