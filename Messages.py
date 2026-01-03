@@ -1513,6 +1513,21 @@ def update_map_compass_messages(messages: list[Message], world: World):
             "ZF Ice Ledge -> Ice Cavern Beginning", "Gerudo Fortress -> Gerudo Training Ground Lobby", "Ganons Castle Ledge -> Ganons Castle Lobby",
         ]
 
+        dungeon_entrances_reverse = {
+            'Deku Tree': 'Deku Tree Lobby -> KF Outside Deku Tree',
+            'Dodongos Cavern': 'Dodongos Cavern Beginning -> Death Mountain',
+            'Jabu Jabus Belly': 'Jabu Jabus Belly Beginning -> Zoras Fountain',
+            'Forest Temple': 'Forest Temple Lobby -> SFM Forest Temple Entrance Ledge',
+            'Fire Temple': 'Fire Temple Lower -> DMC Fire Temple Entrance',
+            'Water Temple': 'Water Temple Lobby -> Lake Hylia',
+            'Shadow Temple': 'Shadow Temple Entryway -> Graveyard Warp Pad Region',
+            'Spirit Temple': 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby',
+            'Bottom of the Well': 'Bottom of the Well -> Kakariko Village',
+            'Ice Cavern': 'Ice Cavern Beginning -> ZF Ice Ledge',
+            'Gerudo Training Ground': 'Gerudo Training Ground Lobby -> Gerudo Fortress',
+            'Ganons Castle': 'Ganons Castle Lobby -> Castle Grounds From Ganons Castle',
+        }
+
         dungeon_textbox_list = [
             "the \x05\x42Deku Tree", "\x05\x41Dodongo\'s Cavern", "\x05\x43Jabu Jabu\'s Belly",
             "the \x05\x42Forest Temple", "the \x05\x41Fire Temple", "the \x05\x43Water Temple",
@@ -1544,13 +1559,22 @@ def update_map_compass_messages(messages: list[Message], world: World):
             elif dungeon.name in ('Bottom of the Well', 'Ice Cavern'):
                 dungeon_name, compass_id, map_id = dungeon_list[dungeon.name]
                 if 'map_dungeon_location' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_entrances != 'off':
-                    dungeon_index = [i for i, c in enumerate(dungeon_entrances) if dungeon.name in c]
-                    if dungeon.name not in ('Dodongos Cavern', 'Jabu Jabus Belly'):
-                        dungeon_name = dungeon_name.split(' ', 1)[1] # Remove the "the" to make room.
-                    if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):
-                        map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x05{COLOR_MAP['Red'] + 'masterful' if world.dungeon_mq[dungeon.name] else COLOR_MAP['Green'] + 'ordinary'}\x05\x40\x01{dungeon_name}\x05\x40! This dungeon\x01is at {dungeon_textbox_list[dungeon_index[0]]}!\x05\x40\x09"
+                    if 'Dungeon' in world.mix_entrance_pools:
+                        #TODO This won't work for Decoupled.
+                        area = HintArea.at(world.get_entrance(dungeon_entrances_reverse[dungeon.name]).connected_region)
+                        area = GossipText(area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [area.color], prefix='', capitalize=False)
+                        if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x05{COLOR_MAP['Red'] + 'masterful' if world.dungeon_mq[dungeon.name] else COLOR_MAP['Green'] + 'ordinary'}\x05\x40\x01{dungeon_name}\x05\x40! This dungeon\x01is {area}!\x05\x40\x09"
+                        else:
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x01{dungeon_name}\x05\x40!\x01This dungeon is\x01{area}!\x05\x40\x09"
                     else:
-                        map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x01{dungeon_name}\x05\x40!\x01This dungeon is at \x01{dungeon_textbox_list[dungeon_index[0]]}!\x05\x40\x09"
+                        dungeon_index = [i for i, c in enumerate(dungeon_entrances) if dungeon.name in c]
+                        if dungeon.name not in ('Dodongos Cavern', 'Jabu Jabus Belly'):
+                            dungeon_name = dungeon_name.split(' ', 1)[1] # Remove the "the" to make room.
+                        if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x05{COLOR_MAP['Red'] + 'masterful' if world.dungeon_mq[dungeon.name] else COLOR_MAP['Green'] + 'ordinary'}\x05\x40\x01{dungeon_name}\x05\x40! This dungeon\x01is at {dungeon_textbox_list[dungeon_index[0]]}!\x05\x40\x09"
+                        else:
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x01{dungeon_name}\x05\x40!\x01This dungeon is\x01{dungeon_textbox_list[dungeon_index[0]]}!\x05\x40\x09"
                     update_message_by_id(messages, map_id, map_message, allow_duplicates=True)
                 else:
                     if 'map_mq' in world.settings.enhance_map_compass:
@@ -1570,8 +1594,13 @@ def update_map_compass_messages(messages: list[Message], world: World):
                                 area = HintArea.at(vanilla_reward_location)
                             area = GossipText(area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [area.color], prefix='', capitalize=False)
                             if 'compass_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
-                                boss_room = world.get_entrance(boss_entrance).connected_region.name
-                                compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40! {boss_textboxes[boss_room]}\x05\x40\x01lurks, and the {vanilla_reward}\x01is {area}!\x09"
+                                if 'Boss' in world.mix_entrance_pools:
+                                    boss_area = HintArea.at(world.get_region(f'{dungeon.vanilla_boss_name} Boss Room'))
+                                    boss_area = GossipText(boss_area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [boss_area.color], prefix='', capitalize=False)
+                                    compass_message = str(GossipText(f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for \x01{dungeon_name}\x05\x40! {dungeon.vanilla_boss_name} is {boss_area}, and the {vanilla_reward} is {area}!\x09", prefix=''))
+                                else:
+                                    boss_room = world.get_entrance(boss_entrance).connected_region.name
+                                    compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40! {boss_textboxes[boss_room]}\x05\x40\x01lurks, and the {vanilla_reward}\x01is {area}!\x09"
                             else:
                                 compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
                         else:
@@ -1585,21 +1614,40 @@ def update_map_compass_messages(messages: list[Message], world: World):
                         update_message_by_id(messages, compass_id, compass_message, allow_duplicates=True)
                     else:
                         if 'compass_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
+                            if 'Boss' in world.mix_entrance_pools:
+                                boss_area = HintArea.at(world.get_region(f'{dungeon.vanilla_boss_name} Boss Room'))
+                                boss_area = GossipText(boss_area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [boss_area.color], prefix='', capitalize=False)
+                                compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40!\x01{dungeon.vanilla_boss_name} can be found\x01{boss_area}!\x09"
+                            else:
+                                boss_room = world.get_entrance(boss_entrance).connected_region.name
+                                compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40! In this dungeon,\x01{boss_textboxes[boss_room]}\x05\x40 lurks!\x09"
+                                update_message_by_id(messages, compass_id, compass_message, allow_duplicates=True)
+                else:
+                    if 'compass_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
+                        if 'Boss' in world.mix_entrance_pools:
+                            boss_area = HintArea.at(world.get_region(f'{dungeon.vanilla_boss_name} Boss Room'))
+                            boss_area = GossipText(boss_area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [boss_area.color], prefix='', capitalize=False)
+                            compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40!\x01{dungeon.vanilla_boss_name} can be found\x01{boss_area}!\x09"
+                        else:
                             boss_room = world.get_entrance(boss_entrance).connected_region.name
                             compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40! In this dungeon,\x01{boss_textboxes[boss_room]}\x05\x40 lurks!\x09"
                             update_message_by_id(messages, compass_id, compass_message, allow_duplicates=True)
-                else:
-                    if 'compass_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
-                        boss_room = world.get_entrance(boss_entrance).connected_region.name
-                        compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40 for\x01{dungeon_name}\x05\x40! In this dungeon,\x01{boss_textboxes[boss_room]}\x05\x40 lurks!\x09"
-                        update_message_by_id(messages, compass_id, compass_message, allow_duplicates=True)
                 if 'map_dungeon_location' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_entrances != 'off':
-                    dungeon_index = [i for i, c in enumerate(dungeon_entrances) if dungeon.name in c]
                     dungeon_name = dungeon_name.removeprefix('the ') # to make room
-                    if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):
-                        map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for \x05{COLOR_MAP['Red'] + 'masterful' if world.dungeon_mq[dungeon.name] else COLOR_MAP['Green'] + 'ordinary'}\x05\x40\x01{dungeon_name}\x05\x40! This dungeon\x01is at {dungeon_textbox_list[dungeon_index[0]]}\x05\x40!\x09"
+                    if 'Dungeon' in world.mix_entrance_pools:
+                        #TODO This won't work for Decoupled.
+                        area = HintArea.at(world.get_entrance(dungeon_entrances_reverse[dungeon.name]).connected_region)
+                        area = GossipText(area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [area.color], prefix='', capitalize=False)
+                        if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for \x05{COLOR_MAP['Red'] + 'masterful' if world.dungeon_mq[dungeon.name] else COLOR_MAP['Green'] + 'ordinary'}\x05\x40\x01{dungeon_name}\x05\x40! This dungeon\x01is {area}\x05\x40!\x09"
+                        else:
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x01{dungeon_name}\x05\x40! This dungeon is\x01{area}\x05\x40!\x09"
                     else:
-                        map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x01{dungeon_name}\x05\x40! This dungeon is\x01at {dungeon_textbox_list[dungeon_index[0]]}\x05\x40!\x09"
+                        dungeon_index = [i for i, c in enumerate(dungeon_entrances) if dungeon.name in c]
+                        if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for \x05{COLOR_MAP['Red'] + 'masterful' if world.dungeon_mq[dungeon.name] else COLOR_MAP['Green'] + 'ordinary'}\x05\x40\x01{dungeon_name}\x05\x40! This dungeon\x01is at {dungeon_textbox_list[dungeon_index[0]]}\x05\x40!\x09"
+                        else:
+                            map_message = f"\x13\x76\x08You found the \x05\x41Map\x05\x40 for\x01{dungeon_name}\x05\x40! This dungeon is\x01at {dungeon_textbox_list[dungeon_index[0]]}\x05\x40!\x09"
                     update_message_by_id(messages, map_id, map_message, allow_duplicates=True)
                 else:
                     if 'map_mq' in world.settings.enhance_map_compass and (world.settings.mq_dungeons_mode == 'random' or world.settings.mq_dungeons_count != 0 and world.settings.mq_dungeons_count != 12):

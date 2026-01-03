@@ -86,6 +86,20 @@ class World:
             or settings.spawn_positions or (settings.shuffle_bosses != 'off')
         )
 
+        self.mix_entrance_pools: set[str] = {
+            pool
+            for pool in settings.mix_entrance_pools
+            if {
+                'Interior': self.shuffle_interior_entrances,
+                'GrottoGrave': settings.shuffle_grotto_entrances,
+                'Dungeon': self.shuffle_dungeon_entrances,
+                'Overworld': settings.shuffle_overworld_entrances,
+                'Boss': settings.shuffle_bosses == 'full',
+            }[pool]
+        }
+        if len(self.mix_entrance_pools) == 1:
+            self.mix_entrance_pools = set()
+
         self.mixed_pools_bosses = False # this setting is still in active development at https://github.com/Roman971/OoT-Randomizer
         # in these settings, there's not necessarily one dungeon reward in each main dungeon, so compasses and the pause menu switch to a different behavior
         self.entrance_rando_reward_hints = self.mixed_pools_bosses or self.settings.shuffle_ganon_tower or self.settings.shuffle_dungeon_rewards not in ('vanilla', 'reward')

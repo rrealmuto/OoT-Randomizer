@@ -2758,15 +2758,31 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
     dungeon_entrances = bytearray()
     boss_index = []
     if 'map_dungeon_location' in world.settings.enhance_map_compass and world.settings.shuffle_dungeon_entrances != 'off':
-        dungeon_info.append(1)
-        for dungeon_entrance in dungeon_entrances_list:
-            connected_region = world.get_entrance(dungeon_entrance).connected_region
-            area = HintArea.at(connected_region)
-            dungeon_entrances += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
-            if (area in [HintArea.GERUDO_TRAINING_GROUND, HintArea.ICE_CAVERN, HintArea.BOTTOM_OF_THE_WELL]):
-                boss_index.append(-1)
-            else:
-                boss_index.append(dungeon_names_list.index(area.short_name))
+        if 'Dungeon' in world.mix_entrance_pools:
+            # In mixed pools dungeons, the dungeon location should point to the world area instead.
+            dungeon_entrances_reverse_list = ['Deku Tree Lobby -> KF Outside Deku Tree', 'Dodongos Cavern Beginning -> Death Mountain', 'Jabu Jabus Belly Beginning -> Zoras Fountain',
+                                            'Forest Temple Lobby -> SFM Forest Temple Entrance Ledge', 'Fire Temple Lower -> DMC Fire Temple Entrance', 'Water Temple Lobby -> Lake Hylia',
+                                            'Shadow Temple Entryway -> Graveyard Warp Pad Region', 'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby', 'Bottom of the Well -> Kakariko Village',
+                                            'Ice Cavern Beginning -> ZF Ice Ledge', 'Gerudo Training Ground Lobby -> Gerudo Fortress', 'Ganons Castle Lobby -> Castle Grounds From Ganons Castle']
+            dungeon_info.append(2)
+            areas = []
+            #TODO This won't work for Decoupled.
+            for dungeon_entrance_reverse in dungeon_entrances_reverse_list:
+                connected_region = world.get_entrance(dungeon_entrance_reverse).connected_region
+                area = HintArea.at(connected_region)
+                areas.append(area)
+                # Every area probably needs a shorter name.
+                dungeon_entrances += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
+        else:
+            dungeon_info.append(1)
+            for dungeon_entrance in dungeon_entrances_list:
+                connected_region = world.get_entrance(dungeon_entrance).connected_region
+                area = HintArea.at(connected_region)
+                dungeon_entrances += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
+                if (area in [HintArea.GERUDO_TRAINING_GROUND, HintArea.ICE_CAVERN, HintArea.BOTTOM_OF_THE_WELL]):
+                    boss_index.append(-1)
+                else:
+                    boss_index.append(dungeon_names_list.index(area.short_name))
     else:
         dungeon_info.append(0)
         boss_index = [0, 1, 2, 3, 4, 5, 6, 7, -1, -1, -1, 8]
@@ -2791,18 +2807,29 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
 
     bosses = bytearray()
     if 'compass_boss_location' in world.settings.enhance_map_compass and world.settings.shuffle_bosses != 'off':
-        dungeon_info.append(1)
-        # For the Dpad left menu, we want each boss on the same line as the corresponding dungeon.
-        for index in boss_index:
-            if index < 0:
-                bosses += "-".encode('ascii').ljust(0x8) + b'\0'
-            else:
-                connected_region = world.get_entrance(bosses_entrances_list[index]).connected_region
+        if 'Boss' in world.mix_entrance_pools:
+            # In mixed pools bosses, the boss location should point to the world area instead.
+            boss_lobby_list = ['Queen Gohma Boss Room', 'King Dodongo Boss Room', 'Barinade Boss Room',
+                               'Phantom Ganon Boss Room', 'Volvagia Boss Room', 'Morpha Boss Room',
+                               'Bongo Bongo Boss Room', 'Twinrova Boss Room', 'Ganons Castle Tower']
+
+            dungeon_info.append(2)
+            for boss_region in boss_lobby_list:
+                area = HintArea.at(world.get_region(boss_region))
+                bosses += area.shorter_name.encode('ascii').ljust(0x8) + b'\0'
+        else:
+            dungeon_info.append(1)
+            # For the Dpad left menu, we want each boss on the same line as the corresponding dungeon.
+            for index in boss_index:
+                if index < 0:
+                    bosses += "-".encode('ascii').ljust(0x8) + b'\0'
+                else:
+                    connected_region = world.get_entrance(bosses_entrances_list[index]).connected_region
+                    bosses += boss_short_names[connected_region.name].encode('ascii').ljust(0x8) + b'\0'
+            # But on Dpad right, we just list by the dungeons in their usual order.
+            for boss_entrance in bosses_entrances_list:
+                connected_region = world.get_entrance(boss_entrance).connected_region
                 bosses += boss_short_names[connected_region.name].encode('ascii').ljust(0x8) + b'\0'
-        # But on Dpad right, we just list by the dungeons in their usual order.
-        for boss_entrance in bosses_entrances_list:
-            connected_region = world.get_entrance(boss_entrance).connected_region
-            bosses += boss_short_names[connected_region.name].encode('ascii').ljust(0x8) + b'\0'
     else:
         dungeon_info.append(0)
 
@@ -2819,10 +2846,11 @@ def configure_dungeon_info(rom: Rom, world: World) -> None:
                         'GTG': 64, #Fake value to indicate no map
                         'Ganon': 64}
 
-    for dungeon_entrance in dungeon_entrances_list:
-        connected_region = world.get_entrance(dungeon_entrance).connected_region
-        area = HintArea.at(connected_region)
-        dungeon_info.append(dungeon_map_index[area.shorter_name])
+    if 'Dungeon' not in world.mix_entrance_pools: # not used in mixed pools dungeons
+        for dungeon_entrance in dungeon_entrances_list:
+            connected_region = world.get_entrance(dungeon_entrance).connected_region
+            area = HintArea.at(connected_region)
+            dungeon_info.append(dungeon_map_index[area.shorter_name])
 
     # Mixed pools
     # In this case, the dungeon location should point to the world area instead.
