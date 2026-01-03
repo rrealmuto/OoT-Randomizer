@@ -43,14 +43,14 @@ void handle_dpad() {
                 if (z64_file.equip_boots == 2) z64_file.equip_boots = 1;
                 else z64_file.equip_boots = 2;
                 z64_UpdateEquipment(&z64_game, &z64_link);
-                Audio_PlaySfxGeneral(0x835, (z64_xyzf_t*)0x80104394, 0x04, (float*)0x801043A0, (float*)0x801043A0, (float*)0x801043A8);
+                SFX_PLAY_CENTERED(0x835);
             }
 
             if (pad_pressed.dr && z64_file.hover_boots) {
                 if (z64_file.equip_boots == 3) z64_file.equip_boots = 1;
                 else z64_file.equip_boots = 3;
                 z64_UpdateEquipment(&z64_game, &z64_link);
-                Audio_PlaySfxGeneral(0x835, (z64_xyzf_t*)0x80104394, 0x04, (float*)0x801043A0, (float*)0x801043A0, (float*)0x801043A8);
+                SFX_PLAY_CENTERED(0x835);
             }
         }
 

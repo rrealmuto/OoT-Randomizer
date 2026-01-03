@@ -13,7 +13,7 @@ def build_xflags_from_world(world: World) ->  tuple[dict[int, dict[tuple[int, in
     for i in range(0, 101):
         scene_flags[i] = {}
         for location in world.get_locations():
-            if location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee", "Wonderitem", "EnemyDrop", "Grass", "Fish", "GossipStone"]:
+            if location.scene == i and location.type in ["Freestanding", "Pot", "FlyingPot", "Crate", "SmallCrate", "Beehive", "RupeeTower", "SilverRupee", "Wonderitem", "EnemyDrop", "Grass", "Fish", "Fairy"]:
                 default = location.default
                 if isinstance(default, list):  # List of alternative room/setup/flag to use
                     primary_tuple = default[0]
@@ -58,6 +58,9 @@ def build_xflag_tables(xflags: dict[int, dict[tuple[int,int], list[tuple[int,int
         room_table.append(num_room_setups)
         for setup, room in xflags[scene].keys():
             if scene == 0x3E:
+                # Grottos and fairy fountains
+                room_setup = bytearray([setup, room])
+            elif scene == 0x3C:
                 room_setup = bytearray([setup, room])
             else:
                 room_setup = bytearray([(setup << 6) + room])

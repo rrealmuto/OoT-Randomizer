@@ -10,7 +10,8 @@
             "Ice Cavern Entryway Freezard 1": "can_kill_freezard",
             "Ice Cavern Entryway Freezard 2": "can_kill_freezard",
             "Ice Cavern Entryway Freezard 3": "can_kill_freezard",
-            "Ice Cavern Entryway Freezard 4": "can_kill_freezard"
+            "Ice Cavern Entryway Freezard 4": "can_kill_freezard",
+            "Ice Cavern Entryway Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "ZF Ice Ledge": "True",

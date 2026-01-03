@@ -237,11 +237,20 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Adult Grass 20",                                            ("Grass",      0x55, [(0,2,24,12),(0,3,31,12)], None,          'Rupees (5)',                           ("Kokiri Forest", "Forest Area", "Grass"))),
 
     # Kokiri Forest Gossip Stones
-    ("KF Deku Tree Gossip Stone (Left) Drop", ("GossipStone", 0x55, [(1,0,8),(1,2,9),(1,3,4)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
-    ("KF Deku Tree Gossip Stone (Right) Drop", ("GossipStone", 0x55, [(1,0,9),(1,2,10),(1,3,5)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
-    ("KF Gossip Stone Drop", ("GossipStone", 0x55, [(0,0,16),(0,2,25),(0,3,9)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","GossipStone"))),
-    ("KF Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x0C,10), None, 'Rupees (20)', ("Kokiri Forest", "Forest Area", "Grottos", "GossipStone"))),
+    ("KF Deku Tree Gossip Stone (Left) Fairy Spawn", ("Fairy", 0x55, [(1,0,8,1),(1,2,9,1),(1,3,4,1)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","Fairy"))),
+    ("KF Deku Tree Gossip Stone (Left) Big Fairy Spawn", ("Fairy", 0x55, [(1,0,8,2),(1,2,9,2),(1,3,4,2)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","Fairy"))),
+    ("KF Deku Tree Gossip Stone (Right) Fairy Spawn", ("Fairy", 0x55, [(1,0,9,1),(1,2,10,1),(1,3,5,1)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","Fairy"))),
+    ("KF Deku Tree Gossip Stone (Right) Big Fairy Spawn", ("Fairy", 0x55, [(1,0,9,2),(1,2,10,2),(1,3,5,2)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","Fairy"))),
+    ("KF Gossip Stone Fairy Spawn", ("Fairy", 0x55, [(0,0,16,1),(0,2,25,1),(0,3,9,1)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","Fairy"))),
+    ("KF Gossip Stone Big Fairy Spawn", ("Fairy", 0x55, [(0,0,16,2),(0,2,25,2),(0,3,9,2)], None, 'Rupees (20)', ("Kokiri Forest", "Forest Area","Fairy"))),
+    ("KF Storms Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,0x0C,10,1), None, 'Rupees (20)', ("Kokiri Forest", "Forest Area", "Grottos", "Fairy"))),
+    ("KF Storms Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0x0C,10,2), None, 'Rupees (20)', ("Kokiri Forest", "Forest Area", "Grottos", "Fairy"))),
 
+    # Kokiri Forest Fairies
+    ("KF Storms Grotto Butterfly Fairy 1",                           ("Fairy",        0x3E, (0,0x0C,7,1), None,                     'Fairy Drop',                            ("Kokiri FOrest", "Forest Area", "Grottos", "Fairy"))),
+    ("KF Storms Grotto Butterfly Fairy 2",                           ("Fairy",        0x3E, (0,0x0C,7,2), None,                     'Fairy Drop',                            ("Kokiri FOrest", "Forest Area", "Grottos", "Fairy"))),
+    ("KF Storms Grotto Butterfly Fairy 3",                           ("Fairy",        0x3E, (0,0x0C,7,3), None,                     'Fairy Drop',                            ("Kokiri FOrest", "Forest Area", "Grottos", "Fairy"))),
+    
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),
@@ -307,8 +316,23 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Lost Woods Near Meadow Grass 2",                               ("Grass",      0x5b, [(8,0,5),(8,2,6)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
     ("Lost Woods Near Meadow Grass 3",                               ("Grass",      0x5b, [(8,0,6),(8,2,7)], None,                  'Rupees (5)',                            ("Lost Woods", "Forest Area", "Grass"))),
     # Lost Woods Gossip Stones
-    ("LW Gossip Stone Drop", ("GossipStone", 0x5B, [(5,2,2),(5,0,5)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "GossipStone"))),
-    ("LW Near Shortcuts Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x14,10), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "GossipStone"))),
+    ("LW Gossip Stone Fairy Spawn", ("Fairy", 0x5B, [(5,2,2,1),(5,0,5,1)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Gossip Stone Big Fairy Spawn", ("Fairy", 0x5B, [(5,2,2,2),(5,0,5,2)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Shortcuts Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,0x14,10,1), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Shortcuts Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0x14,10,2), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
+
+    # Lost Woods Fairies
+    
+    ("LW Song of Storms Fairy",                                      ("Fairy",       0x5B, [(3,0,4),(3,2,6)], None,                 'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Child Butterfly Fairy 1",                                   ("Fairy",       0x5B, (6,0,2,1), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Child Butterfly Fairy 2",                                   ("Fairy",       0x5B, (6,0,2,2), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Child Butterfly Fairy 3",                                   ("Fairy",       0x5B, (6,0,2,3), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Child Butterfly Fairy 4",                                   ("Fairy",       0x5B, (6,0,2,4), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Child Butterfly Fairy 5",                                   ("Fairy",       0x5B, (6,0,2,5), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Shortcuts Grotto Butterfly Fairy 1",                   ("Fairy",       0x3E, (0,0x14,7,1), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
+    ("LW Near Shortcuts Grotto Butterfly Fairy 2",                   ("Fairy",       0x3E, (0,0x14,7,2), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
+    ("LW Near Shortcuts Grotto Butterfly Fairy 3",                   ("Fairy",       0x3E, (0,0x14,7,3), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
+    ("LW Scrubs Grotto Suns Song Fairy",                             ("Fairy",       0x3E, (6,0x15,1), None,                        'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
 
     # Sacred Forest Meadow
     ("SFM Wolfos Grotto Chest",                                      ("Chest",        0x3E,  0x11, None,                            'Rupees (50)',                           ("Sacred Forest Meadow", "Forest Area", "Grottos", "Chests",))),
@@ -354,9 +378,22 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("SFM Wolfos Grotto Wolfos 2",                                   ("EnemyDrop",    0x3E, (7,0x0D,2), None,                    'Rupees (5)',                            ("Sacred Forest Meadow", "Forest Area", "Grottos", "Enemy Drops",))),
 
     # Sacred Forest Meadow Gossip Stones
-    ("SFM Maze Gossip Stone (Lower) Drop",                          ("GossipStone",  0x56,  [(0,0,3),(0,2,2)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
-    ("SFM Maze Gossip Stone (Upper) Drop",                          ("GossipStone",  0x56,  [(0,0,4),(0,2,3)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
-    ("SFM Saria Gossip Stone Drop",                                 ("GossipStone",  0x56,  [(0,0,5),(0,2,4)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "GossipStone"))),
+    ("SFM Maze Gossip Stone (Lower) Fairy Spawn",                          ("Fairy",  0x56,  [(0,0,3,1),(0,2,2,1)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Fairy"))),
+    ("SFM Maze Gossip Stone (Lower) Big Fairy Spawn",                          ("Fairy",  0x56,  [(0,0,3,2),(0,2,2,2)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Fairy"))),
+    ("SFM Maze Gossip Stone (Upper) Fairy Spawn",                          ("Fairy",  0x56,  [(0,0,4,1),(0,2,3,1)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Fairy"))),
+    ("SFM Maze Gossip Stone (Upper) Big Fairy Spawn",                          ("Fairy",  0x56,  [(0,0,4,2),(0,2,3,2)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Fairy"))),
+    ("SFM Saria Gossip Stone Fairy Spawn",                                 ("Fairy",  0x56,  [(0,0,5,1),(0,2,4,1)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Fairy"))),
+    ("SFM Saria Gossip Stone Big Fairy Spawn",                                 ("Fairy",  0x56,  [(0,0,5,2),(0,2,4,2)], None,               'Rupees (20)',                           ("Sacred Forest Meadow", "Forest Area", "Fairy"))),
+
+    # Sacred Forest Meadow Fairies
+    ("SFM Fairy Fountain Fairy 1",                                  ("Fairy",         0x3C,  (0x56,0,1,1), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 2",                                  ("Fairy",         0x3C,  (0x56,0,1,2), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 3",                                  ("Fairy",         0x3C,  (0x56,0,1,3), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 4",                                  ("Fairy",         0x3C,  (0x56,0,1,4), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 5",                                  ("Fairy",         0x3C,  (0x56,0,1,5), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 6",                                  ("Fairy",         0x3C,  (0x56,0,1,6), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 7",                                  ("Fairy",         0x3C,  (0x56,0,1,7), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
+    ("SFM Fairy Fountain Fairy 8",                                  ("Fairy",         0x3C,  (0x56,0,1,8), None,                    'Fairy Drop',                          ("Sacred Forest Meadow", "Forest Area", "Grottos", "Fairy"))),
 
     # Hyrule Field
     ("HF Ocarina of Time Item",                                      ("NPC",          0x51,  0x0C, None,                            'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones", "NPCs",))),
@@ -495,10 +532,35 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Near KF Grass Patch 11",                                 ("Grass",      0x51, [(0,0,62,11),(0,1,60,11),(0,2,54,11)],   None,     'Rupees (5)',         ("Hyrule Field", "Grass"))),
     ("HF Near KF Grass Patch 12",                                 ("Grass",      0x51, [(0,0,62,12),(0,1,60,12),(0,2,54,12)],   None,     'Rupees (5)',         ("Hyrule Field", "Grass"))),
     # Hyrule Field Gossip Stones
-    ("HF Near Market Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0,10), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "GossipStone"))),
-    ("HF Southeast Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,2,10), None, 'Rupees (20)',   ("Hyrule Field", "Grottos", "GossipStone"))),
-    ("HF Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,3,10), None, 'Rupees (20)',        ("Hyrule Field", "Grottos", "GossipStone"))),
-    ("HF Cow Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (4,0x4,11), None, 'Rupees (20)',       ("Hyrule Field", "Grottos", "GossipStone"))),
+    ("HF Near Market Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,0,10,1), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Near Market Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0,10,2), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Southeast Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,2,10,1), None, 'Rupees (20)',   ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Southeast Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,2,10,2), None, 'Rupees (20)',   ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Open Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,3,10,1), None, 'Rupees (20)',        ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Open Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,3,10,2), None, 'Rupees (20)',        ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Cow Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (4,0x4,11,1), None, 'Rupees (20)',       ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Cow Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (4,0x4,11,2), None, 'Rupees (20)',       ("Hyrule Field", "Grottos", "Fairy"))),
+
+    # Hyrule Field Fairies
+    ("HF Song of Storms Fairy",                                      ("Fairy",        0x51,  [(0,0,73),(0,1,71),(0,2,72)], None,    'Fairy Drop',                          ("Hyrule Field", "Fairy"))),
+    ("HF Fairy Fountain Fairy 1",                                    ("Fairy",        0x3C,  (0x51,0,1,1), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 2",                                    ("Fairy",        0x3C,  (0x51,0,1,2), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 3",                                    ("Fairy",        0x3C,  (0x51,0,1,3), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 4",                                    ("Fairy",        0x3C,  (0x51,0,1,4), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 5",                                    ("Fairy",        0x3C,  (0x51,0,1,5), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 6",                                    ("Fairy",        0x3C,  (0x51,0,1,6), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 7",                                    ("Fairy",        0x3C,  (0x51,0,1,7), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Fairy Fountain Fairy 8",                                    ("Fairy",        0x3C,  (0x51,0,1,8), None,                    'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Near Market Grotto Butterfly Fairy 1",                      ("Fairy",        0x3E,  (0,0x0,7,1), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Near Market Grotto Butterfly Fairy 2",                      ("Fairy",        0x3E,  (0,0x0,7,2), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Near Market Grotto Butterfly Fairy 3",                      ("Fairy",        0x3E,  (0,0x0,7,3), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Southeast Grotto Butterfly Fairy 1",                        ("Fairy",        0x3E,  (0,0x2,7,1), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Southeast Grotto Butterfly Fairy 2",                        ("Fairy",        0x3E,  (0,0x2,7,2), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Southeast Grotto Butterfly Fairy 3",                        ("Fairy",        0x3E,  (0,0x2,7,3), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Open Grotto Butterfly Fairy 1",                             ("Fairy",        0x3E,  (0,0x3,7,1), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Open Grotto Butterfly Fairy 2",                             ("Fairy",        0x3E,  (0,0x3,7,2), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Open Grotto Butterfly Fairy 3",                             ("Fairy",        0x3E,  (0,0x3,7,3), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Deku Scrub Grotto Song of Storms Fairy",                    ("Fairy",        0x3E,  (1,6,3), None,                         'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
 
     # Market
     ("Market Shooting Gallery Reward",                               ("NPC",          0x42,  0x60, None,                            'Slingshot',                             ("Market", "Minigames",))),
@@ -661,14 +723,22 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Market Adult ReDead 7",                                        ("EnemyDrop",    0x22, (0, 0, 7), None,                    'Rupees (5)',                            ("Market", "Enemy Drops",))),
     ("Market Adult ReDead 8",                                        ("EnemyDrop",    0x22, (0, 0, 8), None,                    'Rupees (5)',                            ("Market", "Enemy Drops",))),
 
+    # Market Fairies
+    ("Market Child Butterfly Fairy 1",                               ("Fairy",        0x20, (0,0,32,1), None,                    'Fairy Drop',                           ("Market", "Fairy"))),
+    ("Market Child Butterfly Fairy 2",                               ("Fairy",        0x20, (0,0,32,2), None,                    'Fairy Drop',                           ("Market", "Fairy"))),
+    ("Market Child Butterfly Fairy 3",                               ("Fairy",        0x20, (0,0,32,3), None,                    'Fairy Drop',                           ("Market", "Fairy"))),
 
     # Temple of Time
     ("ToT Light Arrows Cutscene",                                    ("Cutscene",     0xFF,  0x01, None,                            'Light Arrows',                          ("Temple of Time", "NPCs",))),
     ("ToT Light Arrows Cutscene",                                    ("Cutscene",     0xFF,  0x01, None,                            'Light Arrows',                          ("Temple of Time", "NPCs",))),
-    ("ToT Gossip Stone (Left) Drop", ("GossipStone", 0x23, [(0,0,2),(0,1,2),(0,2,2)], None, 'Rupees (20)',         ("Temple of Time", "GossipStone"))),
-    ("ToT Gossip Stone (Left-Center) Drop", ("GossipStone", 0x23, [(0,0,3),(0,1,3),(0,2,3)], None, 'Rupees (20)',  ("Temple of Time", "GossipStone"))),
-    ("ToT Gossip Stone (Right) Drop", ("GossipStone", 0x23, [(0,0,4),(0,1,4),(0,2,4)], None, 'Rupees (20)',        ("Temple of Time", "GossipStone"))),
-    ("ToT Gossip Stone (Right-Center) Drop", ("GossipStone", 0x23, [(0,0,5),(0,1,5),(0,2,5)], None, 'Rupees (20)', ("Temple of Time", "GossipStone"))),
+    ("ToT Gossip Stone (Left) Fairy Spawn", ("Fairy", 0x23, [(0,0,2,1),(0,1,2,1),(0,2,2,1)], None, 'Rupees (20)',         ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Left) Big Fairy Spawn", ("Fairy", 0x23, [(0,0,2,2),(0,1,2,2),(0,2,2,2)], None, 'Rupees (20)',         ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Left-Center) Fairy Spawn", ("Fairy", 0x23, [(0,0,3,1),(0,1,3,1),(0,2,3,1)], None, 'Rupees (20)',  ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Left-Center) Big Fairy Spawn", ("Fairy", 0x23, [(0,0,3,2),(0,1,3,2),(0,2,3,2)], None, 'Rupees (20)',  ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Right) Fairy Spawn", ("Fairy", 0x23, [(0,0,4,1),(0,1,4,1),(0,2,4,1)], None, 'Rupees (20)',        ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Right) Big Fairy Spawn", ("Fairy", 0x23, [(0,0,4,2),(0,1,4,2),(0,2,4,2)], None, 'Rupees (20)',        ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Right-Center) Fairy Spawn", ("Fairy", 0x23, [(0,0,5,1),(0,1,5,1),(0,2,5,1)], None, 'Rupees (20)', ("Temple of Time", "Fairy"))),
+    ("ToT Gossip Stone (Right-Center) Big Fairy Spawn", ("Fairy", 0x23, [(0,0,5,2),(0,1,5,2),(0,2,5,2)], None, 'Rupees (20)', ("Temple of Time", "Fairy"))),
 
     # Hyrule Castle
     ("HC Malon Egg",                                                 ("NPC",          0x5F,  0x47, None,                            'Weird Egg',                             ("Hyrule Castle", "NPCs",))),
@@ -703,14 +773,30 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HC Castle Moat Wonderitem 10",                                 ("Wonderitem",   0x5F,  (0,0,42), None,                        'Rupees (5)',                            ("Hyrule Castle", "Wonderitems",))),
     ("HC Zeldas Courtyard Mario Wonderitem",                         ("Wonderitem",   0x4A,  (0,0,6),  None,                        'Rupees (20)',                           ("Hyrule Castle", "Wonderitems",))),
     # Hyrule Castle Gossip Stones
-    ("HC Malon Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,4), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
-    ("HC Rock Wall Gossip Stone Drop", ("GossipStone", 0x5F, (0,0,3), None, 'Rupees (20)', ("Hyrule Castle","GossipStone"))),
-    ("HC Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (8,0x16,14), None, 'Rupees (20)', ("Hyrule Castle", "Grottos","GossipStone"))),
+    ("HC Malon Gossip Stone Fairy Spawn", ("Fairy", 0x5F, (0,0,4,1), None, 'Rupees (20)', ("Hyrule Castle","Fairy"))),
+    ("HC Malon Gossip Stone Big Fairy Spawn", ("Fairy", 0x5F, (0,0,4,2), None, 'Rupees (20)', ("Hyrule Castle","Fairy"))),
+    ("HC Rock Wall Gossip Stone Fairy Spawn", ("Fairy", 0x5F, (0,0,3,1), None, 'Rupees (20)', ("Hyrule Castle","Fairy"))),
+    ("HC Rock Wall Gossip Stone Big Fairy Spawn", ("Fairy", 0x5F, (0,0,3,2), None, 'Rupees (20)', ("Hyrule Castle","Fairy"))),
+    ("HC Storms Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (8,0x16,14,1), None, 'Rupees (20)', ("Hyrule Castle", "Grottos","Fairy"))),
+    ("HC Storms Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (8,0x16,14,2), None, 'Rupees (20)', ("Hyrule Castle", "Grottos","Fairy"))),
 
     # Hyrule Castle Enemies
     ("HC Storms Grotto Skullwalltula 1",                             ("EnemyDrop",    0x3E, (8,0x16,1), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "Enemy Drops",))),
     ("HC Storms Grotto Skullwalltula 2",                             ("EnemyDrop",    0x3E, (8,0x16,2), None,                      'Rupees (5)',                            ("Hyrule Castle", "Grottos", "Enemy Drops",))),
 
+    # Hyrule Castle Fairies
+    ("HC Butterfly Fairy 1",                                         ("Fairy",        0x5F, (0,0,52,1), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 2",                                         ("Fairy",        0x5F, (0,0,52,2), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 3",                                         ("Fairy",        0x5F, (0,0,53,1), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 4",                                         ("Fairy",        0x5F, (0,0,53,2), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 5",                                         ("Fairy",        0x5F, (0,0,54,1), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 6",                                         ("Fairy",        0x5F, (0,0,54,2), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 7",                                         ("Fairy",        0x5F, (0,0,54,3), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 8",                                         ("Fairy",        0x5F, (0,0,55,1), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 9",                                         ("Fairy",        0x5F, (0,0,55,2), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 10",                                        ("Fairy",        0x5F, (0,0,55,3), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 11",                                        ("Fairy",        0x5F, (0,0,55,4), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
+    ("HC Butterfly Fairy 12",                                        ("Fairy",        0x5F, (0,0,55,5), None,                      'Fairy Drop',                            ("Hyrule Castle", "Fairy"))),
 
     # Lon Lon Ranch
     ("LLR Talons Chickens",                                          ("NPC",          0x4C,  0x14, None,                            'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames",))),
@@ -891,7 +977,16 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
 
 
     # Kak Gossip Stones
-    ("Kak Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,8,10), None, 'Rupees (20)', ("Kakariko Village", "Grottos", "GossipStone"))),
+    ("Kak Open Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,8,10,1), None, 'Rupees (20)', ("Kakariko Village", "Grottos", "Fairy"))),
+    ("Kak Open Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,8,10,2), None, 'Rupees (20)', ("Kakariko Village", "Grottos", "Fairy"))),
+
+    # Kakariko Village Fairies
+    ("Kak Child Butterfly Fairy 1",                                  ("Fairy",        0x52, (0,0,47,1), None,                       'Fairy Drop',                            ("Kakariko Village", "Fairy"))),
+    ("Kak Child Butterfly Fairy 2",                                  ("Fairy",        0x52, (0,0,47,2), None,                       'Fairy Drop',                            ("Kakariko Village", "Fairy"))),
+    ("Kak Open Grotto Butterfly Fairy 1",                            ("Fairy",        0x3E,  (0,0x08,7,1), None,                    'Fairy Drop',                            ("Kakariko Village", "Grottos", "Fairy",))),
+    ("Kak Open Grotto Butterfly Fairy 2",                            ("Fairy",        0x3E,  (0,0x08,7,2), None,                    'Fairy Drop',                            ("Kakariko Village", "Grottos", "Fairy",))),
+    ("Kak Open Grotto Butterfly Fairy 3",                            ("Fairy",        0x3E,  (0,0x08,7,3), None,                    'Fairy Drop',                            ("Kakariko Village", "Grottos", "Fairy",))),
+    
 
     # Graveyard
     ("Graveyard Shield Grave Chest",                                 ("Chest",        0x40,  0x00, None,                            'Hylian Shield',                         ("Graveyard", "Grottos", "Chests",))),
@@ -939,7 +1034,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     # Graveyard Crates
     ("Graveyard Freestanding PoH Crate",                             ("Crate",        0x53, [(1,0,22),(1,1,24),(1,2,34),(1,3,34)],None,'Nothing',                            ("Graveyard", "Crates",))),
     # Graveyard Gossip Stones
-    ("Graveyard Gossip Stone Drop", ("GossipStone", 0x53, [(1,0,3),(1,1,51),(1,2,2),(1,3,2)], None, 'Rupees (20)', ("Graveyard","GossipStone"))),
+    ("Graveyard Gossip Stone Fairy Spawn", ("Fairy", 0x53, [(1,0,3,1),(1,1,51,1),(1,2,2,1),(1,3,2,1)], None, 'Rupees (20)', ("Graveyard","Fairy"))),
+    ("Graveyard Gossip Stone Big Fairy Spawn", ("Fairy", 0x53, [(1,0,3,2),(1,1,51,2),(1,2,2,2),(1,3,2,2)], None, 'Rupees (20)', ("Graveyard","Fairy"))),
 
     # Graveyard Wonderitems
     ("Graveyard Dampe Race Wonderitem 1",                            ("Wonderitem",   0x48, (1,0,6), None,                          'Rupee (1)',                             ("Graveyard", "Grottos", "Wonderitems",))),
@@ -978,6 +1074,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Dampe Race ReDead 3",                                ("EnemyDrop",    0x48,  (3,0,3), None,                         'Rupees (5)',                            ("Graveyard", "Grottos", "Enemy Drops",))),
     ("Graveyard Dampe Race ReDead 4",                                ("EnemyDrop",    0x48,  (3,0,4), None,                         'Rupees (5)',                            ("Graveyard", "Grottos", "Enemy Drops",))),
 
+    # Graveyard Fairies
+    ("Graveyard Child Fairy 1",                                      ("Fairy",         0x53,  (1,0,18,1), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Child Fairy 2",                                      ("Fairy",         0x53,  (1,0,18,2), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Child Fairy 3",                                      ("Fairy",         0x53,  (1,0,18,3), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 1",                             ("Fairy",         0x40,  (0x0,0,6,1), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 2",                             ("Fairy",         0x40,  (0x0,0,6,2), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 3",                             ("Fairy",         0x40,  (0x0,0,6,3), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 4",                             ("Fairy",         0x40,  (0x0,0,6,4), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 5",                             ("Fairy",         0x40,  (0x0,0,6,5), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 6",                             ("Fairy",         0x40,  (0x0,0,6,6), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 7",                             ("Fairy",         0x40,  (0x0,0,6,7), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Fairy Fountain Fairy 8",                             ("Fairy",         0x40,  (0x0,0,6,8), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
+    ("Graveyard Royal Familys Tomb Suns Song Fairy",                 ("Fairy",         0x41,  (0,0,9), None,                        'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
 
     # Death Mountain Trail
     ("DMT Freestanding PoH",                                         ("Collectable",  0x60,  0x1E, None,                            'Piece of Heart',                        ("Death Mountain Trail", "Freestandings",))),
@@ -1041,8 +1150,18 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
 
 
     # Death Mountain Trail Gossip Stones
-    ("DMT Gossip Stone Drop", ("GossipStone", 0x60, [(0,0,5),(0,2,2)], None, 'Rupees (20)', ("Death Mountain Trial","GossipStone"))),
-    ("DMT Storms Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x17,10), None, 'Rupees (20)', ("Death Mountain Trial", "Grottos", "GossipStone"))),
+    ("DMT Gossip Stone Fairy Spawn", ("Fairy", 0x60, [(0,0,5,1),(0,2,2,1)], None, 'Rupees (20)', ("Death Mountain Trial","Fairy"))),
+    ("DMT Gossip Stone Big Fairy Spawn", ("Fairy", 0x60, [(0,0,5,2),(0,2,2,2)], None, 'Rupees (20)', ("Death Mountain Trial","Fairy"))),
+    ("DMT Storms Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,0x17,10,1), None, 'Rupees (20)', ("Death Mountain Trial", "Grottos", "Fairy"))),
+    ("DMT Storms Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0x17,10,2), None, 'Rupees (20)', ("Death Mountain Trial", "Grottos", "Fairy"))),
+
+    # Death Mountain Trail Fairies
+    
+    ("DMT Suns Song Fairy",                                          ("Fairy",        0x60, [(0,0,39),(0,2,44)], None,               'Fairy Drop',                            ("Death Mountain Trail", "Fairy"))),
+    ("DMT Storms Grotto Butterfly Fairy 1",                          ("Fairy",        0x3E, (0,0x17,7,1), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
+    ("DMT Storms Grotto Butterfly Fairy 2",                          ("Fairy",        0x3E, (0,0x17,7,2), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
+    ("DMT Storms Grotto Butterfly Fairy 3",                          ("Fairy",        0x3E, (0,0x17,7,3), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
+    ("DMT Cow Grotto Song of Storms Fairy",                          ("Fairy",        0x3E, (3,0x18,5), None,                       'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
 
     # Goron City
     ("GC Darunias Joy",                                              ("NPC",          0x62,  0x54, None,                            'Progressive Strength Upgrade',          ("Goron City", "NPCs",))),
@@ -1101,8 +1220,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GC Grotto Beehive",                                            ("Beehive",      0x3E,  (12,0x1B,4), None,                     'Rupees (20)',                           ("Goron City", "Grottos", "Beehives",))),
 
     # Goron City Gossip Stones
-    ("GC Maze Gossip Stone Drop", ("GossipStone", 0x62, [(0,2,1),(0,0,49)], None, 'Rupees (20)', ("Goron City","GossipStone"))),
-    ("GC Medigoron Gossip Stone Drop", ("GossipStone", 0x62, [(2,2,1),(2,0,6)], None, 'Rupees (20)', ("Goron City","GossipStone"))),
+    ("GC Maze Gossip Stone Fairy Spawn", ("Fairy", 0x62, [(0,2,1,1),(0,0,49,1)], None, 'Rupees (20)', ("Goron City","Fairy"))),
+    ("GC Maze Gossip Stone Big Fairy Spawn", ("Fairy", 0x62, [(0,2,1,2),(0,0,49,2)], None, 'Rupees (20)', ("Goron City","Fairy"))),
+    ("GC Medigoron Gossip Stone Fairy Spawn", ("Fairy", 0x62, [(2,2,1,1),(2,0,6,1)], None, 'Rupees (20)', ("Goron City","Fairy"))),
+    ("GC Medigoron Gossip Stone Big Fairy Spawn", ("Fairy", 0x62, [(2,2,1,2),(2,0,6,2)], None, 'Rupees (20)', ("Goron City","Fairy"))),
 
     # Death Mountain Crater
     ("DMC Volcano Freestanding PoH",                                 ("Collectable",  0x61,  0x08, None,                            'Piece of Heart',                        ("Death Mountain Crater", "Freestandings",))),
@@ -1161,9 +1282,16 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMC Pierre Platform Red Bubble",                               ("EnemyDrop",    0x61, (1,2,13), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Enemy Drops",))),
 
     # Death Mountain Crater Gossip Stones
-    ("DMC Gossip Stone Drop",                                        ("GossipStone",  0x61, [(1,0,10),(1,2,2)], None,               'Rupees (20)',                           ("Death Mountain Crater", "GossipStone"))),
-    ("DMC Upper Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,0x1A,10), None, 'Rupees (20)', ("Death Mountain Crater", "Grottos", "GossipStone"))),
+    ("DMC Gossip Stone Fairy Spawn",                                        ("Fairy",  0x61, [(1,0,10,1),(1,2,2,1)], None,               'Rupees (20)',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Gossip Stone Big Fairy Spawn",                                        ("Fairy",  0x61, [(1,0,10,2),(1,2,2,2)], None,               'Rupees (20)',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Upper Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,0x1A,10,1), None, 'Rupees (20)', ("Death Mountain Crater", "Grottos", "Fairy"))),
+    ("DMC Upper Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0x1A,10,2), None, 'Rupees (20)', ("Death Mountain Crater", "Grottos", "Fairy"))),
 
+    # Death Mountain Crater Fairies
+    ("DMC Upper Grotto Butterfly Fairy 1",                          ("Fairy",        0x3E, (0,0x1A,7,1), None,                     'Fairy Drop',                            ("Death Mountain Crater", "Grottos", "Fairy"))),
+    ("DMC Upper Grotto Butterfly Fairy 2",                          ("Fairy",        0x3E, (0,0x1A,7,2), None,                     'Fairy Drop',                            ("Death Mountain Crater", "Grottos", "Fairy"))),
+    ("DMC Upper Grotto Butterfly Fairy 3",                          ("Fairy",        0x3E, (0,0x1A,7,3), None,                     'Fairy Drop',                            ("Death Mountain Crater", "Grottos", "Fairy"))),
+    
     # Zora's River
     ("ZR Magic Bean Salesman",                                       ("NPC",          0x54,  0x16, None,                            'Buy Magic Bean',                        ("Zora's River", "NPCs",))),
     ("ZR Open Grotto Chest",                                         ("Chest",        0x3E,  0x09, None,                            'Rupees (20)',                           ("Zora's River", "Grottos", "Chests",))),
@@ -1265,9 +1393,31 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Adult Octorok 6",                                           ("EnemyDrop",    0x54, (0,2,10), None,                         'Rupees (5)',                            ("Zora's River", "Enemy Drops",))),
 
     # Zora's River Gossip Stones
-    ("ZR Near Grottos Gossip Stone Drop", ("GossipStone", 0x54, [(0,0,8),(0,2,11)], None, 'Rupees (20)', ("Zora's River", "GossipStone"))),
-    ("ZR Near Domain Gossip Stone Drop", ("GossipStone", 0x54, [(1,0,2),(1,2,6)], None, 'Rupees (20)',   ("Zora's River", "GossipStone"))),
-    ("ZR Open Grotto Gossip Stone Drop", ("GossipStone", 0x3E, (0,9,10), None, 'Rupees (20)',            ("Zora's River", "GossipStone"))),
+    ("ZR Near Grottos Gossip Stone Fairy Spawn", ("Fairy", 0x54, [(0,0,8,1),(0,2,11,1)], None, 'Fairy Drop', ("Zora's River", "Fairy"))),
+    ("ZR Near Grottos Gossip Stone Big Fairy Spawn", ("Fairy", 0x54, [(0,0,8,2),(0,2,11,2)], None, 'Fairy Drop', ("Zora's River", "Fairy"))),
+    ("ZR Near Domain Gossip Stone Fairy Spawn", ("Fairy", 0x54, [(1,0,2,1),(1,2,6,1)], None, 'Fairy Drop',   ("Zora's River", "Fairy"))),
+    ("ZR Near Domain Gossip Stone Big Fairy Spawn", ("Fairy", 0x54, [(1,0,2,2),(1,2,6,2)], None, 'Fairy Drop',   ("Zora's River", "Fairy"))),
+    ("ZR Open Grotto Gossip Stone Fairy Spawn", ("Fairy", 0x3E, (0,9,10,1), None, 'Fairy Drop',            ("Zora's River", "Fairy"))),
+    ("ZR Open Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,9,10,2), None, 'Fairy Drop',            ("Zora's River", "Fairy"))),
+
+    ("ZR Open Grotto Butterfly Fairy 1",                            ("Fairy",        0x3E, (0,0x09,7,1), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Open Grotto Butterfly Fairy 2",                            ("Fairy",        0x3E, (0,0x09,7,2), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Open Grotto Butterfly Fairy 3",                            ("Fairy",        0x3E, (0,0x09,7,3), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    
+    # Zora's River Fiaries
+    ("ZR Butterfly Fairy 1",                                         ("Fairy",        0x54, (0,0,56,1), None,                       'Fairy Drop',                            ("Zora's River", "Fairy"))),
+    ("ZR Butterfly Fairy 2",                                         ("Fairy",        0x54, (0,0,56,2), None,                       'Fairy Drop',                            ("Zora's River", "Fairy"))),
+    ("ZR Waterfall Butterfly Fairy 1",                               ("Fairy",        0x54, (1,0,11,1), None,                       'Fairy Drop',                            ("Zora's River", "Fairy"))),
+    ("ZR Waterfall Butterfly Fairy 2",                               ("Fairy",        0x54, (1,0,11,2), None,                       'Fairy Drop',                            ("Zora's River", "Fairy"))),
+    ("ZR Waterfall Butterfly Fairy 3",                               ("Fairy",        0x54, (1,0,11,3), None,                       'Fairy Drop',                            ("Zora's River", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 1",                                    ("Fairy",        0x3C, (0x54,0,1,1), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 2",                                    ("Fairy",        0x3C, (0x54,0,1,2), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 3",                                    ("Fairy",        0x3C, (0x54,0,1,3), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 4",                                    ("Fairy",        0x3C, (0x54,0,1,4), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 5",                                    ("Fairy",        0x3C, (0x54,0,1,5), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 6",                                    ("Fairy",        0x3C, (0x54,0,1,6), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 7",                                    ("Fairy",        0x3C, (0x54,0,1,7), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
+    ("ZR Fairy Fountain Fairy 8",                                    ("Fairy",        0x3C, (0x54,0,1,8), None,                     'Fairy Drop',                            ("Zora's River", "Grottos", "Fairy"))),
 
     # Zora's Domain
     ("ZD Diving Minigame",                                           ("NPC",          0x58,  0x37, None,                            'Progressive Scale',                     ("Zora's Domain", "Minigames",))),
@@ -1300,9 +1450,18 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZD In Front of King Zora Beehive 2",                           ("Beehive",      0x58,  (0,0,11), None,                        'Rupees (20)',                           ("Zora's Domain", "Beehives",))),
     ("ZD Behind King Zora Beehive",                                  ("Beehive",      0x58,  (0,0,12), None,                        'Rupees (20)',                           ("Zora's Domain", "Beehives",))),
     # Zora's Domain Gossip Stones
-    ("ZD Gossip Stone Drop", ("GossipStone", 0x58, [(0,2,2),(0,0,14)], None, 'Rupees (20)', ("Zora's Domain","GossipStone"))),
+    ("ZD Gossip Stone Fairy Spawn", ("Fairy", 0x58, [(0,2,2,1),(0,0,14,1)], None, 'Rupees (20)', ("Zora's Domain","Fairy"))),
+    ("ZD Gossip Stone Big Fairy Spawn", ("Fairy", 0x58, [(0,2,2,2),(0,0,14,2)], None, 'Rupees (20)', ("Zora's Domain","Fairy"))),
 
-
+    # Zora's Domain Fairies
+    ("ZD Fairy Fountain Fairy 1",                                    ("Fairy",        0x3C,  (0x58,1,1,1), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 2",                                    ("Fairy",        0x3C,  (0x58,1,1,2), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 3",                                    ("Fairy",        0x3C,  (0x58,1,1,3), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 4",                                    ("Fairy",        0x3C,  (0x58,1,1,4), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 5",                                    ("Fairy",        0x3C,  (0x58,1,1,5), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 6",                                    ("Fairy",        0x3C,  (0x58,1,1,6), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 7",                                    ("Fairy",        0x3C,  (0x58,1,1,7), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
+    ("ZD Fairy Fountain Fairy 8",                                    ("Fairy",        0x3C,  (0x58,1,1,8), None,                    'Fairy Drop',                            ("Zora's Domain", "Grottos", "Fairies"))),
 
     # Zora's Fountain
     ("ZF Great Fairy Reward",                                        ("Cutscene",     0xFF,  0x10, None,                            'Farores Wind',                          ("Zora's Fountain", "Great Fairies",))),
@@ -1343,8 +1502,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZF Near Jabu Pot 3",                                           ("Pot",          0x59,  [(0,0,23),(0,1,23)], None,             'Rupee (1)',                             ("Zora's Fountain", "Pots",))),
     ("ZF Near Jabu Pot 4",                                           ("Pot",          0x59,  [(0,0,24),(0,1,24)], None,             'Recovery Heart',                        ("Zora's Fountain", "Pots",))),
     # Zora's Fountain Gossip Stones
-    ("ZF Fairy Gossip Stone Drop", ("GossipStone", 0x59, [(0,0,19),(0,1,19),(0,2,23)], None, 'Rupees (20)', ("Zora's Fountain", "GossipStone"))),
-    ("ZF Jabu Gossip Stone Drop", ("GossipStone", 0x59, [(0,0,21),(0,1,21),(0,2,24)], None, 'Rupees (20)',  ("Zora's Fountain", "GossipStone"))),
+    ("ZF Fairy Gossip Stone Fairy Spawn", ("Fairy", 0x59, [(0,0,19,1),(0,1,19,1),(0,2,23,1)], None, 'Rupees (20)', ("Zora's Fountain", "Fairy"))),
+    ("ZF Fairy Gossip Stone Big Fairy Spawn", ("Fairy", 0x59, [(0,0,19,2),(0,1,19,2),(0,2,23,2)], None, 'Rupees (20)', ("Zora's Fountain", "Fairy"))),
+    ("ZF Jabu Gossip Stone Fairy Spawn", ("Fairy", 0x59, [(0,0,21,1),(0,1,21,1),(0,2,24,1)], None, 'Rupees (20)',  ("Zora's Fountain", "Fairy"))),
+    ("ZF Jabu Gossip Stone Big Fairy Spawn", ("Fairy", 0x59, [(0,0,21,2),(0,1,21,2),(0,2,24,2)], None, 'Rupees (20)',  ("Zora's Fountain", "Fairy"))),
 
 
     # Zora's Fountain Enemies
@@ -1359,6 +1520,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZF Hidden Cave Invisible Skulltula 4",                         ("EnemyDrop",    0x59, (0,2,28), None,                         'Rupees (5)',                            ("Zora's Fountain", "Enemy Drops",))),
     ("ZF Hidden Cave Visible Skulltula",                             ("EnemyDrop",    0x59, (0,2,29), None,                         'Rupees (5)',                            ("Zora's Fountain", "Enemy Drops",))),
 
+    ("ZF Child Butterfly Fairy 1",                                   ("Fairy",        0x59, (0,0,15,1), None,                       'Fairy Drop',                            ("Zora's Fountain", "Fairy"))),
+    ("ZF Child Butterfly Fairy 2",                                   ("Fairy",        0x59, (0,0,15,2), None,                       'Fairy Drop',                            ("Zora's Fountain", "Fairy"))),
 
     # Lake Hylia
     ("LH Underwater Item",                                           ("NPC",          0x57,  0x15, None,                            'Rutos Letter',                          ("Lake Hylia", "Freestandings",))),
@@ -1493,11 +1656,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LH Adult Fish 15",                                             ("Fish",                0x49, (0,0,1,14), None,                       'Fish (Adult 10 lb)',                             ("Lake Hylia", "Minigames", "Fish"))),
     ("LH Adult Loach",                                               ("Fish",                0x49, (0,0,1,15), None,                       'Hylian Loach',                                   ("Lake Hylia", "Minigames", "Fish"))),
     # Lake Hylia Gossip Stones
-    ("LH Lab Gossip Stone Drop", ("GossipStone", 0x57, [(0,2,3),(0,0,53)], None, 'Rupees (20)',         ("Lake Hylia","GossipStone"))),
-    ("LH Gossip Stone (Southeast) Drop", ("GossipStone", 0x57, [(0,2,4),(0,0,55)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
-    ("LH Gossip Stone (Southwest) Drop", ("GossipStone", 0x57, [(0,2,5),(0,0,54)], None, 'Rupees (20)', ("Lake Hylia","GossipStone"))),
+    ("LH Lab Gossip Stone Fairy Spawn", ("Fairy", 0x57, [(0,2,3,1),(0,0,53,1)], None, 'Rupees (20)',         ("Lake Hylia","Fairy"))),
+    ("LH Lab Gossip Stone Big Fairy Spawn", ("Fairy", 0x57, [(0,2,3,2),(0,0,53,2)], None, 'Rupees (20)',         ("Lake Hylia","Fairy"))),
+    ("LH Gossip Stone (Southeast) Fairy Spawn", ("Fairy", 0x57, [(0,2,4,1),(0,0,55,1)], None, 'Rupees (20)', ("Lake Hylia","Fairy"))),
+    ("LH Gossip Stone (Southeast) Big Fairy Spawn", ("Fairy", 0x57, [(0,2,4,2),(0,0,55,2)], None, 'Rupees (20)', ("Lake Hylia","Fairy"))),
+    ("LH Gossip Stone (Southwest) Fairy Spawn", ("Fairy", 0x57, [(0,2,5,1),(0,0,54,1)], None, 'Rupees (20)', ("Lake Hylia","Fairy"))),
+    ("LH Gossip Stone (Southwest) Big Fairy Spawn", ("Fairy", 0x57, [(0,2,5,2),(0,0,54,2)], None, 'Rupees (20)', ("Lake Hylia","Fairy"))),
 
-
+    # Lake Hylia Fairies
+    ("LH Child Butterfly Fairy 1",                                             ("Fairy",         0x57,  (0,0,34,1), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    ("LH Child Butterfly Fairy 2",                                             ("Fairy",         0x57,  (0,0,34,2), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    ("LH Child Butterfly Fairy 3",                                             ("Fairy",         0x57,  (0,0,34,3), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    ("LH Suns Song Fairy",                                                     ("Fairy",         0x57,  [(0,0,56),(0,2,39)], None,            'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    
     # Gerudo Valley
     ("GV Crate Freestanding PoH",                                    ("Collectable",  0x5A,  0x02, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),
     ("GV Waterfall Freestanding PoH",                                ("Collectable",  0x5A,  0x01, None,                            'Piece of Heart',                        ("Gerudo Valley", "Freestandings",))),
@@ -1547,7 +1718,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0x12, 1), None,                 'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Enemy Drops",))),
 
     # Gerudo Valley Gossip Stones
-    ("GV Gossip Stone Drop", ("GossipStone", 0x5A, [(0,0,9),(0,2,46)], None, 'Rupees (20)', ("Gerudo Valley","GossipStone"))),
+    ("GV Gossip Stone Fairy Spawn", ("Fairy", 0x5A, [(0,0,9,1),(0,2,46,1)], None, 'Rupees (20)', ("Gerudo Valley","Fairy"))),
+    ("GV Gossip Stone Big Fairy Spawn", ("Fairy", 0x5A, [(0,0,9,2),(0,2,46,2)], None, 'Rupees (20)', ("Gerudo Valley","Fairy"))),
 
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Chests",))),
@@ -1585,6 +1757,15 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GF Sign Wonderitem Near Entrance",                             ("Wonderitem",   0x5D,  [(0,2,6),(0,3,6)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitems",))),
     ("GF Sign Wonderitem Near HBA",                                  ("Wonderitem",   0x5D,  [(0,2,7),(0,3,7)], None,               'Rupees (20)',                           ("Gerudo's Fortress", "Wonderitems",))),
 
+    # Gerudo's Fortress Fairies
+    ("GF Fairy Fountain Fairy 1",                                    ("Fairy",        0x3C,  (0x5D,0,1,1), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 2",                                    ("Fairy",        0x3C,  (0x5D,0,1,2), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 3",                                    ("Fairy",        0x3C,  (0x5D,0,1,3), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 4",                                    ("Fairy",        0x3C,  (0x5D,0,1,4), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 5",                                    ("Fairy",        0x3C,  (0x5D,0,1,5), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 6",                                    ("Fairy",        0x3C,  (0x5D,0,1,6), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 7",                                    ("Fairy",        0x3C,  (0x5D,0,1,7), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
+    ("GF Fairy Fountain Fairy 8",                                    ("Fairy",        0x3C,  (0x5D,0,1,8), None,                    'Fairy Drop',                            ("Gerudo's Fortress", "Grottos", "Fairy"))),
 
     # Thieves' Hideout
     ("Hideout 1 Torch Jail Gerudo Key",                              ("Collectable",  0x0C,  0x0C, None,                            'Small Key (Thieves Hideout)',           ("Thieves' Hideout",))),
@@ -1640,6 +1821,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Hideout 2 Torch Jail Wonderitem 1",                            ("Wonderitem",   0x0C,  (5,0,3), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitems",))),
     ("Hideout 2 Torch Jail Wonderitem 2",                            ("Wonderitem",   0x0C,  (5,0,4), None,                                 'Rupees (5)',                    ("Thieves' Hideout", "Wonderitems",))),
 
+    # Thieves Hideout Fairies
+    ("Hideout Kitchen Suns Song Fairy",                              ("Fairy",        0x0C,  (3,0,10), None,                                'Fairy Drop',                    ("Thieves' Hideout", "Fairy"))),
 
     # Haunted Wasteland
     ("Wasteland Bombchu Salesman",                                   ("NPC",          0x5E,  0x03, None,                            'Bombchus (10)',                         ("Haunted Wasteland", "NPCs",))),
@@ -1695,9 +1878,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Colossus Adult Guay 4",                                        ("EnemyDrop",    0x5C, (0,2,11), None,                              'Rupees (5)',                            ("Desert Colossus", "Enemy Drops",))),
     ("Colossus Adult Guay 5",                                        ("EnemyDrop",    0x5C, (0,2,12), None,                              'Rupees (5)',                            ("Desert Colossus", "Enemy Drops",))),
 
+    # Colossus Fairies
+    ("Colossus Oasis Fairy 1",                                       ("Fairy",        0x5C, [(0,0,2,1),(0,2,1,1)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 2",                                       ("Fairy",        0x5C, [(0,0,2,2),(0,2,1,2)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 3",                                       ("Fairy",        0x5C, [(0,0,2,3),(0,2,1,3)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 4",                                       ("Fairy",        0x5C, [(0,0,2,4),(0,2,1,4)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 5",                                       ("Fairy",        0x5C, [(0,0,2,5),(0,2,1,5)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 6",                                       ("Fairy",        0x5C, [(0,0,2,6),(0,2,1,6)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 7",                                       ("Fairy",        0x5C, [(0,0,2,7),(0,2,1,7)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Oasis Fairy 8",                                       ("Fairy",        0x5C, [(0,0,2,8),(0,2,1,8)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
 
     # Colossus Gossip Stone
-    ("Colossus Gossip Stone Drop", ("GossipStone", 0x5C, [(0,0,4),(0,2,3)], None, 'Rupees (20)', ("Desert Colossus","GossipStone"))),
+    ("Colossus Gossip Stone Fairy Spawn", ("Fairy", 0x5C, [(0,0,4,1),(0,2,3,1)], None, 'Rupees (20)', ("Desert Colossus","Fairy"))),
+    ("Colossus Gossip Stone Big Fairy Spawn", ("Fairy", 0x5C, [(0,0,4,2),(0,2,3,2)], None, 'Rupees (20)', ("Desert Colossus","Fairy"))),
 
 
     # Outside Ganon's Castle
@@ -2051,7 +2244,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern Before Back Room Keese 1",                     ("EnemyDrop",    0x01,  (8, 0, 0x01), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Enemy Drops",))),
     ("Dodongos Cavern Before Back Room Keese 2",                     ("EnemyDrop",    0x01,  (8, 0, 0x02), None,                   'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Enemy Drops",))),
     ("Dodongos Cavern Back Room Armos",                              ("EnemyDrop",    0x01,  (14, 0, 0x01), None,                  'Rupees (5)',                            ("Dodongo's Cavern", "Vanilla Dungeons", "Enemy Drops",))),
-    ("Dodongos Cavern Gossip Stone Drop", ("GossipStone", 0x01, (0,0,26), None, 'Rupees (20)', ("Dodongo's Cavern", "Vanilla Dungeons", "GossipStone"))),
+    ("Dodongos Cavern Gossip Stone Fairy Spawn", ("Fairy", 0x01, (0,0,26,1), None, 'Rupees (20)', ("Dodongo's Cavern", "Vanilla Dungeons", "Fairy"))),
+    ("Dodongos Cavern Gossip Stone Big Fairy Spawn", ("Fairy", 0x01, (0,0,26,2), None, 'Rupees (20)', ("Dodongo's Cavern", "Vanilla Dungeons", "Fairy"))),
 
     # Dodongo's Cavern MQ
     ("Dodongos Cavern MQ Map Chest",                                 ("Chest",        0x01,  0x00, None,                            'Map (Dodongos Cavern)',                 ("Dodongo's Cavern MQ", "Master Quest", "Chests",))),
@@ -2206,7 +2400,8 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Dodongos Cavern MQ Song of Time Block Room Skulltula 3",       ("EnemyDrop",    0x01,  (15,0,4), None,                        'Rupees (5)',                            ("Dodongo's Cavern MQ", "Master Quest", "Enemy Drops",))),
 
     # Dodongo's Cavern MQ Gossip Stones
-    ("Dodongos Cavern MQ Gossip Stone Drop",                         ("GossipStone",  0x1,   (0,0,1), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "GossipStone"))),
+    ("Dodongos Cavern MQ Gossip Stone Fairy Spawn",                         ("Fairy",  0x1,   (0,0,1,1), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "Fairy"))),
+    ("Dodongos Cavern MQ Gossip Stone Big Fairy Spawn",                         ("Fairy",  0x1,   (0,0,1,2), None,                         'Rupees (20)',                           ("Dodongo's Cavern MQ", "Master Quest", "Fairy"))),
 
     # Dodongo's Cavern Shared
     ("Dodongos Cavern Boss Room Chest",                              ("Chest",        0x12,  0x00, None,                            'Bombs (5)',                             ("Dodongo's Cavern", "Dodongo's Cavern MQ", "Vanilla Dungeons", "Master Quest", "Chests",))),
@@ -2533,6 +2728,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well East Inner Room Keese 3",                   ("EnemyDrop",    0x08,  (5,0, 3), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla Dungeons", "Enemy Drops",))),
     ("Bottom of the Well East Inner Room Keese 4",                   ("EnemyDrop",    0x08,  (5,0, 4), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla Dungeons", "Enemy Drops",))),
     ("Bottom of the Well West Inner Room Deku Baba",                 ("EnemyDrop",    0x08,  (6,0, 1), None,                    'Rupees (5)',                           ("Bottom of the Well", "Vanilla Dungeons", "Enemy Drops",))),
+
+    # Bottom of the Well Fairies
+    ("Bottom of the Well Suns Song Fairy",                           ("Fairy",        0x08,  (1,0,20), None,                    'Fairy Drop',                           ("Bottom of the Well", "Vanilla Dungeons", "Fairy"))),
 
     # Bottom of the Well MQ
     ("Bottom of the Well MQ Map Chest",                              ("Chest",        0x08,  0x03, None,                            'Map (Bottom of the Well)',              ("Bottom of the Well MQ", "Master Quest", "Chests",))),
@@ -3486,6 +3684,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple Boat Stalfos 1",                                 ("EnemyDrop",    0x07,  (21,0, 14), None,               'Rupees (5)',                                 ("Shadow Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Shadow Temple Boat Stalfos 2",                                 ("EnemyDrop",    0x07,  (21,0, 15), None,               'Rupees (5)',                                 ("Shadow Temple", "Vanilla Dungeons", "Enemy Drops",))),
 
+    # Shadow Temple Fairies
+    ("Shadow Temple First Beamos Song of Storms Fairy",              ("Fairy",        0x07,  (5,0,4), None,                  'Fairy Drop',                                 ("Shadow Temple", "Vanilla Dungeons", "Fairy"))),
+    ("Shadow Temple Huge Pit Song of Storms Fairy",                  ("Fairy",        0x07,  (9,0,22), None,                  'Fairy Drop',                                 ("Shadow Temple", "Vanilla Dungeons", "Fairy"))),
+    ("Shadow Temple Wind Hint Suns Song Fairy",                      ("Fairy",        0x07,  (19,0,3), None,                  'Fairy Drop',                                 ("Shadow Temple", "Vanilla Dungeons", "Fairy"))),
+
     # Shadow Temple MQ
     ("Shadow Temple MQ Early Gibdos Chest",                          ("Chest",        0x07,  0x03, None,                            'Small Key (Shadow Temple)',             ("Shadow Temple MQ", "Master Quest", "Chests",))),
     ("Shadow Temple MQ Map Chest",                                   ("Chest",        0x07,  0x02, None,                            'Map (Shadow Temple)',                   ("Shadow Temple MQ", "Master Quest", "Chests",))),
@@ -3841,6 +4044,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple Big Mirror First Lizalfos",                      ("EnemyDrop",    0x06,  (26,0, 4), None,                   'Rupees (5)',                           ("Spirit Temple", "Vanilla Dungeons", "Enemy Drops",))),
     ("Spirit Temple Big Mirror Second Lizalfos",                     ("EnemyDrop",    0x06,  (26,0, 5), None,                   'Rupees (5)',                           ("Spirit Temple", "Vanilla Dungeons", "Enemy Drops",))),
 
+    # Spirit Temple Fairies
+    ("Spirit Temple Early Adult Suns Song Fairy",                    ("Fairy",        0x06,  (12,0,2), None,                     'Fairy Drop',                          ("Spirit Temple", "Vanilla Dungeons", "Fairy"))),
+    ("Spirit Temple Four Armos Suns Song Fairy",                     ("Fairy",        0x06,  (18,0,7), None,                     'Fairy Drop',                          ("Spirit Temple", "Vanilla Dungeons", "Fairy"))),
+
     # Spirit Temple MQ Skulltulas
     ("Spirit Temple MQ GS Sun Block Room",                           ("GS Token",     0x06,  0x01, None,                            'Gold Skulltula Token',                  ("Spirit Temple MQ", "Master Quest", "Gold Skulltulas",))),
     ("Spirit Temple MQ GS Leever Room",                              ("GS Token",     0x06,  0x02, None,                            'Gold Skulltula Token',                  ("Spirit Temple MQ", "Master Quest", "Gold Skulltulas",))),
@@ -4049,6 +4256,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ice Cavern Push Block Silver Rupee Red Ice",                   ("SilverRupee",  0x09,  (5,0,14), None,                    'Silver Rupee (Ice Cavern Push Block)',      ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
     ("Ice Cavern Push Block Silver Rupee Front Left",                ("SilverRupee",  0x09,  (5,0,15), None,                    'Silver Rupee (Ice Cavern Push Block)',      ("Ice Cavern", "Vanilla Dungeons", "Silver Rupees",))),
 
+    # Ice Cavern Vanilla Fairies
+    ("Ice Cavern Entryway Song of Storms Fairy",                     ("Fairy",        0x09,  (1,0,14), None,                     'Fairy Drop',                               ("Ice Cavern", "Vanilla Dungeons", "Fairy"))),
+
     # Ice Cavern MQ
     ("Ice Cavern MQ Map Chest",                                      ("Chest",        0x09,  0x01, None,                            'Map (Ice Cavern)',                      ("Ice Cavern MQ", "Master Quest", "Chests",))),
     ("Ice Cavern MQ Compass Chest",                                  ("Chest",        0x09,  0x00, None,                            'Compass (Ice Cavern)',                  ("Ice Cavern MQ", "Master Quest", "Chests",))),
@@ -4171,6 +4381,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Gerudo Training Ground Underwater Shell Blade 2",              ("EnemyDrop",    0x0B,  (9,0, 6), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla Dungeons", "Enemy Drops",))),
     ("Gerudo Training Ground Underwater Shell Blade 3",              ("EnemyDrop",    0x0B,  (9,0, 7), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla Dungeons", "Enemy Drops",))),
     ("Gerudo Training Ground Underwater Shell Blade 4",              ("EnemyDrop",    0x0B,  (9,0, 8), None,                    'Rupees (5)',                           ("Gerudo Training Ground", "Vanilla Dungeons", "Enemy Drops",))),
+
+    # Gerudo Training Ground Fairies
+    ("Gerudo Training Ground Song of Storms Fairy",                  ("Fairy",        0x0B,  (0,0,9), None,                     'Fairy Drop',                           ("Gerudo Training Ground", "Vanilla Dungeons", "Fairy"))),
+
 
     # Gerudo Training Ground MQ
     ("Gerudo Training Ground MQ Lobby Left Chest",                   ("Chest",        0x0B,  0x13, None,                            'Arrows (10)',                           ("Gerudo Training Ground MQ", "Master Quest", "Chests",))),
@@ -4350,6 +4564,17 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 2",             ("EnemyDrop",    0x0D,  (18,0,21), None,                   'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Enemy Drops",))),
     ("Ganons Castle Spirit Trial Wrong Sun Wallmaster 3",             ("EnemyDrop",    0x0D,  (18,0,23), None,                   'Rupees (5)',                            ("Ganon's Castle", "Vanilla Dungeons", "Enemy Drops",))),
 
+    # Ganon's Castle Fairies
+    ("Ganons Castle Hidden Fairy 1",                                  ("Fairy",        0x0D, (16,0,5,1), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 2",                                  ("Fairy",        0x0D, (16,0,5,2), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 3",                                  ("Fairy",        0x0D, (16,0,5,3), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 4",                                  ("Fairy",        0x0D, (16,0,5,4), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 5",                                  ("Fairy",        0x0D, (16,0,5,5), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 6",                                  ("Fairy",        0x0D, (16,0,5,6), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 7",                                  ("Fairy",        0x0D, (16,0,5,7), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Hidden Fairy 8",                                  ("Fairy",        0x0D, (16,0,5,8), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle Spirit Trial Suns Song Fairy",                    ("Fairy",        0x0D, (17,0,12), None,                     'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+
     # Ganon's Castle MQ
     ("Ganons Castle MQ Forest Trial Freestanding Key",               ("Collectable",  0x0D,  0x01, None,                            'Small Key (Ganons Castle)',             ("Ganon's Castle MQ", "Master Quest", "Freestandings",))),
     ("Ganons Castle MQ Forest Trial Eye Switch Chest",               ("Chest",        0x0D,  0x02, None,                            'Arrows (10)',                           ("Ganon's Castle MQ", "Master Quest", "Chests",))),
@@ -4456,6 +4681,16 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Ganons Castle MQ Spirit Trial Green Bubble 1",                   ("EnemyDrop",    0x0D,  (18,0,10), None,                   'Rupees (5)',                            ("Ganon's Castle MQ", "Master Quest", "Enemy Drops",))),
     ("Ganons Castle MQ Spirit Trial Green Bubble 2",                   ("EnemyDrop",    0x0D,  (18,0,11), None,                   'Rupees (5)',                            ("Ganon's Castle MQ", "Master Quest", "Enemy Drops",))),
     ("Ganons Castle MQ Spirit Trial Wrong Sun Wallmaster",             ("EnemyDrop",    0x0D,  (18,0,25), None,                   'Rupees (5)',                            ("Ganon's Castle MQ", "Master Quest", "Enemy Drops",))),
+
+    # Ganon's Castle MQ Fairies
+    ("Ganons Castle MQ Hidden Fairy 1",                                  ("Fairy",      0x0D, (16,0,6,1), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 2",                                  ("Fairy",      0x0D, (16,0,6,2), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 3",                                  ("Fairy",      0x0D, (16,0,6,3), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 4",                                  ("Fairy",      0x0D, (16,0,6,4), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 5",                                  ("Fairy",      0x0D, (16,0,6,5), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 6",                                  ("Fairy",      0x0D, (16,0,6,6), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 7",                                  ("Fairy",      0x0D, (16,0,6,7), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
+    ("Ganons Castle MQ Hidden Fairy 8",                                  ("Fairy",      0x0D, (16,0,6,8), None,                    'Fairy Drop',                            ("Ganon's Castle", "Vanilla Dungeons", "Fairy"))),
 
     # Ganon's Tower
     ("Ganons Tower Boss Key Chest",                                  ("Chest",        0x0A,  0x0B, None,                            'Boss Key (Ganons Castle)',              ("Ganon's Tower", "Vanilla Dungeons", "Master Quest", "Chests",))),

@@ -11,6 +11,7 @@
 #include "actor.h"
 #include "save.h"
 #include "models.h"
+#include "audio.h"
 
 extern uint8_t SHUFFLE_CHEST_GAME;
 extern uint8_t FAST_CHESTS;
@@ -31,7 +32,6 @@ extern uint8_t MW_SEND_OWN_ITEMS;
 extern override_key_t OUTGOING_KEY;
 extern uint16_t OUTGOING_ITEM;
 extern uint16_t OUTGOING_PLAYER;
-extern uint16_t GET_ITEM_SEQ_ID;
 xflag_t drop_collectible_override_flag; // Flag used by hacks in Item_DropCollectible to override the item being dropped. Set it to the flag for the overridden item.
 xflag_t* spawn_actor_with_flag = NULL;
 
@@ -54,9 +54,9 @@ const uint8_t REQUIRED_PENDING_FRAMES = 6;
 // xlflag_room_blob contains a compressed table of actor bit assignments for each scene/room/setup.
 // Call get_xflag_bit_offset to retrieve the desired offset for a flag.
 uint16_t xflag_scene_table[101];
-uint8_t xflag_room_table[1000];
+uint8_t xflag_room_table[1500];
 uint8_t xflag_room_blob[3500];
-alt_override_t alt_overrides[500];
+alt_override_t alt_overrides[550];
 
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 
@@ -557,7 +557,7 @@ uint8_t items[] = {
     GIVEITEM_RUPEE_PURPLE,
 };
 
-EnItem00* collectible_mutex = 0;
+void* collectible_mutex = 0;
 
 override_t collectible_override;
 
@@ -610,7 +610,12 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
     // Check if we're in a grotto because we calculate grotto scene/room/setup differently because grottos are dumb
     if (is_grotto) {
         test_scene_room_setup = (flag->scene << 24) + (flag->grotto.grotto_id << 8) + (flag->grotto.room);
-    } else {
+    } 
+    else if (flag->scene == 0x3C) {
+        // Fairy Fountain
+        test_scene_room_setup = (flag->scene << 24) | (flag->fairy_fountain.base_scene << 8) | (flag->fairy_fountain.base_room);
+    }
+    else {
         test_scene_room_setup = (flag->scene << 24) + (flag->setup << 6) + (flag->room);
     }
 
@@ -638,7 +643,14 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
                 room_id_temp = xflag_room_table[room_table_index++];
                 room_id = flag->grotto.room;
                 setup_id = flag->grotto.grotto_id;
-            } else {
+            } 
+            else if (flag->scene == 0x3C) {
+                room_id_temp = (xflag_room_table[room_table_index++]);
+                setup_id_temp = xflag_room_table[room_table_index++];
+                room_id = flag->fairy_fountain.base_room;
+                setup_id = flag->fairy_fountain.base_scene;
+            }
+            else {
                 setup_id_temp = (xflag_room_table[room_table_index] & 0xC0) >> 6;
                 room_id_temp = xflag_room_table[room_table_index++] & 0x3F;
                 room_id = flag->room;
@@ -1004,10 +1016,10 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t *link, z64_actor_t *from_
                 pItem->actor.gravity = 0;
                 pItem->actionFunc = EnItem00_OutgoingAction; // Set our action function
                 sfxId = NA_SE_SY_FSEL_DECIDE_L; // Play a different sound effect for outgoing items. This is one from the file select screen.
-                z64_Audio_PlaySoundGeneral(sfxId, (void*)0x80104394, 4, (float*)0x801043A0, (float*)0x801043A0, (uint8_t*)0x801043A8);
+                SFX_PLAY_CENTERED(sfxId);
                 return 1;  // Return to the end of the Update function
             }
-            z64_Audio_PlaySoundGeneral(sfxId, (void*)0x80104394, 4, (float*)0x801043A0, (float*)0x801043A0, (uint8_t*)0x801043A8);
+            SFX_PLAY_CENTERED(sfxId);
             return 3; // Return to the original function so it can draw the collectible above our head.
         }
 

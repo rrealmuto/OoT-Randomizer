@@ -51,6 +51,7 @@ z64_sEquipMoveTimer = 0x8039EAB8;
 gActorOverlayTable = 0x800E8530;
 Message_CloseTextbox = 0x800d6218;
 ObjHana_Draw = 0x80abc1c8;
+SkelAnime_Draw = 0x8008a414;
 SkelAnime_DrawFlexOpa = 0x80089d8c;
 Actor_TalkOfferAccepted = 0x80022930;
 Actor_OfferTalk = 0x80022a68;
@@ -66,6 +67,11 @@ __osMalloc = 0x800CE060;
 z64_LoadRoom_addr = 0x80080A3C;
 z64_UnloadRoom = 0x80080C98;
 sSetupDL = 0x800f7d50;
+gEntranceTable = 0x800f9c90;
+Health_ChangeBy = 0x800720bc;
+Magic_Fill = 0x80072500;
+Actor_PlaySfx = 0x80022fd0;
+Audio_PlaySfxGeneral = 0x800C806C;
 
 OVL_BgMoriBigst_SetupFall = 0x809273d4;
 OVL_BgMoriBigst_SetupDone = 0x809276c0;
@@ -75,3 +81,8 @@ OVL_EnKarebaba_SetupDeadItemDrop = 0x809ba560;
 OVL_EnKusa_Draw = 0x80a80a50;
 OVL_EnOkarinaTag_Action2 = 0x80a872d0;
 OVL_EnOkarinaTag_Action1 = 0x80a87088;
+
+OVL_EnElf_SpinAction = 0x808874E0;
+
+OVL_EnButte_SetupFollowLink = 0x80a5a3b0;
+OVL_EnButte_SetupTransformIntoFairy = 0x80a5a7b0;

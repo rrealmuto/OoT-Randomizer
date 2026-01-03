@@ -3,6 +3,7 @@
 #include "text.h"
 #include "enemy_spawn_shuffle.h"
 #include "ovl_kaleidoscope.h"
+#include "audio.h"
 
 #define KaleidoScope_DrawWorldMap   0x8081CE54
 #define KaleidoScope_DrawDungeonMap 0x8081b660
@@ -99,7 +100,7 @@ void update_soul_menu(menu_ctx* menu, z64_game_t* globalCtx) {
         uint8_t soul_index = names[menu->curr_line].soul_id;
         if(flags_getsoul(soul_index)) { // Make sure we have the soul
             toggle_soul_enabled(soul_index); // Toggle the soul
-            z64_Audio_PlaySoundGeneral(NA_SE_SY_DECIDE, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8); // Play the menu sound
+            SFX_PLAY_CENTERED(NA_SE_SY_DECIDE); // Play the menu sound
         }
     }
 
@@ -114,7 +115,7 @@ void update_soul_menu(menu_ctx* menu, z64_game_t* globalCtx) {
                 menu->curr_line = menu->total_lines - 1;
             }
             else {
-                z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8);
+                SFX_PLAY_CENTERED(NA_SE_SY_CURSOR);
             }
         }
         // Up
@@ -126,7 +127,7 @@ void update_soul_menu(menu_ctx* menu, z64_game_t* globalCtx) {
                 menu->curr_line = 0;
             }
             else {
-                z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, (void *)0x80104394, 4, (float *)0x801043A0, (float *)0x801043A0, (uint8_t *)0x801043A8);
+                SFX_PLAY_CENTERED(NA_SE_SY_CURSOR);
             }
         }
     }

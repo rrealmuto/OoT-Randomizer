@@ -44,6 +44,12 @@ typedef struct xflag_t {
             uint32_t flag: 7;
             uint32_t subflag: 8;
         } grotto;
+        struct {
+            uint8_t base_scene;
+            uint8_t base_room;
+            uint8_t flag;
+            uint8_t subflag;
+        } fairy_fountain;
     };
 
 } xflag_t;
@@ -61,6 +67,6 @@ bool Get_NewFlag(xflag_t* flag);
 void Set_NewFlag(xflag_t* flag);
 void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t* override, struct item_row_t* item_row);
 extern xflag_t drop_collectible_override_flag;
-extern EnItem00* collectible_mutex;
+extern void* collectible_mutex;
 
 #endif

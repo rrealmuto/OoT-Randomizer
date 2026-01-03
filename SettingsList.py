@@ -2584,11 +2584,13 @@ class SettingInfos:
         },
     )
 
-    shuffle_gossipstones = Checkbutton(
-        gui_text       = 'Shuffle Gossip Stones',
+    shuffle_fairies = Checkbutton(
+        gui_text       = 'Shuffle Fairies',
         gui_tooltip    = '''\
-            Playing Song of Time to Gossip Stones
-            will cause them to drop an item.
+            Fairies will give shuffled items. Includes:
+                Fairy fountains
+                Gossip stone big/small fairies
+                Sun's Song/Song of Storms spot fairies.
         ''',
         default        = False,
         shared         = True,

@@ -15,7 +15,6 @@
 
 extern uint8_t SHUFFLE_CHEST_GAME;
 extern z64_object_table_t EXTENDED_OBJECT_TABLE[];
-extern EnItem00* collectible_mutex;
 
 loaded_object_t object_slots[slot_count] = { 0 };
 

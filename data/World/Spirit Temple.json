@@ -169,7 +169,8 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Early Adult Right Chest": "True",
-            "Spirit Temple Early Adult Like Like": "has_soul(Like_Like)"
+            "Spirit Temple Early Adult Like Like": "has_soul(Like_Like)",
+            "Spirit Temple Early Adult Suns Song Fairy": "can_play(Suns_Song)"
         }
     },
     # In the following two regions, child and adult reachability actually means age-unknown, but with
@@ -412,7 +413,8 @@
         "region_name": "Spirit Temple 4 Armos Room",
         "dungeon": "Spirit Temple",
         "locations": {
-            "Spirit Temple Near Four Armos Chest": "Mirror_Shield"
+            "Spirit Temple Near Four Armos Chest": "Mirror_Shield",
+            "Spirit Temple Four Armos Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Spirit Temple Adult Knuckle Room": "has_soul(Armos)"

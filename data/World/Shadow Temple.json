@@ -47,6 +47,7 @@
             "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True",
             "Shadow Temple First Beamos": "can_kill_beamos",
+            "Shadow Temple First Beamos Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Shadow Temple Compass Room Gibdo 1": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple Compass Room Gibdo 2": "has_soul(Redead_and_Gibdo)"
         },
@@ -94,6 +95,7 @@
             "Shadow Temple Huge Pit Silver Rupee Center": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Front": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Back": "True",
+            "Shadow Temple Huge Pit Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Shadow Temple Huge Pit Beamos": "can_kill_beamos",
             "Shadow Temple Huge Pit Stalfos": "has_soul(Stalfos)",
             "Shadow Temple Invisible Blades Keese 1": "has_soul(Keese)",
@@ -168,7 +170,8 @@
             "Shadow Temple Wind Hint Chest": "True",
             "Shadow Temple Wind Tunnel Skulltula": "has_soul(Skulltula) and Hookshot",
             "Shadow Temple Wind Hint ReDead Left": "has_soul(Redead_and_Gibdo)",
-            "Shadow Temple Wind Hint ReDead Right": "has_soul(Redead_and_Gibdo)"
+            "Shadow Temple Wind Hint ReDead Right": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple Wind Hint Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Shadow Temple After Wind": "True",

@@ -1667,7 +1667,7 @@ typedef struct z64_game_t {
   char             unk_18_[0x0004];        /* 0x11DE0 */
   uint32_t         gameplay_frames;        /* 0x11DE4 */
   uint8_t          link_age;               /* 0x11DE8 */
-  char             unk_19_;                /* 0x11DE9 */
+  char             haltAllActors;          /* 0x11DE9 */
   uint8_t          spawn_index;            /* 0x11DEA */
   uint8_t          n_map_actors;           /* 0x11DEB */
   uint8_t          n_rooms;                /* 0x11DEC */
@@ -1826,6 +1826,11 @@ typedef struct {
 
 typedef int32_t (*OverrideLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void*);
 typedef void (*PostLimbDrawOpa)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyz_t* rot, void*);
+
+
+typedef int32_t (*OverrideLimbDraw)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void*,
+                                Gfx** gfx);
+typedef void (*PostLimbDraw)(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyz_t* rot, void*, Gfx** gfx);
 
 typedef enum {
     /*  0 */ TEXT_STATE_NONE,
@@ -2141,7 +2146,6 @@ typedef enum {
 #define z64_ActorKill_addr                      0x80020EB4
 #define z64_SetCollectibleFlags_addr            0x8002071C
 #define z64_GetCollectibleFlags_addr            0x800206E8
-#define z64_Audio_PlaySoundGeneral_addr         0x800C806C
 #define z64_PlaySFXID_addr                      0x800646F0
 #define z64_Audio_PlayFanFare_addr              0x800C69A0
 #define z64_osSendMesg_addr                     0x80001E20
@@ -2238,7 +2242,6 @@ typedef enum {
 typedef void(*z64_ActorKillFunc)(z64_actor_t*);
 typedef void(*z64_Flags_SetCollectibleFunc)(z64_game_t* game, uint32_t flag);
 typedef int32_t (*z64_Flags_GetCollectibleFunc)(z64_game_t* game, uint32_t flag);
-typedef void(*z64_Audio_PlaySoundGeneralFunc)(uint16_t sfxId, void* pos, uint8_t token, float* freqScale, float* a4, uint8_t* reverbAdd);
 typedef void(*z64_PlaySFXIDFunc)(int16_t sfxId);
 typedef void(*z64_Audio_PlayFanFareFunc)(uint16_t);
 typedef void (*z64_DrawActors_proc)       (z64_game_t* game, void* actor_ctxt);
@@ -2320,7 +2323,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_ActorKill               ((z64_ActorKillFunc)    z64_ActorKill_addr)
 #define z64_SetCollectibleFlags     ((z64_Flags_SetCollectibleFunc)z64_SetCollectibleFlags_addr)
 #define z64_Flags_GetCollectible    ((z64_Flags_GetCollectibleFunc)z64_GetCollectibleFlags_addr)
-#define z64_Audio_PlaySoundGeneral  ((z64_Audio_PlaySoundGeneralFunc)z64_Audio_PlaySoundGeneral_addr)
 #define z64_Audio_PlayFanFare       ((z64_Audio_PlayFanFareFunc)z64_Audio_PlayFanFare_addr)
 #define z64_PlaySFXID               ((z64_PlaySFXIDFunc)z64_PlaySFXID_addr)
 #define z64_osSendMesg          ((osSendMesg_t)       z64_osSendMesg_addr)
@@ -2643,6 +2645,7 @@ extern void Fault_AddHungupAndCrashImpl(const char* msg1, const char* msg2);
 extern int32_t sprintf(char* dst, char* fmt, ...);
 extern z64_actor_t* z64_ActorFind(void* actorCtx, int32_t actorId, int32_t actorCategory);
 extern int32_t DmaMgr_RequestSync(void* ram, uint32_t* vrom, unsigned long size);
+extern Gfx* SkelAnime_Draw(z64_game_t* play, void** skeleton, z64_xyz_t* jointTable, OverrideLimbDraw overrideLimbDraw, PostLimbDraw postLimbDraw, void* arg, Gfx* gfx);
 extern void SkelAnime_DrawFlexOpa(z64_game_t* globalCtx, void** skeleton, z64_xyz_t* jointTable, int32_t dListCount, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* this);
 extern int32_t Actor_TalkOfferAccepted(z64_actor_t* actor, z64_game_t* globalCtx);
 extern int32_t Actor_OfferTalk(z64_actor_t* actor, z64_game_t* globalCtx, float radius);
@@ -2670,5 +2673,8 @@ extern int32_t z64_Flags_GetSwitch(z64_game_t* globalCtx, int32_t flag);
 extern void z64_Flags_SetTempClear(z64_game_t* globalCtx, int32_t flag);
 extern int32_t CutsceneFlags_Get(void* play, int16_t flag);
 extern int32_t DemoKankyo_CutsceneFlags_Get_Hook(void* play, int16_t flag);
+extern void Magic_Fill(z64_game_t* play);
+extern int32_t Health_ChangeBy(z64_game_t* play, int16_t amount);
+
 
 #endif

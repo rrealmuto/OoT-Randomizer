@@ -4386,3 +4386,8 @@ DemoEffect_DrawJewel_AfterHook:
 .include("hacks/ovl_effect_ss_kakera.asm")
 .include "hacks/ovl_en_ssh.asm"
 .include "hacks/ovl_en_okarina_tag.asm"
+.include "hacks/ovl_en_elf.asm"
+.include "hacks/ovl_en_butte.asm"
+.include "hacks/ovl_obj_mure.asm"
+.include "hacks/ovl_bg_spot11_oasis.asm"
+.include "hacks/ovl_shot_sun.asm"

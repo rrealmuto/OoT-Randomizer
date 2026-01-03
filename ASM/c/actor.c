@@ -18,6 +18,7 @@
 #include "enemy_spawn_shuffle.h"
 #include "minimap.h"
 #include "bg_mori_bigst.h"
+#include "entrances.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -59,11 +60,21 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
 void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
     flag->scene = z64_game.scene_index;
     if (z64_game.scene_index == 0x3E) {
+        // Grottos
         flag->grotto.room = actor->room_index;
         flag->grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
         flag->grotto.flag = actor_index;
         flag->grotto.subflag = subflag;
-    } else {
+    }
+    else if (z64_game.scene_index == 0x3C) {
+        // Small Fairy Fountains
+        // Store scene + room?
+        flag->fairy_fountain.base_room = z64_file.respawn[RESPAWN_MODE_RETURN].roomIndex;
+        flag->fairy_fountain.base_scene = gEntranceTable[z64_file.respawn[RESPAWN_MODE_RETURN].entranceIndex].sceneId;
+        flag->fairy_fountain.flag = actor_index;
+        flag->fairy_fountain.subflag = subflag;
+    }
+    else {
         flag->room = actor->room_index;
         flag->setup = curr_scene_setup;
         flag->flag = actor_index;
@@ -129,6 +140,9 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case EN_ANUBICE_TAG: //Check for anubis spawns
             case ACTOR_FISHING:
             case EN_GS:
+            case ACTOR_EN_ELF:
+            case ACTOR_EN_BUTTE:
+            case ACTOR_SHOT_SUN:
             {
                 extra->flag = flag;
                 // Add marker for enemy drops

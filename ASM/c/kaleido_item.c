@@ -135,8 +135,7 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
                 pause_ctxt->name_display_timer = 0;
                 pause_ctxt->cursor_special_pos = 0;
 
-                z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, &z64_SfxDefaultPos, 4, &z64_SfxDefaultFreqAndVolScale,
-                                     &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultReverb);
+                SFX_PLAY_CENTERED(NA_SE_SY_CURSOR);
 
                 cursor_point = cursor_x = cursor_y = 0;
                 while (1) {
@@ -175,8 +174,7 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
                 pause_ctxt->name_display_timer = 0;
                 pause_ctxt->cursor_special_pos = 0;
 
-                z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, &z64_SfxDefaultPos, 4, &z64_SfxDefaultFreqAndVolScale,
-                                           &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultReverb);
+                SFX_PLAY_CENTERED(NA_SE_SY_CURSOR);
 
                 cursor_point = cursor_x = ITEM_GRID_COLS - 1;
                 cursor_y = 0;
@@ -320,20 +318,16 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
                                 if (pause_ctxt->equip_target_item == ITEM_ARROW_LIGHT) {
                                     index = 2;
                                 }
-                                z64_Audio_PlaySoundGeneral(NA_SE_SY_SET_FIRE_ARROW + index, &z64_SfxDefaultPos, 4,
-                                                     &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultFreqAndVolScale,
-                                                     &z64_SfxDefaultReverb);
+                                SFX_PLAY_CENTERED(NA_SE_SY_SET_FIRE_ARROW + index);
                                 pause_ctxt->equip_target_item = 0xBF + index;
                                 z64_sEquipState = 0;
                                 pause_ctxt->equip_anim_alpha = 0;
                                 z64_sEquipMoveTimer = 6;
                             } else {
-                                z64_Audio_PlaySoundGeneral(NA_SE_SY_DECIDE, &z64_SfxDefaultPos, 4, &z64_SfxDefaultFreqAndVolScale,
-                                                     &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultReverb);
+                                SFX_PLAY_CENTERED(NA_SE_SY_DECIDE);
                             }
                         } else {
-                            z64_Audio_PlaySoundGeneral(NA_SE_SY_ERROR, &z64_SfxDefaultPos, 4, &z64_SfxDefaultFreqAndVolScale,
-                                                 &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultReverb);
+                            SFX_PLAY_CENTERED(NA_SE_SY_ERROR);
                         }
                     }
                 }
@@ -349,8 +343,7 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
         }
 
         if (old_cursor_point != pause_ctxt->cursor_point[PAUSE_ITEM]) {
-            z64_Audio_PlaySoundGeneral(NA_SE_SY_CURSOR, &z64_SfxDefaultPos, 4, &z64_SfxDefaultFreqAndVolScale,
-                                 &z64_SfxDefaultFreqAndVolScale, &z64_SfxDefaultReverb);
+            SFX_PLAY_CENTERED(NA_SE_SY_CURSOR);
         }
     } else if ((pause_ctxt->changing == PAUSE_MAIN_STATE_3) && (pause_ctxt->screen_idx == PAUSE_ITEM)) {
         KaleidoScope_SetCursorVtx(pause_ctxt, cursor_slot * 4, pause_ctxt->item_vtx);

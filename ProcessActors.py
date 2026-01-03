@@ -264,6 +264,34 @@ def get_grass(rom):
 
     return get_actor_list(rom, get_grass_func)
 
+def get_butterflies(rom):
+    from Scene import scene_list
+    scenes = process_scenes(rom)
+    for scene in scenes:
+        for room in scene.rooms:
+            for setup in room.setups:
+                actors = room.setups[setup].actors
+                for i in range(0, len(actors)):
+                    actor = actors[i]
+                    if actor.id == 0x0094:
+                        # Make sure it's a butterfly
+                        type = (actor.var & 0x001F)
+                        if type == 4:
+                            count = (actor.var & 0xF000) >> 12
+                            print(f"Scene: {hex(scene.id)} {scene_list[scene.id]}, Room: {room.id}, Setup: {setup}, Actor: {i+1}, Count: {count}")
+    
+def get_suns_storms_spots(rom):
+    from Scene import scene_list
+    scenes = process_scenes(rom)
+    for scene in scenes:
+        for room in scene.rooms:
+            for setup in room.setups:
+                actors = room.setups[setup].actors
+                for i in range(0, len(actors)):
+                    actor = actors[i]
+                    if actor.id == 0x0183:
+                        print(f"Scene: {hex(scene.id)} {scene_list[scene.id]}, Room: {room.id}, Setup: {setup}, Actor: {i+1}, Var: {hex(actor.var)}")
+
 wondertypes = [
     'MULTITAG_FREE',
     'TAG_POINT_FREE',
@@ -628,18 +656,7 @@ def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
 if __name__ == "__main__":
     #rom = Rom("ZOOTDEC.z64")
     rom = Rom("ZOOTDEC.z64")
-    actors = get_grass(rom)
-
-    for actor in actors:
-        #print(str(actor) + ": " + str(actors[actor]))
-        scene, room,setup,actor_num, scene_name, data = actors[actor]
-        actor_num += 1
-        if data['type'] == "Scattered Bushes":
-            for i in range(1,12+1):
-                print(f"(\"{scene_name} Room {room} {actor_num} Grass Patch {i}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num},{i}), None,     'Rupees (5)',         (,))),")
-        else:
-            print(f"(\"{scene_name} Room {room} Grass {actor_num}\",    (\"Grass\",      {hex(scene)}, ({room},{setup},{actor_num}), None,     'Rupees (5)',         (,))),")
-
+    actors = get_suns_storms_spots(rom)
     #rom = Rom("../zeloot_mqdebug.z64")
     #wonderitems = get_wonderitems(rom)
 

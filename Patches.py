@@ -2265,7 +2265,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         return None
 
     # Don't add freestanding items, pots/crates, beehives to the override table if they're disabled. We use this check to determine how to draw and interact with them
-    if location.type in ('ActorOverride', 'Freestanding', 'RupeeTower', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'Beehive', 'Wonderitem', 'EnemyDrop', 'Grass', 'Fish', 'GossipStone') and location.locked:
+    if location.type in ('ActorOverride', 'Freestanding', 'RupeeTower', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'Beehive', 'Wonderitem', 'EnemyDrop', 'Grass', 'Fish', 'Fairy') and location.locked:
         return None
 
     #Don't add enemy drops to the override table if they're disabled.
@@ -2283,7 +2283,7 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
     elif location.type == 'Chest':
         type = 1
         default &= 0x1F
-    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'Wonderitem', 'EnemyDrop', 'Grass', 'Fish', 'GossipStone'):
+    elif location.type in ('Freestanding', 'Pot', 'Crate', 'FlyingPot', 'SmallCrate', 'RupeeTower', 'Beehive', 'SilverRupee', 'Wonderitem', 'EnemyDrop', 'Grass', 'Fish', 'Fairy'):
         type = 6
         if not (isinstance(location.default, list) or isinstance(location.default, tuple)):
             raise Exception("Not right")
@@ -2298,6 +2298,8 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
 
         if location.scene == 0x3E: # handle grottos separately...
             default = ((scene_setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((flag & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
+        elif location.scene == 0x3C: # Fairy fountains too...
+            default = (room << 24) | (scene_setup << 16) | (flag << 8 ) | subflag
         else:
             default = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag)
     elif location.type in ('Collectable', 'ActorOverride'):

@@ -28,7 +28,8 @@
             "Dodongos Cavern Upper Bridge Keese 2": "
                 has_soul(Keese) and (is_adult or Kokiri_Sword or Sticks or Slingshot or Boomerang or
                     (Nuts and (has_explosives or Progressive_Strength_Upgrade)))",
-            "Dodongos Cavern Gossip Stone Drop": "(here(can_blast_or_smash or Progressive_Strength_Upgrade)) and can_play(Song_of_Time)",
+            "Dodongos Cavern Gossip Stone Fairy Spawn": "(here(can_blast_or_smash or Progressive_Strength_Upgrade)) and can_summon_gossip_fairy",
+            "Dodongos Cavern Gossip Stone Big Fairy Spawn": "(here(can_blast_or_smash or Progressive_Strength_Upgrade)) and can_play(Song_of_Time)",
             "Dodongos Cavern Gossip Stone": "here(can_blast_or_smash or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_blast_or_smash or Progressive_Strength_Upgrade) and
