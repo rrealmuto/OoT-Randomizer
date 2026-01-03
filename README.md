@@ -29,6 +29,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 ### 9.0.2.Rob-1
   * Update to main dev 9.0.2
   * Add custom voice pack support
+  * New setting - Fairy Shuffle. Replaces Gossip Stone Shuffle
 
 ### 8.3.56.Rob-4
   * Ok you can nut again
