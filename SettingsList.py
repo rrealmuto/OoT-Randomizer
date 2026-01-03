@@ -2589,6 +2589,7 @@ class SettingInfos:
         gui_tooltip    = '''\
             Fairies will give shuffled items. Includes:
                 Fairy fountains
+                Butterflies triggered by deku sticks
                 Gossip stone big/small fairies
                 Sun's Song/Song of Storms spot fairies.
         ''',
