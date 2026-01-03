@@ -657,7 +657,7 @@ class SettingInfos:
             'glitchless': {'settings': ['tricks_list_msg', 'advanced_allowed_tricks']},
             # Forcing blue fire arrows to be on, and the tcg lens setting to be off as we can do it without the lens logically
             # and don't care if people do 1/32
-            'advanced':   {'settings': ['tricks_list_msg', 'blue_fire_arrows', 'tcg_requires_lens', 'shuffle_enemy_drops', 'shuffle_boulders', 'golden_boulders', 'shuffle_gossipstones'
+            'advanced':   {'settings': ['tricks_list_msg', 'blue_fire_arrows', 'tcg_requires_lens', 'shuffle_enemy_drops', 'shuffle_boulders', 'golden_boulders', 'shuffle_fairies'
                                 ]},
             'none':       {'settings': ['allowed_tricks', 'advanced_allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
