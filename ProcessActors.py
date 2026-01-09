@@ -1,4 +1,5 @@
 import sys
+from MQ import patch_files
 from Rom import *
 
 class Actor:
@@ -710,6 +711,12 @@ def get_bad_actors(rom: Rom, scenes_data: list[Scene]):
 if __name__ == "__main__":
     #rom = Rom("ZOOTDEC.z64")
     rom = Rom("ZOOTDEC.z64")
+
+    # patch mq scenes
+    mq_scenes = [0,1,2,3,4,5,6,7,8,9,1]
+
+    patch_files(rom, mq_scenes)
+
     actors = get_suns_storms_spots(rom)
     #rom = Rom("../zeloot_mqdebug.z64")
     #wonderitems = get_wonderitems(rom)

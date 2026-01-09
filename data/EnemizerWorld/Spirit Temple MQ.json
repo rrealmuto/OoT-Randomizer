@@ -285,6 +285,7 @@
             "Spirit Temple MQ Beamos Room Small Wooden Crate": "True",
             "Spirit Temple MQ Chest Switch Sword Wonderitem": "True",
             "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer",
+            "Spirit Temple Chest Switch Suns Song Fairy": "can_play(Suns_Song)",
             "Spirit Temple MQ Chest Switch Dinolfos 1": "can_kill_this",
             "Spirit Temple MQ Chest Switch Dinolfos 2": "can_kill_this",
             "Spirit Temple MQ Boss Key Gibdo": "can_kill_this and Mirror_Shield",

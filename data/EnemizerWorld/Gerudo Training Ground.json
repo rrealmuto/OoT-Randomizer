@@ -18,6 +18,7 @@
             # In the Beamos room, shoot the Gerudo symbol above the door to the lava room.
             "Wall Fairy": "has_bottle and can_use(Bow)",
             "Gerudo Training Ground Beamos Wonderitem": "can_use(Bow)",
+            "Gerudo Training Ground Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Gerudo Training Ground Stalfos 1": "can_kill_this",
             "Gerudo Training Ground Stalfos 2": "can_kill_this",
             "Gerudo Training Ground Beamos": "can_kill_this",
