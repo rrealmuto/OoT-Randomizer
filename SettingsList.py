@@ -2118,10 +2118,7 @@ class SettingInfos:
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
-        },
-        disable        = {
-            '!off':    {'settings': ['shuffle_fairies']}
-        },
+        }
     )
 
     shuffle_song_items = Combobox(
