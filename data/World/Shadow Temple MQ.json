@@ -85,6 +85,7 @@
             "Shadow Temple MQ Near Ship Invisible Skulltula": "has_soul(Skulltula)",
             "Shadow Temple MQ Early Gibdo 1": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple MQ Early Gibdo 2": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ First Beamos Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Shadow Temple MQ Near Ship Skullwalltula": "
                 has_soul(Skullwalltula) and (Megaton_Hammer or at('Shadow Temple Boat', Longshot or Bow))"
         },
@@ -136,7 +137,8 @@
             "Shadow Temple MQ Invisible Blades Keese 1": "has_soul(Keese)",
             "Shadow Temple MQ Invisible Blades Keese 2": "has_soul(Keese)",
             "Shadow Temple MQ Invisible Blades Keese 3": "has_soul(Keese)",
-            "Shadow Temple MQ Invisible Blades Like Like": "has_soul(Like_Like)"
+            "Shadow Temple MQ Invisible Blades Like Like": "has_soul(Like_Like)",
+            "Shadow Temple MQ Huge Pit Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "Shadow Temple Close Proximity to Invisible Blades": "
@@ -266,6 +268,7 @@
             "Shadow Temple MQ Wind Hint ReDead 2": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple MQ Wind Hint ReDead 3": "has_soul(Redead_and_Gibdo)",
             "Shadow Temple MQ Wind Hint ReDead 4": "has_soul(Redead_and_Gibdo)",
+            "Shadow Temple MQ Wind Hint Suns Song Fairy": "can_play(Suns_Song)",
             "Shadow Temple MQ GS Wind Hint Room": "Hookshot"
         },
         "exits": {
