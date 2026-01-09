@@ -85,7 +85,8 @@
             "Shadow Temple MQ Near Ship Invisible Skulltula": "can_kill_this",
             "Shadow Temple MQ Early Gibdo 1": "can_kill_this",
             "Shadow Temple MQ Early Gibdo 2": "can_kill_this",
-            "Shadow Temple MQ Near Ship Skullwalltula": "at('Shadow Temple Boat', Distant_Scarecrow) and can_kill_this"
+            "Shadow Temple MQ Near Ship Skullwalltula": "at('Shadow Temple Boat', Distant_Scarecrow) and can_kill_this",
+            "Shadow Temple MQ First Beamos Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
         # access. However, your final locked door does not actually prevent you from reaching any area
@@ -133,7 +134,8 @@
             "Shadow Temple MQ Invisible Blades Keese 1": "can_kill_this",
             "Shadow Temple MQ Invisible Blades Keese 2": "can_kill_this",
             "Shadow Temple MQ Invisible Blades Keese 3": "can_kill_this",
-            "Shadow Temple MQ Invisible Blades Like Like": "can_kill_this"
+            "Shadow Temple MQ Invisible Blades Like Like": "can_kill_this",
+            "Shadow Temple MQ Huge Pit Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "Shadow Temple Close Proximity to Invisible Blades": "
@@ -263,6 +265,7 @@
             "Shadow Temple MQ Wind Hint ReDead 2": "can_kill_this",
             "Shadow Temple MQ Wind Hint ReDead 3": "can_kill_this",
             "Shadow Temple MQ Wind Hint ReDead 4": "can_kill_this",
+            "Shadow Temple MQ Wind Hint Suns Song Fairy": "can_play(Suns_Song)",
             "Shadow Temple MQ GS Wind Hint Room": "Hookshot"
         },
         "exits": {

@@ -2963,7 +2963,7 @@
             "DMC Wall Freestanding PoH": "True",
             "DMC GS Crate": "is_child and can_child_attack and can_break_heated_crate",
             "DMC Gossip Stone Fairy Spawn": "has_explosives and can_summon_gossip_fairy_without_suns",
-            "DMC Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "DMC Gossip Stone Big Fairy Spawn": "has_explosives and can_play(Song_of_Storms)",
             "DMC Gossip Stone": "has_explosives",
             "Gossip Stone Fairy": "
                 has_explosives and can_summon_gossip_fairy_without_suns and has_bottle"

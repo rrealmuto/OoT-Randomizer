@@ -268,6 +268,7 @@
             "Ganons Castle Spirit Trial Silver Rupee Center": "True",
             "Ganons Castle Spirit Trial Silver Rupee Back Left": "True",
             "Ganons Castle Spirit Trial Silver Rupee Back Right": "True",
+            "Ganons Castle Spirit Trial Suns Song Fairy": "can_play(Suns_Song)",
             "Ganons Castle Spirit Trial Beamos" : "can_kill_this"
         },
         "exits": {
@@ -319,6 +320,14 @@
             "Ganons Castle Deku Scrub Center-Right": "can_stun_deku",
             "Ganons Castle Deku Scrub Right": "can_stun_deku",
             "Ganons Castle Deku Scrub Left": "can_stun_deku",
+            "Ganons Castle Hidden Fairy 1": "True",
+            "Ganons Castle Hidden Fairy 2": "True",
+            "Ganons Castle Hidden Fairy 3": "True",
+            "Ganons Castle Hidden Fairy 4": "True",
+            "Ganons Castle Hidden Fairy 5": "True",
+            "Ganons Castle Hidden Fairy 6": "True",
+            "Ganons Castle Hidden Fairy 7": "True",
+            "Ganons Castle Hidden Fairy 8": "True",
             "Free Fairies": "has_bottle"
         }
     }

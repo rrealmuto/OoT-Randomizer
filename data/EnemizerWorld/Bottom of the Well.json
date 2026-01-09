@@ -50,6 +50,7 @@
             "Bottom of the Well Basement Silver Rupee Ladders Bottom": "True",
             "Bottom of the Well Basement Silver Rupee Ladders Middle": "True",
             "Bottom of the Well Basement Silver Rupee Ladders Top": "True",
+            "Bottom of the Well Suns Song Fairy": "can_play(Suns_Song)",
             "Bottom of the Well Basement Behind Rock Grass 1": "can_mow_the_lawn",
             "Bottom of the Well Basement Behind Rock Grass 2": "can_mow_the_lawn",
             "Bottom of the Well Basement Behind Rock Grass 3": "can_mow_the_lawn",

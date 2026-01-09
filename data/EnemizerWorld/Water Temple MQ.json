@@ -210,7 +210,10 @@
             "Water Temple MQ Before Dark Link Top Pot 2": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK)",
             "Water Temple MQ Before Dark Link Stalfos 1": "can_kill_this",
             "Water Temple MQ Before Dark Link Stalfos 2": "can_kill_this",
-            "Water Temple MQ Before Dark Link Stalfos 3": "can_kill_this"
+            "Water Temple MQ Before Dark Link Stalfos 3": "can_kill_this",
+            "Water Temple Before Dark Link Lower Suns Song Spot": "(can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK) or Hover_Boots) and can_play(Suns_Song)",
+            "Water Temple Before Dark Link Upper Suns Song Spot": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK) and can_play(Suns_Song)",
+            "Water Temple Before Dark Link Song of Storms Spot": "can_clear_room(WATER_TEMPLE_MQ_BEFORE_DARK_LINK) and can_play(Song_of_Storms)"
         },
         "exits": {
             "Water Temple River": "has_soul(Dark_Link)"

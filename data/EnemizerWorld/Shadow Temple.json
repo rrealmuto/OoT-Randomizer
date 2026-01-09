@@ -47,6 +47,7 @@
             "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True",
             "Shadow Temple First Beamos": "can_kill_this",
+            "Shadow Temple First Beamos Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Shadow Temple Compass Room Gibdo 1": "can_kill_this",
             "Shadow Temple Compass Room Gibdo 2": "can_kill_this"
         },
@@ -77,6 +78,7 @@
             "Shadow Temple Huge Pit Silver Rupee Center": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Front": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Back": "True",
+            "Shadow Temple Huge Pit Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Shadow Temple GS Invisible Blades Room": "can_clear_room(SHADOW_TEMPLE_INVISIBLE_BLADES)",
             "Shadow Temple Guillotine Hallway Skulltula 1": "can_kill_this",
             "Shadow Temple Guillotine Hallway Skulltula 2": "can_kill_this",
@@ -149,7 +151,8 @@
             "Shadow Temple Wind Hint Chest": "True",
             "Shadow Temple Wind Tunnel Skulltula": "can_kill_this",
             "Shadow Temple Wind Hint ReDead Left": "can_kill_this",
-            "Shadow Temple Wind Hint ReDead Right": "can_kill_this"
+            "Shadow Temple Wind Hint ReDead Right": "can_kill_this",
+            "Shadow Temple Wind Hint Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Shadow Temple After Wind": "True",
