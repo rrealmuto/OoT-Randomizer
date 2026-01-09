@@ -2806,6 +2806,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 1",     ("EnemyDrop",    0x08,  (6,0,4), None,                        'Rupees (5)',                                ("Bottom of the Well MQ", "Master Quest", "Enemy Drops",))),
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 2",     ("EnemyDrop",    0x08,  (6,0,5), None,                        'Rupees (5)',                                ("Bottom of the Well MQ", "Master Quest", "Enemy Drops",))),
 
+    # Bottom of the Well MQ Fairies
+    ("Bottom of the Well MQ East Inner Room Pot Suns Song Fairy",       ("Fairy",        0x08,  (0,0,14), None,                       'Fairy Drop',                                  ("Bottom of the Well MQ", "Master Quest", "Fairy"))),
+    ("Bottom of the Well MQ Basement Suns Song Fairy",                  ("Fairy",        0x08,  (1,0,18), None,                       'Fairy Drop',                                  ("Bottom of the Well MQ", "Master Quest", "Fairy"))),
 
     # Forest Temple Vanilla
     ("Forest Temple First Room Chest",                               ("Chest",        0x03,  0x03, None,                            'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla Dungeons", "Chests",))),
@@ -3232,6 +3235,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Fire Temple MQ Upper Flare Dancer",                            ("EnemyDrop",    0x04,  (24,0,1), None,                        'Rupees (5)',                            ("Fire Temple MQ", "Master Quest", "Enemy Drops",))),
     ("Fire Temple MQ Flame Maze Side Room Lizalfos",                 ("EnemyDrop",    0x04,  (25,0,1), None,                        'Rupees (5)',                            ("Fire Temple MQ", "Master Quest", "Enemy Drops",))),
 
+    # Fire Temple MQ Fairies
+    ("Fire Temple MQ 2 Stalfos Suns Song Spot Fairy",                ("Fairy",        0x04,  (15,0,2), None,                        'Fairy Drop',                            ("Fire Temple MQ", "Master Quest", "Fairy"))),
+    ("Fire Temple MQ Before Lower Flare Dancer Suns Song Spot Fairy",("Fairy",        0x04,  (18,0,8), None,                        'Fairy Drop',                            ("Fire Temple MQ", "Master Quest", "Fairy"))),
+
     # Fire Temple Shared
     ("Fire Temple Volvagia Heart",                                   ("BossHeart",    0x15,  0x4F, None,                            'Heart Container',                       ("Fire Temple", "Fire Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -3533,6 +3540,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Water Temple MQ Map Chest Stalfos 3",                          ("EnemyDrop",    0x05,  (19,0,3), None,                        'Rupees (5)',                            ("Water Temple MQ", "Master Quest", "Enemy Drops",))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 1",                  ("EnemyDrop",    0x05,  (20,0,1), None,                        'Rupees (5)',                            ("Water Temple MQ", "Master Quest", "Enemy Drops",))),
     ("Water Temple MQ Lizalfos Hallway Lizalfos 2",                  ("EnemyDrop",    0x05,  (20,0,2), None,                        'Rupees (5)',                            ("Water Temple MQ", "Master Quest", "Enemy Drops",))),
+
+    # Water Temple MQ Fairies
+    ("Water Temple Before Dark Link Upper Suns Song Spot",           ("Fairy",        0x05,  (6,0,2), None,                         'Fairy Drop',                            ("Water Temple MQ", "Master Quest", "Fairy"))),
+    ("Water Temple Before Dark Link Song of Storms Spot",            ("Fairy",        0x05,  (6,0,6), None,                         'Fairy Drop',                            ("Water Temple MQ", "Master Quest", "Fairy"))),
+    ("Water Temple Before Dark Link Lower Suns Song Spot",           ("Fairy",        0x05,  (6,0,7), None,                         'Fairy Drop',                            ("Water Temple MQ", "Master Quest", "Fairy"))),
 
     # Water Temple Shared
     ("Water Temple Morpha Heart",                                    ("BossHeart",    0x16,  0x4F, None,                            'Heart Container',                       ("Water Temple", "Water Temple MQ", "Vanilla Dungeons", "Master Quest",))),
@@ -3871,6 +3883,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Shadow Temple MQ Boat Stalfos 1",                              ("EnemyDrop",    0x07,  (21,0,17), None,                       'Rupees (5)',                            ("Shadow Temple MQ", "Master Quest", "Enemy Drops",))),
     ("Shadow Temple MQ Boat Stalfos 2",                              ("EnemyDrop",    0x07,  (21,0,18), None,                       'Rupees (5)',                            ("Shadow Temple MQ", "Master Quest", "Enemy Drops",))),
 
+    # Shadow Temple MQ Fairies
+    ("Shadow Temple MQ First Beamos Song of Storms Fairy",          ("Fairy",        0x07,  (5,0,4), None,                         'Fairy Drop',                            ("Shadow Temple MQ", "Master Quest", "Fairy"))),
+    ("Shadow Temple MQ Huge Pit Song of Storms Fairy",              ("Fairy",        0x07,  (9,0,30), None,                        'Fairy Drop',                            ("Shadow Temple MQ", "Master Quest", "Fairy"))),
+    ("Shadow Temple MQ Wind Hint Suns Song Fairy",                  ("Fairy",        0x07,  (19,0,6), None,                        'Fairy Drop',                            ("Shadow Temple MQ", "Master Quest", "Fairy"))),
+
     # Shadow Temple Shared
     ("Shadow Temple Bongo Bongo Heart",                              ("BossHeart",    0x18,  0x4F, None,                            'Heart Container',                       ("Shadow Temple", "Shadow Temple MQ", "Vanilla Dungeons", "Master Quest",))),
 
@@ -4186,6 +4203,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Spirit Temple MQ Big Mirror Green Bubble 1",                   ("EnemyDrop",    0x06,  (26,0,7), None,                        'Rupees (5)',                                ("Spirit Temple MQ", "Master Quest", "Enemy Drops",))),
     ("Spirit Temple MQ Big Mirror Green Bubble 2",                   ("EnemyDrop",    0x06,  (26,0,8), None,                        'Rupees (5)',                                ("Spirit Temple MQ", "Master Quest", "Enemy Drops",))),
     ("Spirit Temple MQ Child Stalfos Fight Stalfos",                 ("EnemyDrop",    0x06,  (27,0,8), None,                        'Rupees (5)',                                ("Spirit Temple MQ", "Master Quest", "Enemy Drops",))),
+
+    # Spirit Temple MQ Fairies
+    ("Spirit Temple Chest Switch Suns Song Fairy",                   ("Fairy",        0x06,  (18,0,3), None,                        'Fairy Drop',                                ("Spirit Temple MQ", "Master Quest", "Fairy"))),
 
     # Spirit Temple Shared
     ("Spirit Temple Twinrova Heart",                                 ("BossHeart",    0x17,  0x4F, None,                            'Heart Container',                       ("Spirit Temple", "Spirit Temple MQ", "Vanilla Dungeons", "Master Quest",))),

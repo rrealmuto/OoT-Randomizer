@@ -293,6 +293,7 @@
             "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer",
             "Spirit Temple MQ Chest Switch Dinolfos 1": "has_soul(Lizalfos_and_Dinalfos)",
             "Spirit Temple MQ Chest Switch Dinolfos 2": "has_soul(Lizalfos_and_Dinalfos)",
+            "Spirit Temple Chest Switch Suns Song Fairy": "can_play(Suns_Song)",
             "Spirit Temple MQ Boss Key Gibdo": "has_soul(Redead_and_Gibdo) and Mirror_Shield"
         },
         "exits": {
