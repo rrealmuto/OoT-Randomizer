@@ -38,18 +38,11 @@ typedef struct xflag_t {
             uint8_t subflag;
         };
         struct {
-            uint32_t pad: 8;
-            uint32_t grotto_id: 5;
-            uint32_t room: 4;
-            uint32_t flag: 7;
-            uint32_t subflag: 8;
-        } grotto;
-        struct {
-            uint8_t base_scene;
-            uint8_t base_room;
+            uint8_t grotto_id;
+            uint8_t room;
             uint8_t flag;
             uint8_t subflag;
-        } fairy_fountain;
+        } grotto;
     };
 
 } xflag_t;

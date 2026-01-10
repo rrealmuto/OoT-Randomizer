@@ -12,6 +12,7 @@
 #include "save.h"
 #include "models.h"
 #include "audio.h"
+#include "grotto.h"
 
 extern uint8_t SHUFFLE_CHEST_GAME;
 extern uint8_t FAST_CHESTS;
@@ -603,7 +604,7 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
     uint8_t setup_id = 0;
     uint8_t room_setup_count = 0;
     uint16_t room_byte_offset = 0xFFFF;
-    bool is_grotto = flag->scene == 0x3E;
+    bool is_grotto = (flag->scene == 0x3E) || (flag->scene == 0x3C);
     //Index xflag_scene_table to get the offset into the room table for the current scene
     uint32_t test_scene_room_setup;
 
@@ -611,10 +612,6 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
     if (is_grotto) {
         test_scene_room_setup = (flag->scene << 24) + (flag->grotto.grotto_id << 8) + (flag->grotto.room);
     } 
-    else if (flag->scene == 0x3C) {
-        // Fairy Fountain
-        test_scene_room_setup = (flag->scene << 24) | (flag->fairy_fountain.base_scene << 8) | (flag->fairy_fountain.base_room);
-    }
     else {
         test_scene_room_setup = (flag->scene << 24) + (flag->setup << 6) + (flag->room);
     }
@@ -637,19 +634,13 @@ uint16_t get_xflag_bit_offset(xflag_t* flag) {
         // Loop through all of the rooms/setups to find the one for this flag
         for (i = 0; i < room_setup_count; i++) {
             // Get the setup/room from the entry
-            if (flag->scene == 0x3E) {
-                // If we're in a the room/setup entries are stored differently because we need 2 bytes to represent them
+            if (is_grotto) {
+                // If we're in a grotto the room/setup entries are stored differently because we need 2 bytes to represent them
                 setup_id_temp = (xflag_room_table[room_table_index++]);
                 room_id_temp = xflag_room_table[room_table_index++];
                 room_id = flag->grotto.room;
                 setup_id = flag->grotto.grotto_id;
             } 
-            else if (flag->scene == 0x3C) {
-                room_id_temp = (xflag_room_table[room_table_index++]);
-                setup_id_temp = xflag_room_table[room_table_index++];
-                room_id = flag->fairy_fountain.base_room;
-                setup_id = flag->fairy_fountain.base_scene;
-            }
             else {
                 setup_id_temp = (xflag_room_table[room_table_index] & 0xC0) >> 6;
                 room_id_temp = xflag_room_table[room_table_index++] & 0x3F;
@@ -776,7 +767,7 @@ bool Item00_KillActorIfFlagIsSet(z64_actor_t* actor) {
         flag.scene = z64_game.scene_index;
         if (z64_game.scene_index == 0x3E) {
             flag.grotto.room = actor->room_index;
-            flag.grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
+            flag.grotto.grotto_id = CURRENT_GROTTO_ID;
             flag.grotto.flag = CURR_ACTOR_SPAWN_INDEX;
             flag.grotto.subflag = 0;
         } else {

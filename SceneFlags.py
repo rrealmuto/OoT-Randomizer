@@ -57,10 +57,8 @@ def build_xflag_tables(xflags: dict[int, dict[tuple[int,int], list[tuple[int,int
         scene_table[scene*2 + 1] = (room_table_offset & 0x00FF)
         room_table.append(num_room_setups)
         for setup, room in xflags[scene].keys():
-            if scene == 0x3E:
+            if scene == 0x3E or scene == 0x3C:
                 # Grottos and fairy fountains
-                room_setup = bytearray([setup, room])
-            elif scene == 0x3C:
                 room_setup = bytearray([setup, room])
             else:
                 room_setup = bytearray([(setup << 6) + room])
