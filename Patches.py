@@ -1627,22 +1627,22 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.settings.shuffle_scrubs == 'random':
             shuffle_messages.scrubs_message_ids.append(text_id)
 
-    if world.settings.shuffle_grotto_entrances:
-        # Build the Grotto Load Table based on grotto entrance data
-        for entrance in world.get_shuffled_entrances(type='Grotto'):
-            if entrance.primary:
-                load_table_pointer = rom.sym('GROTTO_LOAD_TABLE') + 4 * entrance.data['grotto_id']
-                rom.write_int16(load_table_pointer, entrance.data['entrance'])
-                rom.write_byte(load_table_pointer + 2, entrance.data['content'])
-            else:
-                return_table_pointer = rom.sym('GROTTO_RETURN_TABLE') + 32 * entrance.data['grotto_id']
-                rom.write_int16(return_table_pointer, entrance.data['entrance'])
-                rom.write_byte(return_table_pointer + 2, entrance.data['room'])
-                rom.write_int16(return_table_pointer + 4, entrance.data['angle'])
-                rom.write_int32s(return_table_pointer + 8, entrance.data['pos'])
+    #if world.settings.shuffle_grotto_entrances:
+    # Build the Grotto Load Table based on grotto entrance data
+    for entrance in world.get_shufflable_entrances(type='Grotto'):
+        if entrance.primary:
+            load_table_pointer = rom.sym('GROTTO_LOAD_TABLE') + 4 * entrance.data['grotto_id']
+            rom.write_int16(load_table_pointer, entrance.data['entrance'])
+            rom.write_byte(load_table_pointer + 2, entrance.data['content'])
+        else:
+            return_table_pointer = rom.sym('GROTTO_RETURN_TABLE') + 32 * entrance.data['grotto_id']
+            rom.write_int16(return_table_pointer, entrance.data['entrance'])
+            rom.write_byte(return_table_pointer + 2, entrance.data['room'])
+            rom.write_int16(return_table_pointer + 4, entrance.data['angle'])
+            rom.write_int32s(return_table_pointer + 8, entrance.data['pos'])
 
-        # Update grotto actors based on their new entrance
-        set_grotto_shuffle_data(rom, world)
+    # Update grotto actors based on their new entrance
+    set_grotto_shuffle_data(rom, world)
 
     if world.settings.shuffle_cows:
         rom.write_byte(rom.sym('SHUFFLE_COWS'), 0x01)
@@ -2296,12 +2296,11 @@ def get_override_entry(location: Location) -> Optional[OverrideEntry]:
         elif len(default) == 4:
             room, scene_setup, flag, subflag = default
 
-        if location.scene == 0x3E: # handle grottos separately...
-            default = ((scene_setup & 0x1F) << 19) + ((room & 0x0F) << 15) + ((flag & 0x7F) << 8) + ((subflag & 0xFF)) #scene_setup = grotto_id
-        elif location.scene == 0x3C: # Fairy fountains too...
-            default = (room << 24) | (scene_setup << 16) | (flag << 8 ) | subflag
+        if location.scene == 0x3E or location.scene == 0x3C: # handle grottos separately...
+            default = (scene_setup << 24) | (room << 16) | (flag << 8) | subflag
+            #default = ((scene_setup & 0x1F) << 19) | ((room & 0x0F) << 15) | ((flag & 0x7F) << 8) | ((subflag & 0xFF)) #scene_setup = grotto_id
         else:
-            default = (scene_setup << 22) + (room << 16) + (flag << 8) + (subflag)
+            default = (scene_setup << 22) | (room << 16) | (flag << 8) + (subflag)
     elif location.type in ('Collectable', 'ActorOverride'):
         type = 2
     elif location.type == 'GS Token':
@@ -2482,12 +2481,12 @@ def set_grotto_shuffle_data(rom: Rom, world: World) -> None:
 
     # Build the override table based on shuffled grotto entrances
     grotto_entrances_override = {}
-    for entrance in world.get_shuffled_entrances(type='Grotto'):
+    for entrance in world.get_shufflable_entrances(type='Grotto'):
         if entrance.primary:
             grotto_actor_id = (entrance.data['scene'] << 8) + entrance.data['content']
-            grotto_entrances_override[grotto_actor_id] = entrance.replaces.data['index']
+            grotto_entrances_override[grotto_actor_id] = entrance.replaces.data['index'] if entrance.replaces else entrance.data['index']
         else:
-            rom.write_int16(rom.sym('GROTTO_EXIT_LIST') + 2 * entrance.data['grotto_id'], entrance.replaces.data['index'])
+            rom.write_int16(rom.sym('GROTTO_EXIT_LIST') + 2 * entrance.data['grotto_id'], entrance.replaces.data['index'] if entrance.replaces else entrance.data['index'])
 
     # Override grotto actors data with the new data
     get_actor_list(rom, override_grotto_data)

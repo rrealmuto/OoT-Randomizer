@@ -19,6 +19,7 @@
 #include "minimap.h"
 #include "bg_mori_bigst.h"
 #include "entrances.h"
+#include "grotto.h"
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
 extern uint16_t CURR_ACTOR_SPAWN_INDEX;
@@ -59,20 +60,12 @@ ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
 // Store the flag using the pointer
 void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
     flag->scene = z64_game.scene_index;
-    if (z64_game.scene_index == 0x3E) {
+    if ((z64_game.scene_index == 0x3E) || (z64_game.scene_index == 0x3C)) {
         // Grottos
         flag->grotto.room = actor->room_index;
-        flag->grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
+        flag->grotto.grotto_id = CURRENT_GROTTO_ID;
         flag->grotto.flag = actor_index;
         flag->grotto.subflag = subflag;
-    }
-    else if (z64_game.scene_index == 0x3C) {
-        // Small Fairy Fountains
-        // Store scene + room?
-        flag->fairy_fountain.base_room = z64_file.respawn[RESPAWN_MODE_RETURN].roomIndex;
-        flag->fairy_fountain.base_scene = gEntranceTable[z64_file.respawn[RESPAWN_MODE_RETURN].entranceIndex].sceneId;
-        flag->fairy_fountain.flag = actor_index;
-        flag->fairy_fountain.subflag = subflag;
     }
     else {
         flag->room = actor->room_index;
@@ -343,8 +336,9 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
 
             xflag.scene = globalCtx->scene_index;
             if(globalCtx->scene_index == 0x3E) {
+                
                 xflag.grotto.room = globalCtx->room_ctx.curRoom.num;
-                xflag.grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
+                xflag.grotto.grotto_id = CURRENT_GROTTO_ID;
                 xflag.grotto.flag = flag;
                 xflag.grotto.subflag = 0;
             }
