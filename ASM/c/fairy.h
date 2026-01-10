@@ -5,6 +5,7 @@
 #include "animation.h"
 #include "z64_math.h"
 #include "color.h"
+#include "models.h"
 
 struct EnElf;
 
@@ -14,6 +15,7 @@ typedef void (*EnElfUnkFunc)(struct EnElf*, z64_game_t*);
 
 #define FAIRY_FLAG_TIMED (1 << 8)
 #define FAIRY_FLAG_BIG (1 << 9)
+#define FAIRY_FLAG_OVERRIDE_COLLECTED (1 << 15)
 
 typedef struct EnElf {
     /* 0x0000 */ z64_actor_t actor;
@@ -48,6 +50,8 @@ typedef struct EnElf {
     /* 0x02C8 */ EnElfUnkFunc func_2C8;
     /* 0x02CC */ EnElfActionFunc actionFunc;
     /* 0x02D0 */ override_t override;
+    /* 0x02E0 */ model_t model;
+
 } EnElf; // size = 0x02D0
 
 

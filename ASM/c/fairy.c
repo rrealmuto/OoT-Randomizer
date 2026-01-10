@@ -20,10 +20,12 @@ Gfx* EnElf_SkelAnime_Draw_Hack(z64_game_t* play, void** skeleton, z64_xyz_t* joi
     // arg contains actor pointer
     EnElf* this = (EnElf*)arg;
     if (this->override.key.all) {
+        // Update the model if we haven't collected yet
+        if(!(this->fairyFlags & FAIRY_FLAG_OVERRIDE_COLLECTED)) {
+            lookup_model_by_override(&this->model, this->override);
+        }
         // Draw override model
-        model_t model;
-        lookup_model_by_override(&model, this->override);
-        draw_model(model, &this->actor, play, 40.0);
+        draw_model(this->model, &this->actor, play, 40.0);
         return play->common.gfx->poly_xlu.p; // Vanilla function assigns POLY_XLU_DISP to the return value of SkelAnime_Draw so we need to actually return it in case we change it
     }
 
@@ -87,6 +89,9 @@ void EnElf_HealingFairyFlyAndWait_SetupAction_Hook(EnElf* this, EnElfActionFunc 
             uint8_t player = this->override.value.base.player;
             uint16_t resolved_item_id = resolve_upgrades(this->override);
             item_row_t* item_row = get_item_row(resolved_item_id);
+            
+            // Set something in fairyFlags so it knows that it has been collected
+            this->fairyFlags |= FAIRY_FLAG_OVERRIDE_COLLECTED;
             Set_NewFlag(&(extras->flag));
             
             dispatch_item(resolved_item_id, this->override.value.base.player, &(this->override), item_row);
