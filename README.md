@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-4
+  * Fix Grotto ER + Fairies
+
 ### 9.0.2.Rob-3
   * Add MQ Suns/Storms spot fairies
 
