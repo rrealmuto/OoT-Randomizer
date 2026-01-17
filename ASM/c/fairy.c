@@ -93,11 +93,13 @@ void EnElf_HealingFairyFlyAndWait_SetupAction_Hook(EnElf* this, EnElfActionFunc 
             // Set something in fairyFlags so it knows that it has been collected
             this->fairyFlags |= FAIRY_FLAG_OVERRIDE_COLLECTED;
             Set_NewFlag(&(extras->flag));
-            
+            // Make sure model is set. Fairy collected on the same frame that it spawned will break otherwise
+            lookup_model_by_override(&this->model, this->override);
             dispatch_item(resolved_item_id, this->override.value.base.player, &(this->override), item_row);
             // Check if it's a collectible or major item
             if(item_row->collectible >= 0) {
                 SFX_PLAY_CENTERED(GET_ITEM_SEQ_ID);
+                dispatch_item(resolved_item_id, this->override.value.base.player, &(this->override), item_row);
                 EnElfActionFunc EnElf_SpinAction = resolve_overlay_addr(&OVL_EnElf_SpinAction, this->actor.actor_id);
                 this->actionFunc = EnElf_SpinAction;
                 collectible_mutex = NULL;
@@ -105,6 +107,7 @@ void EnElf_HealingFairyFlyAndWait_SetupAction_Hook(EnElf* this, EnElfActionFunc 
             }
             
             z64_DisplayTextbox(&z64_game, resolve_item_text_id(item_row, player != PLAYER_ID), NULL);
+            dispatch_item(resolved_item_id, this->override.value.base.player, &(this->override), item_row);
             z64_game.msgContext.choiceIndex = 0;
             // New setup function to wait for message box to close
 
