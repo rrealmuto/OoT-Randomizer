@@ -26,6 +26,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-6
+  * Fix crash when collecting fairy on the same frame that they are spawned
+  * Hopefully fix text IDs for fairies
+
 ### 9.0.2.Rob-5
   * Fix fairy progressive models
 
