@@ -95,7 +95,6 @@ void EnElf_HealingFairyFlyAndWait_SetupAction_Hook(EnElf* this, EnElfActionFunc 
             Set_NewFlag(&(extras->flag));
             // Make sure model is set. Fairy collected on the same frame that it spawned will break otherwise
             lookup_model_by_override(&this->model, this->override);
-            dispatch_item(resolved_item_id, this->override.value.base.player, &(this->override), item_row);
             // Check if it's a collectible or major item
             if(item_row->collectible >= 0) {
                 SFX_PLAY_CENTERED(GET_ITEM_SEQ_ID);
