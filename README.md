@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-8
+  * Add bean plant fairies to fairy shuffle
+
 ### 9.0.2.Rob-7
   * Fix fairies giving duplicate items
 
