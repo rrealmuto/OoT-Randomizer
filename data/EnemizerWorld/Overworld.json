@@ -210,6 +210,9 @@
             "KF Adult Grass 18": "is_adult and can_mow_the_lawn",
             "KF Adult Grass 19": "is_adult and can_mow_the_lawn",
             "KF Adult Grass 20": "is_adult and can_mow_the_lawn",
+            "KF Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "KF Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "KF Bean Plant Fairy 3": "can_summon_bean_fairy",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -405,6 +408,9 @@
             "LW Child Butterfly Fairy 3": "can_use(Sticks)",
             "LW Child Butterfly Fairy 4": "can_use(Sticks)",
             "LW Child Butterfly Fairy 5": "can_use(Sticks)",
+            "LW Near Bridge Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "LW Near Bridge Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "LW Near Bridge Bean Plant Fairy 3": "can_summon_bean_fairy",
             "LW Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -438,6 +444,9 @@
             "Lost Woods Near Meadow Grass 1": "can_mow_the_lawn",
             "Lost Woods Near Meadow Grass 2": "can_mow_the_lawn",
             "Lost Woods Near Meadow Grass 3": "can_mow_the_lawn",
+            "LW Near Theater Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "LW Near Theater Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "LW Near Theater Bean Plant Fairy 3": "can_summon_bean_fairy",
             "LW GS Above Theater": "
                 is_adult and at_night and
                 (here(can_plant_bean) or
@@ -729,6 +738,9 @@
             "LH Gossip Stone (Southeast) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "LH Gossip Stone (Southwest) Fairy Spawn": "can_summon_gossip_fairy",
             "LH Gossip Stone (Southwest) Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "LH Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "LH Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "LH Bean Plant Fairy 3": "can_summon_bean_fairy",
             "LH GS Bean Patch": "can_plant_bugs and can_child_attack",
             "LH GS Lab Wall": "
                 is_child and at_night and
@@ -908,6 +920,9 @@
             "GV Crate Near Cow": "is_child and can_break_crate",
             "GV Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
             "GV Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "GV Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "GV Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "GV Bean Plant Fairy 3": "can_summon_bean_fairy",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -1429,6 +1444,9 @@
             "Colossus Oasis Fairy 8": "can_play(Song_of_Storms)",
             "Colossus Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
             "Colossus Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "Colossus Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "Colossus Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "Colossus Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Colossus GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Colossus GS Tree": "can_use(Hookshot) and at_night",
             "Colossus GS Hill": "
@@ -2331,6 +2349,9 @@
             "Graveyard Child Fairy 1": "can_use(Sticks) and at_day",
             "Graveyard Child Fairy 2": "can_use(Sticks) and at_day",
             "Graveyard Child Fairy 3": "can_use(Sticks) and at_day",
+            "Graveyard Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "Graveyard Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "Graveyard Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Graveyard GS Wall": "can_use(Boomerang) and at_night",
             "Graveyard GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Butterfly Fairy": "can_use(Sticks) and at_day and has_bottle",
@@ -2525,7 +2546,10 @@
             "DMT Child Second Tektite": "is_child and can_kill_this",
             "DMT Child Third Tektite": "is_child and can_kill_this",
             "DMT Child Near DC Tektite": "is_child and can_kill_this",
-            "DMT Suns Song Fairy": "can_play(Suns_Song)"
+            "DMT Suns Song Fairy": "can_play(Suns_Song)",
+            "DMT Bean Plant Fairy 1": "can_summon_bean_fairy and (has_explosives or Progressive_Strength_Upgrade)",
+            "DMT Bean Plant Fairy 2": "can_summon_bean_fairy and (has_explosives or Progressive_Strength_Upgrade)",
+            "DMT Bean Plant Fairy 3": "can_summon_bean_fairy and (has_explosives or Progressive_Strength_Upgrade)"
         },
         "exits": {
             "Kak Behind Gate": "True",
@@ -3031,7 +3055,10 @@
             "DMC Red Bubble Below Bridge To Fire Temple": "is_adult and Goron_Tunic and can_kill_this",
             "DMC First Plank Red Bubble": "is_adult and Goron_Tunic and can_kill_this",
             "DMC Second Plank Red Bubble 1": "is_adult and Goron_Tunic and can_kill_this",
-            "DMC Second Plank Red Bubble 2": "is_adult and Goron_Tunic and can_kill_this"
+            "DMC Second Plank Red Bubble 2": "is_adult and Goron_Tunic and can_kill_this",
+            "DMC Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "DMC Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "DMC Bean Plant Fairy 3": "can_summon_bean_fairy"
         },
         "exits": {
             "DMC Central Nearby": "True",
@@ -3179,6 +3206,9 @@
             "ZR Waterfall Butterfly Fairy 1": "can_use(Sticks)",
             "ZR Waterfall Butterfly Fairy 2": "can_use(Sticks)",
             "ZR Waterfall Butterfly Fairy 3": "can_use(Sticks)",
+            "ZR Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "ZR Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "ZR Bean Plant Fairy 3": "can_summon_bean_fairy",
             "ZR Near Grottos Gossip Stone": "True",
             "ZR Near Domain Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
