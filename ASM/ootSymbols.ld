@@ -86,3 +86,6 @@ OVL_EnElf_SpinAction = 0x808874E0;
 
 OVL_EnButte_SetupFollowLink = 0x80a5a3b0;
 OVL_EnButte_SetupTransformIntoFairy = 0x80a5a7b0;
+
+/* Obj_Bean */
+OVL_ObjBean_Init = 0x80a81d88;

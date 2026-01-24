@@ -136,6 +136,7 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case ACTOR_EN_ELF:
             case ACTOR_EN_BUTTE:
             case ACTOR_SHOT_SUN:
+            case ACTOR_OBJ_BEAN:
             {
                 extra->flag = flag;
                 // Add marker for enemy drops

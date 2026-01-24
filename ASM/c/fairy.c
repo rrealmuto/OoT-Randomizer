@@ -251,3 +251,49 @@ z64_actor_t* ShotSun_SpawnFairy_ActorSpawn_Hack(void* actorCtx, z64_game_t* glob
     }
     return z64_SpawnActor(actorCtx, globalCtx, actorId, posX, posY, posZ, 0, rotY, rotZ, params);
 }
+
+
+
+// Replaces call to Item_DropCollectible in Obj_Bean when spawning fairies after playing song of storms
+// Passes loop variable into num param
+EnItem00* Obj_Bean_Item_DropCollectible_Hack(z64_game_t* play, z64_actor_t* actor, int16_t num) {
+    // Build the complete flag for resolve alt flag
+    ActorAdditionalData* extras = Actor_GetAdditionalData(actor);
+    xflag_t flag = { 0 };
+    Actor_BuildFlag(actor, &flag, extras->actor_id, num+1);
+    flag = resolve_alternative_flag(&flag);
+
+    // Check for override
+    override_t override = get_newflag_override(&flag);
+    if(override.key.all) {
+        // Spawn fairy directly and set override and flag
+        spawn_actor_with_flag = &flag;
+        EnElf* spawned = (EnElf*)z64_SpawnActor(&play->actor_ctxt, play, ACTOR_EN_ELF, actor->pos_world.x, actor->pos_world.y + 15.0f, actor->pos_world.z, 0,0,0, 6 );
+        spawn_actor_with_flag = NULL;
+        spawned->override = override;
+        return (EnItem00*)spawned; // Casting just to suppress warning. The spawned actor is not an EnItem00. Same problem in vanilla code
+    }
+
+    // No override so just call original function
+    z64_xyzf_t spawnPos;
+    spawnPos.x = actor->pos_world.x;
+    spawnPos.y = actor->pos_world.y - 25.0f;
+    spawnPos.z = actor->pos_world.z;
+    return z64_Item_DropCollectible(play, &spawnPos, ITEM00_FLEXIBLE);
+}
+
+
+/*
+extern void OVL_ObjBean_Init(z64_actor_t* thisx, z64_game_t* play);
+
+void ObjBean_Init_Hook(z64_actor_t* thisx, z64_game_t* play) {
+    // Call original init function
+    // Resolve overlay address
+    ActorFunc ObjBean_Init = resolve_overlay_addr(&OVL_ObjBean_Init, thisx->actor_id);
+    ObjBean_Init(thisx, play);
+    
+    // Build and store flag in actor
+    ActorAdditionalData* extras = Actor_GetAdditionalData(thisx);
+    Actor_BuildFlag(thisx, &extras->flag, extras->actor_id, 0);
+}
+*/

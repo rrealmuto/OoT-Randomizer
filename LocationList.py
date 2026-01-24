@@ -247,10 +247,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("KF Storms Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0x1B,10,2), None, 'Rupees (20)', ("Kokiri Forest", "Forest Area", "Grottos", "Fairy"))),
 
     # Kokiri Forest Fairies
-    ("KF Storms Grotto Butterfly Fairy 1",                           ("Fairy",        0x3E, (0,0x1B,7,1), None,                     'Fairy Drop',                            ("Kokiri FOrest", "Forest Area", "Grottos", "Fairy"))),
-    ("KF Storms Grotto Butterfly Fairy 2",                           ("Fairy",        0x3E, (0,0x1B,7,2), None,                     'Fairy Drop',                            ("Kokiri FOrest", "Forest Area", "Grottos", "Fairy"))),
-    ("KF Storms Grotto Butterfly Fairy 3",                           ("Fairy",        0x3E, (0,0x1B,7,3), None,                     'Fairy Drop',                            ("Kokiri FOrest", "Forest Area", "Grottos", "Fairy"))),
-    
+    ("KF Storms Grotto Butterfly Fairy 1",                           ("Fairy",        0x3E, (0,0x1B,7,1), None,                     'Fairy Drop',                            ("Kokiri Forest", "Forest Area", "Grottos", "Fairy"))),
+    ("KF Storms Grotto Butterfly Fairy 2",                           ("Fairy",        0x3E, (0,0x1B,7,2), None,                     'Fairy Drop',                            ("Kokiri Forest", "Forest Area", "Grottos", "Fairy"))),
+    ("KF Storms Grotto Butterfly Fairy 3",                           ("Fairy",        0x3E, (0,0x1B,7,3), None,                     'Fairy Drop',                            ("Kokiri Forest", "Forest Area", "Grottos", "Fairy"))),
+    ("KF Bean Plant Fairy 1",                                        ("Fairy",        0x55, (0,0,74,1), None,                       'Fairy Drop',                            ("Kokiri Forest", "Forest Area", "Fairy"))),
+    ("KF Bean Plant Fairy 2",                                        ("Fairy",        0x55, (0,0,74,2), None,                       'Fairy Drop',                            ("Kokiri Forest", "Forest Area", "Fairy"))),
+    ("KF Bean Plant Fairy 3",                                        ("Fairy",        0x55, (0,0,74,3), None,                       'Fairy Drop',                            ("Kokiri Forest", "Forest Area", "Fairy"))),
 
     # Lost Woods
     ("LW Gift from Saria",                                           ("Cutscene",     0xFF,  0x02, None,                            'Ocarina',                               ("Lost Woods", "Forest Area", "NPCs",))),
@@ -322,13 +324,19 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LW Near Shortcuts Grotto Gossip Stone Big Fairy Spawn", ("Fairy", 0x3E, (0,0x1A,10,2), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
 
     # Lost Woods Fairies
-    
     ("LW Song of Storms Fairy",                                      ("Fairy",       0x5B, [(3,0,4),(3,2,6)], None,                 'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Child Butterfly Fairy 1",                                   ("Fairy",       0x5B, (6,0,2,1), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Child Butterfly Fairy 2",                                   ("Fairy",       0x5B, (6,0,2,2), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Child Butterfly Fairy 3",                                   ("Fairy",       0x5B, (6,0,2,3), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Child Butterfly Fairy 4",                                   ("Fairy",       0x5B, (6,0,2,4), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Child Butterfly Fairy 5",                                   ("Fairy",       0x5B, (6,0,2,5), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Bridge Bean Plant Fairy 1",                            ("Fairy",       0x5B, (5,0,4,1), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Bridge Bean Plant Fairy 2",                            ("Fairy",       0x5B, (5,0,4,2), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Bridge Bean Plant Fairy 3",                            ("Fairy",       0x5B, (5,0,4,3), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Theater Bean Plant Fairy 1",                           ("Fairy",       0x5B, (6,0,6,1), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Theater Bean Plant Fairy 2",                           ("Fairy",       0x5B, (6,0,6,2), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+    ("LW Near Theater Bean Plant Fairy 3",                           ("Fairy",       0x5B, (6,0,6,3), None,                         'Fairy Drop',                            ("Lost Woods", "Forest Area", "Fairy"))),
+
     ("LW Near Shortcuts Grotto Butterfly Fairy 1",                   ("Fairy",       0x3E, (0,0x1A,7,1), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
     ("LW Near Shortcuts Grotto Butterfly Fairy 2",                   ("Fairy",       0x3E, (0,0x1A,7,2), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
     ("LW Near Shortcuts Grotto Butterfly Fairy 3",                   ("Fairy",       0x3E, (0,0x1A,7,3), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
@@ -1078,6 +1086,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Child Fairy 1",                                      ("Fairy",         0x53,  (1,0,18,1), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
     ("Graveyard Child Fairy 2",                                      ("Fairy",         0x53,  (1,0,18,2), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
     ("Graveyard Child Fairy 3",                                      ("Fairy",         0x53,  (1,0,18,3), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Bean Plant Fairy 1",                                 ("Fairy",         0x53,  (1,0,19,1), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Bean Plant Fairy 2",                                 ("Fairy",         0x53,  (1,0,19,2), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Bean Plant Fairy 3",                                 ("Fairy",         0x53,  (1,0,19,3), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    
     ("Graveyard Fairy Fountain Fairy 1",                             ("Fairy",         0x40,  (0x0,0,6,1), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
     ("Graveyard Fairy Fountain Fairy 2",                             ("Fairy",         0x40,  (0x0,0,6,2), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
     ("Graveyard Fairy Fountain Fairy 3",                             ("Fairy",         0x40,  (0x0,0,6,3), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
@@ -1150,6 +1162,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
 
     # Death Mountain Trail Fairies
     ("DMT Suns Song Fairy",                                          ("Fairy",        0x60, [(0,0,39),(0,2,44)], None,               'Fairy Drop',                            ("Death Mountain Trail", "Fairy"))),
+    ("DMT Bean Plant Fairy 1",                                       ("Fairy",        0x60, (0,0,44,1), None,                        'Fairy Drop',                            ("Death Mountain Trail", "Fairy"))),
+    ("DMT Bean Plant Fairy 2",                                       ("Fairy",        0x60, (0,0,44,2), None,                        'Fairy Drop',                            ("Death Mountain Trail", "Fairy"))),
+    ("DMT Bean Plant Fairy 3",                                       ("Fairy",        0x60, (0,0,44,3), None,                        'Fairy Drop',                            ("Death Mountain Trail", "Fairy"))),
+    
     ("DMT Storms Grotto Butterfly Fairy 1",                          ("Fairy",        0x3E, (0,0x08,7,1), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
     ("DMT Storms Grotto Butterfly Fairy 2",                          ("Fairy",        0x3E, (0,0x08,7,2), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
     ("DMT Storms Grotto Butterfly Fairy 3",                          ("Fairy",        0x3E, (0,0x08,7,3), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
@@ -1279,8 +1295,11 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMC Pierre Platform Red Bubble",                               ("EnemyDrop",    0x61, (1,2,13), None,                         'Rupees (5)',                            ("Death Mountain Crater", "Enemy Drops",))),
 
     # Death Mountain Crater Fairies
-    ("DMC Gossip Stone Fairy Spawn",                                ("Fairy",         0x61, [(1,0,10,1),(1,2,2,1)], None,               'Rupees (20)',                           ("Death Mountain Crater", "Fairy"))),
-    ("DMC Gossip Stone Big Fairy Spawn",                            ("Fairy",         0x61, [(1,0,10,2),(1,2,2,2)], None,               'Rupees (20)',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Gossip Stone Fairy Spawn",                                ("Fairy",         0x61, [(1,0,10,1),(1,2,2,1)], None,           'Fairy Drop',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Gossip Stone Big Fairy Spawn",                            ("Fairy",         0x61, [(1,0,10,2),(1,2,2,2)], None,           'Fairy Drop',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Bean Plant Fairy 1",                                      ("Fairy",         0x61, (1,0,34,1), None,                       'Fairy Drop',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Bean Plant Fairy 2",                                      ("Fairy",         0x61, (1,0,34,2), None,                       'Fairy Drop',                           ("Death Mountain Crater", "Fairy"))),
+    ("DMC Bean Plant Fairy 3",                                      ("Fairy",         0x61, (1,0,34,3), None,                       'Fairy Drop',                           ("Death Mountain Crater", "Fairy"))),
     ("DMC Upper Grotto Butterfly Fairy 1",                          ("Fairy",         0x3E, (0,0x06,7,1), None,                     'Fairy Drop',                            ("Death Mountain Crater", "Grottos", "Fairy"))),
     ("DMC Upper Grotto Butterfly Fairy 2",                          ("Fairy",         0x3E, (0,0x06,7,2), None,                     'Fairy Drop',                            ("Death Mountain Crater", "Grottos", "Fairy"))),
     ("DMC Upper Grotto Butterfly Fairy 3",                          ("Fairy",         0x3E, (0,0x06,7,3), None,                     'Fairy Drop',                            ("Death Mountain Crater", "Grottos", "Fairy"))),
@@ -1397,6 +1416,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("ZR Near Grottos Gossip Stone Fairy Spawn",                     ("Fairy",        0x54, [(0,0,8,1),(0,2,11,1)], None, 'Fairy Drop', ("Zora's River", "Fairy"))),
     ("ZR Near Grottos Gossip Stone Big Fairy Spawn",                 ("Fairy",        0x54, [(0,0,8,2),(0,2,11,2)], None, 'Fairy Drop', ("Zora's River", "Fairy"))),
     ("ZR Near Domain Gossip Stone Fairy Spawn",                      ("Fairy",        0x54, [(1,0,2,1),(1,2,6,1)], None, 'Fairy Drop',   ("Zora's River", "Fairy"))),
+    ("ZR Bean Plant Fairy 1",                                        ("Fairy",        0x54, (0,0,57,1), None,                       'Fairy Drop',   ("Zora's River", "Fairy"))),
+    ("ZR Bean Plant Fairy 2",                                        ("Fairy",        0x54, (0,0,57,2), None,                       'Fairy Drop',   ("Zora's River", "Fairy"))),
+    ("ZR Bean Plant Fairy 3",                                        ("Fairy",        0x54, (0,0,57,3), None,                       'Fairy Drop',   ("Zora's River", "Fairy"))),
     ("ZR Near Domain Gossip Stone Big Fairy Spawn",                  ("Fairy",        0x54, [(1,0,2,2),(1,2,6,2)], None, 'Fairy Drop',   ("Zora's River", "Fairy"))),
     ("ZR Open Grotto Gossip Stone Fairy Spawn",                      ("Fairy",        0x3E, (0,0x04,10,1), None, 'Fairy Drop',            ("Zora's River", "Fairy"))),
     ("ZR Open Grotto Gossip Stone Big Fairy Spawn",                  ("Fairy",        0x3E, (0,0x04,10,2), None, 'Fairy Drop',            ("Zora's River", "Fairy"))),
@@ -1660,6 +1682,10 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LH Child Butterfly Fairy 1",                                             ("Fairy",         0x57,  (0,0,34,1), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
     ("LH Child Butterfly Fairy 2",                                             ("Fairy",         0x57,  (0,0,34,2), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
     ("LH Child Butterfly Fairy 3",                                             ("Fairy",         0x57,  (0,0,34,3), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    ("LH Bean Plant Fairy 1",                                                  ("Fairy",         0x57,  (0,0,40,1), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    ("LH Bean Plant Fairy 2",                                                  ("Fairy",         0x57,  (0,0,40,2), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    ("LH Bean Plant Fairy 3",                                                  ("Fairy",         0x57,  (0,0,40,3), None,                     'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
+    
     ("LH Suns Song Fairy",                                                     ("Fairy",         0x57,  [(0,0,56),(0,2,39)], None,            'Fairy Drop',                            ("Lake Hylia", "Fairy"))),
     
     # Gerudo Valley
@@ -1710,9 +1736,12 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("GV Adult Lower Octorok 2",                                     ("EnemyDrop",    0x5A, (0, 2, 6), None,                    'Rupees (5)',                            ("Gerudo Valley", "Enemy Drops",))),
     ("GV Octorok Grotto Octorok",                                    ("EnemyDrop",    0x3E, (5, 0x1F, 1), None,                 'Rupees (5)',                            ("Gerudo Valley", "Grottos", "Enemy Drops",))),
 
-    # Gerudo Valley Gossip Stones
-    ("GV Gossip Stone Fairy Spawn", ("Fairy", 0x5A, [(0,0,9,1),(0,2,46,1)], None, 'Rupees (20)', ("Gerudo Valley","Fairy"))),
-    ("GV Gossip Stone Big Fairy Spawn", ("Fairy", 0x5A, [(0,0,9,2),(0,2,46,2)], None, 'Rupees (20)', ("Gerudo Valley","Fairy"))),
+    # Gerudo Valley Fairies
+    ("GV Gossip Stone Fairy Spawn", ("Fairy", 0x5A, [(0,0,9,1),(0,2,46,1)], None, 'Fairy Drop', ("Gerudo Valley","Fairy"))),
+    ("GV Gossip Stone Big Fairy Spawn", ("Fairy", 0x5A, [(0,0,9,2),(0,2,46,2)], None, 'Fairy Drop', ("Gerudo Valley","Fairy"))),
+    ("GV Bean Plant Fairy 1",                                        ("Fairy", 0x5A, (0,0,32,1), None,                               'Fairy Drop', ("Gerudo Valley","Fairy"))),
+    ("GV Bean Plant Fairy 2",                                        ("Fairy", 0x5A, (0,0,32,2), None,                               'Fairy Drop', ("Gerudo Valley","Fairy"))),
+    ("GV Bean Plant Fairy 3",                                        ("Fairy", 0x5A, (0,0,32,3), None,                               'Fairy Drop', ("Gerudo Valley","Fairy"))),
 
     # Gerudo's Fortress
     ("GF Chest",                                                     ("Chest",        0x5D,  0x00, None,                            'Piece of Heart',                        ("Gerudo's Fortress", "Chests",))),
@@ -1880,6 +1909,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Colossus Oasis Fairy 6",                                       ("Fairy",        0x5C, [(0,0,2,6),(0,2,1,6)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
     ("Colossus Oasis Fairy 7",                                       ("Fairy",        0x5C, [(0,0,2,7),(0,2,1,7)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
     ("Colossus Oasis Fairy 8",                                       ("Fairy",        0x5C, [(0,0,2,8),(0,2,1,8)], None,                 'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Bean Plant Fairy 1",                                  ("Fairy",        0x5C, (0,0,30,1), None,                            'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Bean Plant Fairy 2",                                  ("Fairy",        0x5C, (0,0,30,2), None,                            'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
+    ("Colossus Bean Plant Fairy 3",                                  ("Fairy",        0x5C, (0,0,30,3), None,                            'Fairy Drop',                            ("Desert Colossus", "Fairy"))),
 
     # Colossus Gossip Stone
     ("Colossus Gossip Stone Fairy Spawn", ("Fairy", 0x5C, [(0,0,4,1),(0,2,3,1)], None, 'Rupees (20)', ("Desert Colossus","Fairy"))),
