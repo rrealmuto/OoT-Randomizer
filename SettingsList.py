@@ -2093,6 +2093,34 @@ class SettingInfos:
         },
     )
 
+    enemizer = Combobox(
+        gui_text       = 'Enemizer',
+        choices        = {
+            'off':      'Off',
+            'on':       'Static',
+            'change':   'Dynamic'
+        },
+        default        = 'off',
+        gui_tooltip    = '''\
+            Randomize Enemies
+
+            Off:        Vanilla enemy layout
+
+            Static:     Enemies will be shuffled when the seed is generated and will remain
+                        the same for the duration of the scene. This setting has logic
+                        to check that enemies can be defeated
+
+            Dynamic:    Enemies will shuffle every time you reload a room. This is mostly
+                        experimental and has no way to guarantee that the player
+                        can defeat all of the enemies in a given room. If a room is broken,
+                        try holding the secret button sequence while loading the room.
+        ''',
+        shared         = True,
+        gui_params     = {
+            'randomize_key': 'randomize_settings',
+        }
+    )
+
     shuffle_song_items = Combobox(
         gui_text       = 'Shuffle Songs',
         default        = 'song',
@@ -2609,7 +2637,7 @@ class SettingInfos:
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
-        },
+        }
     )
 
     shuffle_kokiri_sword = Checkbutton(
@@ -4218,6 +4246,17 @@ class SettingInfos:
             'OHKO': Link dies in one hit.
         ''',
         shared         = True,
+    )
+
+    gloom = Checkbutton(
+        gui_text       = 'Gloom Mode',
+        default        = False,
+        gui_tooltip    = '''\
+            When enabled, every time the player
+            takes damage, their overall health
+            is reduced by one heart.
+        ''',
+        shared         = True
     )
 
     deadly_bonks = Combobox(

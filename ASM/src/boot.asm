@@ -23,7 +23,7 @@
     sw      a0, 0x0140 (sp)
 
     ; Load first code file from ROM
-    lui     a0, 0x8040
+    lui     a0, 0x8068
     li      a2, PAYLOAD_END - PAYLOAD_START
     jal     0x80000DF0
     lui     a1, 0x0348
