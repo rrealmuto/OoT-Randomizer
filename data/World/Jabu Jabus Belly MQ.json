@@ -148,7 +148,7 @@
             "Jabu Jabus Belly MQ Falling Like Like Room Grass": "True",
             "Jabu Jabus Belly MQ Hallway Small Crate 1": "True",
             "Jabu Jabus Belly MQ Hallway Small Crate 2": "True",
-            "Jabu Jabus Belly MQ Hallway Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Jabu Jabus Belly MQ Hallway Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
             "Jabu Jabus Belly MQ Falling Like Like Room Like Like 1": "has_soul(Like_Like)",
             "Jabu Jabus Belly MQ Falling Like Like Room Like Like 2": "has_soul(Like_Like)",
             "Bombable Fairy": "has_bottle"
@@ -186,7 +186,7 @@
             "Jabu Jabus Belly MQ Small Crate Near Cow 1": "True",
             "Jabu Jabus Belly MQ Small Crate Near Cow 2": "True",
             "Jabu Jabus Belly MQ After Big Octo Bari": "can_kill_bari",
-            "Jabu Jabus Belly MQ Wiggler Platforms Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Jabu Jabus Belly MQ Wiggler Platforms Lizalfos": "has_soul(Lizalfos_and_Dinolfos)",
             "Jabu Jabus Belly MQ After Big Octo Grass 1": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ After Big Octo Grass 2": "can_mow_the_lawn",
             "Jabu Jabus Belly MQ Wiggler Platforms Grass": "can_mow_the_lawn"
