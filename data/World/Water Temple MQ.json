@@ -135,7 +135,7 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Compass Chest": "
-                has_soul(Spike_Enemy) and has_soul(Lizalfos_and_Dinalfos) and Reset_Water_Level and
+                has_soul(Spike_Enemy) and has_soul(Lizalfos_and_Dinolfos) and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Longshot Chest": "Hookshot",
             "Water Temple MQ Lizalfos Hallway Gate Pot 1": "can_use(Dins_Fire)",
@@ -143,16 +143,16 @@
             "Water Temple MQ Lizalfos Hallway Gate Crate 1": "can_use(Dins_Fire) and can_break_crate",
             "Water Temple MQ Lizalfos Hallway Gate Crate 2": "can_use(Dins_Fire) and can_break_crate",
             "Water Temple MQ Compass Chest Hookshot Wonderitem": "(Bow or can_use(Dins_Fire)) and Hookshot",
-            "Water Temple MQ Lizalfos Hallway Lizalfos 1": "has_soul(Lizalfos_and_Dinalfos)",
-            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "has_soul(Lizalfos_and_Dinalfos)",
+            "Water Temple MQ Lizalfos Hallway Lizalfos 1": "has_soul(Lizalfos_and_Dinolfos)",
+            "Water Temple MQ Lizalfos Hallway Lizalfos 2": "has_soul(Lizalfos_and_Dinolfos)",
             "Water Temple MQ Compass Chest Spike": "
                 has_soul(Spike_Enemy) and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Compass Chest Lizalfos 1": "
-                has_soul(Lizalfos_and_Dinalfos) and Reset_Water_Level and
+                has_soul(Lizalfos_and_Dinolfos) and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Compass Chest Lizalfos 2": "
-                has_soul(Lizalfos_and_Dinalfos) and Reset_Water_Level and
+                has_soul(Lizalfos_and_Dinolfos) and Reset_Water_Level and
                 (Bow or can_use(Dins_Fire) or (Child_Water_Temple and Sticks))",
             "Water Temple MQ GS Lizalfos Hallway": "can_use(Dins_Fire)"
         },
@@ -179,7 +179,7 @@
             "Water Temple MQ Before Upper Water Switch Upper Small Crate": "Longshot",
             "Water Temple MQ GS Before Upper Water Switch": "Longshot",
             "Water Temple MQ Upper Water Switch Hookshot Wonderitem": "Hookshot",
-            "Water Temple MQ Before Upper Water Switch Lizalfos": "has_soul(Lizalfos_and_Dinalfos)"
+            "Water Temple MQ Before Upper Water Switch Lizalfos": "has_soul(Lizalfos_and_Dinolfos)"
         }
     },
     {

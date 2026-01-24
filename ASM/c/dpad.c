@@ -5,15 +5,6 @@
 
 extern uint8_t CFG_DISPLAY_DPAD;
 
-//unknown 00 is a pointer to some vector transformation when the sound is tied to an actor. actor + 0x3E, when not tied to an actor (map), always 80104394
-//unknown 01 is always 4 in my testing
-//unknown 02 is a pointer to some kind of audio configuration Always 801043A0 in my testing
-//unknown 03 is always a3 in my testing
-//unknown 04 is always a3 + 0x08 in my testing (801043A8)
-typedef void(*usebutton_t)(z64_game_t* game, z64_link_t* link, uint8_t item, uint8_t button);
-
-#define z64_usebutton ((usebutton_t)    0x8038C9A0)
-
 void handle_dpad() {
 
     pad_t pad_pressed = z64_game.common.input[0].pad_pressed;
@@ -53,15 +44,14 @@ void handle_dpad() {
                 SFX_PLAY_CENTERED(0x835);
             }
         }
-
         if (z64_file.link_age == 1) {
             if (pad_pressed.dr && CAN_USE_CHILD_TRADE) {
-                z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE], 2);
+                Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE], 2);
             }
         }
 
         if (pad_pressed.dd && CAN_USE_OCARINA) {
-            z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
+            Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
         }
     }
 }
