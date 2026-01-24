@@ -1,0 +1,174 @@
+[
+    {
+        "region_name": "Deku Tree Lobby",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Map Chest": "True",
+            "Deku Tree Compass Chest": "True",
+            "Deku Tree Compass Room Side Chest": "True",
+            "Deku Tree Lower Lobby Recovery Heart": "True",
+            "Deku Tree Upper Lobby Recovery Heart": "is_adult or can_child_attack or Nuts",
+            "Deku Tree Lobby Grass 1": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 2": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 3": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 4": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 5": "can_mow_the_lawn",
+            "Deku Tree Compass Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Compass Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree Compass Room Deku Baba": "can_kill_deku_baba",
+            "Deku Tree GS Compass Room": "is_adult or can_child_attack",
+            "Deku Tree Lobby Deku Baba 1": "can_kill_this",
+            "Deku Tree Lobby Deku Baba 2": "can_kill_this",
+            "Deku Tree Lobby Deku Baba 3": "can_kill_this",
+            "Deku Tree Lobby Vines Lowest Skullwalltula": "can_kill_this" ,
+            "Deku Tree Lobby Vines Left Lower Skullwalltula": "can_kill_this" ,
+            "Deku Tree Lobby Vines Upper Skullwalltula": "can_kill_this" ,
+            "Deku Tree Lobby Skulltula 1": "can_kill_this",
+            "Deku Tree Lobby Skulltula 2": "can_kill_this",
+            "Deku Tree Lobby Skulltula 3": "can_kill_this",
+            "Deku Tree Compass Room Skulltula": "can_kill_this",
+            "Deku Tree Before Slingshot Hint Scrub": "can_kill_this"
+        },
+        "exits": {
+            "KF Outside Deku Tree": "True",
+            "Deku Tree Slingshot Room": "here(can_kill_named('Deku Tree Before Slingshot Hint Scrub'))",
+            "Deku Tree Basement": "deku_tree_shortcuts or here(is_adult or can_child_attack or Nuts)",
+            "Farores Wind Warp": "can_use(Farores_Wind)"
+        }
+    },
+    {
+        "region_name": "Deku Tree Slingshot Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Slingshot Chest": "True",
+            "Deku Tree Slingshot Room Side Chest": "True",
+            "Deku Tree Slingshot Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Slingshot Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree Slingshot Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree Slingshot Room Grass 4": "can_mow_the_lawn"
+        }
+    },
+    {
+        "region_name": "Deku Tree Basement",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Chest": "True",
+            "Deku Tree Basement Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Grass 2": "can_mow_the_lawn",
+            "Deku Tree Basement Lower Deku Baba": "can_kill_deku_baba",
+            "Deku Tree GS Basement Gate": "is_adult or can_child_attack",
+            "Deku Tree GS Basement Vines": "
+                can_use_projectile or can_use(Dins_Fire) or
+                (logic_deku_basement_gs and (is_adult or Sticks or Kokiri_Sword))"
+        },
+        "exits": {
+            "Deku Tree Basement Ledge": "deku_tree_shortcuts or here(is_adult) or logic_deku_b1_skip",
+            "Deku Tree Basement Eye Switch Room": "
+                here(has_fire_source_with_torch or can_use(Bow)) and
+                here(can_use(Slingshot) or can_use(Bow))"
+        }
+    },
+    {
+        "region_name": "Deku Tree Basement Eye Switch Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Eye Switch Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Grass 4": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Hint Scrub": "can_kill_this"
+        },
+        "exits": {
+            "Deku Tree Basement Spinning Log Room": "here(can_use(Bow) or can_use(Slingshot))"
+        }
+    },
+    {
+        "region_name": "Deku Tree Basement Spinning Log Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Spinning Log Skulltula": "can_kill_this",
+            "Deku Tree Basement Spinning Log Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Spinning Log Grass 2": "can_mow_the_lawn"
+        },
+        "exits":
+        {
+            "Deku Tree Basement Torch Room" : "True",
+            "Deku Tree Basement Eye Switch Room": "True"
+        }
+    },
+    {
+        "region_name": "Deku Tree Basement Torch Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Torch Room Withered Deku Baba 1": "can_kill_this",
+            "Deku Tree Basement Torch Room Withered Deku Baba 2": "can_kill_this",
+            "Deku Tree Basement Torch Room Deku Baba 3": "can_kill_this"
+        },
+        "exits":
+        {
+            "Deku Tree Basement Back Room": "has_fire_source_with_torch",
+            "Deku Tree Basement Spinning Log Room": "has_fire_source_with_torch"
+        }
+    },
+    {
+        "region_name": "Deku Tree Basement Back Room",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Torch Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Torch Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree Basement Larvae Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Larvae Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree GS Basement Back Room": "
+                here(has_fire_source_with_torch or can_use(Bow)) and
+                here(can_blast_or_smash) and
+                (can_use(Boomerang) or can_use(Hookshot))",
+            "Deku Tree Basement Back Room Skulltula": "can_kill_this",
+            "Deku Tree Basement Back Room Gohma Larva 1": "can_kill_this",
+            "Deku Tree Basement Back Room Gohma Larva 2": "can_kill_this",
+            "Deku Tree Basement Back Room Gohma Larva 3": "can_kill_this",
+            "Deku Tree Back Room Deku Baba 1": "can_kill_this",
+            "Deku Tree Back Room Deku Baba 2": "can_kill_this",
+            "Deku Tree Basement Back Room Near GS Skulltula": "here(has_fire_source_with_torch or can_use(Bow)) and can_kill_this"
+        },
+        "exits": {
+            "Deku Tree Basement Ledge": "is_child",
+            "Deku Tree Basement Torch Room" : "True"
+        }
+    },
+    {
+        "region_name": "Deku Tree Basement Ledge",
+        "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Upper Ledge Withered Deku Baba": "can_kill_this",
+            "Deku Tree Basement Upper Ledge Deku Baba 1": "can_kill_this",
+            "Deku Tree Basement Upper Ledge Deku Baba 2": "can_kill_this"
+        },
+        "exits": {
+            "Deku Tree Basement": "True",
+            "Deku Tree Basement Back Room": "is_child",
+            "Deku Tree Before Boss": "
+                deku_tree_shortcuts or
+                here(has_fire_source_with_torch or (logic_deku_b1_webs_with_bow and can_use(Bow)))"
+        }
+    },
+    {
+        "region_name": "Deku Tree Before Boss",
+        "dungeon": "Deku Tree",
+        "savewarp": "KF Outside Deku Tree -> Deku Tree Lobby",
+        "locations": {
+            "Deku Tree Basement Recovery Heart 1": "True",
+            "Deku Tree Basement Recovery Heart 2": "True",
+            "Deku Tree Basement Recovery Heart 3": "True",
+            "Deku Tree Before Boss Grass 1": "can_mow_the_lawn",
+            "Deku Tree Before Boss Grass 2": "can_mow_the_lawn",
+            "Deku Tree Before Boss Grass 3": "can_mow_the_lawn",
+            "Deku Tree Before Boss 3-2-1 Scrubs Left": "can_kill_this",
+            "Deku Tree Before Boss 3-2-1 Scrubs Middle": "can_kill_this",
+            "Deku Tree Before Boss 3-2-1 Scrubs Right": "can_kill_this"
+        },
+        "exits": {
+            "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
+            "Queen Gohma Boss Room": "deku_tree_shortcuts or here(can_clear_room(DEKU_BEFORE_BOSS))"
+        }
+    }
+]
