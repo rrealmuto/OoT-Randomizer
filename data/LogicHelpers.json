@@ -57,6 +57,7 @@
     "can_summon_gossip_fairy_without_suns": "can_play(Zeldas_Lullaby) or can_play(Eponas_Song) or can_play(Song_of_Time)",
     "can_take_damage": "damage_multiplier != 'ohko' or Fairy or can_use(Nayrus_Love)",
     "can_plant_bean": "plant_beans or (is_child and (Magic_Bean, 10))",
+    "can_summon_bean_fairy": "is_child and can_plant_bean and can_play(Song_of_Storms)",
     "can_play(song)": "(Ocarina or can_oi)
         and song and (not shuffle_individual_ocarina_notes or has_all_notes_for_song(song))",
     "can_play_ocarina(song)": "Ocarina

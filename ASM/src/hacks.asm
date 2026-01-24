@@ -4391,3 +4391,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/ovl_obj_mure.asm"
 .include "hacks/ovl_bg_spot11_oasis.asm"
 .include "hacks/ovl_shot_sun.asm"
+.include "hacks/ovl_obj_bean.asm"
