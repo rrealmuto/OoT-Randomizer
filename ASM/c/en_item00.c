@@ -17,7 +17,7 @@ void EnItem00_OutgoingAction(EnItem00* this, z64_game_t* globalCtx) {
 
     this->actor.pos_world = player->common.pos_world;
 
-    this->actor.rot_2.y += 960;
+    this->actor.shape.rot.y += 960;
 
     this->actor.pos_world.y += 40.0f + (15 - this->timeToLive) * 5.0;
 
@@ -52,7 +52,7 @@ void EnItem00_Init_Hook(EnItem00* this, z64_game_t* globalCtx) {
     // Reset the scale for overridden collectibles
     if (this->override.key.all) {
         this->scale = this->actor.scale.x = this->actor.scale.y = this->actor.scale.z = 0.015f;
-        this->actor.yOffset = 750.0f;
+        this->actor.shape.yOffset = 750.0f;
     }
 }
 
