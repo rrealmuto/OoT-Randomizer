@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-10
+  * Fix default value for shuffle_fairies
+
 ### 9.0.2.Rob-9
   * Make different fairy types individually shufflable
 
