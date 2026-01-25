@@ -2605,7 +2605,7 @@ class SettingInfos:
             "FountainFairy":      "Fairy fountains",
             "BeanPlantFairy":    "Bean Plant"
         },
-        default        = False,
+        default        = [],
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
