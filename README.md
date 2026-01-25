@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 9.0.2.Rob-E12
+  * Prevent redeads from setting flags. Should fix things like DC platforms raising, water temple grates opening. etc.
+
 ### 8.3.56.Rob-E6
   * Remove no deku nut november
 
