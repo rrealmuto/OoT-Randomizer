@@ -1079,9 +1079,9 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Graveyard Child Fairy 1",                                      ("ButterflyFairy",         0x53,  (1,0,18,1), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
     ("Graveyard Child Fairy 2",                                      ("ButterflyFairy",         0x53,  (1,0,18,2), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
     ("Graveyard Child Fairy 3",                                      ("ButterflyFairy",         0x53,  (1,0,18,3), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
-    ("Graveyard Bean Plant Fairy 1",                                 ("BeanPlantFairy",         0x53,  (1,0,19,1), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
-    ("Graveyard Bean Plant Fairy 2",                                 ("BeanPlantFairy",         0x53,  (1,0,19,2), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
-    ("Graveyard Bean Plant Fairy 3",                                 ("BeanPlantFairy",         0x53,  (1,0,19,3), None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Bean Plant Fairy 1",                                 ("BeanPlantFairy",         0x53,  [(1,0,19,1),(1,1,49,1)], None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Bean Plant Fairy 2",                                 ("BeanPlantFairy",         0x53,  [(1,0,19,2),(1,1,49,2)], None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
+    ("Graveyard Bean Plant Fairy 3",                                 ("BeanPlantFairy",         0x53,  [(1,0,19,3),(1,1,49,3)], None,                     'Fairy Drop',                            ("Graveyard", "Fairy"))),
     ("Graveyard Fairy Fountain Fairy 1",                             ("FountainFairy",         0x40,  (0x0,0,6,1), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
     ("Graveyard Fairy Fountain Fairy 2",                             ("FountainFairy",         0x40,  (0x0,0,6,2), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
     ("Graveyard Fairy Fountain Fairy 3",                             ("FountainFairy",         0x40,  (0x0,0,6,3), None,                    'Fairy Drop',                          ("Graveyard", "Grottos", "Fairy"))),
@@ -2824,7 +2824,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("Bottom of the Well MQ West Inner Room Invisible Skulltula 2",     ("EnemyDrop",    0x08,  (6,0,5), None,                        'Rupees (5)',                                ("Bottom of the Well MQ", "Master Quest", "Enemy Drops",))),
 
     # Bottom of the Well MQ Fairies
-    ("Bottom of the Well MQ East Inner Room Pot Suns Song Fairy",       ("SunsStormsFairy",        0x08,  (0,0,14), None,                       'Fairy Drop',                                  ("Bottom of the Well MQ", "Master Quest", "Fairy"))),
+    ("Bottom of the Well MQ Center Room Suns Song Fairy",               ("SunsStormsFairy",        0x08,  (0,0,14), None,                       'Fairy Drop',                                  ("Bottom of the Well MQ", "Master Quest", "Fairy"))),
     ("Bottom of the Well MQ Basement Suns Song Fairy",                  ("SunsStormsFairy",        0x08,  (1,0,18), None,                       'Fairy Drop',                                  ("Bottom of the Well MQ", "Master Quest", "Fairy"))),
 
     # Forest Temple Vanilla
