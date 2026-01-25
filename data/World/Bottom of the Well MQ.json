@@ -76,6 +76,7 @@
                         (Sticks or has_explosives or Slingshot or Boomerang)))",
             "Bottom of the Well MQ Dead Hand": "
                 has_soul(Dead_hand) and (Kokiri_Sword or (Sticks and logic_child_deadhand))",
+            "Bottom of the Well MQ Basement Suns Song Fairy": "can_play(Suns_Song)",
             "Bottom of the Well MQ GS Basement": "can_child_attack",
             "Bottom of the Well MQ GS Coffin Room": "
                 (Small_Key_Bottom_of_the_Well, 2) and can_child_attack",
@@ -103,6 +104,7 @@
             "Bottom of the Well MQ East Inner Room Pot 1": "True",
             "Bottom of the Well MQ East Inner Room Pot 2": "True",
             "Bottom of the Well MQ East Inner Room Pot 3": "True",
+            "Bottom of the Well MQ Center Room Suns Song Fairy": "can_play(Suns_Song)",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 1": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 2": "Slingshot",
             "Bottom of the Well MQ East Inner Room Slingshot Wonderitem 3": "Slingshot",
