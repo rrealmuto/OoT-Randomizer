@@ -26,6 +26,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-11
+  * Fix graveyard night time bean plant fairies not shuffled.
+  * Fix BOTW MQ Suns Song spots not shuffled.
+
 ### 9.0.2.Rob-10
   * Fix default value for shuffle_fairies
 
