@@ -920,8 +920,8 @@ def get_pool_core(world: World) -> tuple[list[str], dict[str, Item]]:
                 location.disabled = DisableType.DISABLED
 
         # Fairies
-        elif location.type == 'Fairy':
-            if world.settings.shuffle_fairies:
+        elif location.type in ('GossipFairy', 'ButterflyFairy', 'SunsStormsFairy', 'FountainFairy', 'BeanPlantFairy'):
+            if location.type in world.settings.shuffle_fairies:
                 shuffle_item = True
             else:
                 shuffle_item = False

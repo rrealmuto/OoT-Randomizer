@@ -2584,15 +2584,27 @@ class SettingInfos:
         },
     )
 
-    shuffle_fairies = Checkbutton(
+    shuffle_fairies = MultipleSelect(
         gui_text       = 'Shuffle Fairies',
         gui_tooltip    = '''\
-            Fairies will give shuffled items. Includes:
-                Fairy fountains
-                Butterflies triggered by deku sticks
-                Gossip stone big/small fairies
-                Sun's Song/Song of Storms spot fairies.
+            Fairies will give shuffled items.
+                Gossip Stones: Fairies spawned by playing Song of Storms, and any other Child Song. in front of gossip stones (2 checks)
+                
+                Butterflies: Holding a Deku Stick near butterflies will turn them into fairies.
+                
+                Fairy fountains: All fairies found in fairy fountainsand the fairies in Ganon's Castle
+                
+                Suns Song/Song of Storms: Fairies spawned by playing Suns Song or Song of Storms in certain spots. Includes Collossus Oasis fairies.
+                
+                Bean Plant: Playing Song of Storms on a soil patch after planting a Magic Bean will spawn 3 fairies.
         ''',
+        choices        = {
+            "GossipFairy": "Gossip Stones",
+            "ButterflyFairy":   "Butterflies",
+            "SunsStormsFairy":   "Suns Song/Song of Storms",
+            "FountainFairy":      "Fairy fountains",
+            "BeanPlantFairy":    "Bean Plant"
+        },
         default        = False,
         shared         = True,
         gui_params     = {
