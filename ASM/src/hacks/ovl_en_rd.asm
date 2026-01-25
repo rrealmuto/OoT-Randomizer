@@ -45,3 +45,10 @@
     jal     EnRd_DestroyCheckSunsSong
     lh      t6, 0x1422(v0)
     bne     t6, t7, 0x80939cb4
+
+; Hack in EnRd_Dead to prevent setting switch flag 0x7F
+; Hack the call to Flags_GetSwitch in EnRd_Dead to always return true in flag == 0x7F
+.org 0x8093B3D8
+; Replaces:
+;   jal     Flags_GetSwitch
+    jal     EnRd_FlagsGetSwitch_Hack
