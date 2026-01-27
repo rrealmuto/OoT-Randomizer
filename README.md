@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 9.0.2.Rob-E14
+  * Fix typo causing failures to generate w/ advanced logic + enemy soul shuffle
+
 ### 9.0.2.Rob-E12
   * Prevent redeads from setting flags. Should fix things like DC platforms raising, water temple grates opening. etc.
 

@@ -201,7 +201,7 @@
         "region_name": "Ganons Castle Light Trial",
         "dungeon": "Ganons Castle",
         "exits": {
-            "Ganons Castle Light Trial Hallway": "has_soul(Torch_Slug) and has_soul(Lizalfos_and_Dinalfos)"
+            "Ganons Castle Light Trial Hallway": "has_soul(Torch_Slug) and has_soul(Lizalfos_and_Dinolfos)"
         }
     },
     {
