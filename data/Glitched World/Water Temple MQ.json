@@ -137,7 +137,7 @@
              "Water Temple MQ Longshot Chest Hookshot Wonderitem": "can_use(Hookshot) or
                 at('Water Temple East Column',is_adult and Iron_Boots and Hookshot)",
             "Water Temple MQ Compass Chest": "
-                has_soul(Spike_Enemy) and has_soul(Lizalfos_and_Dinalfos) and
+                has_soul(Spike_Enemy) and has_soul(Lizalfos_and_Dinolfos) and
                 (Bow or can_use(Dins_Fire) or can_gdv or (Child_Water_Temple and Sticks))",
             "Water Temple MQ Compass Chest Hookshot Wonderitem": "(Bow or can_use(Dins_Fire) or can_gdv) and Hookshot"
         },
