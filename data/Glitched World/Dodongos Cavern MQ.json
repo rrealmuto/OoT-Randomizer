@@ -222,7 +222,7 @@
         "exits": {
             # Logic for child only access to the poes room. Adult has access directly from the lobby
             "Dodongos Cavern Poes Room": "
-                 has_soul(Lizalfos_and_Dinalfos) and can_use(Slingshot)",
+                 has_soul(Lizalfos_and_Dinolfos) and can_use(Slingshot)",
             # Need to have access to the lower lizalfos room to access the recovery heart, baby dodongos
             "Dodongos Cavern Hall Before Lower Lizalfos": "can_use(Slingshot) or can_use(Bow)"
         }
@@ -245,7 +245,7 @@
         "exits": {
             # Child can fall down from above to reach Poes room, but Adult must defeat the
             # lower Lizalfos here first, since they don't spawn when jumping down from above.
-            "Dodongos Cavern Poes Room": "has_soul(Lizalfos_and_Dinalfos) and here(is_adult)"
+            "Dodongos Cavern Poes Room": "has_soul(Lizalfos_and_Dinolfos) and here(is_adult)"
         }
     },
     {
