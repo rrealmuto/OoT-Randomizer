@@ -26,6 +26,10 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-14
+  * Add grass to advanced logic files
+  * Disable unsupported settings in advanced logic
+
 ### 9.0.2.Rob-13
   * Increase override table size
 
