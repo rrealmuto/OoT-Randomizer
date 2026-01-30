@@ -13,11 +13,13 @@ import unittest
 from collections import Counter, defaultdict
 from typing import Literal, Optional, Any, overload
 
+from Entrance import Entrance
 from EntranceShuffle import EntranceShuffleError
 from Fill import ShuffleError
 from Hints import HintArea, build_misc_item_hints
 from Item import ItemInfo
 from ItemPool import remove_junk_items, remove_junk_ludicrous_items, ludicrous_items_base, ludicrous_items_extended, trade_items, ludicrous_exclusions
+from Location import Location
 from LocationList import location_is_viewable
 from Main import main, resolve_settings, build_world_graphs
 from Messages import Message, read_messages, shuffle_messages
@@ -26,6 +28,8 @@ from SettingsList import logic_tricks, advanced_logic_tricks
 from Spoiler import Spoiler
 from Rom import Rom
 from Audiobank import *
+from Utils import data_path
+from World import World
 
 test_dir = os.path.join(os.path.dirname(__file__), 'tests')
 output_dir = os.path.join(test_dir, 'Output')
@@ -960,6 +964,90 @@ class TestSceneFlags(unittest.TestCase):
         flags, bits = build_room_xflags(room_locations)
         diff, encoded = encode_room_xflags(flags)
         self.assertListEqual(test_encoded, encoded)
+
+# Compare all of the locations found in the advanced/enemizer logic files against the base files
+class TestLocations(unittest.TestCase):
+    
+    def test_worlds_for_missing_logic(self):
+        # Load the base logic files (data/World)
+        settings = Settings(
+            {
+                "logic_rules": 'none'
+            }
+        )
+        base_world = World(0, settings, False)
+        base_world_mq = World(0, settings, False)
+        glitch_world = World(0, settings, False)
+        glitch_world_mq = World(0, settings, False)
+        enemizer_world = World(0, settings, False)
+        enemizer_world_mq = World(0, settings, False)
+        base_world.load_regions_from_json(data_path("World/Overworld.json"))
+        base_world.load_regions_from_json(data_path("World/Bosses.json"))
+        glitch_world.load_regions_from_json(data_path("Glitched World/Overworld.json"))
+        glitch_world.load_regions_from_json(data_path("Glitched World/Bosses.json"))
+        glitch_world_mq.load_regions_from_json(data_path("Glitched World/Overworld.json"))
+        glitch_world_mq.load_regions_from_json(data_path("Glitched World/Bosses.json"))
+        enemizer_world.load_regions_from_json(data_path("World/Overworld.json"))
+        enemizer_world.load_regions_from_json(data_path("World/Bosses.json"))
+        base_world_mq.load_regions_from_json(data_path("World/Overworld.json"))
+        base_world_mq.load_regions_from_json(data_path("World/Bosses.json"))
+        enemizer_world_mq.load_regions_from_json(data_path("World/Overworld.json"))
+        enemizer_world_mq.load_regions_from_json(data_path("World/Bosses.json"))
+        dungeons = [
+            "Deku Tree",
+            "Dodongos Cavern",
+            "Jabu Jabus Belly",
+            "Forest Temple",
+            "Fire Temple",
+            "Water Temple",
+            "Shadow Temple",
+            "Spirit Temple",
+            "Ganons Castle",
+            "Gerudo Training Ground",
+            "Ice Cavern",
+            "Bottom of the Well"
+        ]
+        for dungeon in dungeons:
+            base_world.load_regions_from_json(data_path(f"World/{dungeon}.json"))
+            enemizer_world.load_regions_from_json(data_path(f"EnemizerWorld/{dungeon}.json"))
+            glitch_world.load_regions_from_json(data_path(f"Glitched World/{dungeon}.json"))
+            base_world_mq.load_regions_from_json(data_path(f"World/{dungeon} MQ.json"))
+            enemizer_world_mq.load_regions_from_json(data_path(f"EnemizerWorld/{dungeon} MQ.json"))
+            glitch_world_mq.load_regions_from_json(data_path(f"Glitched World/{dungeon} MQ.json"))
+        
+        base_locations = base_world.get_locations(use_cache=False)
+        glitch_locations = glitch_world.get_locations(use_cache=False)
+        enemizer_locations = enemizer_world.get_locations(use_cache=False)
+        base_locations_mq = base_world.get_locations(use_cache=False)
+        glitch_locations_mq = glitch_world_mq.get_locations(use_cache=False)
+        enemizer_locations_mq = enemizer_world.get_locations(use_cache=False)
+        
+        # Ensure all of the locations in the first list (base) are present in the second
+        compares = [
+            (base_locations, enemizer_locations, "Base", "Enemizer"),
+            (base_locations_mq, enemizer_locations_mq, "Base MQ", "Enemizer MQ"),
+            (base_locations, glitch_locations, "Base", "Glitched"),
+            (base_locations_mq, glitch_locations_mq, "Base MQ", "Glitched MQ"),
+        ]
+
+        for source_locs, compare_locs, source_name, compare_name in compares:
+            with self.subTest(f"{source_name} vs {compare_name}"):
+                missing_locs: list[Location] = []
+                for source_location in source_locs:
+                    # skip events
+                    if source_location.type == 'Event':
+                        continue
+                    found = False
+                    for compare_location in compare_locs:
+                        if source_location.name == compare_location.name:
+                            found = True
+                            break
+                    if not found:
+                        missing_locs.append(source_location)
+                if missing_locs:
+                    for missing_loc in missing_locs:
+                        print(f"\"{missing_loc.name}\": \"{missing_loc.rule_string}\"")
+                    self.fail(f"{len(missing_locs)} locations from {source_name} missing from {compare_name}")
 
 class TestCustomAudio(unittest.TestCase):
     def test_audiobank(self):
