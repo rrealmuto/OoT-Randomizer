@@ -88,28 +88,30 @@
     {
         "region_name": "Deku Tree Basement Torches Room",
         "dungeon": "Deku Tree",
-        "exits": {
-            "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch or can_gdv)",
+        "locations": {
             "Deku Tree MQ Basement Torch Room Grass 1": "can_mow_the_lawn",
             "Deku Tree MQ Basement Torch Room Grass 2": "can_mow_the_lawn",
             "Deku Tree MQ Basement Torch Room Grass 3": "can_mow_the_lawn",
             "Deku Tree MQ Basement Torch Room Grass 4": "can_mow_the_lawn"
+        },
+        "exits": {
+            "Deku Tree Basement Water Room Front": "here(has_fire_source_with_torch or can_gdv)"
         }
     },
     {
         "region_name": "Deku Tree Basement Water Room Front",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree MQ Before Spinning Log Chest": "True"
+            "Deku Tree MQ Before Spinning Log Chest": "True",
+            "Deku Tree MQ Basement Spike Roller Room Front Grass 1": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Spike Roller Room Front Grass 2": "can_mow_the_lawn",
+            "Deku Tree MQ Basement Spike Roller Room Front Grass 3": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Torches Room": "True",
             "Deku Tree Basement Water Room Back": "
                 logic_deku_mq_log or (is_child and (Deku_Shield or Hylian_Shield)) or
-                can_use(Longshot) or (can_use(Hookshot) and can_use(Iron_Boots))",
-            "Deku Tree MQ Basement Spike Roller Room Front Grass 1": "can_mow_the_lawn",
-            "Deku Tree MQ Basement Spike Roller Room Front Grass 2": "can_mow_the_lawn",
-            "Deku Tree MQ Basement Spike Roller Room Front Grass 3": "can_mow_the_lawn"
+                can_use(Longshot) or (can_use(Hookshot) and can_use(Iron_Boots))"
         }
     },
     {
@@ -135,7 +137,7 @@
         "locations": {
             "Deku Tree MQ Basement Gohma Larvae Room Grass 1": "can_mow_the_lawn",
             "Deku Tree MQ Basement Gohma Larvae Room Grass 2": "can_mow_the_lawn"
-        }
+        },
         "exits": {
             "Deku Tree Basement Back Room": "here(can_kill_keese_stationary and can_kill_scrub and can_kill_gohma_larva)",
             "Deku Tree Basement Water Room Back": "here(can_kill_keese_stationary and can_kill_scrub and can_kill_gohma_larva)"

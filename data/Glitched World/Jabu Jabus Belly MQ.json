@@ -76,9 +76,9 @@
             "Jabu Jabus Belly MQ GS Boomerang Chest Room": "
                 can_play(Song_of_Time) or (logic_jabu_mq_sot_gs and can_use(Boomerang)) or can_use(Hookshot)",
             "Jabu Jabus Belly MQ Pit Room Grass 1": "is_adult 
-                or (is_child and (Kokiri_Sword or (Sticks and can_shield) or can_use(Megaton_Hammer) or (Boomerang and logic_boomerang_boulders) or has_explosives)",
+                or (is_child and (Kokiri_Sword or (Sticks and can_shield) or can_use(Megaton_Hammer) or (Boomerang and logic_boomerang_boulders) or has_explosives))",
             "Jabu Jabus Belly MQ Pit Room Grass 2": "is_adult 
-                or (is_child and (Kokiri_Sword or (Sticks and can_shield) or can_use(Megaton_Hammer) or (Boomerang and logic_boomerang_boulders) or has_explosives)",
+                or (is_child and (Kokiri_Sword or (Sticks and can_shield) or can_use(Megaton_Hammer) or (Boomerang and logic_boomerang_boulders) or has_explosives))"
         },
         "exits": {
             "Jabu Jabus Belly Depths": "(can_use(Boomerang) or can_gdv) and can_use(Slingshot)",
