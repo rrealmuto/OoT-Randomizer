@@ -71,6 +71,9 @@
     {
         "region_name": "Fire Temple Lower Locked Door",
         "dungeon": "Fire Temple",
+        "locations": {
+            "Fire Temple MQ 2 Stalfos Suns Song Spot Fairy": "can_play(Suns_Song)"
+        },
         "exits": {
             "Fire Temple Lower Locked Door After Stalfos": "can_kill_keese and can_kill_stalfos",
             "Fire Temple Lower": "(Small_Key_Fire_Temple, 5)"
@@ -88,6 +91,7 @@
             "Fire Temple MQ Iron Knuckle Room Pot 6": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 7": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 8": "True",
+            "Fire Temple MQ Before Lower Flare Dancer Suns Song Spot Fairy": "can_play(Suns_Song)",
             "Fairy Pot": "has_bottle"
         },
         "exits": {

@@ -304,6 +304,14 @@
             "Ganons Castle MQ Deku Scrub Center-Right": "can_stun_deku",
             "Ganons Castle MQ Deku Scrub Left": "can_stun_deku",
             "Ganons Castle MQ Deku Scrub Right": "can_stun_deku",
+            "Ganons Castle MQ Hidden Fairy 1": "True",
+            "Ganons Castle MQ Hidden Fairy 2": "True",
+            "Ganons Castle MQ Hidden Fairy 3": "True",
+            "Ganons Castle MQ Hidden Fairy 4": "True",
+            "Ganons Castle MQ Hidden Fairy 5": "True",
+            "Ganons Castle MQ Hidden Fairy 6": "True",
+            "Ganons Castle MQ Hidden Fairy 7": "True",
+            "Ganons Castle MQ Hidden Fairy 8": "True",
             "Free Fairies": "has_bottle"
         }
     }

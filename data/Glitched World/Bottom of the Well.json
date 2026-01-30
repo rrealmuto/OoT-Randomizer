@@ -57,6 +57,7 @@
             "Bottom of the Well Basement Grass 1": "can_mow_the_lawn",
             "Bottom of the Well Basement Grass 2": "can_mow_the_lawn",
             "Bottom of the Well Basement Grass 3": "can_mow_the_lawn",
+            "Bottom of the Well Suns Song Fairy": "can_play(Suns_Song)",
             "Stick Pot": "True",
             "Nut Pot": "True"
         },

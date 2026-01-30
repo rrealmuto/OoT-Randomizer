@@ -269,7 +269,8 @@
             "Spirit Temple MQ Boss Key Chest": "Mirror_Shield",
             "Spirit Temple MQ Beamos Room Small Wooden Crate": "True",
             "Spirit Temple MQ Chest Switch Sword Wonderitem": "True",
-            "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer"
+            "Spirit Temple MQ Chest Switch Hammer Wonderitem": "Megaton_Hammer",
+            "Spirit Temple Chest Switch Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Spirit Temple Adult Knuckle Room": "

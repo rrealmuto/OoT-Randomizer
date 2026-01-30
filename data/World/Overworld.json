@@ -3250,7 +3250,7 @@
             "ZR GS Near Raised Grottos": "can_use(Hookshot) and at_night",
             "ZR GS Above Bridge": "can_use(Hookshot) and at_night",
             "ZR Near Grottos Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
-            "ZR Near Grottos Gossip Stone Big Fairy Spawn": "can_play(Song_of_Time)",
+            "ZR Near Grottos Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ZR Near Grottos Gossip Stone": "True",
             "ZR Near Domain Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
             "ZR Near Domain Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",

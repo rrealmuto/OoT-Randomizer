@@ -1013,8 +1013,8 @@ class TestLocations(unittest.TestCase):
         
         # Ensure all of the locations in the first list (base) are present in the second
         compares = [
-            (base_locations, glitch_locations, "Base", "Glitched", ['EnemyDrop', 'GossipFairy', 'BeanPlantFairy', 'FountainFairy', 'SunsStormsFairy', 'ButterflyFairy', 'Fish']),
-            (base_locations_mq, glitch_locations_mq, "Base MQ", "Glitched MQ", ['EnemyDrop', 'GossipFairy', 'BeanPlantFairy', 'FountainFairy', 'SunsStormsFairy', 'ButterflyFairy', 'Fish']),
+            (base_locations, glitch_locations, "Base", "Glitched", ['EnemyDrop', 'Fish']),
+            (base_locations_mq, glitch_locations_mq, "Base MQ", "Glitched MQ", ['EnemyDrop', 'Fish']),
         ]
 
         for source_locs, compare_locs, source_name, compare_name, exclude_types in compares:

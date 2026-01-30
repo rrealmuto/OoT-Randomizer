@@ -487,7 +487,10 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple MQ Before Dark Link Top Pot 1": "True",
-            "Water Temple MQ Before Dark Link Top Pot 2": "True"
+            "Water Temple MQ Before Dark Link Top Pot 2": "True",
+            "Water Temple Before Dark Link Lower Suns Song Spot": "can_play(Suns_Song)",
+            "Water Temple Before Dark Link Upper Suns Song Spot": "can_play(Suns_Song)",
+            "Water Temple Before Dark Link Song of Storms Spot": "can_play(Song_of_Storms)"
         },
         "exits": {
             "Water Temple Dark Link": "has_soul(Dark_Link)"
