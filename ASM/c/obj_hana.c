@@ -4,7 +4,6 @@
 extern void ObjHana_Draw(z64_actor_t*, z64_game_t*);
 
 static uint8_t* texture = (uint8_t*)0x0500B140;
-
 void ObjHana_Draw_Hack(z64_actor_t* actor, z64_game_t* game) {
     // If it's the grass object we need to set up segment 9 and call setprimcolor
     if((actor->variable & 0x03) == 2) {

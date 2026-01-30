@@ -308,7 +308,6 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         (29, 'texture_smallcrate_heart',    0xF7ECA0,      None,            2048,   rgba16_patch,               'textures/crate/smallcrate_heart_rgba16_patch.bin'),
         (31, 'texture_grass_custom',        0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_texture_gray_rgba16.bin'),
         (32, 'texture_grass_small_custom',  0xF6A140,      None,            2048,   rgba16_from_file,           'textures/grass/grass_small_texture_gray_rgba16.bin'),
-
     ]
 
     # Loop through the textures and apply the patch. Add the new textures as a new file in rom.
