@@ -13,6 +13,7 @@ import unittest
 from collections import Counter, defaultdict
 from typing import Literal, Optional, Any, overload
 
+from Entrance import Entrance
 from EntranceShuffle import EntranceShuffleError
 from Fill import ShuffleError
 from Hints import HintArea, build_misc_item_hints
@@ -978,14 +979,20 @@ class TestLocations(unittest.TestCase):
         base_world_mq = World(0, settings, False)
         glitch_world = World(0, settings, False)
         glitch_world_mq = World(0, settings, False)
+        enemizer_world = World(0, settings, False)
+        enemizer_world_mq = World(0, settings, False)
         base_world.load_regions_from_json(data_path("World/Overworld.json"))
         base_world.load_regions_from_json(data_path("World/Bosses.json"))
         glitch_world.load_regions_from_json(data_path("Glitched World/Overworld.json"))
         glitch_world.load_regions_from_json(data_path("Glitched World/Bosses.json"))
         glitch_world_mq.load_regions_from_json(data_path("Glitched World/Overworld.json"))
         glitch_world_mq.load_regions_from_json(data_path("Glitched World/Bosses.json"))
+        enemizer_world.load_regions_from_json(data_path("World/Overworld.json"))
+        enemizer_world.load_regions_from_json(data_path("World/Bosses.json"))
         base_world_mq.load_regions_from_json(data_path("World/Overworld.json"))
         base_world_mq.load_regions_from_json(data_path("World/Bosses.json"))
+        enemizer_world_mq.load_regions_from_json(data_path("World/Overworld.json"))
+        enemizer_world_mq.load_regions_from_json(data_path("World/Bosses.json"))
         dungeons = [
             "Deku Tree",
             "Dodongos Cavern",
@@ -1002,19 +1009,26 @@ class TestLocations(unittest.TestCase):
         ]
         for dungeon in dungeons:
             base_world.load_regions_from_json(data_path(f"World/{dungeon}.json"))
+            enemizer_world.load_regions_from_json(data_path(f"EnemizerWorld/{dungeon}.json"))
             glitch_world.load_regions_from_json(data_path(f"Glitched World/{dungeon}.json"))
             base_world_mq.load_regions_from_json(data_path(f"World/{dungeon} MQ.json"))
+            enemizer_world_mq.load_regions_from_json(data_path(f"EnemizerWorld/{dungeon} MQ.json"))
             glitch_world_mq.load_regions_from_json(data_path(f"Glitched World/{dungeon} MQ.json"))
         
         base_locations = base_world.get_locations(use_cache=False)
         glitch_locations = glitch_world.get_locations(use_cache=False)
-        base_locations_mq = base_world_mq.get_locations(use_cache=False)
+        enemizer_locations = enemizer_world.get_locations(use_cache=False)
+        base_locations_mq = base_world.get_locations(use_cache=False)
         glitch_locations_mq = glitch_world_mq.get_locations(use_cache=False)
+        enemizer_locations_mq = enemizer_world.get_locations(use_cache=False)
         
         # Ensure all of the locations in the first list (base) are present in the second
+        # Update the exclude locations when new settings are added but aren't supported by one of the other logic files yet
         compares = [
             (base_locations, glitch_locations, "Base", "Glitched", ['EnemyDrop', 'GossipFairy', 'BeanPlantFairy', 'FountainFairy', 'SunsStormsFairy', 'ButterflyFairy', 'Fish']),
             (base_locations_mq, glitch_locations_mq, "Base MQ", "Glitched MQ", ['EnemyDrop', 'GossipFairy', 'BeanPlantFairy', 'FountainFairy', 'SunsStormsFairy', 'ButterflyFairy', 'Fish']),
+            (base_locations, enemizer_locations, "Base", "Enemizer", []),
+            (base_locations_mq, enemizer_locations_mq, "Base MQ", "Enemizer MQ", []),
         ]
 
         for source_locs, compare_locs, source_name, compare_name, exclude_types in compares:

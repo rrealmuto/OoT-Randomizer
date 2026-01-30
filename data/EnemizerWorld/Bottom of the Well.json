@@ -138,7 +138,8 @@
             "Bottom of the Well East Inner Room Keese 1": "can_kill_this",
             "Bottom of the Well East Inner Room Keese 2": "can_kill_this",
             "Bottom of the Well East Inner Room Keese 3": "can_kill_this",
-            "Bottom of the Well East Inner Room Keese 4": "can_kill_this"
+            "Bottom of the Well East Inner Room Keese 4": "can_kill_this",
+            "Bottom of the Well West Inner Room Deku Baba": "can_kill_this"
         }
     }
 ]
