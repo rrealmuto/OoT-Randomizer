@@ -383,6 +383,9 @@
             "LW Child Butterfly Fairy 3": "is_child and Sticks",
             "LW Child Butterfly Fairy 4": "is_child and Sticks",
             "LW Child Butterfly Fairy 5": "is_child and Sticks",
+            "LW Near Bridge Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "LW Near Bridge Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "LW Near Bridge Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Bug Shrub": "is_child and can_cut_shrubs and has_bottle"
@@ -415,6 +418,9 @@
             "LW Deku Scrub Near Deku Theater Left": "is_child and can_stun_deku",
             "LW Under Boulder Blue Rupee": "
                 can_blast_or_smash or (logic_boomerang_boulders and can_use(Boomerang))",
+            "LW Near Theater Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "LW Near Theater Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "LW Near Theater Bean Plant Fairy 3": "can_summon_bean_fairy",
             "LW GS Above Theater": "
                 is_adult and at_night and
                 (here(can_plant_bean) or
@@ -624,6 +630,9 @@
             "LH Gossip Stone (Southwest) Fairy Spawn": "can_summon_gossip_fairy",
             "LH Gossip Stone (Southwest) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "LH Gossip Stone (Southwest)": "True",
+            "LH Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "LH Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "LH Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "is_child and Sticks and has_bottle",
@@ -767,6 +776,9 @@
             "GV Adult Lower Waterfall Wonderitem": "is_adult",
             "GV Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
             "GV Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "GV Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "GV Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "GV Bean Plant Fairy 3": "can_summon_bean_fairy",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -1358,6 +1370,9 @@
                 (here(can_plant_bean) or Longshot or (logic_colossus_gs and Hookshot) or adv_wallwalking)",
             "Colossus Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
             "Colossus Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "Colossus Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "Colossus Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "Colossus Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Colossus Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Fairy Pond": "can_play(Song_of_Storms) and has_bottle",
@@ -2478,6 +2493,9 @@
             "DMT Rock Blue Rupee": "
                 is_child and (can_blast_or_smash or (logic_boomerang_boulders and Boomerang))",
             "DMT Suns Song Fairy": "can_play(Suns_Song)",
+            "DMT Bean Plant Fairy 1": "can_summon_bean_fairy and (has_explosives or Progressive_Strength_Upgrade)",
+            "DMT Bean Plant Fairy 2": "can_summon_bean_fairy and (has_explosives or Progressive_Strength_Upgrade)",
+            "DMT Bean Plant Fairy 3": "can_summon_bean_fairy and (has_explosives or Progressive_Strength_Upgrade)",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                 (has_explosives or Progressive_Strength_Upgrade or (logic_dmt_soil_gs and can_use(Boomerang)))",
@@ -2860,6 +2878,9 @@
             "DMC Child Blue Rupee 4": "is_child",
             "DMC Child Blue Rupee 5": "is_child",
             "DMC Child Blue Rupee 6": "is_child",
+            "DMC Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "DMC Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "DMC Bean Plant Fairy 3": "can_summon_bean_fairy",
             "DMC GS Bean Patch": "(can_plant_bugs and can_child_attack) or
                 at('DMC Upper Local', can_mega and can_live_dmg(0.5) and can_plant_bugs and can_child_attack) or
                 at('DMC Lower Local', can_mega and can_plant_bugs and can_child_attack) ",
@@ -2994,6 +3015,9 @@
             "ZR Waterfall Butterfly Fairy 1": "is_child and Sticks",
             "ZR Waterfall Butterfly Fairy 2": "is_child and Sticks",
             "ZR Waterfall Butterfly Fairy 3": "is_child and Sticks",
+            "ZR Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "ZR Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "ZR Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "is_child and Sticks and has_bottle",

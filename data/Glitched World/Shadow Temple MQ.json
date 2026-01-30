@@ -74,7 +74,8 @@
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Ledge": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Back Alcove": "True",
             "Shadow Temple MQ Scythe Shortcut Silver Rupee Left Alcove": "True",
-            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right": "True"
+            "Shadow Temple MQ Scythe Shortcut Silver Rupee Center Right": "True",
+            "Shadow Temple MQ First Beamos Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         # When shadow shortcuts are on, the central areas of the dungeon will require all 6 keys to
         # access. However, your final locked door does not actually prevent you from reaching any area
@@ -116,7 +117,8 @@
             "Shadow Temple MQ Invisible Blades Invisible Chest": "
                 (Silver_Rupee_Shadow_Temple_Invisible_Blades, 10) or can_weirdshot",
             "Shadow Temple MQ Invisible Blades Silver Rupee Back Left": "True",
-            "Shadow Temple MQ Invisible Blades Silver Rupee Back Right": "True"
+            "Shadow Temple MQ Invisible Blades Silver Rupee Back Right": "True",
+            "Shadow Temple MQ Huge Pit Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "Shadow Temple Close Proximity to Invisible Blades": "
@@ -236,7 +238,8 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple MQ Wind Hint Chest": "True",
-            "Shadow Temple MQ GS Wind Hint Room": "Hookshot"
+            "Shadow Temple MQ GS Wind Hint Room": "Hookshot",
+            "Shadow Temple MQ Wind Hint Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Shadow Temple After Wind": "True",
