@@ -4,10 +4,17 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree Map Chest": "True",
-            "Deku Tree Compass Chest": "True",
-            "Deku Tree Compass Room Side Chest": "True",
+            "Deku Tree Lobby Grass 1": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 2": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 3": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 4": "can_mow_the_lawn",
+            "Deku Tree Lobby Grass 5": "can_mow_the_lawn",
             "Deku Tree Lower Lobby Recovery Heart": "True",
             "Deku Tree Upper Lobby Recovery Heart": "is_adult or can_child_attack or Nuts",
+            "Deku Tree Compass Chest": "True",
+            "Deku Tree Compass Room Side Chest": "True",
+            "Deku Tree Compass Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Compass Room Grass 2": "can_mow_the_lawn",
             "Deku Tree GS Compass Room": "is_adult or can_child_attack",
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
@@ -26,7 +33,11 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree Slingshot Chest": "True",
-            "Deku Tree Slingshot Room Side Chest": "True"
+            "Deku Tree Slingshot Room Side Chest": "True",
+            "Deku Tree Slingshot Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Slingshot Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree Slingshot Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree Slingshot Room Grass 4": "can_mow_the_lawn"
         }
     },
     {
@@ -34,6 +45,8 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree Basement Chest": "True",
+            "Deku Tree Basement Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Grass 2": "can_mow_the_lawn",
             "Deku Tree GS Basement Gate": "is_adult or can_child_attack",
             "Deku Tree GS Basement Vines": "
                 can_use_projectile or can_use(Dins_Fire) or
@@ -48,6 +61,10 @@
         "region_name": "Deku Tree Basement Eye Switch Room",
         "dungeon": "Deku Tree",
         "locations": {
+            "Deku Tree Basement Eye Switch Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Grass 2": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Grass 3": "can_mow_the_lawn",
+            "Deku Tree Basement Eye Switch Room Grass 4": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Spinning Log Room": "here(can_use(Bow) or can_use(Slingshot) or
@@ -57,6 +74,10 @@
     {
         "region_name": "Deku Tree Basement Spinning Log Room",
         "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Spinning Log Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Spinning Log Grass 2": "can_mow_the_lawn"
+        },
         "exits":
         {
             "Deku Tree Basement Torch Room": "True"
@@ -65,6 +86,10 @@
     {
         "region_name": "Deku Tree Basement Torch Room",
         "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Torch Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Torch Room Grass 2": "can_mow_the_lawn"
+        },
         "exits":
         {
             "Deku Tree Basement Back Room": "has_fire_source_with_torch or can_gdv",
@@ -74,6 +99,10 @@
     {
         "region_name": "Deku Tree Basement Back Room",
         "dungeon": "Deku Tree",
+        "locations": {
+            "Deku Tree Basement Larvae Room Grass 1": "can_mow_the_lawn",
+            "Deku Tree Basement Larvae Room Grass 2": "can_mow_the_lawn"
+        },
         "exits": {
             "Deku Tree Basement Back Side Room": "
                 here(has_fire_source_with_torch or can_use(Bow) or can_gdv) and
@@ -107,7 +136,10 @@
         "locations": {
             "Deku Tree Basement Recovery Heart 1": "True",
             "Deku Tree Basement Recovery Heart 2": "True",
-            "Deku Tree Basement Recovery Heart 3": "True"
+            "Deku Tree Basement Recovery Heart 3": "True",
+            "Deku Tree Before Boss Grass 1": "can_mow_the_lawn",
+            "Deku Tree Before Boss Grass 2": "can_mow_the_lawn",
+            "Deku Tree Before Boss Grass 3": "can_mow_the_lawn"
         },
         "exits": {
             "Deku Tree Basement Ledge": "deku_tree_shortcuts",

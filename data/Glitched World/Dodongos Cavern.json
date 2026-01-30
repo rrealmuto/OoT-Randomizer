@@ -119,12 +119,16 @@
             "Dodongos Cavern Staircase Pot 3": "True",
             "Dodongos Cavern Staircase Pot 4": "True",
 
+            "Dodongos Cavern First Bridge Grass": "can_mow_the_lawn",
+            
+
             "Dodongos Cavern Blade Room Behind Block Recovery Heart": "True",
             "Dodongos Cavern Bomb Flower Platform Chest": "True",
 
             "Dodongos Cavern Blade Room Pot 1": "can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)",
             "Dodongos Cavern Blade Room Pot 2": "can_use(Boomerang) or at('Dodongos Cavern Far Bridge', True)",
 
+            "Dodongos Cavern Blade Room Grass": "can_mow_the_lawn",
             "Dodongos Cavern Deku Scrub Near Bomb Bag Right": "
                 can_break_mud_wall or can_gdv or
                 (logic_dc_scrub_room and is_adult and Progressive_Strength_Upgrade)",
@@ -142,7 +146,8 @@
         "dungeon": "Dodongos Cavern",
         "locations": {
             "Dodongos Cavern Single Eye Switch Room Pot 1": "True",
-            "Dodongos Cavern Single Eye Switch Room Pot 2": "True"
+            "Dodongos Cavern Single Eye Switch Room Pot 2": "True",
+            "Dodongos Cavern Single Eye Switch Room Grass": "can_mow_the_lawn"
         },
         "exits": {
             "Dodongos Cavern Before Upper Lizalfos": "
@@ -189,10 +194,14 @@
         "region_name": "Dodongos Cavern Mouth",
         "dungeon": "Dodongos Cavern",
         "savewarp": "Death Mountain -> Dodongos Cavern Beginning",
+        "locations": {
+            "Dodongos Cavern Before Boss Grass": "can_mow_the_lawn"
+        },
         "exits": {
             "Dodongos Cavern Lobby": "True",
             "Dodongos Cavern Back Side Room": "can_break_mud_wall or can_gdv",
             "Dodongos Cavern Before Boss": "True"
+            
         }
     },
     {
