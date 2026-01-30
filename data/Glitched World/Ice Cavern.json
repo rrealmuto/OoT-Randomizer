@@ -5,7 +5,8 @@
         "locations":{
             "Ice Cavern Frozen Blue Rupee": "
                 (Blue_Fire or (logic_ice_frozen_rupee and can_jumpslash)) or
-                (logic_boomerang_boulders and can_use(Boomerang))"
+                (logic_boomerang_boulders and can_use(Boomerang))",
+            "Ice Cavern Entryway Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "ZF Ice Ledge": "True",

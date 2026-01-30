@@ -18,6 +18,7 @@
             "Gerudo Training Ground Beamos Recovery Heart 2": "True",
             # In the Beamos room, shoot the Gerudo symbol above the door to the lava room.
             "Gerudo Training Ground Beamos Wonderitem": "can_use(Bow)",
+            "Gerudo Training Ground Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Wall Fairy": "has_bottle and can_use(Bow)"
         },
         "exits": {
