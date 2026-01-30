@@ -1555,7 +1555,15 @@
             "Market Daytime Balcony Wonderitem 4": "is_child and at_day",
             "Market Daytime Balcony Wonderitem 5": "is_child and at_day",
             "Market Night Balcony Wonderitem 1": "is_child and at_night",
-            "Market Night Balcony Wonderitem 2": "is_child and at_night"
+            "Market Night Balcony Wonderitem 2": "is_child and at_night",
+            "Market Child Grass 1": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 2": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 3": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 4": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 5": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 6": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 7": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)",
+            "Market Child Grass 8": "is_child and (Kokiri_Sword or Progressive_Strength_Upgrade)"
         },
         "exits": {
             "Market Entrance": "True",
