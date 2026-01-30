@@ -45,7 +45,8 @@
             "Shadow Temple Scythe Shortcut Silver Rupee Ledge": "is_adult or can_hover",
             "Shadow Temple Scythe Shortcut Silver Rupee Back Alcove": "True",
             "Shadow Temple Scythe Shortcut Silver Rupee Left Alcove": "True",
-            "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True"
+            "Shadow Temple Scythe Shortcut Silver Rupee Center Right": "True",
+            "Shadow Temple First Beamos Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             # If the shortcut is open, reverse shadow becomes an option, so we need to check for 4 keys with Lens/trick
@@ -97,6 +98,7 @@
             "Shadow Temple Huge Pit Silver Rupee Center": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Front": "True",
             "Shadow Temple Huge Pit Silver Rupee Center Back": "True",
+            "Shadow Temple Huge Pit Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Shadow Temple GS Invisible Blades Room": "can_weirdshot or (
                 can_kill_like_like and can_kill_keese_stationary
                 and (is_adult or can_hover or can_use(Boomerang))
@@ -191,7 +193,8 @@
         "region_name": "Shadow Temple Wind Tunnel",
         "dungeon": "Shadow Temple",
         "locations": {
-            "Shadow Temple Wind Hint Chest": "True"
+            "Shadow Temple Wind Hint Chest": "True",
+            "Shadow Temple Wind Hint Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Shadow Temple After Wind": "True",

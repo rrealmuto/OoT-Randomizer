@@ -15,6 +15,8 @@
         "locations": {
             "Dodongos Cavern Map Chest": "can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade",
             "Dodongos Cavern Deku Scrub Lobby": "can_stun_deku or Progressive_Strength_Upgrade",
+            "Dodongos Cavern Gossip Stone Fairy Spawn": "here(can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade) and can_summon_gossip_fairy",
+            "Dodongos Cavern Gossip Stone Big Fairy Spawn": "here(can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade) and can_play(Song_of_Time)",
             "Dodongos Cavern Gossip Stone": "here(can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade)",
             "Gossip Stone Fairy": "
                 (can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade) and

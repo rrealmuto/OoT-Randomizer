@@ -191,6 +191,8 @@
             "KF GS House of Twins": "
                 is_adult and at_night and
                 (Hookshot or Hover_Boots or logic_adult_kokiri_gs_nothing or can_use(Boomerang))",
+            "KF Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "KF Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "KF Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -217,6 +219,10 @@
             "Showed Mido Sword & Shield": "is_child and Kokiri_Sword and Deku_Shield"
         },
         "locations": {
+            "KF Deku Tree Gossip Stone (Left) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "KF Deku Tree Gossip Stone (Left) Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "KF Deku Tree Gossip Stone (Right) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "KF Deku Tree Gossip Stone (Right) Big Fairy Spawn": "can_play(Song_of_Storms)",
             # The adult Babas despawn after Phantom Ganon is defeated, and so can't be relied on for repeatable drops.
             "Deku Baba Sticks": "
                 has_soul(Deku_Baba) and (
@@ -368,7 +374,15 @@
             "LW Near Ocarina Game Wonderitem 2": "is_child",
             "LW Near Ocarina Game Wonderitem 3": "is_child",
             "LW GS Bean Patch Near Bridge": "can_plant_bugs and can_child_attack",
+            "LW Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "LW Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "LW Gossip Stone": "True",
+            "LW Song of Storms Fairy": "can_play(Song_of_Storms)",
+            "LW Child Butterfly Fairy 1": "is_child and Sticks",
+            "LW Child Butterfly Fairy 2": "is_child and Sticks",
+            "LW Child Butterfly Fairy 3": "is_child and Sticks",
+            "LW Child Butterfly Fairy 4": "is_child and Sticks",
+            "LW Child Butterfly Fairy 5": "is_child and Sticks",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Bug Shrub": "is_child and can_cut_shrubs and has_bottle"
@@ -477,6 +491,12 @@
             "SFM Maze Wonderitem 4": "True",
             "SFM Maze Wonderitem 5": "True",
             "SFM GS": "is_adult and can_use(Hookshot) and at_night",
+            "SFM Maze Gossip Stone (Lower) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "SFM Maze Gossip Stone (Lower) Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "SFM Maze Gossip Stone (Upper) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "SFM Maze Gossip Stone (Upper) Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "SFM Saria Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "SFM Saria Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "SFM Maze Gossip Stone (Lower)": "True",
             "SFM Maze Gossip Stone (Upper)": "True",
             "SFM Saria Gossip Stone": "True",
@@ -530,6 +550,7 @@
             "HF Child Above Drawbridge Wonderitem 1": "is_child",
             "HF Child Above Drawbridge Wonderitem 2": "is_child",
             "HF Child Above Drawbridge Wonderitem 3": "is_child",
+            "HF Song of Storms Fairy": "can_play(Song_of_Storms)",
             "Big Poe Kill": "can_ride_epona and Bow and has_bottle"
         },
         "exits": {
@@ -576,6 +597,12 @@
             "LH Underwater Green Rupee 2": "is_child and (
                 can_dive or (adv_wallwalking and Boomerang)
                 )",
+            "LH Child Butterfly Fairy 1": "is_child and Sticks",
+            "LH Child Butterfly Fairy 2": "is_child and Sticks",
+            "LH Child Butterfly Fairy 3": "is_child and Sticks",
+            "LH Suns Song Fairy": "can_play(Suns_Song) and (is_child or 
+                (is_adult and (can_use(Distant_Scarecrow) or 'Water Temple Clear' or can_hover))
+                )",
             "LH GS Bean Patch": "can_plant_bugs and can_child_attack",
             "LH GS Lab Wall": "
                 is_child and at_night and
@@ -588,8 +615,14 @@
             "LH GS Small Island": "is_child and can_child_attack and at_night",
             "LH GS Tree": "at_night and is_adult and (can_use(Longshot) or can_hookshot_jump or
                 (adv_lh_tree_gs_hookshot and adv_wallwalking and Hookshot))",
+            "LH Lab Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "LH Lab Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "LH Lab Gossip Stone": "True",
+            "LH Gossip Stone (Southeast) Fairy Spawn": "can_summon_gossip_fairy",
+            "LH Gossip Stone (Southeast) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "LH Gossip Stone (Southeast)": "True",
+            "LH Gossip Stone (Southwest) Fairy Spawn": "can_summon_gossip_fairy",
+            "LH Gossip Stone (Southwest) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "LH Gossip Stone (Southwest)": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
@@ -732,6 +765,8 @@
             "GV GS Bean Patch": "can_plant_bugs and can_child_attack",
             "GV Adult Upper Waterfall Wonderitem": "is_adult",
             "GV Adult Lower Waterfall Wonderitem": "is_adult",
+            "GV Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "GV Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "GV Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle"
@@ -1137,7 +1172,8 @@
             "Hideout Kitchen Wonderitem": "can_use(Bow)",
             "Hideout Kitchen Stove Wonderitem": "
                 (Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen) and
-                (damage_multiplier != 'ohko' or can_use(Nayrus_Love) or can_use(Goron_Tunic))"
+                (damage_multiplier != 'ohko' or can_use(Nayrus_Love) or can_use(Goron_Tunic))",
+            "Hideout Kitchen Suns Song Fairy": "(Gerudo_Membership_Card or can_use(Bow) or can_use(Hookshot) or logic_gerudo_kitchen) and can_play(Suns_Song)"
         },
         "exits": {
             "GF Entrances Behind Crates": "True",
@@ -1307,11 +1343,21 @@
             "Colossus Tree Wonderitem 3 Child": "is_child and can_use(Slingshot)",
             "Colossus Tree Wonderitem 4": "can_use(Slingshot) or can_use(Bow)",
             "Colossus Tree Wonderitem 5": "can_use(Slingshot) or can_use(Bow)",
+            "Colossus Oasis Fairy 1": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 2": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 3": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 4": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 5": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 6": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 7": "can_play(Song_of_Storms)",
+            "Colossus Oasis Fairy 8": "can_play(Song_of_Storms)",
             "Colossus GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Colossus GS Tree": "is_adult and can_use(Hookshot) and at_night",
             "Colossus GS Hill": "
                 is_adult and at_night and
                 (here(can_plant_bean) or Longshot or (logic_colossus_gs and Hookshot) or adv_wallwalking)",
+            "Colossus Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "Colossus Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "Colossus Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Fairy Pond": "can_play(Song_of_Storms) and has_bottle",
@@ -1421,7 +1467,10 @@
             "Market Daytime Balcony Wonderitem 4": "is_child and at_day",
             "Market Daytime Balcony Wonderitem 5": "is_child and at_day",
             "Market Night Balcony Wonderitem 1": "is_child and at_night",
-            "Market Night Balcony Wonderitem 2": "is_child and at_night"
+            "Market Night Balcony Wonderitem 2": "is_child and at_night",
+            "Market Child Butterfly Fairy 1": "False",
+            "Market Child Butterfly Fairy 2": "False",
+            "Market Child Butterfly Fairy 3": "False"
         },
         "exits": {
             "Market Entrance": "True",
@@ -1463,9 +1512,17 @@
         "scene": "ToT Entrance",
         "hint": "MARKET",
         "locations": {
+            "ToT Gossip Stone (Left) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ToT Gossip Stone (Left) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ToT Gossip Stone (Left)": "True",
+            "ToT Gossip Stone (Left-Center) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ToT Gossip Stone (Left-Center) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ToT Gossip Stone (Left-Center)": "True",
+            "ToT Gossip Stone (Right) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ToT Gossip Stone (Right) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ToT Gossip Stone (Right)": "True",
+            "ToT Gossip Stone (Right-Center) Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ToT Gossip Stone (Right-Center) Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ToT Gossip Stone (Right-Center)": "True",
             "Gossip Stone Fairy": "
                 (can_summon_gossip_fairy_without_suns or (is_adult and can_play(Suns_Song))) and
@@ -1554,9 +1611,25 @@
             "HC Castle Moat Wonderitem 9": "True",
             "HC Castle Moat Wonderitem 10": "True",
             "HC GS Tree": "can_child_attack and can_bonk",
+            "HC Malon Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "HC Malon Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "HC Malon Gossip Stone": "True",
+            "HC Rock Wall Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "HC Rock Wall Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "HC Rock Wall Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
+            "HC Butterfly Fairy 1": "Sticks",
+            "HC Butterfly Fairy 2": "Sticks",
+            "HC Butterfly Fairy 3": "Sticks",
+            "HC Butterfly Fairy 4": "Sticks",
+            "HC Butterfly Fairy 5": "Sticks",
+            "HC Butterfly Fairy 6": "Sticks",
+            "HC Butterfly Fairy 7": "Sticks",
+            "HC Butterfly Fairy 8": "Sticks",
+            "HC Butterfly Fairy 9": "Sticks",
+            "HC Butterfly Fairy 10": "Sticks",
+            "HC Butterfly Fairy 11": "Sticks",
+            "HC Butterfly Fairy 12": "Sticks",
             "Butterfly Fairy": "Sticks and has_bottle",
             "Bug Rock": "has_bottle"
         },
@@ -1942,6 +2015,8 @@
             "Kak Child Crate 4": "is_child and can_break_crate",
             "Kak Child Crate 5": "is_child and can_break_crate",
             "Kak Child Construction Wonderitem": "is_child",
+            "Kak Child Butterfly Fairy 1": "is_child and Sticks",
+            "Kak Child Butterfly Fairy 2": "is_child and Sticks",
             "Kak GS House Under Construction": "is_child and at_night",
             "Kak GS Skulltula House": "is_child and at_night",
             "Kak GS Near Gate Guard": "is_child and at_night",
@@ -2223,6 +2298,9 @@
             "Graveyard Freestanding PoH Crate": "(is_adult and can_break_crate and (here(can_plant_bean) or Longshot or (can_damage_boost and adv_graveyard_hp_damage_boost) or can_hookshot_jump))
                 or can_hover",
             "Graveyard Dampe Gravedigging Tour": "is_child and at_dampe_time",
+            "Graveyard Child Fairy 1": "is_child and Sticks and at_day",
+            "Graveyard Child Fairy 2": "is_child and Sticks and at_day",
+            "Graveyard Child Fairy 3": "is_child and Sticks and at_day",
             "Graveyard GS Wall": "is_child and (Boomerang or can_hover) and at_night",
             "Graveyard GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Butterfly Fairy": "is_child and Sticks and at_day and has_bottle",
@@ -2246,7 +2324,15 @@
         "scene": "Graveyard Shield Grave",
         "locations": {
             "Graveyard Shield Grave Chest": "True",
-            "Free Fairies": "(can_break_mud_wall or can_gdv) and has_bottle"
+            "Free Fairies": "(can_break_mud_wall or can_gdv) and has_bottle",
+            "Graveyard Fairy Fountain Fairy 1": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 2": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 3": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 4": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 5": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 6": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 7": "can_break_mud_wall or can_gdv",
+            "Graveyard Fairy Fountain Fairy 8": "can_break_mud_wall or can_gdv"
         },
         "exits": {
             "Graveyard": "True"
@@ -2268,7 +2354,8 @@
         "locations": {
             "Graveyard Royal Familys Tomb Chest": "has_fire_source or can_gdv
                 or at('Graveyard Royal Familys Inner Sanctum',can_use(Sticks) and glitch_rft_chest_sticks and
-                    can_live_dmg(1.0,False))"
+                    can_live_dmg(1.0,False))",
+            "Graveyard Royal Familys Tomb Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "Graveyard Royal Familys Inner Sanctum": "can_kill_keese_stationary",
@@ -2344,6 +2431,8 @@
         "scene": "Graveyard",
         "hint": "GRAVEYARD",
         "locations": {
+            "Graveyard Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "Graveyard Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "Graveyard Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle"
         },
@@ -2388,6 +2477,7 @@
                 is_child and (here(can_blast_or_smash) or (logic_boomerang_boulders and Boomerang))",
             "DMT Rock Blue Rupee": "
                 is_child and (can_blast_or_smash or (logic_boomerang_boulders and Boomerang))",
+            "DMT Suns Song Fairy": "can_play(Suns_Song)",
             "DMT GS Bean Patch": "
                 can_plant_bugs and can_child_attack and
                 (has_explosives or Progressive_Strength_Upgrade or (logic_dmt_soil_gs and can_use(Boomerang)))",
@@ -2426,6 +2516,8 @@
                 is_adult and (guarantee_trade_path or adult_trade_shuffle) and
                 (('Eyedrops Access' and not adult_trade_shuffle) or (Eyedrops and disable_trade_revert))",
             "DMT GS Falling Rocks Path": "is_adult and at_night and (Megaton_Hammer or logic_trail_gs_upper)",
+            "DMT Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "DMT Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "DMT Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bug Rock": "is_child and has_bottle"
@@ -2516,7 +2608,15 @@
                     )
                 )",
             "GC GS Center Platform": "is_adult",
+            "GC Medigoron Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns and (can_break_mud_wall or Progressive_Strength_Upgrade or can_gdv)",
+            "GC Medigoron Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms) and (can_break_mud_wall or Progressive_Strength_Upgrade or can_gdv)",
             "GC Medigoron Gossip Stone": "can_break_mud_wall or Progressive_Strength_Upgrade or can_gdv",
+            "GC Maze Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns and 
+                (can_blast_or_smash or can_use(Silver_Gauntlets) or
+                (can_use(Hover_Boots) and adv_hovers_recoil and glitch_clipping))",
+            "GC Maze Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms) and 
+                (can_blast_or_smash or can_use(Silver_Gauntlets) or
+                (can_use(Hover_Boots) and adv_hovers_recoil and glitch_clipping))",
             "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets) or
                 (can_use(Hover_Boots) and adv_hovers_recoil and glitch_clipping)",
             "Gossip Stone Fairy": "
@@ -2645,6 +2745,8 @@
         "locations": {
             "DMC Wall Freestanding PoH": "True",
             "DMC GS Crate": "is_child and can_child_attack and can_break_heated_crate",
+            "DMC Gossip Stone Fairy Spawn": "has_explosives and can_summon_gossip_fairy_without_suns",
+            "DMC Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "DMC Gossip Stone": "has_explosives",
             "Gossip Stone Fairy": "
                 has_explosives and can_summon_gossip_fairy_without_suns and has_bottle"
@@ -2881,8 +2983,17 @@
                 (glitch_zr_upper_skull_rang and can_use(Boomerang) and can_shield and has_explosives)
                 )",
             "ZR GS Above Bridge": "is_adult and (can_use(Hookshot) or can_use(Boomerang) or can_hover) and at_night",
+            "ZR Near Grottos Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "ZR Near Grottos Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ZR Near Grottos Gossip Stone": "True",
+            "ZR Near Domain Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "ZR Near Domain Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ZR Near Domain Gossip Stone": "True",
+            "ZR Butterfly Fairy 1": "is_child and Sticks",
+            "ZR Butterfly Fairy 2": "is_child and Sticks",
+            "ZR Waterfall Butterfly Fairy 1": "is_child and Sticks",
+            "ZR Waterfall Butterfly Fairy 2": "is_child and Sticks",
+            "ZR Waterfall Butterfly Fairy 3": "is_child and Sticks",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Bean Plant Fairy": "is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle",
             "Butterfly Fairy": "is_child and Sticks and has_bottle",
@@ -2952,6 +3063,8 @@
             "ZD GS Frozen Waterfall": "
                 is_adult and at_night and
                 (Hookshot or Bow or Magic_Meter or logic_domain_gs)",
+            "ZD Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ZD Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ZD Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Fish Group": "is_child and has_bottle",
@@ -3020,8 +3133,14 @@
             "ZF GS Above the Log": "is_child and at_night and (can_use(Boomerang) or
                 (glitch_zf_child_gs_hover and can_shield and Sticks)
                 )",
+            "ZF Fairy Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ZF Fairy Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ZF Fairy Gossip Stone": "True",
+            "ZF Jabu Gossip Stone Fairy Spawn": "can_summon_gossip_fairy_without_suns",
+            "ZF Jabu Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "ZF Jabu Gossip Stone": "True",
+            "ZF Child Butterfly Fairy 1": "is_child and Sticks and at_day",
+            "ZF Child Butterfly Fairy 2": "is_child and Sticks and at_day",
             "Gossip Stone Fairy": "can_summon_gossip_fairy_without_suns and has_bottle",
             "Butterfly Fairy": "is_child and Sticks and at_day and has_bottle"
         },
@@ -3199,7 +3318,15 @@
         "region_name": "GF Storms Grotto",
         "scene": "GF Storms Grotto",
         "locations": {
-            "Free Fairies": "has_bottle"
+            "Free Fairies": "has_bottle",
+            "GF Fairy Fountain Fairy 1": "True",
+            "GF Fairy Fountain Fairy 2": "True",
+            "GF Fairy Fountain Fairy 3": "True",
+            "GF Fairy Fountain Fairy 4": "True",
+            "GF Fairy Fountain Fairy 5": "True",
+            "GF Fairy Fountain Fairy 6": "True",
+            "GF Fairy Fountain Fairy 7": "True",
+            "GF Fairy Fountain Fairy 8": "True"
         },
         "exits": {
             "GF Entrances Behind Crates": "True"
@@ -3209,7 +3336,15 @@
         "region_name": "ZD Storms Grotto",
         "scene": "ZD Storms Grotto",
         "locations": {
-            "Free Fairies": "has_bottle"
+            "Free Fairies": "has_bottle",
+            "ZD Fairy Fountain Fairy 1": "True",
+            "ZD Fairy Fountain Fairy 2": "True",
+            "ZD Fairy Fountain Fairy 3": "True",
+            "ZD Fairy Fountain Fairy 4": "True",
+            "ZD Fairy Fountain Fairy 5": "True",
+            "ZD Fairy Fountain Fairy 6": "True",
+            "ZD Fairy Fountain Fairy 7": "True",
+            "ZD Fairy Fountain Fairy 8": "True"
         },
         "exits": {
             "Zoras Domain": "True"
@@ -3222,6 +3357,11 @@
             "KF Storms Grotto Chest": "True",
             "KF Storms Grotto Beehive 1": "can_break_lower_beehive",
             "KF Storms Grotto Beehive 2": "can_break_lower_beehive",
+            "KF Storms Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "KF Storms Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "KF Storms Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "KF Storms Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "KF Storms Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "KF Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3239,6 +3379,11 @@
             "LW Near Shortcuts Grotto Chest": "True",
             "LW Near Shortcuts Grotto Beehive 1": "can_break_lower_beehive",
             "LW Near Shortcuts Grotto Beehive 2": "can_break_lower_beehive",
+            "LW Near Shortcuts Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "LW Near Shortcuts Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "LW Near Shortcuts Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "LW Near Shortcuts Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "LW Near Shortcuts Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "LW Near Shortcuts Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3268,7 +3413,8 @@
         "locations": {
             "LW Deku Scrub Grotto Rear": "can_stun_deku",
             "LW Deku Scrub Grotto Front": "can_stun_deku",
-            "LW Scrubs Grotto Beehive": "can_break_upper_beehive"
+            "LW Scrubs Grotto Beehive": "can_break_upper_beehive",
+            "LW Scrubs Grotto Suns Song Fairy": "can_play(Suns_Song)"
         },
         "exits": {
             "LW Beyond Mido": "True"
@@ -3278,7 +3424,15 @@
         "region_name": "SFM Fairy Grotto",
         "scene": "SFM Fairy Grotto",
         "locations": {
-            "Free Fairies": "has_bottle"
+            "Free Fairies": "has_bottle",
+            "SFM Fairy Fountain Fairy 1": "True",
+            "SFM Fairy Fountain Fairy 2": "True",
+            "SFM Fairy Fountain Fairy 3": "True",
+            "SFM Fairy Fountain Fairy 4": "True",
+            "SFM Fairy Fountain Fairy 5": "True",
+            "SFM Fairy Fountain Fairy 6": "True",
+            "SFM Fairy Fountain Fairy 7": "True",
+            "SFM Fairy Fountain Fairy 8": "True"
         },
         "exits": {
             "Sacred Forest Meadow": "True"
@@ -3326,6 +3480,11 @@
             "HF Southeast Grotto Chest": "True",
             "HF Southeast Grotto Beehive 1": "can_break_lower_beehive",
             "HF Southeast Grotto Beehive 2": "can_break_lower_beehive",
+            "HF Southeast Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "HF Southeast Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "HF Southeast Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "HF Southeast Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "HF Southeast Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "HF Southeast Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3343,6 +3502,11 @@
             "HF Open Grotto Chest": "True",
             "HF Open Grotto Beehive 1": "can_break_lower_beehive",
             "HF Open Grotto Beehive 2": "can_break_lower_beehive",
+            "HF Open Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "HF Open Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "HF Open Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "HF Open Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "HF Open Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "HF Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3358,7 +3522,8 @@
         "scene": "HF Inside Fence Grotto",
         "locations": {
             "HF Deku Scrub Grotto": "can_stun_deku",
-            "HF Inside Fence Grotto Beehive": "can_break_lower_beehive"
+            "HF Inside Fence Grotto Beehive": "can_break_lower_beehive",
+            "HF Deku Scrub Grotto Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -3378,6 +3543,8 @@
             "HF GS Cow Grotto": "((can_gdv_stick or has_fire_source or
                 (glitch_hf_web_groundclip and is_adult and can_shield and can_live_dmg(0.5,False,False) and Bombs)) and (can_use(Hookshot) or can_use(Boomerang)))
                 or (can_weirdshot and Longshot)",
+            "HF Cow Grotto Gossip Stone Fairy Spawn": "(has_fire_source or can_gdv_stick) and can_summon_gossip_fairy",
+            "HF Cow Grotto Gossip Stone Big Fairy Spawn": "(has_fire_source or can_gdv_stick) and can_play(Song_of_Storms)",
             "HF Cow Grotto Gossip Stone": "has_fire_source or can_gdv_stick",
             "Gossip Stone Fairy": "(has_fire_source or can_gdv_stick) and can_summon_gossip_fairy and has_bottle",
             "Bug Shrub": "(has_fire_source or can_gdv_stick) and can_cut_shrubs and has_bottle",
@@ -3394,6 +3561,11 @@
             "HF Near Market Grotto Chest": "True",
             "HF Near Market Grotto Beehive 1": "can_break_lower_beehive",
             "HF Near Market Grotto Beehive 2": "can_break_lower_beehive",
+            "HF Near Market Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "HF Near Market Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "HF Near Market Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "HF Near Market Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "HF Near Market Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "HF Near Market Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3408,7 +3580,15 @@
         "region_name": "HF Fairy Grotto",
         "scene": "HF Fairy Grotto",
         "locations": {
-            "Free Fairies": "has_bottle"
+            "Free Fairies": "has_bottle",
+            "HF Fairy Fountain Fairy 1": "True",
+            "HF Fairy Fountain Fairy 2": "True",
+            "HF Fairy Fountain Fairy 3": "True",
+            "HF Fairy Fountain Fairy 4": "True",
+            "HF Fairy Fountain Fairy 5": "True",
+            "HF Fairy Fountain Fairy 6": "True",
+            "HF Fairy Fountain Fairy 7": "True",
+            "HF Fairy Fountain Fairy 8": "True"
         },
         "exits": {
             "Hyrule Field": "True"
@@ -3447,6 +3627,8 @@
                 (can_break_mud_wall or can_gdv_stick) and
                 (can_use(Hookshot) or can_use(Boomerang) or can_hover)
                 )",
+            "HC Storms Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy and (can_break_mud_wall or can_gdv_stick)",
+            "HC Storms Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms) and (can_break_mud_wall or can_gdv_stick)",
             "HC Storms Grotto Gossip Stone": "can_break_mud_wall or can_gdv_stick",
             "Gossip Stone Fairy": "(can_break_mud_wall or can_gdv_stick) and can_summon_gossip_fairy and has_bottle",
             "Wandering Bugs": "(can_break_mud_wall or can_gdv_stick) and has_bottle",
@@ -3471,9 +3653,14 @@
         "scene": "Kak Open Grotto",
         "locations": {
             "Kak Open Grotto Chest": "True",
+            "Kak Open Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "Kak Open Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
             "Kak Open Grotto Gossip Stone": "True",
             "Kak Open Grotto Beehive 1": "can_break_lower_beehive",
             "Kak Open Grotto Beehive 2": "can_break_lower_beehive",
+            "Kak Open Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "Kak Open Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "Kak Open Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
             "Bug Shrub": "can_cut_shrubs and has_bottle",
@@ -3499,7 +3686,8 @@
             "DMT Cow Grotto Recovery Heart 2": "True",
             "DMT Cow Grotto Recovery Heart 3": "True",
             "DMT Cow Grotto Recovery Heart 4": "True",
-            "DMT Cow Grotto Beehive": "can_break_lower_beehive"
+            "DMT Cow Grotto Beehive": "can_break_lower_beehive",
+            "DMT Cow Grotto Song of Storms Fairy": "can_play(Song_of_Storms)"
         },
         "exits": {
             "Death Mountain Summit": "True"
@@ -3512,6 +3700,11 @@
             "DMT Storms Grotto Chest": "True",
             "DMT Storms Grotto Beehive 1": "can_break_lower_beehive",
             "DMT Storms Grotto Beehive 2": "can_break_lower_beehive",
+            "DMT Storms Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "DMT Storms Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "DMT Storms Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "DMT Storms Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "DMT Storms Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "DMT Storms Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3542,6 +3735,11 @@
             "DMC Upper Grotto Chest": "True",
             "DMC Upper Grotto Beehive 1": "can_break_lower_beehive",
             "DMC Upper Grotto Beehive 2": "can_break_lower_beehive",
+            "DMC Upper Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "DMC Upper Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "DMC Upper Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "DMC Upper Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "DMC Upper Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "DMC Upper Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3572,6 +3770,11 @@
             "ZR Open Grotto Chest": "True",
             "ZR Open Grotto Beehive 1": "can_break_lower_beehive",
             "ZR Open Grotto Beehive 2": "can_break_lower_beehive",
+            "ZR Open Grotto Gossip Stone Fairy Spawn": "can_summon_gossip_fairy",
+            "ZR Open Grotto Gossip Stone Big Fairy Spawn": "can_play(Song_of_Storms)",
+            "ZR Open Grotto Butterfly Fairy 1": "can_use(Sticks)",
+            "ZR Open Grotto Butterfly Fairy 2": "can_use(Sticks)",
+            "ZR Open Grotto Butterfly Fairy 3": "can_use(Sticks)",
             "ZR Open Grotto Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Butterfly Fairy": "can_use(Sticks) and has_bottle",
@@ -3586,7 +3789,15 @@
         "region_name": "ZR Fairy Grotto",
         "scene": "ZR Fairy Grotto",
         "locations": {
-            "Free Fairies": "has_bottle"
+            "Free Fairies": "has_bottle",
+            "ZR Fairy Fountain Fairy 1": "True",
+            "ZR Fairy Fountain Fairy 2": "True",
+            "ZR Fairy Fountain Fairy 3": "True",
+            "ZR Fairy Fountain Fairy 4": "True",
+            "ZR Fairy Fountain Fairy 5": "True",
+            "ZR Fairy Fountain Fairy 6": "True",
+            "ZR Fairy Fountain Fairy 7": "True",
+            "ZR Fairy Fountain Fairy 8": "True"
         },
         "exits": {
             "Zora River": "True"
