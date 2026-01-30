@@ -299,8 +299,10 @@
             "Dodongos Cavern MQ Room Before Boss Pot 2": "True",
             "Dodongos Cavern MQ Armos Army Room Pot 1": "True",
             "Dodongos Cavern MQ Armos Army Room Pot 2": "True",
+            "Dodongos Cavern Armos Army Grass": "True",
             "Dodongos Cavern MQ Back Poe Room Pot 1": "True",
             "Dodongos Cavern MQ Back Poe Room Pot 2": "True",
+            "Dodongos Cavern Back Poe Room Grass": "True",
             "Dodongos Cavern MQ GS Back Area": "
                 can_use(Boomerang) or
                 at('Dodongos Cavern Before Boss', is_adult or can_child_attack or
