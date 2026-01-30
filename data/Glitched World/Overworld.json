@@ -218,6 +218,9 @@
             "KF Adult Grass 18": "is_adult and can_mow_the_lawn",
             "KF Adult Grass 19": "is_adult and can_mow_the_lawn",
             "KF Adult Grass 20": "is_adult and can_mow_the_lawn",
+            "KF Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "KF Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "KF Bean Plant Fairy 3": "can_summon_bean_fairy",
             "KF GS Know It All House": "
                 is_child and can_child_attack and at_night and
                 (had_night_start or can_leave_forest or can_play(Suns_Song))",
@@ -2480,6 +2483,9 @@
             "Graveyard Child Fairy 1": "is_child and Sticks and at_day",
             "Graveyard Child Fairy 2": "is_child and Sticks and at_day",
             "Graveyard Child Fairy 3": "is_child and Sticks and at_day",
+            "Graveyard Bean Plant Fairy 1": "can_summon_bean_fairy",
+            "Graveyard Bean Plant Fairy 2": "can_summon_bean_fairy",
+            "Graveyard Bean Plant Fairy 3": "can_summon_bean_fairy",
             "Graveyard GS Wall": "is_child and (Boomerang or can_hover) and at_night",
             "Graveyard GS Bean Patch": "can_plant_bugs and can_child_attack",
             "Butterfly Fairy": "is_child and Sticks and at_day and has_bottle",
