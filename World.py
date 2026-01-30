@@ -1243,8 +1243,8 @@ class World:
 
         logging.getLogger('').debug('Placed %s [World %d] at %s [World %d]', item, item.world.id if hasattr(item, 'world') else -1, location, location.world.id if hasattr(location, 'world') else -1)
 
-    def get_locations(self) -> list[Location]:
-        if not self._cached_locations:
+    def get_locations(self, use_cache=True) -> list[Location]:
+        if not (use_cache and self._cached_locations):
             for region in self.regions:
                 self._cached_locations.extend(region.locations)
         return self._cached_locations
