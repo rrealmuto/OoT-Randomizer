@@ -558,7 +558,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("HF Open Grotto Butterfly Fairy 1",                             ("ButterflyFairy",        0x3E,  (0,0x13,7,1), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
     ("HF Open Grotto Butterfly Fairy 2",                             ("ButterflyFairy",        0x3E,  (0,0x13,7,2), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
     ("HF Open Grotto Butterfly Fairy 3",                             ("ButterflyFairy",        0x3E,  (0,0x13,7,3), None,                     'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
-    ("HF Deku Scrub Grotto Song of Storms Fairy",                    ("GossipFairy",        0x3E,  (1,0x12,3), None,                         'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
+    ("HF Deku Scrub Grotto Song of Storms Fairy",                    ("SunsStormsFairy",        0x3E,  (1,0x12,3), None,                         'Fairy Drop',                          ("Hyrule Field", "Grottos", "Fairy"))),
     ("HF Near Market Grotto Gossip Stone Fairy Spawn",               ("GossipFairy",        0x3E, (0,0x10,10,1), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "Fairy"))),
     ("HF Near Market Grotto Gossip Stone Big Fairy Spawn",           ("GossipFairy",        0x3E, (0,0x10,10,2), None, 'Rupees (20)', ("Hyrule Field", "Grottos", "Fairy"))),
     ("HF Southeast Grotto Gossip Stone Fairy Spawn",                 ("GossipFairy",        0x3E, (0,0x14,10,1), None, 'Rupees (20)',   ("Hyrule Field", "Grottos", "Fairy"))),
