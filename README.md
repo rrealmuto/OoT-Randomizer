@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 9.0.2.Rob-E20
+  * Hopefully fix some flare dancer induced crashes
+
 ### 9.0.2.Rob-E16
   * Add some missing deku baba drops in enemizer logic files
   * Disable unsupported settings in advanced logic

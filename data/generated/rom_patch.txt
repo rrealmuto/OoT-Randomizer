@@ -1191,7 +1191,11 @@ cf1ac4,35390040
 cf1ac8,af19b4a8
 cf1acc,34090006
 cf3a2c,0
+cf3b3c,0
+cf3fe4,0
 cf4cc8,80692eec
+cf51a8,0
+cf5234,0
 cf5284,0
 cf73c8,c1a13dc
 cf73cc,3c010001
