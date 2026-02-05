@@ -334,7 +334,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("LW Near Shortcuts Grotto Butterfly Fairy 1",                   ("ButterflyFairy",       0x3E, (0,0x1A,7,1), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
     ("LW Near Shortcuts Grotto Butterfly Fairy 2",                   ("ButterflyFairy",       0x3E, (0,0x1A,7,2), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
     ("LW Near Shortcuts Grotto Butterfly Fairy 3",                   ("ButterflyFairy",       0x3E, (0,0x1A,7,3), None,                      'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
-    ("LW Scrubs Grotto Suns Song Fairy",                             ("ButterflyFairy",       0x3E, (6,0x19,1), None,                        'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
+    ("LW Scrubs Grotto Suns Song Fairy",                             ("SunsStormsFairy",       0x3E, (6,0x19,1), None,                        'Fairy Drop',                            ("Lost Woods", "Forest Area", "Grottos", "Fairy"))),
     ("LW Gossip Stone Fairy Spawn",                                  ("GossipFairy", 0x5B, [(5,2,2,1),(5,0,5,1)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Gossip Stone Big Fairy Spawn",                              ("GossipFairy", 0x5B, [(5,2,2,2),(5,0,5,2)], None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
     ("LW Near Shortcuts Grotto Gossip Stone Fairy Spawn",            ("GossipFairy", 0x3E, (0,0x1A,10,1), None, 'Rupees (20)', ("Lost Woods", "Forest Area", "Fairy"))),
@@ -1165,7 +1165,7 @@ location_table: dict[str, tuple[str, Optional[int], LocationDefault, LocationAdd
     ("DMT Storms Grotto Butterfly Fairy 3",                          ("ButterflyFairy",        0x3E, (0,0x08,7,3), None,                     'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
     ("DMT Storms Grotto Gossip Stone Fairy Spawn",                   ("GossipFairy",          0x3E, (0,0x08,10,1), None,             'Fairy Drop', ("Death Mountain Trial", "Grottos", "Fairy"))),
     ("DMT Storms Grotto Gossip Stone Big Fairy Spawn",               ("GossipFairy",          0x3E, (0,0x08,10,2), None,             'Fairy Drop', ("Death Mountain Trial", "Grottos", "Fairy"))),
-    ("DMT Cow Grotto Song of Storms Fairy",                          ("GossipFairy",          0x3E, (3,0x09,5), None,                       'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
+    ("DMT Cow Grotto Song of Storms Fairy",                          ("SunsStormsFairy",      0x3E, (3,0x09,5), None,                       'Fairy Drop',                            ("Death Mountain Trail", "Grottos", "Fairy"))),
     ("DMT Gossip Stone Fairy Spawn",                                 ("GossipFairy",          0x60, [(0,0,5,1),(0,2,2,1)], None, 'Fairy Drop', ("Death Mountain Trial","Fairy"))),
     ("DMT Gossip Stone Big Fairy Spawn",                             ("GossipFairy",          0x60, [(0,0,5,2),(0,2,2,2)], None, 'Fairy Drop', ("Death Mountain Trial","Fairy"))),
 

@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 ## RealRob Changelog
+### 9.0.2.Rob-17
+  * Fix DMT Cow Grotto Song of Storms Fairy and LW Scrubs Grotto Suns Song Fairy incorrect location type
+
 ### 9.0.2.Rob-16
   * Fix HF Deku Scrub Grotto Song of Storms Fairy incorrect location type
 
