@@ -2212,6 +2212,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         rom.revert_patch("ENFD_PATCH_BGM_ENEMIZER")
         rom.revert_patch("ENFD_PATCH_DRAW_DOTS")
         rom.revert_patch("ENFD_PATCH_UPDATE_DOTS")
+        rom.revert_patch("ENFD_PATCH_RELOC_1A04")
+        rom.revert_patch("ENFD_PATCH_RELOC_155C")
         rom.revert_patch("ENSW_PATCH_1_ENEMIZER")
         rom.revert_patch("ENSW_PATCH_2_ENEMIZER")
         rom.revert_patch("ENSW_PATCH_3_ENEMIZER")

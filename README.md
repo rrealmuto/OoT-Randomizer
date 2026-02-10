@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 9.0.2.Rob-E23
+  * Fix self-induced flare dancer crashes
+
 ### 9.0.2.Rob-E20
   * Hopefully fix some flare dancer induced crashes
 
