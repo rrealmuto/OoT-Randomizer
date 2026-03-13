@@ -26,6 +26,9 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
 * [Changelog](#changelog)
 
 # Enemy Shuffle Changelog
+### 9.0.2.Rob-E24
+  * Fix incorrectly setting actor flags when actors are killed which caused crashes when actors weren't deleted at the right time.
+
 ### 9.0.2.Rob-E23
   * Fix self-induced flare dancer crashes
 
