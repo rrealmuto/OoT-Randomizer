@@ -679,5 +679,5 @@ void Actor_Kill_New(z64_actor_t* actor) {
     // Do what the original function does
     actor->draw = NULL;
     actor->update = NULL;
-    actor->flags &= 1;
+    actor->flags &= ~(1 << 0);
 }
