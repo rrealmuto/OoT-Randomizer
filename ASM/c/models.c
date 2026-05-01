@@ -391,3 +391,10 @@ void fishing_draw(z64_actor_t* actor, z64_game_t* game) {
     scale_top_matrix(50.0);
     base_draw_gi_model(game, fish->model.graphic_id - 1);
 }
+
+loaded_object_t object_hookshot_new = { 0 };
+
+void hookshot_init() {
+    object_hookshot_new.buf = heap_alloc(get_object_size(0x1B9));
+    load_object(&object_hookshot_new, 0x1B9);
+}

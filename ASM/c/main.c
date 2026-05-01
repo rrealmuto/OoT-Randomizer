@@ -35,6 +35,7 @@ void c_init() {
     gfx_init();
     item_overrides_init();
     override_flags_init();
+    hookshot_init();
     models_init();
     init_textures();
     init_new_menus();

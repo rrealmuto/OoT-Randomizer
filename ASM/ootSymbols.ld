@@ -29,6 +29,7 @@ Player_InCsMode = 0x8007943c;
 EffectSsKakera_Spawn = 0x8001d998;
 CutsceneFlags_Get = 0x8005991C;
 z64_Gfx_SetupDL_42Opa = 0x8007E868;
+z64_Gfx_SetupDL_25Opa = 0x8007E298;
 Audio_StopCurrentMusic = 0x800C7684;
 Audio_PlaySfxGeneral = 0x800C806C;
 sprintf = 0x800CE7b4;

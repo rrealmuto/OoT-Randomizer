@@ -113,11 +113,19 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         add_to_extended_object_table(rom, object_id, start_address, end_address)
         start_address = end_address
 
+    file_table = {
+        'object_gi_hearts': (0x014D9000, 0x014DA7B0),
+        'object_gi_rupy': (0x01914000, 0x01914800),
+        'object_gi_sutaru': (0x01858000, 0x01858650),
+        'gameplay_field_keep': (0x00F5F000, 0x00F6C330),
+        'object_link_boy': (0x00F86000, 0x00FBD800),
+    }
+
     # Make new models by applying patches to existing ones
     zobj_patches: list[tuple[str, int, list[FileEntry], list[PatchEntry]]] = [
         ('object_double_defense', 0x194, # Heart Container -> Double Defense
             [
-                ('object_gi_hearts', 0x014D9000, 0x014DA590),
+                ('object_gi_hearts', 0x0000, 0x1590, 'all'),
             ],
             [
                 (0x1294, [0xFF, 0xCF, 0x0F]), # Exterior Primary Color
@@ -128,7 +136,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             ]),
         ('object_silver_rupee', 0x198, # Huge Rupee -> Silver Rupee
             [
-                ('object_gi_rupy', 0x01914000, 0x01914800),
+                ('object_gi_rupy', 0x0000, 0x0800, 'all'),
             ],
             [
                 (0x052C, [0xAA, 0xAA, 0xAA]), # Inner Primary Color?
@@ -138,7 +146,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             ]),
         ('object_soul', 0x1B5, # Gold Skulltula Token -> Soul Token)
             [
-                ('object_gi_sutaru', 0x01858000, 0x01858650),
+                ('object_gi_sutaru', 0x0000, 0x650, 'all'),
             ],
             [
                 (0x034C, [0xFF, 0x00, 0x00]), # Token primary color
@@ -148,12 +156,12 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             ]),
         ('object_silver_rock', 0x1B6,
             [
-                ('gameplay_field_keep', 0x00F689D0, 0x00F689F0), # silver_rock_tlut offset 0x0000
-                ('gameplay_field_keep', 0x00F689F8, 0x00F691F8), # silver_rock_texture offset 0x0020
-                ('gameplay_field_keep', 0x00F691F8, 0x00F693B8), # silver_rock_vertices offset 0x0820
-                ('gameplay_field_keep', 0x00F693B8, 0x00F694C8), # silver_rock_dlist offset 0x09E0
-                ('gameplay_field_keep', 0x00F694C8, 0x00F695E8), # fragments_vertices offset 0x0AF0
-                ('gameplay_field_keep', 0x00F695E8, 0x00F696C8), # fragments_dlist offset 0x0C10
+                ('gameplay_field_keep', 0x99D0, 0x99F0, 'silver_rock_tlut'), # silver_rock_tlut offset 0x0000
+                ('gameplay_field_keep', 0x99F8, 0xA1F8, 'silver_rock_texture'), # silver_rock_texture offset 0x0020
+                ('gameplay_field_keep', 0xA1F8, 0xA3B8, 'silver_rock_vtx'), # silver_rock_vertices offset 0x0820
+                ('gameplay_field_keep', 0xA3B8, 0xA4C8, 'silver_rock_dl'), # silver_rock_dlist offset 0x09E0
+                ('gameplay_field_keep', 0xA4C8, 0xA5E8, 'silver_rock_fragment_vtx'), # fragments_vertices offset 0x0AF0
+                ('gameplay_field_keep', 0xA5E8, 0xA6C8, 'silver_rock_fragment_dl'), # fragments_dlist offset 0x0C10
             ],
             [
                 (0x09FC, [0x06, 0x00, 0x00, 0x20]), # gsDPSetTextureImage(..., silver_rock_texture)
@@ -163,17 +171,56 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x0C64, [0x06, 0x00, 0x00, 0x00]), # gsDPSetTextureImage(..., silver_rock_tlut)
                 (0x0CB4, [0x06, 0x00, 0x0A, 0xF0]), # gsSPVertex(..., fragments_vertices)
             ]),
+        ('object_hookshot_new', 0x1B9,
+            # build new object_hookshot_new zobj from data in object_link_boy
+            [
+                ('object_link_boy', 0x2AE70, 0x2AFF0, 'object_hookshot_new_chain_vtx'), #gLinkAdultHookshotChainVtx -> object_hookshot_new_chain_vtx
+                ('object_link_boy', 0x2AFF0, 0x2B0A8, 'object_hookshot_new_chain_DL'), #gLinkAdultHookshotChainDL -> object_hookshot_new_chain_DL
+                ('object_link_boy', 0x2B168, 0x2B288, 'object_hookshot_new_tip_vtx'), #gLinkAdultHookshotTipVtx -> object_hookshot_new_tip_vtx
+                ('object_link_boy', 0x2B288, 0x2B338, 'object_hookshot_new_tip_DL'), #gLinkAdultHookshotTipDL -> object_hookshot_new_tip_DL
+                ('object_link_boy', 0x2B338, 0x2B738, 'object_hookshot_new_chain_tex'), #gLinkAdultHookshotChainTex -> object_hookshot_new_chain_tex
+                ('object_link_boy', 0x2BB18, 0x2CB18, 'object_hookshot_new_reticle_tex'), #gLinkAdultHookshotReticleTex -> object_hookshot_new_reticle_tex
+                ('object_link_boy', 0x2CB18, 0x2CB48, 'object_hookshot_new_reticle_vtx'), #gLinkAdultHookshotReticleVtx -> object_hookshot_new_reticle_vtx
+                ('object_link_boy', 0x2CB48, 0x2CBB0, 'object_hookshot_new_reticle_DL'), #gLinkAdultHookshotReticleDL -> object_hookshot_new_reticle_DL
+            ],
+            # object_hookshot_new patches
+            [
+                ('object_hookshot_new_chain_DL',   0x18 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_chain_tex'], 4, 'big')), # gsDPLoadTextureBlock(object_hookshot_new_chain_tex, ...)
+                ('object_hookshot_new_chain_DL',   0x78 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_chain_vtx'], 4, 'big')), # gsSPVertex(object_hookshot_new_chain_vtx, ...)
+                ('object_hookshot_new_tip_DL',     0x70 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_tip_vtx'], 4, 'big')), # gsSpVertex(object_hookshot_new_tip_vtx, ...)
+                ('object_hookshot_new_tip_DL',     0x80 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_tip_vtx'] + 0x30, 4, 'big')), # gsSpVertex(&object_hookshot_new_tip_vtx[3], ...)
+                ('object_hookshot_new_reticle_DL', 0x10 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_reticle_tex'], 4, 'big')), # gsDPLoadTextureBlock(object_hookshot_new_reticle_tex)
+                ('object_hookshot_new_reticle_DL', 0x50 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_reticle_vtx'], 4, 'big')), # gsSPVertex(object_hookshot_new_reticle_vtx, ...)
+            ]),
     ]
 
     # Add the new models to the extended object file.
     for name, object_id, file_entries, patch_entries in zobj_patches:
         # Combine file entries into a single file
-        assert all(end > start for (_name, start, end) in file_entries)
-        end_address = start_address + sum(end - start for (_name, start, end) in file_entries)
-        buffers = [rom.buffer[start:end] for (_name, start, end) in file_entries]
-        rom.buffer[start_address:end_address] = bytearray(itertools.chain(*buffers))
+        syms = { }
+        end_address = start_address
+        buffer = bytearray()
+        for src_name, start, end, sym in file_entries:
+            src_start, src_end = file_table[src_name]
+            assert end > start
+            assert end - start <= src_end - src_start
+            end_address += end - start
+            syms[sym] = len(buffer)
+            buffer.extend(rom.buffer[src_start + start : src_start + end])
+        rom.buffer[start_address:end_address] = buffer
+
+        #assert all(end > start for (_name, start, end) in file_entries)
+        #end_address = start_address + sum(end - start for (_name, start, end) in file_entries)
+        #buffers = [rom.buffer[start:end] for (_name, start, end) in file_entries]
+        #rom.buffer[start_address:end_address] = bytearray(itertools.chain(*buffers))
         # Apply patches
-        for offset, patch in patch_entries:
+        for patch_tuple in patch_entries:
+            if len(patch_tuple) == 2:
+                offset, patch = patch_tuple
+            elif len(patch_tuple) == 3:
+                symbol, offset, patch_func = patch_tuple
+                offset = syms[symbol] + offset
+                patch = patch_func(syms)
             assert start_address + offset < end_address
             rom.write_bytes(start_address + offset, patch)
         # Add it to the extended object table
