@@ -26,6 +26,8 @@ z64_Flags_GetSwitch = 0x8002049C;
 z64_Flags_SetTempClear = 0x800206AC;
 OnePointCutscene_Init = 0x8006b6fc;
 Player_InCsMode = 0x8007943c;
+Player_HoldsHookshot = 0x80079bd4;
+Player_OverrideLimbDrawGameplayFirstPerson = 0x8007ad80;
 EffectSsKakera_Spawn = 0x8001d998;
 CutsceneFlags_Get = 0x8005991C;
 z64_Gfx_SetupDL_42Opa = 0x8007E868;
@@ -90,3 +92,4 @@ OVL_EnButte_SetupTransformIntoFairy = 0x80a5a7b0;
 
 /* Obj_Bean */
 OVL_ObjBean_Init = 0x80a81d88;
+

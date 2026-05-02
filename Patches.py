@@ -187,6 +187,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             [
                 ('object_hookshot_new_chain_DL',   0x18 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_chain_tex'], 4, 'big')), # gsDPLoadTextureBlock(object_hookshot_new_chain_tex, ...)
                 ('object_hookshot_new_chain_DL',   0x78 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_chain_vtx'], 4, 'big')), # gsSPVertex(object_hookshot_new_chain_vtx, ...)
+                #('object_hookshot_new_chain_DL',   0x0, [0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), # gsDPLoadTextureBlock(object_hookshot_new_chain_tex, ...)
+                #('object_hookshot_new_chain_DL',   0x0, [0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), # gsSPVertex(object_hookshot_new_chain_vtx, ...)
                 ('object_hookshot_new_tip_DL',     0x70 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_tip_vtx'], 4, 'big')), # gsSpVertex(object_hookshot_new_tip_vtx, ...)
                 ('object_hookshot_new_tip_DL',     0x80 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_tip_vtx'] + 0x30, 4, 'big')), # gsSpVertex(&object_hookshot_new_tip_vtx[3], ...)
                 ('object_hookshot_new_reticle_DL', 0x10 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_reticle_tex'], 4, 'big')), # gsDPLoadTextureBlock(object_hookshot_new_reticle_tex)
@@ -220,7 +222,10 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
             elif len(patch_tuple) == 3:
                 symbol, offset, patch_func = patch_tuple
                 offset = syms[symbol] + offset
-                patch = patch_func(syms)
+                if callable(patch_func):
+                    patch = patch_func(syms)
+                else:
+                    patch = patch_func
             assert start_address + offset < end_address
             rom.write_bytes(start_address + offset, patch)
         # Add it to the extended object table
@@ -1990,6 +1995,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 text_codes.append(code)
         update_message_by_id(messages, message_id, ''.join(code.get_string() for code in text_codes))
 
+    # Test child hookshot
+    rom.write_byte(0xBC7794 + 0x09, 0x09)
     permutation = None
 
     # text shuffle

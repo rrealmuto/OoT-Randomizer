@@ -8,6 +8,7 @@
 #include "shop_actors.h"
 #include "actor.h"
 #include "fishing.h"
+#include "gfx.h"
 
 #define slot_count 24
 #define object_size 0x1E70
@@ -397,4 +398,17 @@ loaded_object_t object_hookshot_new = { 0 };
 void hookshot_init() {
     object_hookshot_new.buf = heap_alloc(get_object_size(0x1B9));
     load_object(&object_hookshot_new, 0x1B9);
+}
+
+extern int32_t Player_OverrideLimbDrawGameplayFirstPerson(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void* thisx);
+extern int Player_HoldsHookshot(z64_link_t* this);
+int32_t Player_OverrideLimbDrawGameplayFirstPerson_Hook(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void* thisx) {
+    int32_t ret = Player_OverrideLimbDrawGameplayFirstPerson(play, limbIndex, dList, pos, rot, thisx);
+    if (limbIndex == 19 && Player_HoldsHookshot((z64_link_t*)thisx)) {
+        // Override hookshot DL for child hookshot
+        if (LINK_IS_CHILD) {
+            *dList = empty_dlist;
+        }
+    }
+    return ret;
 }
