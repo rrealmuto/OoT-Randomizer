@@ -29,11 +29,38 @@
     li      t5, 0x06000180
 
 ; Hacks in code file
-; Fix reticle
+; Fix reticle to use reticle DL in new hookshot object
 .headersize (0x800110A0 - 0xA87000)
-.org 0x8007b560
-    jr  ra
+; Hack when Player_DrawHookshotReticle sets the segment to use our new hookshot object stored persistently
+; new segment address needs to go into t0
+.org 0x8007B6D8
+; Replaces:
+;   lw      t6, 0x9C(sp)
+;   lui     t0, 0x01
+;   lb      t7, 0x1e(t6)
+;   sll     t8, t7, 0x04
+;   addu    t8, t8, t7
+;   sll     t8, t8, 0x02
+;   addu    t9, s1, t8
+;   addu    t0, t0, t9
+;   lw      t0, 0x17b4(t0)
+;   sw      t0, 0x04(v1) <- keep this
+    lui     t6, hi(object_hookshot_new)
+    addiu   t6, lo(object_hookshot_new) + 4
+    lw      t0, 0x00(t6)
     nop
+    nop
+    nop
+    nop
+    nop
+    nop
+
+; Hack DL in Player_DrawHookshotReticle to use the new reticle DL in the new object
+.org 0x8007b704
+; Replaces:
+;   lui     t3, 0x0603
+;   addiu   t3, t3, -0x34b8
+    li      t3, 0x06001838
 
 ; Fix first person view arms
 ; Hook Player_OverrideLimbDrawGameplayFirstPerson to override what is done for the PLAYER_LIMB_R_HAND case
