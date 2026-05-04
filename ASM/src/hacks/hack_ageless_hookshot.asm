@@ -18,7 +18,7 @@
 ; Replaces:
 ;   lui     t9, 0x0603
 ;   addiu   t9, t9, -0x4d78
-    li      t9, 0x06000358
+    li      t9, 0x06000760
 
 ; Hack in ArmsHook_Draw when calling gLinkAdultHookshotChainDL to use DL in our new object
 ; See object_hookshot_new in Patches.py
@@ -26,7 +26,7 @@
 ; Replaces:
 ;   lui     t5, 0x0603
 ;   addiu   t5, t5, -0x5010
-    li      t5, 0x06000180
+    li      t5, 0x06000580
 
 ; Hacks in code file
 ; Fix reticle to use reticle DL in new hookshot object
@@ -60,7 +60,7 @@
 ; Replaces:
 ;   lui     t3, 0x0603
 ;   addiu   t3, t3, -0x34b8
-    li      t3, 0x06001838
+    li      t3, 0x06001840
 
 ; Fix first person view arms
 ; Hook Player_OverrideLimbDrawGameplayFirstPerson to override what is done for the PLAYER_LIMB_R_HAND case

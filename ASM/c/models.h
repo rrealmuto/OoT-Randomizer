@@ -18,6 +18,7 @@ typedef struct {
 
 void models_init();
 void models_reset();
+void hookshot_init();
 void lookup_model_by_override(model_t* model, override_t override);
 void draw_model(model_t model, z64_actor_t* actor, z64_game_t* game, float base_scale);
 void fishing_draw(z64_actor_t* actor, z64_game_t* game);

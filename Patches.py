@@ -23,6 +23,8 @@ from Messages import read_messages, find_message_index, update_message_by_id, re
         write_shop_items, remove_unused_messages, make_player_message, \
         add_item_messages, repack_messages, shuffle_messages, \
         get_message_by_id, TextCode, new_messages, COLOR_MAP, update_map_compass_messages
+
+from Models import ZOBJBuilder
 from OcarinaSongs import patch_songs
 from MQ import patch_files, File, update_dmadata, insert_space, add_relocations
 from Rom import Rom
@@ -121,6 +123,17 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         'object_link_boy': (0x00F86000, 0x00FBD800),
     }
 
+    
+    def BuildNewHookshotZOBJ():
+        zobj = ZOBJBuilder()
+        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2AFF0, symbolName='object_hookshot_new_chain_DL') # Load the chain DL from object
+        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2B288, symbolName='object_hookshot_new_tip_DL') # Load the tip DL from object
+        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2CB48, symbolName='object_hookshot_new_reticle_DL') # Load the reticle DL from object
+        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x24D70, skips=[], symbolName='object_hookshot_new_hookshot_near_DL') # Load the hookshot DL from object
+        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2A738, skips=[(0x2F0, 0x618)], symbolName='object_hookshot_new_hookshot_FPS_DL') # Load the first person hookshot DL from object
+        zobj.LoadVanillaDL(rom, 'object_link_child', 0x18048, skips=[()], symbolName='object_hookshot_new_child_arm_DL') # Load the child arm DL from object_link_child gLinkChildRightArmStretchedSlingshotDL. Skip slingshot
+        return zobj.zobj
+    
     # Make new models by applying patches to existing ones
     zobj_patches: list[tuple[str, int, list[FileEntry], list[PatchEntry]]] = [
         ('object_double_defense', 0x194, # Heart Container -> Double Defense
@@ -171,29 +184,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                 (0x0C64, [0x06, 0x00, 0x00, 0x00]), # gsDPSetTextureImage(..., silver_rock_tlut)
                 (0x0CB4, [0x06, 0x00, 0x0A, 0xF0]), # gsSPVertex(..., fragments_vertices)
             ]),
-        ('object_hookshot_new', 0x1B9,
-            # build new object_hookshot_new zobj from data in object_link_boy
-            [
-                ('object_link_boy', 0x2AE70, 0x2AFF0, 'object_hookshot_new_chain_vtx'), #gLinkAdultHookshotChainVtx -> object_hookshot_new_chain_vtx
-                ('object_link_boy', 0x2AFF0, 0x2B0A8, 'object_hookshot_new_chain_DL'), #gLinkAdultHookshotChainDL -> object_hookshot_new_chain_DL
-                ('object_link_boy', 0x2B168, 0x2B288, 'object_hookshot_new_tip_vtx'), #gLinkAdultHookshotTipVtx -> object_hookshot_new_tip_vtx
-                ('object_link_boy', 0x2B288, 0x2B338, 'object_hookshot_new_tip_DL'), #gLinkAdultHookshotTipDL -> object_hookshot_new_tip_DL
-                ('object_link_boy', 0x2B338, 0x2B738, 'object_hookshot_new_chain_tex'), #gLinkAdultHookshotChainTex -> object_hookshot_new_chain_tex
-                ('object_link_boy', 0x2BB18, 0x2CB18, 'object_hookshot_new_reticle_tex'), #gLinkAdultHookshotReticleTex -> object_hookshot_new_reticle_tex
-                ('object_link_boy', 0x2CB18, 0x2CB48, 'object_hookshot_new_reticle_vtx'), #gLinkAdultHookshotReticleVtx -> object_hookshot_new_reticle_vtx
-                ('object_link_boy', 0x2CB48, 0x2CBB0, 'object_hookshot_new_reticle_DL'), #gLinkAdultHookshotReticleDL -> object_hookshot_new_reticle_DL
-            ],
-            # object_hookshot_new patches
-            [
-                ('object_hookshot_new_chain_DL',   0x18 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_chain_tex'], 4, 'big')), # gsDPLoadTextureBlock(object_hookshot_new_chain_tex, ...)
-                ('object_hookshot_new_chain_DL',   0x78 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_chain_vtx'], 4, 'big')), # gsSPVertex(object_hookshot_new_chain_vtx, ...)
-                #('object_hookshot_new_chain_DL',   0x0, [0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), # gsDPLoadTextureBlock(object_hookshot_new_chain_tex, ...)
-                #('object_hookshot_new_chain_DL',   0x0, [0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), # gsSPVertex(object_hookshot_new_chain_vtx, ...)
-                ('object_hookshot_new_tip_DL',     0x70 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_tip_vtx'], 4, 'big')), # gsSpVertex(object_hookshot_new_tip_vtx, ...)
-                ('object_hookshot_new_tip_DL',     0x80 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_tip_vtx'] + 0x30, 4, 'big')), # gsSpVertex(&object_hookshot_new_tip_vtx[3], ...)
-                ('object_hookshot_new_reticle_DL', 0x10 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_reticle_tex'], 4, 'big')), # gsDPLoadTextureBlock(object_hookshot_new_reticle_tex)
-                ('object_hookshot_new_reticle_DL', 0x50 + 4, lambda syms: int.to_bytes(0x06000000 + syms['object_hookshot_new_reticle_vtx'], 4, 'big')), # gsSPVertex(object_hookshot_new_reticle_vtx, ...)
-            ]),
+        ('object_hookshot_new', 0x1B9, BuildNewHookshotZOBJ, [])
     ]
 
     # Add the new models to the extended object file.
@@ -201,14 +192,18 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         # Combine file entries into a single file
         syms = { }
         end_address = start_address
-        buffer = bytearray()
-        for src_name, start, end, sym in file_entries:
-            src_start, src_end = file_table[src_name]
-            assert end > start
-            assert end - start <= src_end - src_start
-            end_address += end - start
-            syms[sym] = len(buffer)
-            buffer.extend(rom.buffer[src_start + start : src_start + end])
+        if callable(file_entries):
+            buffer = file_entries()
+            end_address += len(buffer)
+        else:
+            buffer = bytearray()
+            for src_name, start, end, sym in file_entries:
+                src_start, src_end = file_table[src_name]
+                assert end > start
+                assert end - start <= src_end - src_start
+                end_address += end - start
+                syms[sym] = len(buffer)
+                buffer.extend(rom.buffer[src_start + start : src_start + end])
         rom.buffer[start_address:end_address] = buffer
 
         #assert all(end > start for (_name, start, end) in file_entries)

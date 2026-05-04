@@ -199,6 +199,222 @@ def WriteDLPointer(dl: list[int], index: int, data: int) -> None:
     for i in range(4):
         dl[index + i] = bytes[i]
 
+file_list = {
+    'object_link_boy': (0x00F86000, 0x00FBD800)
+}
+
+class ZOBJBuilder:
+    def __init__(self):
+        self.zobj: bytearray = bytearray()
+        self.textures: dict[int, bytearray] = {}
+        self.vertices: dict[int, bytearray] = {}
+        self.matrices: dict[int, bytearray] = {}
+        self.symbols: dict[str, int] = {}
+        self.segment: int = 0x06
+        self.patches: list[tuple[int, bytearray]] = []
+
+    def SetSegment(self, seg: int) -> None:
+        self.segment = seg
+
+    def AddSymbolPatchLUI_HI(self, VRAMAddress: int, symbol: str) -> None:
+        self.patches.append((VRAMAddress, self.symbols[symbol].to_bytes(4, 'big')))
+
+    def AddSymbolPatchADDIU_LO(self, VRAMAddress: int, symbol: str) -> None:
+        self.patches.append((VRAMAddress, self.symbols[symbol].to_bytes(4, 'big')))
+    
+    def WritePatches(self, buffer:bytearray):
+        pass
+
+    def LoadVanillaDL(self, rom: Rom, file: str, offset: int, symbolName: str = None, skips: list[tuple[int,int]] = []) -> list[int]:
+        i = offset
+        rebase: int = len(self.zobj)
+        segment = self.segment
+        displayList = []
+        vertices: dict[int, bytearray] = {}
+        matrices: dict[int, bytearray] = {}
+        textures: dict[int, bytearray] = {}
+        # Get vanilla object from rom
+        file_start, file_end = file_list[file]
+        vanillaData: bytearray = rom.buffer[file_start:file_end]
+        # Crawl displaylist bytecode and handle each command
+        while i < len(vanillaData):
+            # Check if these bytes need to be skipped
+            skip = False
+            for skip_lo, skip_hi in skips:
+                itemIndex = i - offset
+                # Byte is in a range that must be skipped
+                if skip_lo <= itemIndex and itemIndex < skip_hi:
+                    skip = True
+            if skip:
+                i += 8
+                continue
+            op = vanillaData[i]
+            seg = vanillaData[i+4]
+            lo = int.from_bytes(vanillaData[i+4:i+8], 'big')
+            # Source for displaylist bytecode: https://hack64.net/wiki/doku.php?id=f3dex2
+            if op == 0xDF: # End of list
+                # DF: G_ENDDL
+                # Terminates the current displaylist
+                # DF 00 00 00 00 00 00 00
+                displayList.extend(vanillaData[i:i+8]) # Make sure to write the DF
+                break
+            # Shouldn't have to deal with DE (branch to new display list)
+            elif op == 0x01 and seg == segment: # Vertex data
+                # 01: G_VTX
+                # Fills the vertex buffer with vertex information
+                # 01 0[N N]0 [II] [SS SS SS SS]
+                # N: Number of vertices
+                # I: Where to start writing vertices inside the vertex buffer (start = II - N*2)
+                # S: Segmented address to load vertices from
+                # Grab the address from the low byte without teh base offset
+                vtxStart = lo & 0x00FFFFFF
+                # Grab the length of vertices from the instruction
+                # (Number of vertices will be from the 4th and 5th nibble as shown above, but each length 16)
+                vtxLen = int.from_bytes(vanillaData[i+1:i+3], 'big')
+                if vtxStart not in vertices or len(vertices[vtxStart]) < vtxLen:
+                    vertices[vtxStart] = vanillaData[vtxStart:vtxStart+vtxLen]
+            elif op == 0xDA and seg == segment: # Push matrix
+                # DA: G_MTX
+                # Apply transformation matrix
+                # DA 38 00 [PP] [AA AA AA AA]
+                # P: Parameters for matrix
+                # A: Segmented address of vectors of matrix
+                # Grab the address from the low byte without the base offset
+                mtxStart = lo & 0x00FFFFFF
+                if mtxStart not in matrices:
+                    matrices[mtxStart] = vanillaData[mtxStart:mtxStart+0x40] # Matrices always 0x40 long
+            elif op == 0xFD and seg == segment: # Texture
+                # G_SETTIMG
+                # Sets the texture image offset
+                # FD [fi] 00 00 [bb bb bb bb]
+                # [fi] -> fffi i000
+                # f: Texture format
+                # i: Texture bitsize
+                # b: Segmented address of texture
+                # Use 3rd nibble to get the texture type
+                textureType = (vanillaData[i+1] >> 3) & 0x1F
+                # Find the number of texel bits from the type
+                numTexelBits = 4 * (2 ** (textureType & 0x3))
+                # Get how many bytes there are per texel
+                bytesPerTexel = int(numTexelBits / 8)
+                # Grab the address from the low byte without the base offset
+                texOffset = lo & 0x00FFFFFF
+                numTexels = -1
+                returnStack = []
+                j = i+8
+                # The point of this loop is just to find the number of texels
+                # so that it may be multiplied by the bytesPerTexel so we know
+                # the length of the texture.
+                while j < len(vanillaData) and numTexels == -1:
+                    opJ = vanillaData[j]
+                    segJ = vanillaData[j+4]
+                    loJ = int.from_bytes(vanillaData[j+4:j+8], 'big')
+                    if opJ == 0xDF:
+                        # End of branched texture, or something wrong
+                        if len(returnStack) == 0:
+                            numTexels = 0
+                            break
+                        else:
+                            j = returnStack.pop()
+                    elif opJ == 0xFD:
+                        # Another texture command encountered, something wrong
+                        numTexels = 0
+                        break
+                    elif opJ == 0xDE:
+                        # Branch to another texture
+                        if segJ == segment:
+                            if vanillaData[j+1] == 0x0:
+                                returnStack.append(j)
+                            j = loJ & 0x00FFFFFF
+                    elif opJ == 0xF0:
+                        # F0: G_LOADTLUT
+                        # Loads a number of colors for a pallette
+                        # F0 00 00 00 0[t] [cc c]0 00
+                        # t: Tile descriptor to load from
+                        # c: ((colour count-1) & 0x3FF) << 2
+                        # Just grab c from the instruction above
+                        # Shift right 12 to get past the first 3 0s, then
+                        # 2 more since c is shifted left twice, then add 1
+                        # to get the color count of this pallette.
+                        numTexels = ((loJ & 0x00FFF000) >> 14) + 1
+                        break
+                        # Also error if numTexels > 256
+                    elif opJ == 0xF3:
+                        # F3: G_LOADBLOCK
+                        # Determines how much data to load after SETTIMG
+                        # F3 [SS S][T TT] 0[I] [XX X][D DD]
+                        # S: Upper left corner of texture's S-axis
+                        # T: Upper left corner of texture's T-axis
+                        # I: Tile descriptor
+                        # X: Number of texels to load, minus one
+                        # D: dxt (?)
+                        # Just grab X from the instruction, shift
+                        # right 12 times to get past 0s
+                        numTexels = ((loJ & 0x00FFF000) >> 12) + 1
+                        break
+                    j += 8
+                dataLen = bytesPerTexel * numTexels
+                if texOffset not in textures or len(textures[texOffset]) < dataLen:
+                    textures[texOffset] = vanillaData[texOffset:texOffset+dataLen]
+            displayList.extend(vanillaData[i:i+8])
+            i += 8
+        dlOffset = (displayList, offset)
+        # Create vanilla zobj of the pieces from data collected during crawl
+        vanillaZobj = bytearray()
+        # Add textures, vertices, and matrices to the beginning of the zobj
+        self.textures.update(textures)
+        self.vertices.update(vertices)
+        self.matrices.update(matrices)
+        # Textures
+        oldTex2New = {}
+        for (offset, texture) in textures.items():
+            newOffset = len(vanillaZobj)
+            oldTex2New[offset] = newOffset
+            vanillaZobj.extend(texture)
+        # Vertices
+        oldVer2New = {}
+        for (offset, vertex) in vertices.items():
+            newOffset = len(vanillaZobj)
+            oldVer2New[offset] = newOffset
+            vanillaZobj.extend(vertex)
+        # Matrices
+        oldMtx2New = {}
+        for (offset, matrix) in matrices.items():
+            newOffset = len(vanillaZobj)
+            oldMtx2New[offset] = newOffset
+            vanillaZobj.extend(matrix)
+        # Now add display lists which will reference the data from the beginning of the zobj
+        # Display lists
+        oldDL2New = {}
+        dl, offset = dlOffset
+        oldDL2New[offset] = len(vanillaZobj)
+        if symbolName:
+            self.symbols[symbolName] = len(vanillaZobj) + BASE_OFFSET + rebase
+        for i in range (0, len(dl), 8):
+            op = dl[i]
+            seg = dl[i+4]
+            lo = int.from_bytes(dl[i+4:i+8], 'big')
+            if seg == segment:
+                # If this instruction points to some data, it must be repointed
+                if op == 0x01:
+                    vertEntry = oldVer2New[lo & 0x00FFFFFF]
+                    WriteDLPointer(dl, i + 4, BASE_OFFSET + vertEntry + rebase)
+                elif op == 0xDA:
+                    mtxEntry = oldMtx2New[lo & 0x00FFFFFF]
+                    WriteDLPointer(dl, i + 4, BASE_OFFSET + mtxEntry + rebase)
+                elif op == 0xFD:
+                    texEntry = oldTex2New[lo & 0x00FFFFFF]
+                    WriteDLPointer(dl, i + 4, BASE_OFFSET + texEntry + rebase)
+                elif op == 0xDE:
+                    dlEntry = oldDL2New[lo & 0x00FFFFFF]
+                    WriteDLPointer(dl, i + 4, BASE_OFFSET + dlEntry + rebase)
+        vanillaZobj.extend(dl)
+        # Pad to the nearest multiple of 16
+        while len(vanillaZobj) % 0x10 != 0:
+            vanillaZobj.append(0x00)
+        self.zobj.extend(vanillaZobj)
+        # Now find the relation of items to new offsets
+        return oldDL2New[offset]
 
 # An extensive function which loads pieces from the vanilla Link model to add to the user-provided zobj
 # Based on https://github.com/hylian-modding/ML64-Z64Lib/blob/master/cores/Z64Lib/API/zzoptimize.ts function optimize()
