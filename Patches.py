@@ -129,9 +129,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2AFF0, symbolName='object_hookshot_new_chain_DL') # Load the chain DL from object
         zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2B288, symbolName='object_hookshot_new_tip_DL') # Load the tip DL from object
         zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2CB48, symbolName='object_hookshot_new_reticle_DL') # Load the reticle DL from object
-        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x24D70, skips=[], symbolName='object_hookshot_new_hookshot_near_DL') # Load the hookshot DL from object
+        zobj.LoadVanillaDL(rom, 'object_link_boy', 0x24D70, skips=[(0x250, 0x4A0)], symbolName='object_hookshot_new_hookshot_near_DL') # Load the hookshot DL from object_link_boy gLinkAdultRightHandHoldingHookshotNearDL
         zobj.LoadVanillaDL(rom, 'object_link_boy', 0x2A738, skips=[(0x2F0, 0x618)], symbolName='object_hookshot_new_hookshot_FPS_DL') # Load the first person hookshot DL from object
-        zobj.LoadVanillaDL(rom, 'object_link_child', 0x18048, skips=[()], symbolName='object_hookshot_new_child_arm_DL') # Load the child arm DL from object_link_child gLinkChildRightArmStretchedSlingshotDL. Skip slingshot
+        zobj.LoadVanillaDL(rom, 'object_link_child', 0x18048, skips=[(0x78, 0xD8)], symbolName='object_hookshot_new_child_arm_DL') # Load the child arm DL from object_link_child gLinkChildRightArmStretchedSlingshotDL. Skip slingshot
         return zobj.zobj
     
     # Make new models by applying patches to existing ones

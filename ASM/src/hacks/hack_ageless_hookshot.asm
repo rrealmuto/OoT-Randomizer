@@ -28,6 +28,8 @@
 ;   addiu   t5, t5, -0x5010
     li      t5, 0x06000580
 
+
+;---------------------------------------
 ; Hacks in code file
 ; Fix reticle to use reticle DL in new hookshot object
 .headersize (0x800110A0 - 0xA87000)
@@ -61,6 +63,22 @@
 ;   lui     t3, 0x0603
 ;   addiu   t3, t3, -0x34b8
     li      t3, 0x06001840
+
+
+; Hack sPlayerRightHandHookshotDLs to set child hookshot hand DLs to our new DL
+.org 0x800f79aC
+    dw  gLinkChildRightArmHoldingHookshotNearDL
+.org 0x800f79b4
+    dw  gLinkChildRightArmHoldingHookshotNearDL
+
+; Hack calls to Player_SetModels in Player_SetModelGroups to use our hooked function
+.org 0x80079714
+; Replaces:
+;   jal     Player_SetModels
+    jal     Player_SetModels_Hook
+
+
+
 
 ; Fix first person view arms
 ; Hook Player_OverrideLimbDrawGameplayFirstPerson to override what is done for the PLAYER_LIMB_R_HAND case

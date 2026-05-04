@@ -5,6 +5,7 @@ from enum import IntEnum
 from typing import TYPE_CHECKING
 
 from Utils import data_path
+from FileList import file_list
 
 if TYPE_CHECKING:
     from Cosmetics import CosmeticsLog
@@ -199,10 +200,6 @@ def WriteDLPointer(dl: list[int], index: int, data: int) -> None:
     for i in range(4):
         dl[index + i] = bytes[i]
 
-file_list = {
-    'object_link_boy': (0x00F86000, 0x00FBD800)
-}
-
 class ZOBJBuilder:
     def __init__(self):
         self.zobj: bytearray = bytearray()
@@ -234,7 +231,10 @@ class ZOBJBuilder:
         matrices: dict[int, bytearray] = {}
         textures: dict[int, bytearray] = {}
         # Get vanilla object from rom
-        file_start, file_end = file_list[file]
+        file_index = file_list[file]
+        dmaEntry = rom.original.dma[file_index]
+        file_start = dmaEntry.start
+        file_end = dmaEntry.end
         vanillaData: bytearray = rom.buffer[file_start:file_end]
         # Crawl displaylist bytecode and handle each command
         while i < len(vanillaData):

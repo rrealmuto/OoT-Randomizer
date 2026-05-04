@@ -27,6 +27,7 @@ z64_Flags_SetTempClear = 0x800206AC;
 OnePointCutscene_Init = 0x8006b6fc;
 Player_InCsMode = 0x8007943c;
 Player_HoldsHookshot = 0x80079bd4;
+Player_SetModels = 0x800795e8;
 Player_OverrideLimbDrawGameplayFirstPerson = 0x8007ad80;
 EffectSsKakera_Spawn = 0x8001d998;
 CutsceneFlags_Get = 0x8005991C;

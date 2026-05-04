@@ -401,12 +401,32 @@ void hookshot_init() {
     load_object(&object_hookshot_new, 0x1B9);
 }
 
+
+
 Gfx gLinkChildFPSHookshotDL[] = {
     gsSPNoOp(), // gsSPSegment(0x06, object_hookshot_new.buf), set at runtime
-    gsSPDisplayList(0x060043C0),
+    gsSPDisplayList(0x06003590), //new hookshot FPS DL
+    gsSPDisplayList(0x060053E0), //new hookshot object child right arm DL
     gsSPNoOp(), // gsSPSegment( restore original object segment), set at runtime
     gsSPEndDisplayList(),
 };
+
+Gfx gLinkChildRightArmHoldingHookshotNearDL[] = {
+    // Draw arm DL
+    gsSPDisplayList(0x06014320), //gLinkChildRightHandClosedNearDL
+    //gsSPDisplayList(0x06013CB0), //gLinkChildRightHandNearDL
+    gsSPNoOp(), // gsSPSegment(0x06, object_hookshot_new.buf), set at runtime
+    gsSPDisplayList(0x06002390), //new hookshot near DL
+    gsSPNoOp(), //gsSPSegment (restore original object segment), set at runtime
+    gsSPEndDisplayList(),
+};
+
+extern void Player_SetModels(z64_link_t* this, int32_t modelGroup);
+void Player_SetModels_Hook(z64_link_t* this, int32_t modelGroup) {
+    Player_SetModels(this, modelGroup);
+    gLinkChildRightArmHoldingHookshotNearDL[1] = gsSPSegment(0x06, object_hookshot_new.buf);
+    gLinkChildRightArmHoldingHookshotNearDL[3] = gsSPSegment(0x06, z64_game.obj_ctxt.objects[this->common.obj_bank_index].data);
+}
 
 extern int32_t Player_OverrideLimbDrawGameplayFirstPerson(z64_game_t* play, int32_t limbIndex, Gfx** dList, z64_xyzf_t* pos, z64_xyz_t* rot, void* thisx);
 extern int Player_HoldsHookshot(z64_link_t* this);
@@ -416,7 +436,7 @@ int32_t Player_OverrideLimbDrawGameplayFirstPerson_Hook(z64_game_t* play, int32_
         // Override hookshot DL for child hookshot
         if (LINK_IS_CHILD) {
             gLinkChildFPSHookshotDL[0] = gsSPSegment(0x06, object_hookshot_new.buf);
-            gLinkChildFPSHookshotDL[2] = gsSPSegment(0x06, play->obj_ctxt.objects[((z64_link_t*)thisx)->common.obj_bank_index].data);
+            gLinkChildFPSHookshotDL[3] = gsSPSegment(0x06, play->obj_ctxt.objects[((z64_link_t*)thisx)->common.obj_bank_index].data);
             *dList = gLinkChildFPSHookshotDL;
         }
     }
