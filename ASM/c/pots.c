@@ -6,12 +6,12 @@
 #include "get_items.h"
 #include "actor.h"
 
-z64_gfx_t* DUNGEON_POT_SIDE_TEXTURE = (z64_gfx_t*)0x050108A0;
-z64_gfx_t* DUNGEON_POT_TOP_TEXTURE = (z64_gfx_t*)0x050118A0;
+uint8_t* DUNGEON_POT_SIDE_TEXTURE = (uint8_t*)0x050108A0;
+uint8_t* DUNGEON_POT_TOP_TEXTURE = (uint8_t*)0x050118A0;
 z64_gfx_t* DUNGEON_POT_DLIST = (z64_gfx_t*)0x05017870;
 
-z64_gfx_t* POT_SIDE_TEXTURE = (z64_gfx_t*)0x06000000;
-z64_gfx_t* POT_TOP_TEXTURE = (z64_gfx_t*)0x06001000;
+uint8_t* POT_SIDE_TEXTURE = (uint8_t*)0x06000000;
+uint8_t* POT_TOP_TEXTURE = (uint8_t*)0x06001000;
 z64_gfx_t* POT_DLIST = (z64_gfx_t*)0x060017C0;
 
 extern uint8_t POTCRATE_TEXTURES_MATCH_CONTENTS;
