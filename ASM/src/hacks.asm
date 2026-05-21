@@ -1,4 +1,44 @@
 ;==================================================================================================
+; Move frame buffers to end of memory
+;==================================================================================================
+.headersize(0x800110A0 - 0xA87000)
+; In SysCfb_Init, move the frame buffer end from 0x8040000 to 0x8080000
+.org 0x800a4330
+; Replaces
+;   lui     t7, 0x8040
+    lui     t7, 0x8080
+.org 0x800A4350
+; Replaces
+;   lui     t8, 0x8040
+    lui     t8, 0x8080
+
+;==================================================================================================
+; Resize system heap to extend to the beginning of the rando payload (DEBUG_BUFFER)
+;==================================================================================================
+.headersize(0x800110A0 - 0xA87000)
+; In Main() instead of calling SysCfb_GetFbPtr() just load v0 with address of DEBUG_BUFFER
+.org 0x800a1ce0
+; Replaces:
+;   jal     0x800a43d8
+;   or      a0, r0, r0
+    li      v0, DEBUG_BUFFER
+
+;==================================================================================================
+; Increase the size of the GameState heap when calling GameState_Realloc at the beginning of Play_Init
+;==================================================================================================
+
+; Size goes into a1
+; Extend up to DEBUG_BUFFER basically
+; Normally starts at 0x801DA9C0 and is allocated 0x1D47D0
+.org 0x8009a7a8
+; Replaces
+;   lui     a1, 0x1d
+;   jal     GameState_Realloc
+;   ori     a1, a1, 0x4790
+    lui     a1, 0x2d
+
+
+;==================================================================================================
 ; main.c hooks
 ;==================================================================================================
 .headersize (0x800110A0 - 0xA87000)
