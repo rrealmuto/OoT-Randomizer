@@ -570,37 +570,10 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     #if len(zobj) > linksize:
     #    raise ModelDefinitionError("Model for " + agestr + " too large- It is " + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
     # See if the string MODLOADER64 appears before the LUT- if so this is a PlayAs model and needs no further processing
-    lut: LUT = LUT(0x06005000 if age == 0 else 0x06005000)
+    lut: LUT = LUT(0x06005000)
     is_modloader64: bool = scan(zobj, "MODLOAD64") >= 0
-    is_fast64: bool = scan(zobj, "~FAST64~") >= 0
-    if is_fast64:
-        lut = LUT(0x06000000 | scan(zobj, "~FAST64~") - len("~FAST64~"))
-        hierarchy_pointer = lut.offset(Offsets.ADULT_HIERARCHY if age == 0 else Offsets.CHILD_HIERARCHY) & 0x00FFFFFF
-        hierarchy = int.from_bytes(zobj[hierarchy_pointer:hierarchy_pointer+4], 'big')
-        # Find any parts in the LUT labelled "LOAD_VANILLA"
-        missing = []
-        for piece in pieces:
-            lut_offset, _ = pieces[piece]
-            lut_offset = lut.offset(lut_offset) & 0x00FFFFFF
-            lut_entry = int.from_bytes(zobj[lut_offset:lut_offset+4], 'big')
-            if lut_entry == 0xFFFFFFFF:
-                missing.append(piece)
-        
-        vanilla_dl_base = len(zobj)
-
-        (vanillaZobj, DLOffsets) = LoadVanilla(rom, missing, len(zobj), linkstart, linksize, pieces, skips)
-        # Add the parts to the end of the zobj and update the LUT
-        zobj.extend(vanillaZobj)
-        for missingPieceOffset in DLOffsets:
-            lut_offset, _ = pieces[missingPieceOffset]
-            lut_offset = lut.offset(lut_offset) & 0x00FFFFFF
-            lut_entry = vanilla_dl_base + DLOffsets[missingPieceOffset]
-            zobj[lut_offset:lut_offset+4] = b"\xDE\x01\x00\x00"
-            zobj[lut_offset+4:lut_offset+8] = (lut_entry | BASE_OFFSET).to_bytes(4, 'big') 
-    else:
-        hierarchy = lut.offset(Offsets.ADULT_HIERARCHY if age == 0 else Offsets.CHILD_HIERARCHY)
-
-    if not (is_modloader64 or is_fast64):
+    hierarchy = lut.offset(Offsets.ADULT_HIERARCHY if age == 0 else Offsets.CHILD_HIERARCHY)
+    if not is_modloader64:
         
         # First, make sure all important bytes are zeroed out
         for i in range(LUT_START, LUT_END):
