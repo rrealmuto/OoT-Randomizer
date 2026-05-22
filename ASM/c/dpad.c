@@ -1,6 +1,7 @@
 #include "gfx.h"
 #include "dpad.h"
 #include "trade_quests.h"
+#include "player.h"
 
 extern uint8_t CFG_DISPLAY_DPAD;
 
@@ -13,7 +14,6 @@ typedef void(*playsfx_t)(uint16_t sfx, z64_xyzf_t* unk_00_, int8_t unk_01_ , flo
 typedef void(*usebutton_t)(z64_game_t* game, z64_link_t* link, uint8_t item, uint8_t button);
 
 #define z64_playsfx   ((playsfx_t)      0x800C806C)
-#define z64_usebutton ((usebutton_t)    0x8038C9A0)
 
 void handle_dpad() {
 
@@ -57,12 +57,12 @@ void handle_dpad() {
 
         if (z64_file.link_age == 1) {
             if (pad_pressed.dr && CAN_USE_CHILD_TRADE) {
-                z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE], 2);
+                Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE], 2);
             }
         }
 
         if (pad_pressed.dd && CAN_USE_OCARINA) {
-            z64_usebutton(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
+            Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
         }
     }
 }

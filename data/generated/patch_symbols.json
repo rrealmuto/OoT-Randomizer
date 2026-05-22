@@ -3,15 +3,7 @@
     "DEBUG_BUFFER": 2152726528,
     "GET_ITEMTABLE": 2151325310,
     "GLOBAL_CONTEXT": 2149352608,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "PAYLOAD_END": 2152283296,
-=======
-    "PAYLOAD_END": 2152251056,
->>>>>>> 223df5e78 (Updates to misc model patcher. Child model patcher fixes.)
-=======
-    "PAYLOAD_END": 2154873344,
->>>>>>> d3a1d2b96 (Add hacks to increase entire heap size)
+    "PAYLOAD_END": 2154905296,
     "PLAYER_ACTOR": 2149427760,
     "PLAYER_WALK_RUN": 2151254976,
     "SAVE_CONTEXT": 2148640208,
