@@ -968,6 +968,16 @@ typedef struct {
     /* 0x1E */ int8_t numLoaded; // original name: "clients"
 } ActorOverlay; // size = 0x20
 
+typedef struct {
+    /* 0x00 */ void* loadedRamAddr;
+    /* 0x04 */ uintptr_t vromStart;
+    /* 0x08 */ uintptr_t vromEnd;
+    /* 0x0C */ void* vramStart;
+    /* 0x10 */ void* vramEnd;
+    /* 0x14 */ void* unk_14;
+    /* 0x18 */ void* ramFileName;
+} PausePlayerOverlay;
+
 struct z64_actor_s
 {
   int16_t         actor_id;         /* 0x0000 */
@@ -1992,8 +2002,6 @@ typedef enum {
 #define z64_link_addr                           0x801DAA30
 #define z64_state_ovl_tab_addr                  0x800F1340
 #define z64_event_state_1_addr                  0x800EF1B0
-#define z64_LinkInvincibility_addr              0x8038E578
-#define z64_LinkDamage_addr                     0x8038E6A8
 #define z64_ObjectSpawn_addr                    0x800812F0
 #define z64_ObjectIndex_addr                    0x80081628
 #define z64_ObjectIsLoaded_addr                 0x80081688
@@ -2074,10 +2082,6 @@ typedef void (*z64_DisplayTextbox_proc)   (z64_game_t* game, uint16_t text_id,
                                            int unknown_);
 typedef void (*z64_GiveItem_proc)         (z64_game_t* game, uint8_t item);
 
-typedef void(*z64_LinkDamage_proc)        (z64_game_t* ctxt, z64_link_t* link,
-                                           uint8_t damage_type, float unk_00, uint32_t unk_01,
-                                           uint16_t unk_02);
-typedef void(*z64_LinkInvincibility_proc) (z64_link_t* link, uint8_t frames);
 typedef float* (*z64_GetMatrixStackTop_proc)();
 typedef void (*SsSram_ReadWrite_proc)(uint32_t addr, void* dramAddr, size_t size, uint32_t direction);
 typedef void* (*z64_memcopy_proc)(void* dest, void* src, uint32_t size);
@@ -2166,9 +2170,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
                                                       z64_DisplayTextbox_addr)
 #define z64_GiveItem            ((z64_GiveItem_proc)  z64_GiveItem_addr)
 
-#define z64_LinkDamage          ((z64_LinkDamage_proc)z64_LinkDamage_addr)
-#define z64_LinkInvincibility   ((z64_LinkInvincibility_proc)                 \
-                                                      z64_LinkInvincibility_addr)
 #define z64_GetMatrixStackTop   ((z64_GetMatrixStackTop_proc) \
                                                       z64_GetMatrixStackTop_addr)
 #define z64_RandSeed            ((z64_RandSeed_proc)z64_RandSeed_addr)
@@ -2472,5 +2473,6 @@ extern int32_t sprintf(char* dst, char* fmt, ...);
 extern int32_t CutsceneFlags_Get(void* play, int16_t flag);
 extern int32_t DemoKankyo_CutsceneFlags_Get_Hook(void* play, int16_t flag);
 extern z64_object_table_t z64_object_table[];
+extern PausePlayerOverlay gPausePlayerOverlayTable[];
 
 #endif

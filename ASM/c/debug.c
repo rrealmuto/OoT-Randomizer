@@ -416,7 +416,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
             if (current_menu_indexes.main_index == 5) {
                 if (z64_game.common.input[0].pad_pressed.a) {
                     z64_GiveItem(&z64_game, Z64_ITEM_BUNNY_HOOD);
-                    z64_usebutton(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
+                    Player_UseItem(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
                 }
             }
             if (current_menu_indexes.main_index == 6) {
