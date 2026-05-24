@@ -447,7 +447,8 @@ GET_ITEM_TRIGGERED:
 
 fountain_set_posrot:
     or      a1, s1, r0     ;displaced
-    la      t2, PLAYER_ACTOR
+    la      t2, PLAYER_ACTOR_LIST
+    lw      t2, 0x00(t2)
     lwc1    f4, 0x2C(t2)   ;player z pos
     li      t3, 0xC43B8000 ;-750.0f
     mtc1    t3, f6
@@ -503,7 +504,8 @@ SOS_ITEM_GIVEN:
 .align 4
 
 sos_skip_demo:
-    la      t2, PLAYER_ACTOR
+    la      t2, PLAYER_ACTOR_LIST
+    lw      t2, 0x00(t2)
     lw      t3, 0x66C(t2)
     li      t4, 0xCFFFFFFF ;~30000000
     and     t3, t3, t4
@@ -611,7 +613,8 @@ sos_handle_item:
 sos_talk_prevention:
     lh      t7, 0xB6(s0)   ; displaced
     lhu     t9, 0xB4AE(t9) ; displaced
-    la      t1, PLAYER_ACTOR
+    la      t1, PLAYER_ACTOR_LIST
+    lw      t1, 0x00(t1)
     lw      t2, 0x428(t1)  ; interactRangeActor
     beqz    t2, @@no_item
     nop
@@ -658,14 +661,16 @@ heavy_block_set_switch:
 heavy_block_posrot:
     sw      t9, 0x66C(s0)  ;displaced
     lw      t2, 0x428(s0)  ;interactActor (block)
-    la      t1, PLAYER_ACTOR
+    la      t1, PLAYER_ACTOR_LIST
+    lw      t1, 0x00(t1)
     lh      t3, 0xB6(t2)   ;block angle
     addi    t3, t3, 0x8000 ;180 deg
     jr      ra
     sh      t3, 0xB6(t1)   ;store to links angle to make him face block
 
 heavy_block_set_link_action:
-    la      t0, PLAYER_ACTOR
+    la      t0, PLAYER_ACTOR_LIST
+    lw      t0, 0x00(t0)
     lb      t2, 0x0434(t0)
     li      t3, 0x08
     bne     t2, t3, @@return
@@ -676,7 +681,8 @@ heavy_block_set_link_action:
 lwc1    f6, 0x0C(s0)   ;displaced
 
 heavy_block_shorten_anim:
-    la      t0, PLAYER_ACTOR
+    la      t0, PLAYER_ACTOR_LIST
+    lw      t0, 0x00(t0)
     lw      t1, 0x01AC(t0)   ;current animation
     li      t2, 0x04002F98   ;heavy block lift animation
     bne     t1, t2, @@return ;return if not heavy block lift

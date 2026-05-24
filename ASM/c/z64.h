@@ -2131,7 +2131,6 @@ typedef void(*z64_Play_SetupRespawnPoint_proc)(z64_game_t *game, int32_t respawn
 #define z64_gameinfo            (*                    z64_file.gameinfo)
 #define z64_ctxt                (*(z64_ctxt_t*)       z64_ctxt_addr)
 #define z64_game                (*(z64_game_t*)      &z64_ctxt)
-#define z64_link                (*(z64_link_t*)       z64_link_addr)
 #define z64_state_ovl_tab       (*(z64_state_ovl_t(*)[6])                     \
                                                       z64_state_ovl_tab_addr)
 #define z64_event_state_1       (*(uint32_t*)         z64_event_state_1_addr)
@@ -2474,5 +2473,11 @@ extern int32_t CutsceneFlags_Get(void* play, int16_t flag);
 extern int32_t DemoKankyo_CutsceneFlags_Get_Hook(void* play, int16_t flag);
 extern z64_object_table_t z64_object_table[];
 extern PausePlayerOverlay gPausePlayerOverlayTable[];
+extern void* THA_AllocTailAlign16(TwoHeadArena* tha, size_t size);
+extern int32_t THA_GetRemaining(TwoHeadArena* tha);
 
+
+#define GET_PLAYER(play) ((z64_link_t*)(play)->actor_list[ACTORCAT_PLAYER].first)
+
+#define z64_link                ((z64_link_t*)       GET_PLAYER(&z64_game))
 #endif

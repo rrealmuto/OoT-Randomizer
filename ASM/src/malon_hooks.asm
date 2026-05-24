@@ -98,7 +98,8 @@ malon_reload:
     lb      t5, MALON_GAVE_ICETRAP
     bnez    t5, @@malon_gave_ice_trap
     nop
-    la      t0, PLAYER_ACTOR
+    la      t0, PLAYER_ACTOR_LIST
+    lw      t0, 0x00(t0)
     lw      t1, 0x670(t0)    ;stateFlags2
     li      t2, 0x4000
     and     t3, t1, t2       ;stateFlags2 & 0x4000
@@ -109,7 +110,8 @@ malon_reload:
     b       @@return
 
 @@malon_gave_ice_trap:
-    la      t0, PLAYER_ACTOR
+    la      t0, PLAYER_ACTOR_LIST
+    lw      t0, 0x00(t0)
     lw      t1, 0x670(t0)    ;stateFlags2
     li      t2, 0x4000
     and     t3, t1, t2       ;stateFlags2 & 0x4000

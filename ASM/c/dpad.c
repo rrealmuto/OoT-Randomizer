@@ -43,26 +43,26 @@ void handle_dpad() {
             if (pad_pressed.dl && z64_file.iron_boots) {
                 if (z64_file.equip_boots == 2) z64_file.equip_boots = 1;
                 else z64_file.equip_boots = 2;
-                z64_UpdateEquipment(&z64_game, &z64_link);
+                z64_UpdateEquipment(&z64_game, z64_link);
                 z64_playsfx(0x835, (z64_xyzf_t*)0x80104394, 0x04, (float*)0x801043A0, (float*)0x801043A0, (float*)0x801043A8);
             }
 
             if (pad_pressed.dr && z64_file.hover_boots) {
                 if (z64_file.equip_boots == 3) z64_file.equip_boots = 1;
                 else z64_file.equip_boots = 3;
-                z64_UpdateEquipment(&z64_game, &z64_link);
+                z64_UpdateEquipment(&z64_game, z64_link);
                 z64_playsfx(0x835, (z64_xyzf_t*)0x80104394, 0x04, (float*)0x801043A0, (float*)0x801043A0, (float*)0x801043A8);
             }
         }
 
         if (z64_file.link_age == 1) {
             if (pad_pressed.dr && CAN_USE_CHILD_TRADE) {
-                Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE], 2);
+                Player_UseItem(&z64_game,z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE], 2);
             }
         }
 
         if (pad_pressed.dd && CAN_USE_OCARINA) {
-            Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
+            Player_UseItem(&z64_game,z64_link,z64_file.items[Z64_SLOT_OCARINA], 2);
         }
     }
 }
@@ -224,7 +224,7 @@ void draw_dpad_and_menu_utilities() {
                     gDPSetPrimColor(db->p++, 0, 0, 0xFF, 0xFF, 0xFF, alpha);
                 }
                 sprite_load(db, &items_sprite, z64_file.items[Z64_SLOT_CHILD_TRADE], 1);
-                if (z64_link.current_mask >= 1 && z64_link.current_mask <= 9) {
+                if (z64_link->current_mask >= 1 && z64_link->current_mask <= 9) {
                     sprite_draw(db, &items_sprite, 0, left_main_dpad + 12, top_main_dpad, 16, 16);
                 } else {
                     sprite_draw(db, &items_sprite, 0, left_main_dpad + 14, top_main_dpad + 2, 12, 12);

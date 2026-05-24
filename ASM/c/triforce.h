@@ -20,7 +20,7 @@ void set_triforce_render();
                     0x10000000 | \
                     0x20000000)
 
-#define CAN_DRAW_TRIFORCE   (((z64_link.state_flags_1 & BLOCK_TRIFORCE ) == 0) && \
+#define CAN_DRAW_TRIFORCE   (((z64_link->state_flags_1 & BLOCK_TRIFORCE ) == 0) && \
                             ((uint32_t)z64_ctxt.state_dtor==z64_state_ovl_tab[3].vram_dtor) && \
                             (z64_file.game_mode == 0) && \
                             ((z64_event_state_1 & 0x20) == 0))

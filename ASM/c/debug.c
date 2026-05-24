@@ -2,6 +2,7 @@
 #include "objects.h"
 #include "item_effects.h"
 #include "actor.h"
+#include "player.h"
 
 const int8_t debug_text_width = 16;
 const int8_t debug_text_height = 16;
@@ -332,7 +333,7 @@ void debug_utilities(z64_disp_buf_t* db)
     // Press L to levitate
     // Shoutouts to glankk
     if (z64_game.common.input[0].raw.pad.du || z64_game.common.input[0].raw.pad.l) {
-        z64_link.common.vel_1.y = 6.34375f;
+        z64_link->common.vel_1.y = 6.34375f;
     }
 
     draw_debug_menu(db);
@@ -416,7 +417,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
             if (current_menu_indexes.main_index == 5) {
                 if (z64_game.common.input[0].pad_pressed.a) {
                     z64_GiveItem(&z64_game, Z64_ITEM_BUNNY_HOOD);
-                    Player_UseItem(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
+                    Player_UseItem(&z64_game, z64_link, Z64_ITEM_BUNNY_HOOD, 2);
                 }
             }
             if (current_menu_indexes.main_index == 6) {

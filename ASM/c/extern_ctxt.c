@@ -127,7 +127,7 @@ void process_extern_ctxt() {
     if (extern_ctxt.equip_boots != 0) {
         if (z64_file.equip_boots != extern_ctxt.equip_boots) {
             z64_file.equip_boots = extern_ctxt.equip_boots;
-            z64_UpdateEquipment(&z64_game, &z64_link);
+            z64_UpdateEquipment(&z64_game, z64_link);
         }
 
         if (extern_ctxt.equip_boots == 1)

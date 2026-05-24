@@ -34,6 +34,7 @@ OVL_EnOkarinaTag_Action2 = 0x80a872d0;
 OVL_EnOkarinaTag_Action1 = 0x80a87088;
 z64_object_table = 0x800F8FF8;
 THA_AllocTailAlign16 = 0x800a01b8;
+THA_GetRemaining = 0x800a01f4;
 gLinkObjectIds = 0x800f8ff0;
 
 

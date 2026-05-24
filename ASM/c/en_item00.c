@@ -8,7 +8,7 @@ extern void EnItem00_Draw(z64_actor_t* actor, z64_game_t* globalCtx);
 
 // EnItem00 Action Function used for sending outgoing junk overrides collected from enitem00 collectibles
 void EnItem00_OutgoingAction(EnItem00* this, z64_game_t* globalCtx) {
-    z64_link_t* player = &z64_link;
+    z64_link_t* player = z64_link;
 
     if (this->timeToLive == 0) {
         z64_ActorKill(&this->actor);
