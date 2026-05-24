@@ -2,7 +2,8 @@
 .definelabel SAVE_CONTEXT,      0x8011A5D0
 .definelabel GLOBAL_CONTEXT,    0x801C84A0
 .definelabel SUBSCREEN_CONTEXT, 0x801D8C00
-.definelabel PLAYER_ACTOR,      0x801DAA30
+.definelabel PLAYER_ACTOR_LIST,  0x801CA0E4
+;.definelabel PLAYER_ACTOR,      0x801DAA30
 .definelabel GET_ITEMTABLE,     0x803A9E7E
 
 ; Extended memory map:

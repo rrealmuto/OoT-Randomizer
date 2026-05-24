@@ -11,7 +11,8 @@ drop_ruto:
     lh      t1, 0x0F20(t0)   ;infTable+0x28
     andi    t1, t1, 0x0040   ;big octo visited bit
     beqz    t1, @@return     ;return if flag is not set
-    la      t0, PLAYER_ACTOR
+    la      t0, PLAYER_ACTOR_LIST
+    lw      t0, 0x00(t0)
     lw      t1, 0x039C(t0)   ;held actor
     beqz    t1, @@return     ;return if held actor is null
     li      t2, 0xA1         ;ruto ID

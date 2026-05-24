@@ -18,8 +18,8 @@ extern uint8_t MW_SEND_OWN_ITEMS;
 // Original function copied over
 int32_t DoorWarp1_PlayerInRange(z64_actor_t* actor, z64_game_t* game) {
     if (actor->xzdist_from_link < 60.0f) {
-        if ((z64_link.common.pos_world.y - 20.0f) < actor->pos_world.y) {
-            if (actor->pos_world.y < (z64_link.common.pos_world.y + 20.0f)) {
+        if ((z64_link->common.pos_world.y - 20.0f) < actor->pos_world.y) {
+            if (actor->pos_world.y < (z64_link->common.pos_world.y + 20.0f)) {
                 return true;
             }
         }

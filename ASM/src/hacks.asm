@@ -37,6 +37,15 @@
 ;   ori     a1, a1, 0x4790
     lui     a1, 0x2d
 
+;==================================================================================================
+; Decrease the size of ZeldaArena to be the hopefully the exact same size as vanilla
+;==================================================================================================
+; In Play_Init call to THA_GetRemaining for ZeldaArena
+.org 0x8009adb8
+; Replaces:
+;   jal     THA_AllocTailAlign16
+    jal     ZeldaArena_CalculateSize
+
 
 ;==================================================================================================
 ; main.c hooks

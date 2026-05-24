@@ -214,7 +214,7 @@ void UpdateTradeEquips(uint16_t itemId, int16_t tradeSlot) {
     // Update inventory slot
     z64_file.items[tradeSlot] = itemId;
     // Update player trade progression for other actors
-    //z64_link.exchange_item_id = trade_quest_items[GetTradeItemIndex(itemId)].exchange_item_id;
+    //z64_link->exchange_item_id = trade_quest_items[GetTradeItemIndex(itemId)].exchange_item_id;
     for (int i = 0; i < 3; i++) {
         // Handle current age C button equips, if any
         if (z64_file.c_button_slots[i] == tradeSlot) {
@@ -319,7 +319,7 @@ int32_t ShouldSkullKidSpawn() {
 }
 
 int32_t IsCuccoGivenToCuccoLady() {
-    return z64_link.exchange_item_id == Z64_EXCH_ITEM_POCKET_CUCCO;
+    return z64_link->exchange_item_id == Z64_EXCH_ITEM_POCKET_CUCCO;
 }
 
 uint16_t SetupMaskShopHelloDialogOverride(EnOssan* maskShop) {

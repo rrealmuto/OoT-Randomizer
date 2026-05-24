@@ -41,7 +41,7 @@ extern uint8_t CFG_RAINBOW_BOOM_TRAIL_OUTER_ENABLED;
 
 void update_boomerang_trail_colors()
 {
-    z64_actor_t* boomerang = z64_link.boomerang_actor;
+    z64_actor_t* boomerang = z64_link->boomerang_actor;
     if (boomerang != NULL && boomerang->main_proc != NULL)
     {
         uint32_t effect_index = *((uint32_t*)(((uint32_t)boomerang) + 0x1C8));
@@ -231,7 +231,7 @@ void update_navi_colors()
             z64_game.target_arr[i].color = color_inner;
     }
 
-    z64_actor_t* navi = z64_link.navi_actor;
+    z64_actor_t* navi = z64_link->navi_actor;
     if (navi != NULL && navi->main_proc != NULL)
     {
         colorRGBAf_t* navi_colors = (colorRGBAf_t*)(((uint32_t)navi) + 0x234);

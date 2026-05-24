@@ -74,7 +74,7 @@ static uint16_t previousSeqIndexName = 0;
 void display_song_name(z64_disp_buf_t* db) {
     if (CFG_SONG_NAME_STATE > SONG_NAME_NONE &&
         !dungeon_info_is_drawn() && // Don't display if the custom rando pause screen if displayed.
-        !(z64_link.state_flags_2 & 0x8000000)) { // Don't display if Link is playing the Ocarina.
+        !(z64_link->state_flags_2 & 0x8000000)) { // Don't display if Link is playing the Ocarina.
 
         uint8_t alpha;
         if (z64_Audio_GetActiveSeqId(0) != previousSeqIndexName) {

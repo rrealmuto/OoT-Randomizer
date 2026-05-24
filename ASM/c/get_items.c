@@ -384,9 +384,9 @@ inline uint32_t link_is_ready() {
         (z64_game.pause_ctxt.state == 0) &&
         // don't receive items in shops to avoid a softlock when buying an item at the same time as receiving one
         ((z64_game.scene_index < 0x002C || z64_game.scene_index > 0x0033) && z64_game.scene_index != 0x0042 && z64_game.scene_index != 0x004B) &&
-        (z64_link.state_flags_1 & 0xFCAC2485) == 0 &&
-        (z64_link.common.unk_flags_00 & 0x0001) &&
-        (z64_link.state_flags_2 & 0x000C0000) == 0 &&
+        (z64_link->state_flags_1 & 0xFCAC2485) == 0 &&
+        (z64_link->common.unk_flags_00 & 0x0001) &&
+        (z64_link->state_flags_2 & 0x000C0000) == 0 &&
         (z64_event_state_1 & 0x20) == 0 &&
         (z64_game.camera_2 == 0)) {
         satisfied_pending_frames++;
@@ -419,7 +419,7 @@ void try_pending_item() {
 
     if (item_row->collectible >= 0 && override.key.flag == 0xFF) {
         // This is an incoming collectible junk item so speed it up by spawning a give immediate collectible
-        EnItem00* collectible = (EnItem00*)z64_SpawnActor(&z64_game.actor_ctxt, &z64_game, 0x0015, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0, 0, 0, 0x8000 | item_row->collectible);
+        EnItem00* collectible = (EnItem00*)z64_SpawnActor(&z64_game.actor_ctxt, &z64_game, 0x0015, z64_link->common.pos_world.x, z64_link->common.pos_world.y, z64_link->common.pos_world.z, 0, 0, 0, 0x8000 | item_row->collectible);
         collectible->override = override;
         collectible->scale = collectible->actor.scale.x = collectible->actor.scale.y = collectible->actor.scale.z = 0.015f;
         collectible->actor.yOffset = 750.0f;
@@ -428,8 +428,8 @@ void try_pending_item() {
         after_key_received(override.key);
     } else {
         activate_override(override);
-        z64_link.incoming_item_actor = dummy_actor;
-        z64_link.incoming_item_id = active_item_row->base_item_id;
+        z64_link->incoming_item_actor = dummy_actor;
+        z64_link->incoming_item_id = active_item_row->base_item_id;
     }
 }
 
@@ -568,7 +568,7 @@ void reset_collectible_mutex() {
 void Collectible_WaitForMessageBox(EnItem00* this, z64_game_t* game) {
     // Put the item above Link's head and keep it spinning like the normal action function
     this->actor.rot_2.y += 960;
-    this->actor.pos_world = z64_link.common.pos_world;
+    this->actor.pos_world = z64_link->common.pos_world;
     this->actor.pos_world.y += 40.0f;
     if (z64_file.link_age == 0) { // Link is adult so move it up another 20.0f
         this->actor.pos_world.y += 20.0f;
@@ -583,7 +583,7 @@ void Collectible_WaitForMessageBox(EnItem00* this, z64_game_t* game) {
             z64_ActorKill(&(this->actor));
         }
     } else {
-        z64_link.common.frozen = 10;
+        z64_link->common.frozen = 10;
     }
 }
 
@@ -982,7 +982,7 @@ uint8_t item_give_collectible(uint8_t item, z64_link_t* link, z64_actor_t* from_
         pItem->actor.xz_speed = 0;
         pItem->actor.vel_1.y = 0;
         pItem->actor.gravity = 0;
-        z64_link.common.frozen = 10;                        // freeze Link (like when picking up a skull)
+        z64_link->common.frozen = 10;                        // freeze Link (like when picking up a skull)
         pItem->actionFunc = Collectible_WaitForMessageBox;  // Set up the EnItem00 action function to wait for the message box to close.
 
         dispatch_item(resolved_item_id, player, &collectible_override, item_row);

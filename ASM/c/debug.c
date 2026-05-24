@@ -2,6 +2,7 @@
 #include "objects.h"
 #include "item_effects.h"
 #include "actor.h"
+#include "player.h"
 
 extern uint16_t current_textbox_id;
 
@@ -373,7 +374,7 @@ void debug_utilities(z64_disp_buf_t* db)
     // Press L to levitate
     // Shoutouts to glankk
     if (z64_game.common.input[0].raw.pad.du || z64_game.common.input[0].raw.pad.l) {
-        z64_link.common.vel_1.y = 6.34375f;
+        z64_link->common.vel_1.y = 6.34375f;
     }
 
     draw_debug_menu(db);
@@ -480,7 +481,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                 if (input_local_copy.pad_pressed.a) {
                     z64_GiveItem(&z64_game, Z64_ITEM_BUNNY_HOOD);
                     if (z64_game.pause_ctxt.state == PAUSE_STATE_OFF) {
-                        Player_UseItem(&z64_game, &z64_link, Z64_ITEM_BUNNY_HOOD, 2);
+                        Player_UseItem(&z64_game, z64_link, Z64_ITEM_BUNNY_HOOD, 2);
                     }
                 }
             }
