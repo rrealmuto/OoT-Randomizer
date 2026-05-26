@@ -695,8 +695,16 @@ heavy_block_shorten_anim:
 @@check_end:
     li      t4, 0x43790000   ;249.0f
     bne     t3, t4, @@return
-    li      t1, 0x803A967C
+    ; Get address of player overlay from overlay table so we can calculate the address of Player_Action_CsAction
+    ; Function is offset 0x20B1C into player or VRAM 80850cdc
+    la      t1, gPausePlayerOverlayTable ; Player/Pause Overlay Table
+    lw      t2, 0x1C(t1) ; Loaded RAM address
+    lw      t1, 0x28(t1) ; VRAM address
+    li      a1, 0x80850cdc
+    sub     t1, a1, t1 ; Calculate offset (should always be 0x20B1C)
+    add     t1, t2, t1
     sw      t1, 0x664(t0)
+
 @@return:
     jr      ra
     addiu   a1, s0, 0x01A4   ;displaced
