@@ -571,7 +571,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     #    raise ModelDefinitionError("Model for " + agestr + " too large- It is " + str(len(zobj)) + " bytes, but must be at most " + str(linksize) + " bytes.")
     # See if the string MODLOADER64 appears before the LUT- if so this is a PlayAs model and needs no further processing
     lut: LUT = LUT(0x06005000)
-    is_modloader64: bool = scan(zobj, "MODLOAD64") >= 0
+    is_modloader64: bool = scan(zobj, "MODLOADER64") >= 0
     hierarchy = lut.offset(Offsets.ADULT_HIERARCHY if age == 0 else Offsets.CHILD_HIERARCHY)
     if not is_modloader64:
         
