@@ -5,15 +5,19 @@
 #include "get_items.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include <assert.h>
+
+#define ACTOR_ADDITIONAL_DATA_SIZE 0x10
 
 // New data added to the end of every actor.
-// Make sure the size of this struct is equal to the amount of space added added in Actor_Spawn_Malloc_Hack from actor.asm
+// Make sure the size of this struct is equal to ACTOR_ADDITIONAL_DATA_SIZE above, and the ACTOR_ADDITIONAL_DATA_SIZE in assembly (Actor_Spawn_Malloc_Hack etc in actor.asm)
 typedef struct {
-    /* 0x00 */ uint16_t actor_id;
-    /* 0x02 */ xflag_t flag;
-    /* 0x04 */ uint8_t minimap_draw_flags;
-} ActorAdditionalData;
+    /* 0x00 */ uint16_t actor_id; // + padding 0x02
+    /* 0x04 */ xflag_t flag;
+    /* 0x0C */ uint8_t minimap_draw_flags; // + padding 0x03
+} ActorAdditionalData; // 0x10
 
+static_assert(sizeof(ActorAdditionalData) <= ACTOR_ADDITIONAL_DATA_SIZE, "Struct ActorAdditionalData size is larger than constant ACTOR_ADDITIONAL_DATA_SIZE");
 
 // Converts a number of bits to a bitmask, helper for params macros
 // e.g. 3 becomes 0b111 (7)
@@ -52,19 +56,22 @@ typedef struct {
 #define TRANSITION_ACTOR_PARAMS_INDEX_SHIFT 10
 #define GET_TRANSITION_ACTOR_INDEX(actor) PARAMS_GET_NOMASK((u16)(actor)->params, 10)
 
+extern ActorOverlay gActorOverlayTable[];
+
+z64_actor_t * Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx);
 void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game);
-void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index);
+extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
+z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
+z64_actor_t * Actor_SpawnAsChildWithSubflag(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params, uint8_t subflag);
+
+ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
+void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_id, uint8_t subflag);
+void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_id);
 void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag);
 void Actor_StoreChestType(z64_actor_t* actor, z64_game_t *game);
-z64_actor_t *Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_game_t* globalCtx);
+override_t get_newflag_override(xflag_t* flag);
+
 bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, bool* overridden);
 void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
-void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag);
-z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
-ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor);
-override_t get_newflag_override(xflag_t* flag);
-extern ActorOverlay gActorOverlayTable[];
-extern z64_actor_t * Actor_SpawnAsChild(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params);
-z64_actor_t * Actor_SpawnAsChildWithSubflag(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params, uint8_t subflag);
 
 #endif

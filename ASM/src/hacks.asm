@@ -699,23 +699,23 @@ SRAM_SLOTS:
 ;sw     s6, 0x0044(sp)
 ;sll    s6, a3, 16
 ;sw     s7, 0x0048(sp)
-addiu   sp, sp, -0x60
-sw      ra, 0x004C(sp)
-jal drop_collectible_random_hook
-nop
+    addiu   sp, sp, -0x60
+    sw      ra, 0x004C(sp)
+    jal drop_collectible_random_hook
+    nop
 .skip 24
-nop  ; Replaces the sw ra, 0x004C(sp) later on so we dont screw up our return address because we already saved it.
+    nop  ; Replaces the sw ra, 0x004C(sp) later on so we dont screw up our return address because we already saved it.
 
 ; Hack Actor_Spawn when it checks if the room is clear to still spawn the enemies
 .orga 0xA9B1CC ; in memory 0x8002526C
-jal actor_spawn_clear_check_hook
-nop
-nop
-nop
-nop
-nop
-nop
-nop
+    jal actor_spawn_clear_check_hook
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
 
 ; Hack Dark Link room En_Blkobj for enemy soul shuffle
 ; At call to Actor_Find

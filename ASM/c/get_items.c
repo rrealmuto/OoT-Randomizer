@@ -901,6 +901,7 @@ void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t* overri
     }
 }
 
+// ? is this only for enemy drop randomizer?
 void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* fromActor, z64_xyzf_t* spawnPos, uint16_t params)
 {
     if(fromActor)

@@ -11,22 +11,29 @@ extern int Player_InCsMode(z64_game_t* globalCtx);
 
 extern bool curr_room_enemies_inhibited;
 
-z64_actor_t * BgMoriBigst_SpawnSingleStalfos(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+// First battle
+z64_actor_t * BgMoriBigst_SpawnSingleStalfos(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId,
+        float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     z64_actor_t* spawned = Actor_SpawnAsChildWithSubflag(actorCtx, parent, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params, 1);
     ((BgMoriBigst*)(parent))->child1 = spawned;
     return spawned;
 }
-z64_actor_t * BgMoriBigst_SpawnStalfosPair1(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+
+// Pair battle
+z64_actor_t * BgMoriBigst_SpawnStalfosPair1(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId,
+        float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     z64_actor_t* spawned = Actor_SpawnAsChildWithSubflag(actorCtx, parent, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params, 2);
     ((BgMoriBigst*)(parent))->child1 = spawned;
     return spawned;
 }
-z64_actor_t * BgMoriBigst_SpawnStalfosPair2(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+z64_actor_t * BgMoriBigst_SpawnStalfosPair2(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId,
+        float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     z64_actor_t* spawned = Actor_SpawnAsChildWithSubflag(actorCtx, parent, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params, 3);
     ((BgMoriBigst*)(parent))->child2 = spawned;
     return spawned;
 }
 
+// First battle finish
 void BgMoriBigst_StalfosFight_new(BgMoriBigst* this, z64_game_t* globalCtx) {
     z64_link_t* player = GET_PLAYER(globalCtx);
 
@@ -38,6 +45,7 @@ void BgMoriBigst_StalfosFight_new(BgMoriBigst* this, z64_game_t* globalCtx) {
     }
 }
 
+// Pair battle finish
 void BgMoriBigst_StalfosPairFight_new(BgMoriBigst* this, z64_game_t* globalCtx) {
     if ((!curr_room_enemies_inhibited && !this->child1 && !this->child2) && !Player_InCsMode(globalCtx)) {
         Flags_SetSwitch(globalCtx, PARAMS_GET_U(this->dyna.actor.variable, 8, 6));
