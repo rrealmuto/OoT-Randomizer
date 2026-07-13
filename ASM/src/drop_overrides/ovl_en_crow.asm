@@ -5,8 +5,7 @@ en_crow_respawn_hack:
     addiu   sp,sp,-24
     sw      ra,16(sp)
     sw      a0,20(sp)    ; actor
-    sw      a1,24(sp)    ; play
-    sw      v0,28(sp)    ; loaded reloc address
+    sw      v0,24(sp)    ; loaded reloc address
 
 ; Check if the setting is enabled.
     lb      a1,CFG_PREVENT_GUAY_RESPAWNS
@@ -19,8 +18,7 @@ en_crow_respawn_hack:
     
     lw      ra,16(sp)
     lw      a0,20(sp)
-    lw      a1,24(sp)
-    lw      v0,28(sp)
+    lw      v0,24(sp)
 @en_crow_return_to_func:
     move    a2,a0       ; displaced
     lw      t6,(v0)     ; displaced
