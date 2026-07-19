@@ -208,9 +208,8 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     actor_after_spawn_func after_spawn_func = NULL;
 
     // Enemy spawn shuffle: Handle actors that we've patched out using ID 0xFFFF (see Patches.py)
-    if (actorEntry->id == 0xFFFF) {
+    if(actorEntry->id == 0xFFFF)
         return NULL;
-    }
 
     switch (actorEntry->id) {
         case EN_G_SWITCH: {
@@ -286,19 +285,18 @@ z64_actor_t* Player_SpawnEntry_Hack(void* actorCtx, ActorEntry* playerEntry, z64
         playerEntry->pos.z = -1960;
         playerEntry->rot.y = 0;
     }
-
     return z64_SpawnActor(actorCtx, globalCtx, playerEntry->id, playerEntry->pos.x, playerEntry->pos.y, playerEntry->pos.z,
         playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
 }
 
-// Return 1 to not spawn the actor, 0 to spawn the actor
-// If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
-// Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
-// Parent will be set if called by Actor_SpawnAsChild
+//Return 1 to not spawn the actor, 0 to spawn the actor
+//If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
+//Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
+//Parent will be set if called by Actor_SpawnAsChild
 uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, int16_t flag, z64_actor_t* parent)
 {
 
-    // probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
+    //probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
     if (CFG_ENEMY_SPAWN_SHUFFLE && actorInit->id == EN_ANUBICE && parent != NULL)
     {
         ActorAdditionalData* extra = Actor_GetAdditionalData(parent);
@@ -312,15 +310,14 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             }
         }
     }
-
-    if ((actorInit->category == ACTORCAT_ENEMY) && Flags_GetClear(globalCtx, globalCtx->room_index))
+    if((actorInit->category == ACTORCAT_ENEMY) && Flags_GetClear(globalCtx, globalCtx->room_index))
     {
         // Don't spawn enemy in cleared room if not shuffling
         if (!CFG_ENEMY_SPAWN_SHUFFLE) {
             return 1;
         }
         // Check if we're spawning an actor from the room's actor spawn list
-        if (flag > 0)
+        if(flag > 0)
         {
             // Build an xflag
             xflag_t xflag = (xflag_t) { 0 };
@@ -342,8 +339,8 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
             xflag = resolve_alternative_flag(&xflag);
             override_t override = lookup_override_by_newflag(&xflag);
 
-            // Check if this actor is in the override list
-            if (override.key.all != 0 && !(Get_NewFlag(&xflag)>0))
+            //Check if this actor is in the override list
+            if(override.key.all != 0 && !(Get_NewFlag(&xflag)>0))
             {
                 return 0;
             }
@@ -377,7 +374,7 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
         continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
     }
 
-    if (continue_spawn) {
+    if(continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
         if (spawned) {
             if (spawn_actor_with_flag) {

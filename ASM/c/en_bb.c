@@ -28,7 +28,6 @@ void bb_after_init_hack(z64_actor_t* this, z64_game_t* globalCtx)
 
     EnBb* bubble = (EnBb*)this;
     bubble->overridden = 0;
-
     if(ENEMY_DROP_SHUFFLE)
     {
         xflag_t flag = Actor_GetAdditionalData(this)->flag;

@@ -836,31 +836,6 @@ or a1, r0, s0 ;parent is stored in v0
 jal bb_red_wait_hook
 sh  v0, 0x004E(sp)
 
-; .headersize(0x80b72bd0 - 0x00eee2f0)
-
-; ; Hack Guays (en_crow) to not respawn in enemy drop shuffle
-; .org 0x80b73114
-; ;.orga 0xEEE834 ; Beginning of EnCrow_SetupRespawn 0x80b73114
-; ; replaces
-; ;   addiu   sp, sp, -0x18
-; ;   lui     v0, 0x801E      ; this code needs to be skipped because it is relocated
-; ;   addiu   v0, v0, 0x6E98  ; this code needs to be skipped because it is relocated
-; ;   sw      ra, 0x0014(sp)
-; ;   or      a2, a0, r0
-; ;   lw      t6, 0x0000(v0)
-; ; Store caller's return address
-;     addiu   sp, sp, -0x18
-;     ;addiu   sp, sp, -0x30
-;     .skip   8   ; Skip relocated code
-;     ;sw      ra, 0x10(sp)
-;     sw      ra, 0x14(sp)    ; 20(sp) = original
-;     jal     en_crow_respawn_hack
-;     nop
-;     beq     t7,v1,0x80b731f8    ; if v1 = 1, guay was killed = jump to end of function, load ra
-;     nop
-
-; .headersize(0)
-
 ; Hack in Actor_Spawn after the null check to offset the pointer by the amount that we added to the actor, so the new data is at the start
 .org 0x800252CC
 ; Replaces:
