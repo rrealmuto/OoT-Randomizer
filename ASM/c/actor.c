@@ -23,6 +23,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 extern uint8_t SHUFFLE_SILVER_RUPEES;
 extern int8_t curr_scene_setup;
 extern xflag_t* spawn_actor_with_flag;
+extern uint8_t CFG_MINIMAP_ENEMY_TRACKER;
 
 #define BG_HAKA_TUBO        0x00BB  // Shadow temple spinning pot
 #define BG_SPOT18_BASKET    0x015C  // Goron city spinning pot
@@ -77,7 +78,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Add additional actor hacks here. These get called shortly after the call to actor_init
     // Hacks are responsible for checking that they are the correct actor.
     EnWonderitem_AfterInitHack(actor, game);
-    bb_after_init_hack(actor, game); // ? does this need check for enemy shuffle?
+    bb_after_init_hack(actor, game); // Enemy drop shuffle check
 
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
@@ -92,9 +93,9 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
     }
     override_t override = lookup_override_by_newflag(&flag);
     if (override.key.all) {
-        // Enemy spawn shuffle: Hack for most enemies. Specifically exclude gerudo fighters (0x197).
+        // Enemy drop shuffle with minimap tracking: Hack for most enemies. Specifically exclude gerudo fighters (0x197).
         // A few are handled below (they don't spawn with enemy category)
-        if (CFG_ENEMY_SPAWN_SHUFFLE) {
+        if (CFG_MINIMAP_ENEMY_TRACKER) {
             if (actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) {
                 extra->flag = flag;
                 // Add marker for enemy drops
@@ -120,11 +121,11 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
                 extra->flag = flag;
                 break;
             }
-            // Enemy spawn shuffle: Handle specific enemies
+            // Enemy drop shuffle with minimap tracking: Handle specific enemies
             case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
             case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if it's not a Gold Skulltula
             case EN_ANUBICE_TAG: { // Check for anubis spawns
-                if (CFG_ENEMY_SPAWN_SHUFFLE) {
+                if (CFG_MINIMAP_ENEMY_TRACKER) {
                     extra->flag = flag;
                     // Add marker for enemy drops
                     if (!Get_NewFlag(&flag)) {
@@ -206,9 +207,9 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     bool overridden = false;
     actor_after_spawn_func after_spawn_func = NULL;
 
-    // Handle actor's that we've patched out using ID 0xFFFF
+    // Enemy spawn shuffle: Handle actors that we've patched out using ID 0xFFFF (see Patches.py)
     if (actorEntry->id == 0xFFFF) {
-        return NULL; // ? where is this done?
+        return NULL;
     }
 
     switch (actorEntry->id) {
@@ -221,9 +222,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
             break;
         }
     }
+
+    // If enemy spawn shuffle check if player has soul
     if (CFG_ENEMY_SPAWN_SHUFFLE && continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
+
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -368,6 +372,7 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
     entry.rot.y = rotY;
     entry.rot.z = rotZ;
 
+    // If enemy spawn shuffle check if player has soul
     if (CFG_ENEMY_SPAWN_SHUFFLE) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
     }

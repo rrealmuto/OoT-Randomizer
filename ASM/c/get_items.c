@@ -12,6 +12,8 @@
 #include "save.h"
 #include "models.h"
 
+#define EN_ITEM00 0x15
+
 extern uint8_t SHUFFLE_CHEST_GAME;
 extern uint8_t FAST_CHESTS;
 extern uint8_t OCARINAS_SHUFFLED;
@@ -901,10 +903,10 @@ void dispatch_item(uint16_t resolved_item_id, uint8_t player, override_t* overri
     }
 }
 
-// ? is this only for enemy drop randomizer?
+// Enemy drop shuffle
 void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* fromActor, z64_xyzf_t* spawnPos, uint16_t params)
 {
-    if(fromActor)
+    if(fromActor && ENEMY_DROP_SHUFFLE)
     {
         xflag_t flag = Actor_GetAdditionalData(fromActor)->flag;;
         //Handle certain actors separately individually
@@ -925,6 +927,8 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
                 break;
             }
         }
+
+        // If enemy has rando item drop, spawn it on player so it gets instantly picked up
         if(flag.all)
         {
             params = 0;
@@ -933,7 +937,7 @@ void Item_DropCollectible_Random_Before(z64_game_t* globalCtx, z64_actor_t* from
             if(override.key.all && !(Get_NewFlag(&flag)))
             {
                 drop_collectible_override_flag = flag;
-                z64_SpawnActor(&globalCtx->actor_ctxt, globalCtx, 21, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0, 0, 0, 0);
+                z64_SpawnActor(&globalCtx->actor_ctxt, globalCtx, EN_ITEM00, z64_link.common.pos_world.x, z64_link.common.pos_world.y, z64_link.common.pos_world.z, 0, 0, 0, 0);
                 z64_bzero(&drop_collectible_override_flag, sizeof(drop_collectible_override_flag));
             }
 

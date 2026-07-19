@@ -7,15 +7,16 @@
 #include <stdint.h>
 #include <assert.h>
 
-#define ACTOR_ADDITIONAL_DATA_SIZE 0x10
+#define ACTOR_ADDITIONAL_DATA_SIZE 0x10 // Needs to be identical size to same name constant in constants.asm
 
 // New data added to the end of every actor.
-// Make sure the size of this struct is equal to ACTOR_ADDITIONAL_DATA_SIZE above, and the ACTOR_ADDITIONAL_DATA_SIZE in assembly (Actor_Spawn_Malloc_Hack etc in actor.asm)
+// Make sure the size of this struct is <= ACTOR_ADDITIONAL_DATA_SIZE above,
+// and the ACTOR_ADDITIONAL_DATA_SIZE in assembly (Actor_Spawn_Malloc_Hack etc in actor.asm)
 typedef struct {
-    /* 0x00 */ uint16_t actor_id; // + padding 0x02
-    /* 0x04 */ xflag_t flag;
-    /* 0x0C */ uint8_t minimap_draw_flags; // + padding 0x03
-} ActorAdditionalData; // 0x10
+    /* 0x00 */ uint16_t actor_id;
+    /* 0x02 */ uint8_t minimap_draw_flags; // + padding 0x01
+    /* 0x04 */ xflag_t flag; // size 0x08
+} ActorAdditionalData; // 0x0b
 
 static_assert(sizeof(ActorAdditionalData) <= ACTOR_ADDITIONAL_DATA_SIZE, "Struct ActorAdditionalData size is larger than constant ACTOR_ADDITIONAL_DATA_SIZE");
 
@@ -73,5 +74,7 @@ override_t get_newflag_override(xflag_t* flag);
 
 bool spawn_override_silver_rupee(ActorEntry* actorEntry, z64_game_t* globalCtx, bool* overridden);
 void after_spawn_override_silver_rupee(z64_actor_t* actor, bool overridden);
+
+extern uint8_t ENEMY_DROP_SHUFFLE;
 
 #endif
