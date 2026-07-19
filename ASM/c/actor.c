@@ -23,6 +23,7 @@ extern uint16_t CURR_ACTOR_SPAWN_INDEX;
 extern uint8_t SHUFFLE_SILVER_RUPEES;
 extern int8_t curr_scene_setup;
 extern xflag_t* spawn_actor_with_flag;
+extern uint8_t CFG_MINIMAP_ENEMY_TRACKER;
 
 #define BG_HAKA_TUBO        0x00BB  // Shadow temple spinning pot
 #define BG_SPOT18_BASKET    0x015C  // Goron city spinning pot
@@ -36,9 +37,11 @@ extern xflag_t* spawn_actor_with_flag;
 #define EN_G_SWITCH         0x0117 //Silver Rupee
 #define EN_WONDER_ITEM      0x0112  // Wonder Item
 #define EN_ANUBICE_TAG      0x00F6  // Anubis Spawner
+#define EN_ANUBICE          0x00E0  // Anubis
 #define EN_IK               0x0113  // Iron Knuckes
 #define EN_SW               0x0095  // Skullwalltula
 #define EN_BB               0x0069  // Bubble
+#define SCENE_GROTTOS 0x3E
 
 uint8_t actor_spawn_as_child_flag = 0;
 z64_actor_t* actor_spawn_as_child_parent = NULL;
@@ -46,22 +49,22 @@ z64_actor_t* actor_spawn_as_child_parent = NULL;
 // Get a pointer to the additional data that is stored at the beginning of every actor
 // This is calculated as the actor's address + the actor instance size from the overlay table.
 ActorAdditionalData* Actor_GetAdditionalData(z64_actor_t* actor) {
-    return (ActorAdditionalData*)(((uint8_t*)actor) - 0x10);
+    return (ActorAdditionalData*)(((uint8_t*)actor) - ACTOR_ADDITIONAL_DATA_SIZE);
 }
 
 // Build an xflag from actor ID and subflag
 // Store the flag using the pointer
-void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_index, uint8_t subflag) {
+void Actor_BuildFlag(z64_actor_t* actor, xflag_t* flag, uint16_t actor_id, uint8_t subflag) {
     flag->scene = z64_game.scene_index;
-    if (z64_game.scene_index == 0x3E) {
+    if (z64_game.scene_index == SCENE_GROTTOS) {
         flag->grotto.room = actor->room_index;
         flag->grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
-        flag->grotto.flag = actor_index;
+        flag->grotto.flag = actor_id;
         flag->grotto.subflag = subflag;
     } else {
         flag->room = actor->room_index;
         flag->setup = curr_scene_setup;
-        flag->flag = actor_index;
+        flag->flag = actor_id;
         flag->subflag = subflag;
     }
 }
@@ -75,7 +78,7 @@ void Actor_After_UpdateAll_Hack(z64_actor_t* actor, z64_game_t* game) {
     // Add additional actor hacks here. These get called shortly after the call to actor_init
     // Hacks are responsible for checking that they are the correct actor.
     EnWonderitem_AfterInitHack(actor, game);
-    bb_after_init_hack(actor, game);
+    bb_after_init_hack(actor, game); // Enemy drop shuffle check
 
     CURR_ACTOR_SPAWN_INDEX = 0; // reset CURR_ACTOR_SPAWN_INDEX
 }
@@ -89,21 +92,22 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
         extra->actor_id = CURR_ACTOR_SPAWN_INDEX;
     }
     override_t override = lookup_override_by_newflag(&flag);
-    if(override.key.all)
-    {
-        if(actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) //Hack for most enemies. Specifically exclude gerudo fighters (0x197)
-        {
-            extra->flag = flag;
-            // Add marker for enemy drops
-            if(!Get_NewFlag(&flag)) {
-                extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
+    if (override.key.all) {
+        // Enemy drop shuffle with minimap tracking: Hack for most enemies. Specifically exclude gerudo fighters (0x197).
+        // A few are handled below (they don't spawn with enemy category)
+        if (CFG_MINIMAP_ENEMY_TRACKER) {
+            if (actor->actor_type == ACTORCAT_ENEMY && actor->actor_id != 0x0197) {
+                extra->flag = flag;
+                // Add marker for enemy drops
+                if (!Get_NewFlag(&flag)) {
+                    extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
+                }
+                return;
             }
-            return;
         }
 
-        switch(actor->actor_id)
-        {
-            // For the following actors we store the flag in the new space added to the actor.
+        switch(actor->actor_id) {
+            // For the following actors we store the flag in the new space added to the actor
             case OBJ_TSUBO:
             case EN_TUBO_TRAP:
             case OBJ_KIBAKO:
@@ -113,20 +117,24 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
             case BG_SPOT18_BASKET:
             case OBJ_MURE3:
             case BG_HAKA_TUBO:
-            case EN_WONDER_ITEM:
-            case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
-            case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if the object isnt laoded
-            case EN_ANUBICE_TAG: //Check for anubis spawns
-            {
+            case EN_WONDER_ITEM: {
                 extra->flag = flag;
-                // Add marker for enemy drops
-                if(!Get_NewFlag(&flag)) {
-                    extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
+                break;
+            }
+            // Enemy drop shuffle with minimap tracking: Handle specific enemies
+            case EN_IK: // Check for iron knuckles (they use actor category 9 (boss) and change to category 5 but a frame later if the object isnt loaded)
+            case EN_SW: // Check for skullwalltula (en_sw). They start as category 4 (npc) and change to category 5 but a frame later if it's not a Gold Skulltula
+            case EN_ANUBICE_TAG: { // Check for anubis spawns
+                if (CFG_MINIMAP_ENEMY_TRACKER) {
+                    extra->flag = flag;
+                    // Add marker for enemy drops
+                    if (!Get_NewFlag(&flag)) {
+                        extra->minimap_draw_flags = MINIMAP_FLAGS_DRAW | MINIMAP_FLAGS_ENEMY;
+                    }
                 }
                 break;
             }
-            default:
-            {
+            default: {
                 break;
             }
         }
@@ -135,11 +143,11 @@ void Actor_StoreFlag(z64_actor_t* actor, z64_game_t* game, xflag_t flag) {
 
 // For pots/crates/beehives, store the flag in the new space in the actor instance.
 // Flag consists of the room #, scene setup, and the actor index
-void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_index) {
+void Actor_StoreFlagByIndex(z64_actor_t* actor, z64_game_t* game, uint16_t actor_id) {
     // Zeroize extra data;
 
     xflag_t flag = (xflag_t) { 0 };
-    Actor_BuildFlag(actor, &flag, actor_index, 0);
+    Actor_BuildFlag(actor, &flag, actor_id, 0);
     Actor_StoreFlag(actor, game, flag);
 }
 
@@ -199,7 +207,7 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
     bool overridden = false;
     actor_after_spawn_func after_spawn_func = NULL;
 
-    // Handle actor's that we've patched out using ID 0xFFFF
+    // Enemy spawn shuffle: Handle actors that we've patched out using ID 0xFFFF (see Patches.py)
     if(actorEntry->id == 0xFFFF)
         return NULL;
 
@@ -213,9 +221,12 @@ z64_actor_t* Actor_SpawnEntry_Hack(void* actorCtx, ActorEntry* actorEntry, z64_g
             break;
         }
     }
-    if (continue_spawn) {
+
+    // If enemy spawn shuffle check if player has soul
+    if (CFG_ENEMY_SPAWN_SHUFFLE && continue_spawn) {
         continue_spawn = spawn_override_enemy_spawn_shuffle(actorEntry, globalCtx, SPAWN_FLAGS_SPAWNENTRY);
     }
+
     z64_actor_t *spawned = NULL;
     if (continue_spawn) {
         spawned = z64_SpawnActor(actorCtx, globalCtx, actorEntry->id, actorEntry->pos.x, actorEntry->pos.y, actorEntry->pos.z,
@@ -277,36 +288,42 @@ z64_actor_t* Player_SpawnEntry_Hack(void* actorCtx, ActorEntry* playerEntry, z64
     return z64_SpawnActor(actorCtx, globalCtx, playerEntry->id, playerEntry->pos.x, playerEntry->pos.y, playerEntry->pos.z,
         playerEntry->rot.x, playerEntry->rot.y, playerEntry->rot.z, playerEntry->params);
 }
+
 //Return 1 to not spawn the actor, 0 to spawn the actor
 //If enemy drops setting is enabled, check if the flag for this actor hasn't been set and make sure to spawn it.
 //Flag is the index of the actor in the actor spawn list, or -1 if this function is not being called at the room init.
 //Parent will be set if called by Actor_SpawnAsChild
 uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit, int16_t flag, z64_actor_t* parent)
 {
+
     //probably need to do something specific for anubis spawns because they use the spawner items. Maybe flare dancers too?
-    if(actorInit->id == 0x00E0 && parent != NULL)
+    if (CFG_ENEMY_SPAWN_SHUFFLE && actorInit->id == EN_ANUBICE && parent != NULL)
     {
         ActorAdditionalData* extra = Actor_GetAdditionalData(parent);
         xflag_t xflag = extra->flag;
         if (xflag.all) {
             xflag = resolve_alternative_flag(&xflag);
             override_t override = lookup_override_by_newflag(&xflag);
-            if(override.key.all != 0 && !(Get_NewFlag(&xflag)>0))
+            if (override.key.all != 0 && !(Get_NewFlag(&xflag) > 0))
             {
-                return 0;
+                return 0; // Has collectible, spawn
             }
         }
     }
     if((actorInit->category == ACTORCAT_ENEMY) && Flags_GetClear(globalCtx, globalCtx->room_index))
     {
-        //Check if we're spawning an actor from the room's actor spawn list
+        // Don't spawn enemy in cleared room if not shuffling
+        if (!CFG_ENEMY_SPAWN_SHUFFLE) {
+            return 1;
+        }
+        // Check if we're spawning an actor from the room's actor spawn list
         if(flag > 0)
         {
             // Build an xflag
             xflag_t xflag = (xflag_t) { 0 };
 
             xflag.scene = globalCtx->scene_index;
-            if(globalCtx->scene_index == 0x3E) {
+            if (globalCtx->scene_index == SCENE_GROTTOS) {
                 xflag.grotto.room = globalCtx->room_index;
                 xflag.grotto.grotto_id = z64_file.respawn[RESPAWN_MODE_RETURN].data & 0x1F;
                 xflag.grotto.flag = flag;
@@ -333,7 +350,6 @@ uint8_t Actor_Spawn_Clear_Check_Hack(z64_game_t* globalCtx, ActorInit* actorInit
         return 1;
     }
 
-
     return 0;
 }
 
@@ -353,7 +369,10 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
     entry.rot.y = rotY;
     entry.rot.z = rotZ;
 
-    continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
+    // If enemy spawn shuffle check if player has soul
+    if (CFG_ENEMY_SPAWN_SHUFFLE) {
+        continue_spawn = spawn_override_enemy_spawn_shuffle(&entry, globalCtx, SPAWN_FLAGS_ACTORSPAWN);
+    }
 
     if(continue_spawn) {
         z64_actor_t* spawned = Actor_Spawn_Continue(actorCtx, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);
@@ -368,7 +387,8 @@ z64_actor_t* Actor_Spawn_Hook(void* actorCtx, z64_game_t* globalCtx, int16_t act
     return NULL;
 }
 
-z64_actor_t * Actor_SpawnAsChildWithSubflag(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params, uint8_t subflag) {
+z64_actor_t * Actor_SpawnAsChildWithSubflag(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId,
+        float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params, uint8_t subflag) {
     xflag_t flag = { 0 };
     Actor_BuildFlag(parent, &flag, Actor_GetAdditionalData(parent)->actor_id, subflag);
     spawn_actor_with_flag = &flag;
@@ -377,7 +397,8 @@ z64_actor_t * Actor_SpawnAsChildWithSubflag(void* actorCtx, z64_actor_t* parent,
     return spawned;
 }
 
-z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId, float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
+z64_actor_t * Actor_SpawnAsChild_Hook(void* actorCtx, z64_actor_t* parent, z64_game_t* globalCtx, int16_t actorId,
+        float posX, float posY, float posZ, int16_t rotX, int16_t rotY, int16_t rotZ, int16_t params) {
     actor_spawn_as_child_flag = 1;
     actor_spawn_as_child_parent = parent;
     z64_actor_t* spawned = Actor_SpawnAsChild(actorCtx, parent, globalCtx, actorId, posX, posY, posZ, rotX, rotY, rotZ, params);

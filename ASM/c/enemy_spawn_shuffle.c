@@ -236,41 +236,39 @@ bool toggle_soul_enabled(int table_index) {
 // Check if the actor id is in the enemy_spawn_table, and if it is check if the enemy spawn flag is set in extended save context
 bool spawn_override_enemy_spawn_shuffle(ActorEntry *actorEntry, z64_game_t *globalCtx, SPAWN_FLAGS flag)
 {
-    if ( CFG_ENEMY_SPAWN_SHUFFLE ) { // Only if the setting is enabled
-        for (int i = 0; i < array_size(enemy_spawn_table); i++) { //Loop through the enemy_spawn_table
-            if ((actorEntry->id == enemy_spawn_table[i].actor_id) && (enemy_spawn_table[i].flags & flag)) {
-                if (enemy_spawn_table[i].override_func) {
-                    if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
-                        return true;
-                }
-                // For standard enemy spawn shuffle, check if we collected the soul for that enemy
-                if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
-                    enemy_spawn_table_entry *table_entry = &(enemy_spawn_table[i]);
-                    bool continue_spawn = true;
+    for (int i = 0; i < array_size(enemy_spawn_table); i++) { //Loop through the enemy_spawn_table
+        if ((actorEntry->id == enemy_spawn_table[i].actor_id) && (enemy_spawn_table[i].flags & flag)) {
+            if (enemy_spawn_table[i].override_func) {
+                if (!enemy_spawn_table[i].override_func(actorEntry, globalCtx))
+                    return true;
+            }
+            // For standard enemy spawn shuffle, check if we collected the soul for that enemy
+            if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_STANDARD) {
+                enemy_spawn_table_entry *table_entry = &(enemy_spawn_table[i]);
+                bool continue_spawn = true;
 
-                    continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
-                    curr_room_enemies_inhibited |= !continue_spawn;
-                    return continue_spawn;
-                }
-                // For regional enemy spawn shuffle, check if we collected the soul for that region
-                else if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL) {
-                    // Loop through the regional spawn table and check for the current scene
-                    for(int j = 0; j < array_size(regional_enemy_spawn_table); j++) {
-                        // Loop throught the scene group
-                        for(int k = 0; k < regional_enemy_spawn_table[j].scene_group_length; k++) {
-                            if(regional_enemy_spawn_table[j].scene_group[k] == globalCtx->scene_index) {
-                                // found a scene group matching the current scene
-                                // Check if we have that flag
-                                bool continue_spawn = flags_getsoul(j) && get_soul_enabled(j);
-                                curr_room_enemies_inhibited |= !continue_spawn;
-                                return continue_spawn;
-                            }
+                continue_spawn &= flags_getsoul(table_entry->index) & get_soul_enabled(table_entry->index);
+                curr_room_enemies_inhibited |= !continue_spawn;
+                return continue_spawn;
+            }
+            // For regional enemy spawn shuffle, check if we collected the soul for that region
+            else if (CFG_ENEMY_SPAWN_SHUFFLE == CFG_ENEMY_SPAWN_SHUFFLE_REGIONAL) {
+                // Loop through the regional spawn table and check for the current scene
+                for(int j = 0; j < array_size(regional_enemy_spawn_table); j++) {
+                    // Loop throught the scene group
+                    for(int k = 0; k < regional_enemy_spawn_table[j].scene_group_length; k++) {
+                        if(regional_enemy_spawn_table[j].scene_group[k] == globalCtx->scene_index) {
+                            // found a scene group matching the current scene
+                            // Check if we have that flag
+                            bool continue_spawn = flags_getsoul(j) && get_soul_enabled(j);
+                            curr_room_enemies_inhibited |= !continue_spawn;
+                            return continue_spawn;
                         }
                     }
-                    // If we got here, we didn't find a scene group for this enemy. This should probably never happen
-                    // But just spawn the enemy if it does
-                    return true;
                 }
+                // If we got here, we didn't find a scene group for this enemy. This should probably never happen
+                // But just spawn the enemy if it does
+                return true;
             }
         }
     }

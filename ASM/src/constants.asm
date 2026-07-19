@@ -9,3 +9,5 @@ DELAYED_EPONAS_SONG      equ 0x27
 DELAYED_SUNS_SONG        equ 0x29
 DELAYED_SONG_OF_TIME     equ 0x2A
 DELAYED_COOP             equ 0xFF
+
+ADDITIONAL_ACTOR_DATA_SIZE  equ 0x10    ; needs to be identical size to same name define in actor.c

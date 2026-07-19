@@ -61,7 +61,7 @@ Actor_Spawn_Malloc_Hack:
     lh      s0, 0x00(v1) ; Get the ID from the entry
     beqz    s0, @spawn
     nop
-    addiu   a0, a0, 0x10 ; Increase the size of the actor
+    addiu   a0, a0, ADDITIONAL_ACTOR_DATA_SIZE ; Increase the size of the actor
 @spawn:
     jal     0x80066C10 ; (ZeldaArena_Malloc)
     nop
@@ -90,7 +90,7 @@ Actor_Spawn_Shift:
     ; Zeroize the extra data
     or      a0, v0, r0 ; store actor pointer in a0
     jal     0x80002E80 ; call bzero
-    addiu   a1, r0, 0x10 ; store size to zeroize in a1
+    addiu   a1, r0, ADDITIONAL_ACTOR_DATA_SIZE ; store size to zeroize in a1
 
     lw      s0, 0x10(sp)
     lw      a0, 0x14(sp)

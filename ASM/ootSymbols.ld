@@ -16,6 +16,7 @@ Flags_SetTempClear = 0x800206AC;
 Flags_UnsetTempClear = 0x800206C8;
 Flags_GetCollectible = 0x800206E8;
 Flags_SetCollectible = 0x8002071C;
+Actor_Kill = 0x80020eb4;
 Actor_SetColorFilter = 0x80027090;
 CutsceneFlags_Get = 0x8005991C;
 Item_DropCollectible = 0x80013678;
