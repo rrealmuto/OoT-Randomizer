@@ -64,7 +64,7 @@ int32_t ZeldaArena_CalculateSize(TwoHeadArena* tha) {
     int32_t size = THA_GetRemaining(tha);
     // Add the difference in object heap space that we allocated for player models
     int object_space_resize = allocd_object_space_size - original_object_space_size;
-    
+
     // Subtract the 0x0100000
     size = size - 0x100000 + object_space_resize;
 

@@ -295,7 +295,7 @@ class Rom(BigStream):
             if obj_start == 0:
                 found_free_object = True
                 break
-        
+
         if not found_free_object:
             raise Exception(f"No more extended object slots: {i}")
 

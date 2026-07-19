@@ -553,7 +553,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     if ".pak" in model:
         # Split the model name into .pak + the .zobj
         splitindex = model.index(".pak") + 4
-        
+
         zobj_name = model[splitindex+1:]
         model = model[0:splitindex]
         file = open(model, "rb")
@@ -574,7 +574,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     is_modloader64: bool = scan(zobj, "MODLOADER64") >= 0
     hierarchy = lut.offset(Offsets.ADULT_HIERARCHY if age == 0 else Offsets.CHILD_HIERARCHY)
     if not is_modloader64:
-        
+
         # First, make sure all important bytes are zeroed out
         for i in range(LUT_START, LUT_END):
             zobj[i] = 0x00
@@ -665,7 +665,7 @@ def LoadModel(rom: Rom, model: str, age: int) -> tuple[int, LUT, int]:
     # Zeroize the original file
     #rom.write_bytes(linkstart, [0]*linksize)
     rom.update_dmadata_record_by_key(linkstart, linkstart_new, linkstart_new + len(zobj))
-    
+
     rom.write_int32(obj_table_entry, linkstart_new)
     rom.write_int32(obj_table_entry + 4, linkstart_new + len(zobj))
     # Finally, want to return an address with a DF instruction for use when writing the model data
@@ -1012,7 +1012,7 @@ def patch_model_child(rom: Rom, settings: Settings, log: CosmeticsLog) -> None:
 class LUT:
     def __init__(self, lut_base: int):
         self.base = lut_base
-    
+
     def offset(self, offset: int):
         return self.base + offset
 
@@ -1440,10 +1440,10 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
     manifest = None
     with open(manifest_path) as f:
         manifest = json.loads(f.read())
-    
+
     if manifest is None:
         raise Exception(f"Could not load manifest {manifest_path}")
-    
+
     model_file = manifest["model"]
     replace_object = manifest["replace_object"]
     patch_files = manifest["patch_files"] if "patch_files" in manifest.keys() else []
@@ -1461,7 +1461,7 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
             vars[var["key"]] = val
             vars[f"hi({var['key']})"] = val_hi
             vars[f"lo({var['key']})"] = val_lo
-    
+
     if "symbols" in manifest.keys():
         for sym in manifest["symbols"]:
             vars[sym] = rom.sym(sym)
@@ -1471,7 +1471,7 @@ def read_object_manifest(rom: Rom, manifest_path: str) -> tuple[str, str, list[d
 def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog):
     misc_path = data_path("Models/misc")
     subdirs = [dir for dir in os.listdir(misc_path) if os.path.isdir(os.path.join(misc_path,dir))]
-    
+
     for dir in subdirs:
         # Read the manifest
         manifest_path = os.path.join(misc_path, dir, "manifest.json")
@@ -1483,7 +1483,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
         model_file_path = os.path.join(misc_path, dir, model_file)
         with open(model_file_path, 'rb') as f:
             model_data = f.read()
-        
+
         new_obj_id = None
         if replace_object == "new":
             # Add an entirely new object to the file system and object table
@@ -1504,7 +1504,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
             if len(model_data) > dma.size:
                 # Make a new file and update the dma and object table
                 model_start = rom.dma.free_space(len(model_data))
-                    
+
                 # Write the new model data
                 rom.write_bytes(model_start, model_data)
                 rom.update_dmadata_record_by_key(dma.start, model_start, model_start + len(model_data))
@@ -1512,7 +1512,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
                 object_table_entry_addr = 0xB6EF58 + object_list[replace_object]*8
                 rom.write_int32(object_table_entry_addr, model_start)
                 rom.write_int32(object_table_entry_addr + 4, model_start + len(model_data))
-            
+
             else:
                 # Write the new model data
                 rom.write_bytes(model_start, model_data)
@@ -1531,7 +1531,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
                 gi_draw_patch["patches"] = []
                 for patch in patch_gi_draw_table["patches"]:
                     patch_fixed = {}
-                    patch_fixed["addr"] = patch_gi_draw_table["index"]*item_draw_table_entry_size + item_draw_table_base - payload_base + patch["addr"] 
+                    patch_fixed["addr"] = patch_gi_draw_table["index"]*item_draw_table_entry_size + item_draw_table_base - payload_base + patch["addr"]
                     patch_fixed["data"] = patch["data"]
                     patch_fixed["size"] = patch["size"]
                     gi_draw_patch["patches"].append(patch_fixed)
@@ -1548,7 +1548,7 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
                 item_table_patch["patches"] = []
                 for patch in patch_item_table["patches"]:
                     patch_fixed = {}
-                    patch_fixed["addr"] = patch_item_table["index"]*item_table_entry_size + item_table_base - payload_base + patch["addr"] 
+                    patch_fixed["addr"] = patch_item_table["index"]*item_table_entry_size + item_table_base - payload_base + patch["addr"]
                     patch_fixed["data"] = patch["data"]
                     patch_fixed["size"] = patch["size"]
                     item_table_patch["patches"].append(patch_fixed)
@@ -1577,6 +1577,3 @@ def patch_misc_models(rom: Rom, settings: Settings, cosmetics_log: CosmeticsLog)
                     data = data.to_bytes(size, 'big')
 
                 rom.write_bytes(patch_base + addr, data)
-        
-
-

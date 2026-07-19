@@ -5,7 +5,7 @@
 
 void KaleidoScope_DrawItemSelect(z64_game_t* play) {
     z64_file_t* save_ctxt = &z64_file;
-    
+
     KaleidoScope_DrawAmmoCount_func* KaleidoScope_DrawAmmoCount = resolve_kaleido_ovl_addr(OVL_KaleidoScope_DrawAmmoCount);
     KaleidoScope_SetCursorVtx_func* KaleidoScope_SetCursorVtx = resolve_kaleido_ovl_addr(OVL_KaleidoScope_SetCursorVtx);
     KaleidoScope_QuadTextureIA8_func* KaleidoScope_QuadTextureIA8 = resolve_kaleido_ovl_addr(OVL_KaleidoScope_QuadTextureIA8);
@@ -18,7 +18,7 @@ void KaleidoScope_DrawItemSelect(z64_game_t* play) {
     int16_t* sEquipState = resolve_kaleido_ovl_addr(&OVL_sEquipState);
     int16_t* sEquipAnimTimer = resolve_kaleido_ovl_addr(&OVL_sEquipAnimTimer);
     int16_t* sEquipMoveTimer = resolve_kaleido_ovl_addr(&OVL_sEquipMoveTimer);
-    
+
     static int16_t magic_arrow_effects_r[] = {255, 100, 255 };
     static int16_t magic_arrow_effects_g[] = {0, 100, 255 };
     static int16_t magic_arrow_effects_b[] = {0, 255, 100 };
