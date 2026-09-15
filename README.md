@@ -31,6 +31,7 @@ Fishing Game Shuffle - Shuffle the fish from the fishing game. The fish in the p
   * Fix Flare Dancers knocking back link without hitting into him
   * Disallow Bari in Forest temple rotating hallway to prevent them falling out of bounds
   * Move Water Trial wallmaster to spawn in bounds
+  * Fix Skull Kid enemizer logic
 
 ### 9.0.2.Rob-E24
   * Fix incorrectly setting actor flags when actors are killed which caused crashes when actors weren't deleted at the right time.
