@@ -61,6 +61,7 @@ gEntranceTable = 0x800f9c90;
 Magic_Fill = 0x80072500;
 Actor_PlaySfx = 0x80022fd0;
 Actor_WorldDistXZToPoint = 0x80021528;
+Actor_SetPlayerKnockbackLargeNoDamage = 0x80022ec4;
 BgCheck_EntityRaycastDown1 = 0x8002f3a4;
 BgCheck_EntityRaycastDown2 = 0x8002f400;
 BgCheck_EntityRaycastDown3 = 0x8002f454;

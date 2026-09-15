@@ -22,8 +22,8 @@ void EnMb_Init_Hooked(z64_actor_t* thisx, z64_game_t* globalCtx) {
     }
 
     // Call the original init function
-    EnMb_Func EnMb_Init = resolve_actor_overlay_addr(&OVL_EnMb_Init, this);
-    EnMb_Init(this, globalCtx);
+    EnMb_Func EnMb_Init = resolve_actor_overlay_addr(&OVL_EnMb_Init, &this->actor);
+    EnMb_Init(&this->actor, globalCtx);
 
     if(is_new_moblin) {
         // Reset some of the stuff set by the default init case

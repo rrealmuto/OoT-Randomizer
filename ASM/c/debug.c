@@ -5,8 +5,6 @@
 #include "actor.h"
 #include "player.h"
 
-extern void ArenaImpl_GetSizes(Arena* zrena, uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
-
 extern uint32_t zarena_maxFree;
 extern uint32_t zarena_free;
 extern uint32_t zarena_alloc;

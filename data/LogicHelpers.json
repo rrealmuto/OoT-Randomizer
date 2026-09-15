@@ -175,8 +175,8 @@
     "can_kill_spike_enemy": "has_soul(Spike_Enemy) and (is_adult or (Bomb_Bag or can_use(Dins_Fire) or Sticks))",
     "can_kill_anubis": "has_soul(Anubis) and (can_use(Dins_Fire) or can_use(Fire_Arrows))",
     "can_kill_moblin": "has_soul(Moblin) and (is_adult or (is_child and (Kokiri_Sword or Sticks)))",
-    "can_kill_skull_kid": "has_soul(Skull_Kid) and (is_adult or (is_child and (Kokiri_Sword or Sticks)))",
-    
+    "can_kill_skull_kid": "has_soul(Skull_Kid)",
+    "can_kill_skull_kid_with_drop": "has_soul(Skull_Kid) and is_adult",
 
     # Bridge Requirements
     "has_all_stones": "Kokiri_Emerald and Goron_Ruby and Zora_Sapphire",

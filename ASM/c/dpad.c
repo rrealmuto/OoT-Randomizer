@@ -2,6 +2,7 @@
 #include "dpad.h"
 #include "trade_quests.h"
 #include "audio.h"
+#include "player.h"
 
 extern uint8_t CFG_DISPLAY_DPAD;
 

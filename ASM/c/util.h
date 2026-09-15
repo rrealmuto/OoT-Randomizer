@@ -27,5 +27,6 @@ void* resolve_player_ovl_addr(void* addr);
 void* resolve_kaleido_ovl_addr(void* addr);
 
 extern void ZeldaArena_GetSizes(uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
+extern void ArenaImpl_GetSizes(Arena* zrena, uint32_t* outMaxFree, uint32_t* outFree, uint32_t* outAlloc);
 
 #endif

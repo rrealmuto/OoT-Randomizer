@@ -34,6 +34,22 @@ ENFD_PATCH_UPDATE_DOTS_START:
     nop
 ENFD_PATCH_UPDATE_DOTS_END:
 
+; Hack call to Actor_PlaySfx in EnFd_CollisionCheck to only play the collision SFX if flare dancer collided w/ the player
+.org 0x809554b8
+ENFD_PATCH_KNOCKBACK_SFX_START:
+; Replaces:
+;   jal     Actor_PlaySfx
+    nop ; Just nop out the call, we will call it from EnFd_SetPlayerKnockbackLargeNoDamage
+ENFD_PATCH_KNOCKBACK_SFX_END:
+
+; Hack call to Actor_SetPlayerKnockbackLargeNoDamage in EnFd_CollisionCheck to make sure that the flare dancer actually collided with the player
+.org 0x809554e8
+ENFD_PATCH_KNOCKBACK_START:
+; Replaced:
+;   jal     Actor_SetPlayerKnockbackLargeNoDamage
+    jal     EnFd_SetPlayerKnockbackLargeNoDamage
+ENFD_PATCH_KNOCKBACK_END:
+
 ; Relocs
 .org 0x80957bf4
 nop

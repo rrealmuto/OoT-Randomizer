@@ -93,6 +93,16 @@ def patch_botw_wallmaster(actor: Actor):
 def patch_jabu_pit_room_bari(actor: Actor):
     actor.y = -100
 
+# Move the spawn points for Flying Floor Tiles slightly up because they're normally under the floor
+def patch_flying_floor_tile(actor: Actor):
+    actor.y += 10
+
+# Move the wallmaster in the block push room of Water Trial. It is way out of bounds normally. Or should it just be patched out?
+def patch_gc_water_trial_wallmaster(actor: Actor):
+    actor.x = 2912
+    actor.y = -320
+    actor.z = -960
+
 var_overrides_iron_knuckles = {
     "Iron Knuckle (White)": 0xFF03,
     "Iron Knuckle (Black)": 0xFF02,
@@ -465,9 +475,9 @@ vanilla_dungeon_enemies = {
         (3, 17, 0, 0): EnemyLocation( 55), # Skulltula
         (3, 18, 0, 0): EnemyLocation( 142), # Floormaster
         (3, 19, 0, 0): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], skip_raycast=True, patch_func=patch_forest_first_rotating_hallway_wallmaster), # Wallmaster
-        (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True), # Bubble
-        (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True), # Bubble
-        (3, 20, 0, 2): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], skip_raycast=True, patch_func=patch_forest_second_rotating_hallway_wallmaster), # Wallmaster
+        (3, 20, 0, 0): EnemyLocation(105, skip_raycast=True, disallowed_enemies=['Bari']), # Bubble
+        (3, 20, 0, 1): EnemyLocation(105, skip_raycast=True, disallowed_enemies=['Bari']), # Bubble
+        (3, 20, 0, 2): EnemyLocation(17, restrictions=[LOCATION_RESTRICTION.FLOATING], explicit_allowed_enemies=['Wallmaster'], disallowed_enemies=['Bari'], skip_raycast=True, patch_func=patch_forest_second_rotating_hallway_wallmaster), # Wallmaster
         (3, 21, 0, 0): EnemyLocation(105), # Bubble
         (3, 21, 0, 1): EnemyLocation(105), # Bubble
     },
@@ -516,20 +526,20 @@ vanilla_dungeon_enemies = {
         (4, 16, 0, 3):  EnemyLocation(105), # Bubble
         (4, 16, 0, 4):  EnemyLocation(105), # Bubble
         (4, 18, 0, 0):  EnemyLocation(221), # Like like
-        (4, 18, 0, 1):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 18, 0, 2):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 18, 0, 3):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 18, 0, 4):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 18, 0, 5):  EnemyLocation(0x6B), # Flying Floor Tile
+        (4, 18, 0, 1):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 18, 0, 2):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 18, 0, 3):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 18, 0, 4):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 18, 0, 5):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
         (4, 19, 0, 0):  EnemyLocation(221), # Like like
-        (4, 19, 0, 1):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 2):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 3):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 4):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 5):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 6):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 7):  EnemyLocation(0x6B), # Flying Floor Tile
-        (4, 19, 0, 8):  EnemyLocation(0x6B), # Flying Floor Tile
+        (4, 19, 0, 1):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 2):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 3):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 4):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 5):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 6):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 7):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
+        (4, 19, 0, 8):  EnemyLocation(0x6B, patch_func=patch_flying_floor_tile), # Flying Floor Tile
         (4, 21, 0, 0):  EnemyLocation(19), # Keese
         (4, 21, 0, 1):  EnemyLocation(19), # Keese
         (4, 21, 0, 3):  EnemyLocation(19), # Keese
@@ -747,7 +757,7 @@ vanilla_dungeon_enemies = {
         (13, 9, 0, 7):  EnemyLocation(19), # Keese
         (13, 9, 0, 8):  EnemyLocation(19), # Keese
         (13, 9, 0, 9):  EnemyLocation(55), # Skulltula
-        (13, 10, 0, 1): EnemyLocation( 17), # Wallmaster
+        #(13, 10, 0, 1): EnemyLocation( 17, patch_func=patch_gc_water_trial_wallmaster), # Wallmaster
         (13, 12, 0, 0): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], meets_enemy_restrictions=[ENEMY_RESTRICTION.INSIDE], skip_raycast=True), # Bubble
         (13, 12, 0, 3):  EnemyLocation(221, var_overrides = var_overrides_iron_knuckles), # Like like
         (13, 14, 0, 3):  EnemyLocation(56), # Torch Slug
@@ -1409,7 +1419,7 @@ enemy_actor_types: list[Enemy] = [
     Enemy("Anubis Spawner", id=0x00F6, var=0x0003, soul_name="Anubis", kill_logic='can_kill_anubis', meets_location_restrictions=[LOCATION_RESTRICTION.FLOATING]),
         Enemy("Iron Knuckle (Black)", kill_logic='can_kill_iron_knuckle', id=0x0113, var=0xFF82, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
         Enemy("Iron Knuckle (White)", kill_logic='can_kill_iron_knuckle', id=0x0113, var=0xFF83, weight=.5, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND], soul_name='Iron Knuckle'),
-    Enemy("Skull Kid", kill_logic='can_kill_skull_kid', id=0x0115, var=0xFFFF),
+    Enemy("Skull Kid", kill_logic='can_kill_skull_kid', drop_logic='can_kill_skull_kid_with_drop', id=0x0115, var=0xFFFF),
     Enemy("Freezard", kill_logic='can_kill_freezard', id=0x0121, meets_location_restrictions=[LOCATION_RESTRICTION.ABOVE_GROUND]),
     Enemy("Stinger", id=0x018C, kill_logic='can_kill_stinger', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER], required_categories=[ENEMY_RESTRICTION.ABOVE_WATER]),
     Enemy("Stingray", id=0x003A, var=0x000A, soul_name="Stinger", kill_logic='can_kill_stinger', meets_location_restrictions=[LOCATION_RESTRICTION.UNDERWATER]),
