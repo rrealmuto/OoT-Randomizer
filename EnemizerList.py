@@ -757,7 +757,7 @@ vanilla_dungeon_enemies = {
         (13, 9, 0, 7):  EnemyLocation(19), # Keese
         (13, 9, 0, 8):  EnemyLocation(19), # Keese
         (13, 9, 0, 9):  EnemyLocation(55), # Skulltula
-        #(13, 10, 0, 1): EnemyLocation( 17, patch_func=patch_gc_water_trial_wallmaster), # Wallmaster
+        (13, 10, 0, 1): EnemyLocation( 17, patch_func=patch_gc_water_trial_wallmaster), # Wallmaster
         (13, 12, 0, 0): EnemyLocation(105, restrictions=[LOCATION_RESTRICTION.FLOATING], meets_enemy_restrictions=[ENEMY_RESTRICTION.INSIDE], skip_raycast=True), # Bubble
         (13, 12, 0, 3):  EnemyLocation(221, var_overrides = var_overrides_iron_knuckles), # Like like
         (13, 14, 0, 3):  EnemyLocation(56), # Torch Slug
